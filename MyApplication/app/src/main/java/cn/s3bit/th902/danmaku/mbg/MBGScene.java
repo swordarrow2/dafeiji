@@ -124,6 +124,13 @@ public class MBGScene extends BossSpell {
 		globalTime = 0;
 		entities = new LinkedBlockingQueue<>();
 		bulletEmitters.forEach(new Consumer<IntMap.Entry<MBGBulletEmitter>>(){
+
+			  @Override
+			  public Consumer<IntMap.Entry<MBGBulletEmitter>> andThen(Consumer<? super IntMap.Entry<MBGBulletEmitter>> after){
+				  // TODO: Implement this method
+				  return null;
+				}
+
 			@Override
 			public void accept(IntMap.Entry<MBGBulletEmitter> emitter){
 				Entity em=Entity.Create();
@@ -132,6 +139,13 @@ public class MBGScene extends BossSpell {
 			}
 		});
 		reflexBoards.forEach(new Consumer<IntMap.Entry<MBGReflexBoard>>(){
+
+			  @Override
+			  public Consumer<IntMap.Entry<MBGReflexBoard>> andThen(Consumer<? super IntMap.Entry<MBGReflexBoard>> after){
+				  // TODO: Implement this method
+				  return null;
+				}
+
 			@Override
 			public void accept(IntMap.Entry<MBGReflexBoard> board){
 				Entity em=Entity.Create();

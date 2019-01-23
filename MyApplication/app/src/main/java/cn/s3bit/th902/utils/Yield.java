@@ -32,10 +32,14 @@ public class Yield {
 	 * The repetition (Times Executed).
 	 */
 	public void append(final Runnable runnable, int repetition) {
-		append(() -> {
-			runnable.run();
-			return null;
-		}, repetition);
+		append(new Callable(){
+
+			  @Override
+			  public Object call() throws Exception{
+				  runnable.run();
+				  return null;
+				}
+			},repetition);
 	}
 	/**
 	 * @param callable

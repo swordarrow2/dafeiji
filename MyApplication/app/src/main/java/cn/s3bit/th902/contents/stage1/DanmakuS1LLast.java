@@ -40,7 +40,7 @@ public class DanmakuS1LLast extends DanmakuScene {
 			@Override
 			public void run(){
 				Entity boss=Entity.Create();
-				Transform transform=new Transform(new Vector2(285,730),new Vector2(2,2));
+				final Transform transform=new Transform(new Vector2(285,730),new Vector2(2,2));
 				boss.AddComponent(transform);
 				boss.AddComponent(new ImageRenderer(ResourceManager.barrages.get(230),0).attachToGroup(FightScreen.drawingLayers.entity8));
 				BossHP hp=new BossHP(

@@ -40,6 +40,13 @@ public class JudgingSystem {
 		Stream<Entry<ImmutableWrapper<Ellipse>, PlayerCollisionData>> stream = enemyJudges.entrySet().parallelStream();
 		mJudgeEntry = null;
 		stream.forEach(new Consumer<Entry<ImmutableWrapper<Ellipse>,PlayerCollisionData>>(){
+
+			  @Override
+			  public Consumer<Map.Entry<ImmutableWrapper<Ellipse>, JudgingSystem.PlayerCollisionData>> andThen(Consumer<? super Map.Entry<ImmutableWrapper<Ellipse>, JudgingSystem.PlayerCollisionData>> after){
+				  // TODO: Implement this method
+				  return null;
+				}
+
 			@Override
 			public void accept(Entry<ImmutableWrapper<Ellipse>,PlayerCollisionData> entry){
 				if(entry.getValue().judgeCallback.getDamage()<=0||Math.max(entry.getKey().getData().width,entry.getKey().getData().height)<0.1f){
