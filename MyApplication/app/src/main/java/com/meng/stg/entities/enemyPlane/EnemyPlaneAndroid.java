@@ -4,9 +4,9 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg.entities.*;
-import com.meng.stg.entities.bullet.*;
+import com.meng.stg.entities.enemyBullet.*;
 import com.meng.stg.helpers.*;
-public class EnemyAndroid extends baseEnemy{
+public class EnemyPlaneAndroid extends BaseEnemy{
 
   
 	Circle judgeCircle = new Circle();
@@ -16,11 +16,11 @@ public class EnemyAndroid extends baseEnemy{
 	int flag=0;
 	int delay=0;
 
-	public static Pool<EnemyAndroid> Pool = new Pool<EnemyAndroid>()
+	public static Pool<EnemyPlaneAndroid> Pool = new Pool<EnemyPlaneAndroid>()
 	  {
 		@Override
-		protected EnemyAndroid newObject(){
-			return new EnemyAndroid();
+		protected EnemyPlaneAndroid newObject(){
+			return new EnemyPlaneAndroid();
 		  }
 	  };
 
@@ -73,15 +73,15 @@ public class EnemyAndroid extends baseEnemy{
 		  }
 		Vector2 vel = new Vector2(5,0);
 		float flagA=cardTime*cardTime/cacher;
-		SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA));
-		SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+30));
-		SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+60));
-		//	SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+270));
+		RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA));
+		RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+30));
+		RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+60));
+		//	RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(flagA+270));
 
-		//	SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA)));
-		//	SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+90)));
-		//	SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+180)));
-		//	SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+270)));
+		//	RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA)));
+		//	RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+90)));
+		//	RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+180)));
+		//	RedBullet.Pool.obtain().Init(Center,vel.cpy().rotate(-(flagA+270)));
 	  }
 
 	private void normal1(){
@@ -91,11 +91,11 @@ public class EnemyAndroid extends baseEnemy{
 		if(cardTime%delay==0){
 			if(cardTime<=30){
 				for(int k=0;k<=360/angle;k++){
-					SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().add(0,-0.0003f*flag-0.0003f).rotate(flag*3+k*angle));
+					RedBullet.Pool.obtain().Init(Center,vel.cpy().add(0,-0.0003f*flag-0.0003f).rotate(flag*3+k*angle));
 				  }
 			  }else{
 				for(int k=0;k<=360/angle;k++){
-					SimpleRedBullet.Pool.obtain().Init(Center,vel.cpy().add(0,-0.0003f*flag-0.0003f).rotate(-flag*3-k*angle));
+					RedBullet.Pool.obtain().Init(Center,vel.cpy().add(0,-0.0003f*flag-0.0003f).rotate(-flag*3-k*angle));
 				  }
 			  }
 			flag++;

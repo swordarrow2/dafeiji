@@ -1,6 +1,6 @@
 package com.meng.stg.entities;
 
-public abstract class baseEnemy extends baseEnemyObject {
+public abstract class BaseEnemy extends BaseEnemyObject{
 	public int Life;
 	@Override
 	public void Init() {

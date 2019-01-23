@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.viewport.*;
 import com.meng.stg.entities.*;
 import com.meng.stg.entities.enemyPlane.*;
 import com.meng.stg.entities.myPlane.*;
-import com.meng.stg.entities.bullet.*;
+import com.meng.stg.entities.enemyBullet.*;
 
 public class MainScreen extends ScreenAdapter {
 	public static int Width, Height;
@@ -21,7 +21,7 @@ public class MainScreen extends ScreenAdapter {
 	public static Rectangle FightArea;
 	public static InputMultiplexer InputMgr;
 	public static BitmapFont f;
-	basePlayer bp=null;
+	BaseMyPlane bp=null;
 	
 	
 	@Override
@@ -48,9 +48,9 @@ public class MainScreen extends ScreenAdapter {
 
 		bp= new PlayerAlice();
 		bp.Init();
-		EnemyAndroid.Pool.obtain().Init(new Vector2(Width/2,Height/2));
+		EnemyPlaneAndroid.Pool.obtain().Init(new Vector2(Width/2,Height/2));
 		InputMgr = new InputMultiplexer();
-		InputMgr.addProcessor(new basePlayer.PlayerInputProcessor());
+		InputMgr.addProcessor(new BaseMyPlane.PlayerInputProcessor());
 		Gdx.input.setInputProcessor(InputMgr);
 		
 		super.show();
@@ -58,12 +58,12 @@ public class MainScreen extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {
-		baseEnemyObject.UpdateAll();
-		basePlayer.Instance.Update();
+		BaseEnemyObject.UpdateAll();
+		BaseMyPlane.Instance.Update();
 		Stage.draw();
 		Main.SBatch.begin();
 		f.draw(Main.SBatch, "FPS:" + Gdx.graphics.getFramesPerSecond()+
-			   "\ncount:"+SimpleRedBullet.bulletCount//+
+			   "\ncount:"+BaseBullet.bulletCount//+
 			//   "\ntime:"+enemy.cardTime
 			   , 10, 210);
 

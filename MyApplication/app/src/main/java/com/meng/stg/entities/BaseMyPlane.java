@@ -3,6 +3,7 @@ package com.meng.stg.entities;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -11,9 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.meng.stg.MainScreen;
 
-public class basePlayer extends BaseObject{
-    public static basePlayer Instance;
+public class BaseMyPlane extends BaseObject{
+    public static BaseMyPlane Instance;
     PlayerAnimation animation=null;
+
+    public Animation<TextureRegion> animationStay;
+    public Animation<TextureRegion> animationLeft;
+    public Animation<TextureRegion> animationRight;
+
 
     @Override
     public Drawable getDrawable(){
@@ -53,7 +59,7 @@ public class basePlayer extends BaseObject{
             if(pointer==0){
                 vct2_downPosStage=MainScreen.Stage.screenToStageCoordinates
                         (vct2_downPosStage.set(screenX,screenY));
-                vct2_downPosPlayer.set(basePlayer.Instance.Center);
+                vct2_downPosPlayer.set(BaseMyPlane.Instance.Center);
             }
             return super.touchDown(screenX,screenY,pointer,button);
         }
@@ -62,7 +68,7 @@ public class basePlayer extends BaseObject{
         public boolean touchDragged(int screenX,int screenY,int pointer){
             if(pointer==0){
                 vct2_tmp1=MainScreen.Stage.screenToStageCoordinates(vct2_tmp1.set(screenX,screenY));
-                basePlayer.Instance.Center.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
+                BaseMyPlane.Instance.Center.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
             }
             return super.touchDragged(screenX,screenY,pointer);
         }
