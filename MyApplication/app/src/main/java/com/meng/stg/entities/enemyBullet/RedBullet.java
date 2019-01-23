@@ -1,5 +1,6 @@
 package com.meng.stg.entities.enemyBullet;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg.helpers.*;
@@ -18,7 +19,7 @@ public class RedBullet extends BaseBullet
 	protected Drawable getDrawable()
 	{
 		if (drawable == null)
-			drawable = Resources.Textures.get("RedBullet");
+			drawable = new TextureRegionDrawable(new TextureRegion(Resources.Textures.get("RedBullet")));
 		return drawable;
 	}
 }

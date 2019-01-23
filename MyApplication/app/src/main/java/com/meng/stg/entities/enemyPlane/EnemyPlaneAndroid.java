@@ -1,5 +1,6 @@
 package com.meng.stg.entities.enemyPlane;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
@@ -57,7 +58,7 @@ public class EnemyPlaneAndroid extends BaseEnemy{
 
 	@Override
 	protected Drawable getDrawable(){
-		return Resources.Textures.get("mirror");
+		return new TextureRegionDrawable(new TextureRegion(Resources.Textures.get("mirror")));
 	  }
 	public void shoot(){	
 		cardTime++;

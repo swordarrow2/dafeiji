@@ -24,7 +24,7 @@ public class PlayerAlice extends BaseMyPlane{
 		animationLeft = new Animation<TextureRegion>(4, splitted[1]);
 		animationLeft.setPlayMode(Animation.PlayMode.LOOP);
 		animationRight = new Animation<TextureRegion>(4, splitted[2]);
-		animationRight.setPlayMode(Animation.PlayMode.LOOP); 
+		animationRight.setPlayMode(Animation.PlayMode.LOOP);
 
 	  }
 

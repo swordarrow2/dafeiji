@@ -11,10 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.meng.stg.MainScreen;
+import com.meng.stg.helpers.AnimationDrawable;
 
 public class BaseMyPlane extends BaseObject{
     public static BaseMyPlane Instance;
-    PlayerAnimation animation=null;
+    AnimationDrawable animationDrawable = new AnimationDrawable();
 
     public Animation<TextureRegion> animationStay;
     public Animation<TextureRegion> animationLeft;
@@ -23,9 +24,9 @@ public class BaseMyPlane extends BaseObject{
 
     @Override
     public Drawable getDrawable(){
-        if(animation==null)
-            animation=new PlayerAnimation();
-        return animation;
+        if(animationDrawable==null)
+            animationDrawable=new AnimationDrawable();
+        return animationDrawable;
     }
 
     @Override
@@ -43,6 +44,16 @@ public class BaseMyPlane extends BaseObject{
         super.Update();
         Drawer.toFront();
   //      animation.Update();
+
+        animationDrawable.advance(1);
+   //     if (velocity.x > 0 && animationDrawable.getAnimation() != animationRight) {
+    //        animationDrawable.setAnimation(animationRight);
+   //     } else if (velocity.x < 0 && animationDrawable.getAnimation() != animationLeft) {
+     //       animationDrawable.setAnimation(animationLeft);
+     //   } else if (velocity.x == 0 && animationDrawable.getAnimation() != animationStay) {
+            animationDrawable.setAnimation(animationStay);
+     //   }
+
     }
 
     @Override
