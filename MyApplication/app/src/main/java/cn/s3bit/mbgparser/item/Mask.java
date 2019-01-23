@@ -68,12 +68,19 @@ public class Mask implements BindState.IBindable, Serializable
 		int 绑定ID = readInt(tempRef_content);
 		boolean 深度绑定 = readBool(tempRef_content);
 
-		Action binder = () ->
-		{
+		Action binder =new Action(){
+			@Override
+			public void invoke(){
+			}
 		};
 		if (绑定ID != -1)
 		{
-			binder = () -> m.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(m, 深度绑定, false);
+			binder =new Action(){
+				@Override
+				public void invoke(){
+					m.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(m,深度绑定,false);
+				}
+			};
 		}
 
 		content = tempRef_content.argValue;

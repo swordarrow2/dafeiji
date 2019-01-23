@@ -3,6 +3,8 @@ package cn.s3bit.th902.contents;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.concurrent.Callable;
+
 import cn.s3bit.th902.FightScreen;
 import cn.s3bit.th902.GameHelper;
 import cn.s3bit.th902.gamecontents.DanmakuScene;
@@ -25,7 +27,12 @@ public abstract class BossSpell extends DanmakuScene {
 	protected SpellHP hp;
 	@Override
 	public void Initialize(Entity entity) {
-		yield.append(() -> { return null; });
+		yield.append(new Callable<Object>(){
+			@Override
+			public Object call() throws Exception{
+				return null;
+			}
+		});
 		existTime = 0;
 		//mCountDownBeforeSpell = sleepTimeBeforeSpell();
 		mCountDownAfterSpell = sleepTimeAfterSpell();
@@ -40,8 +47,11 @@ public abstract class BossSpell extends DanmakuScene {
 			boss.AddComponent(new EnemyJudgeCircle(Math.min(getTexture().getHeight(), getTexture().getWidth()) * 0.9f, hp));
 			boss.AddComponent(new EnemyChaseable(hp));
 			if (isDefaultEntering())
-				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, (time) -> {
-					return IMoveFunction.vct2_tmp1.set(0, time < 40 ? -4f : 0);
+				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+					@Override
+					public Vector2 getTargetVal(int time){
+						return IMoveFunction.vct2_tmp1.set(0,time<40?-4f:0);
+					}
 				}));
 			EnemySpellInfoSystem.activate(boss);
 		} else {

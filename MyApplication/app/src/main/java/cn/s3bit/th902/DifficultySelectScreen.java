@@ -30,12 +30,41 @@ public class DifficultySelectScreen extends ScreenAdapter {
 		difficultySelectScreenEntity.AddComponent(new ImageRenderer(ResourceManager.textures.get("DifficultySelect"), 0));
 		selectDifficultyEntity.AddComponent(new ImageRenderer(ResourceManager.textures.get("SelectDifficulty"), 1));
 		
-		final Runnable nextScreen = () -> { GameMain.instance.setScreen(new CharacterSelectScreen()); };
+		final Runnable nextScreen =new Runnable(){
+			@Override
+			public void run(){
+				GameMain.instance.setScreen(new CharacterSelectScreen());
+			}
+		};
 		KeyboardSelectable[] actions = {
-				new KeyboardSelectable(() -> { difficulty = 1; Entity.postUpdate.add(nextScreen); }),
-				new KeyboardSelectable(() -> { difficulty = 2; Entity.postUpdate.add(nextScreen); }),
-				new KeyboardSelectable(() -> { difficulty = 3; Entity.postUpdate.add(nextScreen); }),
-				new KeyboardSelectable(() -> { difficulty = 4; Entity.postUpdate.add(nextScreen); })
+				new KeyboardSelectable(new Runnable(){
+					@Override
+					public void run(){
+						difficulty=1;
+						Entity.postUpdate.add(nextScreen);
+					}
+				}),
+				new KeyboardSelectable(new Runnable(){
+					@Override
+					public void run(){
+						difficulty=2;
+						Entity.postUpdate.add(nextScreen);
+					}
+				}),
+				new KeyboardSelectable(new Runnable(){
+					@Override
+					public void run(){
+						difficulty=3;
+						Entity.postUpdate.add(nextScreen);
+					}
+				}),
+				new KeyboardSelectable(new Runnable(){
+					@Override
+					public void run(){
+						difficulty=4;
+						Entity.postUpdate.add(nextScreen);
+					}
+				})
 		};
 		for (int i=0; i<3; i++) {
 			actions[i].linkedNode.insertAfter(actions[i + 1].linkedNode);

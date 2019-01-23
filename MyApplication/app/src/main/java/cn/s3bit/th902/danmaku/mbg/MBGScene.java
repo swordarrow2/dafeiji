@@ -3,6 +3,7 @@ package cn.s3bit.th902.danmaku.mbg;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.function.Consumer;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
@@ -122,15 +123,21 @@ public class MBGScene extends BossSpell {
 	public void start() {
 		globalTime = 0;
 		entities = new LinkedBlockingQueue<>();
-		bulletEmitters.forEach((emitter) -> {
-			Entity em = Entity.Create();
-			em.AddComponent(emitter.value);
-			entities.add(em);
+		bulletEmitters.forEach(new Consumer<IntMap.Entry<MBGBulletEmitter>>(){
+			@Override
+			public void accept(IntMap.Entry<MBGBulletEmitter> emitter){
+				Entity em=Entity.Create();
+				em.AddComponent(emitter.value);
+				entities.add(em);
+			}
 		});
-		reflexBoards.forEach((board) -> {
-			Entity em = Entity.Create();
-			em.AddComponent(board.value);
-			entities.add(em);
+		reflexBoards.forEach(new Consumer<IntMap.Entry<MBGReflexBoard>>(){
+			@Override
+			public void accept(IntMap.Entry<MBGReflexBoard> board){
+				Entity em=Entity.Create();
+				em.AddComponent(board.value);
+				entities.add(em);
+			}
 		});
 	}
 	

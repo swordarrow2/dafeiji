@@ -40,77 +40,89 @@ public class DanmakuS2L3 extends DanmakuScene {
 	}
 
 	private void enemy(int color) {
-		yield.append(() -> {
-			BulletType bt;
-			Entity sprite = BaseSprite.Create(new Vector2(290, FightScreen.TOP), color, 1400);
-			final Transform transform = sprite.GetComponent(Transform.class);
-			sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, (time) -> {
-				if (time < 60) {
-					switch (color) {
-					case 0:
-						return IMoveFunction.vct2_tmp1.set(0, -2);
-					case 1:
-						return IMoveFunction.vct2_tmp1.set(0, -3);
-					case 2:
-						return IMoveFunction.vct2_tmp1.set(0, -4);
-					case 3:
-						return IMoveFunction.vct2_tmp1.set(0, -5);
-					default:
-						return IMoveFunction.vct2_tmp1.set(0, 0);
+		yield.append(new Runnable(){
+			@Override
+			public void run(){
+				BulletType bt;
+				Entity sprite=BaseSprite.Create(new Vector2(290,FightScreen.TOP),color,1400);
+				final Transform transform=sprite.GetComponent(Transform.class);
+				sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY,MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+					@Override
+					public Vector2 getTargetVal(int time){
+						if(time<60){
+							switch(color){
+								case 0:
+									return IMoveFunction.vct2_tmp1.set(0,-2);
+								case 1:
+									return IMoveFunction.vct2_tmp1.set(0,-3);
+								case 2:
+									return IMoveFunction.vct2_tmp1.set(0,-4);
+								case 3:
+									return IMoveFunction.vct2_tmp1.set(0,-5);
+								default:
+									return IMoveFunction.vct2_tmp1.set(0,0);
+							}
+						}else{
+							return IMoveFunction.vct2_tmp1.set(0,0);
+						}
 					}
-				} else {
-					return IMoveFunction.vct2_tmp1.set(0, 0);
+				}));
+				switch(color){
+					case 0:
+						bt=BulletType.ColorBlue;
+						break;
+					case 1:
+						bt=BulletType.ColorRed;
+						break;
+					case 2:
+						bt=BulletType.ColorGreen;
+						break;
+					case 3:
+						bt=BulletType.ColorYellow;
+						break;
+					default:
+						bt=BulletType.ColorBlue;
+						break;
 				}
-			}));
-			switch (color) {
-			case 0:
-				bt = BulletType.ColorBlue;
-				break;
-			case 1:
-				bt = BulletType.ColorRed;
-				break;
-			case 2:
-				bt = BulletType.ColorGreen;
-				break;
-			case 3:
-				bt = BulletType.ColorYellow;
-				break;
-			default:
-				bt = BulletType.ColorBlue;
-				break;
+				sprite.AddComponent(new LambdaComponent(new Runnable(){
+					@Override
+					public void run(){
+						if(new Random().nextInt()%4+1<=DifficultySelectScreen.difficulty){
+							Vector2 vector2=new Vector2(2+1.2f*DifficultySelectScreen.difficulty,0);
+							ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,bt,
+									new MoveBasic(vector2.cpy().rotate(danmakuTime*danmakuTime/cache)),
+									new EnemyJudgeCircle(6));
+							ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,bt,
+									new MoveBasic(vector2.cpy().rotate(danmakuTime*danmakuTime/cache+180)),
+									new EnemyJudgeCircle(6));
+							ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,bt,
+									new MoveBasic(vector2.cpy().rotate(-(danmakuTime*danmakuTime/cache))),
+									new EnemyJudgeCircle(6));
+							ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,bt,
+									new MoveBasic(vector2.cpy().rotate(-(danmakuTime*danmakuTime/cache+180))),
+									new EnemyJudgeCircle(6));
+						}
+						danmakuTime++;
+						if(danmakuTime>1200){
+							danmakuTime=420;
+						}
+					}
+				},60,1));
+				sprite.AddComponent(new ExtraDrop(){
+					@Override
+					public void LootLogic(){
+						DropItem.CreateDropItem(transform.position.cpy(),241);
+					}
+				});
 			}
-			sprite.AddComponent(new LambdaComponent(() -> {
-				if (new Random().nextInt() % 4 + 1 <= DifficultySelectScreen.difficulty) {
-					Vector2 vector2 = new Vector2(2 + 1.2f * DifficultySelectScreen.difficulty, 0);
-					ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, bt,
-							new MoveBasic(vector2.cpy().rotate(danmakuTime * danmakuTime / cache)),
-							new EnemyJudgeCircle(6));
-					ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, bt,
-							new MoveBasic(vector2.cpy().rotate(danmakuTime * danmakuTime / cache + 180)),
-							new EnemyJudgeCircle(6));
-					ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, bt,
-							new MoveBasic(vector2.cpy().rotate(-(danmakuTime * danmakuTime / cache))),
-							new EnemyJudgeCircle(6));
-					ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, bt,
-							new MoveBasic(vector2.cpy().rotate(-(danmakuTime * danmakuTime / cache + 180))),
-							new EnemyJudgeCircle(6));
-				}
-				danmakuTime++;
-				if (danmakuTime > 1200) {
-					danmakuTime = 420;
-				}
-			}, 60, 1));
-			sprite.AddComponent(new ExtraDrop() {
-				@Override
-				public void LootLogic() {
-					DropItem.CreateDropItem(transform.position.cpy(), 241);
-				}
-			});
 		});
 	}
 
 	private void waitEnemy(int frames) {
-		yield.append(() -> {
+		yield.append(new Runnable(){
+			@Override
+			public void run(){
+			}
 		}, frames * 2 / 3);
 	}
 }

@@ -41,8 +41,11 @@ public class EnemySpellInfoSystem {
 		nameRenderer.lineAlign = Align.right;
 		nameRenderer.attachToGroup(FightScreen.drawingLayers.ui0);
 		spellName.AddComponent(nameRenderer);
-		spellName.AddComponent(new LambdaComponent(() -> {
-			nameRenderer.setText(bossHP.getDisplayedName());
+		spellName.AddComponent(new LambdaComponent(new Runnable(){
+			@Override
+			public void run(){
+				nameRenderer.setText(bossHP.getDisplayedName());
+			}
 		}, 0, 4));
 		
 		lifeGauge = Entity.Create();
@@ -53,10 +56,13 @@ public class EnemySpellInfoSystem {
 		outerCircle.attachToGroup(FightScreen.drawingLayers.ui0);
 		lifeGauge.AddComponent(outerCircle);
 		lifeGauge.AddComponent(circularProgressRenderer);
-		lifeGauge.AddComponent(new LambdaComponent(() -> {
-			//circularProgressRenderer.progress.toBack();
-			//outerCircle.image.toBack();
-			circularProgressRenderer.progress.setPercent(bossHP.getLife() / bossHP.getMaxLife());
+		lifeGauge.AddComponent(new LambdaComponent(new Runnable(){
+			@Override
+			public void run(){
+				//circularProgressRenderer.progress.toBack();
+				//outerCircle.image.toBack();
+				circularProgressRenderer.progress.setPercent(bossHP.getLife()/bossHP.getMaxLife());
+			}
 		}, 1));
 		
 		timeleft = Entity.Create();
@@ -66,8 +72,11 @@ public class EnemySpellInfoSystem {
 		timeRenderer.labelAlign = Align.center;
 		timeRenderer.lineAlign = Align.center;
 		timeleft.AddComponent(timeRenderer);
-		timeleft.AddComponent(new LambdaComponent(() -> {
-			timeRenderer.setText(String.format("%.2f", (bossHP.getMaxTime() - bossHP.getCurrentTime()) / 60f));
+		timeleft.AddComponent(new LambdaComponent(new Runnable(){
+			@Override
+			public void run(){
+				timeRenderer.setText(String.format("%.2f",(bossHP.getMaxTime()-bossHP.getCurrentTime())/60f));
+			}
 		}, 1));
 		mIsActive = true;
 	}

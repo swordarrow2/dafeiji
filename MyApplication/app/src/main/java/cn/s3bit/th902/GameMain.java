@@ -28,7 +28,9 @@ public class GameMain extends Game {
 		super();
 		GameMain.PRI = PRI;
 	}
-	
+	public GameMain(){
+
+	}
 	@Override
 	public void create() {
 		instance = this;

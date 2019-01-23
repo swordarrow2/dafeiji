@@ -22,7 +22,12 @@ public class Entity {
 		final Entity entity = new Entity();
 		entity.mComponents = new HashMap<>();
 		entity.toDel = new LinkedBlockingQueue<>();
-		postUpdate.add(() -> { instances.add(entity); });
+		postUpdate.add(new Runnable(){
+			@Override
+			public void run(){
+				instances.add(entity);
+			}
+		});
 		return entity;
 	}
 	

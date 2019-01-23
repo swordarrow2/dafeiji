@@ -21,8 +21,11 @@ public class CharacterSelectScreen extends ScreenAdapter {
 		
 		characterSelectScreenEntity.AddComponent(new ImageRenderer(ResourceManager.textures.get("CharacterSelect"), 0));
 		selectCharacter.AddComponent(new ImageRenderer(ResourceManager.textures.get("SelectCharacter"), 1));
-		KeyboardSelectable selectable = new KeyboardSelectable(() -> {
-			GameMain.instance.setScreen(new FightScreen());
+		KeyboardSelectable selectable = new KeyboardSelectable(new Runnable(){
+			@Override
+			public void run(){
+				GameMain.instance.setScreen(new FightScreen());
+			}
 		});
 		selectable.isSelected = true;
 		selectCharacter.AddComponent(selectable);

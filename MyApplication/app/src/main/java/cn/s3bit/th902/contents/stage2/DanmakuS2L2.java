@@ -41,38 +41,50 @@ public class DanmakuS2L2 extends DanmakuScene {
 	}
 
 	private void enemyA(int x) {
-		yield.append(() -> {
-			Entity sprite = BaseSprite.Create(new Vector2(x, FightScreen.TOP), 1, 20);
-			final Transform transform = sprite.GetComponent(Transform.class);
-			final Vector2 playerPosition = JudgingSystem.playerJudge.cpy().sub(transform.position).nor().scl(3f);
-			sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, (time) -> {
-				if (time < 60) {
-					return IMoveFunction.vct2_tmp1.set(0, -3);
-				} else if (time < 90) {
-					return IMoveFunction.vct2_tmp1.set(0, 0);
-				} else {
-					return IMoveFunction.vct2_tmp1.set(playerPosition);
-				}
-			}));
-			sprite.AddComponent(new LambdaComponent(() -> {
-				ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, BulletType.ColorRed,
-						new MoveSnipe(3f), new EnemyJudgeCircle(6));
-			}, 20));
-			sprite.AddComponent(new ExtraDrop() {
-				@Override
-				public void LootLogic() {
-					DropItem.CreateDropItem(transform.position.cpy(), 241);
-					Entity proj = ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS,
-							BulletType.ColorRed);
-					proj.AddComponent(new MoveSnipe(9f));
-					proj.AddComponent(new EnemyJudgeCircle(6));
-				}
-			});
+		yield.append(new Runnable(){
+			@Override
+			public void run(){
+				Entity sprite=BaseSprite.Create(new Vector2(x,FightScreen.TOP),1,20);
+				final Transform transform=sprite.GetComponent(Transform.class);
+				final Vector2 playerPosition=JudgingSystem.playerJudge.cpy().sub(transform.position).nor().scl(3f);
+				sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY,MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+					@Override
+					public Vector2 getTargetVal(int time){
+						if(time<60){
+							return IMoveFunction.vct2_tmp1.set(0,-3);
+						}else if(time<90){
+							return IMoveFunction.vct2_tmp1.set(0,0);
+						}else{
+							return IMoveFunction.vct2_tmp1.set(playerPosition);
+						}
+					}
+				}));
+				sprite.AddComponent(new LambdaComponent(new Runnable(){
+					@Override
+					public void run(){
+						ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,BulletType.ColorRed,
+								new MoveSnipe(3f),new EnemyJudgeCircle(6));
+					}
+				},20));
+				sprite.AddComponent(new ExtraDrop(){
+					@Override
+					public void LootLogic(){
+						DropItem.CreateDropItem(transform.position.cpy(),241);
+						Entity proj=ProjectileFactory.Create(transform.position.cpy(),BulletType.FormCircleS,
+								BulletType.ColorRed);
+						proj.AddComponent(new MoveSnipe(9f));
+						proj.AddComponent(new EnemyJudgeCircle(6));
+					}
+				});
+			}
 		});
 	}
 
 	private void waitEnemy(int frames) {
-		yield.append(() -> {
+		yield.append(new Runnable(){
+			@Override
+			public void run(){
+			}
 		}, frames * 2 / 3);
 	}
 }

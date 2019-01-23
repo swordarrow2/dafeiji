@@ -119,12 +119,19 @@ public class LazerEmitter implements BindState.IBindable, Serializable
 		l.子弹运动.motion.accelerationDirection.randValue = readFloat(tempRef_c);
 		boolean 深度绑定 = readBool(tempRef_c);
 
-		Action binder = () ->
-		{
+		Action binder =new Action(){
+			@Override
+			public void invoke(){
+			}
 		};
 		if (绑定ID != -1)
 		{
-			binder = () -> l.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(l, 深度绑定, 相对方向);
+			binder =new Action(){
+				@Override
+				public void invoke(){
+					l.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(l,深度绑定,相对方向);
+				}
+			};
 		}
 
 		c = tempRef_c.argValue;

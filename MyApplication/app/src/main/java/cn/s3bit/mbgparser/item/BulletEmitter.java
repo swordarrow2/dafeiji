@@ -157,13 +157,20 @@ public class BulletEmitter implements BindState.IBindable, Serializable
 
 		boolean 深度绑定 = readBool(tempRef_content);
 
-		Action binder = ()->
-		{
+		Action binder =new Action(){
+			@Override
+			public void invoke(){
+			}
 		};
 
 		if (绑定ID != -1)
 		{
-			binder = () -> e.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(e,深度绑定,相对方向);
+			binder =new Action(){
+				@Override
+				public void invoke(){
+					e.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(e,深度绑定,相对方向);
+				}
+			};
 		}
 
 		content = tempRef_content.argValue;

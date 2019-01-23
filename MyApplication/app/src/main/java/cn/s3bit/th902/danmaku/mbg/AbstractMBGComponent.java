@@ -112,7 +112,7 @@ public abstract class AbstractMBGComponent<T> extends Component {
 		for (Event event : eventGroup.Events) {
 			if (getConditionJudger().judgeCondition(this, event.condition, time)) {
 				if (!eventTasks.containsKey(eventGroup))
-					eventTasks.put(eventGroup, new ArrayList<>());
+					eventTasks.put(eventGroup, new ArrayList<MBGEventTask>());
 				if (event.action instanceof CommandAction) {
 					CommandAction commandAction = (CommandAction) event.action;
 					getEventFirer().fireCommand(this, commandAction);

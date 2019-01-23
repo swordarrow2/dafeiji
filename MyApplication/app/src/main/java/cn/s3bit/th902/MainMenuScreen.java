@@ -47,8 +47,11 @@ public class MainMenuScreen extends ScreenAdapter {
 		KeyboardSelectable last = new KeyboardSelectable(new Runnable(){
 			@Override
 			public void run(){
-				Entity.postUpdate.add(()->{
-					GameMain.instance.setScreen(new DifficultySelectScreen());
+				Entity.postUpdate.add(new Runnable(){
+					@Override
+					public void run(){
+						GameMain.instance.setScreen(new DifficultySelectScreen());
+					}
 				});
 			}
 		});

@@ -80,7 +80,12 @@ public class AIS1LLastBoss extends Component {
 			p2interval--;
 			moveFunction.Kill();
 			existTime = 0;
-			Entity.postUpdate.add(() -> { GameHelper.clearEnemyBullets(); });
+			Entity.postUpdate.add(new Runnable(){
+				@Override
+				public void run(){
+					GameHelper.clearEnemyBullets();
+				}
+			});
 		}
 		if (existTime < 60) {
 			moveBasic.velocity.set(-4, 0.3f);
@@ -120,19 +125,27 @@ public class AIS1LLastBoss extends Component {
 						new EnemyJudgeCircle(15));
 				final Transform pTr = proj.GetComponent(Transform.class);
 				pTr.scale.scl(1.2f);
-				proj.AddComponent(new LambdaComponent(() -> {
-					Entity.postUpdate.add(() -> { proj.Destroy(); });
-					fdCounter[ii]++;
-					if (fdCounter[ii] > 1 + ii) {
-						fdCounter[ii] = 0;
-						ProjectileFactory.Create(pTr.position.cpy(), BulletType.FormArrowM, BulletType.ColorBlueLight,
-								new EnemyJudgeCircle(5, 0, 3),
-								new MoveBasic(-0.3f, 1.2f, -(0.03f + ii * 0.015f) / 4, 0.03f + ii * 0.015f));
-						ProjectileFactory.Create(pTr.position.cpy(), BulletType.FormArrowM, BulletType.ColorRed,
-								new EnemyJudgeCircle(5, 0, 3),
-								new MoveBasic(0.3f, -1.2f, (0.03f + ii * 0.015f) / 4, -0.03f - ii * 0.015f));
+				proj.AddComponent(new LambdaComponent(new Runnable(){
+					@Override
+					public void run(){
+						Entity.postUpdate.add(new Runnable(){
+							@Override
+							public void run(){
+								proj.Destroy();
+							}
+						});
+						fdCounter[ii]++;
+						if (fdCounter[ii] > 1 + ii) {
+							fdCounter[ii] = 0;
+							ProjectileFactory.Create(pTr.position.cpy(), BulletType.FormArrowM, BulletType.ColorBlueLight,
+									new EnemyJudgeCircle(5, 0, 3),
+									new MoveBasic(-0.3f, 1.2f, -(0.03f + ii * 0.015f) / 4, 0.03f + ii * 0.015f));
+							ProjectileFactory.Create(pTr.position.cpy(), BulletType.FormArrowM, BulletType.ColorRed,
+									new EnemyJudgeCircle(5, 0, 3),
+									new MoveBasic(0.3f, -1.2f, (0.03f + ii * 0.015f) / 4, -0.03f - ii * 0.015f));
+						}
 					}
-				}, 120, -1));
+				},120,-1));
 			}
 		}
 	}
@@ -145,7 +158,12 @@ public class AIS1LLastBoss extends Component {
 			flag3 = false;
 			existTime = 0;
 			moveBasic.acc.set(0, 0);
-			Entity.postUpdate.add(() -> { GameHelper.clearEnemyBullets(); });
+			Entity.postUpdate.add(new Runnable(){
+				@Override
+				public void run(){
+					GameHelper.clearEnemyBullets();
+				}
+			});
 			for (int i=0; i<24; i++) p3ang[i] = i * 15;
 		}
 		GameHelper.snipeVct(transform.position, p3pos, 0, moveBasic.velocity);
@@ -180,7 +198,12 @@ public class AIS1LLastBoss extends Component {
 			existTime = 0;
 			moveBasic.velocity.set(0, 0);
 			moveBasic.acc.set(0, 0);
-			Entity.postUpdate.add(() -> { GameHelper.clearEnemyBullets(); });
+			Entity.postUpdate.add(new Runnable(){
+				@Override
+				public void run(){
+					GameHelper.clearEnemyBullets();
+				}
+			});
 		}
 		if (existTime > 60) {
 			for (int i=0; i<2; i++)
@@ -189,9 +212,12 @@ public class AIS1LLastBoss extends Component {
 				final Entity proj = ProjectileFactory.Create(transform.position.cpy(), BulletType.FormCircleS, color4s[c]);
 				final ImageRenderer renderer = proj.GetComponent(ImageRenderer.class);
 				proj.AddComponent(new EnemyJudgeCircle(5));
-				proj.AddComponent(new LambdaComponent(() -> {
-					renderer.image.setColor(1, 1, 1, alpha4s[c]);
-				}, 5));
+				proj.AddComponent(new LambdaComponent(new Runnable(){
+					@Override
+					public void run(){
+						renderer.image.setColor(1, 1, 1, alpha4s[c]);
+					}
+				},5));
 				proj.AddComponent(new MoveBasic(new Vector2(1, 0).rotate(MathUtils.random(360f)).scl(MathUtils.random(2f, 7f))));
 			}
 		}
@@ -210,7 +236,12 @@ public class AIS1LLastBoss extends Component {
 			existTime = 0;
 			moveBasic.velocity.set(0, 0);
 			moveBasic.acc.set(0, 0);
-			Entity.postUpdate.add(() -> { GameHelper.clearEnemyBullets(); });
+			Entity.postUpdate.add(new Runnable(){
+				@Override
+				public void run(){
+					GameHelper.clearEnemyBullets();
+				}
+			});
 			targetp5.set(transform.position.x, 400);
 		}
 		if (existTime <= 90) {

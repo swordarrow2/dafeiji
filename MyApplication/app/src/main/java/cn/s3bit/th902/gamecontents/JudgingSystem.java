@@ -2,7 +2,9 @@ package cn.s3bit.th902.gamecontents;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import com.badlogic.gdx.math.Ellipse;
@@ -37,14 +39,17 @@ public class JudgingSystem {
 	public static PlayerCollisionData playerCollision() {
 		Stream<Entry<ImmutableWrapper<Ellipse>, PlayerCollisionData>> stream = enemyJudges.entrySet().parallelStream();
 		mJudgeEntry = null;
-		stream.forEach((entry) -> {
-			if (entry.getValue().judgeCallback.getDamage() <= 0 || Math.max(entry.getKey().getData().width, entry.getKey().getData().height) < 0.1f) {
-				return;
-			}
-			Vector2 tmp = new Vector2(playerJudge);
-			tmp.sub(entry.getKey().getData().x, entry.getKey().getData().y).rotate(-entry.getValue().transform.rotation).add(entry.getKey().getData().x, entry.getKey().getData().y);
-			if (entry.getKey().getData().contains(tmp)) {
-				mJudgeEntry = entry;
+		stream.forEach(new Consumer<Entry<ImmutableWrapper<Ellipse>,PlayerCollisionData>>(){
+			@Override
+			public void accept(Entry<ImmutableWrapper<Ellipse>,PlayerCollisionData> entry){
+				if(entry.getValue().judgeCallback.getDamage()<=0||Math.max(entry.getKey().getData().width,entry.getKey().getData().height)<0.1f){
+					return;
+				}
+				Vector2 tmp=new Vector2(playerJudge);
+				tmp.sub(entry.getKey().getData().x,entry.getKey().getData().y).rotate(-entry.getValue().transform.rotation).add(entry.getKey().getData().x,entry.getKey().getData().y);
+				if(entry.getKey().getData().contains(tmp)){
+					mJudgeEntry=entry;
+				}
 			}
 		});
 		stream.close();
