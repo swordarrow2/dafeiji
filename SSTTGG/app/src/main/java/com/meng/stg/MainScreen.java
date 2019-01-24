@@ -14,16 +14,16 @@ import com.meng.stg.bullets.Projectile;
 import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemy.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
-import com.meng.stg.player.MyPlane;
+import com.meng.stg.player.BaseMyPlane;
 import com.meng.stg.player.MyPlaneAlice;
 import com.meng.stg.player.MyPlaneReimu;
+import com.meng.stg.player.PlayerInputProcessor;
 import com.meng.stg.stage.stage1;
 
 public class MainScreen extends ScreenAdapter {
     public static int playerFlag;//角色
     public static int stageFlag;
     public static int gameTime = 0;
-    public static boolean gameOver=false;
     public static int Width, Height;
     public static Stage Stage;
     public static Group MainGroup;
@@ -65,7 +65,7 @@ public class MainScreen extends ScreenAdapter {
         }
         // e= new EnemyPlane().createEnemy();
         InputMgr = new InputMultiplexer();
-        InputMgr.addProcessor(new MyPlane.PlayerInputProcessor());
+        InputMgr.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(InputMgr);
         super.show();
     }
@@ -83,7 +83,7 @@ public class MainScreen extends ScreenAdapter {
         }
         Stage.draw();
         Projectile.UpdateAll();
-        MyPlane.Instance.Update();
+        BaseMyPlane.Instance.Update();
         //    for(EnemyPlane e:enemys){
         //        if(e!=null){
         //            if (!e.isKilled()){
@@ -115,15 +115,15 @@ public class MainScreen extends ScreenAdapter {
                 }
                 break;
         }
-        if(gameOver){
+   //     if(gameOver){
            // InputMgr.clear();
-            f.draw(GameMain.SBatch, "满身疮痍", 204, 350);
+     //       f.draw(GameMain.SBatch, "满身疮痍", 204, 350);
           //  Player.PlayerInputProcessor.touchX=0;
           //  Player.PlayerInputProcessor.touchY=0;
-            onBoss=true;
-        }
+         //   onBoss=true;
+      //  }
         GameMain.SBatch.end();
-        if(!gameOver) {
+      //  if(!gameOver) {
             if (!onBoss) {
                 gameTime++;
                 switch (stageFlag) {
@@ -131,7 +131,7 @@ public class MainScreen extends ScreenAdapter {
                         stage1.addEnemy();
                         break;
                 }
-            }
+     //       }
         }
         super.render(delta);
     }

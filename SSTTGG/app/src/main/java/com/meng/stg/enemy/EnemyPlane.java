@@ -24,10 +24,10 @@ public class EnemyPlane extends BaseEnemyPlane{
 
     @Override
     protected void move(){
-        if(!MainScreen.gameOver){
+      //  if(!MainScreen.gameOver){
             Center.x+=vx;
             Center.y+=vy;
-        }
+      //  }
     }
 
     @Override

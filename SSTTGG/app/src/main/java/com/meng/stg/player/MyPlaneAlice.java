@@ -13,7 +13,7 @@ import com.meng.stg.helpers.Data;
 
 import java.util.HashMap;
 
-public class MyPlaneAlice extends MyPlane {
+public class MyPlaneAlice extends BaseMyPlane {
 
     protected int time = 0;
     public static class AliceEntity extends BaseMyPlane {
@@ -23,7 +23,33 @@ public class MyPlaneAlice extends MyPlane {
         int FRAME_COLS = 8;
         int FRAME_ROWS = 3;
         float playerLastX = 270;
+        @Override
+        public void bomb(){
+            Vector2 vel=new Vector2(0,30);
 
+            if(bombTime%16==0){
+                ReimuBomb sb=new ReimuBomb();
+                sb.createBullet(new Vector2(Center.x,0),vel);
+            }
+            if(bombTime%16==4){
+                ReimuBomb sb2=new ReimuBomb();
+                sb2.createBullet(new Vector2(Center.x-20,0),vel);
+                ReimuBomb sb3=new ReimuBomb();
+                sb3.createBullet(new Vector2(Center.x+20,0),vel);
+            }
+            if(bombTime%16==8){
+                ReimuBomb sb4=new ReimuBomb();
+                sb4.createBullet(new Vector2(Center.x-40,0),vel);
+                ReimuBomb sb5=new ReimuBomb();
+                sb5.createBullet(new Vector2(Center.x+40,0),vel);
+            }
+            if(bombTime%16==12){
+                ReimuBomb sb6=new ReimuBomb();
+                sb6.createBullet(new Vector2(Center.x-20,0),vel);
+                ReimuBomb sb7=new ReimuBomb();
+                sb7.createBullet(new Vector2(Center.x+20,0),vel);
+            }
+        }
         @Override
         protected Drawable getDrawable() {
             //return Resources.NPCDrawables.get("enemy2");
@@ -124,20 +150,20 @@ public class MyPlaneAlice extends MyPlane {
             Drawer.toBack();
             animTime++;
 
-            if (MyPlane.Instance.Center.x > playerLastX) {
-                playerLastX = MyPlane.Instance.Center.x;
+            if ( Instance.Center.x > playerLastX) {
+                playerLastX = Instance.Center.x;
                 Drawer.setDrawable(getRightMoveAnim());
 
-            } else if (MyPlane.Instance.Center.x < playerLastX) {
-                playerLastX = MyPlane.Instance.Center.x;
+            } else if ( Instance.Center.x < playerLastX) {
+                playerLastX = Instance.Center.x;
                 Drawer.setDrawable(getLeftMoveAnim());
             } else {
-                playerLastX = MyPlane.Instance.Center.x;
+                playerLastX =  Instance.Center.x;
                 Drawer.setDrawable(getDrawable());
             }
 
 
-            this.Center.set(MyPlane.Instance.Center);
+            this.Center.set( Instance.Center);
             Center.add(Velocity);
             Drawer.setPosition(Center.x, Center.y, Align.center);
             ExistTime++;
@@ -203,4 +229,10 @@ public class MyPlaneAlice extends MyPlane {
             sb7.createBullet(new Vector2(Center.x + 20, 0), vel);
         }
     }
+
+    @Override
+    protected Drawable getDrawable(){
+        return null;
+    }
+
 }

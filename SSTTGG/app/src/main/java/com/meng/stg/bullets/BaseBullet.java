@@ -32,9 +32,9 @@ public abstract class BaseBullet
 	public void Update()
 	{
 		//更新位置
-		if (!MainScreen.gameOver) {
+		//if (!MainScreen.gameOver) {
 			Center.add(Velocity);
-		}
+		//}
 		Drawer.setPosition(Center.x, Center.y, Align.center);
 		ExistTime++;
 	}

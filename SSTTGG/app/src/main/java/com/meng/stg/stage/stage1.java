@@ -2,10 +2,10 @@ package com.meng.stg.stage;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainScreen;
-import com.meng.stg.enemy.EnemyPlane;
-import com.meng.stg.enemy.BossPlane1;
 import com.meng.stg.bullets.SimpleRedBullet;
-import com.meng.stg.player.MyPlane;
+import com.meng.stg.enemy.BossPlane1;
+import com.meng.stg.enemy.EnemyPlane;
+import com.meng.stg.player.BaseMyPlane;
 
 /**
  * Created by Administrator on 2017/11/1.
@@ -18,12 +18,12 @@ public class stage1{
             case 30:
                 Vector2 vel=new Vector2(0,-50);
                 SimpleRedBullet sb=new SimpleRedBullet();
-                sb.createBullet(new Vector2(MyPlane.Instance.x,720),vel);
+                sb.createBullet(new Vector2(BaseMyPlane.Instance.x,720),vel);
                 break;
             case 60:
                 Vector2 vel2=new Vector2(0,30);
                 SimpleRedBullet sb2=new SimpleRedBullet();
-                sb2.createBullet(new Vector2(MyPlane.Instance.x,0),vel2);
+                sb2.createBullet(new Vector2(BaseMyPlane.Instance.x,0),vel2);
                 break;
             case 120:
                 new EnemyPlane().Init(270,719,0,-1);
@@ -60,12 +60,12 @@ public class stage1{
             case 620:
                 Vector2 vel3=new Vector2(0,30);
                 SimpleRedBullet sb3=new SimpleRedBullet();
-                sb3.createBullet(new Vector2(MyPlane.Instance.x,0),vel3);
+                sb3.createBullet(new Vector2(BaseMyPlane.Instance.x,0),vel3);
                 break;
             case 670:
                 Vector2 vel4=new Vector2(0,-50);
                 SimpleRedBullet sb4=new SimpleRedBullet();
-                sb4.createBullet(new Vector2(MyPlane.Instance.x,720),vel4);
+                sb4.createBullet(new Vector2(BaseMyPlane.Instance.x,720),vel4);
                 break;
 
         }

@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.badlogic.gdx.math.*;
 
 import com.meng.stg.MainScreen;
-import com.meng.stg.player.MyPlane;
+import com.meng.stg.player.BaseMyPlane;
 
 public abstract class Projectile extends BaseBullet {
     public static HashSet<Projectile> Instances = new HashSet<Projectile>();
@@ -47,9 +47,9 @@ public abstract class Projectile extends BaseBullet {
 }
 
     public void Judge() {
-        if (getCollisionArea().contains(MyPlane.Instance.Center)) {
+        if (getCollisionArea().contains(BaseMyPlane.Instance.Center)) {
             Kill();
-            MyPlane.Instance.Kill();
+            BaseMyPlane.Instance.Kill();
         }
     }
 

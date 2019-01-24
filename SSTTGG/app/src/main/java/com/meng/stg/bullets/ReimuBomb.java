@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Resources;
-import com.meng.stg.player.MyPlane;
 
 import static com.meng.stg.MainScreen.enemys;
 

@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.GameMain;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
-import com.meng.stg.player.MyPlane;
+import com.meng.stg.player.BaseMyPlane;
 
 import static com.meng.stg.MainScreen.enemys;
 
@@ -59,11 +59,11 @@ public abstract class BaseEnemyPlane{
     }
 
     public void hit(){
-        if(!MainScreen.gameOver){
+        //if(!MainScreen.gameOver){
             if(--hp<1){
                 Kill();
             }
-        }
+      //  }
     }
 
     public Vector2 getLocation(){
@@ -86,11 +86,11 @@ public abstract class BaseEnemyPlane{
         GameMain.SBatch.end();
         time++;
         animTime++;
-        if(!MainScreen.gameOver){
+       // if(!MainScreen.gameOver){
             move();
             anim();
             shoot();
-        }
+      //  }
         Drawer.setPosition(Center.x,Center.y,Align.center);
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
@@ -115,9 +115,9 @@ public abstract class BaseEnemyPlane{
     }
 
     public void Judge(){
-        if(getCollisionArea().contains(MyPlane.Instance.Center)){
+        if(getCollisionArea().contains(BaseMyPlane.Instance.Center)){
             hit();
-            MyPlane.Instance.Kill();
+            BaseMyPlane.Instance.Kill();
         }
     }
 
