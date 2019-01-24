@@ -1,53 +1,63 @@
 package com.meng.stg.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.stg.bullets.AliceShoot;
-import com.meng.stg.bullets.ReimuBomb;
-import com.meng.stg.helpers.Data;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.helpers.*;
 
-import java.util.HashMap;
+import java.util.*;
 
-public class PlayerAlice extends Player {
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.meng.stg.*;
+
+public class MyPlaneReimu extends MyPlane {
 
     protected int time = 0;
-    public static class AliceEntity extends playerBaseEntity {
+    public static class ReimuEntity extends BaseMyPlane {
         public HashMap<String, Drawable> playerAnim = new HashMap<String, Drawable>(30);
         TextureRegion[][] tmp;
         Texture walkSheet;
         int FRAME_COLS = 8;
         int FRAME_ROWS = 3;
         float playerLastX = 270;
-
+        private Drawable d=null;
         @Override
         protected Drawable getDrawable() {
             //return Resources.NPCDrawables.get("enemy2");
             switch (animTime % 32) {
-                case 1: case 2:case 3:case 4:
-                    return playerAnim.get("anim0");
-                case 5:case 6:case 7:case 8:
-                    return playerAnim.get("anim1");
-                case 9:case 10:case 11:case 12:
-                    return playerAnim.get("anim2");
-                case 13:case 14:case 15:case 16:
-                    return playerAnim.get("anim3");
-                case 17:case 18:case 19:case 20:
-                    return playerAnim.get("anim4");
-                case 21:case 22:case 23:case 24:
-                    return playerAnim.get("anim5");
-                case 25:case 26:case 27:case 28:
-                    return playerAnim.get("anim6");
-                case 29:case 30:case 31:case 0:
-                    return playerAnim.get("anim7");
-                default:
-                    return playerAnim.get("anim7");
+                case 1:// case 2:case 3:case 4:
+                   d= playerAnim.get("anim0");
+                    break;
+                case 5://case 6:case 7:case 8:
+                    d= playerAnim.get("anim1");
+                    break;
+                case 9://case 10:case 11:case 12:
+                    d= playerAnim.get("anim2");
+                    break;
+                case 13://case 14:case 15:case 16:
+                    d= playerAnim.get("anim3");
+                    break;
+                case 17://case 18:case 19:case 20:
+                    d= playerAnim.get("anim4");
+                    break;
+                case 21://case 22:case 23:case 24:
+                    d= playerAnim.get("anim5");
+                    break;
+                case 25://case 26:case 27:case 28:
+                    d= playerAnim.get("anim6");
+                    break;
+                case 29://case 30:case 31:case 0:
+                    d= playerAnim.get("anim7");
+                    break;
+              //  default:
+              //      return playerAnim.get("anim7");
             }
-
+return d;
         }
 
         protected Drawable getLeftMoveAnim() {
@@ -111,9 +121,11 @@ public class PlayerAlice extends Player {
             }
 
             //	walkAnimation = new Animation(0.025f, walkFrames);
+
+            if (MainScreen.gameOver)return;
             Drawer.setSize(54, 85);
             bombTime = Data.ReimuBombTime;
-            unmatchedTime = Data.ReimuUnmatchedTime;
+            unmatchedTime =1;// Data.ReimuUnmatchedTime;
             onUnmatched = true;
 
         }
@@ -121,45 +133,48 @@ public class PlayerAlice extends Player {
 
         @Override
         public void Update() {
+
+            if (!MainScreen.gameOver){
             Drawer.toBack();
             animTime++;
 
-            if (Player.Instance.Center.x > playerLastX) {
-                playerLastX = Player.Instance.Center.x;
+            if (MyPlane.Instance.Center.x > playerLastX) {
+                playerLastX = MyPlane.Instance.Center.x;
                 Drawer.setDrawable(getRightMoveAnim());
 
-            } else if (Player.Instance.Center.x < playerLastX) {
-                playerLastX = Player.Instance.Center.x;
+            } else if (MyPlane.Instance.Center.x < playerLastX) {
+                playerLastX = MyPlane.Instance.Center.x;
                 Drawer.setDrawable(getLeftMoveAnim());
             } else {
-                playerLastX = Player.Instance.Center.x;
+                playerLastX = MyPlane.Instance.Center.x;
                 Drawer.setDrawable(getDrawable());
             }
 
 
-            this.Center.set(Player.Instance.Center);
+            this.Center.set(MyPlane.Instance.Center);
             Center.add(Velocity);
             Drawer.setPosition(Center.x, Center.y, Align.center);
             ExistTime++;
-        }
+        }}
     }
 
-    public static AliceEntity Alice;
+    public static ReimuEntity rm;
 
     @Override
     public void Init() {
-        Alice = new AliceEntity();
-        Alice.Init();
+        rm = new ReimuEntity();
+        rm.Init();
         super.Init();
     }
 
     @Override
     public void Update() {
+        if(!MainScreen.gameOver){
         super.Update();
-        Alice.Update();
+        rm.Update();
         time++;
-        if (time % 3 == 1) {
-            Vector2 vel = new Vector2(0, 40);
+        if (time % 2 == 1) {
+            Vector2 vel = new Vector2(0, 60);
             //AliceShoot.Pool.obtain().Init(Center, vel);
             AliceShoot sb = new AliceShoot();
             sb.createBullet(Center, vel);
@@ -174,11 +189,11 @@ public class PlayerAlice extends Player {
             onUnmatched = false;
             unmatchedTime = Data.ReimuUnmatchedTime;
         }
-    }
+    }}
 
     @Override
     public void bomb() {
-        Vector2 vel = new Vector2(0, 40);
+        Vector2 vel = new Vector2(0, 30);
 
         if (bombTime % 16 == 0) {
             ReimuBomb sb = new ReimuBomb();

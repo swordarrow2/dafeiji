@@ -9,7 +9,7 @@ import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 
-public abstract class playerBaseEntity
+public abstract class BaseMyPlane
 {
 	public Vector2 Center = new Vector2();
 	public Vector2 Velocity = new Vector2();

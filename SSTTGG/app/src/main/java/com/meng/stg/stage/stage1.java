@@ -5,7 +5,7 @@ import com.meng.stg.MainScreen;
 import com.meng.stg.boss.boss1;
 import com.meng.stg.bullets.SimpleRedBullet;
 import com.meng.stg.enemy.enemy;
-import com.meng.stg.player.Player;
+import com.meng.stg.player.MyPlane;
 
 /**
  * Created by Administrator on 2017/11/1.
@@ -19,12 +19,12 @@ public class stage1 {
             case 30:
                 Vector2 vel = new Vector2(0, -50);
                 SimpleRedBullet sb = new SimpleRedBullet();
-                sb.createBullet(new Vector2(Player.Instance.x,720), vel);
+                sb.createBullet(new Vector2(MyPlane.Instance.x,720), vel);
                 break;
             case 60:
                 Vector2 vel2 = new Vector2(0, 30);
                 SimpleRedBullet sb2 = new SimpleRedBullet();
-                sb2.createBullet(new Vector2(Player.Instance.x,0), vel2);
+                sb2.createBullet(new Vector2(MyPlane.Instance.x,0), vel2);
                 break;
             case 120:
                 MainScreen.newEnemy(e.createEnemy(270, 719, 0, -1));
@@ -61,12 +61,12 @@ public class stage1 {
             case 620 :
                 Vector2 vel3 = new Vector2(0, 30);
                 SimpleRedBullet sb3 = new SimpleRedBullet();
-                sb3.createBullet(new Vector2(Player.Instance.x,0), vel3);
+                sb3.createBullet(new Vector2(MyPlane.Instance.x,0), vel3);
                 break;
             case 670:
                 Vector2 vel4 = new Vector2(0, -50);
                 SimpleRedBullet sb4 = new SimpleRedBullet();
-                sb4.createBullet(new Vector2(Player.Instance.x,720), vel4);
+                sb4.createBullet(new Vector2(MyPlane.Instance.x,720), vel4);
                 break;
 
         }

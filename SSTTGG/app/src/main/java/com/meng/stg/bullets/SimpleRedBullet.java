@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Pool;
 
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Resources;
-import com.meng.stg.player.Player;
+import com.meng.stg.player.MyPlane;
 
 public class SimpleRedBullet extends Projectile {
 

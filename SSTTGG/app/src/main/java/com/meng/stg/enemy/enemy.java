@@ -9,7 +9,7 @@ import com.meng.stg.bullets.SimpleRedBullet;
 import com.meng.stg.helpers.Resources;
 import com.meng.stg.*;
 
-public class enemy extends enemyBaseEntity {
+public class enemy extends BaseEnemy {
 
     private boolean Killed = false;
     private int time = 0;

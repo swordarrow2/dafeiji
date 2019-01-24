@@ -11,12 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.meng.stg.MainScreen;
 import com.meng.stg.bullets.SimpleRedBullet;
-import com.meng.stg.enemy.enemyBaseEntity;
+import com.meng.stg.enemy.BaseEnemy;
 import com.meng.stg.helpers.Resources;
 
 import java.util.HashMap;
 
-public class boss1 extends enemyBaseEntity {
+public class boss1 extends BaseEnemy {
 
     private boolean Killed = false;
     private int time = 0;

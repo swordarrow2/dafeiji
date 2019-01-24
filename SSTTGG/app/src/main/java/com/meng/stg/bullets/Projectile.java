@@ -7,9 +7,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.badlogic.gdx.math.*;
 
 import com.meng.stg.MainScreen;
-import com.meng.stg.player.Player;
+import com.meng.stg.player.MyPlane;
 
-public abstract class Projectile extends bulletBaseEntity {
+public abstract class Projectile extends BaseBullet {
     public static HashSet<Projectile> Instances = new HashSet<Projectile>();
     public static LinkedBlockingQueue<Projectile> ToDelete = new LinkedBlockingQueue<Projectile>();
     public static LinkedBlockingQueue<Projectile> ToAdd = new LinkedBlockingQueue<Projectile>();
@@ -20,7 +20,6 @@ public abstract class Projectile extends bulletBaseEntity {
 
     @Override
     public void Init() {
-
 
         ToAdd.add(this);
         super.Init();
@@ -49,9 +48,9 @@ public abstract class Projectile extends bulletBaseEntity {
 }
 
     public void Judge() {
-        if (getCollisionArea().contains(Player.Instance.Center)) {
+        if (getCollisionArea().contains(MyPlane.Instance.Center)) {
             Kill();
-            Player.Instance.Kill();
+            MyPlane.Instance.Kill();
         }
     }
 

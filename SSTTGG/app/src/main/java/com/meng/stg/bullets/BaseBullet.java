@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
 
-public abstract class bulletBaseEntity
+public abstract class BaseBullet
 {
 	public Vector2 Center = new Vector2();
 	public Vector2 Velocity = new Vector2();

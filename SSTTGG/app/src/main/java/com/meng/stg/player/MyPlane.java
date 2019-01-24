@@ -12,8 +12,8 @@ import com.meng.stg.bullets.Projectile;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 
-public class Player extends playerBaseEntity {
-    public static Player Instance;
+public class MyPlane extends BaseMyPlane {
+    public static MyPlane Instance;
     public PlayerAnimation animation = null;
     public static boolean missed = false;
     public static boolean b=false;
@@ -56,19 +56,19 @@ public class Player extends playerBaseEntity {
                 switch (MainScreen.playerFlag) {
                     case Data.playerFlagReimu:
                         Drawer.remove();
-                        PlayerReimu.rm.Drawer.remove();
+                        MyPlaneReimu.rm.Drawer.remove();
                         Pools.ImagePool.free(Drawer);
-                        Pools.ImagePool.free(PlayerReimu.rm.Drawer);
+                        Pools.ImagePool.free(MyPlaneReimu.rm.Drawer);
                        // if(!MainScreen.gameOver)
-                        new PlayerReimu().Init();
+                        new MyPlaneReimu().Init();
                         break;
                     case Data.playerFlagAlice:
                         Drawer.remove();
-                        PlayerAlice.Alice.Drawer.remove();
+                        MyPlaneAlice.Alice.Drawer.remove();
                         Pools.ImagePool.free(Drawer);
-                        Pools.ImagePool.free(PlayerAlice.Alice.Drawer);
+                        Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
                      //   if(!MainScreen.gameOver)
-                        new PlayerAlice().Init();
+                        new MyPlaneAlice().Init();
                         break;
                 }
                 //Drawer.remove();
@@ -97,7 +97,6 @@ public class Player extends playerBaseEntity {
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-
             if(MainScreen.gameOver){
                 System.exit(0);
             }
@@ -110,7 +109,7 @@ public class Player extends playerBaseEntity {
                 }
                     vct2_downPosStage = MainScreen.Stage.screenToStageCoordinates
                             (vct2_downPosStage.set(screenX, screenY));
-                    vct2_downPosPlayer.set(Player.Instance.Center);
+                    vct2_downPosPlayer.set(MyPlane.Instance.Center);
             }
             return super.touchDown(screenX, screenY, pointer, button);
         }
@@ -132,7 +131,7 @@ public class Player extends playerBaseEntity {
          //       }
                 if (pointer == 0) {
                     vct2_tmp1 = MainScreen.Stage.screenToStageCoordinates(vct2_tmp1.set(screenX, screenY));
-                    Player.Instance.Center.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
+                    MyPlane.Instance.Center.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
                 }
 
             } else {
@@ -143,7 +142,7 @@ public class Player extends playerBaseEntity {
                 }
                 if (pointer == 0) {
                     vct2_tmp1 = MainScreen.Stage.screenToStageCoordinates(vct2_tmp1.set(screenX, screenY));
-                    Player.Instance.Center.set(new Vector2(screenX-missX,-(screenY-missY)));
+                    MyPlane.Instance.Center.set(new Vector2(screenX-missX,-(screenY-missY)));
                 }
             }
 

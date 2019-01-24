@@ -14,12 +14,12 @@ import com.meng.stg.boss.boss1;
 import com.meng.stg.bullets.Projectile;
 import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemy.enemy;
-import com.meng.stg.enemy.enemyBaseEntity;
+import com.meng.stg.enemy.BaseEnemy;
 import com.meng.stg.helpers.Data;
-import com.meng.stg.player.Player;
-import com.meng.stg.player.PlayerAlice;
-import com.meng.stg.player.PlayerReimu;
-import com.meng.stg.player.playerBaseEntity;
+import com.meng.stg.player.MyPlane;
+import com.meng.stg.player.MyPlaneAlice;
+import com.meng.stg.player.MyPlaneReimu;
+import com.meng.stg.player.BaseMyPlane;
 import com.meng.stg.stage.stage1;
 
 public class MainScreen extends ScreenAdapter {
@@ -32,7 +32,7 @@ public class MainScreen extends ScreenAdapter {
     public static Group MainGroup;
     public static Rectangle FightArea;
     public static InputMultiplexer InputMgr;
-    public static enemyBaseEntity[] enemys = new enemyBaseEntity[32];
+    public static BaseEnemy[] enemys = new BaseEnemy[32];
     public static bullet[] bullets = new bullet[1024];
   public static  BitmapFont f;
     public static boolean onBoss = false;
@@ -60,16 +60,16 @@ public class MainScreen extends ScreenAdapter {
         stageFlag=Data.stageFlagStage1;
         switch (playerFlag) {
             case Data.playerFlagReimu:
-                new PlayerReimu().Init();
+                new MyPlaneReimu().Init();
                 break;
             case Data.playerFlagAlice:
-                new PlayerAlice().Init();
+                new MyPlaneAlice().Init();
                 break;
         }
         // e= new enemy().createEnemy();
 
         InputMgr = new InputMultiplexer();
-        InputMgr.addProcessor(new Player.PlayerInputProcessor());
+        InputMgr.addProcessor(new MyPlane.PlayerInputProcessor());
         Gdx.input.setInputProcessor(InputMgr);
         super.show();
     }
@@ -90,7 +90,7 @@ public class MainScreen extends ScreenAdapter {
 
         Stage.draw();
         Projectile.UpdateAll();
-        Player.Instance.Update();
+        MyPlane.Instance.Update();
 
         //    for(enemy e:enemys){
         //        if(e!=null){
@@ -158,7 +158,7 @@ public class MainScreen extends ScreenAdapter {
     }
 
 
-    public static void newEnemy(enemyBaseEntity en) {
+    public static void newEnemy(BaseEnemy en) {
         // enemy e=null;
         //  for(enemy e:enemys){
         for (int i = 0; i < 32; i++) {

@@ -9,9 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
-import com.meng.stg.player.Player;
+import com.meng.stg.player.MyPlane;
+import com.meng.stg.player.*;
 
-public abstract class enemyBaseEntity {
+public abstract class BaseEnemy {
     public boolean isEnemy = true;
     public float enemyLastX;
     public int animTime=0;
@@ -74,9 +75,9 @@ public Vector2 getLocation(){
     protected abstract Shape2D getCollisionArea();
 
     public void Judge() {
-        if (getCollisionArea().contains(Player.Instance.Center)) {
+        if (getCollisionArea().contains(MyPlane.Instance.Center)) {
             hit();
-            Player.Instance.Kill();
+            MyPlane.Instance.Kill();
         }
     }
 
