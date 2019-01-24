@@ -53,7 +53,7 @@ public class ReimuBomb extends Projectile {
     protected Drawable getDrawable() {
         if (drawable == null) {
             //   if (bullet.color==bullet.colorRed) {
-            drawable = Resources.ProjDrawables.get("ReimuBomb");
+            drawable = Resources.Textures.get("ReimuBomb");
             //   }
         }
         return drawable;

@@ -52,7 +52,7 @@ public class AliceShoot extends Projectile {
     protected Drawable getDrawable() {
         if (drawable == null) {
             //   if (bullet.color==bullet.colorRed) {
-            drawable = Resources.ProjDrawables.get("AliceShoot");
+            drawable = Resources.Textures.get("AliceShoot");
             //   }
         }
         return drawable;

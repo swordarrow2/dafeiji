@@ -44,7 +44,7 @@ public class SimpleGreenBullet extends Projectile{
     protected Drawable getDrawable(){
         if(drawable==null){
 			//   if (bullet.color==bullet.colorRed) {
-			drawable=Resources.ProjDrawables.get("SimpleGreenBullet");
+			drawable=Resources.Textures.get("SimpleGreenBullet");
 			//   }
 		  }
         return drawable;

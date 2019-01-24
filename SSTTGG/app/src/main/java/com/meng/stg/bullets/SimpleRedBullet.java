@@ -50,7 +50,7 @@ public SimpleRedBullet createBullet(Vector2 center, Vector2 velocity){
     @Override
     protected Drawable getDrawable() {
         if (drawable == null) {
-                drawable = Resources.ProjDrawables.get("SimpleRedBullet");
+                drawable = Resources.Textures.get("SimpleRedBullet");
         }
         return drawable;
     }

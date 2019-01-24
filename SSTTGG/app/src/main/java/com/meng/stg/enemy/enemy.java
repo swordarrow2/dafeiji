@@ -19,7 +19,7 @@ public class enemy extends BaseEnemy {
     //public static int missTime=0;
     @Override
     protected Drawable getDrawable() {
-        return Resources.NPCDrawables.get("enemy");
+        return Resources.Textures.get("enemy");
     }
 
     protected Shape2D getCollisionArea() {
