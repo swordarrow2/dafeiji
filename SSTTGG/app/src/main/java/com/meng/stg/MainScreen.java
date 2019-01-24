@@ -10,16 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.*;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 
-import com.meng.stg.boss.boss1;
 import com.meng.stg.bullets.Projectile;
 import com.meng.stg.bullets.bullet;
-import com.meng.stg.enemy.enemy;
-import com.meng.stg.enemy.BaseEnemy;
+import com.meng.stg.enemy.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.player.MyPlane;
 import com.meng.stg.player.MyPlaneAlice;
 import com.meng.stg.player.MyPlaneReimu;
-import com.meng.stg.player.BaseMyPlane;
 import com.meng.stg.stage.stage1;
 
 public class MainScreen extends ScreenAdapter {
@@ -32,15 +29,15 @@ public class MainScreen extends ScreenAdapter {
     public static Group MainGroup;
     public static Rectangle FightArea;
     public static InputMultiplexer InputMgr;
-    public static BaseEnemy[] enemys = new BaseEnemy[32];
+    public static BaseEnemyPlane[] enemys = new BaseEnemyPlane[32];
     public static bullet[] bullets = new bullet[1024];
   public static  BitmapFont f;
     public static boolean onBoss = false;
-    // enemy e;
+    // EnemyPlane e;
 
     @Override
     public void show() {
-        Stage = new Stage(new ScalingViewport(Scaling.fit, 540f, 720f), Main.SBatch);
+        Stage = new Stage(new ScalingViewport(Scaling.fit, 540f, 720f), GameMain.SBatch);
         Width = 540;
         Height = 720;
         Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
@@ -66,8 +63,7 @@ public class MainScreen extends ScreenAdapter {
                 new MyPlaneAlice().Init();
                 break;
         }
-        // e= new enemy().createEnemy();
-
+        // e= new EnemyPlane().createEnemy();
         InputMgr = new InputMultiplexer();
         InputMgr.addProcessor(new MyPlane.PlayerInputProcessor());
         Gdx.input.setInputProcessor(InputMgr);
@@ -76,8 +72,6 @@ public class MainScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-
-
         for (int i = 0; i < 32; i++) {
             if (!(enemys[i] == null)) {
                 if (!(enemys[i].isKilled())) {
@@ -87,12 +81,10 @@ public class MainScreen extends ScreenAdapter {
                 }
             }
         }
-
         Stage.draw();
         Projectile.UpdateAll();
         MyPlane.Instance.Update();
-
-        //    for(enemy e:enemys){
+        //    for(EnemyPlane e:enemys){
         //        if(e!=null){
         //            if (!e.isKilled()){
         //                e.Update();
@@ -102,9 +94,8 @@ public class MainScreen extends ScreenAdapter {
         //        }
         //   }
 
-        Main.SBatch.begin();
-
-        f.draw(Main.SBatch, "FPS:" + Gdx.graphics.getFramesPerSecond()
+        GameMain.SBatch.begin();
+        f.draw(GameMain.SBatch, "FPS:" + Gdx.graphics.getFramesPerSecond()
                 //        + "\nPlayerLocation:" + (int) playerBaseEntity.x + "," + (int) playerBaseEntity.y
                 //        + "\nmissTime:" + playerBaseEntity.missTime
                 //        + "\nbullets:" + bullet.bulletCount
@@ -116,22 +107,22 @@ public class MainScreen extends ScreenAdapter {
                 // + "\nisKilled2:" + enemys[1].isKilled()
                 , 10, 710);
         //绘制
-        f.draw(Main.SBatch, "Bomb", 10, 30);
+        f.draw(GameMain.SBatch, "Bomb", 10, 30);
         switch (stageFlag) {
             case Data.stageFlagStage1:
                 if (gameTime > 700) {
-                    f.draw(Main.SBatch, "Stage Clear!!", 120, 350);
+                    f.draw(GameMain.SBatch, "Stage Clear!!", 120, 350);
                 }
                 break;
         }
         if(gameOver){
            // InputMgr.clear();
-            f.draw(Main.SBatch, "满身疮痍", 204, 350);
+            f.draw(GameMain.SBatch, "满身疮痍", 204, 350);
           //  Player.PlayerInputProcessor.touchX=0;
           //  Player.PlayerInputProcessor.touchY=0;
             onBoss=true;
         }
-        Main.SBatch.end();
+        GameMain.SBatch.end();
         if(!gameOver) {
             if (!onBoss) {
                 gameTime++;
@@ -155,19 +146,6 @@ public class MainScreen extends ScreenAdapter {
             }
         }
         return s;
-    }
-
-
-    public static void newEnemy(BaseEnemy en) {
-        // enemy e=null;
-        //  for(enemy e:enemys){
-        for (int i = 0; i < 32; i++) {
-            if (enemys[i] == null) {
-                enemys[i] = en;// new enemy().createEnemy();
-                break;
-            }
-        }
-        // }
     }
 
     @Override

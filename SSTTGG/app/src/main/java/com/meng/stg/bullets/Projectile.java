@@ -20,7 +20,6 @@ public abstract class Projectile extends BaseBullet {
 
     @Override
     public void Init() {
-
         ToAdd.add(this);
         super.Init();
     }

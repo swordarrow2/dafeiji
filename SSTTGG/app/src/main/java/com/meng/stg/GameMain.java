@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.meng.stg.helpers.Resources;
 
-public class Main extends Game {
+public class GameMain extends Game {
 	public static SpriteBatch SBatch;
 
 	@Override
