@@ -76,30 +76,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     @Override
     protected void move(){
-
         if(Center.x>500){
-            xx=true;
-        }else if(Center.x<50){
-            xx=false;
-        }
-        if(xx){
-            Center.x+=vx;
-        }else{
-            Center.x-=vx;
-        }
-        if(Center.y>700){
-            yy=true;
-        }else if(Center.y<400){
-            yy=false;
-        }
-        if(yy){
-            Center.y+=vy;
-        }else{
-            Center.y-=vy;
-        }
-
-
-     /*   if(Center.x>500){
             xx=true;
         }else if(Center.x<50){
             xx=false;
@@ -111,7 +88,6 @@ public class BossPlane1 extends BaseEnemyPlane{
         }
         Center.x=xx?Center.x+vx:Center.x-vx;
         Center.y=yy?Center.y+vy:Center.y-vy;
-        */
     }
 
     @Override
@@ -121,8 +97,7 @@ public class BossPlane1 extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet sb=new SimpleRedBullet();
-                sb.createBullet(Center,vel);
+                SimpleRedBullet.Pool.obtain().Init(Center,vel);
                 vel.rotate(30);
             }
         }
@@ -150,8 +125,7 @@ public class BossPlane1 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet sb=new SimpleRedBullet();
-            sb.createBullet(Center,vel);
+            SimpleRedBullet.Pool.obtain().Init(Center,vel);
             vel.rotate(15);
         }
         super.Kill();

@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.*;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 
-import com.meng.stg.bullets.Projectile;
+import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemy.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
@@ -82,7 +82,7 @@ public class MainScreen extends ScreenAdapter {
             }
         }
         Stage.draw();
-        Projectile.UpdateAll();
+        BaseBullet.UpdateAll();
         BaseMyPlane.Instance.Update();
         //    for(EnemyPlane e:enemys){
         //        if(e!=null){

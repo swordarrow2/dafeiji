@@ -32,24 +32,20 @@ public abstract class BaseMyPlane{
     public boolean b=false;
 
     public void Init(){
-
-        //	if (!MainScreen.gameOver) {
-        //获取一个Image
         judgeAnim=Pools.ImagePool.obtain();
         judgeAnim.setDrawable(getJudgeAnim());
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
-        //设置材质
         Drawer.setDrawable(drawable);
-        //加入舞台中
         MainScreen.MainGroup.addActor(Drawer);
         MainScreen.MainGroup.addActor(judgeAnim);
         ExistTime=0;
         Instance=this;
         judgeAnim.setSize(32,32);
-        Drawer.setSize(32,32);
         Center.set(270,80);
-        //	}
+        Drawer.setSize(32,48);
+        unmatchedTime=1;
+        onUnmatched=true;
     }
 
     private Drawable getJudgeAnim(){
@@ -61,22 +57,17 @@ public abstract class BaseMyPlane{
 
     public void Kill(){
         if(!onUnmatched){
-            //		MainScreen.gameOver=true;
             missTime++;
             missed=true;
             b=false;
             Pools.ImagePool.free(judgeAnim);
-            //Pools.ImagePool.free(Drawer);
             switch(MainScreen.playerFlag){
-                case Data.playerFlagReimu:
 
-                    break;
                 case Data.playerFlagAlice:
                     Drawer.remove();
                     MyPlaneAlice.Alice.Drawer.remove();
                     Pools.ImagePool.free(Drawer);
                     Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
-                    //   if(!MainScreen.gameOver)
                     new MyPlaneAlice().Init();
                     break;
             }
@@ -87,7 +78,6 @@ public abstract class BaseMyPlane{
     }
 
     public void Update(){
-        //	if (!MainScreen.gameOver) {
         Center.x=x=MathUtils.clamp(Center.x,0,MainScreen.Width);
         Center.y=y=MathUtils.clamp(Center.y,0,MainScreen.Height);
         Center.add(Velocity);
@@ -107,7 +97,6 @@ public abstract class BaseMyPlane{
         Drawer.toFront();
         judgeAnim.toFront();
         animation.Update();
-        //	}
     }
 
     public abstract void bomb();
@@ -115,8 +104,6 @@ public abstract class BaseMyPlane{
     public float[] getPosition(){
         return new float[]{Center.x,Center.y};
     }
-
-    ;
 
     protected abstract Drawable getDrawable();
 }

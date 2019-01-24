@@ -1,42 +1,92 @@
 package com.meng.stg.bullets;
 
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
+import com.meng.stg.player.BaseMyPlane;
 
-public abstract class BaseBullet
-{
-	public Vector2 Center = new Vector2();
-	public Vector2 Velocity = new Vector2();
-	public Image Drawer = null;
-	public int ExistTime;
-	public void Init()
-	{
-		//获取一个Image
-		Drawer = Pools.ImagePool.obtain();
-		Drawable drawable = getDrawable();
-		//设置材质
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.LinkedBlockingQueue;
 
-		Drawer.setDrawable(drawable);
-		ExistTime = 0;
-	}
-	public void Kill()
-	{
-		Drawer.remove();
-		//将Drawer从舞台上撤下并且将其回归到Pool中
-		Pools.ImagePool.free(Drawer);
-	}
-	public void Update()
-	{
-		//更新位置
-		//if (!MainScreen.gameOver) {
-			Center.add(Velocity);
-		//}
-		Drawer.setPosition(Center.x, Center.y, Align.center);
-		ExistTime++;
-	}
-	protected abstract Drawable getDrawable();
+public abstract class BaseBullet{
+    public Vector2 Center=new Vector2();
+    public Vector2 Velocity=new Vector2();
+    public Image Drawer=null;
+    public int ExistTime;
+    public static HashSet<BaseBullet> Instances=new HashSet<BaseBullet>();
+    public static LinkedBlockingQueue<BaseBullet> ToDelete=new LinkedBlockingQueue<BaseBullet>();
+    public static LinkedBlockingQueue<BaseBullet> ToAdd=new LinkedBlockingQueue<BaseBullet>();
+    Circle judgeCircle;
+    public boolean isEnemyBullet=true;
+    protected Rectangle drawBox=new Rectangle();
+
+    public static Drawable drawable;
+    public Vector2 Size=new Vector2();
+
+    public void Init(){
+        ToAdd.add(this);
+        Drawer=Pools.ImagePool.obtain();
+        Drawer.setDrawable(getDrawable());
+        ExistTime=0;
+    }
+
+    public void Kill(){
+        ToDelete.add(this);
+        Drawer.remove();
+        Pools.ImagePool.free(Drawer);
+    }
+
+    public void Update(){
+        Center.add(Velocity);
+        Drawer.setPosition(Center.x,Center.y,Align.center);
+        ExistTime++;
+        drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
+        judgeCircle.setPosition(Center);
+        if(!drawBox.overlaps(MainScreen.FightArea)){
+            Kill();
+        }else{
+            Judge();
+        }
+    }
+
+    public static void killAllBullet(){
+        Iterator i=Instances.iterator();
+        while(i.hasNext()){
+            ((BaseBullet)i.next()).Kill();
+        }
+    }
+
+    public void Judge(){
+        if(getCollisionArea().contains(BaseMyPlane.Instance.Center)){
+            Kill();
+            BaseMyPlane.Instance.Kill();
+        }
+    }
+
+    public static void UpdateAll(){
+        while(!ToDelete.isEmpty()){
+            Instances.remove(ToDelete.poll());
+            bullet.bulletCount--;
+        }
+        while(!ToAdd.isEmpty()){
+            Instances.add(ToAdd.poll());
+            bullet.bulletCount++;
+        }
+        for(BaseBullet baseBullet : Instances){
+            baseBullet.Update();
+        }
+    }
+
+    public Shape2D getCollisionArea(){
+        return judgeCircle;
+    }
+
+    public abstract Drawable getDrawable();
 }

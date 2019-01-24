@@ -59,11 +59,9 @@ public abstract class BaseEnemyPlane{
     }
 
     public void hit(){
-        //if(!MainScreen.gameOver){
             if(--hp<1){
                 Kill();
             }
-      //  }
     }
 
     public Vector2 getLocation(){
@@ -86,11 +84,9 @@ public abstract class BaseEnemyPlane{
         GameMain.SBatch.end();
         time++;
         animTime++;
-       // if(!MainScreen.gameOver){
             move();
             anim();
             shoot();
-      //  }
         Drawer.setPosition(Center.x,Center.y,Align.center);
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());

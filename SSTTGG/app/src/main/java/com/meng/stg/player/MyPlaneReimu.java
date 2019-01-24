@@ -1,16 +1,13 @@
 package com.meng.stg.player;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.meng.stg.MainScreen;
 import com.meng.stg.bullets.AliceShoot;
-import com.meng.stg.bullets.ReimuBomb;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 
@@ -27,32 +24,30 @@ public class MyPlaneReimu extends BaseMyPlane{
     protected Drawable getDrawable(){
         //return Resources.NPCDrawables.get("enemy2");
         switch(animTime%32){
-            case 1:// case 2:case 3:case 4:
+            case 1:
                 d=playerAnim.get("anim0");
                 break;
-            case 5://case 6:case 7:case 8:
+            case 5:
                 d=playerAnim.get("anim1");
                 break;
-            case 9://case 10:case 11:case 12:
+            case 9:
                 d=playerAnim.get("anim2");
                 break;
-            case 13://case 14:case 15:case 16:
+            case 13:
                 d=playerAnim.get("anim3");
                 break;
-            case 17://case 18:case 19:case 20:
+            case 17:
                 d=playerAnim.get("anim4");
                 break;
-            case 21://case 22:case 23:case 24:
+            case 21:
                 d=playerAnim.get("anim5");
                 break;
-            case 25://case 26:case 27:case 28:
+            case 25:
                 d=playerAnim.get("anim6");
                 break;
-            case 29://case 30:case 31:case 0:
+            case 29:
                 d=playerAnim.get("anim7");
                 break;
-            //  default:
-            //      return playerAnim.get("anim7");
         }
         return d;
     }
@@ -166,12 +161,7 @@ public class MyPlaneReimu extends BaseMyPlane{
                 index++;
             }
         }
-      //  if(MainScreen.gameOver) return;
-
-        Drawer.setSize(32,48);
         bombTime=Data.ReimuBombTime;
-        unmatchedTime=1;
-        onUnmatched=true;
     }
 
     @Override
@@ -185,39 +175,37 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void Update(){
-            super.Update();
-                Drawer.toBack();
-                animTime++;
-                if(Instance.Center.x>playerLastX){
-                    playerLastX=Instance.Center.x;
-                    Drawer.setDrawable(getRightMoveAnim());
-                }else if(Instance.Center.x<playerLastX){
-                    playerLastX=Instance.Center.x;
-                    Drawer.setDrawable(getLeftMoveAnim());
-                }else{
-                    playerLastX=Instance.Center.x;
-                    Drawer.setDrawable(getDrawable());
-                }
-                Center.set(Instance.Center);
-                Center.add(Velocity);
-                Drawer.setPosition(Center.x,Center.y,Align.center);
-                ExistTime++;
+        super.Update();
+        Drawer.toBack();
+        animTime++;
+        if(Instance.Center.x>playerLastX){
+            playerLastX=Instance.Center.x;
+            Drawer.setDrawable(getRightMoveAnim());
+        }else if(Instance.Center.x<playerLastX){
+            playerLastX=Instance.Center.x;
+            Drawer.setDrawable(getLeftMoveAnim());
+        }else{
+            playerLastX=Instance.Center.x;
+            Drawer.setDrawable(getDrawable());
+        }
+        Center.set(Instance.Center);
+        Center.add(Velocity);
+        Drawer.setPosition(Center.x,Center.y,Align.center);
+        ExistTime++;
 
-            time++;
-            if(time%2==1){
-                Vector2 vel=new Vector2(0,60);
-                //AliceShoot.Pool.obtain().Init(Center, vel);
-                AliceShoot sb=new AliceShoot();
-                sb.createBullet(Center,vel);
-            }
-            if(bombTime==0){
-                onBomb=false;
-                bombTime=Data.ReimuBombTime;
-            }
-            if(unmatchedTime==0){
-                onUnmatched=false;
-                unmatchedTime=Data.ReimuUnmatchedTime;
-            }
+        time++;
+        if(time%2==1){
+            Vector2 vel=new Vector2(0,60);
+            AliceShoot.Pool.obtain().Init(Center,vel);
+        }
+        if(bombTime==0){
+            onBomb=false;
+            bombTime=Data.ReimuBombTime;
+        }
+        if(unmatchedTime==0){
+            onUnmatched=false;
+            unmatchedTime=Data.ReimuUnmatchedTime;
+        }
     }
 
     @Override
@@ -225,26 +213,19 @@ public class MyPlaneReimu extends BaseMyPlane{
         Vector2 vel=new Vector2(0,30);
 
         if(bombTime%16==0){
-            ReimuBomb sb=new ReimuBomb();
-            sb.createBullet(new Vector2(Center.x,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x,0),vel);
         }
         if(bombTime%16==4){
-            ReimuBomb sb2=new ReimuBomb();
-            sb2.createBullet(new Vector2(Center.x-20,0),vel);
-            ReimuBomb sb3=new ReimuBomb();
-            sb3.createBullet(new Vector2(Center.x+20,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x-20,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x+20,0),vel);
         }
         if(bombTime%16==8){
-            ReimuBomb sb4=new ReimuBomb();
-            sb4.createBullet(new Vector2(Center.x-40,0),vel);
-            ReimuBomb sb5=new ReimuBomb();
-            sb5.createBullet(new Vector2(Center.x+40,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x-40,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x+40,0),vel);
         }
         if(bombTime%16==12){
-            ReimuBomb sb6=new ReimuBomb();
-            sb6.createBullet(new Vector2(Center.x-20,0),vel);
-            ReimuBomb sb7=new ReimuBomb();
-            sb7.createBullet(new Vector2(Center.x+20,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x-20,0),vel);
+            AliceShoot.Pool.obtain().Init(new Vector2(Center.x+20,0),vel);
         }
     }
 }

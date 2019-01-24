@@ -17,13 +17,11 @@ public class stage1{
         switch(MainScreen.gameTime){
             case 30:
                 Vector2 vel=new Vector2(0,-50);
-                SimpleRedBullet sb=new SimpleRedBullet();
-                sb.createBullet(new Vector2(BaseMyPlane.Instance.x,720),vel);
+                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.Instance.x,720),vel);
                 break;
             case 60:
                 Vector2 vel2=new Vector2(0,30);
-                SimpleRedBullet sb2=new SimpleRedBullet();
-                sb2.createBullet(new Vector2(BaseMyPlane.Instance.x,0),vel2);
+                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.Instance.x,0),vel2);
                 break;
             case 120:
                 new EnemyPlane().Init(270,719,0,-1);
@@ -59,17 +57,12 @@ public class stage1{
                 break;
             case 620:
                 Vector2 vel3=new Vector2(0,30);
-                SimpleRedBullet sb3=new SimpleRedBullet();
-                sb3.createBullet(new Vector2(BaseMyPlane.Instance.x,0),vel3);
+                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.Instance.x,0),vel3);
                 break;
             case 670:
                 Vector2 vel4=new Vector2(0,-50);
-                SimpleRedBullet sb4=new SimpleRedBullet();
-                sb4.createBullet(new Vector2(BaseMyPlane.Instance.x,720),vel4);
+                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.Instance.x,720),vel4);
                 break;
-
         }
-
-
     }
 }
