@@ -20,7 +20,6 @@ public abstract class BaseEnemyPlane{
     protected int time=0;
     public float vx=0;
     public float vy=0;
-    public boolean isEnemy=true;
     public float enemyLastX;
     public int animTime=0;
     public Image Drawer=null;
@@ -37,7 +36,6 @@ public abstract class BaseEnemyPlane{
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
         Drawer.setDrawable(drawable);
-        isEnemy=true;
         Killed=false;
         Drawer.setSize(64,64);
         Center.set(x,y);

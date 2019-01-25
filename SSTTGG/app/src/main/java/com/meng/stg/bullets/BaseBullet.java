@@ -66,11 +66,9 @@ public abstract class BaseBullet{
     public static void UpdateAll(){
         while(!ToDelete.isEmpty()){
             Instances.remove(ToDelete.poll());
-            bullet.bulletCount--;
         }
         while(!ToAdd.isEmpty()){
             Instances.add(ToAdd.poll());
-            bullet.bulletCount++;
         }
         for(BaseBullet baseBullet : Instances){
             baseBullet.Update();

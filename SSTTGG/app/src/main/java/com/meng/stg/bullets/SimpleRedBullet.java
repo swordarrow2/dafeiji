@@ -18,7 +18,6 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     };
 
     public void Init(Vector2 center,Vector2 velocity){
-        drawable=Resources.Textures.get("SimpleRedBullet");
         super.Init();
         Size.set(24,24);
         Drawer.setSize(Size.x,Size.y);

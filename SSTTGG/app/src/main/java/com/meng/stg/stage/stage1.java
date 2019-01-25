@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainScreen;
 import com.meng.stg.bullets.SimpleRedBullet;
 import com.meng.stg.enemy.BossPlane1;
+import com.meng.stg.enemy.BossPlane2;
 import com.meng.stg.enemy.EnemyPlane;
 import com.meng.stg.player.BaseMyPlane;
 
@@ -52,7 +53,7 @@ public class stage1{
                 new EnemyPlane().Init(50,719,-9,2);
                 break;
             case 500:
-                new BossPlane1().Init(250,650,-2,-1,2000);
+                new BossPlane2().Init(250,650,-2,-1,2000);
                 MainScreen.onBoss=true;
                 break;
             case 620:

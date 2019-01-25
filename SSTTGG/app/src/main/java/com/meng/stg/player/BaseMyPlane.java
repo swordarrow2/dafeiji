@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
-import com.meng.stg.bullets.AliceShoot;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 
@@ -17,7 +16,7 @@ public abstract class BaseMyPlane{
     public Vector2 Center=new Vector2();
     public Vector2 Velocity=new Vector2();
     public Image Drawer=null;
-    public int ExistTime;
+    public int ExistTime=0;
 
     public float x=0;
     public float y=0;
@@ -34,7 +33,6 @@ public abstract class BaseMyPlane{
     public boolean missed=false;
     public boolean b=false;
 
-    private int time=0;
     private float playerLastX=270;
 
     public void Init(){
@@ -48,7 +46,7 @@ public abstract class BaseMyPlane{
         ExistTime=0;
         Instance=this;
         judgeAnim.setSize(32,32);
-        Center.set(270,80);
+        Center.set(MainScreen.Width/2,80);
         Drawer.setSize(32,48);
         unmatchedTime=1;
         onUnmatched=true;
@@ -70,11 +68,11 @@ public abstract class BaseMyPlane{
             switch(MainScreen.playerFlag){
 
                 case Data.playerFlagAlice:
-                 //   Drawer.remove();
-                //    MyPlaneAlice.Alice.Drawer.remove();
-               //     Pools.ImagePool.free(Drawer);
-              //      Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
-              //      new MyPlaneAlice().Init();
+                    //   Drawer.remove();
+                    //    MyPlaneAlice.Alice.Drawer.remove();
+                    //     Pools.ImagePool.free(Drawer);
+                    //      Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
+                    //      new MyPlaneAlice().Init();
                     break;
             }
             //Drawer.remove();
@@ -116,11 +114,7 @@ public abstract class BaseMyPlane{
             Drawer.setDrawable(getStayAnim());
         }
         ExistTime++;
-        time++;
-        if(time%2==1){
-            Vector2 vel=new Vector2(0,60);
-            AliceShoot.Pool.obtain().Init(Center,vel);
-        }
+        shoot();
         if(bombTime==0){
             onBomb=false;
             bombTime=Data.ReimuBombTime;
@@ -139,7 +133,12 @@ public abstract class BaseMyPlane{
     public abstract void bomb();
 
     public abstract Drawable getDrawable();
+
     public abstract Drawable getStayAnim();
+
     public abstract Drawable getRightMoveAnim();
+
     public abstract Drawable getLeftMoveAnim();
+
+    public abstract void shoot();
 }

@@ -1,53 +1,47 @@
 package com.meng.stg.player;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.meng.stg.bullets.ReimuBomb;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
-
-import java.util.HashMap;
+import com.meng.stg.helpers.Resources;
 
 public class MyPlaneReimu extends BaseMyPlane{
 
-    private HashMap<String,Drawable> playerAnim=new HashMap<String,Drawable>(30);
     private Drawable d=null;
 
     @Override
     public Drawable getDrawable(){
-        return playerAnim.get("anim0");
+        return Resources.Textures.get("reimu0");
     }
 
     @Override
     public Drawable getStayAnim(){
         switch(animTime%32){
             case 1:
-                d=playerAnim.get("anim0");
+                d=Resources.Textures.get("reimu0");
                 break;
             case 5:
-                d=playerAnim.get("anim1");
+                d=Resources.Textures.get("reimu1");
                 break;
             case 9:
-                d=playerAnim.get("anim2");
+                d=Resources.Textures.get("reimu2");
                 break;
             case 13:
-                d=playerAnim.get("anim3");
+                d=Resources.Textures.get("reimu3");
                 break;
             case 17:
-                d=playerAnim.get("anim4");
+                d=Resources.Textures.get("reimu4");
                 break;
             case 21:
-                d=playerAnim.get("anim5");
+                d=Resources.Textures.get("reimu5");
                 break;
             case 25:
-                d=playerAnim.get("anim6");
+                d=Resources.Textures.get("reimu6");
                 break;
             case 29:
-                d=playerAnim.get("anim7");
+                d=Resources.Textures.get("reimu7");
                 break;
         }
         return d;
@@ -56,28 +50,28 @@ public class MyPlaneReimu extends BaseMyPlane{
     public Drawable getLeftMoveAnim(){
         switch(animTime%32){
             case 1:
-                d=playerAnim.get("anim8");
+                d=Resources.Textures.get("reimu8");
                 break;
             case 5:
-                d=playerAnim.get("anim9");
+                d=Resources.Textures.get("reimu9");
                 break;
             case 9:
-                d=playerAnim.get("anim10");
+                d=Resources.Textures.get("reimu10");
                 break;
             case 13:
-                d=playerAnim.get("anim11");
+                d=Resources.Textures.get("reimu11");
                 break;
             case 17:
-                d=playerAnim.get("anim12");
+                d=Resources.Textures.get("reimu12");
                 break;
             case 21:
-                d=playerAnim.get("anim13");
+                d=Resources.Textures.get("reimu13");
                 break;
             case 25:
-                d=playerAnim.get("anim14");
+                d=Resources.Textures.get("reimu14");
                 break;
             case 29:
-                d=playerAnim.get("anim15");
+                d=Resources.Textures.get("reimu15");
                 break;
         }
         return d;
@@ -86,37 +80,46 @@ public class MyPlaneReimu extends BaseMyPlane{
     public Drawable getRightMoveAnim(){
         switch(animTime%32){
             case 1:
-                d=playerAnim.get("anim16");
+                d=Resources.Textures.get("reimu16");
                 break;
             case 5:
-                d=playerAnim.get("anim17");
+                d=Resources.Textures.get("reimu17");
                 break;
             case 9:
-                d=playerAnim.get("anim18");
+                d=Resources.Textures.get("reimu18");
                 break;
             case 13:
-                d=playerAnim.get("anim19");
+                d=Resources.Textures.get("reimu19");
                 break;
             case 17:
-                d=playerAnim.get("anim20");
+                d=Resources.Textures.get("reimu20");
                 break;
             case 21:
-                d=playerAnim.get("anim21");
+                d=Resources.Textures.get("reimu21");
                 break;
             case 25:
-                d=playerAnim.get("anim22");
+                d=Resources.Textures.get("reimu22");
                 break;
             case 29:
-                d=playerAnim.get("anim23");
+                d=Resources.Textures.get("reimu23");
                 break;
         }
         return d;
     }
 
     @Override
+    public void shoot(){
+
+        if(ExistTime%2==1){
+            //    Vector2 vel=new Vector2(0,60);
+            //    AliceShoot.Pool.obtain().Init(Center,vel);
+        }
+    }
+
+    @Override
     public void Init(){
         super.Init();
-        Texture walkSheet=new Texture(Gdx.files.internal("textures/player/pl00.png"));
+     /*   Texture walkSheet=new Texture(Gdx.files.internal("textures/player/pl00.png"));
         int FRAME_COLS=8;
         int FRAME_ROWS=3;
         TextureRegion[][] tmp=TextureRegion.split(walkSheet,walkSheet.getWidth()/FRAME_COLS,walkSheet.getHeight()/FRAME_ROWS);
@@ -124,10 +127,10 @@ public class MyPlaneReimu extends BaseMyPlane{
         for(int i=0;i<FRAME_ROWS;i++){
             for(int j=0;j<FRAME_COLS;j++){
                 TextureRegionDrawable drawable=new TextureRegionDrawable(tmp[i][j]);
-                playerAnim.put("anim"+index,drawable);
+                playerAnim.put("reimu"+index,drawable);
                 index++;
             }
-        }
+        }*/
         bombTime=Data.ReimuBombTime;
     }
 
@@ -148,19 +151,14 @@ public class MyPlaneReimu extends BaseMyPlane{
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x,0),vel);
         }
         if(bombTime%16==4){
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x+20,0),vel);
         }
         if(bombTime%16==8){
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x,0),vel);
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x-20,0),vel);
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x+20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x-40,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x+40,0),vel);
         }
         if(bombTime%16==12){
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(Center.x+20,0),vel);
         }
