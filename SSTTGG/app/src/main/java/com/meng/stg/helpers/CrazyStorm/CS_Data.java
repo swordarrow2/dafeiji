@@ -25,7 +25,7 @@ public class CS_Data {
             int index1 = num1;
             int num2 = index1+1;
             if(mbGtext1[index1]!="Crazy Storm Data 1.01") {
-                MessageBox.Show("当前暂不支持除1.01以外的数据格式","错误",MessageBoxButtons.OK,MessageBoxIcon.Hand);
+         //       MessageBox.Show("当前暂不支持除1.01以外的数据格式","错误",MessageBoxButtons.OK,MessageBoxIcon.Hand);
             } else {
                 String[] mbGtext2 = MBGtext;
                 int index2 = num2;
@@ -62,16 +62,16 @@ public class CS_Data {
                         int num5 = Integer.parseInt(str2.split(":")[1].split(",")[3]);
                         for(int index5 = 0;index5<num5;++index5) {
                             String[] strArray = MBGtext[num6++].split(",");
-                            EmitterMode EmitterMode = EmitterMode.Bullet;
+                            EmitterMode emitterMode = EmitterMode.Bullet;
                             if(strArray.length>91) {
                                 if(Boolean.parseBoolean(strArray[81])) {
-                                    EmitterMode=EmitterMode.Enemy;
+                                    emitterMode=EmitterMode.Enemy;
                                 } else if(Integer.parseInt(strArray[91])>0) {
-                                    EmitterMode=EmitterMode.Effect;
+                                    emitterMode=EmitterMode.Effect;
                                 }
                             }
-                            BaseEmitter_CS baseEmitterCs = new BaseEmitter_CS( this,EmitterMode);
-                            if(baseEmitterCs.EmitterMode==EmitterMode.Enemy)
+                            BaseEmitter_CS baseEmitterCs = new BaseEmitter_CS(this,emitterMode);
+                            if(baseEmitterCs.emitterMode==EmitterMode.Enemy)
                                 baseEmitterCs.SubBullet=new EnemyFactory(strArray[82]) {
                                 HealthPoint=Integer.parseInt(strArray[83]),
                                 RedCount=Integer.parseInt(strArray[84]),
@@ -87,41 +87,41 @@ public class CS_Data {
                             baseEmitterCs.BindingState=Boolean.parseBoolean(strArray[2]);
                             baseEmitterCs.BindingID=Integer.parseInt(strArray[3]);
                             baseEmitterCs.BindWithDirection=Boolean.parseBoolean(strArray[4]);
-                            baseEmitterCs.CS_Position=new PointF(float.Parse(strArray[6]),float.Parse(strArray[7]));
+                            baseEmitterCs.CS_Position=new PointF(Float.parseFloat(strArray[6]),Float.parseFloat(strArray[7]));
                             baseEmitterCs.StartTime=Integer.parseInt(strArray[8]);
                             baseEmitterCs.Duration=Integer.parseInt(strArray[9]);
-                            baseEmitterCs.EmitPoint=new PointF(float.Parse(strArray[10]),float.Parse(strArray[11]));
+                            baseEmitterCs.EmitPoint=new PointF(Float.parseFloat(strArray[10]),Float.parseFloat(strArray[11]));
                             baseEmitterCs.EmitRadius=Integer.parseInt(strArray[12]);
-                            baseEmitterCs.RadiusDirection=float.Parse(strArray[13]);
+                            baseEmitterCs.RadiusDirection=Float.parseFloat(strArray[13]);
                             String str3 = strArray[14].Replace("{","").Replace("}","");
-                            baseEmitterCs.RadiusDirectionPoint=new PointF(float.Parse(str3.split("\\s")[0].split(":")[1]),float.Parse(str3.split("\\s")[1].split(":")[1]));
+                            baseEmitterCs.RadiusDirectionPoint=new PointF(Float.parseFloat(str3.split("\\s")[0].split(":")[1]),Float.parseFloat(str3.split("\\s")[1].split(":")[1]));
                             baseEmitterCs.Way=Integer.parseInt(strArray[15]);
                             baseEmitterCs.Circle=Integer.parseInt(strArray[16]);
-                            baseEmitterCs.EmitDirection=float.Parse(strArray[17]);
+                            baseEmitterCs.EmitDirection=Float.parseFloat(strArray[17]);
                             String str4 = strArray[18].Replace("{","").Replace("}","");
-                            baseEmitterCs.EmitDirectionPoint=new PointF(float.Parse(str4.split("\\s")[0].split(":")[1]),float.Parse(str4.split("\\s")[1].split(":")[1]));
+                            baseEmitterCs.EmitDirectionPoint=new PointF(Float.parseFloat(str4.split("\\s")[0].split(":")[1]),Float.parseFloat(str4.split("\\s")[1].split(":")[1]));
                             baseEmitterCs.Range=Integer.parseInt(strArray[19]);
-                            baseEmitterCs.Velocity=float.Parse(strArray[20]);
-                            baseEmitterCs.DirectionDegree=float.Parse(strArray[21]);
+                            baseEmitterCs.Velocity=Float.parseFloat(strArray[20]);
+                            baseEmitterCs.DirectionDegree=Float.parseFloat(strArray[21]);
                             String str5 = strArray[22].Replace("{","").Replace("}","");
-                            baseEmitterCs.DestPoint=new PointF(float.Parse(str5.split("\\s")[0].split(":")[1]),float.Parse(str5.split("\\s")[1].split(":")[1]));
-                            baseEmitterCs.AccelerateCS=float.Parse(strArray[23]);
-                            baseEmitterCs.AccDirection=float.Parse(strArray[24]);
+                            baseEmitterCs.DestPoint=new PointF(Float.parseFloat(str5.split("\\s")[0].split(":")[1]),Float.parseFloat(str5.split("\\s")[1].split(":")[1]));
+                            baseEmitterCs.AccelerateCS=Float.parseFloat(strArray[23]);
+                            baseEmitterCs.AccDirection=Float.parseFloat(strArray[24]);
                             baseEmitterCs.SubBullet.LifeTime=Integer.parseInt(strArray[26]);
                             baseEmitterCs.SubBullet.Type=Integer.parseInt(strArray[27]);
-                            baseEmitterCs.SubBullet.ScaleWidth=float.Parse(strArray[28]);
-                            baseEmitterCs.SubBullet.Scalelength=float.Parse(strArray[29]);
+                            baseEmitterCs.SubBullet.ScaleWidth=Float.parseFloat(strArray[28]);
+                            baseEmitterCs.SubBullet.Scalelength=Float.parseFloat(strArray[29]);
                             baseEmitterCs.SubBullet.ColorValue=Color.FromArgb(Integer.parseInt(strArray[30]),Integer.parseInt(strArray[31]),Integer.parseInt(strArray[32]));
                             baseEmitterCs.SubBullet.TransparentValueF=Integer.parseInt(strArray[33])*byte.MaxValue/100;
-                            baseEmitterCs.SubBullet.AngleDegree=float.Parse(strArray[34])+180.0;
+                            baseEmitterCs.SubBullet.AngleDegree=Float.parseFloat(strArray[34])+180.0;
                             baseEmitterCs.SubBullet.AngleWithDirection=Boolean.parseBoolean(strArray[36]);
-                            baseEmitterCs.SubBullet.Velocity=float.Parse(strArray[37]);
-                            baseEmitterCs.SubBullet.DirectionDegree=float.Parse(strArray[38]);
-                            baseEmitterCs.SubBullet.DestPoint=new PointF(float.Parse(str5.split("\\s")[0].split(":")[1]),float.Parse(str5.split("\\s")[1].split(":")[1]));
-                            baseEmitterCs.SubBullet.AccelerateCS=float.Parse(strArray[40]);
-                            baseEmitterCs.SubBullet.AccDirection=float.Parse(strArray[41]);
-                            baseEmitterCs.SubBullet.ScaleX=float.Parse(strArray[43]);
-                            baseEmitterCs.SubBullet.ScaleY=float.Parse(strArray[44]);
+                            baseEmitterCs.SubBullet.Velocity=Float.parseFloat(strArray[37]);
+                            baseEmitterCs.SubBullet.DirectionDegree=Float.parseFloat(strArray[38]);
+                            baseEmitterCs.SubBullet.DestPoint=new PointF(Float.parseFloat(str5.split("\\s")[0].split(":")[1]),Float.parseFloat(str5.split("\\s")[1].split(":")[1]));
+                            baseEmitterCs.SubBullet.AccelerateCS=Float.parseFloat(strArray[40]);
+                            baseEmitterCs.SubBullet.AccDirection=Float.parseFloat(strArray[41]);
+                            baseEmitterCs.SubBullet.ScaleX=Float.parseFloat(strArray[43]);
+                            baseEmitterCs.SubBullet.ScaleY=Float.parseFloat(strArray[44]);
                             baseEmitterCs.SubBullet.BeginningEffect=Boolean.parseBoolean(strArray[45]);
                             baseEmitterCs.SubBullet.EndingEffect=Boolean.parseBoolean(strArray[46]);
                             baseEmitterCs.SubBullet.Active=Boolean.parseBoolean(strArray[47]);
@@ -131,19 +131,19 @@ public class CS_Data {
                             String str6 = strArray[51];
                             int index6 = 0;
                             while(true) {
-                                if(index6<str6.Split('&').length-1) {
-                                    String str7 = str6.Split('&')[index6];
+                                if(index6<str6.split("&").length-1) {
+                                    String str7 = str6.split("&")[index6];
                                     EventGroup eventGroup = new EventGroup {
                                         index=index6,
-                                        tag=str7.Split('|')[0],
-                                        t=Integer.parseInt(str7.Split('|')[1]),
-                                        addtime=Integer.parseInt(str7.Split('|')[2])
+                                        tag=str7.split("\\|")[0],
+                                        t=Integer.parseInt(str7.split("\\|")[1]),
+                                        addtime=Integer.parseInt(str7.split("\\|")[2])
                                     };
                                     int index7 = 0;
                                     while(true) {
-                                        if(index7<str7.Split('|')[3].Split(';').length-1) {
+                                        if(index7<str7.split("\\|")[3].split(";").length-1) {
                                             Event @event = new Event {
-                                                EventString=str7.Split('|')[3].Split(';')[index7]
+                                                EventString=str7.split("\\|")[3].split(";")[index7]
                                             };
                                             @event.String2EmitterEvent();
                                             eventGroup.EventList.Add(@event);
@@ -159,19 +159,19 @@ public class CS_Data {
                             String str8 = strArray[52];
                             int index8 = 0;
                             while(true) {
-                                if(index8<str8.Split('&').length-1) {
-                                    String str7 = str8.Split('&')[index8];
+                                if(index8<str8.split("&").length-1) {
+                                    String str7 = str8.split("&")[index8];
                                     EventGroup eventGroup = new EventGroup {
                                         index=index8,
-                                        tag=str7.Split('|')[0],
-                                        t=Integer.parseInt(str7.Split('|')[1]),
-                                        addtime=Integer.parseInt(str7.Split('|')[2])
+                                        tag=str7.split("\\|")[0],
+                                        t=Integer.parseInt(str7.split("\\|")[1]),
+                                        addtime=Integer.parseInt(str7.split("\\|")[2])
                                     };
                                     int index7 = 0;
                                     while(true) {
-                                        if(index7<str7.Split('|')[3].Split(';').length-1) {
+                                        if(index7<str7.split("\\|")[3].split(";").length-1) {
                                             Event @event = new Event {
-                                                EventString=str7.Split('|')[3].Split(';')[index7]
+                                                EventString=str7.split("\\|")[3].split(";")[index7]
                                             };
                                             @event.String2BulletEvent();
                                             eventGroup.EventList.Add(@event);
@@ -184,23 +184,23 @@ public class CS_Data {
                                 } else
                                     break;
                             }
-                            baseEmitterCs.RanX=float.Parse(strArray[53]);
-                            baseEmitterCs.RanY=float.Parse(strArray[54]);
+                            baseEmitterCs.RanX=Float.parseFloat(strArray[53]);
+                            baseEmitterCs.RanY=Float.parseFloat(strArray[54]);
                             baseEmitterCs.RanRadius=Integer.parseInt(strArray[55]);
-                            baseEmitterCs.RanRadiusDirection=float.Parse(strArray[56]);
+                            baseEmitterCs.RanRadiusDirection=Float.parseFloat(strArray[56]);
                             baseEmitterCs.RanWay=Integer.parseInt(strArray[57]);
                             baseEmitterCs.RanCircle=Integer.parseInt(strArray[58]);
-                            baseEmitterCs.RanEmitDirection=float.Parse(strArray[59]);
+                            baseEmitterCs.RanEmitDirection=Float.parseFloat(strArray[59]);
                             baseEmitterCs.RanRange=Integer.parseInt(strArray[60]);
-                            baseEmitterCs.RanVelocity=float.Parse(strArray[61]);
-                            baseEmitterCs.RanDirection=float.Parse(strArray[62]);
-                            baseEmitterCs.RanAccelerate=float.Parse(strArray[63]);
-                            baseEmitterCs.RanAccDirection=float.Parse(strArray[64]);
-                            baseEmitterCs.SubBullet.RanAngle=float.Parse(strArray[65]);
-                            baseEmitterCs.SubBullet.RanVelocity=float.Parse(strArray[66]);
-                            baseEmitterCs.SubBullet.RanDirection=float.Parse(strArray[67]);
-                            baseEmitterCs.SubBullet.RanAccelerate=float.Parse(strArray[68]);
-                            baseEmitterCs.SubBullet.RanAccDirection=float.Parse(strArray[69]);
+                            baseEmitterCs.RanVelocity=Float.parseFloat(strArray[61]);
+                            baseEmitterCs.RanDirection=Float.parseFloat(strArray[62]);
+                            baseEmitterCs.RanAccelerate=Float.parseFloat(strArray[63]);
+                            baseEmitterCs.RanAccDirection=Float.parseFloat(strArray[64]);
+                            baseEmitterCs.SubBullet.RanAngle=Float.parseFloat(strArray[65]);
+                            baseEmitterCs.SubBullet.RanVelocity=Float.parseFloat(strArray[66]);
+                            baseEmitterCs.SubBullet.RanDirection=Float.parseFloat(strArray[67]);
+                            baseEmitterCs.SubBullet.RanAccelerate=Float.parseFloat(strArray[68]);
+                            baseEmitterCs.SubBullet.RanAccDirection=Float.parseFloat(strArray[69]);
                             if(strArray.length>72) {
                                 baseEmitterCs.SubBullet.Cover=Boolean.parseBoolean(strArray[70]);
                                 baseEmitterCs.SubBullet.Rebound=Boolean.parseBoolean(strArray[71]);
@@ -227,7 +227,7 @@ public class CS_Data {
                                     baseEmitterCs.SubBullet.TxtureObject=StageData.TextureObjectDictionary[strArray[92]];
                                 baseEmitterCs.Count=Integer.parseInt(strArray[94]);
                                 baseEmitterCs.Count=baseEmitterCs.Count<1 ? 1 : baseEmitterCs.Count;
-                                baseEmitterCs.DeltaV=float.Parse(strArray[95]);
+                                baseEmitterCs.DeltaV=Float.parseFloat(strArray[95]);
                             }
                             if(strArray.length>110) baseEmitterCs.RDirectionWithDirection=!(strArray[96]=="0");
                             EmitterList.Add(baseEmitterCs);
@@ -243,23 +243,23 @@ public class CS_Data {
                                 baseEmitterCs.BindingState=Boolean.parseBoolean(strArray[2]);
                                 baseEmitterCs.BindingID=Integer.parseInt(strArray[3]);
                                 baseEmitterCs.BindWithDirection=Boolean.parseBoolean(strArray[4]);
-                                baseEmitterCs.CS_Position=new PointF(float.Parse(strArray[6]),float.Parse(strArray[7]));
+                                baseEmitterCs.CS_Position=new PointF(Float.parseFloat(strArray[6]),Float.parseFloat(strArray[7]));
                                 baseEmitterCs.StartTime=Integer.parseInt(strArray[8]);
                                 baseEmitterCs.Duration=Integer.parseInt(strArray[9]);
                                 baseEmitterCs.EmitRadius=Integer.parseInt(strArray[10]);
-                                baseEmitterCs.RadiusDirection=float.Parse(strArray[11]);
+                                baseEmitterCs.RadiusDirection=Float.parseFloat(strArray[11]);
                                 baseEmitterCs.Way=Integer.parseInt(strArray[13]);
                                 baseEmitterCs.Circle=Integer.parseInt(strArray[14]);
-                                baseEmitterCs.EmitDirection=float.Parse(strArray[15]);
+                                baseEmitterCs.EmitDirection=Float.parseFloat(strArray[15]);
                                 baseEmitterCs.Range=Integer.parseInt(strArray[17]);
-                                baseEmitterCs.Velocity=float.Parse(strArray[18]);
-                                baseEmitterCs.DirectionDegree=float.Parse(strArray[19]);
-                                baseEmitterCs.AccelerateCS=float.Parse(strArray[21]);
-                                baseEmitterCs.AccDirection=float.Parse(strArray[22]);
+                                baseEmitterCs.Velocity=Float.parseFloat(strArray[18]);
+                                baseEmitterCs.DirectionDegree=Float.parseFloat(strArray[19]);
+                                baseEmitterCs.AccelerateCS=Float.parseFloat(strArray[21]);
+                                baseEmitterCs.AccDirection=Float.parseFloat(strArray[22]);
                                 baseEmitterCs.SubBullet.LifeTime=Integer.parseInt(strArray[24]);
                                 baseEmitterCs.SubBullet.Type=Integer.parseInt(strArray[25]);
                                 if(baseEmitterCs.EmitterMode==EmitterMode.StraightLaser||baseEmitterCs.EmitterMode==EmitterMode.BendLaser) {
-                                    baseEmitterCs.SubBullet.Scalelength=float.Parse(strArray[26]);
+                                    baseEmitterCs.SubBullet.Scalelength=Float.parseFloat(strArray[26]);
                                     baseEmitterCs.SubBullet.GhostingCount=Integer.parseInt(strArray[27]);
                                 } else {
                                     baseEmitterCs.SubBullet.MaxScaleW=Integer.parseInt(strArray[27])/256f;
@@ -268,28 +268,28 @@ public class CS_Data {
                                     baseEmitterCs.SubBullet.Scalelength=0.2f;
                                 }
                                 baseEmitterCs.SubBullet.TransparentValueF=Integer.parseInt(strArray[28])*byte.MaxValue/100;
-                                baseEmitterCs.SubBullet.Velocity=float.Parse(strArray[30]);
-                                baseEmitterCs.SubBullet.DirectionDegree=float.Parse(strArray[31]);
-                                baseEmitterCs.SubBullet.AccelerateCS=float.Parse(strArray[33]);
-                                baseEmitterCs.SubBullet.AccDirection=float.Parse(strArray[34]);
+                                baseEmitterCs.SubBullet.Velocity=Float.parseFloat(strArray[30]);
+                                baseEmitterCs.SubBullet.DirectionDegree=Float.parseFloat(strArray[31]);
+                                baseEmitterCs.SubBullet.AccelerateCS=Float.parseFloat(strArray[33]);
+                                baseEmitterCs.SubBullet.AccDirection=Float.parseFloat(strArray[34]);
                                 baseEmitterCs.SubBullet.Active=Boolean.parseBoolean(strArray[38]);
                                 baseEmitterCs.SubBullet.UnRemoveable=Boolean.parseBoolean(strArray[40]);
                                 String str4 = strArray[42];
                                 int index6 = 0;
                                 while(true) {
-                                    if(index6<str4.Split('&').length-1) {
-                                        String str5 = str4.Split('&')[index6];
+                                    if(index6<str4.split("&").length-1) {
+                                        String str5 = str4.split("&")[index6];
                                         EventGroup eventGroup = new EventGroup {
                                             index=index6,
-                                            tag=str5.Split('|')[0],
-                                            t=Integer.parseInt(str5.Split('|')[1]),
-                                            addtime=Integer.parseInt(str5.Split('|')[2])
+                                            tag=str5.split("\\|")[0],
+                                            t=Integer.parseInt(str5.split("\\|")[1]),
+                                            addtime=Integer.parseInt(str5.split("\\|")[2])
                                         };
                                         int index7 = 0;
                                         while(true) {
-                                            if(index7<str5.Split('|')[3].Split(';').length-1) {
+                                            if(index7<str5.split("\\|")[3].split(";").length-1) {
                                                 Event @event = new Event {
-                                                    EventString=str5.Split('|')[3].Split(';')[index7]
+                                                    EventString=str5.split("\\|")[3].split(";")[index7]
                                                 };
                                                 @event.String2EmitterEvent();
                                                 eventGroup.EventList.Add(@event);
@@ -307,19 +307,19 @@ public class CS_Data {
                                 String str6 = strArray[43];
                                 int index8 = 0;
                                 while(true) {
-                                    if(index8<str6.Split('&').length-1) {
-                                        String str5 = str6.Split('&')[index8];
+                                    if(index8<str6.split("&").length-1) {
+                                        String str5 = str6.split("&")[index8];
                                         EventGroup eventGroup = new EventGroup {
                                             index=index8,
-                                            tag=str5.Split('|')[0],
-                                            t=Integer.parseInt(str5.Split('|')[1]),
-                                            addtime=Integer.parseInt(str5.Split('|')[2])
+                                            tag=str5.split("\\|")[0],
+                                            t=Integer.parseInt(str5.split("\\|")[1]),
+                                            addtime=Integer.parseInt(str5.split("\\|")[2])
                                         };
                                         int index7 = 0;
                                         while(true) {
-                                            if(index7<str5.Split('|')[3].Split(';').length-1) {
+                                            if(index7<str5.split("\\|")[3].split(";").length-1) {
                                                 Event @event = new Event {
-                                                    EventString=str5.Split('|')[3].Split(';')[index7]
+                                                    EventString=str5.split("\\|")[3].split(";")[index7]
                                                 };
                                                 @event.String2BulletEvent();
                                                 eventGroup.EventList.Add(@event);
@@ -335,19 +335,19 @@ public class CS_Data {
                                     }
                                 }
                                 baseEmitterCs.RanRadius=Integer.parseInt(strArray[44]);
-                                baseEmitterCs.RanRadiusDirection=float.Parse(strArray[45]);
+                                baseEmitterCs.RanRadiusDirection=Float.parseFloat(strArray[45]);
                                 baseEmitterCs.RanWay=Integer.parseInt(strArray[46]);
                                 baseEmitterCs.RanCircle=Integer.parseInt(strArray[47]);
-                                baseEmitterCs.RanEmitDirection=float.Parse(strArray[48]);
+                                baseEmitterCs.RanEmitDirection=Float.parseFloat(strArray[48]);
                                 baseEmitterCs.RanRange=Integer.parseInt(strArray[49]);
-                                baseEmitterCs.RanVelocity=float.Parse(strArray[50]);
-                                baseEmitterCs.RanDirection=float.Parse(strArray[51]);
-                                baseEmitterCs.RanAccelerate=float.Parse(strArray[52]);
-                                baseEmitterCs.RanAccDirection=float.Parse(strArray[53]);
-                                baseEmitterCs.SubBullet.RanVelocity=float.Parse(strArray[54]);
-                                baseEmitterCs.SubBullet.RanDirection=float.Parse(strArray[55]);
-                                baseEmitterCs.SubBullet.RanAccelerate=float.Parse(strArray[56]);
-                                baseEmitterCs.SubBullet.RanAccDirection=float.Parse(strArray[57]);
+                                baseEmitterCs.RanVelocity=Float.parseFloat(strArray[50]);
+                                baseEmitterCs.RanDirection=Float.parseFloat(strArray[51]);
+                                baseEmitterCs.RanAccelerate=Float.parseFloat(strArray[52]);
+                                baseEmitterCs.RanAccDirection=Float.parseFloat(strArray[53]);
+                                baseEmitterCs.SubBullet.RanVelocity=Float.parseFloat(strArray[54]);
+                                baseEmitterCs.SubBullet.RanDirection=Float.parseFloat(strArray[55]);
+                                baseEmitterCs.SubBullet.RanAccelerate=Float.parseFloat(strArray[56]);
+                                baseEmitterCs.SubBullet.RanAccDirection=Float.parseFloat(strArray[57]);
                                 if(strArray.length>58) baseEmitterCs.DeepBinding=Boolean.parseBoolean(strArray[58]);
                                 if(strArray.length>62) {
                                     if(baseEmitterCs.SubBullet is BaseBullet_Touhou) ((BaseBullet_Touhou)baseEmitterCs.SubBullet).Reflect=byte.Parse(str3.split(",")[59]);
@@ -363,7 +363,7 @@ public class CS_Data {
                                     MaxScale=1000f,
                                     ID=Integer.parseInt(strArray[0]),
                                     LayerID=Integer.parseInt(strArray[1]),
-                                    CS_Position=new PointF(float.Parse(strArray[2]),float.Parse(strArray[3])),
+                                    CS_Position=new PointF(Float.parseFloat(strArray[2]),Float.parseFloat(strArray[3])),
                                     StartTime=Integer.parseInt(strArray[4]),
                                     Duration=Integer.parseInt(strArray[5]),
                                     ScaleWidth=Integer.parseInt(strArray[6]),
@@ -371,27 +371,27 @@ public class CS_Data {
                                     Roundness=Boolean.parseBoolean(strArray[8]),
                                     Type=Integer.parseInt(strArray[9]),
                                     CtrlID=Integer.parseInt(strArray[10]),
-                                    Velocity=float.Parse(strArray[11]),
-                                    DirectionDegree=float.Parse(strArray[12]),
-                                    AccelerateCS=float.Parse(strArray[14]),
-                                    AccDirection=float.Parse(strArray[15])
+                                    Velocity=Float.parseFloat(strArray[11]),
+                                    DirectionDegree=Float.parseFloat(strArray[12]),
+                                    AccelerateCS=Float.parseFloat(strArray[14]),
+                                    AccDirection=Float.parseFloat(strArray[15])
                                 };
                                 String str3 = strArray[17];
                                 int index6 = 0;
                                 while(true) {
-                                    if(index6<str3.Split('&').length-1) {
-                                        String str4 = str3.Split('&')[index6];
+                                    if(index6<str3.split("&").length-1) {
+                                        String str4 = str3.split("&")[index6];
                                         EventGroup eventGroup = new EventGroup {
                                             index=index6,
-                                            tag=str4.Split('|')[0],
-                                            t=Integer.parseInt(str4.Split('|')[1]),
-                                            addtime=Integer.parseInt(str4.Split('|')[2])
+                                            tag=str4.split("\\|")[0],
+                                            t=Integer.parseInt(str4.split("\\|")[1]),
+                                            addtime=Integer.parseInt(str4.split("\\|")[2])
                                         };
                                         int index7 = 0;
                                         while(true) {
-                                            if(index7<str4.Split('|')[3].Split(';').length-1) {
+                                            if(index7<str4.split("\\|")[3].split(";").length-1) {
                                                 Event @event = new Event {
-                                                    EventString=str4.Split('|')[3].Split(';')[index7]
+                                                    EventString=str4.split("\\|")[3].split(";")[index7]
                                                 };
                                                 @event.String2EmitterEvent();
                                                 eventGroup.EventList.Add(@event);
@@ -409,19 +409,19 @@ public class CS_Data {
                                 String str5 = strArray[18];
                                 int index8 = 0;
                                 while(true) {
-                                    if(index8<str5.Split('&').length-1) {
-                                        String str4 = str5.Split('&')[index8];
+                                    if(index8<str5.split("&").length-1) {
+                                        String str4 = str5.split("&")[index8];
                                         EventGroup eventGroup = new EventGroup {
                                             index=index8,
-                                            tag=str4.Split('|')[0],
-                                            t=Integer.parseInt(str4.Split('|')[1]),
-                                            addtime=Integer.parseInt(str4.Split('|')[2])
+                                            tag=str4.split("\\|")[0],
+                                            t=Integer.parseInt(str4.split("\\|")[1]),
+                                            addtime=Integer.parseInt(str4.split("\\|")[2])
                                         };
                                         int index7 = 0;
                                         while(true) {
-                                            if(index7<str4.Split('|')[3].Split(';').length-1) {
+                                            if(index7<str4.split("\\|")[3].split(";").length-1) {
                                                 Event @event = new Event {
-                                                    EventString=str4.Split('|')[3].Split(';')[index7]
+                                                    EventString=str4.split("\\|")[3].split(";")[index7]
                                                 };
                                                 @event.String2BulletEvent();
                                                 eventGroup.EventList.Add(@event);
@@ -436,10 +436,10 @@ public class CS_Data {
                                         break;
                                     }
                                 }
-                                baseCoverCs.RanVelocity=float.Parse(strArray[19]);
-                                baseCoverCs.RanDirection=float.Parse(strArray[20]);
-                                baseCoverCs.RanAccelerate=float.Parse(strArray[21]);
-                                baseCoverCs.RanAccDirection=float.Parse(strArray[22]);
+                                baseCoverCs.RanVelocity=Float.parseFloat(strArray[19]);
+                                baseCoverCs.RanDirection=Float.parseFloat(strArray[20]);
+                                baseCoverCs.RanAccelerate=Float.parseFloat(strArray[21]);
+                                baseCoverCs.RanAccDirection=Float.parseFloat(strArray[22]);
                                 if(strArray.length>=24) baseCoverCs.BindingID=Integer.parseInt(strArray[23]);
                                 if(strArray.length>=25&&strArray[24]!="") baseCoverCs.DeepBinding=Boolean.parseBoolean(strArray[24]);
                                 EmitterList.Add(baseCoverCs);
