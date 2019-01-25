@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.helpers.Resources;
 
-public class SimpleGreenBullet extends BaseBullet{
+public class SimpleGreenBullet extends BaseEnemyBullet{
 
     public static Pool<SimpleGreenBullet> Pool=new Pool<SimpleGreenBullet>(){
         @Override

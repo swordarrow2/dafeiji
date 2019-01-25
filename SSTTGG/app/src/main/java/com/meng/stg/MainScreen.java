@@ -15,7 +15,6 @@ import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemy.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.player.BaseMyPlane;
-import com.meng.stg.player.MyPlaneAlice;
 import com.meng.stg.player.MyPlaneReimu;
 import com.meng.stg.player.PlayerInputProcessor;
 import com.meng.stg.stage.stage1;
@@ -60,7 +59,7 @@ public class MainScreen extends ScreenAdapter {
                 new MyPlaneReimu().Init();
                 break;
             case Data.playerFlagAlice:
-                new MyPlaneAlice().Init();
+           //     new MyPlaneAlice().Init();
                 break;
         }
         // e= new EnemyPlane().createEnemy();

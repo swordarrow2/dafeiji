@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Resources;
 
-public class SimpleRedBullet extends BaseBullet{
+public class SimpleRedBullet extends BaseEnemyBullet{
 
     public static Pool<SimpleRedBullet> Pool=new Pool<SimpleRedBullet>(){
         @Override
@@ -18,6 +18,7 @@ public class SimpleRedBullet extends BaseBullet{
     };
 
     public void Init(Vector2 center,Vector2 velocity){
+        drawable=Resources.Textures.get("SimpleRedBullet");
         super.Init();
         Size.set(24,24);
         Drawer.setSize(Size.x,Size.y);

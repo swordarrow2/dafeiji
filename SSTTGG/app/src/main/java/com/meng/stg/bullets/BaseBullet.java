@@ -23,11 +23,10 @@ public abstract class BaseBullet{
     public static HashSet<BaseBullet> Instances=new HashSet<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> ToDelete=new LinkedBlockingQueue<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> ToAdd=new LinkedBlockingQueue<BaseBullet>();
-    Circle judgeCircle;
-    public boolean isEnemyBullet=true;
+    public Circle judgeCircle;
     protected Rectangle drawBox=new Rectangle();
 
-    public static Drawable drawable;
+    public Drawable drawable;
     public Vector2 Size=new Vector2();
 
     public void Init(){
@@ -63,12 +62,6 @@ public abstract class BaseBullet{
         }
     }
 
-    public void Judge(){
-        if(getCollisionArea().contains(BaseMyPlane.Instance.Center)){
-            Kill();
-            BaseMyPlane.Instance.Kill();
-        }
-    }
 
     public static void UpdateAll(){
         while(!ToDelete.isEmpty()){
@@ -89,4 +82,5 @@ public abstract class BaseBullet{
     }
 
     public abstract Drawable getDrawable();
+    public abstract void Judge();
 }

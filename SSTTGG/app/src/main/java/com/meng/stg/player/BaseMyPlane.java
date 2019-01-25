@@ -6,10 +6,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
+import com.meng.stg.bullets.AliceShoot;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 
 public abstract class BaseMyPlane{
+
+    public static BaseMyPlane Instance;
+
     public Vector2 Center=new Vector2();
     public Vector2 Velocity=new Vector2();
     public Image Drawer=null;
@@ -25,11 +29,13 @@ public abstract class BaseMyPlane{
 
     public int animTime=0;
 
-    public static BaseMyPlane Instance;
     public JudgeCircleAnimation animation=null;
     public Image judgeAnim=null;
     public boolean missed=false;
     public boolean b=false;
+
+    private int time=0;
+    private float playerLastX=270;
 
     public void Init(){
         judgeAnim=Pools.ImagePool.obtain();
@@ -64,11 +70,11 @@ public abstract class BaseMyPlane{
             switch(MainScreen.playerFlag){
 
                 case Data.playerFlagAlice:
-                    Drawer.remove();
-                    MyPlaneAlice.Alice.Drawer.remove();
-                    Pools.ImagePool.free(Drawer);
-                    Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
-                    new MyPlaneAlice().Init();
+                 //   Drawer.remove();
+                //    MyPlaneAlice.Alice.Drawer.remove();
+               //     Pools.ImagePool.free(Drawer);
+              //      Pools.ImagePool.free(MyPlaneAlice.Alice.Drawer);
+              //      new MyPlaneAlice().Init();
                     break;
             }
             //Drawer.remove();
@@ -80,10 +86,10 @@ public abstract class BaseMyPlane{
     public void Update(){
         Center.x=x=MathUtils.clamp(Center.x,0,MainScreen.Width);
         Center.y=y=MathUtils.clamp(Center.y,0,MainScreen.Height);
-        Center.add(Velocity);
-        Drawer.setPosition(Center.x,Center.y,Align.center);
         judgeAnim.setPosition(Center.x,Center.y,Align.center);
         judgeAnim.setDrawable(getJudgeAnim());
+        Center.add(Velocity);
+        Drawer.setPosition(Center.x,Center.y,Align.center);
         ExistTime++;
         if(onBomb){
             onUnmatched=true;
@@ -94,16 +100,46 @@ public abstract class BaseMyPlane{
             unmatchedTime--;
         }
         onUnmatched=false;
-        Drawer.toFront();
         judgeAnim.toFront();
         animation.Update();
-    }
 
-    public abstract void bomb();
+        Drawer.toBack();
+        animTime++;
+        if(Center.x>playerLastX){
+            playerLastX=Center.x;
+            Drawer.setDrawable(getRightMoveAnim());
+        }else if(Center.x<playerLastX){
+            playerLastX=Center.x;
+            Drawer.setDrawable(getLeftMoveAnim());
+        }else{
+            playerLastX=Center.x;
+            Drawer.setDrawable(getStayAnim());
+        }
+        ExistTime++;
+        time++;
+        if(time%2==1){
+            Vector2 vel=new Vector2(0,60);
+            AliceShoot.Pool.obtain().Init(Center,vel);
+        }
+        if(bombTime==0){
+            onBomb=false;
+            bombTime=Data.ReimuBombTime;
+        }
+        if(unmatchedTime==0){
+            onUnmatched=false;
+            unmatchedTime=Data.ReimuUnmatchedTime;
+        }
+
+    }
 
     public float[] getPosition(){
         return new float[]{Center.x,Center.y};
     }
 
-    protected abstract Drawable getDrawable();
+    public abstract void bomb();
+
+    public abstract Drawable getDrawable();
+    public abstract Drawable getStayAnim();
+    public abstract Drawable getRightMoveAnim();
+    public abstract Drawable getLeftMoveAnim();
 }
