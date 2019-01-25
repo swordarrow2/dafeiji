@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.meng.stg.bullets.BaseBullet;
+import com.meng.stg.bullets.BulletShooter;
 import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemy.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
@@ -40,8 +41,8 @@ public class MainScreen extends ScreenAdapter{
 
     @Override
     public void show(){
-        Width=386;
-        Height=450;
+        Width=540;//386;
+        Height=720;//450;
         Stage=new Stage(new ScalingViewport(Scaling.fit,Width,Height),GameMain.SBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.BLACK);
@@ -85,6 +86,7 @@ public class MainScreen extends ScreenAdapter{
             }
         }
         Stage.draw();
+        BulletShooter.UpdateAll();
         BaseBullet.UpdateAll();
         BaseMyPlane.Instance.Update();
         //    for(EnemyPlane e:enemys){
@@ -110,7 +112,7 @@ public class MainScreen extends ScreenAdapter{
                 // + "\nisKilled2:" + enemys[1].isKilled()
                 ,10,710);
         //绘制
-        f.draw(GameMain.SBatch,"Bomb",10,30);
+        f.draw(GameMain.SBatch,"B",10,30);
         switch(stageFlag){
             case Data.stageFlagStage1:
                 if(gameTime>700){
