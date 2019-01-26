@@ -48,6 +48,7 @@ public class Layer implements Serializable{
 			l.invoke();
 		  }
 	  }
+
 	public BulletEmitter findBulletEmitterByID(int id){
 		for(BulletEmitter i : BulletEmitters)
 		  if(i.ID==id)

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
+import com.meng.stg.BaseEnemyObject;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.player.BaseMyPlane;
@@ -15,7 +16,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public abstract class BaseBullet{
+public abstract class BaseBullet extends BaseEnemyObject{
     public Vector2 Center=new Vector2();
     public Vector2 Velocity=new Vector2();
     public Image Drawer=null;

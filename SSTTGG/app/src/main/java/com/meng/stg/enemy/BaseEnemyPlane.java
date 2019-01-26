@@ -8,17 +8,20 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
+import com.meng.stg.BaseEnemyObject;
 import com.meng.stg.GameMain;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.helpers.mbgparser.MBGData;
+import com.meng.stg.helpers.mbgparser.item.BulletEmitter;
+import com.meng.stg.helpers.mbgparser.item.ReflexBoard;
 import com.meng.stg.player.BaseMyPlane;
 
 import java.io.IOException;
 
 import static com.meng.stg.MainScreen.enemys;
 
-public abstract class BaseEnemyPlane{
+public abstract class BaseEnemyPlane extends BaseEnemyObject{
 
     protected boolean Killed=false;
     protected int time=0;
@@ -59,6 +62,12 @@ public abstract class BaseEnemyPlane{
         }catch(IOException e){
             e.printStackTrace();
         }
+        /*if (mbgData.layer1 != null) {
+            for (BulletEmitter bulletEmitter : mbgData.layer1.BulletEmitters)
+                bulletEmitters.put(bulletEmitter.ID, new MBGBulletEmitter(bulletEmitter, this, FightScreen.drawingLayers.entity4));
+            for (ReflexBoard reflexBoard : mbgData.layer1.ReflexBoards)
+                reflexBoards.put(reflexBoard.ID, new MBGReflexBoard(reflexBoard, this, FightScreen.drawingLayers.entity4));
+        }*/
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
         Drawer.setDrawable(drawable);
