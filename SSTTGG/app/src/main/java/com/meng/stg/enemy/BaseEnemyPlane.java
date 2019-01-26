@@ -1,5 +1,6 @@
 package com.meng.stg.enemy;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
@@ -10,7 +11,10 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.GameMain;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
+import com.meng.stg.helpers.mbgparser.MBGData;
 import com.meng.stg.player.BaseMyPlane;
+
+import java.io.IOException;
 
 import static com.meng.stg.MainScreen.enemys;
 
@@ -28,11 +32,33 @@ public abstract class BaseEnemyPlane{
     public Vector2 Center=new Vector2();
     public int hp=10;
 
-    public void Init(float x,float y,float vx,float vy ){
-         Init(x,y,vx,vy,10);
+    private float IndexX;
+    private int IndexY;
+    public byte ColorType;
+    public int RedCount;
+    public int BlueCount;
+    public int GreenCount;
+    public int ClearRadius;
+    public boolean StarFall;
+
+    public MBGData mbgData;
+
+    public void setItemCount(int value){
+        RedCount=value;
+        BlueCount=value;
+    }
+
+
+    public void Init(float x,float y,float vx,float vy){
+        Init(x,y,vx,vy,10);
     }
 
     public void Init(float x,float y,float vx,float vy,int hp){
+        try{
+            mbgData=MBGData.parseFrom(Gdx.files.external("thsss/CS/St01/A/N/Stage01A_N.mbg").readString());
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
         Drawer.setDrawable(drawable);
@@ -44,9 +70,9 @@ public abstract class BaseEnemyPlane{
         this.hp=hp;
         judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
-        for (int i = 0; i < 32; i++) {
-            if (enemys[i] == null) {
-                enemys[i] = this;
+        for(int i=0;i<32;i++){
+            if(enemys[i]==null){
+                enemys[i]=this;
                 break;
             }
         }
@@ -57,9 +83,9 @@ public abstract class BaseEnemyPlane{
     }
 
     public void hit(){
-            if(--hp<1){
-                Kill();
-            }
+        if(--hp<1){
+            Kill();
+        }
     }
 
     public Vector2 getLocation(){
@@ -82,9 +108,9 @@ public abstract class BaseEnemyPlane{
         GameMain.SBatch.end();
         time++;
         animTime++;
-            move();
-            anim();
-            shoot();
+        move();
+        anim();
+        shoot();
         Drawer.setPosition(Center.x,Center.y,Align.center);
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
@@ -96,8 +122,11 @@ public abstract class BaseEnemyPlane{
     }
 
     protected abstract void anim();
+
     protected abstract void shoot();
+
     protected abstract void move();
+
     protected abstract Drawable getDrawable();
 
     public Shape2D getCollisionArea(){

@@ -33,6 +33,13 @@ public class EnemyPlane extends BaseEnemyPlane{
         BulletShooter bs=new BulletShooter(this,new Vector2(0,-3));
     }
 
+    public EnemyPlane(String EnemyName,Vector2 OriginalPosition,float Velocity,double Direction,byte ColorType){
+
+    }
+    public EnemyPlane(){
+
+    }
+
     @Override
     protected void move(){
         Center.x+=vx;
