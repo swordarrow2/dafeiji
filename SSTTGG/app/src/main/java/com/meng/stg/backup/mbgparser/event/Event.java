@@ -1,0 +1,58 @@
+package com.meng.stg.backup.mbgparser.event;
+
+import java.io.Serializable;
+import java.util.*;
+
+import com.meng.stg.backup.mbgparser.MRef;
+
+import static com.meng.stg.backup.mbgparser.MBGUtils.*;
+
+public final class Event implements Serializable
+{
+	private static final long serialVersionUID = -8595697852224548065L;
+	public Condition condition = new Condition();
+	public IAction action;
+
+	public static Event parseFrom(String c)
+	{
+		Event e = new Event();
+		MRef<String> tempRef_c = new MRef<String>(c);
+		e.condition = Condition.parseFrom(readString(tempRef_c, '：'));
+		c = tempRef_c.argValue;
+		e.action = ActionHelper.parseFrom(c);
+		return e;
+	}
+
+	public static ArrayList<Event> parseEvents(String c)
+	{
+		if (isNullOrWhiteSpace(c))
+		{
+			return null;
+		}
+		else
+		{
+			ArrayList<Event> ret = new ArrayList<Event>();
+
+			String[] events = c.split("[;]", -1);
+
+			for (String e : events)
+			{
+				if (!isNullOrWhiteSpace(e))
+				{
+					ret.add(parseFrom(e));
+				}
+			}
+			return ret;
+		}
+	}
+
+	public Event clone()
+	{
+		Event varCopy = new Event();
+
+		varCopy.condition = this.condition.clone();
+		varCopy.action = this.action;
+
+		return varCopy;
+	}
+}
