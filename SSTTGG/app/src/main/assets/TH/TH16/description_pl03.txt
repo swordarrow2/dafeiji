@@ -1,0 +1,753 @@
+ENTRY 8
+Name: player/pl03/pl03.png
+Format: 5
+Width: 256
+Height: 256
+Unknown1: 10
+HasData: 1
+THTX-Size: 131072
+THTX-Format: 5
+THTX-Width: 256
+THTX-Height: 256
+THTX-Zero: 0
+
+Sprite: 0 30*46+1+1
+Sprite: 1 30*46+33+1
+Sprite: 2 30*46+65+1
+Sprite: 3 30*46+97+1
+Sprite: 4 30*46+129+1
+Sprite: 5 30*46+161+1
+Sprite: 6 30*46+193+1
+Sprite: 7 30*46+225+1
+Sprite: 8 30*46+1+49
+Sprite: 9 30*46+33+49
+Sprite: 10 30*46+65+49
+Sprite: 11 30*46+97+49
+Sprite: 12 30*46+129+49
+Sprite: 13 30*46+161+49
+Sprite: 14 30*46+193+49
+Sprite: 15 30*46+225+49
+Sprite: 16 30*46+1+97
+Sprite: 17 30*46+33+97
+Sprite: 18 30*46+65+97
+Sprite: 19 30*46+97+97
+Sprite: 20 30*46+129+97
+Sprite: 21 30*46+161+97
+Sprite: 22 30*46+193+97
+Sprite: 23 30*46+225+97
+Sprite: 24 32*16+0+144
+Sprite: 25 32*16+32+144
+Sprite: 26 32*16+64+144
+Sprite: 27 32*16+96+144
+Sprite: 28 64*64+0+176
+Sprite: 29 64*64+64+176
+Sprite: 30 64*64+128+176
+Sprite: 31 64*64+192+176
+Sprite: 32 16*16+128+144
+Sprite: 33 16*16+144+144
+Sprite: 34 16*16+160+144
+Sprite: 35 16*16+176+144
+Sprite: 36 16*16+192+144
+Sprite: 37 16*16+208+144
+Sprite: 38 16*16+224+144
+Sprite: 39 16*16+240+144
+
+Script: 0
+Instruction: 65535 0 302 0
+Instruction: 65535 0 304 14
+Instruction: 65535 0 311 1
+Instruction: 0 0 300 0
+Instruction: 5 0 300 1
+Instruction: 10 0 300 2
+Instruction: 15 0 300 3
+Instruction: 20 0 300 4
+Instruction: 25 0 300 5
+Instruction: 30 0 300 6
+Instruction: 35 0 300 7
+Instruction: 40 0 300 6
+Instruction: 45 0 300 5
+Instruction: 50 0 300 4
+Instruction: 55 0 300 3
+Instruction: 60 0 300 2
+Instruction: 65 0 300 1
+Instruction: 70 0 200 36 0
+
+Script: 1
+Instruction: 65535 0 302 0
+Instruction: 65535 0 304 14
+Instruction: 65535 0 311 1
+Instruction: 0 0 300 8
+Instruction: 1 0 300 9
+Instruction: 2 0 300 10
+Instruction: 3 0 300 11
+Instruction: 4 0 300 12
+Instruction: 9 0 300 13
+Instruction: 14 0 300 14
+Instruction: 19 0 300 15
+Instruction: 23 0 200 84 3
+
+Script: 2
+Instruction: 65535 0 302 0
+Instruction: 65535 0 304 14
+Instruction: 65535 0 311 1
+Instruction: 0 0 300 11
+Instruction: 1 0 300 10
+Instruction: 2 0 300 9
+Instruction: 3 0 300 8
+Instruction: 3 0 300 0
+Instruction: 8 0 300 1
+Instruction: 13 0 300 2
+Instruction: 18 0 300 3
+Instruction: 23 0 300 4
+Instruction: 28 0 300 5
+Instruction: 33 0 300 6
+Instruction: 38 0 300 7
+Instruction: 43 0 300 6
+Instruction: 48 0 300 5
+Instruction: 53 0 300 4
+Instruction: 58 0 300 3
+Instruction: 63 0 300 2
+Instruction: 68 0 300 1
+Instruction: 73 0 200 84 3
+
+Script: 3
+Instruction: 65535 0 302 0
+Instruction: 65535 0 304 14
+Instruction: 65535 0 311 1
+Instruction: 0 0 300 16
+Instruction: 1 0 300 17
+Instruction: 2 0 300 18
+Instruction: 3 0 300 19
+Instruction: 4 0 300 20
+Instruction: 9 0 300 21
+Instruction: 14 0 300 22
+Instruction: 19 0 300 23
+Instruction: 23 0 200 96 4
+
+Script: 4
+Instruction: 65535 0 302 0
+Instruction: 65535 0 304 14
+Instruction: 65535 0 311 1
+Instruction: 0 0 300 19
+Instruction: 1 0 300 18
+Instruction: 2 0 300 17
+Instruction: 3 0 300 16
+Instruction: 3 0 300 0
+Instruction: 8 0 300 1
+Instruction: 13 0 300 2
+Instruction: 18 0 300 3
+Instruction: 23 0 300 4
+Instruction: 28 0 300 5
+Instruction: 33 0 300 6
+Instruction: 38 0 300 7
+Instruction: 43 0 300 6
+Instruction: 48 0 300 5
+Instruction: 53 0 300 4
+Instruction: 58 0 300 3
+Instruction: 63 0 300 2
+Instruction: 68 0 300 1
+Instruction: 73 0 200 84 3
+
+Script: 5
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 24
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 403 192
+Instruction: 0 0 303 1
+Instruction: 0 0 300 25
+Instruction: 3 0 300 26
+Instruction: 6 0 300 27
+Instruction: 9 0 403 0
+Instruction: 29 0 1
+
+Script: 6
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 28
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 65535 0 402 1.0f 0.3f
+Instruction: 65535 0 412 8 0 1.0f 0.3f
+Instruction: 65535 0 403 170
+Instruction: 65535 0 404 255 48 48
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 303 1
+Instruction: 0 0 300 29
+Instruction: 3 0 300 30
+Instruction: 6 0 300 31
+Instruction: 9 0 403 0
+Instruction: 10 0 1
+
+Script: 7
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 28
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 65535 0 402 1.0f 0.6f
+Instruction: 65535 0 412 8 0 1.0f 0.6f
+Instruction: 65535 0 403 170
+Instruction: 65535 0 404 255 48 48
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 303 1
+Instruction: 0 0 300 29
+Instruction: 3 0 300 30
+Instruction: 6 0 300 31
+Instruction: 9 0 403 0
+Instruction: 10 0 1
+
+Script: 8
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 28
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 65535 0 402 1.0f 1.0f
+Instruction: 65535 0 412 8 0 1.0f 1.0f
+Instruction: 65535 0 403 170
+Instruction: 65535 0 404 255 48 48
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 303 1
+Instruction: 0 0 300 29
+Instruction: 3 0 300 30
+Instruction: 6 0 300 31
+Instruction: 9 0 403 0
+Instruction: 10 0 1
+
+Script: 9
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 28
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 65535 0 402 1.0f 1.4f
+Instruction: 65535 0 412 8 0 1.0f 1.4f
+Instruction: 65535 0 403 170
+Instruction: 65535 0 404 255 48 48
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 303 1
+Instruction: 0 0 300 29
+Instruction: 3 0 300 30
+Instruction: 6 0 300 31
+Instruction: 9 0 403 0
+Instruction: 10 0 1
+
+Script: 10
+Instruction: 65535 0 304 13
+Instruction: 65535 0 300 28
+Instruction: 65535 0 302 1
+Instruction: 65535 0 305 1
+Instruction: 65535 0 424 1
+Instruction: 65535 0 402 1.0f 0.3f
+Instruction: 65535 0 412 8 0 1.0f 0.3f
+Instruction: 65535 0 403 170
+Instruction: 65535 0 404 224 192 64
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 0 0 304 15
+Instruction: 0 0 303 1
+Instruction: 0 0 300 29
+Instruction: 3 0 300 30
+Instruction: 6 0 300 31
+Instruction: 9 0 403 0
+Instruction: 10 0 1
+
+Script: 11
+Instruction: 65535 0 304 13
+Instruction: 65535 0 302 0
+Instruction: 65535 0 311 1
+Instruction: 65535 0 5 2
+Instruction: 65535 0 402 0.0f 0.0f
+Instruction: 65535 0 412 10 4 1.0f 1.0f
+Instruction: 0 0 300 32
+Instruction: 4 0 300 33
+Instruction: 8 0 300 34
+Instruction: 12 0 300 35
+Instruction: 16 0 300 36
+Instruction: 20 0 300 37
+Instruction: 24 0 300 38
+Instruction: 28 0 300 39
+Instruction: 32 0 200 88 0
+Instruction: 32 0 5 3
+Instruction: 32 0 412 20 4 0.0f 0.0f
+Instruction: 52 0 3
+Instruction: 52 0 5 1
+Instruction: 52 0 303 1
+Instruction: 52 0 412 20 4 0.0f 3.0f
+Instruction: 72 0 1
+
+Script: 12
+Instruction: 65535 0 304 13
+Instruction: 65535 0 303 1
+Instruction: 65535 0 302 3
+Instruction: 65535 0 5 2
+Instruction: 65535 0 402 0.0f 0.0f
+Instruction: 65535 0 412 10 4 1.5f 1.5f
+Instruction: 0 0 300 32
+Instruction: 4 0 300 33
+Instruction: 8 0 300 34
+Instruction: 12 0 300 35
+Instruction: 16 0 300 33
+Instruction: 20 0 300 34
+Instruction: 24 0 300 35
+Instruction: 28 0 300 36
+Instruction: 32 0 300 37
+Instruction: 36 0 300 38
+Instruction: 40 0 300 39
+Instruction: 44 0 200 88 0
+Instruction: 44 0 5 3
+Instruction: 44 0 412 20 4 0.0f 0.0f
+Instruction: 64 0 3
+Instruction: 64 0 5 1
+Instruction: 64 0 303 1
+Instruction: 64 0 412 20 4 0.0f 3.0f
+Instruction: 84 0 1
+
+Script: 13
+Instruction: 0 0 304 13
+Instruction: 0 0 302 1
+Instruction: 0 0 300 0
+Instruction: 0 0 404 60 0 255
+Instruction: 0 0 409 30 0 0
+Instruction: 30 0 1
+
+
+ENTRY 8
+Name: player/pl03/pl03b.png
+Format: 1
+Width: 512
+Height: 128
+HasData: 1
+THTX-Size: 262144
+THTX-Format: 1
+THTX-Width: 512
+THTX-Height: 128
+THTX-Zero: 0
+
+Sprite: 40 640*128+0+0
+
+Script: 14
+Instruction: 0 0 304 13
+Instruction: 0 0 303 1
+Instruction: 0 0 302 3
+Instruction: 0 0 5 2
+Instruction: 0 0 500 18
+Instruction: 0 0 500 15
+Instruction: 0 0 500 16
+Instruction: 0 0 500 17
+Instruction: 0 0 3
+Instruction: 240 0 5 1
+Instruction: 240 0 409 30 0 0
+Instruction: 270 0 1
+Instruction: 270 0 3
+
+Script: 15
+Instruction: 0 0 304 13
+Instruction: 0 0 303 1
+Instruction: 0 0 302 3
+Instruction: 0 0 5 2
+Instruction: 0 0 300 40
+Instruction: 0 0 403 0
+Instruction: 0 0 409 60 0 255
+Instruction: 0 0 425 -0.05f
+Instruction: 0 0 3
+Instruction: 240 0 5 1
+Instruction: 240 0 409 30 0 0
+Instruction: 270 0 1
+Instruction: 270 0 3
+
+Script: 16
+Instruction: 0 0 304 13
+Instruction: 0 0 303 2
+Instruction: 0 0 302 3
+Instruction: 0 0 5 2
+Instruction: 0 0 300 40
+Instruction: 0 0 403 0
+Instruction: 0 0 404 32 192 192
+Instruction: 0 0 409 60 0 192
+Instruction: 0 0 425 -0.02f
+Instruction: 0 0 402 1.0f -1.0f
+Instruction: 0 0 3
+Instruction: 240 0 5 1
+Instruction: 240 0 409 30 0 0
+Instruction: 270 0 1
+Instruction: 270 0 3
+
+Script: 17
+Instruction: 0 0 304 13
+Instruction: 0 0 303 1
+Instruction: 0 0 302 3
+Instruction: 0 0 5 2
+Instruction: 0 0 300 40
+Instruction: 0 0 403 0
+Instruction: 0 0 404 192 192 32
+Instruction: 0 0 409 60 0 64
+Instruction: 0 0 425 0.03f
+Instruction: 0 0 402 -1.0f 1.0f
+Instruction: 0 0 3
+Instruction: 240 0 5 1
+Instruction: 240 0 409 30 0 0
+Instruction: 270 0 1
+Instruction: 270 0 3
+
+Script: 18
+Instruction: 0 0 304 13
+Instruction: 0 0 303 2
+Instruction: 0 0 302 3
+Instruction: 0 0 5 2
+Instruction: 0 0 300 40
+Instruction: 0 0 403 0
+Instruction: 0 0 404 0 255 255
+Instruction: 0 0 409 60 0 64
+Instruction: 0 0 425 0.1f
+Instruction: 0 0 402 -1.0f 1.0f
+Instruction: 0 0 3
+Instruction: 240 0 5 1
+Instruction: 240 0 409 30 0 0
+Instruction: 270 0 1
+Instruction: 270 0 3
+
+Script: 19
+Instruction: 0 0 300 -1
+Instruction: 0 0 304 12
+Instruction: 0 0 604 1.0f 32
+Instruction: 0 0 303 2
+Instruction: 0 0 404 0 224 255
+Instruction: 0 0 406 0 224 0
+Instruction: 0 0 403 255
+Instruction: 0 0 405 255
+Instruction: 0 0 412 60 1 600.0f 600.0f
+Instruction: 40 0 414 20 0 64
+Instruction: 40 0 409 250 0 64
+Instruction: 40 0 414 250 0 64
+Instruction: 40 0 3
+Instruction: 40 0 5 1
+Instruction: 40 0 409 20 0 0
+Instruction: 40 0 412 20 4 0.0f 0.0f
+Instruction: 60 0 1
+
+
+ENTRY 8
+Name: face/pl03/face_pl03no.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 41 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03n2.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 42 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03hp.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 43 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03an.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 44 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03sw.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 45 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03dp.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 46 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03pr.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 47 206*222+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03sp.png
+Format: 1
+Width: 256
+Height: 256
+X-Offset: 114
+Unknown2: 1
+HasData: 1
+THTX-Size: 182928
+THTX-Format: 1
+THTX-Width: 206
+THTX-Height: 222
+THTX-Zero: 0
+
+Sprite: 48 206*222+0+0
+
+
+ENTRY 8
+Name: face/dummy.png
+Format: 7
+Width: 4
+Height: 4
+HasData: 1
+THTX-Size: 16
+THTX-Format: 7
+THTX-Width: 4
+THTX-Height: 4
+THTX-Zero: 0
+
+Sprite: 49 4*4+0+0
+
+
+ENTRY 8
+Name: face/pl03/face_pl03bs.png
+Format: 1
+Width: 512
+Height: 1024
+X-Offset: 30
+Unknown2: 1
+HasData: 1
+THTX-Size: 1408640
+THTX-Format: 1
+THTX-Width: 496
+THTX-Height: 710
+THTX-Zero: 0
+
+Sprite: 50 496*710+0+0
+Sprite: 51 0*0+0+0
+
+Script: 20
+Instruction: 0 0 300 50
+Instruction: 0 0 421 65537
+Instruction: 0 0 431 1
+Instruction: 0 0 403 0
+Instruction: 0 0 409 15 0 255
+Instruction: 0 0 400 -96.0f 266.0f 0.0f
+Instruction: 0 0 304 25
+Instruction: 0 0 313 2
+Instruction: 0 0 311 1
+Instruction: 0 0 5 3
+Instruction: 0 0 304 26
+Instruction: 0 0 313 2
+Instruction: 0 0 407 15 2 -64.0f 266.0f 0.0f
+Instruction: 0 0 408 15 0 96 96 96
+Instruction: 15 0 3
+Instruction: 15 0 5 2
+Instruction: 15 0 304 27
+Instruction: 15 0 313 2
+Instruction: 15 0 407 15 5 0.0f 250.0f 0.0f
+Instruction: 15 0 408 15 0 255 255 255
+Instruction: 30 0 3
+Instruction: 30 0 5 7
+Instruction: 30 0 407 2 0 -8.0f 242.0f 0.0f
+Instruction: 32 0 407 2 0 -4.0f 254.0f 0.0f
+Instruction: 34 0 407 2 0 8.0f 246.0f 0.0f
+Instruction: 36 0 407 2 0 4.0f 258.0f 0.0f
+Instruction: 38 0 407 2 0 0.0f 242.0f 0.0f
+Instruction: 40 0 407 2 0 -8.0f 254.0f 0.0f
+Instruction: 42 0 407 2 0 -4.0f 246.0f 0.0f
+Instruction: 44 0 407 2 0 8.0f 258.0f 0.0f
+Instruction: 46 0 407 2 0 -4.0f 246.0f 0.0f
+Instruction: 48 0 407 2 0 0.0f 254.0f 0.0f
+Instruction: 63 0 3
+Instruction: 63 0 5 8
+Instruction: 63 0 304 27
+Instruction: 63 0 313 2
+Instruction: 63 0 407 15 2 -64.0f 266.0f 0.0f
+Instruction: 63 0 408 15 0 96 96 240
+Instruction: 78 0 3
+Instruction: 78 0 5 1
+Instruction: 78 0 407 30 6 -96.0f 266.0f 0.0f
+Instruction: 78 0 409 30 0 0
+Instruction: 108 0 1
+Instruction: 108 0 5 17
+Instruction: 108 0 5 18
+Instruction: 108 0 5 19
+Instruction: 108 0 5 20
+Instruction: 108 0 5 21
+Instruction: 108 0 5 22
+Instruction: 108 0 5 23
+Instruction: 108 0 5 24
+Instruction: 108 0 300 50
+Instruction: 108 0 7
+Instruction: 108 0 5 25
+Instruction: 108 0 300 51
+Instruction: 108 0 7
+
+Script: 21
+Instruction: 0 0 304 25
+Instruction: 0 0 300 41
+Instruction: 0 0 421 65537
+Instruction: 0 0 431 1
+Instruction: 0 0 403 0
+Instruction: 0 0 409 15 0 255
+Instruction: 0 0 400 -12.0f 266.0f 0.0f
+Instruction: 0 0 304 25
+Instruction: 0 0 313 2
+Instruction: 0 0 311 1
+Instruction: 0 0 5 3
+Instruction: 0 0 304 26
+Instruction: 0 0 313 2
+Instruction: 0 0 407 15 2 20.0f 266.0f 0.0f
+Instruction: 0 0 408 15 0 96 96 96
+Instruction: 15 0 3
+Instruction: 15 0 5 2
+Instruction: 15 0 304 27
+Instruction: 15 0 313 2
+Instruction: 15 0 407 15 5 84.0f 250.0f 0.0f
+Instruction: 15 0 408 15 0 255 255 255
+Instruction: 30 0 3
+Instruction: 30 0 5 7
+Instruction: 30 0 407 2 0 76.0f 242.0f 0.0f
+Instruction: 32 0 407 2 0 80.0f 254.0f 0.0f
+Instruction: 34 0 407 2 0 92.0f 246.0f 0.0f
+Instruction: 36 0 407 2 0 88.0f 258.0f 0.0f
+Instruction: 38 0 407 2 0 84.0f 242.0f 0.0f
+Instruction: 40 0 407 2 0 76.0f 254.0f 0.0f
+Instruction: 42 0 407 2 0 80.0f 246.0f 0.0f
+Instruction: 44 0 407 2 0 92.0f 258.0f 0.0f
+Instruction: 46 0 407 2 0 80.0f 246.0f 0.0f
+Instruction: 48 0 407 2 0 84.0f 254.0f 0.0f
+Instruction: 63 0 3
+Instruction: 63 0 5 8
+Instruction: 63 0 304 27
+Instruction: 63 0 313 2
+Instruction: 63 0 407 15 2 20.0f 266.0f 0.0f
+Instruction: 63 0 408 15 0 96 96 240
+Instruction: 78 0 3
+Instruction: 78 0 5 1
+Instruction: 78 0 407 30 6 -12.0f 266.0f 0.0f
+Instruction: 78 0 409 30 0 0
+Instruction: 108 0 1
+Instruction: 108 0 5 17
+Instruction: 108 0 300 41
+Instruction: 108 0 7
+Instruction: 108 0 5 18
+Instruction: 108 0 300 42
+Instruction: 108 0 7
+Instruction: 108 0 5 19
+Instruction: 108 0 300 43
+Instruction: 108 0 7
+Instruction: 108 0 5 20
+Instruction: 108 0 300 44
+Instruction: 108 0 7
+Instruction: 108 0 5 21
+Instruction: 108 0 300 45
+Instruction: 108 0 7
+Instruction: 108 0 5 22
+Instruction: 108 0 300 46
+Instruction: 108 0 7
+Instruction: 108 0 5 23
+Instruction: 108 0 300 47
+Instruction: 108 0 7
+Instruction: 108 0 5 24
+Instruction: 108 0 300 48
+Instruction: 108 0 7
+Instruction: 108 0 5 25
+Instruction: 108 0 300 51
+Instruction: 108 0 7
+
+Script: 22
+Instruction: 65535 0 403 0
+Instruction: 65535 0 304 24
+Instruction: 65535 0 313 2
+Instruction: 65535 0 400 0.0f 0.0f 0.0f
+Instruction: 0 0 502 21
+Instruction: 0 0 502 20
+Instruction: 0 0 3
+Instruction: 0 0 5 1
+Instruction: 30 0 1
+
+
