@@ -16,7 +16,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     private boolean xx=false;
     private boolean yy=false;
-    private HashMap<String,Drawable> bossAnim=new HashMap<String,Drawable>(15);
+    private HashMap<String,Drawable> bossAnim=new HashMap<String,Drawable>();
     private Drawable d=null;
 
     @Override
@@ -107,13 +107,13 @@ public class BossPlane1 extends BaseEnemyPlane{
     protected void anim(){
         if(Center.x>enemyLastX){
             enemyLastX=Center.x;
-            Drawer.setDrawable(getRightMoveAnim());
+            Drawer.setDrawable(getRightMoveAnim() );
         }else if(Center.x<enemyLastX){
             enemyLastX=Center.x;
-            Drawer.setDrawable(getLeftMoveAnim());
+            Drawer.setDrawable(getLeftMoveAnim() );
         }else{
             enemyLastX=Center.x;
-            Drawer.setDrawable(getDrawable());
+            Drawer.setDrawable(getDrawable() );
         }
     }
 

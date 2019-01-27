@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.meng.stg.GameMain;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.player.BaseMyPlane;
@@ -16,8 +15,8 @@ import static com.meng.stg.MainScreen.enemys;
 
 public abstract class BaseEnemyPlane{
 
-    protected boolean Killed=false;
-    protected int time=0;
+    public boolean Killed=false;
+    public int time=0;
     public float vx=0;
     public float vy=0;
     public float enemyLastX;
@@ -28,25 +27,24 @@ public abstract class BaseEnemyPlane{
     public Vector2 Center=new Vector2();
     public int hp=10;
 
-    public void Init(float x,float y,float vx,float vy ){
-         Init(x,y,vx,vy,10);
+    public void Init(float x,float y,float vx,float vy){
+        Init(x,y,vx,vy,10);
     }
 
     public void Init(float x,float y,float vx,float vy,int hp){
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
-        Drawer.setDrawable(drawable);
+        Drawer.setDrawable(drawable );
         Killed=false;
-        Drawer.setSize(64,64);
         Center.set(x,y);
         this.vx=vx;
         this.vy=vy;
         this.hp=hp;
         judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
-        for (int i = 0; i < 32; i++) {
-            if (enemys[i] == null) {
-                enemys[i] = this;
+        for(int i=0;i<32;i++){
+            if(enemys[i]==null){
+                enemys[i]=this;
                 break;
             }
         }
@@ -57,9 +55,9 @@ public abstract class BaseEnemyPlane{
     }
 
     public void hit(){
-            if(--hp<1){
-                Kill();
-            }
+        if(--hp<1){
+            Kill();
+        }
     }
 
     public Vector2 getLocation(){
@@ -75,17 +73,13 @@ public abstract class BaseEnemyPlane{
     }
 
     public void Update(){
-        //更新位置
-        //    Center.add(Velocity);
-        GameMain.SBatch.begin();
-        MainScreen.f.draw(GameMain.SBatch,"HP:"+hp,Center.x+20,Center.y);
-        GameMain.SBatch.end();
         time++;
         animTime++;
-            move();
-            anim();
-            shoot();
+        move();
+        anim();
+        shoot();
         Drawer.setPosition(Center.x,Center.y,Align.center);
+        Drawer.setRotation(getRotationDegree());
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
         if(!drawBox.overlaps(MainScreen.FightArea)){
@@ -96,8 +90,11 @@ public abstract class BaseEnemyPlane{
     }
 
     protected abstract void anim();
+
     protected abstract void shoot();
+
     protected abstract void move();
+
     protected abstract Drawable getDrawable();
 
     public Shape2D getCollisionArea(){
@@ -117,5 +114,9 @@ public abstract class BaseEnemyPlane{
 
     public boolean isKilled(){
         return Killed;
+    }
+
+    public float getRotationDegree(){
+        return 0;
     }
 }

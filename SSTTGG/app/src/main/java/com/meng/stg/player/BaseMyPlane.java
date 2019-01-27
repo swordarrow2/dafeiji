@@ -12,7 +12,6 @@ import com.meng.stg.helpers.Pools;
 public abstract class BaseMyPlane{
 
     public static BaseMyPlane Instance;
-
     public Vector2 Center=new Vector2();
     public Vector2 Velocity=new Vector2();
     public Image Drawer=null;
@@ -41,18 +40,23 @@ public abstract class BaseMyPlane{
             judgeAnim.setSize(32,32);
         }
         Drawer=Pools.ImagePool.obtain();
-        Drawable drawable=getDrawable();
+        Drawable drawable=getDrawableJavaBean();
         Drawer.setDrawable(drawable);
+        Drawer.setRotation(getRotationDegree());
         MainScreen.MainGroup.addActor(Drawer);
         MainScreen.MainGroup.addActor(judgeAnim);
         ExistTime=0;
         Center.set(MainScreen.Width/2,80);
-        Drawer.setSize(32,48);
+        Drawer.setSize(30,46);
         unmatchedTime=1;
         onUnmatched=true;
     }
 
     public void Kill(){
+    }
+
+    public float getRotationDegree(){
+        return 0;
     }
 
     public void Update(){
@@ -101,7 +105,7 @@ public abstract class BaseMyPlane{
 
     public abstract void bomb();
 
-    public abstract Drawable getDrawable();
+    public abstract Drawable getDrawableJavaBean();
 
     public abstract Drawable getStayAnim();
 

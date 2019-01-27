@@ -19,19 +19,21 @@ public class SimpleRedBullet extends BaseEnemyBullet{
 
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
-        Size.set(24,24);
-        Drawer.setSize(Size.x,Size.y);
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
     }
+    @Override
+    public Vector2 getSize(){
+        return new Vector2(32,32);
+    }
 
     @Override
-    public Drawable getDrawable(){
+    public Drawable getDrawableJavaBean(){
         if(drawable==null){
-            drawable=Resources.Textures.get("SimpleRedBullet");
+            drawable=Resources.Textures.get("SimpleRedBullet") ;
         }
         return drawable;
     }

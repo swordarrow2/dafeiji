@@ -17,10 +17,13 @@ public class SimpleGreenBullet extends BaseEnemyBullet{
         }
     };
 
+    @Override
+    public Vector2 getSize(){
+        return new Vector2(32,32);
+    }
+
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
-        Size.set(24,24);
-        Drawer.setSize(Size.x,Size.y);
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
@@ -29,9 +32,9 @@ public class SimpleGreenBullet extends BaseEnemyBullet{
     }
 
     @Override
-    public Drawable getDrawable(){
+    public Drawable getDrawableJavaBean(){
         if(drawable==null){
-            drawable=Resources.Textures.get("SimpleGreenBullet");
+            drawable=Resources.Textures.get("SimpleGreenBullet" );
         }
         return drawable;
     }

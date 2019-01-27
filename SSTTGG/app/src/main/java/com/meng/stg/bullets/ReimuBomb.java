@@ -21,8 +21,6 @@ public class ReimuBomb extends BaseMyPlaneBullet{
 
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
-        Size.set(20,80);
-        Drawer.setSize(Size.x,Size.y);
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
@@ -31,9 +29,9 @@ public class ReimuBomb extends BaseMyPlaneBullet{
     }
 
     @Override
-    public Drawable getDrawable(){
+    public Drawable getDrawableJavaBean(){
         if(drawable==null){
-            drawable=Resources.Textures.get("ReimuBomb");
+            drawable=Resources.Textures.get("ReimuBomb") ;
         }
         return drawable;
     }
@@ -54,6 +52,11 @@ public class ReimuBomb extends BaseMyPlaneBullet{
         }
     }
 
+    @Override
+    public Vector2 getSize(){
+        return new Vector2(16,64);
+    }
+
     public void Judge(){
         try{
             for(int i=0;i<32;i++){
@@ -66,5 +69,10 @@ public class ReimuBomb extends BaseMyPlaneBullet{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public float getRotationDegree(){
+        return 0;
     }
 }

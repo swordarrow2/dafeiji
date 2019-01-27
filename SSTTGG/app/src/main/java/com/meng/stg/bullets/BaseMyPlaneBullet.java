@@ -8,23 +8,23 @@ import com.meng.stg.MainScreen;
 
 import static com.meng.stg.MainScreen.enemys;
 
-/**
- * Created by Administrator on 2019/1/25.
- */
 
 public abstract class BaseMyPlaneBullet extends BaseBullet{
 
-    public abstract Drawable getDrawable();
+    public abstract Drawable getDrawableJavaBean();
 
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
-        Size.set(20,80);
-        Drawer.setSize(Size.x,Size.y);
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(Center,Drawer.getHeight()/3*2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
+    }
+
+    @Override
+    public void Update(){
+        super.Update();
     }
 
     public void Judge(){
