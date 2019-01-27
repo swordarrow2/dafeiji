@@ -111,9 +111,11 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void shoot(){
-        if(ExistTime%20==1){
-            Vector2 vel=new Vector2(0,6);
-            ReimuShoot.Pool.obtain().Init(Center,vel);
+        if(ExistTime%3==1){
+            Vector2 vel=new Vector2(0,47);
+            ReimuShoot.Pool.obtain().Init(new Vector2(Center.x+8,Center.y),vel);
+		ReimuShoot.Pool.obtain().Init(new Vector2(Center.x-8,Center.y),vel);
+		
         }
     }
 
@@ -137,9 +139,9 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void Kill(){
-        super.Kill();
-        Pools.ImagePool.free(Drawer);
-        new MyPlaneReimu().Init();
+   //     super.Kill();
+   //     Pools.ImagePool.free(Drawer);
+   //     new MyPlaneReimu().Init();
     }
 
     @Override

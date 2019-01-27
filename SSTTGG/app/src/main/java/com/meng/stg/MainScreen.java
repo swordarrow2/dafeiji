@@ -116,7 +116,7 @@ public class MainScreen extends ScreenAdapter{
         switch(stageFlag){
             case Data.stageFlagStage1:
                 if(gameTime>700){
-                    f.draw(GameMain.SBatch,"Stage Clear!!",120,350);
+            //        f.draw(GameMain.SBatch,"Stage Clear!!",120,350);
                 }
                 break;
         }
@@ -133,7 +133,7 @@ public class MainScreen extends ScreenAdapter{
             gameTime++;
             switch(stageFlag){
                 case Data.stageFlagStage1:
-                    stage1.addEnemy();
+                  stage1.addEnemy();
                     break;
             }
             //       }

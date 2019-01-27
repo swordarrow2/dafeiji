@@ -42,7 +42,7 @@ public abstract class BaseMyPlane{
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawableJavaBean();
         Drawer.setDrawable(drawable);
-        Drawer.setRotation(getRotationDegree());
+		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
         MainScreen.MainGroup.addActor(Drawer);
         MainScreen.MainGroup.addActor(judgeAnim);
         ExistTime=0;
@@ -53,10 +53,6 @@ public abstract class BaseMyPlane{
     }
 
     public void Kill(){
-    }
-
-    public float getRotationDegree(){
-        return 0;
     }
 
     public void Update(){

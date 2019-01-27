@@ -13,6 +13,8 @@ import com.meng.stg.helpers.Pools;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.*;
 
 public abstract class BaseBullet{
     public Vector2 Center=new Vector2();
@@ -32,9 +34,12 @@ public abstract class BaseBullet{
         ToAdd.add(this);
         size=getSize();
         Drawer=Pools.ImagePool.obtain();
-        Drawable da=getDrawableJavaBean();
+        Drawable da=getDrawable();
+		
         Drawer.setDrawable(da);
         Drawer.setSize(size.x,size.y);
+		Drawer.setRotation(getRotationDegree());
+		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
         ExistTime=0;
     }
 
@@ -47,8 +52,10 @@ public abstract class BaseBullet{
 
     public void Update(){
         Center.add(Velocity);
-        Drawer.setPosition(Center.x,Center.y,Align.center);
-        Drawer.setRotation(getRotationDegree());
+		Drawer.setRotation(getRotationDegree());
+        Drawer.setPosition(Center.x,Center.y);
+		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
+		
         ExistTime++;
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
         judgeCircle.setPosition(Center);
@@ -83,7 +90,7 @@ public abstract class BaseBullet{
         return judgeCircle;
     }
 
-    public abstract Drawable getDrawableJavaBean();
+    public abstract Drawable getDrawable();
 
     public abstract void Judge();
 

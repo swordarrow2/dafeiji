@@ -16,8 +16,9 @@ public class stage1{
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-                Vector2 vel=new Vector2(0,-50);
-                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.Instance.Center.x,720),vel);
+                Vector2 vel=new Vector2(0,-1);
+				MainScreen.gameTime=1;
+                SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
                 break;
             case 60:
                 Vector2 vel2=new Vector2(0,30);

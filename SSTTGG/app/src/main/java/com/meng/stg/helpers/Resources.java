@@ -11,11 +11,12 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.HashMap;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.*;
 
 public final class Resources{
     public static HashMap<String,Drawable> Textures=new HashMap<String,Drawable>();
-
-    public static void Load(){
+	   public static void Load(){
 /*
         FileHandle plReimu=Gdx.files.external("/thsss/Image/MyPlane/Reimu.png");
         String[] plReimuWalkSheet=Gdx.files.external(plReimu.pathWithoutExtension()+".txt").readString().replace("\t"," ").replace("\n"," ").split("\\s");
@@ -91,17 +92,22 @@ public final class Resources{
         FileHandle plsanae=Gdx.files.internal("textures/player/"+name+".png");
         String[] plsanaeWalkSheet=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
         Texture tplsanae=new Texture(plsanae);
+		
         for(String s : plsanaeWalkSheet){
             Log.i("TAG","Load: "+s+"\n");
         }
-        for(int i=2, n=0;n<43;i+=7,n++){
-            int x=Integer.parseInt(plsanaeWalkSheet[i+2]);
-            int y=Integer.parseInt(plsanaeWalkSheet[i+3]);
-            int width=Integer.parseInt(plsanaeWalkSheet[i]);
-            int height=Integer.parseInt(plsanaeWalkSheet[i+1]);
-            TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-            TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-            Textures.put("reimu"+n, trd );
+        for(int i=0, n=0;n<43;i++){
+			if(plsanaeWalkSheet[i].equals("Sprite:")){
+				int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
+				int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
+				int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
+				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
+				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
+				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
+				Textures.put("reimu"+plsanaeWalkSheet[i+1], trd );
+				n++;
+			  }
+            
         }
     }
 

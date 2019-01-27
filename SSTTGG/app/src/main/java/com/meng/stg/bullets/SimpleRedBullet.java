@@ -31,7 +31,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     }
 
     @Override
-    public Drawable getDrawableJavaBean(){
+    public Drawable getDrawable(){
         if(drawable==null){
             drawable=Resources.Textures.get("SimpleRedBullet") ;
         }

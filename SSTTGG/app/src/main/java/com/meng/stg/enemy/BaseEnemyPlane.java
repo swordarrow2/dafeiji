@@ -35,6 +35,7 @@ public abstract class BaseEnemyPlane{
         Drawer=Pools.ImagePool.obtain();
         Drawable drawable=getDrawable();
         Drawer.setDrawable(drawable );
+		//Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
         Killed=false;
         Center.set(x,y);
         this.vx=vx;
@@ -79,7 +80,7 @@ public abstract class BaseEnemyPlane{
         anim();
         shoot();
         Drawer.setPosition(Center.x,Center.y,Align.center);
-        Drawer.setRotation(getRotationDegree());
+        
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
         if(!drawBox.overlaps(MainScreen.FightArea)){

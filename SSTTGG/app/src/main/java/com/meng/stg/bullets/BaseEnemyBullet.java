@@ -4,8 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.player.BaseMyPlane;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
-    public abstract Drawable getDrawableJavaBean() ;
-
+    public abstract Drawable getDrawable() ;
+int i=0;
     @Override
     public void Init(){
         super.Init();
@@ -33,6 +33,6 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     @Override
     public float getRotationDegree(){
-        return 0;
+        return i++;
     }
 }
