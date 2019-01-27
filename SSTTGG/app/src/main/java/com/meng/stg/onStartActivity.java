@@ -23,7 +23,7 @@ public class onStartActivity extends Activity {
         diff=(RadioGroup)findViewById(R.id.radiodifficulty);
         stage=(RadioGroup)findViewById(R.id.radiostage);
         /*
-        player.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        myPlane.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 ((RadioButton)diff.getChildAt(3)).setChecked(true);
@@ -42,7 +42,7 @@ public class onStartActivity extends Activity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 ((RadioButton)stage.getChildAt(6)).setChecked(true);
-                ((RadioButton)player.getChildAt(0)).setChecked(true);
+                ((RadioButton)myPlane.getChildAt(0)).setChecked(true);
                 for(int ii=0;ii<radioGroup.getChildCount();ii++){
                     if(radioGroup.getChildAt(ii).getId()==i){
                         ((RadioButton)radioGroup.getChildAt(ii)).setChecked(true);
@@ -56,7 +56,7 @@ public class onStartActivity extends Activity {
         stage.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-                ((RadioButton)player.getChildAt(0)).setChecked(true);
+                ((RadioButton)myPlane.getChildAt(0)).setChecked(true);
                 ((RadioButton)diff.getChildAt(3)).setChecked(true);
                 for(int ii=0;ii<radioGroup.getChildCount();ii++){
                     if(radioGroup.getChildAt(ii).getId()==i){

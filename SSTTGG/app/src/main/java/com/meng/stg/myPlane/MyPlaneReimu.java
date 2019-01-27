@@ -1,11 +1,10 @@
-package com.meng.stg.player;
+package com.meng.stg.myPlane;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.bullets.ReimuShoot;
 import com.meng.stg.bullets.ReimuBomb;
 import com.meng.stg.helpers.Data;
-import com.meng.stg.helpers.Pools;
 import com.meng.stg.helpers.Resources;
 
 public class MyPlaneReimu extends BaseMyPlane{
@@ -122,7 +121,7 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void Init(){
         super.Init();
-     /*   Texture walkSheet=new Texture(Gdx.files.internal("textures/player/pl00.png"));
+     /*   Texture walkSheet=new Texture(Gdx.files.internal("textures/myPlane/pl00.png"));
         int FRAME_COLS=8;
         int FRAME_ROWS=3;
         TextureRegion[][] tmp=TextureRegion.split(walkSheet,walkSheet.getWidth()/FRAME_COLS,walkSheet.getHeight()/FRAME_ROWS);

@@ -1,4 +1,4 @@
-package com.meng.stg.enemy;
+package com.meng.stg.enemyPlane;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Pools;
-import com.meng.stg.player.BaseMyPlane;
+import com.meng.stg.myPlane.BaseMyPlane;
 
 import static com.meng.stg.MainScreen.enemys;
 
@@ -117,7 +117,4 @@ public abstract class BaseEnemyPlane{
         return Killed;
     }
 
-    public float getRotationDegree(){
-        return 0;
-    }
 }

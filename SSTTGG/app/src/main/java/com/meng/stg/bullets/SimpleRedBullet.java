@@ -25,6 +25,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
         judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
     }
+
     @Override
     public Vector2 getSize(){
         return new Vector2(32,32);
@@ -33,7 +34,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get("SimpleRedBullet") ;
+            drawable=Resources.Textures.get("SimpleRedBullet");
         }
         return drawable;
     }

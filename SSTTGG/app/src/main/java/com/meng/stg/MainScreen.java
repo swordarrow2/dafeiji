@@ -17,11 +17,11 @@ import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.bullets.BulletShooter;
 import com.meng.stg.bullets.bullet;
-import com.meng.stg.enemy.BaseEnemyPlane;
+import com.meng.stg.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
-import com.meng.stg.player.BaseMyPlane;
-import com.meng.stg.player.MyPlaneReimu;
-import com.meng.stg.player.PlayerInputProcessor;
+import com.meng.stg.myPlane.BaseMyPlane;
+import com.meng.stg.myPlane.MyPlaneReimu;
+import com.meng.stg.myPlane.PlayerInputProcessor;
 import com.meng.stg.stage.stage1;
 
 public class MainScreen extends ScreenAdapter{
@@ -37,7 +37,7 @@ public class MainScreen extends ScreenAdapter{
     public static bullet[] bullets=new bullet[1024];
     public static BitmapFont f;
     public static boolean onBoss=false;
-    // EnemyPlane e;
+    // enemyPlane e;
 
     @Override
     public void show(){
@@ -67,7 +67,7 @@ public class MainScreen extends ScreenAdapter{
                 //     new MyPlaneAlice().Init();
                 break;
         }
-        // e= new EnemyPlane().createEnemy();
+        // e= new enemyPlane().createEnemy();
         InputMgr=new InputMultiplexer();
         InputMgr.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(InputMgr);
@@ -89,7 +89,7 @@ public class MainScreen extends ScreenAdapter{
         BulletShooter.UpdateAll();
         BaseBullet.UpdateAll();
         BaseMyPlane.Instance.Update();
-        //    for(EnemyPlane e:enemys){
+        //    for(enemyPlane e:enemys){
         //        if(e!=null){
         //            if (!e.isKilled()){
         //                e.Update();

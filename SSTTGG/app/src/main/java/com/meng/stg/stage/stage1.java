@@ -3,10 +3,10 @@ package com.meng.stg.stage;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainScreen;
 import com.meng.stg.bullets.SimpleRedBullet;
-import com.meng.stg.enemy.BossPlane1;
-import com.meng.stg.enemy.BossPlane2;
-import com.meng.stg.enemy.EnemyPlane;
-import com.meng.stg.player.BaseMyPlane;
+import com.meng.stg.enemyPlane.BossPlane1;
+import com.meng.stg.enemyPlane.BossPlane2;
+import com.meng.stg.enemyPlane.EnemyPlane;
+import com.meng.stg.myPlane.BaseMyPlane;
 
 /**
  * Created by Administrator on 2017/11/1.

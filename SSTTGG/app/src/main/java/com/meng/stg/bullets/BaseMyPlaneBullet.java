@@ -18,16 +18,8 @@ public abstract class BaseMyPlaneBullet extends BaseBullet{
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(Center.x,Center.y,Align.center);
-		
         judgeCircle=new Circle(Center,Drawer.getWidth()/3*2); //中心、半径
-		
         MainScreen.MainGroup.addActor(Drawer);
-    }
-
-    @Override
-    public void Update(){
-        super.Update();
-		Drawer.setPosition(Center.x,Center.y,Align.center);
     }
 
     public void Judge(){

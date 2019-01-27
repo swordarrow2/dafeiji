@@ -1,8 +1,7 @@
 package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.MainScreen;
-import com.meng.stg.enemy.BaseEnemyPlane;
+import com.meng.stg.enemyPlane.BaseEnemyPlane;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;

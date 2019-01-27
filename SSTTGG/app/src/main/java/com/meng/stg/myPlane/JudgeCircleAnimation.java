@@ -1,4 +1,4 @@
-package com.meng.stg.player;
+package com.meng.stg.myPlane;
 
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;

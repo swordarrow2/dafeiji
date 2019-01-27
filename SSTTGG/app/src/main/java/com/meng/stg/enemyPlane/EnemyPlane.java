@@ -1,17 +1,15 @@
-package com.meng.stg.enemy;
+package com.meng.stg.enemyPlane;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.bullets.BulletShooter;
-import com.meng.stg.bullets.SimpleGreenBullet;
-import com.meng.stg.bullets.SimpleRedBullet;
 import com.meng.stg.helpers.Resources;
 
 public class EnemyPlane extends BaseEnemyPlane{
 
     @Override
     protected Drawable getDrawable(){
-        return Resources.Textures.get("EnemyPlane");
+        return Resources.Textures.get("enemyPlane");
     }
 
     @Override

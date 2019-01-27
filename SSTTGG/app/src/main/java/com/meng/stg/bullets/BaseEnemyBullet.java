@@ -1,27 +1,23 @@
 package com.meng.stg.bullets;
 
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.player.BaseMyPlane;
+import com.meng.stg.myPlane.BaseMyPlane;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
     public abstract Drawable getDrawable() ;
-int i=0;
+    public static int bulletCount=0;
     @Override
     public void Init(){
         super.Init();
-        bullet.bulletCount++;
+        bulletCount++;
     }
 
     @Override
     public void Kill(){
         super.Kill();
-        bullet.bulletCount--;
+        bulletCount--;
     }
 
-    @Override
-    public void Update(){
-        super.Update();
-    }
 
     @Override
     public void Judge(){
@@ -33,6 +29,6 @@ int i=0;
 
     @Override
     public float getRotationDegree(){
-        return i++;
+        return 180;
     }
 }

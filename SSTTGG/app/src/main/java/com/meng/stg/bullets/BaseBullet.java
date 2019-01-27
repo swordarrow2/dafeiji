@@ -35,7 +35,6 @@ public abstract class BaseBullet{
         size=getSize();
         Drawer=Pools.ImagePool.obtain();
         Drawable da=getDrawable();
-		
         Drawer.setDrawable(da);
         Drawer.setSize(size.x,size.y);
 		Drawer.setRotation(getRotationDegree());
@@ -51,12 +50,11 @@ public abstract class BaseBullet{
     }
 
     public void Update(){
+        ExistTime++;
         Center.add(Velocity);
 		Drawer.setRotation(getRotationDegree());
-        Drawer.setPosition(Center.x,Center.y);
+        Drawer.setPosition(Center.x,Center.y,Align.center);
 		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-		
-        ExistTime++;
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
         judgeCircle.setPosition(Center);
         if(!drawBox.overlaps(MainScreen.FightArea)){
@@ -72,7 +70,6 @@ public abstract class BaseBullet{
             ((BaseBullet)i.next()).Kill();
         }
     }
-
 
     public static void UpdateAll(){
         while(!ToDelete.isEmpty()){

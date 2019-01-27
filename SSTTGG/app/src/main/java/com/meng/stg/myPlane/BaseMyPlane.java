@@ -1,4 +1,4 @@
-package com.meng.stg.player;
+package com.meng.stg.myPlane;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;

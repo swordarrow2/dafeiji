@@ -1,12 +1,11 @@
-package com.meng.stg.player;
+package com.meng.stg.myPlane;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainActivity;
 import com.meng.stg.MainScreen;
 
-import static com.meng.stg.player.BaseMyPlane.Instance;
+import static com.meng.stg.myPlane.BaseMyPlane.Instance;
 
 /**
  * Plane Ctrl
