@@ -1,12 +1,12 @@
-package com.meng.stg.backup.stage;
+package com.meng.stg.stage;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainScreen;
-import com.meng.stg.backup.bullets.SimpleRedBullet;
-import com.meng.stg.backup.enemy.BossPlane1;
-import com.meng.stg.backup.enemy.BossPlane2;
-import com.meng.stg.backup.enemy.EnemyPlane;
-import com.meng.stg.backup.player.BaseMyPlane;
+import com.meng.stg.bullets.SimpleRedBullet;
+import com.meng.stg.enemy.BossPlane1;
+import com.meng.stg.enemy.BossPlane2;
+import com.meng.stg.enemy.EnemyPlane;
+import com.meng.stg.player.BaseMyPlane;
 
 /**
  * Created by Administrator on 2017/11/1.
@@ -14,7 +14,6 @@ import com.meng.stg.backup.player.BaseMyPlane;
 
 public class stage1{
     public static void addEnemy(){
-        BossPlane1 b=new BossPlane1();
         switch(MainScreen.gameTime){
             case 30:
                 Vector2 vel=new Vector2(0,-50);

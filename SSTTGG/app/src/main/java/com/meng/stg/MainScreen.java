@@ -14,15 +14,15 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.meng.stg.backup.bullets.BaseBullet;
-import com.meng.stg.backup.bullets.BulletShooter;
-import com.meng.stg.backup.bullets.bullet;
-import com.meng.stg.backup.enemy.BaseEnemyPlane;
-import com.meng.stg.backup.Data;
-import com.meng.stg.backup.player.BaseMyPlane;
-import com.meng.stg.backup.player.MyPlaneReimu;
-import com.meng.stg.backup.player.PlayerInputProcessor;
-import com.meng.stg.backup.stage.stage1;
+import com.meng.stg.bullets.BaseBullet;
+import com.meng.stg.bullets.BulletShooter;
+import com.meng.stg.bullets.bullet;
+import com.meng.stg.enemy.BaseEnemyPlane;
+import com.meng.stg.helpers.Data;
+import com.meng.stg.player.BaseMyPlane;
+import com.meng.stg.player.MyPlaneReimu;
+import com.meng.stg.player.PlayerInputProcessor;
+import com.meng.stg.stage.stage1;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
