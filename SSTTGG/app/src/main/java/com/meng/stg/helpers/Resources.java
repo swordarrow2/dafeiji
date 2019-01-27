@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.TextureData;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -95,13 +96,23 @@ public final class Resources{
             Log.i("TAG","Load: "+s+"\n");
         }
         for(int i=2, n=0;n<43;i+=7,n++){
-            int x=Integer.parseInt(plsanaeWalkSheet[i+2]);
-            int y=Integer.parseInt(plsanaeWalkSheet[i+3]);
-            int width=Integer.parseInt(plsanaeWalkSheet[i]);
-            int height=Integer.parseInt(plsanaeWalkSheet[i+1]);
-            TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-            TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-            Textures.put("reimu"+n, trd );
+            if(n<24){
+                int x=Integer.parseInt(plsanaeWalkSheet[i+2]);
+                int y=Integer.parseInt(plsanaeWalkSheet[i+3]);
+                int width=Integer.parseInt(plsanaeWalkSheet[i]);
+                int height=Integer.parseInt(plsanaeWalkSheet[i+1]);
+                TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
+                TextureRegionDrawable trd=new TextureRegionDrawable(tr);
+                Textures.put("reimu"+n, trd );
+            }else {
+                int x=Integer.parseInt(plsanaeWalkSheet[i+2]);
+                int y=Integer.parseInt(plsanaeWalkSheet[i+3]);
+                int width=Integer.parseInt(plsanaeWalkSheet[i]);
+                int height=Integer.parseInt(plsanaeWalkSheet[i+1]);
+                Sprite tr=new Sprite(tplsanae,x,y,width,height);
+                tr.rotate90(false);
+                TextureRegionDrawable trd=new TextureRegionDrawable(tr);
+                Textures.put("reimu"+n, trd );}
         }
     }
 
