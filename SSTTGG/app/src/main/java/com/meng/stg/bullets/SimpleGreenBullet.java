@@ -24,6 +24,8 @@ public class SimpleGreenBullet extends BaseEnemyBullet{
 
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
+		thoughCount=0;
+		refCount=3;
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
@@ -34,7 +36,7 @@ public class SimpleGreenBullet extends BaseEnemyBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get("AliceShoot" );
+            drawable=Resources.Textures.get(this.getClass().getSimpleName() .replace(".class","") );
         }
         return drawable;
     }

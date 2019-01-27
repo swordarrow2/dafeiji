@@ -26,34 +26,25 @@ public class BossPlane2 extends BaseEnemyPlane{
     private HashMap<String,Drawable > bossAnim=new HashMap<String,Drawable >();
     private Drawable  d=null;
 
-	String reimu="reimu";
+	String reimu="zayu";
 	@Override
     public Drawable getStayAnim(){
         switch(animTime%32){
             case 1:
-			  d=Resources.Textures.get(reimu+0);
+			  d=Resources.Textures.get(reimu+96);
 			  break;
             case 5:
-			  d=Resources.Textures.get(reimu+1);
+			  d=Resources.Textures.get(reimu+97);
 			  break;
             case 9:
-			  d=Resources.Textures.get(reimu+2);
+			  d=Resources.Textures.get(reimu+98);
 			  break;
             case 13:
-			  d=Resources.Textures.get(reimu+3);
+			  d=Resources.Textures.get(reimu+99);
 			  break;
             case 17:
-			  d=Resources.Textures.get(reimu+4);
-			  break;
-            case 21:
-			  d=Resources.Textures.get(reimu+5);
-			  break;
-            case 25:
-			  d=Resources.Textures.get(reimu+6);
-			  break;
-            case 29:
-			  d=Resources.Textures.get(reimu+7);
-			  break;
+			  d=Resources.Textures.get(reimu+100);
+			  
 		  }
         return d;
 	  }
@@ -61,61 +52,34 @@ public class BossPlane2 extends BaseEnemyPlane{
     public Drawable getLeftMoveAnim(){
         switch(animTime%32){
             case 1:
-			  d=Resources.Textures.get(reimu+8);
+			  d=Resources.Textures.get(reimu+101);
 			  break;
             case 5:
-			  d=Resources.Textures.get(reimu+9);
+			  d=Resources.Textures.get(reimu+102);
 			  break;
             case 9:
-			  d=Resources.Textures.get(reimu+10);
+			  d=Resources.Textures.get(reimu+103);
 			  break;
             case 13:
-			  d=Resources.Textures.get(reimu+11);
+			  d=Resources.Textures.get(reimu+104);
 			  break;
             case 17:
-			  d=Resources.Textures.get(reimu+12);
+			  d=Resources.Textures.get(reimu+105);
 			  break;
             case 21:
-			  d=Resources.Textures.get(reimu+13);
+			  d=Resources.Textures.get(reimu+106);
 			  break;
             case 25:
-			  d=Resources.Textures.get(reimu+14);
+			  d=Resources.Textures.get(reimu+107);
 			  break;
-            case 29:
-			  d=Resources.Textures.get(reimu+15);
-			  break;
+            
 		  }
         return d;
 	  }
 
     public Drawable getRightMoveAnim(){
-        switch(animTime%32){
-            case 1:
-			  d=Resources.Textures.get(reimu+16);
-			  break;
-            case 5:
-			  d=Resources.Textures.get(reimu+17);
-			  break;
-            case 9:
-			  d=Resources.Textures.get(reimu+18);
-			  break;
-            case 13:
-			  d=Resources.Textures.get(reimu+19);
-			  break;
-            case 17:
-			  d=Resources.Textures.get(reimu+20);
-			  break;
-            case 21:
-			  d=Resources.Textures.get(reimu+21);
-			  break;
-            case 25:
-			  d=Resources.Textures.get(reimu+22);
-			  break;
-            case 29:
-			  d=Resources.Textures.get(reimu+23);
-			  break;
-		  }
-        return d;
+        
+        return getLeftMoveAnim();
 	  }
 
     @Override

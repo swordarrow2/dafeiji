@@ -10,6 +10,7 @@ import com.meng.stg.helpers.Resources;
 
 public class SimpleRedBullet extends BaseEnemyBullet{
 
+  
     public static Pool<SimpleRedBullet> Pool=new Pool<SimpleRedBullet>(){
         @Override
         protected SimpleRedBullet newObject(){
@@ -19,12 +20,14 @@ public class SimpleRedBullet extends BaseEnemyBullet{
 
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
+		thoughCount=2;
+		refCount=2;
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
-    }
+	  }
 
     @Override
     public Vector2 getSize(){
@@ -34,7 +37,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get("AliceShoot");
+            drawable=Resources.Textures.get(this.getClass().getSimpleName().replace(".class",""));
         }
         return drawable;
     }

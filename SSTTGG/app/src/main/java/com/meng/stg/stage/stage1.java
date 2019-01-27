@@ -7,6 +7,7 @@ import com.meng.stg.enemyPlane.BossPlane1;
 import com.meng.stg.enemyPlane.BossPlane2;
 import com.meng.stg.enemyPlane.EnemyPlane;
 import com.meng.stg.myPlane.BaseMyPlane;
+import com.meng.stg.bullets.*;
 
 /**
  * Created by Administrator on 2017/11/1.
@@ -16,9 +17,13 @@ public class stage1{
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-                Vector2 vel=new Vector2(0,-1);
-				//MainScreen.gameTime=1;
-                SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
+			  Vector2 vel=new Vector2(3,-0.3f);
+			  MainScreen.gameTime=1;
+			  SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
+			  Vector2 vele2=new Vector2(-1,-1.7f);
+			  MainScreen.gameTime=25;
+			  SimpleGreenBullet.Pool.obtain().Init(new Vector2(270,720),vele2);
+			  
                 break;
             case 60:
                 Vector2 vel2=new Vector2(0,30);

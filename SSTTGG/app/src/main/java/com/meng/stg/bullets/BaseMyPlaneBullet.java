@@ -13,8 +13,11 @@ public abstract class BaseMyPlaneBullet extends BaseBullet{
 
     public abstract Drawable getDrawable();
 
+	
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
+		refCount=0;
+		thoughCount=0;
         Center.set(center);
         Velocity.set(velocity);
         Drawer.setPosition(Center.x,Center.y,Align.center);
