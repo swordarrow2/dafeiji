@@ -28,7 +28,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
 
     @Override
     public Vector2 getSize(){
-        return new Vector2(32,32);
+        return new Vector2(16,16);
     }
 
     @Override

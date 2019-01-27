@@ -11,6 +11,7 @@ import com.meng.stg.MainScreen;
 import com.meng.stg.bullets.SimpleRedBullet;
 
 import java.util.HashMap;
+import com.meng.stg.helpers.*;
 
 public class BossPlane1 extends BaseEnemyPlane{
 
@@ -19,6 +20,7 @@ public class BossPlane1 extends BaseEnemyPlane{
     private HashMap<String,Drawable> bossAnim=new HashMap<String,Drawable>();
     private Drawable d=null;
 
+	private String reimu="reimu";
     @Override
     protected Drawable getDrawable(){
         switch(animTime%48){
@@ -32,29 +34,96 @@ public class BossPlane1 extends BaseEnemyPlane{
         return d;
     }
 
-    private Drawable getRightMoveAnim(){
-        switch(animTime%48){
-            case 15:
-                d=bossAnim.get("anim6");
-                break;
-            case 39:
-                d=bossAnim.get("anim9");
-                break;
-        }
+	@Override
+    public Drawable getStayAnim(){
+        switch(animTime%32){
+            case 1:
+			  d=Resources.Textures.get(reimu+0);
+			  break;
+            case 5:
+			  d=Resources.Textures.get(reimu+1);
+			  break;
+            case 9:
+			  d=Resources.Textures.get(reimu+2);
+			  break;
+            case 13:
+			  d=Resources.Textures.get(reimu+3);
+			  break;
+            case 17:
+			  d=Resources.Textures.get(reimu+4);
+			  break;
+            case 21:
+			  d=Resources.Textures.get(reimu+5);
+			  break;
+            case 25:
+			  d=Resources.Textures.get(reimu+6);
+			  break;
+            case 29:
+			  d=Resources.Textures.get(reimu+7);
+			  break;
+		  }
         return d;
-    }
+	  }
 
-    private Drawable getLeftMoveAnim(){
-        switch(animTime%48){
-            case 15:
-                d=bossAnim.get("anim14");
-                break;
-            case 39:
-                d=bossAnim.get("anim11");
-                break;
-        }
+    public Drawable getLeftMoveAnim(){
+        switch(animTime%32){
+            case 1:
+			  d=Resources.Textures.get(reimu+8);
+			  break;
+            case 5:
+			  d=Resources.Textures.get(reimu+9);
+			  break;
+            case 9:
+			  d=Resources.Textures.get(reimu+10);
+			  break;
+            case 13:
+			  d=Resources.Textures.get(reimu+11);
+			  break;
+            case 17:
+			  d=Resources.Textures.get(reimu+12);
+			  break;
+            case 21:
+			  d=Resources.Textures.get(reimu+13);
+			  break;
+            case 25:
+			  d=Resources.Textures.get(reimu+14);
+			  break;
+            case 29:
+			  d=Resources.Textures.get(reimu+15);
+			  break;
+		  }
         return d;
-    }
+	  }
+
+    public Drawable getRightMoveAnim(){
+        switch(animTime%32){
+            case 1:
+			  d=Resources.Textures.get(reimu+16);
+			  break;
+            case 5:
+			  d=Resources.Textures.get(reimu+17);
+			  break;
+            case 9:
+			  d=Resources.Textures.get(reimu+18);
+			  break;
+            case 13:
+			  d=Resources.Textures.get(reimu+19);
+			  break;
+            case 17:
+			  d=Resources.Textures.get(reimu+20);
+			  break;
+            case 21:
+			  d=Resources.Textures.get(reimu+21);
+			  break;
+            case 25:
+			  d=Resources.Textures.get(reimu+22);
+			  break;
+            case 29:
+			  d=Resources.Textures.get(reimu+23);
+			  break;
+		  }
+        return d;
+	  }
 
     @Override
     public void Init(float x,float y,float vx,float vy,int hp){

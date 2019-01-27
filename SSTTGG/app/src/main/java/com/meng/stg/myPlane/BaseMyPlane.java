@@ -40,8 +40,8 @@ public abstract class BaseMyPlane{
             judgeAnim.setSize(32,32);
         }
         Drawer=Pools.ImagePool.obtain();
-        Drawable drawable=getDrawableJavaBean();
-        Drawer.setDrawable(drawable);
+        //Drawable drawable=getDrawableJavaBean();
+        //Drawer.setDrawable(drawable);
 		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
         MainScreen.MainGroup.addActor(Drawer);
         MainScreen.MainGroup.addActor(judgeAnim);

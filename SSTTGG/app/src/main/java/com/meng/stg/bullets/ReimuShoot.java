@@ -23,6 +23,12 @@ public class ReimuShoot extends BaseMyPlaneBullet{
         return drawable;
 	  }
 
+	@Override
+	public void Update(){
+		super.Update();
+		Drawer.toBack();
+	  }
+
     @Override
     public Vector2 getSize(){
         return new Vector2(64,16);

@@ -12,6 +12,8 @@ import com.meng.stg.helpers.Pools;
 import com.meng.stg.myPlane.BaseMyPlane;
 
 import static com.meng.stg.MainScreen.enemys;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.graphics.g2d.*;
 
 public abstract class BaseEnemyPlane{
 
@@ -26,6 +28,8 @@ public abstract class BaseEnemyPlane{
     public Circle judgeCircle;
     public Vector2 Center=new Vector2();
     public int hp=10;
+	
+	private float playerLastX=270;
 
     public void Init(float x,float y,float vx,float vy){
         Init(x,y,vx,vy,10);
@@ -80,7 +84,18 @@ public abstract class BaseEnemyPlane{
         anim();
         shoot();
         Drawer.setPosition(Center.x,Center.y,Align.center);
-        
+		if(Center.x>playerLastX){
+            playerLastX=Center.x;
+            Drawer.setDrawable(getRightMoveAnim());
+		  }else if(Center.x<playerLastX){
+            playerLastX=Center.x;
+			  TextureRegion t=((TextureRegionDrawable)getLeftMoveAnim()).getRegion();
+			  t.flip(true,false);
+            Drawer.setDrawable(new TextureRegionDrawable(t));
+		  }else{
+            playerLastX=Center.x;
+            Drawer.setDrawable(getStayAnim());
+		  }
         judgeCircle.setPosition(Center.x,Center.y);
         drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
         if(!drawBox.overlaps(MainScreen.FightArea)){
@@ -97,6 +112,13 @@ public abstract class BaseEnemyPlane{
     protected abstract void move();
 
     protected abstract Drawable getDrawable();
+	
+	public abstract Drawable getStayAnim();
+
+    public abstract Drawable getRightMoveAnim();
+
+    public abstract Drawable getLeftMoveAnim();
+	
 
     public Shape2D getCollisionArea(){
         return judgeCircle;

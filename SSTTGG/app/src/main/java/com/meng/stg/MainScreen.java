@@ -16,7 +16,6 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.bullets.BulletShooter;
-import com.meng.stg.bullets.bullet;
 import com.meng.stg.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.myPlane.BaseMyPlane;
@@ -34,7 +33,6 @@ public class MainScreen extends ScreenAdapter{
     public static Rectangle FightArea;
     public static InputMultiplexer InputMgr;
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
-    public static bullet[] bullets=new bullet[1024];
     public static BitmapFont f;
     public static boolean onBoss=false;
     // enemyPlane e;

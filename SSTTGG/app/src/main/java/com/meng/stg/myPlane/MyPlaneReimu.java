@@ -1,16 +1,16 @@
 package com.meng.stg.myPlane;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.bullets.ReimuShoot;
-import com.meng.stg.bullets.ReimuBomb;
-import com.meng.stg.helpers.Data;
-import com.meng.stg.helpers.Resources;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.helpers.*;
 
 public class MyPlaneReimu extends BaseMyPlane{
 
     private Drawable d=null;
     private String reimu="reimu";
+	ReimuSubPlane sp1;
+	ReimuSubPlane sp2;
 
     @Override
     public Drawable getDrawableJavaBean(){
@@ -112,8 +112,8 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void shoot(){
         if(ExistTime%3==1){
             Vector2 vel=new Vector2(0,47);
-            ReimuShoot.Pool.obtain().Init(new Vector2(Center.x+8,Center.y),vel);
-		ReimuShoot.Pool.obtain().Init(new Vector2(Center.x-8,Center.y),vel);
+            ReimuShoot.Pool.obtain().Init(new Vector2(Center.x+8,Center.y+8),vel);
+		ReimuShoot.Pool.obtain().Init(new Vector2(Center.x-8,Center.y+8),vel);
 		
         }
     }
@@ -134,14 +134,29 @@ public class MyPlaneReimu extends BaseMyPlane{
             }
         }*/
         bombTime=Data.ReimuBombTime;
+		sp1=new ReimuSubPlane();
+		sp1.Init(0);
+		sp2=new ReimuSubPlane();
+		sp2.Init(1);
     }
 
     @Override
     public void Kill(){
-   //     super.Kill();
-   //     Pools.ImagePool.free(Drawer);
-   //     new MyPlaneReimu().Init();
-    }
+     super.Kill();
+	 sp1.Kill();
+	 sp2.Kill();
+        Pools.ImagePool.free(Drawer);
+        new MyPlaneReimu().Init();
+	  }
+
+	@Override
+	public void Update(){
+		// TODO: Implement this method
+		super.Update();
+		sp1.Update();
+		sp2.Update();
+	  }
+	
 
     @Override
     public void bomb(){

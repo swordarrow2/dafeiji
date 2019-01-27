@@ -17,7 +17,7 @@ public class stage1{
         switch(MainScreen.gameTime){
             case 30:
                 Vector2 vel=new Vector2(0,-1);
-				MainScreen.gameTime=1;
+				//MainScreen.gameTime=1;
                 SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
                 break;
             case 60:
