@@ -29,6 +29,6 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     @Override
     public float getRotationDegree(){
-        return 180;
+        return Velocity.angle()+270;
     }
 }

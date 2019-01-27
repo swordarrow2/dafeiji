@@ -115,7 +115,7 @@ public class EnemyPlane extends BaseEnemyPlane{
     @Override
     public void Init(float x,float y,float vx,float vy){
         super.Init(x,y,vx,vy);
-   //     BulletShooter bs=new BulletShooter(this,new Vector2(0,-3));
+       BulletShooter bs=new BulletShooter(this,new Vector2(0,-3));
     }
 
     @Override

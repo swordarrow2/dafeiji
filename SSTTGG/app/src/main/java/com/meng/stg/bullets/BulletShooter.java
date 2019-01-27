@@ -50,7 +50,7 @@ public class BulletShooter{
     }
 
     void shoot(){
-        if(time%5==0){
+        if(time%25==0){
             SimpleGreenBullet.Pool.obtain().Init(baseEnemyPlane.Center.cpy(),speed);
         }
     }
