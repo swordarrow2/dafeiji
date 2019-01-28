@@ -22,6 +22,7 @@ import com.meng.stg.myPlane.BaseMyPlane;
 import com.meng.stg.myPlane.MyPlaneReimu;
 import com.meng.stg.myPlane.PlayerInputProcessor;
 import com.meng.stg.stage.stage1;
+import com.badlogic.gdx.utils.viewport.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -35,13 +36,15 @@ public class MainScreen extends ScreenAdapter{
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
     public static BitmapFont f;
     public static boolean onBoss=false;
+	FitViewport sv;
     // enemyPlane e;
 
     @Override
     public void show(){
         Width=540;//386;
         Height=720;//450;
-        Stage=new Stage(new ScalingViewport(Scaling.fit,Width,Height),GameMain.SBatch);
+		sv=new FitViewport(Width,Height);
+        Stage=new Stage(sv,GameMain.SBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.BLACK);
         pixmap.fill();
@@ -149,8 +152,8 @@ public class MainScreen extends ScreenAdapter{
             }
         }
         return s;
-    }
-
+	  }
+	
     @Override
     public void hide(){
         super.hide();

@@ -17,12 +17,12 @@ public class stage1{
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-			  Vector2 vel=new Vector2(3,-0.3f);
+			  Vector2 vel=new Vector2(0,0);
 			  MainScreen.gameTime=1;
 			  SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
-			  Vector2 vele2=new Vector2(-1,-1.7f);
+			//  Vector2 vele2=new Vector2(-1,-1.7f);
 			  MainScreen.gameTime=25;
-			  SimpleGreenBullet.Pool.obtain().Init(new Vector2(270,720),vele2);
+			//  SimpleGreenBullet.Pool.obtain().Init(new Vector2(270,720),vele2);
 			  
                 break;
             case 60:
