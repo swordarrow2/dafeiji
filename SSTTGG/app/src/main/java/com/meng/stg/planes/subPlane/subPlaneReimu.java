@@ -1,14 +1,14 @@
-package com.meng.stg.myPlane;
+package com.meng.stg.planes.subPlane;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.stg.helpers.*;
+import com.meng.stg.GameTextureManager;
 import com.meng.stg.bullets.*;
 
-public class ReimuSubPlane extends SubPlane{
+public class subPlaneReimu extends BaseSubPlane{
 	int i=0;
 	@Override
 	public Drawable getDrawable(){
-		return Resources.Textures.get("reimu53");
+		return GameTextureManager.Textures.get("reimu53");
 	  }
 
 	@Override

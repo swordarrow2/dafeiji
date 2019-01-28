@@ -1,4 +1,4 @@
-package com.meng.stg.helpers;
+package com.meng.stg;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.HashMap;
 
-public final class Resources{
+public final class GameTextureManager{
     public static HashMap<String,Drawable> Textures=new HashMap<String,Drawable>();
 
     public static void Load(){

@@ -1,11 +1,11 @@
-package com.meng.stg.myPlane;
+package com.meng.stg.planes;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.MainActivity;
 import com.meng.stg.MainScreen;
 
-import static com.meng.stg.myPlane.BaseMyPlane.Instance;
+import static com.meng.stg.planes.myPlane.BaseMyPlane.Instance;
 
 /**
  * Plane Ctrl
@@ -32,7 +32,7 @@ public class PlayerInputProcessor extends InputAdapter{
         if(pointer==0){
             vct2_downPosStage=MainScreen.Stage.screenToStageCoordinates
                     (vct2_downPosStage.set(screenX,screenY));
-            vct2_downPosPlayer.set(Instance.Center);
+            vct2_downPosPlayer.set(Instance.objectCenter);
         }
         return super.touchDown(screenX,screenY,pointer,button);
     }
@@ -50,7 +50,7 @@ public class PlayerInputProcessor extends InputAdapter{
 
             if(pointer==0){
                 vct2_tmp1=MainScreen.Stage.screenToStageCoordinates(vct2_tmp1.set(screenX,screenY));
-                Instance.Center.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
+                Instance.objectCenter.set(vct2_downPosPlayer).add(vct2_tmp1.sub(vct2_downPosStage));
             }
 
         return super.touchDragged(screenX,screenY,pointer);

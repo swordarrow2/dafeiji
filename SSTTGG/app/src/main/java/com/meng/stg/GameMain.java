@@ -1,12 +1,8 @@
 package com.meng.stg;
 
-import android.view.WindowManager;
-
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-import com.meng.stg.helpers.Resources;
 
 public class GameMain extends Game {
 	public static SpriteBatch SBatch;
@@ -14,7 +10,7 @@ public class GameMain extends Game {
 	@Override
 	public void create() {
 		SBatch = new SpriteBatch();
-		Resources.Load();
+		GameTextureManager.Load();
 		setScreen(new MainScreen());
 	}
 	@Override

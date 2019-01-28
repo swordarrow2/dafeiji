@@ -1,28 +1,25 @@
-package com.meng.stg.myPlane;
+package com.meng.stg.planes.myPlane;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
+import com.meng.stg.BaseGameObject;
 import com.meng.stg.MainScreen;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
+import com.meng.stg.planes.JudgeCircleAnimation;
 
-public abstract class BaseMyPlane{
+public abstract class BaseMyPlane extends BaseGameObject{
 
     public static BaseMyPlane Instance;
-    public Vector2 Center=new Vector2();
-    public Vector2 Velocity=new Vector2();
-    public Image Drawer=null;
     public int ExistTime=0;
 
     public int unmatchedTime;
     public boolean onUnmatched=false;
     public int bombTime;
     public boolean onBomb=false;
-
-    public int animTime=0;
 
     public static JudgeCircleAnimation animation=null;
     public static Image judgeAnim=null;
@@ -46,7 +43,7 @@ public abstract class BaseMyPlane{
         MainScreen.MainGroup.addActor(Drawer);
         MainScreen.MainGroup.addActor(judgeAnim);
         ExistTime=0;
-        Center.set(MainScreen.Width/2,80);
+        objectCenter.set(MainScreen.Width/2,80);
         Drawer.setSize(30,46);
         unmatchedTime=1;
         onUnmatched=true;
@@ -57,11 +54,10 @@ public abstract class BaseMyPlane{
 
     public void Update(){
         ExistTime++;
-        animTime++;
-        Center.add(Velocity);
-        Center=new Vector2(MathUtils.clamp(Center.x,0,MainScreen.Width),MathUtils.clamp(Center.y,0,MainScreen.Height));
-        judgeAnim.setPosition(Center.x,Center.y,Align.center);
-        Drawer.setPosition(Center.x,Center.y,Align.center);
+        animFlag++;
+        objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.Width),MathUtils.clamp(objectCenter.y,0,MainScreen.Height));
+        judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        Drawer.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
         if(onBomb){
             onUnmatched=true;
@@ -79,14 +75,14 @@ public abstract class BaseMyPlane{
             onUnmatched=false;
             unmatchedTime=Data.ReimuUnmatchedTime;
         }
-        if(Center.x>playerLastX){
-            playerLastX=Center.x;
+        if(objectCenter.x>playerLastX){
+            playerLastX=objectCenter.x;
             Drawer.setDrawable(getRightMoveAnim());
-        }else if(Center.x<playerLastX){
-            playerLastX=Center.x;
+        }else if(objectCenter.x<playerLastX){
+            playerLastX=objectCenter.x;
             Drawer.setDrawable(getLeftMoveAnim());
         }else{
-            playerLastX=Center.x;
+            playerLastX=objectCenter.x;
             Drawer.setDrawable(getStayAnim());
         }
 
@@ -96,7 +92,7 @@ public abstract class BaseMyPlane{
     }
 
     public float[] getPosition(){
-        return new float[]{Center.x,Center.y};
+        return new float[]{objectCenter.x,objectCenter.y};
     }
 
     public abstract void bomb();

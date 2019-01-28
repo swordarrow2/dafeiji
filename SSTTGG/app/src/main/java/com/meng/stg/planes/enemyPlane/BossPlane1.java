@@ -1,4 +1,4 @@
-package com.meng.stg.enemyPlane;
+package com.meng.stg.planes.enemyPlane;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,10 +8,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.meng.stg.MainScreen;
+import com.meng.stg.GameTextureManager;
 import com.meng.stg.bullets.SimpleRedBullet;
 
 import java.util.HashMap;
-import com.meng.stg.helpers.*;
 
 public class BossPlane1 extends BaseEnemyPlane{
 
@@ -23,7 +23,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 	private String reimu="reimu";
     @Override
     protected Drawable getDrawable(){
-        switch(animTime%48){
+        switch(animFlag%48){
             case 15:
                 d=bossAnim.get("anim1");
                 break;
@@ -36,90 +36,90 @@ public class BossPlane1 extends BaseEnemyPlane{
 
 	@Override
     public Drawable getStayAnim(){
-        switch(animTime%32){
+        switch(animFlag%32){
             case 1:
-			  d=Resources.Textures.get(reimu+0);
+			  d=GameTextureManager.Textures.get(reimu+0);
 			  break;
             case 5:
-			  d=Resources.Textures.get(reimu+1);
+			  d=GameTextureManager.Textures.get(reimu+1);
 			  break;
             case 9:
-			  d=Resources.Textures.get(reimu+2);
+			  d=GameTextureManager.Textures.get(reimu+2);
 			  break;
             case 13:
-			  d=Resources.Textures.get(reimu+3);
+			  d=GameTextureManager.Textures.get(reimu+3);
 			  break;
             case 17:
-			  d=Resources.Textures.get(reimu+4);
+			  d=GameTextureManager.Textures.get(reimu+4);
 			  break;
             case 21:
-			  d=Resources.Textures.get(reimu+5);
+			  d=GameTextureManager.Textures.get(reimu+5);
 			  break;
             case 25:
-			  d=Resources.Textures.get(reimu+6);
+			  d=GameTextureManager.Textures.get(reimu+6);
 			  break;
             case 29:
-			  d=Resources.Textures.get(reimu+7);
+			  d=GameTextureManager.Textures.get(reimu+7);
 			  break;
 		  }
         return d;
 	  }
 
     public Drawable getLeftMoveAnim(){
-        switch(animTime%32){
+        switch(animFlag%32){
             case 1:
-			  d=Resources.Textures.get(reimu+8);
+			  d=GameTextureManager.Textures.get(reimu+8);
 			  break;
             case 5:
-			  d=Resources.Textures.get(reimu+9);
+			  d=GameTextureManager.Textures.get(reimu+9);
 			  break;
             case 9:
-			  d=Resources.Textures.get(reimu+10);
+			  d=GameTextureManager.Textures.get(reimu+10);
 			  break;
             case 13:
-			  d=Resources.Textures.get(reimu+11);
+			  d=GameTextureManager.Textures.get(reimu+11);
 			  break;
             case 17:
-			  d=Resources.Textures.get(reimu+12);
+			  d=GameTextureManager.Textures.get(reimu+12);
 			  break;
             case 21:
-			  d=Resources.Textures.get(reimu+13);
+			  d=GameTextureManager.Textures.get(reimu+13);
 			  break;
             case 25:
-			  d=Resources.Textures.get(reimu+14);
+			  d=GameTextureManager.Textures.get(reimu+14);
 			  break;
             case 29:
-			  d=Resources.Textures.get(reimu+15);
+			  d=GameTextureManager.Textures.get(reimu+15);
 			  break;
 		  }
         return d;
 	  }
 
     public Drawable getRightMoveAnim(){
-        switch(animTime%32){
+        switch(animFlag%32){
             case 1:
-			  d=Resources.Textures.get(reimu+16);
+			  d=GameTextureManager.Textures.get(reimu+16);
 			  break;
             case 5:
-			  d=Resources.Textures.get(reimu+17);
+			  d=GameTextureManager.Textures.get(reimu+17);
 			  break;
             case 9:
-			  d=Resources.Textures.get(reimu+18);
+			  d=GameTextureManager.Textures.get(reimu+18);
 			  break;
             case 13:
-			  d=Resources.Textures.get(reimu+19);
+			  d=GameTextureManager.Textures.get(reimu+19);
 			  break;
             case 17:
-			  d=Resources.Textures.get(reimu+20);
+			  d=GameTextureManager.Textures.get(reimu+20);
 			  break;
             case 21:
-			  d=Resources.Textures.get(reimu+21);
+			  d=GameTextureManager.Textures.get(reimu+21);
 			  break;
             case 25:
-			  d=Resources.Textures.get(reimu+22);
+			  d=GameTextureManager.Textures.get(reimu+22);
 			  break;
             case 29:
-			  d=Resources.Textures.get(reimu+23);
+			  d=GameTextureManager.Textures.get(reimu+23);
 			  break;
 		  }
         return d;
@@ -145,18 +145,18 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     @Override
     protected void move(){
-        if(Center.x>500){
+        if(objectCenter.x>500){
             xx=true;
-        }else if(Center.x<50){
+        }else if(objectCenter.x<50){
             xx=false;
         }
-        if(Center.y>700){
+        if(objectCenter.y>700){
             yy=true;
-        }else if(Center.y<400){
+        }else if(objectCenter.y<400){
             yy=false;
         }
-        Center.x=xx?Center.x+vx:Center.x-vx;
-        Center.y=yy?Center.y+vy:Center.y-vy;
+        objectCenter.x=xx?objectCenter.x+vx:objectCenter.x-vx;
+        objectCenter.y=yy?objectCenter.y+vy:objectCenter.y-vy;
     }
 
     @Override
@@ -166,7 +166,7 @@ public class BossPlane1 extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.Pool.obtain().Init(Center,vel);
+                SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
                 vel.rotate(30);
             }
         }
@@ -174,14 +174,14 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     @Override
     protected void anim(){
-        if(Center.x>enemyLastX){
-            enemyLastX=Center.x;
+        if(objectCenter.x>enemyLastX){
+            enemyLastX=objectCenter.x;
             Drawer.setDrawable(getRightMoveAnim() );
-        }else if(Center.x<enemyLastX){
-            enemyLastX=Center.x;
+        }else if(objectCenter.x<enemyLastX){
+            enemyLastX=objectCenter.x;
             Drawer.setDrawable(getLeftMoveAnim() );
         }else{
-            enemyLastX=Center.x;
+            enemyLastX=objectCenter.x;
             Drawer.setDrawable(getDrawable() );
         }
     }
@@ -194,7 +194,7 @@ public class BossPlane1 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.Pool.obtain().Init(Center,vel);
+            SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
             vel.rotate(15);
         }
         super.Kill();

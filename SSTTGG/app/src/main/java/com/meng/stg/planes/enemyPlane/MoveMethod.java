@@ -1,4 +1,4 @@
-package com.meng.stg.enemyPlane;
+package com.meng.stg.planes.enemyPlane;
 import com.badlogic.gdx.math.*;
 
 public class MoveMethod

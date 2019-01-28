@@ -1,18 +1,15 @@
-package com.meng.stg.myPlane;
+package com.meng.stg.planes.subPlane;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg.*;
-import com.meng.stg.bullets.*;
-import com.meng.stg.helpers.*;
-import java.util.*;
-import java.util.concurrent.*;
 
 import com.meng.stg.helpers.Pools;
+import com.meng.stg.planes.myPlane.BaseMyPlane;
 
-public abstract class SubPlane
+public abstract class BaseSubPlane
 {
 	public Vector2 Center=new Vector2();
     public Vector2 size=new Vector2();
@@ -46,10 +43,10 @@ public abstract class SubPlane
         ExistTime++;
 		switch(num){
 		  case 0:
-			  Center=BaseMyPlane.Instance.Center.cpy().add(-32,0);
+			  Center=BaseMyPlane.Instance.objectCenter.cpy().add(-32,0);
 			break;
 			case 1:
-			  Center=BaseMyPlane.Instance.Center.cpy().add(32,0);
+			  Center=BaseMyPlane.Instance.objectCenter.cpy().add(32,0);
 			  break;
 		}
 		Drawer.setDrawable(getDrawable());

@@ -1,7 +1,7 @@
 package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -51,7 +51,7 @@ public class BulletShooter{
 
     void shoot(){
         if(time%25==0){
-            SimpleGreenBullet.Pool.obtain().Init(baseEnemyPlane.Center.cpy(),speed);
+            SimpleGreenBullet.Pool.obtain().Init(baseEnemyPlane.objectCenter.cpy(),speed);
         }
     }
 

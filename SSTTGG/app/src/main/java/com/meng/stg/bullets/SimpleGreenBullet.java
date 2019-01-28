@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.MainScreen;
-import com.meng.stg.helpers.Resources;
+import com.meng.stg.GameTextureManager;
 
 public class SimpleGreenBullet extends BaseEnemyBullet{
 
@@ -26,17 +26,17 @@ public class SimpleGreenBullet extends BaseEnemyBullet{
         super.Init();
 		thoughCount=0;
 		refCount=3;
-        Center.set(center);
-        Velocity.set(velocity);
+        objectCenter.set(center);
+        this.velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(Center,Drawer.getWidth()/2); //中心、半径
+        judgeCircle=new Circle(objectCenter,Drawer.getWidth()/2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
     }
 
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get(this.getClass().getSimpleName() .replace(".class","") );
+            drawable=GameTextureManager.Textures.get(this.getClass().getSimpleName() .replace(".class","") );
         }
         return drawable;
     }

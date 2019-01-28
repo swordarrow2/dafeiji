@@ -1,4 +1,4 @@
-package com.meng.stg.dialogs;
+package com.meng.stg.helpers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

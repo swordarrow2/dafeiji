@@ -6,12 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.MainScreen;
-import com.meng.stg.helpers.Resources;
-import com.meng.stg.enemyPlane.*;
+import com.meng.stg.GameTextureManager;
 
 public class SimpleRedBullet extends BaseEnemyBullet{
 
-	private MoveCtrl mvc;
 
     public static Pool<SimpleRedBullet> Pool=new Pool<SimpleRedBullet>(){
         @Override
@@ -24,25 +22,13 @@ public class SimpleRedBullet extends BaseEnemyBullet{
         super.Init();
 		thoughCount=0;
 		refCount=0;
-        Center.set(center);
-        Velocity.set(velocity);
+        objectCenter.set(center);
+        this.velocity.set(velocity);
         Drawer.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(Center,Drawer.getWidth()/2);
+        judgeCircle=new Circle(objectCenter,Drawer.getWidth()/2);
         MainScreen.MainGroup.addActor(Drawer);
-		mvc=new MoveCtrl(this,
-						 new MoveMethod(60,new Vector2(0,-5)),
-						 new MoveMethod(20,new Vector2(1,9)),
-						 new MoveMethod(20,new Vector2(-5,-9)), 
-						 new MoveMethod(20,new Vector2(-1,3)),
-						 new MoveMethod(10,new Vector2(-1,-21))
-						 );
 	  }
 
-	@Override
-	public void Update(){
-		super.Update();
-		mvc.update();
-	  }
 
     @Override
     public Vector2 getSize(){
@@ -52,7 +38,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get(this.getClass().getSimpleName().replace(".class",""));
+            drawable=GameTextureManager.Textures.get(this.getClass().getSimpleName().replace(".class",""));
 		  }
         return drawable;
 	  }

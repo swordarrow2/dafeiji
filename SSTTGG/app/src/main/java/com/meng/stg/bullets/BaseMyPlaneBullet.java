@@ -12,16 +12,13 @@ import static com.meng.stg.MainScreen.enemys;
 public abstract class BaseMyPlaneBullet extends BaseBullet{
 
     public abstract Drawable getDrawable();
-
 	
     public void Init(Vector2 center,Vector2 velocity){
         super.Init();
-		refCount=0;
-		thoughCount=0;
-        Center.set(center);
-        Velocity.set(velocity);
-        Drawer.setPosition(Center.x,Center.y,Align.center);
-        judgeCircle=new Circle(Center,Drawer.getWidth()/3*2); //中心、半径
+        objectCenter.set(center);
+        this.velocity.set(velocity);
+        Drawer.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        judgeCircle=new Circle(objectCenter,Drawer.getWidth()/3*2); //中心、半径
         MainScreen.MainGroup.addActor(Drawer);
     }
 

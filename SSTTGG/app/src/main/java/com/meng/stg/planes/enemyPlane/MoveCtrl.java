@@ -1,4 +1,4 @@
-package com.meng.stg.enemyPlane;
+package com.meng.stg.planes.enemyPlane;
 import com.meng.stg.bullets.*;
 import com.badlogic.gdx.math.*;
 
@@ -9,7 +9,7 @@ public class MoveCtrl{
 	private MoveMethod[] m;
 	private int now=0;
 	private int flag=0;
-	private Vector2 tmpVec;
+	private Vector2 tmpVec=new Vector2(1,0);
 
 	public MoveCtrl(BaseEnemyPlane enemy,MoveMethod... r){
 		this.enemy=enemy;
@@ -30,9 +30,9 @@ public class MoveCtrl{
 			  }	  
 		  }
 		if(flag==0){
-			enemy.Center.add(tmpVec);
+			enemy.velocity.set(tmpVec);
 		  }else{
-			enemyBullet.Center.add(tmpVec);
+			enemyBullet.velocity.set(tmpVec);
 		  }
 	  }
   }

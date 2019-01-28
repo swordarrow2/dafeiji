@@ -4,10 +4,8 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.MainScreen;
-import com.meng.stg.helpers.Resources;
+import com.meng.stg.GameTextureManager;
 
 import static com.meng.stg.MainScreen.enemys;
 
@@ -22,7 +20,7 @@ public class ReimuBomb extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get("reimu29") ;
+            drawable=GameTextureManager.Textures.get("reimu29") ;
         }
         return drawable;
     }

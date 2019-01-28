@@ -3,8 +3,7 @@ package com.meng.stg.bullets;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.helpers.Resources;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.GameTextureManager;
 
 public class ReimuShoot extends BaseMyPlaneBullet{
  
@@ -18,7 +17,7 @@ public class ReimuShoot extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=Resources.Textures.get("reimu24");
+            drawable=GameTextureManager.Textures.get("reimu24");
         }
         return drawable;
 	  }
