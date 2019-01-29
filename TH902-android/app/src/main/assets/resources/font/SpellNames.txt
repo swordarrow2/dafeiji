@@ -1,0 +1,15 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890
+"!`?'.,;:()[]{}<>|/@\^$-%+=#_&~* 
+动符「弹跳」
+「Ctrl-C, Ctrl-V」
+动符「闪烁」
+动符「CROSS」
+「贰壹叁壹伍」
+「极光与流星」
+终符「弹幕结界」
+里冬「天青色旋转木马」
+里冬「绽放的烟花」
+里冬「极疏介质中的波与粒」
+算符「四重递归」
