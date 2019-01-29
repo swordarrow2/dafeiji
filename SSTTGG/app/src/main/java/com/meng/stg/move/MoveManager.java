@@ -3,13 +3,13 @@ package com.meng.stg.move;
 import com.meng.stg.BaseGameObject;
 import com.badlogic.gdx.math.*;
 
-public class MoveCtrl{
+public class MoveManager{
     private BaseGameObject baseGameObject;
 	private BaseMoveMethod[] moveMethodList;
 	private int nowMoveMethod=0;
 	private Vector2 tmpVec=new Vector2(1,0);
 
-	public MoveCtrl(BaseGameObject baseGameObject,BaseMoveMethod... r){
+	public MoveManager(BaseGameObject baseGameObject,BaseMoveMethod... r){
 		this.baseGameObject=baseGameObject;
 		moveMethodList=r;
 	  }

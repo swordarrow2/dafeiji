@@ -2,27 +2,30 @@ package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.ui.MainScreen;
-import com.meng.stg.move.MoveCtrl;
+import com.meng.stg.move.MoveManager;
+import com.meng.stg.move.MoveMethodCircle;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
+import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
     public int refCount=0;
     public int thoughCount=0;
 
-    public abstract Drawable getDrawable() ;
+    public abstract Drawable getDrawable();
+
     public static int bulletCount=0;
+
     @Override
     public void Init(){
         super.Init();
-        mvc=new MoveCtrl(this,
+        mvc=new MoveManager(this,
                 new MoveMethodStraight(60,new Vector2(0,-5)),
                 new MoveMethodStraight(20,new Vector2(1,9)),
                 new MoveMethodStraight(20,new Vector2(-5,-9)),
                 new MoveMethodStraight(20,new Vector2(-1,3)),
-                new MoveMethodStraight(10,new Vector2(-1,-21))
+                new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
         );
         bulletCount++;
     }

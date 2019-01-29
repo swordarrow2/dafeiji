@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.move.MoveCtrl;
+import com.meng.stg.move.MoveManager;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Pools;
@@ -51,7 +51,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
                 break;
             }
         }
-        mvc=new MoveCtrl(this,
+        mvc=new MoveManager(this,
                 new MoveMethodStraight(60,new Vector2(0,-5)),
                 new MoveMethodStraight(20,new Vector2(1,9)),
                 new MoveMethodStraight(20,new Vector2(-5,-9)),
