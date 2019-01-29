@@ -16,6 +16,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import static com.meng.stg.ui.MainScreen.enemys;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.meng.stg.move.*;
 
 public abstract class BaseEnemyPlane extends BaseGameObject{
 
@@ -52,11 +53,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
             }
         }
         mvc=new MoveManager(this,
-                new MoveMethodStraight(60,new Vector2(0,-5)),
-                new MoveMethodStraight(20,new Vector2(1,9)),
-                new MoveMethodStraight(20,new Vector2(-5,-9)),
-                new MoveMethodStraight(20,new Vector2(-1,3)),
-                new MoveMethodStraight(10,new Vector2(-1,-21))
+                
+                new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))
         );
     }
 

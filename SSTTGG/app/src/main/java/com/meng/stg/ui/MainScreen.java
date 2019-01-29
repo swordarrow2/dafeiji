@@ -37,7 +37,7 @@ public class MainScreen extends ScreenAdapter{
     public static Rectangle FightArea;
     public static InputMultiplexer InputMgr;
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
-    public static BitmapFont f;
+    public static BitmapFont mainBitmapFont;
 	Button imb;
     public static boolean onBoss=false;
 	FitViewport sv;
@@ -49,11 +49,13 @@ public class MainScreen extends ScreenAdapter{
         Height=720;//450;
 		imb=new Button(GameTextureManager.Textures.get("reimu2"));
 		imb.setPosition(100,100);
+		imb.setSize(100,100);
 		imb.addListener(new ClickListener(){
 			  @Override
 			  public void clicked(InputEvent event, float x, float y) {
-				  ErrDialog.Show("t", "按钮被点击了");
+				
 				  BaseMyPlane.Instance.onBomb=true;
+				  super.clicked(event,x,y);
 				}
 			});
 		sv=new FitViewport(Width,Height);
@@ -61,15 +63,15 @@ public class MainScreen extends ScreenAdapter{
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.BLACK);
         pixmap.fill();
-        f=new BitmapFont(Gdx.files.internal("font/fo.fnt"));// new BitmapFont(Gdx.files.internal("font/bitmapfont.fnt"));
-        f.setColor(Color.WHITE);
-        Image bg=new Image(new Texture(pixmap));
+        mainBitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));// new BitmapFont(Gdx.files.internal("font/bitmapfont.fnt"));
+        mainBitmapFont.setColor(Color.WHITE);
+        Image background=new Image(new Texture(pixmap));
 
-        bg.setBounds(0,0,Width,Height);
-        Stage.addActor(bg);
+        background.setBounds(0,0,Width,Height);
+        Stage.addActor(background);
         MainGroup=new Group();
         Stage.addActor(MainGroup);
-		Stage.addActor(imb);
+		MainGroup.addActor(imb);
 		
         FightArea=new Rectangle(0,0,Width,Height);
 
@@ -86,6 +88,7 @@ public class MainScreen extends ScreenAdapter{
         // e= new enemyPlane().createEnemy();
         InputMgr=new InputMultiplexer();
         InputMgr.addProcessor(new PlayerInputProcessor());
+		
         Gdx.input.setInputProcessor(InputMgr);
         super.show();
     }
@@ -101,6 +104,7 @@ public class MainScreen extends ScreenAdapter{
                 }
             }
         }
+		
         Stage.draw();
         BulletShooter.UpdateAll();
         BaseBullet.UpdateAll();
@@ -116,7 +120,7 @@ public class MainScreen extends ScreenAdapter{
         //   }
 
         GameMain.SBatch.begin();
-        f.draw(GameMain.SBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
+        mainBitmapFont.draw(GameMain.SBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //        + "\nPlayerLocation:" + (int) playerBaseEntity.x + "," + (int) playerBaseEntity.y
                         //        + "\nmissTime:" + playerBaseEntity.missTime
                         //        + "\nbullets:" + bullet.bulletCount
@@ -128,7 +132,7 @@ public class MainScreen extends ScreenAdapter{
                 // + "\nisKilled2:" + enemys[1].isKilled()
                 ,10,710);
         //绘制
-        f.draw(GameMain.SBatch,"B",10,30);
+        mainBitmapFont.draw(GameMain.SBatch,"B",10,30);
         switch(stageFlag){
             case Data.stageFlagStage1:
                 if(gameTime>700){

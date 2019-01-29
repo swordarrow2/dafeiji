@@ -22,9 +22,9 @@ public abstract class BaseEnemyBullet extends BaseBullet{
         super.Init();
         mvc=new MoveManager(this,
                 new MoveMethodStraight(60,new Vector2(0,-5)),
-                new MoveMethodStraight(20,new Vector2(1,9)),
-                new MoveMethodStraight(20,new Vector2(-5,-9)),
-                new MoveMethodStraight(20,new Vector2(-1,3)),
+               // new MoveMethodStraight(20,new Vector2(1,9)),
+              //  new MoveMethodStraight(20,new Vector2(-5,-9)),
+              //  new MoveMethodStraight(20,new Vector2(-1,3)),
                 new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
         );
         bulletCount++;

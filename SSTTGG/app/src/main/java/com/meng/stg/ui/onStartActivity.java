@@ -20,6 +20,10 @@ public class onStartActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_start2);
+		Intent i=new Intent(onStartActivity.this,MainActivity.class);
+		startActivity(i);
+		finish();
+		if(true)return;
       btn = (Button) findViewById(R.id.btn);
         player= (RadioGroup) findViewById(R.id.radioplayer);
         diff=(RadioGroup)findViewById(R.id.radiodifficulty);
