@@ -2,8 +2,8 @@ package com.meng.stg.planes;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.MainActivity;
-import com.meng.stg.MainScreen;
+import com.meng.stg.ui.MainActivity;
+import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.planes.myPlane.BaseMyPlane.Instance;
 

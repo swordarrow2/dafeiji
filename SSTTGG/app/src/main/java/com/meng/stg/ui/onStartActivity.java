@@ -1,4 +1,4 @@
-package com.meng.stg;
+package com.meng.stg.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.meng.stg.R;
 
 public class onStartActivity extends Activity {
     Button btn;

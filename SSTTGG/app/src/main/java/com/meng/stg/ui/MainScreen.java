@@ -1,4 +1,4 @@
-package com.meng.stg;
+package com.meng.stg.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.meng.stg.GameTextureManager;
 import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.bullets.BulletShooter;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;

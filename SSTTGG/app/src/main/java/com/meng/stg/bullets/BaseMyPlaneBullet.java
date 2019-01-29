@@ -4,9 +4,9 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.meng.stg.MainScreen;
+import com.meng.stg.ui.MainScreen;
 
-import static com.meng.stg.MainScreen.enemys;
+import static com.meng.stg.ui.MainScreen.enemys;
 
 
 public abstract class BaseMyPlaneBullet extends BaseBullet{

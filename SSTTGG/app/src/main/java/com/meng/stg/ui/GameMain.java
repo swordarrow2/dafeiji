@@ -1,8 +1,9 @@
-package com.meng.stg;
+package com.meng.stg.ui;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.meng.stg.GameTextureManager;
 
 public class GameMain extends Game {
 	public static SpriteBatch SBatch;

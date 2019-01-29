@@ -1,4 +1,4 @@
-package com.meng.stg;
+package com.meng.stg.ui;
 
 import android.graphics.Point;
 import android.os.Bundle;

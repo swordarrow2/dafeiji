@@ -7,11 +7,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.MainScreen;
+import com.meng.stg.move.MoveCtrl;
+import com.meng.stg.move.MoveMethodStraight;
+import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 
-import static com.meng.stg.MainScreen.enemys;
+import static com.meng.stg.ui.MainScreen.enemys;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.graphics.g2d.*;
 
@@ -50,11 +52,11 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
             }
         }
         mvc=new MoveCtrl(this,
-                new MoveMethod(60,new Vector2(0,-5)),
-                new MoveMethod(20,new Vector2(1,9)),
-                new MoveMethod(20,new Vector2(-5,-9)),
-                new MoveMethod(20,new Vector2(-1,3)),
-                new MoveMethod(10,new Vector2(-1,-21))
+                new MoveMethodStraight(60,new Vector2(0,-5)),
+                new MoveMethodStraight(20,new Vector2(1,9)),
+                new MoveMethodStraight(20,new Vector2(-5,-9)),
+                new MoveMethodStraight(20,new Vector2(-1,3)),
+                new MoveMethodStraight(10,new Vector2(-1,-21))
         );
     }
 

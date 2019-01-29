@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.planes.enemyPlane.MoveCtrl;
+import com.meng.stg.move.MoveCtrl;
 
 public abstract class BaseGameObject{
 

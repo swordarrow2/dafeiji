@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.MainScreen;
+import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Pools;
 
 import java.util.HashSet;

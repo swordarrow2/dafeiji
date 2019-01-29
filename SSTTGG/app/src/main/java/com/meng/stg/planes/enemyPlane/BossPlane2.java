@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.meng.stg.MainScreen;
+import com.meng.stg.ui.MainScreen;
 import com.meng.stg.GameTextureManager;
 import com.meng.stg.bullets.SimpleRedBullet;
 

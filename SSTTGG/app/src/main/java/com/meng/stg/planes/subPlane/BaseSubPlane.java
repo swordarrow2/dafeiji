@@ -4,10 +4,10 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
-import com.meng.stg.*;
 
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
+import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseSubPlane
 {

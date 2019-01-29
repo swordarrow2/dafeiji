@@ -2,7 +2,7 @@ package com.meng.stg.helpers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import com.meng.stg.MainActivity;
+import com.meng.stg.ui.MainActivity;
 
 public class ErrDialog
 {

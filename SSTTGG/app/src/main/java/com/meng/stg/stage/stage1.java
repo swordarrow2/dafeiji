@@ -1,7 +1,7 @@
 package com.meng.stg.stage;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.MainScreen;
+import com.meng.stg.ui.MainScreen;
 import com.meng.stg.bullets.SimpleRedBullet;
 import com.meng.stg.planes.enemyPlane.BossPlane1;
 import com.meng.stg.planes.enemyPlane.BossPlane2;
