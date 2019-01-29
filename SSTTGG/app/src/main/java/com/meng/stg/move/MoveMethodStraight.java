@@ -3,6 +3,7 @@ package com.meng.stg.move;
 import com.badlogic.gdx.math.Vector2;
 
 public class MoveMethodStraight extends BaseMoveMethod{
+
     public MoveMethodStraight(int inFrame,Vector2 velo){
         time=inFrame;
         velocity=velo;

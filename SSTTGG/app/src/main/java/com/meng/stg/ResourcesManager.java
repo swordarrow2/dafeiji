@@ -8,9 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.HashMap;
-
-public final class GameTextureManager{
-    public static HashMap<String,Drawable> Textures=new HashMap<String,Drawable>();
+/*
+all game resources
+ */
+public final class ResourcesManager{
+    public static HashMap<String,Drawable> textures=new HashMap<String,Drawable>();
 
     public static void Load(){
         loadMyPlane("pl00");
@@ -21,7 +23,7 @@ public final class GameTextureManager{
             if(projFiles[i].extension().equals("png")){
                 Texture texture=new Texture(projFiles[i]);
                 TextureRegionDrawable drawable=new TextureRegionDrawable(new TextureRegion(texture));
-                Textures.put(projFiles[i].nameWithoutExtension(),drawable);
+                textures.put(projFiles[i].nameWithoutExtension(),drawable);
             }
         }
         FileHandle npcDir=Gdx.files.internal("textures/enemy/");
@@ -30,7 +32,7 @@ public final class GameTextureManager{
             if(npcFiles[i].extension().equals("png")){
                 Texture texture=new Texture(npcFiles[i]);
                 TextureRegionDrawable drawable=new TextureRegionDrawable(new TextureRegion(texture));
-                Textures.put(npcFiles[i].nameWithoutExtension(),drawable);
+                textures.put(npcFiles[i].nameWithoutExtension(),drawable);
             }
         }
     }
@@ -47,7 +49,7 @@ public final class GameTextureManager{
             int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
             TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
             TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-            Textures.put("reimu"+plsanaeWalkSheet[i+1],trd);
+            textures.put("reimu"+plsanaeWalkSheet[i+1],trd);
 			n++;
         }}
     }
@@ -64,7 +66,7 @@ public final class GameTextureManager{
 				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
 				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
 				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-				Textures.put("zayu"+plsanaeWalkSheet[i+1],trd);
+				textures.put("zayu"+plsanaeWalkSheet[i+1],trd);
 				n++;
 			  }}
 	  }

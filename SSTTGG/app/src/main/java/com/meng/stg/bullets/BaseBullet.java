@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Pools;
+import com.meng.stg.ui.MainScreen;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,63 +16,61 @@ import java.util.concurrent.LinkedBlockingQueue;
 public abstract class BaseBullet extends BaseGameObject{
 
     public Vector2 size=new Vector2();
-    public int ExistTime;
-    public static HashSet<BaseBullet> Instances=new HashSet<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> ToDelete=new LinkedBlockingQueue<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> ToAdd=new LinkedBlockingQueue<BaseBullet>();
+    public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
+    public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
+    public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
     protected Rectangle drawBox=new Rectangle();
 
 
     public void Init(){
-        ToAdd.add(this);
+        toAdd.add(this);
         size=getSize();
-        Drawer=Pools.ImagePool.obtain();
-        Drawer.setDrawable(getDrawable());
-        Drawer.setSize(size.x,size.y);
-        Drawer.setRotation(getRotationDegree());
-        Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-        ExistTime=0;
+        image=Pools.imagePool.obtain();
+        image.setDrawable(getDrawable());
+        image.setSize(size.x,size.y);
+        image.setRotation(getRotationDegree());
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        existTime=0;
     }
 
-    public void Kill(){
-        ToDelete.add(this);
-        Drawer.setRotation(0);
-        Drawer.remove();
-        Pools.ImagePool.free(Drawer);
+    public void kill(){
+        toDelete.add(this);
+        image.setRotation(0);
+        image.remove();
+        Pools.imagePool.free(image);
     }
 
-    public void Update(){
-        ExistTime++;
+    public void update(){
+        super.update();
         objectCenter.add(velocity);
-        Drawer.setRotation(getRotationDegree());
-        Drawer.setPosition(objectCenter.x,objectCenter.y,Align.center);
-        Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-        drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
+        image.setRotation(getRotationDegree());
+        image.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
-
-        if(!drawBox.overlaps(MainScreen.FightArea)){
-            Kill();
+        if(!drawBox.overlaps(MainScreen.fightArea)){
+            kill();
         }else{
-            Judge();
+            judge();
         }
     }
 
     public static void killAllBullet(){
-        Iterator i=Instances.iterator();
+        Iterator i=instances.iterator();
         while(i.hasNext()){
-            ((BaseBullet)i.next()).Kill();
+            ((BaseBullet)i.next()).kill();
         }
     }
 
-    public static void UpdateAll(){
-        while(!ToDelete.isEmpty()){
-            Instances.remove(ToDelete.poll());
+    public static void updateAll(){
+        while(!toDelete.isEmpty()){
+            instances.remove(toDelete.poll());
         }
-        while(!ToAdd.isEmpty()){
-            Instances.add(ToAdd.poll());
+        while(!toAdd.isEmpty()){
+            instances.add(toAdd.poll());
         }
-        for(BaseBullet baseBullet : Instances){
-            baseBullet.Update();
+        for(BaseBullet baseBullet : instances){
+            baseBullet.update();
         }
     }
 
@@ -82,7 +80,7 @@ public abstract class BaseBullet extends BaseGameObject{
 
     public abstract Drawable getDrawable();
 
-    public abstract void Judge();
+    public abstract void judge();
 
     public abstract float getRotationDegree();
 

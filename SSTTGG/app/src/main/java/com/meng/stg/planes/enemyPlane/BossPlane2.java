@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.meng.stg.ui.MainScreen;
-import com.meng.stg.GameTextureManager;
-import com.meng.stg.bullets.SimpleRedBullet;
+import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.enemy.SimpleRedBullet;
 
 import java.util.HashMap;
 
@@ -31,19 +31,19 @@ public class BossPlane2 extends BaseEnemyPlane{
     public Drawable getStayAnim(){
         switch(animFlag%32){
             case 1:
-			  d=GameTextureManager.Textures.get(reimu+96);
+			  d=ResourcesManager.textures.get(reimu+96);
 			  break;
             case 5:
-			  d=GameTextureManager.Textures.get(reimu+97);
+			  d=ResourcesManager.textures.get(reimu+97);
 			  break;
             case 9:
-			  d=GameTextureManager.Textures.get(reimu+98);
+			  d=ResourcesManager.textures.get(reimu+98);
 			  break;
             case 13:
-			  d=GameTextureManager.Textures.get(reimu+99);
+			  d=ResourcesManager.textures.get(reimu+99);
 			  break;
             case 17:
-			  d=GameTextureManager.Textures.get(reimu+100);
+			  d=ResourcesManager.textures.get(reimu+100);
 			  
 		  }
         return d;
@@ -52,25 +52,25 @@ public class BossPlane2 extends BaseEnemyPlane{
     public Drawable getLeftMoveAnim(){
         switch(animFlag%32){
             case 1:
-			  d=GameTextureManager.Textures.get(reimu+101);
+			  d=ResourcesManager.textures.get(reimu+101);
 			  break;
             case 5:
-			  d=GameTextureManager.Textures.get(reimu+102);
+			  d=ResourcesManager.textures.get(reimu+102);
 			  break;
             case 9:
-			  d=GameTextureManager.Textures.get(reimu+103);
+			  d=ResourcesManager.textures.get(reimu+103);
 			  break;
             case 13:
-			  d=GameTextureManager.Textures.get(reimu+104);
+			  d=ResourcesManager.textures.get(reimu+104);
 			  break;
             case 17:
-			  d=GameTextureManager.Textures.get(reimu+105);
+			  d=ResourcesManager.textures.get(reimu+105);
 			  break;
             case 21:
-			  d=GameTextureManager.Textures.get(reimu+106);
+			  d=ResourcesManager.textures.get(reimu+106);
 			  break;
             case 25:
-			  d=GameTextureManager.Textures.get(reimu+107);
+			  d=ResourcesManager.textures.get(reimu+107);
 			  break;
             
 		  }
@@ -97,7 +97,7 @@ public class BossPlane2 extends BaseEnemyPlane{
                 index++;
             }
         }
-        Drawer.setSize(128,128);
+        image.setSize(128,128);
     }
 
     
@@ -133,13 +133,13 @@ public class BossPlane2 extends BaseEnemyPlane{
     protected void anim(){
         if(objectCenter.x>enemyLastX){
             enemyLastX=objectCenter.x;
-            Drawer.setDrawable(getRightMoveAnim() );
+            image.setDrawable(getRightMoveAnim() );
         }else if(objectCenter.x<enemyLastX){
             enemyLastX=objectCenter.x;
-            Drawer.setDrawable(getLeftMoveAnim() );
+            image.setDrawable(getLeftMoveAnim() );
         }else{
             enemyLastX=objectCenter.x;
-            Drawer.setDrawable(getDrawable() );
+            image.setDrawable(getDrawable() );
         }
     }
 

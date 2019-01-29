@@ -1,12 +1,12 @@
-package com.meng.stg.bullets;
+package com.meng.stg.bullets.myPlane;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.GameTextureManager;
+import com.meng.stg.ResourcesManager;
 
 public class ReimuShoot extends BaseMyPlaneBullet{
- 
+
     public static Pool<ReimuShoot> Pool=new Pool<ReimuShoot>(){
         @Override
         protected ReimuShoot newObject(){
@@ -17,21 +17,21 @@ public class ReimuShoot extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=GameTextureManager.Textures.get("reimu24");
+            drawable=ResourcesManager.textures.get("reimu24");
         }
         return drawable;
-	  }
+    }
 
-	@Override
-	public void Update(){
-		super.Update();
-		Drawer.toBack();
-	  }
+    @Override
+    public void update(){
+        super.update();
+        image.toBack();
+    }
 
     @Override
     public Vector2 getSize(){
         return new Vector2(64,16);
-   }
+    }
 
     @Override
     public float getRotationDegree(){

@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
-
+/*
+judge circle animation
+ */
 public class JudgeCircleAnimation extends TextureRegionDrawable implements Disposable{
+
     private TextureRegion[] regions=new TextureRegion[8];
     private int stat=0;
 
@@ -29,7 +32,7 @@ public class JudgeCircleAnimation extends TextureRegionDrawable implements Dispo
         setRegion(regions[0]);
     }
 
-    public void Update(){
+    public void update(){
         stat++;
         setRegion(regions[stat%regions.length]);
     }

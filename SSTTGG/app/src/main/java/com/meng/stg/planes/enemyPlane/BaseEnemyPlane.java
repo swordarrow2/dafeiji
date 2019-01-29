@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.move.MoveManager;
-import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
@@ -17,7 +16,9 @@ import static com.meng.stg.ui.MainScreen.enemys;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.meng.stg.move.*;
-
+/*
+base class of enemy
+ */
 public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public boolean Killed=false;
@@ -35,17 +36,17 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public void Init(float x,float y,float vx,float vy,int hp){
-        Drawer=Pools.ImagePool.obtain();
+        image=Pools.imagePool.obtain();
         Drawable drawable=getDrawable();
-        Drawer.setDrawable(drawable );
-		//Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
+        image.setDrawable(drawable );
+		//image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         Killed=false;
         objectCenter.set(x,y);
         this.vx=vx;
         this.vy=vy;
         this.hp=hp;
-        judgeCircle=new Circle(objectCenter,Drawer.getWidth()/2); //中心、半径
-        MainScreen.MainGroup.addActor(Drawer);
+        judgeCircle=new Circle(objectCenter,image.getWidth()/2); //中心、半径
+        MainScreen.mainGroup.addActor(image);
         for(int i=0;i<32;i++){
             if(enemys[i]==null){
                 enemys[i]=this;
@@ -74,9 +75,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void Kill(){
         Killed=true;
-        Drawer.remove();
+        image.remove();
         judgeCircle=null;
-        Pools.ImagePool.free(Drawer);
+        Pools.imagePool.free(image);
     }
 
     public void Update(){
@@ -86,22 +87,22 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         objectCenter.add(velocity);
         anim();
         shoot();
-        Drawer.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        image.setPosition(objectCenter.x,objectCenter.y,Align.center);
 		if(objectCenter.x>playerLastX){
             playerLastX=objectCenter.x;
-            Drawer.setDrawable(getRightMoveAnim());
+            image.setDrawable(getRightMoveAnim());
 		  }else if(objectCenter.x<playerLastX){
             playerLastX=objectCenter.x;
 			  TextureRegion t=((TextureRegionDrawable)getLeftMoveAnim()).getRegion();
 			  t.flip(true,false);
-            Drawer.setDrawable(new TextureRegionDrawable(t));
+            image.setDrawable(new TextureRegionDrawable(t));
 		  }else{
             playerLastX=objectCenter.x;
-            Drawer.setDrawable(getStayAnim());
+            image.setDrawable(getStayAnim());
 		  }
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
-        drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
-        if(!drawBox.overlaps(MainScreen.FightArea)){
+        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+        if(!drawBox.overlaps(MainScreen.fightArea)){
             Kill();
         }else{
             Judge();
@@ -130,9 +131,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public void Judge(){
-        if(getCollisionArea().contains(BaseMyPlane.Instance.objectCenter)){
+        if(getCollisionArea().contains(BaseMyPlane.instance.objectCenter)){
             hit();
-            BaseMyPlane.Instance.Kill();
+            BaseMyPlane.instance.Kill();
         }
     }
 

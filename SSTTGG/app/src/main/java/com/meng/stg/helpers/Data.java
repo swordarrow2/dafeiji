@@ -1,10 +1,6 @@
 package com.meng.stg.helpers;
 
-/**
- * Created by Administrator on 2017/10/31.
- */
-
-public class Data {
+public class Data{
 
     public static final int playerFlagReimu=0;
     public static final int playerFlagAlice=1;
@@ -21,7 +17,6 @@ public class Data {
 
     public static final int ReimuBombTime=289;
     public static final int ReimuUnmatchedTime=0;//300;
-
 
 
 }

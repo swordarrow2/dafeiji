@@ -1,61 +1,57 @@
 package com.meng.stg.planes.subPlane;
 
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.badlogic.gdx.utils.*;
-
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Align;
+import com.meng.stg.BaseGameObject;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
-public abstract class BaseSubPlane
-{
-	public Vector2 Center=new Vector2();
+public abstract class BaseSubPlane extends BaseGameObject{
+    public Vector2 center=new Vector2();
     public Vector2 size=new Vector2();
-    public Image Drawer=null;
-    public int ExistTime;
+    public Image image=null;
     protected Rectangle drawBox=new Rectangle();
 
     public Drawable drawable=null;
-	public int num=0;
+    private int subPlaneNumber=0;
 
-    public void Init(int n){
-	  num=n;
+    public void init(int subPlaneNumber){
+        this.subPlaneNumber=subPlaneNumber;
         size=getSize();
-        Drawer=Pools.ImagePool.obtain();
-        Drawable da=getDrawable();
-        Drawer.setDrawable(da);
-        Drawer.setSize(size.x,size.y);
-		Drawer.setRotation(getRotationDegree());
-		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-        ExistTime=0;
-		MainScreen.MainGroup.addActor(Drawer);
-	  }
+        image=Pools.imagePool.obtain();
+        image.setDrawable(getDrawable());
+        image.setSize(size.x,size.y);
+        image.setRotation(getRotationDegree());
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        MainScreen.mainGroup.addActor(image);
+    }
 
-    public void Kill(){
-        Drawer.setRotation(0);
-        Drawer.remove();
-        Pools.ImagePool.free(Drawer);
-	  }
+    public void kill(){
+        image.setRotation(0);
+        image.remove();
+        Pools.imagePool.free(image);
+    }
 
-    public void Update(){
-        ExistTime++;
-		switch(num){
-		  case 0:
-			  Center=BaseMyPlane.Instance.objectCenter.cpy().add(-32,0);
-			break;
-			case 1:
-			  Center=BaseMyPlane.Instance.objectCenter.cpy().add(32,0);
-			  break;
-		}
-		Drawer.setDrawable(getDrawable());
-		Drawer.setRotation(getRotationDegree());
-        Drawer.setPosition(Center.x,Center.y,Align.center);
-		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-        drawBox.set(Drawer.getX(),Drawer.getY(),Drawer.getWidth(),Drawer.getHeight());
-		shoot();
-	  }
+    public void update(){
+        switch(subPlaneNumber){
+            case 0:
+                center=BaseMyPlane.instance.objectCenter.cpy().add(-32,0);
+                break;
+            case 1:
+                center=BaseMyPlane.instance.objectCenter.cpy().add(32,0);
+                break;
+        }
+        image.setDrawable(getDrawable());
+        image.setRotation(getRotationDegree());
+        image.setPosition(center.x,center.y,Align.center);
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+        shoot();
+    }
 
 
     public abstract Drawable getDrawable();
@@ -63,7 +59,7 @@ public abstract class BaseSubPlane
     public abstract float getRotationDegree();
 
     public abstract Vector2 getSize();
-	
-	public abstract void shoot();
-  
+
+    public abstract void shoot();
+
 }

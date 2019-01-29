@@ -3,15 +3,17 @@ package com.meng.stg.ui;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.meng.stg.GameTextureManager;
-
+import com.meng.stg.ResourcesManager;
+/*
+game
+ */
 public class GameMain extends Game {
-	public static SpriteBatch SBatch;
+	public static SpriteBatch spriteBatch;
 
 	@Override
 	public void create() {
-		SBatch = new SpriteBatch();
-		GameTextureManager.Load();
+		spriteBatch= new SpriteBatch();
+		ResourcesManager.Load();
 		setScreen(new MainScreen());
 	}
 	@Override

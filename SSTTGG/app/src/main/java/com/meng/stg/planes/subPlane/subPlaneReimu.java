@@ -1,20 +1,22 @@
 package com.meng.stg.planes.subPlane;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.stg.GameTextureManager;
-import com.meng.stg.bullets.*;
-
+import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.myPlane.ReimuSubPlaneBullet;
+/*
+subplane
+ */
 public class subPlaneReimu extends BaseSubPlane{
-	int i=0;
+	private int degree=0;
 	@Override
 	public Drawable getDrawable(){
-		return GameTextureManager.Textures.get("reimu53");
+		return ResourcesManager.textures.get("reimu53");
 	  }
 
 	@Override
 	public float getRotationDegree(){
-		i+=5;
-		return i++;
+		degree+=5;
+		return degree;
 	  }
 
 	@Override
@@ -24,10 +26,10 @@ public class subPlaneReimu extends BaseSubPlane{
 
 	@Override
 	public void shoot(){
-		if(ExistTime%5==1){
+		if(existTime%5==1){
             Vector2 vel=new Vector2(0,37);
-            ReimuBomb.Pool.obtain().Init(new Vector2(Center.x+4,Center.y+16),vel);
-			ReimuBomb.Pool.obtain().Init(new Vector2(Center.x-4,Center.y+16),vel);
+            ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(center.x+4,center.y+16),vel);
+			ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(center.x-4,center.y+16),vel);
 		  }
 	  }
   }

@@ -1,50 +1,55 @@
 package com.meng.stg.planes.myPlane;
 
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.stg.GameTextureManager;
-import com.meng.stg.bullets.*;
-import com.meng.stg.helpers.*;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.myPlane.ReimuBomb;
+import com.meng.stg.bullets.myPlane.ReimuShoot;
+import com.meng.stg.helpers.Data;
+import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.subPlane.subPlaneReimu;
 
+/*
+my plane
+ */
 public class MyPlaneReimu extends BaseMyPlane{
 
     private Drawable d=null;
     private String reimu="reimu";
-	subPlaneReimu sp1;
-	subPlaneReimu sp2;
+    subPlaneReimu sp1;
+    subPlaneReimu sp2;
 
     @Override
     public Drawable getDrawableJavaBean(){
-        return GameTextureManager.Textures.get(reimu+0);
+        return ResourcesManager.textures.get(reimu+0);
     }
 
     @Override
     public Drawable getStayAnim(){
         switch(animFlag%32){
             case 1:
-                d=GameTextureManager.Textures.get(reimu+0);
+                d=ResourcesManager.textures.get(reimu+0);
                 break;
             case 5:
-                d=GameTextureManager.Textures.get(reimu+1);
+                d=ResourcesManager.textures.get(reimu+1);
                 break;
             case 9:
-                d=GameTextureManager.Textures.get(reimu+2);
+                d=ResourcesManager.textures.get(reimu+2);
                 break;
             case 13:
-                d=GameTextureManager.Textures.get(reimu+3);
+                d=ResourcesManager.textures.get(reimu+3);
                 break;
             case 17:
-                d=GameTextureManager.Textures.get(reimu+4);
+                d=ResourcesManager.textures.get(reimu+4);
                 break;
             case 21:
-                d=GameTextureManager.Textures.get(reimu+5);
+                d=ResourcesManager.textures.get(reimu+5);
                 break;
             case 25:
-                d=GameTextureManager.Textures.get(reimu+6);
+                d=ResourcesManager.textures.get(reimu+6);
                 break;
             case 29:
-                d=GameTextureManager.Textures.get(reimu+7);
+                d=ResourcesManager.textures.get(reimu+7);
                 break;
         }
         return d;
@@ -53,28 +58,28 @@ public class MyPlaneReimu extends BaseMyPlane{
     public Drawable getLeftMoveAnim(){
         switch(animFlag%32){
             case 1:
-                d=GameTextureManager.Textures.get(reimu+8);
+                d=ResourcesManager.textures.get(reimu+8);
                 break;
             case 5:
-                d=GameTextureManager.Textures.get(reimu+9);
+                d=ResourcesManager.textures.get(reimu+9);
                 break;
             case 9:
-                d=GameTextureManager.Textures.get(reimu+10);
+                d=ResourcesManager.textures.get(reimu+10);
                 break;
             case 13:
-                d=GameTextureManager.Textures.get(reimu+11);
+                d=ResourcesManager.textures.get(reimu+11);
                 break;
             case 17:
-                d=GameTextureManager.Textures.get(reimu+12);
+                d=ResourcesManager.textures.get(reimu+12);
                 break;
             case 21:
-                d=GameTextureManager.Textures.get(reimu+13);
+                d=ResourcesManager.textures.get(reimu+13);
                 break;
             case 25:
-                d=GameTextureManager.Textures.get(reimu+14);
+                d=ResourcesManager.textures.get(reimu+14);
                 break;
             case 29:
-                d=GameTextureManager.Textures.get(reimu+15);
+                d=ResourcesManager.textures.get(reimu+15);
                 break;
         }
         return d;
@@ -83,28 +88,28 @@ public class MyPlaneReimu extends BaseMyPlane{
     public Drawable getRightMoveAnim(){
         switch(animFlag%32){
             case 1:
-                d=GameTextureManager.Textures.get(reimu+16);
+                d=ResourcesManager.textures.get(reimu+16);
                 break;
             case 5:
-                d=GameTextureManager.Textures.get(reimu+17);
+                d=ResourcesManager.textures.get(reimu+17);
                 break;
             case 9:
-                d=GameTextureManager.Textures.get(reimu+18);
+                d=ResourcesManager.textures.get(reimu+18);
                 break;
             case 13:
-                d=GameTextureManager.Textures.get(reimu+19);
+                d=ResourcesManager.textures.get(reimu+19);
                 break;
             case 17:
-                d=GameTextureManager.Textures.get(reimu+20);
+                d=ResourcesManager.textures.get(reimu+20);
                 break;
             case 21:
-                d=GameTextureManager.Textures.get(reimu+21);
+                d=ResourcesManager.textures.get(reimu+21);
                 break;
             case 25:
-                d=GameTextureManager.Textures.get(reimu+22);
+                d=ResourcesManager.textures.get(reimu+22);
                 break;
             case 29:
-                d=GameTextureManager.Textures.get(reimu+23);
+                d=ResourcesManager.textures.get(reimu+23);
                 break;
         }
         return d;
@@ -112,11 +117,11 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void shoot(){
-        if(ExistTime%3==1){
+        if(existTime%3==1){
             Vector2 vel=new Vector2(0,47);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+8),vel);
-		ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+8),vel);
-		
+            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+8),vel);
+
         }
     }
 
@@ -136,28 +141,28 @@ public class MyPlaneReimu extends BaseMyPlane{
             }
         }*/
         bombTime=Data.ReimuBombTime;
-		sp1=new subPlaneReimu();
-		sp1.Init(0);
-		sp2=new subPlaneReimu();
-		sp2.Init(1);
+        sp1=new subPlaneReimu();
+        sp1.init(0);
+        sp2=new subPlaneReimu();
+        sp2.init(1);
     }
 
     @Override
     public void Kill(){
-     super.Kill();
-	 sp1.Kill();
-	 sp2.Kill();
-        Pools.ImagePool.free(Drawer);
+        super.Kill();
+        sp1.kill();
+        sp2.kill();
+        Pools.imagePool.free(image);
         new MyPlaneReimu().Init();
-	  }
+    }
 
-	@Override
-	public void Update(){
-		super.Update();
-		sp1.Update();
-		sp2.Update();
-	  }
-	
+    @Override
+    public void update(){
+        super.update();
+        sp1.update();
+        sp2.update();
+    }
+
 
     @Override
     public void bomb(){

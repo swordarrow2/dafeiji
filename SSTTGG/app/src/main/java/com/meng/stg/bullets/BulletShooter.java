@@ -1,6 +1,7 @@
 package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Vector2;
+import com.meng.stg.bullets.enemy.SimpleGreenBullet;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 import java.util.HashSet;
@@ -11,41 +12,42 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 
 public class BulletShooter{
+
     private BaseEnemyPlane baseEnemyPlane;
     private Vector2 speed;
     private int time;
 
-    public static HashSet<BulletShooter> Instances=new HashSet<BulletShooter>();
-    public static LinkedBlockingQueue<BulletShooter> ToDelete=new LinkedBlockingQueue<BulletShooter>();
-    public static LinkedBlockingQueue<BulletShooter> ToAdd=new LinkedBlockingQueue<BulletShooter>();
+    public static HashSet<BulletShooter> instances=new HashSet<BulletShooter>();
+    public static LinkedBlockingQueue<BulletShooter> toDelete=new LinkedBlockingQueue<BulletShooter>();
+    public static LinkedBlockingQueue<BulletShooter> toAdd=new LinkedBlockingQueue<BulletShooter>();
 
-    public BulletShooter(BaseEnemyPlane baseEnemyPlane,Vector2 speed ){
+    public BulletShooter(BaseEnemyPlane baseEnemyPlane,Vector2 speed){
         this.baseEnemyPlane=baseEnemyPlane;
         this.speed=speed;
-        ToAdd.add(this);
+        toAdd.add(this);
     }
 
-    public void Update(){
+    public void update(){
         time++;
         shoot();
         if(baseEnemyPlane.judgeCircle==null){
-            Kill();
+            kill();
         }
     }
 
-    public void Kill(){
-        ToDelete.add(this);
+    public void kill(){
+        toDelete.add(this);
     }
 
-    public static void UpdateAll(){
-        while(!ToDelete.isEmpty()){
-            Instances.remove(ToDelete.poll());
+    public static void updateAll(){
+        while(!toDelete.isEmpty()){
+            instances.remove(toDelete.poll());
         }
-        while(!ToAdd.isEmpty()){
-            Instances.add(ToAdd.poll());
+        while(!toAdd.isEmpty()){
+            instances.add(toAdd.poll());
         }
-        for(BulletShooter shooter : Instances){
-            shooter.Update();
+        for(BulletShooter shooter : instances){
+            shooter.update();
         }
     }
 

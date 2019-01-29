@@ -1,16 +1,20 @@
-package com.meng.stg.bullets;
+package com.meng.stg.bullets.myPlane;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.GameTextureManager;
+import com.meng.stg.ResourcesManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-public class ReimuBomb extends BaseMyPlaneBullet{
-    public static Pool<ReimuBomb> Pool=new Pool<ReimuBomb>(){
+/**
+ * Created by Administrator on 2019/1/29.
+ */
+
+public class ReimuSubPlaneBullet extends BaseMyPlaneBullet{
+    public static com.badlogic.gdx.utils.Pool<ReimuBomb> Pool=new Pool<ReimuBomb>(){
         @Override
         protected ReimuBomb newObject(){
             return new ReimuBomb();
@@ -20,7 +24,7 @@ public class ReimuBomb extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=GameTextureManager.Textures.get("reimu29") ;
+            drawable=ResourcesManager.textures.get("reimu29");
         }
         return drawable;
     }
@@ -46,12 +50,13 @@ public class ReimuBomb extends BaseMyPlaneBullet{
         return new Vector2(64,16);
     }
 
-    public void Judge(){
+    public void judge(){
         try{
             for(int i=0;i<32;i++){
                 if(!(enemys[i]==null)){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         enemys[i].hit();
+                        kill();
                     }
                 }
             }

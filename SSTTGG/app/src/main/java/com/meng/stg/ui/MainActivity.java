@@ -10,14 +10,14 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 public class MainActivity extends AndroidApplication{
-    public static MainActivity Instance;
+    public static MainActivity instance;
     public static int screenHeight;
     public static int screenWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Instance=this;
+        instance=this;
         Display display=getWindowManager().getDefaultDisplay();
         Point size=new Point();
         display.getSize(size);

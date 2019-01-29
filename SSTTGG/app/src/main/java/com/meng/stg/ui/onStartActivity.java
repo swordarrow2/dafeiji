@@ -11,21 +11,22 @@ import android.widget.Toast;
 
 import com.meng.stg.R;
 
-public class onStartActivity extends Activity {
+public class onStartActivity extends Activity{
     Button btn;
     RadioGroup player;
     RadioGroup diff;
     RadioGroup stage;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_start2);
-		Intent i=new Intent(onStartActivity.this,MainActivity.class);
-		startActivity(i);
-		finish();
-		if(true)return;
-      btn = (Button) findViewById(R.id.btn);
-        player= (RadioGroup) findViewById(R.id.radioplayer);
+        Intent i=new Intent(onStartActivity.this,MainActivity.class);
+        startActivity(i);
+        finish();
+        if(true) return;
+        btn=(Button)findViewById(R.id.btn);
+        player=(RadioGroup)findViewById(R.id.radioplayer);
         diff=(RadioGroup)findViewById(R.id.radiodifficulty);
         stage=(RadioGroup)findViewById(R.id.radiostage);
         /*
@@ -74,37 +75,40 @@ public class onStartActivity extends Activity {
             }
         });
         */
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                if((!((RadioButton) findViewById(R.id.l)).isChecked())||(!((RadioButton) findViewById(R.id.rm)).isChecked())||(!((RadioButton) findViewById(R.id.e)).isChecked()) ) {
-                    Toast.makeText(onStartActivity.this, "哈哈哈真的以为能选吗", Toast.LENGTH_SHORT).show();
-					Thread t=new start(1000);
-					t.start();
+            public void onClick(View view){
+                if((!((RadioButton)findViewById(R.id.l)).isChecked())||(!((RadioButton)findViewById(R.id.rm)).isChecked())||(!((RadioButton)findViewById(R.id.e)).isChecked())){
+                    Toast.makeText(onStartActivity.this,"哈哈哈真的以为能选吗",Toast.LENGTH_SHORT).show();
+                    Thread t=new start(1000);
+                    t.start();
                 }else{
-					Thread t=new start(0);
-					t.start();
-				}
+                    Thread t=new start(0);
+                    t.start();
+                }
                 ((RadioButton)diff.getChildAt(3)).setChecked(true);
                 ((RadioButton)player.getChildAt(0)).setChecked(true);
                 ((RadioButton)stage.getChildAt(6)).setChecked(true);
 
-               
+
             }
         });
     }
+
     public class start extends Thread{
-		int i=0;
-		public start(int i){
-			this.i=i;
-		}
+        int i=0;
+
+        public start(int i){
+            this.i=i;
+        }
+
         @Override
-        public void run() {
-            try {
+        public void run(){
+            try{
                 sleep(i);
                 Intent i=new Intent(onStartActivity.this,MainActivity.class);
                 startActivity(i);
-            } catch (Exception e) {
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }

@@ -10,11 +10,12 @@ import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.JudgeCircleAnimation;
-
+/*
+base class of my plane
+ */
 public abstract class BaseMyPlane extends BaseGameObject{
 
-    public static BaseMyPlane Instance;
-    public int ExistTime=0;
+    public static BaseMyPlane instance;
 
     public int unmatchedTime;
     public boolean onUnmatched=false;
@@ -27,24 +28,24 @@ public abstract class BaseMyPlane extends BaseGameObject{
     private float playerLastX=270;
 
     public void Init(){
-        Instance=this;
+        instance=this;
         if(animation==null){
             animation=new JudgeCircleAnimation();
         }
         if(judgeAnim==null){
-            judgeAnim=Pools.ImagePool.obtain();
+            judgeAnim=Pools.imagePool.obtain();
             judgeAnim.setDrawable(animation);
             judgeAnim.setSize(32,32);
         }
-        Drawer=Pools.ImagePool.obtain();
+        image=Pools.imagePool.obtain();
         //Drawable drawable=getDrawableJavaBean();
-        //Drawer.setDrawable(drawable);
-		Drawer.setOrigin(Drawer.getWidth()/2,Drawer.getHeight()/2);
-        MainScreen.MainGroup.addActor(Drawer);
-        MainScreen.MainGroup.addActor(judgeAnim);
-        ExistTime=0;
-        objectCenter.set(MainScreen.Width/2,80);
-        Drawer.setSize(30,46);
+        //image.setDrawable(drawable);
+		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        MainScreen.mainGroup.addActor(image);
+        MainScreen.mainGroup.addActor(judgeAnim);
+        existTime=0;
+        objectCenter.set(MainScreen.width/2,80);
+        image.setSize(30,46);
         unmatchedTime=1;
         onUnmatched=true;
     }
@@ -52,12 +53,12 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public void Kill(){
     }
 
-    public void Update(){
-        ExistTime++;
+    public void update(){
+        existTime++;
         animFlag++;
-        objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.Width),MathUtils.clamp(objectCenter.y,0,MainScreen.Height));
+        objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
-        Drawer.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
         if(onBomb){
             onUnmatched=true;
@@ -77,18 +78,18 @@ public abstract class BaseMyPlane extends BaseGameObject{
         }
         if(objectCenter.x>playerLastX){
             playerLastX=objectCenter.x;
-            Drawer.setDrawable(getRightMoveAnim());
+            image.setDrawable(getRightMoveAnim());
         }else if(objectCenter.x<playerLastX){
             playerLastX=objectCenter.x;
-            Drawer.setDrawable(getLeftMoveAnim());
+            image.setDrawable(getLeftMoveAnim());
         }else{
             playerLastX=objectCenter.x;
-            Drawer.setDrawable(getStayAnim());
+            image.setDrawable(getStayAnim());
         }
 
-        Drawer.toBack();
+        image.toBack();
         judgeAnim.toFront();
-        animation.Update();
+        animation.update();
     }
 
     public float[] getPosition(){
