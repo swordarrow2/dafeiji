@@ -119,8 +119,8 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void shoot(){
         if(existTime%3==1){
             Vector2 vel=new Vector2(0,47);
-            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+8),vel);
-            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+8),vel);
+            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
+            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+32),vel);
 
         }
     }

@@ -10,6 +10,7 @@ import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.JudgeCircleAnimation;
+import com.meng.stg.planes.*;
 /*
 base class of my plane
  */
@@ -22,7 +23,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 
-    public static JudgeCircleAnimation animation=null;
+    public static jca2 animation=null;
     public static Image judgeAnim=null;
 
     private float playerLastX=270;
@@ -30,22 +31,24 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public void Init(){
         instance=this;
         if(animation==null){
-            animation=new JudgeCircleAnimation();
+            animation=new jca2();
         }
         if(judgeAnim==null){
             judgeAnim=Pools.imagePool.obtain();
-            judgeAnim.setDrawable(animation);
+            judgeAnim=animation.getImage();
             judgeAnim.setSize(32,32);
         }
         image=Pools.imagePool.obtain();
         //Drawable drawable=getDrawableJavaBean();
         //image.setDrawable(drawable);
-		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+		
         MainScreen.mainGroup.addActor(image);
         MainScreen.mainGroup.addActor(judgeAnim);
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);
+		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+		judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
     }

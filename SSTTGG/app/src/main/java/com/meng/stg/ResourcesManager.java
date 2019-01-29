@@ -17,6 +17,7 @@ public final class ResourcesManager{
     public static void Load(){
         loadMyPlane("pl00");
 		loadEnemy("enemy");
+		loadSlow();
         FileHandle projDir=Gdx.files.internal("textures/bullet/");
         FileHandle[] projFiles=projDir.list();
         for(int i=0;i<projFiles.length;i++){
@@ -41,7 +42,7 @@ public final class ResourcesManager{
         FileHandle plsanae=Gdx.files.internal("textures/player/"+name+".png");
         String[] plsanaeWalkSheet=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
         Texture tplsanae=new Texture(plsanae);
-        for(int i=0, n=0;n<55;i++){
+        for(int i=0, n=0;n<56;i++){
 		  if(plsanaeWalkSheet[i].equals("Sprite:")){
             int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
             int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
@@ -68,6 +69,23 @@ public final class ResourcesManager{
 				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
 				textures.put("zayu"+plsanaeWalkSheet[i+1],trd);
 				n++;
-			  }}
+			  }
+			  }
+	  }
+	  private static void loadSlow(){
+		  FileHandle plsanae=Gdx.files.internal("textures/effect/slow.png");
+		  String[] plsanaeWalkSheet=Gdx.files.internal("textures/effect/slow.txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+		  Texture tplsanae=new Texture(plsanae);
+		  for(int i=0, n=0;n<2;i++){
+			  if(plsanaeWalkSheet[i].equals("Sprite:")){
+				  int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
+				  int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
+				  int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
+				  int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
+				  TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
+				  TextureRegionDrawable trd=new TextureRegionDrawable(tr);
+				  textures.put("slow"+plsanaeWalkSheet[i+1],trd);
+				  n++;
+				}}
 	  }
 }

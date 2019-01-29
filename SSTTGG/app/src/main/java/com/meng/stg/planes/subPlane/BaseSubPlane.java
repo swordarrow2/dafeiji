@@ -37,6 +37,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
     }
 
     public void update(){
+	  super.update();
         switch(subPlaneNumber){
             case 0:
                 center=BaseMyPlane.instance.objectCenter.cpy().add(-32,0);

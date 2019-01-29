@@ -20,7 +20,7 @@ public class ReimuBomb extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=ResourcesManager.textures.get("reimu29");
+            drawable=ResourcesManager.textures.get("reimu55");
         }
         return drawable;
     }

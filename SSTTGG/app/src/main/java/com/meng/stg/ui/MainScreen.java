@@ -37,13 +37,14 @@ public class MainScreen extends ScreenAdapter{
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
     public static BitmapFont mainBitmapFont;
     public static boolean onBoss=false;
+	public FitViewport sv;
     // enemyPlane e;
 
     @Override
     public void show(){
-        width=540;//386;
-        height=720;//450;
-        FitViewport sv=new FitViewport(width,height);
+        width=386;//540;//386;
+        height=450;//720;//450;
+         sv=new FitViewport(width,height);
         stage=new Stage(sv,GameMain.spriteBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.BLACK);
@@ -72,8 +73,16 @@ public class MainScreen extends ScreenAdapter{
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
         super.show();
-    }
+	  }
 
+	@Override
+	public void resize(int width,int height){
+		// TODO: Implement this method
+		super.resize(width,height);
+		sv.update(width,height);
+	  }
+
+	
     @Override
     public void render(float delta){
         for(int i=0;i<32;i++){
