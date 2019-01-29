@@ -23,7 +23,7 @@ public class MoveMethodCircle extends BaseMoveMethod{
 
     @Override
     public Vector2 getVelocity(){
-        return velocity.rotate(velocity.angle()+degreePerFrame);
+        return velocity.rotate(degreePerFrame);
     }
 
     @Override
