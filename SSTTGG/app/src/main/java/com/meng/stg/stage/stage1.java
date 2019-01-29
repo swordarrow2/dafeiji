@@ -17,10 +17,10 @@ public class stage1{
         switch(MainScreen.gameTime){
             case 30:
 			  Vector2 vel=new Vector2(0,0);
-			  MainScreen.gameTime=1;
+			//  MainScreen.gameTime=1;
 			  SimpleRedBullet.Pool.obtain().Init(new Vector2(270,720),vel);
 			//  Vector2 vele2=new Vector2(-1,-1.7f);
-			  MainScreen.gameTime=25;
+			//  MainScreen.gameTime=25;
 			//  SimpleGreenBullet.Pool.obtain().Init(new Vector2(270,720),vele2);
 			  
                 break;

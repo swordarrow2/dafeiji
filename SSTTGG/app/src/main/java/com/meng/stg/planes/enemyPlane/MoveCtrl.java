@@ -23,8 +23,9 @@ public class MoveCtrl{
 	  }
 	public void update(){
 		if(now<m.length){
-			if(m[now].time-->0){	
-				tmpVec=m[now].velocity;
+			if(m[now].getTime()>0){	
+				tmpVec=m[now].getVelocity();
+				m[now].update();
 			  }else{
 				now++;
 			  }	  

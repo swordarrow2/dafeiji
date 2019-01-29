@@ -26,9 +26,7 @@ public class PlayerInputProcessor extends InputAdapter{
     @Override
     public boolean touchDown(int screenX,int screenY,int pointer,int button){
 
-        if((screenX<50)&&(screenY>30)){
-            Instance.onBomb=true;
-        }
+        
         if(pointer==0){
             vct2_downPosStage=MainScreen.Stage.screenToStageCoordinates
                     (vct2_downPosStage.set(screenX,screenY));

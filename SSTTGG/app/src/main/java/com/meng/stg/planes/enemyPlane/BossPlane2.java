@@ -100,7 +100,7 @@ public class BossPlane2 extends BaseEnemyPlane{
         Drawer.setSize(128,128);
     }
 
-    @Override
+    
     protected void move(){
         if(objectCenter.x>500){
             xx=true;

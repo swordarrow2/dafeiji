@@ -21,6 +21,10 @@ import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.planes.PlayerInputProcessor;
 import com.meng.stg.stage.stage1;
 import com.badlogic.gdx.utils.viewport.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.helpers.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -33,6 +37,7 @@ public class MainScreen extends ScreenAdapter{
     public static InputMultiplexer InputMgr;
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
     public static BitmapFont f;
+	Button imb;
     public static boolean onBoss=false;
 	FitViewport sv;
     // enemyPlane e;
@@ -41,6 +46,15 @@ public class MainScreen extends ScreenAdapter{
     public void show(){
         Width=540;//386;
         Height=720;//450;
+		imb=new Button(GameTextureManager.Textures.get("reimu2"));
+		imb.setPosition(100,100);
+		imb.addListener(new ClickListener(){
+			  @Override
+			  public void clicked(InputEvent event, float x, float y) {
+				  ErrDialog.Show("t", "按钮被点击了");
+				  BaseMyPlane.Instance.onBomb=true;
+				}
+			});
 		sv=new FitViewport(Width,Height);
         Stage=new Stage(sv,GameMain.SBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
@@ -54,6 +68,8 @@ public class MainScreen extends ScreenAdapter{
         Stage.addActor(bg);
         MainGroup=new Group();
         Stage.addActor(MainGroup);
+		Stage.addActor(imb);
+		
         FightArea=new Rectangle(0,0,Width,Height);
 
         playerFlag=Data.playerFlagReimu;
