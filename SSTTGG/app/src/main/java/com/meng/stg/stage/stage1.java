@@ -7,6 +7,7 @@ import com.meng.stg.planes.enemyPlane.BossPlane2;
 import com.meng.stg.planes.enemyPlane.EnemyPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.bullets.enemy.*;
 /*
 stage data:when create enemy
  */
@@ -20,8 +21,10 @@ public class stage1{
                 //  Vector2 vele2=new Vector2(-1,-1.7f);
                 //  MainScreen.gameTime=25;
                 //  SimpleGreenBullet.Pool.obtain().init(new Vector2(270,720),vele2);
+				EnemyBulletCreator.create(BulletForm.lindan);
                 break;
             case 60:
+			  EnemyBulletCreator.create(BulletForm.huanyu);
                 Vector2 vel2=new Vector2(0,30);
                 SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),vel2);
                 break;
