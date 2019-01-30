@@ -16,8 +16,7 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     private Drawable d=null;
     private String reimu="reimu";
-    subPlaneReimu sp1;
-    subPlaneReimu sp2;
+    subPlaneReimu sp0, sp1,sp2,sp3;
 
     @Override
     public Drawable getDrawableJavaBean(){
@@ -121,37 +120,30 @@ public class MyPlaneReimu extends BaseMyPlane{
             Vector2 vel=new Vector2(0,47);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+32),vel);
-
         }
     }
 
     @Override
     public void Init(){
         super.Init();
-     /*   Texture walkSheet=new Texture(Gdx.files.internal("textures/myPlane/pl00.png"));
-        int FRAME_COLS=8;
-        int FRAME_ROWS=3;
-        TextureRegion[][] tmp=TextureRegion.split(walkSheet,walkSheet.getWidth()/FRAME_COLS,walkSheet.getHeight()/FRAME_ROWS);
-        int index=0;
-        for(int i=0;i<FRAME_ROWS;i++){
-            for(int j=0;j<FRAME_COLS;j++){
-                TextureRegionDrawable drawable=new TextureRegionDrawable(tmp[i][j]);
-                playerAnim.put(reimu+"+index,drawable);
-                index++;
-            }
-        }*/
         bombTime=Data.ReimuBombTime;
+        sp0=new subPlaneReimu();
+        sp0.init(0);
         sp1=new subPlaneReimu();
-        sp1.init(0);
-        sp2=new subPlaneReimu();
-        sp2.init(1);
+        sp1.init(1);
+		sp2=new subPlaneReimu();
+        sp2.init(2);
+        sp3=new subPlaneReimu();
+        sp3.init(3);
     }
 
     @Override
     public void Kill(){
         super.Kill();
+        sp0.kill();
         sp1.kill();
-        sp2.kill();
+		sp2.kill();
+        sp3.kill();
         Pools.imagePool.free(image);
         new MyPlaneReimu().Init();
     }
@@ -159,8 +151,10 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void update(){
         super.update();
+		sp0.update();
         sp1.update();
         sp2.update();
+		sp3.update();
     }
 
 

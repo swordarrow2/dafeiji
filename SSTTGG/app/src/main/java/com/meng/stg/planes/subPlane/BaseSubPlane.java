@@ -28,31 +28,37 @@ public abstract class BaseSubPlane extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         MainScreen.mainGroup.addActor(image);
-    }
+	  }
 
     public void kill(){
         image.setRotation(0);
         image.remove();
         Pools.imagePool.free(image);
-    }
+	  }
 
     public void update(){
-	  super.update();
+		super.update();
         switch(subPlaneNumber){
             case 0:
-                center=BaseMyPlane.instance.objectCenter.cpy().add(-32,0);
-                break;
+			  center=BaseMyPlane.instance.objectCenter.cpy().add(-32,0);
+			  break;
             case 1:
-                center=BaseMyPlane.instance.objectCenter.cpy().add(32,0);
-                break;
-        }
+			  center=BaseMyPlane.instance.objectCenter.cpy().add(32,0);
+			  break;
+			case 2:
+			  center=BaseMyPlane.instance.objectCenter.cpy().add(-16,32);
+			  break;
+            case 3:
+			  center=BaseMyPlane.instance.objectCenter.cpy().add(16,32);
+			  break;
+		  }
         image.setDrawable(getDrawable());
         image.setRotation(getRotationDegree());
         image.setPosition(center.x,center.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         shoot();
-    }
+	  }
 
 
     public abstract Drawable getDrawable();
@@ -63,4 +69,4 @@ public abstract class BaseSubPlane extends BaseGameObject{
 
     public abstract void shoot();
 
-}
+  }

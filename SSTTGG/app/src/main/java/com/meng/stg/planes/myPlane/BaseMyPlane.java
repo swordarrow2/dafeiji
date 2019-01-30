@@ -24,8 +24,9 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public boolean onBomb=false;
 
     public static jca2 animation=null;
+	public static jca3 animation2=null;
     public static Image judgeAnim=null;
-
+	public static Image judgeAnim2=null;
     private float playerLastX=270;
 
     public void Init(){
@@ -36,19 +37,26 @@ public abstract class BaseMyPlane extends BaseGameObject{
         if(judgeAnim==null){
             judgeAnim=Pools.imagePool.obtain();
             judgeAnim=animation.getImage();
-            judgeAnim.setSize(32,32);
+            judgeAnim.setSize(48,48);
         }
+		if(animation2==null){
+            animation2=new jca3();
+		  }
+        if(judgeAnim2==null){
+            judgeAnim2=Pools.imagePool.obtain();
+            judgeAnim2=animation2.getImage();
+            judgeAnim2.setSize(48,48);
+		  }
         image=Pools.imagePool.obtain();
-        //Drawable drawable=getDrawableJavaBean();
-        //image.setDrawable(drawable);
-		
         MainScreen.mainGroup.addActor(image);
         MainScreen.mainGroup.addActor(judgeAnim);
+		MainScreen.mainGroup.addActor(judgeAnim2);
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);
 		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 		judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
+		judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
     }
@@ -57,10 +65,11 @@ public abstract class BaseMyPlane extends BaseGameObject{
     }
 
     public void update(){
-        existTime++;
+        super.update();
         animFlag++;
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
+		judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
         if(onBomb){
@@ -91,8 +100,10 @@ public abstract class BaseMyPlane extends BaseGameObject{
         }
 
         image.toBack();
-        judgeAnim.toFront();
+		judgeAnim2.toFront();
+        judgeAnim.toFront();	
         animation.update();
+		animation2.update();
     }
 
     public float[] getPosition(){
