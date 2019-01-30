@@ -1,11 +1,10 @@
 package com.meng.stg.bullets;
 
-import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.enemy.SimpleGreenBullet;
-import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-
-import java.util.HashSet;
-import java.util.concurrent.LinkedBlockingQueue;
+import com.badlogic.gdx.math.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.planes.enemyPlane.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 /**
  * Created by Administrator on 2019/1/25.
@@ -30,6 +29,7 @@ public class BulletShooter{
     public void update(){
         time++;
         shoot();
+		
         if(baseEnemyPlane.judgeCircle==null){
             kill();
         }
@@ -52,8 +52,8 @@ public class BulletShooter{
     }
 
     void shoot(){
-        if(time%25==0){
-            SimpleGreenBullet.Pool.obtain().Init(baseEnemyPlane.objectCenter.cpy(),speed);
+        if(time%25==0){   
+			SimpleRedBullet.create(baseEnemyPlane.objectCenter,BulletForm.xingdan,BulletColor.red);
         }
     }
 

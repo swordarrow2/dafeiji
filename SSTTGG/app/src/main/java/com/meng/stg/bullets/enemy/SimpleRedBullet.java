@@ -1,13 +1,12 @@
 package com.meng.stg.bullets.enemy;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.ResourcesManager;
-import com.meng.stg.bullets.BaseEnemyBullet;
-import com.meng.stg.ui.MainScreen;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.move.*;
+import com.meng.stg.ui.*;
 
 public class SimpleRedBullet extends BaseEnemyBullet{
 
@@ -19,23 +18,36 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     };
     private int colorNum=0;
     private int formNum=0;
-
+/*
     public void Init(Vector2 center){
         super.Init();
         objectCenter.set(center);
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
+		moveManager=new MoveManager(this,
+									new MoveMethodStraight(60,new Vector2(0,-5)),
+									//  new MoveMethodStraight(20,new Vector2(1,9)),
+									//  new MoveMethodStraight(20,new Vector2(-5,-9)),
+									//  new MoveMethodStraight(20,new Vector2(-1,3)),
+									new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
+									);
         MainScreen.mainGroup.addActor(image);
     }
-
+*/
     public static void create(Vector2 center,BulletForm bf,BulletColor bc){
-        SimpleRedBullet.Pool.obtain().Init(new Vector2(270,400),bf,bc);
+        SimpleRedBullet.Pool.obtain().Init(center,bf,bc);
     }
 
     public void Init(Vector2 center,BulletForm bf,BulletColor bc){
         super.Init();
         objectCenter.set(center);
-        this.velocity.set(velocity);
+		moveManager=new MoveManager(this,
+									new MoveMethodStraight(60,new Vector2(0,-5)),
+									//  new MoveMethodStraight(20,new Vector2(1,9)),
+									//  new MoveMethodStraight(20,new Vector2(-5,-9)),
+									//  new MoveMethodStraight(20,new Vector2(-1,3)),
+									new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
+									);
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
         switch(bc){
@@ -135,6 +147,7 @@ public class SimpleRedBullet extends BaseEnemyBullet{
                 formNum=0;
                 break;
         }
+		image.setDrawable(getDrawable());
         MainScreen.mainGroup.addActor(image);
     }
 
@@ -148,6 +161,6 @@ public class SimpleRedBullet extends BaseEnemyBullet{
         if(drawable==null){
             drawable=ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
         }
-        return drawable;
+        return ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
     }
 }

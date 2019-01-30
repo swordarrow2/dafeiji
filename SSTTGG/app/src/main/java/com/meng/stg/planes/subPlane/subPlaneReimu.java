@@ -24,7 +24,7 @@ public class subPlaneReimu extends BaseSubPlane{
 	@Override
 	public void update(){
 		super.update();
-		if(myPlane.slow){
+		if(!myPlane.slow){
 			switch(subPlaneNumber){
 				case 0:
 					nowPosition=myPlane.objectCenter.cpy().add(-30,-20);

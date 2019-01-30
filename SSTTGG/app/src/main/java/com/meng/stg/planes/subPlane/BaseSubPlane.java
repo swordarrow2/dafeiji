@@ -12,7 +12,7 @@ import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseSubPlane extends BaseGameObject{
     public Vector2 center=new Vector2();
-    public Vector2 nowPosition;
+    public Vector2 nowPosition=new Vector2();
     public Vector2 size=new Vector2();
     public Image image=null;
     protected Rectangle drawBox=new Rectangle();

@@ -80,7 +80,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         Pools.imagePool.free(image);
     }
 
-    public void Update(){
+    public void update(){
         time++;
         animFlag++;
         moveManager.update();

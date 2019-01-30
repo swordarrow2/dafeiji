@@ -17,32 +17,21 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     public static int bulletCount=0;
 
-    public void Init(Vector2 center,MoveManager moveManager){
+    public void Init(){
         super.Init();
-        this.objectCenter=center;
-        this.moveManager=new MoveManager(this,
-                new MoveMethodStraight(60,new Vector2(0,-5)),
-                //  new MoveMethodStraight(20,new Vector2(1,9)),
-                //  new MoveMethodStraight(20,new Vector2(-5,-9)),
-                //  new MoveMethodStraight(20,new Vector2(-1,3)),
-                new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
-        );
-        if(moveManager!=null){
-            this.moveManager=moveManager;
-        }
         bulletCount++;
-    }
+	  }
 
     @Override
     public void kill(){
         super.kill();
         bulletCount--;
-    }
+	  }
 
     public void setRefAndThough(int ref,int tho){
         refCount=ref;
         thoughCount=tho;
-    }
+	  }
 
     @Override
     public void update(){
@@ -53,52 +42,52 @@ public abstract class BaseEnemyBullet extends BaseBullet{
                 velocity.x=-velocity.x;
                 objectCenter.x=1;
                 refCount--;
-            }
+			  }
             if(objectCenter.x>=MainScreen.fightArea.width){
                 velocity.x=-velocity.x;
                 objectCenter.x=MainScreen.fightArea.width-1;
                 refCount--;
-            }
+			  }
             if(objectCenter.y<=0){
                 velocity.y=-velocity.y;
                 objectCenter.y=1;
                 refCount--;
-            }
+			  }
             if(objectCenter.y>=MainScreen.fightArea.height){
                 velocity.y=-velocity.y;
                 objectCenter.y=MainScreen.fightArea.height-1;
                 refCount--;
-            }
-        }else if(thoughCount>0){
+			  }
+		  }else if(thoughCount>0){
             if(objectCenter.x<=0){
                 objectCenter.x=MainScreen.fightArea.width-1;
                 thoughCount--;
-            }
+			  }
             if(objectCenter.x>=MainScreen.fightArea.width){
                 objectCenter.x=1;
                 thoughCount--;
-            }
+			  }
             if(objectCenter.y<=0){
                 objectCenter.y=MainScreen.fightArea.height-1;
                 thoughCount--;
-            }
+			  }
             if(objectCenter.y>=MainScreen.fightArea.height){
                 objectCenter.y=1;
                 thoughCount--;
-            }
-        }
-    }
+			  }
+		  }
+	  }
 
     @Override
     public void judge(){
         if(judgeCircle.contains(BaseMyPlane.instance.objectCenter)){
             kill();
             BaseMyPlane.instance.Kill();
-        }
-    }
+		  }
+	  }
 
     @Override
     public float getRotationDegree(){
         return velocity.angle()+270;
-    }
-}
+	  }
+  }

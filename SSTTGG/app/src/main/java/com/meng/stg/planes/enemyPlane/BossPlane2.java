@@ -1,17 +1,14 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.meng.stg.ui.MainScreen;
-import com.meng.stg.ResourcesManager;
-import com.meng.stg.bullets.enemy.SimpleRedBullet;
-
-import java.util.HashMap;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.ui.*;
+import java.util.*;
 
 public class BossPlane2 extends BaseEnemyPlane{
 
@@ -123,7 +120,7 @@ public class BossPlane2 extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
+                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
                 vel.rotate(30);
             }
         }
@@ -151,7 +148,7 @@ public class BossPlane2 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
+            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
             vel.rotate(15);
         }
         super.Kill();

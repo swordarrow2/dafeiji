@@ -17,11 +17,11 @@ public class stage1{
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-                SimpleRedBullet.Pool.obtain().Init(new Vector2(270,320),null);
-                SimpleRedBullet.create(null,BulletForm.lindan,BulletColor.blue);
+                
+			  SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue);
                 break;
             case 60:
-                SimpleRedBullet.create(null,BulletForm.huanyu,BulletColor.grayAndRed);
+			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed);
                 break;
             case 120:
                 new EnemyPlane().Init(270,719,0,-1);
@@ -56,10 +56,10 @@ public class stage1{
                 MainScreen.onBoss=true;
                 break;
             case 620:
-                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
+           //     SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
                 break;
             case 670:
-                SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
+       //         SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
                 break;
         }
     }

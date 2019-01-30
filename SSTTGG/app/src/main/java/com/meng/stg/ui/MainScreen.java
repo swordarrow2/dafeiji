@@ -59,7 +59,7 @@ public class MainScreen extends ScreenAdapter{
         for(int i=0;i<32;i++){
             if(!(enemys[i]==null)){
                 if(!(enemys[i].isKilled())){
-                    enemys[i].Update();
+                    enemys[i].update();
                 }else{
                     enemys[i]=null;
                 }

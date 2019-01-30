@@ -1,17 +1,16 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.meng.stg.ui.MainScreen;
-import com.meng.stg.ResourcesManager;
-import com.meng.stg.bullets.enemy.SimpleRedBullet;
-
-import java.util.HashMap;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.move.*;
+import com.meng.stg.ui.*;
+import java.util.*;
 
 public class BossPlane1 extends BaseEnemyPlane{
 
@@ -125,6 +124,14 @@ public class BossPlane1 extends BaseEnemyPlane{
         return d;
 	  }
 
+	@Override
+	public void update(){
+		// TODO: Implement this method
+		super.update();
+		move();
+	  }
+	 
+
     @Override
     public void Init(float x,float y,float vx,float vy,int hp){
         super.Init(x,y,vx,vy,hp);
@@ -141,18 +148,21 @@ public class BossPlane1 extends BaseEnemyPlane{
             }
         }
         image.setSize(128,128);
+		new BulletShooter(this,new Vector2(0,-3));
+		moveManager=new MoveManager(this,
+									new MoveMethodStraight(1,new Vector2(0,0))						);
     }
 
    
     protected void move(){
-        if(objectCenter.x>500){
+        if(objectCenter.x>380){
             xx=true;
-        }else if(objectCenter.x<50){
+        }else if(objectCenter.x<10){
             xx=false;
         }
-        if(objectCenter.y>700){
+        if(objectCenter.y>430){
             yy=true;
-        }else if(objectCenter.y<400){
+        }else if(objectCenter.y<100){
             yy=false;
         }
         objectCenter.x=xx?objectCenter.x+vx:objectCenter.x-vx;
@@ -161,12 +171,13 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     @Override
     protected void shoot(){
-        if(time%30==1){
+	  
+        if(time%30==31){
             int randVal=MathUtils.random(0,360);
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
+                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
                 vel.rotate(30);
             }
         }
@@ -194,7 +205,7 @@ public class BossPlane1 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.Pool.obtain().Init(objectCenter,vel);
+            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
             vel.rotate(15);
         }
         super.Kill();
