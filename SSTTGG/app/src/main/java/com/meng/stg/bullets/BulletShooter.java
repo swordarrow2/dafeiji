@@ -114,30 +114,16 @@ public class BulletShooter{
         moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods;
         //    SimpleRedBullet.create(bulletCenter,bf,bc,moveMethods);
         //    SimpleRedBullet.create(bulletCenter,bf,bc,new MoveMethodStraight(inFrame,bulletVelocity));
-        float allAngle=(ways-1)*waysDegree;
-        bulletVelocity.rotate(-allAngle/2);
-        for(int i=0;i<ways;i++){
-            SimpleRedBullet.create(bulletCenter,bf,bc,new MoveMethodStraight(inFrame,bulletVelocity.rotate(waysDegree)));
-        }
-     /*   if(ways%2==0){
-            int halfWays=ways/2;
-            int halfDegree=waysDegree/2;
-            for(float i=bulletVelocity.angle();i<=(halfWays-1)*waysDegree+halfDegree;i+=waysDegree){
-                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
-            }
-            for(float i=bulletVelocity.angle();i>=-((halfWays-1)*waysDegree+halfDegree);i-=waysDegree){
-                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
-            }
-        }else{
-            SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods);
-            for(float i=bulletVelocity.angle();i<(ways-1)/2*waysDegree;i+=waysDegree){
-                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
-            }
-            for(float i=bulletVelocity.angle();i>-(ways-1)/2*waysDegree;i-=waysDegree){
-                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
-            }
-        }
-        */
+        for(int ceng=0;ceng<cengShu;++ceng){
+			float allAngle=(ways-1)*waysDegree;
+			Vector2 tmpv=bulletVelocity.cpy();
+			tmpv.rotate(-allAngle/2);
+			for(int i=0;i<ways;i++){
+				SimpleRedBullet.create(bulletCenter.cpy(),bf,bc,new MoveMethodStraight(inFrame,tmpv.cpy()));
+				tmpv.rotate(waysDegree);
+			  }
+		}
+     
 
     }
 
