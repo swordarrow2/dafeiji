@@ -27,6 +27,7 @@ public class BulletShooter{
     private Vector2 bulletVelocity=new Vector2(0,-1);
     private BulletForm bf=BulletForm.lindan;
     private BulletColor bc=BulletColor.white;
+	private Vector2 offset=new Vector2(0,0);
     private int inFrame=1;
     private int ways=1;
     private int waysDegree=0;
@@ -122,7 +123,7 @@ public class BulletShooter{
 			Vector2 tmpv=bulletVelocity.cpy().scl(beilv);
 			tmpv.rotate(-allAngle/2);
 			for(int i=0;i<ways;i++){
-				SimpleRedBullet.create(bulletCenter.cpy(),bf,bc,new MoveMethodStraight(inFrame,tmpv.cpy()));
+				SimpleRedBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,new MoveMethodStraight(inFrame,tmpv.cpy()));
 				tmpv.rotate(waysDegree);
 			  }
 			beilv+=0.1f;
