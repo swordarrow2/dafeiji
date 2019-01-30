@@ -1,19 +1,28 @@
 package com.meng.stg.ui;
 
-import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.Pixmap.*;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.viewport.*;
-import com.meng.stg.bullets.*;
-import com.meng.stg.helpers.*;
-import com.meng.stg.planes.*;
-import com.meng.stg.planes.enemyPlane.*;
-import com.meng.stg.planes.myPlane.*;
-import com.meng.stg.stage.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.meng.stg.bullets.BaseBullet;
+import com.meng.stg.bullets.BulletShooter;
+import com.meng.stg.helpers.Data;
+import com.meng.stg.planes.PlayerInputProcessor;
+import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.planes.myPlane.BaseMyPlane;
+import com.meng.stg.planes.myPlane.MyPlaneReimu;
+import com.meng.stg.stage.stage1;
+
 /*
  main layout
  */
@@ -29,14 +38,80 @@ public class MainScreen extends ScreenAdapter{
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
     public static BitmapFont mainBitmapFont;
     public static boolean onBoss=false;
-	public FitViewport sv;
+    public FitViewport sv;
     // enemyPlane e;
+    public static MainScreen instence;
 
     @Override
     public void show(){
+        init();
+        super.show();
+    }
+
+    @Override
+    public void resize(int width,int height){
+        super.resize(width,height);
+        sv.update(width,height);
+    }
+
+    @Override
+    public void render(float delta){
+        for(int i=0;i<32;i++){
+            if(!(enemys[i]==null)){
+                if(!(enemys[i].isKilled())){
+                    enemys[i].Update();
+                }else{
+                    enemys[i]=null;
+                }
+            }
+        }
+
+        stage.draw();
+        BulletShooter.updateAll();
+        BaseBullet.updateAll();
+        BaseMyPlane.instance.update();
+        GameMain.spriteBatch.begin();
+        mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
+                        //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
+                        +isKilled()
+                ,10,590);
+        switch(stageFlag){
+            case Data.stageFlagStage1:
+                if(gameTime==700){
+                    GlyphLayout glyphLayout=new GlyphLayout();
+                    glyphLayout.setText(mainBitmapFont,"stage Clear!!");
+                    mainBitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
+                    //      mainBitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
+                }
+                break;
+        }
+        GameMain.spriteBatch.end();
+        if(!onBoss){
+            gameTime++;
+            switch(stageFlag){
+                case Data.stageFlagStage1:
+                    stage1.addEnemy();
+                    break;
+            }
+        }
+        super.render(delta);
+    }
+
+    private String isKilled(){
+        String s="";
+        for(int i=0;i<32;i++){
+            if(!(enemys[i]==null)){
+                s+="\nHp:"+enemys[i].getHp();
+            }
+        }
+        return s;
+    }
+
+    private void init(){
+        instence=this;
         width=386;//540;//386;
         height=600;//720;//450;
-		sv=new FitViewport(width,height);
+        sv=new FitViewport(width,height);
         stage=new Stage(sv,GameMain.spriteBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
@@ -56,81 +131,24 @@ public class MainScreen extends ScreenAdapter{
         stageFlag=Data.stageFlagStage1;
         switch(playerFlag){
             case Data.playerFlagReimu:
-			  new MyPlaneReimu().Init();
-			  break;
+                new MyPlaneReimu().Init();
+                break;
             case Data.playerFlagAlice:
-			  //     new MyPlaneAlice().init();
-			  break;
-		  }
-        // e= new enemyPlane().createEnemy();
+                //     new MyPlaneAlice().init();
+                break;
+        }
         inputManager=new InputMultiplexer();
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
-        super.show();
-	  }
+    }
 
-	@Override
-	public void resize(int width,int height){
-		super.resize(width,height);
-		sv.update(width,height);
-	  }
-
-    @Override
-    public void render(float delta){
-        for(int i=0;i<32;i++){
-            if(!(enemys[i]==null)){
-                if(!(enemys[i].isKilled())){
-                    enemys[i].Update();
-				  }else{
-                    enemys[i]=null;
-				  }
-			  }
-		  }
-
-        stage.draw();
-        BulletShooter.updateAll();
-        BaseBullet.updateAll();
-        BaseMyPlane.instance.update();
-        GameMain.spriteBatch.begin();
-        mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
-							//	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
-							+isKilled()
-							,10,590);
-        switch(stageFlag){
-            case Data.stageFlagStage1:
-			  if(gameTime==700){
-				  GlyphLayout glyphLayout=new GlyphLayout();
-				  glyphLayout.setText(mainBitmapFont,"stage Clear!!");
-				  mainBitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
-				  //      mainBitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
-                }
-			  break;
-		  }
-        GameMain.spriteBatch.end();
-        if(!onBoss){
-            gameTime++;
-            switch(stageFlag){
-                case Data.stageFlagStage1:
-				  stage1.addEnemy();
-				  break;
-			  }
-		  }
-        super.render(delta);
-	  }
-
-    private String isKilled(){
-        String s="";
-        for(int i=0;i<32;i++){
-            if(!(enemys[i]==null)){
-                s+="\nHp:"+enemys[i].getHp();
-			  }
-		  }
-        return s;
-	  }
+    public void restart(){
+        init();
+    }
 
     @Override
     public void hide(){
         super.hide();
-	  }
+    }
 
-  }
+}

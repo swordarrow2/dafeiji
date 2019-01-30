@@ -12,15 +12,18 @@ import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseSubPlane extends BaseGameObject{
     public Vector2 center=new Vector2();
+    public Vector2 nowPosition;
     public Vector2 size=new Vector2();
     public Image image=null;
     protected Rectangle drawBox=new Rectangle();
+    public BaseMyPlane myPlane;
 
     public Drawable drawable=null;
-    private int subPlaneNumber=0;
+    public int subPlaneNumber=0;
 
-    public void init(int subPlaneNumber){
+    public void init(BaseMyPlane myPlane,int subPlaneNumber){
         this.subPlaneNumber=subPlaneNumber;
+        this.myPlane=myPlane;
         size=getSize();
         image=Pools.imagePool.obtain();
         image.setDrawable(getDrawable());
@@ -28,37 +31,24 @@ public abstract class BaseSubPlane extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         MainScreen.mainGroup.addActor(image);
-	  }
+    }
 
     public void kill(){
         image.setRotation(0);
         image.remove();
         Pools.imagePool.free(image);
-	  }
+    }
 
     public void update(){
-		super.update();
-        switch(subPlaneNumber){
-            case 0:
-			  center=BaseMyPlane.instance.objectCenter.cpy().add(-32,0);
-			  break;
-            case 1:
-			  center=BaseMyPlane.instance.objectCenter.cpy().add(32,0);
-			  break;
-			case 2:
-			  center=BaseMyPlane.instance.objectCenter.cpy().add(-16,32);
-			  break;
-            case 3:
-			  center=BaseMyPlane.instance.objectCenter.cpy().add(16,32);
-			  break;
-		  }
+        super.update();
+        center.add(nowPosition.sub(center).scl(0.2f));
         image.setDrawable(getDrawable());
         image.setRotation(getRotationDegree());
         image.setPosition(center.x,center.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         shoot();
-	  }
+    }
 
 
     public abstract Drawable getDrawable();
@@ -69,4 +59,4 @@ public abstract class BaseSubPlane extends BaseGameObject{
 
     public abstract void shoot();
 
-  }
+}

@@ -4,8 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.BaseMyBullet;
+import com.meng.stg.helpers.TextureNameManager;
 
-public class ReimuShoot extends BaseMyPlaneBullet{
+public class ReimuShoot extends BaseMyBullet{
 
     public static Pool<ReimuShoot> Pool=new Pool<ReimuShoot>(){
         @Override
@@ -17,7 +19,7 @@ public class ReimuShoot extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=ResourcesManager.textures.get("reimu24");
+            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
         }
         return drawable;
     }

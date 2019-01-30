@@ -3,7 +3,6 @@ package com.meng.stg.planes;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.ui.MainActivity;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.planes.myPlane.BaseMyPlane.instance;
@@ -16,13 +15,8 @@ public class PlayerInputProcessor extends InputAdapter{
     private Vector2 vct2_downPosPlayer=new Vector2();
     private Vector2 vct2_downPosStage=new Vector2();
     private Vector2 vct2_tmp1=new Vector2();
-    private int missX=0;
-    private int missY=0;
     public static int touchX=0;
     public static int touchY=0;
-    private int tx=MainActivity.screenWidth/10;
-    private int ty=MainActivity.screenHeight/8;
-
 
     @Override
     public boolean touchDown(int screenX,int screenY,int pointer,int button){
@@ -31,7 +25,15 @@ public class PlayerInputProcessor extends InputAdapter{
             vct2_downPosPlayer.set(instance.objectCenter);
         }
         if(pointer==1){
+            BaseMyPlane.instance.slow=true;
+        }else{
+            BaseMyPlane.instance.slow=false;
+        }
+        if(pointer==2){
             BaseMyPlane.instance.onBomb=true;
+        }
+        if(pointer==3){
+            MainScreen.instence.restart();
         }
         return super.touchDown(screenX,screenY,pointer,button);
     }

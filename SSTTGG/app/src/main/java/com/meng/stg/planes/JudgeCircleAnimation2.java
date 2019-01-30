@@ -3,13 +3,12 @@ package com.meng.stg.planes;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.meng.stg.ResourcesManager;
 
-public class JudgeCircleAnimation{
-
+public class JudgeCircleAnimation2{
     private int stat=0;
     private Image judgeAnim;
 
-    public JudgeCircleAnimation(){
-        judgeAnim=new Image(ResourcesManager.textures.get("slow23"));
+    public JudgeCircleAnimation2(){
+        judgeAnim=new Image(ResourcesManager.textures.get("slow24"));
     }
 
     public Image getImage(){
@@ -18,6 +17,6 @@ public class JudgeCircleAnimation{
 
     public void update(){
         judgeAnim.setRotation(stat);
-        stat+=2;
+        stat-=2;
     }
 }

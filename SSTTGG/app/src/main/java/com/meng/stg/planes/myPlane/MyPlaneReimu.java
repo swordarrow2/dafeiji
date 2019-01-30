@@ -19,11 +19,6 @@ public class MyPlaneReimu extends BaseMyPlane{
     subPlaneReimu sp0, sp1,sp2,sp3;
 
     @Override
-    public Drawable getDrawableJavaBean(){
-        return ResourcesManager.textures.get(reimu+0);
-	  }
-
-    @Override
     public Drawable getStayAnim(){
         switch(animFlag%32){
             case 1:
@@ -128,13 +123,13 @@ public class MyPlaneReimu extends BaseMyPlane{
         super.Init();
         bombTime=Data.ReimuBombTime;
         sp0=new subPlaneReimu();
-        sp0.init(0);
+        sp0.init(this,0);
         sp1=new subPlaneReimu();
-        sp1.init(1);
+        sp1.init(this,1);
 		sp2=new subPlaneReimu();
-        sp2.init(2);
+        sp2.init(this,2);
         sp3=new subPlaneReimu();
-        sp3.init(3);
+        sp3.init(this,3);
 	  }
 
     @Override
@@ -161,7 +156,6 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void bomb(){
         Vector2 vel=new Vector2(0,30);
-
         if(bombTime%16==0){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x,0),vel);
 		  }

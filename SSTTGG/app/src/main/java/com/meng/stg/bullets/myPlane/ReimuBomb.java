@@ -6,10 +6,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.BaseMyBullet;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-public class ReimuBomb extends BaseMyPlaneBullet{
+public class ReimuBomb extends BaseMyBullet{
     public static Pool<ReimuBomb> Pool=new Pool<ReimuBomb>(){
         @Override
         protected ReimuBomb newObject(){

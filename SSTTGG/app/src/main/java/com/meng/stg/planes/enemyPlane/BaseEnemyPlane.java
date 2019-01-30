@@ -53,7 +53,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
                 break;
             }
         }
-        mvc=new MoveManager(this,
+        moveManager=new MoveManager(this,
                 
                 new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))
         );
@@ -83,7 +83,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public void Update(){
         time++;
         animFlag++;
-        mvc.update();
+        moveManager.update();
         objectCenter.add(velocity);
         anim();
         shoot();

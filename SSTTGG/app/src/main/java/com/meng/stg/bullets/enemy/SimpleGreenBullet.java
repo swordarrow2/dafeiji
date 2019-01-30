@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.ui.MainScreen;
 
 public class SimpleGreenBullet extends BaseEnemyBullet{

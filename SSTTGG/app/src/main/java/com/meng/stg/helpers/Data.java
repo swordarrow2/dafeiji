@@ -18,5 +18,4 @@ public class Data{
     public static final int ReimuBombTime=289;
     public static final int ReimuUnmatchedTime=0;//300;
 
-
 }

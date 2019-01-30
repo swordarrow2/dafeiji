@@ -1,4 +1,4 @@
-package com.meng.stg.bullets.myPlane;
+package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
@@ -10,7 +10,7 @@ import com.meng.stg.ui.MainScreen;
 import static com.meng.stg.ui.MainScreen.enemys;
 
 
-public abstract class BaseMyPlaneBullet extends BaseBullet{
+public abstract class BaseMyBullet extends BaseBullet{
 
     public abstract Drawable getDrawable();
 

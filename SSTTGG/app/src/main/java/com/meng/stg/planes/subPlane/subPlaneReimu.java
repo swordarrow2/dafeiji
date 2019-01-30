@@ -2,7 +2,7 @@ package com.meng.stg.planes.subPlane;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.meng.stg.ResourcesManager;
-import com.meng.stg.bullets.myPlane.ReimuSubPlaneBullet;
+import com.meng.stg.bullets.subPlane.ReimuSubPlaneBullet;
 /*
 subplane
  */
@@ -20,6 +20,42 @@ public class subPlaneReimu extends BaseSubPlane{
 		degree+=5;
 		return degree;
 	  }
+
+	@Override
+	public void update(){
+		super.update();
+		if(myPlane.slow){
+			switch(subPlaneNumber){
+				case 0:
+					nowPosition=myPlane.objectCenter.cpy().add(-30,-20);
+					break;
+				case 1:
+					nowPosition=myPlane.objectCenter.cpy().add(30,-20);
+					break;
+				case 2:
+					nowPosition=myPlane.objectCenter.cpy().add(-10,-30);
+					break;
+				case 3:
+					nowPosition=myPlane.objectCenter.cpy().add(10,-30);
+					break;
+			}
+		}else{
+			switch(subPlaneNumber){
+				case 0:
+					nowPosition=myPlane.objectCenter.cpy().add(-38,16);
+					break;
+				case 1:
+					nowPosition=myPlane.objectCenter.cpy().add(38,16);
+					break;
+				case 2:
+					nowPosition=myPlane.objectCenter.cpy().add(-16,32);
+					break;
+				case 3:
+					nowPosition=myPlane.objectCenter.cpy().add(16,32);
+					break;
+			}
+		}
+	}
 
 	@Override
 	public Vector2 getSize(){

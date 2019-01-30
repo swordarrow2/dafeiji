@@ -15,7 +15,7 @@ public abstract class BaseGameObject{
     public Image image=null;
     public int animFlag=0;
     public Drawable drawable=null;
-    public MoveManager mvc=null;
+    public MoveManager moveManager=null;
     public Vector2 velocity=new Vector2();
     public int existTime=0;
 

@@ -1,8 +1,7 @@
-package com.meng.stg.bullets.enemy;
+package com.meng.stg.bullets;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.move.MoveManager;
 import com.meng.stg.move.MoveMethodCircle;
 import com.meng.stg.move.MoveMethodStraight;
@@ -18,16 +17,19 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     public static int bulletCount=0;
 
-    @Override
-    public void Init(){
+    public void Init(Vector2 center,MoveManager moveManager){
         super.Init();
-        mvc=new MoveManager(this,
+        this.objectCenter=center;
+        this.moveManager=new MoveManager(this,
                 new MoveMethodStraight(60,new Vector2(0,-5)),
                 //  new MoveMethodStraight(20,new Vector2(1,9)),
                 //  new MoveMethodStraight(20,new Vector2(-5,-9)),
                 //  new MoveMethodStraight(20,new Vector2(-1,3)),
                 new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
         );
+        if(moveManager!=null){
+            this.moveManager=moveManager;
+        }
         bulletCount++;
     }
 
@@ -45,7 +47,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     @Override
     public void update(){
         super.update();
-        mvc.update();
+        moveManager.update();
         if(refCount>0){
             if(objectCenter.x<=0){
                 velocity.x=-velocity.x;

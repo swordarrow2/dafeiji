@@ -6,11 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.ui.MainScreen;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.JudgeCircleAnimation;
-import com.meng.stg.planes.*;
+import com.meng.stg.planes.JudgeCircleAnimation2;
+import com.meng.stg.ui.MainScreen;
+
 /*
 base class of my plane
  */
@@ -23,40 +24,41 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 
-    public static jca2 animation=null;
-	public static jca3 animation2=null;
+    public static JudgeCircleAnimation animation=null;
+    public static JudgeCircleAnimation2 animation2=null;
     public static Image judgeAnim=null;
-	public static Image judgeAnim2=null;
+    public static Image judgeAnim2=null;
     private float playerLastX=270;
+    public boolean slow=false;
 
     public void Init(){
         instance=this;
         if(animation==null){
-            animation=new jca2();
+            animation=new JudgeCircleAnimation();
         }
         if(judgeAnim==null){
             judgeAnim=Pools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
         }
-		if(animation2==null){
-            animation2=new jca3();
-		  }
+        if(animation2==null){
+            animation2=new JudgeCircleAnimation2();
+        }
         if(judgeAnim2==null){
             judgeAnim2=Pools.imagePool.obtain();
             judgeAnim2=animation2.getImage();
             judgeAnim2.setSize(48,48);
-		  }
+        }
         image=Pools.imagePool.obtain();
         MainScreen.mainGroup.addActor(image);
         MainScreen.mainGroup.addActor(judgeAnim);
-		MainScreen.mainGroup.addActor(judgeAnim2);
+        MainScreen.mainGroup.addActor(judgeAnim2);
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);
-		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-		judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
-		judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+        judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
+        judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
     }
@@ -69,7 +71,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
         animFlag++;
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
-		judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
+        judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
         if(onBomb){
@@ -98,12 +100,11 @@ public abstract class BaseMyPlane extends BaseGameObject{
             playerLastX=objectCenter.x;
             image.setDrawable(getStayAnim());
         }
-
         image.toBack();
-		judgeAnim2.toFront();
-        judgeAnim.toFront();	
+        judgeAnim2.toFront();
+        judgeAnim.toFront();
         animation.update();
-		animation2.update();
+        animation2.update();
     }
 
     public float[] getPosition(){
@@ -111,8 +112,6 @@ public abstract class BaseMyPlane extends BaseGameObject{
     }
 
     public abstract void bomb();
-
-    public abstract Drawable getDrawableJavaBean();
 
     public abstract Drawable getStayAnim();
 

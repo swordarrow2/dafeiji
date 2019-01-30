@@ -1,19 +1,16 @@
-package com.meng.stg.bullets.myPlane;
+package com.meng.stg.bullets.subPlane;
 
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.BaseMyBullet;
+import com.meng.stg.helpers.TextureNameManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-/**
- * Created by Administrator on 2019/1/29.
- */
-
-public class ReimuSubPlaneBullet extends BaseMyPlaneBullet{
+public class ReimuSubPlaneBullet extends BaseMyBullet{
     public static com.badlogic.gdx.utils.Pool<ReimuSubPlaneBullet> Pool=new Pool<ReimuSubPlaneBullet>(){
         @Override
         protected ReimuSubPlaneBullet newObject(){
@@ -24,7 +21,7 @@ public class ReimuSubPlaneBullet extends BaseMyPlaneBullet{
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=ResourcesManager.textures.get("reimu29");
+            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBullet);
         }
         return drawable;
     }

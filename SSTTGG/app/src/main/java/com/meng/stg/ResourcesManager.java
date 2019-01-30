@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.HashMap;
+
 /*
  all game resources
  */
@@ -16,108 +17,71 @@ public final class ResourcesManager{
 
     public static void Load(){
         loadMyPlane("pl00");
-		loadEnemy("enemy");
-		loadSlow("slow");
-		loadBullets("bullet1");
-        FileHandle projDir=Gdx.files.internal("textures/bullet/");
-        FileHandle[] projFiles=projDir.list();
-        for(int i=0;i<projFiles.length;i++){
-            if(projFiles[i].extension().equals("png")){
-                Texture texture=new Texture(projFiles[i]);
-                TextureRegionDrawable drawable=new TextureRegionDrawable(new TextureRegion(texture));
-                textures.put(projFiles[i].nameWithoutExtension(),drawable);
-			  }
-		  }
-        FileHandle npcDir=Gdx.files.internal("textures/enemy/");
-        FileHandle[] npcFiles=npcDir.list();
-        for(int i=0;i<npcFiles.length;i++){
-            if(npcFiles[i].extension().equals("png")){
-                Texture texture=new Texture(npcFiles[i]);
-                TextureRegionDrawable drawable=new TextureRegionDrawable(new TextureRegion(texture));
-                textures.put(npcFiles[i].nameWithoutExtension(),drawable);
-			  }
-		  }
-	  }
+        loadEnemy("enemy");
+        loadEffect("slow");
+        loadBullets("bullet1");
+    }
 
     private static void loadMyPlane(String name){
         FileHandle plsanae=Gdx.files.internal("textures/player/"+name+".png");
-        String[] plsanaeWalkSheet=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+        FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
+        String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
         Texture tplsanae=new Texture(plsanae);
-        for(int i=0, n=0;n<56;i++){
-			if(plsanaeWalkSheet[i].equals("Sprite:")){
-				int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
-				int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
-				int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
-				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
-				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-				textures.put("reimu"+plsanaeWalkSheet[i+1],trd);
-				n++;
-			  }
-		  }
-	  }
+        int textureCount=getTextureCount(plsanaetxt);
+        for(int i=0, n=0;n<textureCount;i++){
+            if(plsanaeWalkSheet[i].equals("Sprite:")){
+                textures.put("reimu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                n++;
+            }
+        }
+    }
 
-	private static void loadEnemy(String name){
+    private static void loadEnemy(String name){
         FileHandle plsanae=Gdx.files.internal("textures/enemy/"+name+".png");
-        String[] plsanaeWalkSheet=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+        FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
+        String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
         Texture tplsanae=new Texture(plsanae);
-        for(int i=0, n=0;n<120;i++){
-			if(plsanaeWalkSheet[i].equals("Sprite:")){
-				int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
-				int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
-				int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
-				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
-				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-				textures.put("zayu"+plsanaeWalkSheet[i+1],trd);
-				n++;
-			  }
-		  }
-	  }
-	private static void loadSlow(String name){
-		FileHandle plsanae=Gdx.files.internal("textures/effect/"+name+".png");
-		String[] plsanaeWalkSheet=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt").readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
-		Texture tplsanae=new Texture(plsanae);
-		for(int i=0, n=0;n<2;i++){
-			if(plsanaeWalkSheet[i].equals("Sprite:")){
-				int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
-				int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
-				int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
-				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
-				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-				textures.put("slow"+plsanaeWalkSheet[i+1],trd);
-				n++;
-			  }
-		  }
-	  }
-	  
-	private static void loadBullets(String name){
-		FileHandle plsanae=Gdx.files.internal("textures/bullet/"+name+".png");
-		FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
-		String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
-		Texture tplsanae=new Texture(plsanae);
-		int textureCount=getTextureCount(plsanaetxt);
-		for(int i=0, n=0;n<textureCount;i++){
-			if(plsanaeWalkSheet[i].equals("Sprite:")){
-				int x=Integer.parseInt(plsanaeWalkSheet[i+4]);
-				int y=Integer.parseInt(plsanaeWalkSheet[i+5]);
-				int width=Integer.parseInt(plsanaeWalkSheet[i+2]);
-				int height=Integer.parseInt(plsanaeWalkSheet[i+3]);
-				TextureRegion tr=new TextureRegion(tplsanae,x,y,width,height);
-				TextureRegionDrawable trd=new TextureRegionDrawable(tr);
-				textures.put("bullet"+plsanaeWalkSheet[i+1],trd);
-				n++;
-			  }
-		  }
-	  }
-	  
-	  
-	  private static int getTextureCount(FileHandle txt){
-		String str=txt.readString();
-		  String flagStr="Sprite:";
-		  String newStr=str.replace(flagStr,"");
-		  int counter=(str.length()-newStr.length())/flagStr.length();
-		  return counter;
-	  }
-  }
+        int textureCount=getTextureCount(plsanaetxt);
+        for(int i=0, n=0;n<textureCount;i++){
+            if(plsanaeWalkSheet[i].equals("Sprite:")){
+                textures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                n++;
+            }
+        }
+    }
+
+    private static void loadEffect(String name){
+        FileHandle plsanae=Gdx.files.internal("textures/effect/"+name+".png");
+        FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
+        String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+        Texture tplsanae=new Texture(plsanae);
+        int textureCount=getTextureCount(plsanaetxt);
+        for(int i=0, n=0;n<textureCount;i++){
+            if(plsanaeWalkSheet[i].equals("Sprite:")){
+                textures.put("slow"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                n++;
+            }
+        }
+    }
+
+    private static void loadBullets(String name){
+        FileHandle plsanae=Gdx.files.internal("textures/bullet/"+name+".png");
+        FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
+        String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+        Texture tplsanae=new Texture(plsanae);
+        int textureCount=getTextureCount(plsanaetxt);
+        for(int i=0, n=0;n<textureCount;i++){
+            if(plsanaeWalkSheet[i].equals("Sprite:")){
+                textures.put("bullet"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                n++;
+            }
+        }
+    }
+
+    private static int getTextureCount(FileHandle txt){
+        String str=txt.readString();
+        String flagStr="Sprite:";
+        String newStr=str.replace(flagStr,"");
+        return (str.length()-newStr.length())/flagStr.length();
+    }
+}
