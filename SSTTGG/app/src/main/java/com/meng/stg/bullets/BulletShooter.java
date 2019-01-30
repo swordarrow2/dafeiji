@@ -1,12 +1,15 @@
 package com.meng.stg.bullets;
 
-import com.badlogic.gdx.math.*;
-import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.planes.enemyPlane.*;
-import java.util.*;
-import java.util.concurrent.*;
-import com.badlogic.gdx.*;
-import com.meng.stg.move.*;
+import com.badlogic.gdx.math.Vector2;
+import com.meng.stg.bullets.enemy.BulletColor;
+import com.meng.stg.bullets.enemy.BulletForm;
+import com.meng.stg.bullets.enemy.SimpleRedBullet;
+import com.meng.stg.move.BaseMoveMethod;
+import com.meng.stg.move.MoveMethodStraight;
+import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+
+import java.util.HashSet;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by Administrator on 2019/1/25.
@@ -15,23 +18,77 @@ import com.meng.stg.move.*;
 public class BulletShooter{
 
     private BaseEnemyPlane baseEnemyPlane;
-    private Vector2 speed;
-    private int time;
 
     public static HashSet<BulletShooter> instances=new HashSet<BulletShooter>();
     public static LinkedBlockingQueue<BulletShooter> toDelete=new LinkedBlockingQueue<BulletShooter>();
     public static LinkedBlockingQueue<BulletShooter> toAdd=new LinkedBlockingQueue<BulletShooter>();
+    private Vector2 bulletCenter=new Vector2(200,200);
+    private Vector2 bulletVelocity=new Vector2(0,-1);
+    private BulletForm bf=BulletForm.lindan;
+    private BulletColor bc=BulletColor.white;
+    private int inFrame=1;
+    private int ways=1;
+    private int waysDegree=0;
+    private int cengShu=1;
+    private boolean straightMove=true;
+    private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
-    public BulletShooter(BaseEnemyPlane baseEnemyPlane,Vector2 speed){
+    public BulletShooter(BaseEnemyPlane baseEnemyPlane){
         this.baseEnemyPlane=baseEnemyPlane;
-        this.speed=speed;
         toAdd.add(this);
     }
 
+    public BulletShooter setStraightMove(boolean straightMove){
+        this.straightMove=straightMove;
+        return this;
+    }
+
+    public BulletShooter setMoveMethods(BaseMoveMethod... moveMethods){
+        this.moveMethods=moveMethods;
+        return this;
+    }
+
+    public BulletShooter setWays(int ways){
+        this.ways=ways;
+        return this;
+    }
+
+    public BulletShooter setCengShu(int cengShu){
+        this.cengShu=cengShu;
+        return this;
+    }
+
+    public BulletShooter setWaysDegree(int waysDegree){
+        this.waysDegree=waysDegree;
+        return this;
+    }
+
+    public BulletShooter setBulletCenter(Vector2 bulletCenter){
+        this.bulletCenter=bulletCenter;
+        return this;
+    }
+
+    public BulletShooter setBulletColor(BulletColor bc){
+        this.bc=bc;
+        return this;
+    }
+
+    public BulletShooter setBulletForm(BulletForm bf){
+        this.bf=bf;
+        return this;
+    }
+
+    public BulletShooter setBulletVelocity(Vector2 bulletVelocity){
+        this.bulletVelocity=bulletVelocity;
+        return this;
+    }
+
+    public BulletShooter setInFrame(int inFrame){
+        this.inFrame=inFrame;
+        return this;
+    }
+
     public void update(){
-        time++;
-		shoot();
-		
         if(baseEnemyPlane.judgeCircle==null){
             kill();
         }
@@ -53,10 +110,35 @@ public class BulletShooter{
         }
     }
 
-    void shoot(){
-      //  if(time%25==0){  
-		SimpleRedBullet.create(baseEnemyPlane.objectCenter,BulletForm.xingdan,BulletColor.red,new MoveMethodStraight(1,new Vector2(0,0)));
-      //  }
+    public void shoot(){
+        moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods;
+        //    SimpleRedBullet.create(bulletCenter,bf,bc,moveMethods);
+        //    SimpleRedBullet.create(bulletCenter,bf,bc,new MoveMethodStraight(inFrame,bulletVelocity));
+        float allAngle=(ways-1)*waysDegree;
+        bulletVelocity.rotate(-allAngle/2);
+        for(int i=0;i<ways;i++){
+            SimpleRedBullet.create(bulletCenter,bf,bc,new MoveMethodStraight(inFrame,bulletVelocity.rotate(waysDegree)));
+        }
+     /*   if(ways%2==0){
+            int halfWays=ways/2;
+            int halfDegree=waysDegree/2;
+            for(float i=bulletVelocity.angle();i<=(halfWays-1)*waysDegree+halfDegree;i+=waysDegree){
+                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
+            }
+            for(float i=bulletVelocity.angle();i>=-((halfWays-1)*waysDegree+halfDegree);i-=waysDegree){
+                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
+            }
+        }else{
+            SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods);
+            for(float i=bulletVelocity.angle();i<(ways-1)/2*waysDegree;i+=waysDegree){
+                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
+            }
+            for(float i=bulletVelocity.angle();i>-(ways-1)/2*waysDegree;i-=waysDegree){
+                SimpleRedBullet.create(bulletCenter,bf,bc,straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity.cpy().rotate(i))}:moveMethods);
+            }
+        }
+        */
+
     }
 
 

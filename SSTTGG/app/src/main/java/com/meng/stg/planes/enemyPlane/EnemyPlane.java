@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.bullets.BulletShooter;
 import com.meng.stg.ResourcesManager;
+import com.meng.stg.bullets.enemy.BulletColor;
+import com.meng.stg.bullets.enemy.BulletForm;
 
 public class EnemyPlane extends BaseEnemyPlane{
 
@@ -106,7 +108,6 @@ public class EnemyPlane extends BaseEnemyPlane{
 
 	@Override
 	public void Init(float x,float y,float vx,float vy,int hp){
-		// TODO: Implement this method
 		super.Init(x,y,vx,vy,hp);
 		image.setSize(32,32);
 	  }
@@ -115,7 +116,7 @@ public class EnemyPlane extends BaseEnemyPlane{
     @Override
     public void Init(float x,float y,float vx,float vy){
         super.Init(x,y,vx,vy);
-       BulletShooter bs=new BulletShooter(this,new Vector2(0,-3));
+       new BulletShooter(this).setBulletCenter(objectCenter).setBulletColor(BulletColor.red).setBulletForm(BulletForm.liandan).setStraightMove(true).setWays(3).setWaysDegree(10).setInFrame(10);
     }
 
     @Override
