@@ -32,12 +32,17 @@ public class BulletShooter{
     private int ways=1;
     private int waysDegree=0;
     private int cengShu=1;
+	private float cengDanSuCha=0.1f;
     private boolean straightMove=true;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(BaseEnemyPlane baseEnemyPlane){
         this.baseEnemyPlane=baseEnemyPlane;
         toAdd.add(this);
+	  }
+
+	public void setCengDanSuCha(float cengDanSuCha){
+		this.cengDanSuCha=cengDanSuCha;
 	  }
 
     public BulletShooter setStraightMove(boolean straightMove){
@@ -126,7 +131,7 @@ public class BulletShooter{
 				SimpleRedBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,new MoveMethodStraight(inFrame,tmpv.cpy()));
 				tmpv.rotate(waysDegree);
 			  }
-			beilv+=0.1f;
+			beilv+=cengDanSuCha;
 		  }
 	  }
   }

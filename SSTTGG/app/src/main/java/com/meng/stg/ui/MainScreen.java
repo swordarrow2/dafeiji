@@ -114,6 +114,7 @@ public class MainScreen extends ScreenAdapter{
 
     private void init(){
         instence=this;
+		
         width=386;//540;//386;
         height=600;//720;//450;
         sv=new FitViewport(width,height);
@@ -148,6 +149,11 @@ public class MainScreen extends ScreenAdapter{
     }
 
     public void restart(){
+		gameTime=0;
+		stage.clear();
+		mainGroup.clear();
+		onBoss=false;
+		enemys=new BaseEnemyPlane[32];
         init();
     }
 
