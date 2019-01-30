@@ -11,7 +11,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseSubPlane extends BaseGameObject{
-    public Vector2 center=new Vector2();
+   
     public Vector2 nowPosition=new Vector2();
     public Vector2 size=new Vector2();
     public Image image=null;
@@ -25,6 +25,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
         this.subPlaneNumber=subPlaneNumber;
         this.myPlane=myPlane;
         size=getSize();
+		objectCenter.set(myPlane.objectCenter);
         image=Pools.imagePool.obtain();
         image.setDrawable(getDrawable());
         image.setSize(size.x,size.y);
@@ -41,10 +42,10 @@ public abstract class BaseSubPlane extends BaseGameObject{
 
     public void update(){
         super.update();
-        center.add(nowPosition.sub(center).scl(0.2f));
+        objectCenter.add(nowPosition.sub(objectCenter).scl(0.2f));
         image.setDrawable(getDrawable());
         image.setRotation(getRotationDegree());
-        image.setPosition(center.x,center.y,Align.center);
+        image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         shoot();

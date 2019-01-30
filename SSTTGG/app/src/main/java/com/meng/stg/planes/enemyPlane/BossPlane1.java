@@ -24,14 +24,14 @@ public class BossPlane1 extends BaseEnemyPlane{
     protected Drawable getDrawable(){
         switch(animFlag%48){
             case 15:
-                d=bossAnim.get("anim1");
-                break;
+			  d=bossAnim.get("anim1");
+			  break;
             case 39:
-                d=bossAnim.get("anim3");
-                break;
-        }
+			  d=bossAnim.get("anim3");
+			  break;
+		  }
         return d;
-    }
+	  }
 
 	@Override
     public Drawable getStayAnim(){
@@ -130,7 +130,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 		super.update();
 		move();
 	  }
-	 
+
 
     @Override
     public void Init(float x,float y,float vx,float vy,int hp){
@@ -145,57 +145,56 @@ public class BossPlane1 extends BaseEnemyPlane{
                 TextureRegionDrawable drawable=new TextureRegionDrawable(tmp[i][j]);
                 bossAnim.put("anim"+index,drawable);
                 index++;
-            }
-        }
+			  }
+		  }
         image.setSize(128,128);
 		new BulletShooter(this,new Vector2(0,-3));
 		moveManager=new MoveManager(this,
-									new MoveMethodStraight(1,new Vector2(0,0))						);
-    }
+									new MoveMethodStraight(1,new Vector2(0,0)));
+	  }
 
-   
+
     protected void move(){
         if(objectCenter.x>380){
             xx=true;
-        }else if(objectCenter.x<10){
+		  }else if(objectCenter.x<10){
             xx=false;
-        }
+		  }
         if(objectCenter.y>430){
             yy=true;
-        }else if(objectCenter.y<100){
+		  }else if(objectCenter.y<100){
             yy=false;
-        }
+		  }
         objectCenter.x=xx?objectCenter.x+vx:objectCenter.x-vx;
         objectCenter.y=yy?objectCenter.y+vy:objectCenter.y-vy;
-    }
+	  }
 
     @Override
     protected void shoot(){
-	  
         if(time%30==31){
             int randVal=MathUtils.random(0,360);
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
+                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight());
                 vel.rotate(30);
-            }
-        }
-    }
+			  }
+		  }
+	  }
 
     @Override
     protected void anim(){
         if(objectCenter.x>enemyLastX){
             enemyLastX=objectCenter.x;
-            image.setDrawable(getRightMoveAnim() );
-        }else if(objectCenter.x<enemyLastX){
+            image.setDrawable(getRightMoveAnim());
+		  }else if(objectCenter.x<enemyLastX){
             enemyLastX=objectCenter.x;
-            image.setDrawable(getLeftMoveAnim() );
-        }else{
+            image.setDrawable(getLeftMoveAnim());
+		  }else{
             enemyLastX=objectCenter.x;
-            image.setDrawable(getDrawable() );
-        }
-    }
+            image.setDrawable(getDrawable());
+		  }
+	  }
 
     @Override
     public void Kill(){
@@ -205,10 +204,10 @@ public class BossPlane1 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
+            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight());
             vel.rotate(15);
-        }
+		  }
         super.Kill();
-    }
+	  }
 
-}
+  }

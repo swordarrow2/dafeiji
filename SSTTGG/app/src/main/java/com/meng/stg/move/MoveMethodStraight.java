@@ -9,6 +9,10 @@ public class MoveMethodStraight extends BaseMoveMethod{
         velocity=velo;
     }
 
+	public MoveMethodStraight(){
+	  time=1;
+	  velocity=new Vector2(0,-1);
+	}
     @Override
     public Vector2 getVelocity(){
         return velocity;

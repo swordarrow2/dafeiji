@@ -9,6 +9,7 @@ import com.meng.stg.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.ui.*;
 import java.util.*;
+import com.meng.stg.move.*;
 
 public class BossPlane2 extends BaseEnemyPlane{
 
@@ -120,7 +121,7 @@ public class BossPlane2 extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
+                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight(1,new Vector2(0,-1)));
                 vel.rotate(30);
             }
         }
@@ -148,7 +149,7 @@ public class BossPlane2 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple);
+            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight(1,new Vector2(0,-1)));
             vel.rotate(15);
         }
         super.Kill();

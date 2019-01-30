@@ -1,4 +1,5 @@
 package com.meng.stg.planes.subPlane;
+
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.meng.stg.ResourcesManager;
@@ -24,34 +25,34 @@ public class subPlaneReimu extends BaseSubPlane{
 	@Override
 	public void update(){
 		super.update();
-		if(!myPlane.slow){
+		if(myPlane.slow){
 			switch(subPlaneNumber){
 				case 0:
-					nowPosition=myPlane.objectCenter.cpy().add(-30,-20);
+					nowPosition=myPlane.objectCenter.cpy().add(30,20);
 					break;
 				case 1:
-					nowPosition=myPlane.objectCenter.cpy().add(30,-20);
+					nowPosition=myPlane.objectCenter.cpy().add(-30,20);
 					break;
 				case 2:
-					nowPosition=myPlane.objectCenter.cpy().add(-10,-30);
+					nowPosition=myPlane.objectCenter.cpy().add(10,30);
 					break;
 				case 3:
-					nowPosition=myPlane.objectCenter.cpy().add(10,-30);
+					nowPosition=myPlane.objectCenter.cpy().add(-10,30);
 					break;
 			}
 		}else{
 			switch(subPlaneNumber){
 				case 0:
-					nowPosition=myPlane.objectCenter.cpy().add(-38,16);
+					nowPosition=myPlane.objectCenter.cpy().add(38,-16);
 					break;
 				case 1:
-					nowPosition=myPlane.objectCenter.cpy().add(38,16);
+					nowPosition=myPlane.objectCenter.cpy().add(-38,-16);
 					break;
 				case 2:
-					nowPosition=myPlane.objectCenter.cpy().add(-16,32);
+					nowPosition=myPlane.objectCenter.cpy().add(16,-32);
 					break;
 				case 3:
-					nowPosition=myPlane.objectCenter.cpy().add(16,32);
+					nowPosition=myPlane.objectCenter.cpy().add(-16,-32);
 					break;
 			}
 		}
@@ -66,8 +67,8 @@ public class subPlaneReimu extends BaseSubPlane{
 	public void shoot(){
 		if(existTime%7==1){
             Vector2 vel=new Vector2(0,37);
-            ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(center.x+4,center.y+16),vel);
-			ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(center.x-4,center.y+16),vel);
+            ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x+4,objectCenter.y+16),vel);
+			ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x-4,objectCenter.y+16),vel);
 		  }
 	  }
   }

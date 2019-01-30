@@ -18,36 +18,15 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     };
     private int colorNum=0;
     private int formNum=0;
-/*
-    public void Init(Vector2 center){
-        super.Init();
-        objectCenter.set(center);
-        image.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(objectCenter,image.getWidth()/2);
-		moveManager=new MoveManager(this,
-									new MoveMethodStraight(60,new Vector2(0,-5)),
-									//  new MoveMethodStraight(20,new Vector2(1,9)),
-									//  new MoveMethodStraight(20,new Vector2(-5,-9)),
-									//  new MoveMethodStraight(20,new Vector2(-1,3)),
-									new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
-									);
-        MainScreen.mainGroup.addActor(image);
-    }
-*/
-    public static void create(Vector2 center,BulletForm bf,BulletColor bc){
-        SimpleRedBullet.Pool.obtain().Init(center,bf,bc);
+
+    public static void create(Vector2 center,BulletForm bf,BulletColor bc,BaseMoveMethod... mm){
+        SimpleRedBullet.Pool.obtain().Init(center,bf,bc,mm);
     }
 
-    public void Init(Vector2 center,BulletForm bf,BulletColor bc){
+    public void Init(Vector2 center,BulletForm bf,BulletColor bc,BaseMoveMethod... mm){
         super.Init();
         objectCenter.set(center);
-		moveManager=new MoveManager(this,
-									new MoveMethodStraight(60,new Vector2(0,-5)),
-									//  new MoveMethodStraight(20,new Vector2(1,9)),
-									//  new MoveMethodStraight(20,new Vector2(-5,-9)),
-									//  new MoveMethodStraight(20,new Vector2(-1,3)),
-									new MoveMethodCircle(10,90,false,new Vector2(-1,-21))
-									);
+		moveManager=new MoveManager(this,mm);
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
         switch(bc){

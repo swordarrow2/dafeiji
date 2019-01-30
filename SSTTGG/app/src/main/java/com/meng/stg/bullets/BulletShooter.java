@@ -5,6 +5,8 @@ import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.planes.enemyPlane.*;
 import java.util.*;
 import java.util.concurrent.*;
+import com.badlogic.gdx.*;
+import com.meng.stg.move.*;
 
 /**
  * Created by Administrator on 2019/1/25.
@@ -28,7 +30,7 @@ public class BulletShooter{
 
     public void update(){
         time++;
-        shoot();
+		shoot();
 		
         if(baseEnemyPlane.judgeCircle==null){
             kill();
@@ -52,9 +54,9 @@ public class BulletShooter{
     }
 
     void shoot(){
-        if(time%25==0){   
-			SimpleRedBullet.create(baseEnemyPlane.objectCenter,BulletForm.xingdan,BulletColor.red);
-        }
+      //  if(time%25==0){  
+		SimpleRedBullet.create(baseEnemyPlane.objectCenter,BulletForm.xingdan,BulletColor.red,new MoveMethodStraight(1,new Vector2(0,0)));
+      //  }
     }
 
 

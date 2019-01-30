@@ -22,6 +22,7 @@ import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.stage.stage1;
+import com.meng.stg.bullets.*;
 
 /*
  main layout
@@ -71,8 +72,12 @@ public class MainScreen extends ScreenAdapter{
         BaseBullet.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
+		
+		
         mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
+						+"\nbullet:"+BaseEnemyBullet.bulletCount
+							+"\nmemory:"+(Runtime.getRuntime().totalMemory() * 1.0/ (1024 * 1024))+"\n"
                         +isKilled()
                 ,10,590);
         switch(stageFlag){
