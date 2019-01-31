@@ -21,17 +21,17 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public Drawable getStayAnim(){
         animationManager.setStatus(MoveStatus.stay);
-        return animationManager.getImage();
+        return null;// animationManager.getImage();
     }
 
     public Drawable getLeftMoveAnim(){
         animationManager.setStatus(MoveStatus.leftMove);
-        return animationManager.getImage();
+        return null;//animationManager.getImage();
     }
 
     public Drawable getRightMoveAnim(){
         animationManager.setStatus(MoveStatus.rightMove);
-        return animationManager.getImage();
+        return null;//animationManager.getImage();
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void Init(){
         super.Init();
         bombTime=Data.ReimuBombTime;
-        animationManager=new AnimationManager(this,10);
+        animationManager=new AnimationManager(this,5);
         subPlane0=new subPlaneReimu();
         subPlane0.init(this,0);
         subPlane1=new subPlaneReimu();

@@ -90,15 +90,24 @@ public abstract class BaseMyPlane extends BaseGameObject{
             onUnmatched=false;
             unmatchedTime=Data.ReimuUnmatchedTime;
         }
-        if(objectCenter.x>playerLastX){
+       if(objectCenter.x>playerLastX){
             playerLastX=objectCenter.x;
-            image.setDrawable(getRightMoveAnim());
+        //    image.setDrawable(
+			getRightMoveAnim()
+		//	)
+		;
         }else if(objectCenter.x<playerLastX){
             playerLastX=objectCenter.x;
-            image.setDrawable(getLeftMoveAnim());
+        //    image.setDrawable(
+			getLeftMoveAnim()
+		//	)
+			;
         }else{
             playerLastX=objectCenter.x;
-            image.setDrawable(getStayAnim());
+       //     image.setDrawable(
+			getStayAnim()
+		//	)
+			;
         }
         image.toBack();
         judgeAnim2.toFront();

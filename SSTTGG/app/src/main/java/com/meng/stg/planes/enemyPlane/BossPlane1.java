@@ -11,6 +11,7 @@ import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 import java.util.*;
+import com.meng.stg.planes.*;
 
 public class BossPlane1 extends BaseEnemyPlane{
 
@@ -20,8 +21,7 @@ public class BossPlane1 extends BaseEnemyPlane{
     private Drawable d=null;
     private BulletShooter bs;
 
-    private String reimu="reimu";
-
+    
     @Override
     protected Drawable getDrawable(){
         switch(animFlag%48){
@@ -37,92 +37,17 @@ public class BossPlane1 extends BaseEnemyPlane{
 
     @Override
     public Drawable getStayAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+0);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+1);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+2);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+3);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+4);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+5);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+6);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+7);
-			  break;
-		  }
+  //      am.setStatus(MoveStatus.stay);
         return d;
 	  }
 
     public Drawable getLeftMoveAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+8);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+9);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+10);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+11);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+12);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+13);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+14);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+15);
-			  break;
-		  }
+  //      am.setStatus(MoveStatus.leftMove);
         return d;
 	  }
 
     public Drawable getRightMoveAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+16);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+17);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+18);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+19);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+20);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+21);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+22);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+23);
-			  break;
-		  }
+  //      am.setStatus(MoveStatus.rightMove);
         return d;
 	  }
 
@@ -130,6 +55,7 @@ public class BossPlane1 extends BaseEnemyPlane{
     public void update(){
         super.update();
       //  move();
+	//  am.update();
    //     bs.shoot();
 	  }
 
@@ -149,8 +75,9 @@ public class BossPlane1 extends BaseEnemyPlane{
                 index++;
 			  }
 		  }
+		d=bossAnim.get("anim1");
         image.setSize(128,128);
-
+	
 
 
         bs=new BulletShooter(this)
@@ -163,6 +90,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 		  .setCengShu(5)
 		  .setInFrame(10);
 bs.shoot();
+
 
         moveManager=new MoveManager(this,
 									new MoveMethodStraight(1,new Vector2(0,0)));
