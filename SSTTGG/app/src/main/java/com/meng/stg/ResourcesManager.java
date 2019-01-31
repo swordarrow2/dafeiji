@@ -14,6 +14,7 @@ import java.util.HashMap;
  */
 public final class ResourcesManager{
     public static HashMap<String,Drawable> textures=new HashMap<String,Drawable>();
+    public static HashMap<String,Drawable> flipedTextures=new HashMap<String,Drawable>();
 
     public static void Load(){
         loadMyPlane("pl00");
@@ -45,6 +46,9 @@ public final class ResourcesManager{
         for(int i=0, n=0;n<textureCount;i++){
             if(plsanaeWalkSheet[i].equals("Sprite:")){
                 textures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                TextureRegion tr=new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]));
+                tr.flip(true,false);
+                textures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(tr));
                 n++;
             }
         }
