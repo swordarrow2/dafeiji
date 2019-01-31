@@ -6,6 +6,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.planes.myPlane.BaseMyPlane.instance;
+import com.meng.stg.planes.myPlane.*;
 
 /**
  * my plane Ctrl
@@ -31,7 +32,9 @@ public class PlayerInputProcessor extends InputAdapter{
             BaseMyPlane.instance.onBomb=true;
 		  }
         if(pointer==3){
-            MainScreen.instence.restart();
+         //   MainScreen.instence.restart();
+		 BaseMyPlane.instance.subPlaneCount++;
+		((MyPlaneReimu)BaseMyPlane.instance).onPowerInc();
 		  }
         return super.touchDown(screenX,screenY,pointer,button);
 	  }

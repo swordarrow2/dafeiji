@@ -77,7 +77,7 @@ public class MainScreen extends ScreenAdapter{
         mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
 						+"\nbullet:"+BaseEnemyBullet.bulletCount
-							+"\nmemory:"+(Runtime.getRuntime().totalMemory() * 1.0/ (1024 * 1024))+"\n"
+							+"\nmemory:"+(Runtime.getRuntime().totalMemory() * 1.0/ (1024 * 1024))
                         +isKilled()
                 ,10,590);
         switch(stageFlag){
@@ -124,7 +124,7 @@ public class MainScreen extends ScreenAdapter{
         pixmap.fill();
         mainBitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));// new BitmapFont(Gdx.files.internal("font/bitmapfont.fnt"));
         mainBitmapFont.setColor(Color.GREEN);
-
+		
         Image background=new Image(new Texture(pixmap));
 
         background.setBounds(0,0,386,450);

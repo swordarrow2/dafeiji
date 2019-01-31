@@ -78,6 +78,22 @@ public class MyPlaneReimu extends BaseMyPlane{
 		  }	
 	  }
 
+	  public void onPowerInc(){
+		switch(subPlaneCount){
+			  case 4:subPlane4=new subPlaneReimu();
+				subPlane4.init(this,4);
+				break;
+			  case 3:subPlane3=new subPlaneReimu();
+				subPlane3.init(this,3);
+				break;
+			  case 2:subPlane2=new subPlaneReimu();
+				subPlane2.init(this,2);
+				break;
+			  case 1:subPlane1=new subPlaneReimu();
+				subPlane1.init(this,1);		
+				break;
+		}
+	  }
 
     @Override
     public void bomb(){

@@ -30,6 +30,32 @@ public class subPlaneReimu extends BaseSubPlane{
 			case 1:
 			case 2:
 			case 3:
+			  if(myPlane.slow){
+				  switch(subPlaneNumber){
+					  case 1:
+						nowPosition=myPlane.objectCenter.cpy().add(30,20);
+						break;
+					  case 2:
+						nowPosition=myPlane.objectCenter.cpy().add(-30,20);
+						break;
+					  case 3:
+						nowPosition=myPlane.objectCenter.cpy().add(0,30);
+						break;				  
+					}
+				}else{
+				  switch(subPlaneNumber){
+					  case 1:
+						nowPosition=myPlane.objectCenter.cpy().add(38,-16);
+						break;
+					  case 2:
+						nowPosition=myPlane.objectCenter.cpy().add(-38,-16);
+						break;
+					  case 3:
+						nowPosition=myPlane.objectCenter.cpy().add(0,-32);
+						break;
+					}
+				}
+			  break;
 			case 4:
 			  if(myPlane.slow){
 				  switch(subPlaneNumber){
