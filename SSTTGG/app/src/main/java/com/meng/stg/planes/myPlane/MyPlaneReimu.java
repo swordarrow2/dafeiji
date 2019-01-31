@@ -8,6 +8,7 @@ import com.meng.stg.bullets.myPlane.ReimuShoot;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.subPlane.subPlaneReimu;
+import com.meng.stg.planes.*;
 
 /*
  my plane
@@ -17,36 +18,12 @@ public class MyPlaneReimu extends BaseMyPlane{
     private Drawable d=null;
     private String reimu="reimu";
     subPlaneReimu sp0, sp1,sp2,sp3;
+	AnimationManager am;
 
     @Override
     public Drawable getStayAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+0);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+1);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+2);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+3);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+4);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+5);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+6);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+7);
-			  break;
-		  }
-        return d;
+        
+        return am.getImage();
 	  }
 
     public Drawable getLeftMoveAnim(){
@@ -122,6 +99,7 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void Init(){
         super.Init();
         bombTime=Data.ReimuBombTime;
+		am=new AnimationManager(this,15);
         sp0=new subPlaneReimu();
         sp0.init(this,0);
         sp1=new subPlaneReimu();
@@ -146,6 +124,7 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void update(){
         super.update();
+		am.update();
 		sp0.update();
         sp1.update();
         sp2.update();
