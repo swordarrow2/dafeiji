@@ -1,6 +1,6 @@
 package com.meng.stg.planes;
 
-import com.meng.stg.*;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.planes.enemyPlane.*;
 
 public class EnemyAnimationManager{
@@ -39,13 +39,13 @@ public class EnemyAnimationManager{
 			  animTo=animNum[0][1];
 			  curFrameNumber=animFrom;
 			  break;
-			case leftMove:
+			case moveLeft:
 			  flip=true;
 			  animFrom=animNum[1][0];
 			  animTo=animNum[1][1];
 			  curFrameNumber=animFrom;
 			  break;
-			case rightMove:		  
+			case moveRight:
 			  flip=false;
 			  animFrom=animNum[1][0];
 			  animTo=animNum[1][1];

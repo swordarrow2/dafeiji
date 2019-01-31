@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.move.MoveManager;
@@ -13,8 +12,7 @@ import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 
 import static com.meng.stg.ui.MainScreen.enemys;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.badlogic.gdx.graphics.g2d.*;
+
 import com.meng.stg.move.*;
 import com.meng.stg.planes.*;
 /*
@@ -30,7 +28,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public Rectangle drawBox=new Rectangle();
     public int hp=10;
 
-	public EnemyAnimationManager eam;
+	public EnemyAnimationManager enemyAnimationManager;
 	private float playerLastX=270;
 
     public void Init(float x,float y,float vx,float vy){
@@ -39,7 +37,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void Init(float x,float y,float vx,float vy,int hp){
         image=Pools.imagePool.obtain();
-		eam=new EnemyAnimationManager(this,5);		
+		enemyAnimationManager=new EnemyAnimationManager(this,5);
         Killed=false;
         objectCenter.set(x,y);
         this.vx=vx;
@@ -82,7 +80,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         time++;
         animFlag++;
         moveManager.update();
-		eam.update();
+		enemyAnimationManager.update();
         objectCenter.add(velocity);
         anim();
         shoot();
@@ -99,12 +97,12 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     protected void anim(){
 		if(objectCenter.x>enemyLastX){
             enemyLastX=objectCenter.x;
-			eam.setStatus(MoveStatus.rightMove);
+			enemyAnimationManager.setStatus(MoveStatus.moveRight);
 		  }else if(objectCenter.x<enemyLastX){
             enemyLastX=objectCenter.x;
-			eam.setStatus(MoveStatus.leftMove);
+			enemyAnimationManager.setStatus(MoveStatus.moveLeft);
 		  }else{         
-			eam.setStatus(MoveStatus.stay);
+			enemyAnimationManager.setStatus(MoveStatus.stay);
 		  }	  
 	  }
 

@@ -5,7 +5,8 @@ package com.meng.stg.helpers;
  */
 
 
-public   class TextureNameManager {
+public class TextureNameManager{
     public static final String ReimuBullet="reimu24";
     public static final String ReimuSubPlaneBullet="reimu29";
+    public static final String ReimuSubPlane="reimu53";
 }

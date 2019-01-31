@@ -1,12 +1,10 @@
 package com.meng.stg.planes;
 
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.BaseGameObject;
-import com.meng.stg.ResourcesManager;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 
 public class AnimationManager{
-	private BaseMyPlane bmp;
+	private BaseMyPlane myPlane;
     private int animFrom=0;
     private int animTo=7;
     private int everyAnimFrameTime=0;
@@ -16,7 +14,7 @@ public class AnimationManager{
     
     public AnimationManager(BaseMyPlane obj,int everyAnimFrameTime){
         this.everyAnimFrameTime=everyAnimFrameTime;   
-		bmp=obj;
+		myPlane=obj;
 	  }
 
     public void setStatus(MoveStatus mov){
@@ -30,12 +28,12 @@ public class AnimationManager{
 				  animTo=7;
 				  curFrameNumber=animFrom;
 				  break;
-                case leftMove:				 
+                case moveLeft:
 				  animFrom=8;
 				  animTo=15;
 				  curFrameNumber=animFrom;
 				  break;
-                case rightMove:				
+                case moveRight:
 				  animFrom=16;
 				  animTo=23;
 				  curFrameNumber=animFrom;
@@ -52,6 +50,6 @@ public class AnimationManager{
         if(curFrameNumber>animTo){
             curFrameNumber=animFrom+5;
 		  }        			
-		bmp.image.setDrawable(ResourcesManager.textures.get("reimu"+curFrameNumber));		  
+		myPlane.image.setDrawable(ResourcesManager.textures.get("reimu"+curFrameNumber));
 	  }
   }

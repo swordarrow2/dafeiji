@@ -3,7 +3,7 @@ package com.meng.stg.bullets.myPlane;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.ResourcesManager;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.bullets.BaseMyBullet;
 import com.meng.stg.helpers.TextureNameManager;
 

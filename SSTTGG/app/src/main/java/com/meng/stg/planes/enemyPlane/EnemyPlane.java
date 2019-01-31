@@ -1,9 +1,8 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.bullets.BulletShooter;
-import com.meng.stg.ResourcesManager;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 

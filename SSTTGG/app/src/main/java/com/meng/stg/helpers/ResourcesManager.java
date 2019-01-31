@@ -1,4 +1,4 @@
-package com.meng.stg;
+package com.meng.stg.helpers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

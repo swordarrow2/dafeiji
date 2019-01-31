@@ -1,7 +1,7 @@
 package com.meng.stg.planes;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.meng.stg.ResourcesManager;
+import com.meng.stg.helpers.ResourcesManager;
 
 public class JudgeCircleAnimation{
 

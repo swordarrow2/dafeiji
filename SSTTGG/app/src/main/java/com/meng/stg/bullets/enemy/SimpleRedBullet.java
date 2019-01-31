@@ -3,8 +3,8 @@ package com.meng.stg.bullets.enemy;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
-import com.meng.stg.*;
 import com.meng.stg.bullets.*;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 

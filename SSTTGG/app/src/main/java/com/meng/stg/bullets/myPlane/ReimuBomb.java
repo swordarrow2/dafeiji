@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.ResourcesManager;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.bullets.BaseMyBullet;
 
 import static com.meng.stg.ui.MainScreen.enemys;
