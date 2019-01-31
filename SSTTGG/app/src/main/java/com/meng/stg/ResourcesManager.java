@@ -48,7 +48,7 @@ public final class ResourcesManager{
                 textures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
                 TextureRegion tr=new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]));
                 tr.flip(true,false);
-                textures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(tr));
+                flipedTextures.put("zayu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(tr));
                 n++;
             }
         }

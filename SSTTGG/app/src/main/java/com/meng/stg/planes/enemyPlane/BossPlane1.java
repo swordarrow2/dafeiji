@@ -15,11 +15,12 @@ public class BossPlane1 extends BaseEnemyPlane{
     @Override
     public void update(){
         super.update();
-		//  move();
+		move();
 		//  am.update();
-		//     bs.shoot();
+		if(existTime%60==1){
+			bs.shoot();
+		  }
 	  }
-
 
     @Override
     public void Init(float x,float y,float vx,float vy,int hp){
@@ -31,7 +32,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 		  .setBulletColor(BulletColor.red)
 		  .setBulletForm(BulletForm.liandan)
 		  .setStraightMove(true)
-		  .setWays(4)
+		  .setWays(12)
 		  .setWaysDegree(30)
 		  .setCengShu(5)
 		  .setInFrame(10);

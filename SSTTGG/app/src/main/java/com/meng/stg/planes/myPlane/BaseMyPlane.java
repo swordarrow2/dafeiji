@@ -25,7 +25,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 	
-	public int subPlaneCount=0;
+	public int subPlaneCount=4;
 
     public static JudgeCircleAnimation animation=null;
     public static JudgeCircleAnimation2 animation2=null;
@@ -82,6 +82,9 @@ public abstract class BaseMyPlane extends BaseGameObject{
 			judgeAnim.setSize(0,0);
 			judgeAnim2.setSize(0,0);
 		  }
+		judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
+        judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
+		
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);

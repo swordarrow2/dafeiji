@@ -78,6 +78,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 	  }
 
     public void update(){
+		super.update();
         time++;
         animFlag++;
         moveManager.update();

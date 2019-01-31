@@ -40,13 +40,13 @@ public class EnemyAnimationManager{
 			  curFrameNumber=animFrom;
 			  break;
 			case leftMove:
-			  flip=false;
+			  flip=true;
 			  animFrom=animNum[1][0];
 			  animTo=animNum[1][1];
 			  curFrameNumber=animFrom;
 			  break;
-			case rightMove:
-			  flip=true;
+			case rightMove:		  
+			  flip=false;
 			  animFrom=animNum[1][0];
 			  animTo=animNum[1][1];
 			  curFrameNumber=animFrom;
@@ -61,7 +61,7 @@ public class EnemyAnimationManager{
             time=0;
 		  }
         if(curFrameNumber>animTo){
-            curFrameNumber=animFrom;
+            curFrameNumber=animFrom+4;
 		  }
         if(flip){
             bep.image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
