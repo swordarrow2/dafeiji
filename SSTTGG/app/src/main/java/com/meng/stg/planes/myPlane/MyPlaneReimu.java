@@ -16,23 +16,6 @@ import com.meng.stg.planes.subPlane.subPlaneReimu;
 public class MyPlaneReimu extends BaseMyPlane{
 
     subPlaneReimu subPlane0, subPlane1, subPlane2, subPlane3;
-    AnimationManager animationManager;
-
-    @Override
-    public Drawable getStayAnim(){
-        animationManager.setStatus(MoveStatus.stay);
-        return null;// animationManager.getImage();
-    }
-
-    public Drawable getLeftMoveAnim(){
-        animationManager.setStatus(MoveStatus.leftMove);
-        return null;//animationManager.getImage();
-    }
-
-    public Drawable getRightMoveAnim(){
-        animationManager.setStatus(MoveStatus.rightMove);
-        return null;//animationManager.getImage();
-    }
 
     @Override
     public void shoot(){
@@ -72,7 +55,6 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void update(){
         super.update();
-        animationManager.update();
         subPlane0.update();
         subPlane1.update();
         subPlane2.update();

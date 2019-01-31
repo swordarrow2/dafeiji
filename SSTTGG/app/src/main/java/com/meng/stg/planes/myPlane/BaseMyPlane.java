@@ -11,9 +11,10 @@ import com.meng.stg.helpers.Pools;
 import com.meng.stg.planes.JudgeCircleAnimation;
 import com.meng.stg.planes.JudgeCircleAnimation2;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.planes.*;
 
 /*
-base class of my plane
+ base class of my plane
  */
 public abstract class BaseMyPlane extends BaseGameObject{
 
@@ -31,24 +32,26 @@ public abstract class BaseMyPlane extends BaseGameObject{
     private float playerLastX=270;
     public boolean slow=false;
 
+	public AnimationManager animationManager;
+
     public void Init(){
         instance=this;
         if(animation==null){
             animation=new JudgeCircleAnimation();
-        }
+		  }
         if(judgeAnim==null){
             judgeAnim=Pools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
-        }
+		  }
         if(animation2==null){
             animation2=new JudgeCircleAnimation2();
-        }
+		  }
         if(judgeAnim2==null){
             judgeAnim2=Pools.imagePool.obtain();
             judgeAnim2=animation2.getImage();
             judgeAnim2.setSize(48,48);
-        }
+		  }
         image=Pools.imagePool.obtain();
         MainScreen.mainGroup.addActor(image);
         MainScreen.mainGroup.addActor(judgeAnim);
@@ -61,14 +64,14 @@ public abstract class BaseMyPlane extends BaseGameObject{
         judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
-    }
+	  }
 
     public void Kill(){
-    }
+	  }
 
     public void update(){
         super.update();
-        animFlag++;
+        animFlag++;		
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
@@ -78,62 +81,49 @@ public abstract class BaseMyPlane extends BaseGameObject{
             onUnmatched=true;
             bomb();
             bombTime--;
-        }
+		  }
         if(onUnmatched){
             unmatchedTime--;
-        }
+		  }
         if(bombTime==0){
             onBomb=false;
             bombTime=Data.ReimuBombTime;
-        }
+		  }
         if(unmatchedTime==0){
             onUnmatched=false;
             unmatchedTime=Data.ReimuUnmatchedTime;
-        }
-       if(objectCenter.x>playerLastX){
+		  }
+
+		if(objectCenter.x>playerLastX){
             playerLastX=objectCenter.x;
-        //    image.setDrawable(
-			getRightMoveAnim()
-		//	)
-		;
-        }else if(objectCenter.x<playerLastX){
+			animationManager.setStatus(MoveStatus.rightMove);
+		  }else if(objectCenter.x<playerLastX){
             playerLastX=objectCenter.x;
-        //    image.setDrawable(
-			getLeftMoveAnim()
-		//	)
-			;
-        }else{
-            playerLastX=objectCenter.x;
-       //     image.setDrawable(
-			getStayAnim()
-		//	)
-			;
-        }
+			animationManager.setStatus(MoveStatus.leftMove);
+		  }else{
+			animationManager.setStatus(MoveStatus.stay);
+		  }
+
+		animationManager.update();
         image.toBack();
         judgeAnim2.toFront();
         judgeAnim.toFront();
 		if(slow){
-		  judgeAnim.setSize(48,48);
-		  judgeAnim2.setSize(48,48);
-		}else{
+			judgeAnim.setSize(48,48);
+			judgeAnim2.setSize(48,48);
+		  }else{
 			judgeAnim.setSize(0,0);
 			judgeAnim2.setSize(0,0);
-		}
+		  }
         animation.update();
         animation2.update();
-    }
+	  }
 
     public float[] getPosition(){
         return new float[]{objectCenter.x,objectCenter.y};
-    }
+	  }
 
     public abstract void bomb();
 
-    public abstract Drawable getStayAnim();
-
-    public abstract Drawable getRightMoveAnim();
-
-    public abstract Drawable getLeftMoveAnim();
-
     public abstract void shoot();
-}
+  }
