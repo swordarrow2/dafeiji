@@ -103,6 +103,13 @@ public abstract class BaseMyPlane extends BaseGameObject{
         image.toBack();
         judgeAnim2.toFront();
         judgeAnim.toFront();
+		if(slow){
+		  judgeAnim.setSize(48,48);
+		  judgeAnim2.setSize(48,48);
+		}else{
+			judgeAnim.setSize(0,0);
+			judgeAnim2.setSize(0,0);
+		}
         animation.update();
         animation2.update();
     }
