@@ -73,10 +73,18 @@ public abstract class BaseMyPlane extends BaseGameObject{
         super.update();
         animFlag++;		
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
+		if(slow){
+			judgeAnim.setSize(48,48);
+			judgeAnim2.setSize(48,48);
+		  }else{
+			judgeAnim.setSize(0,0);
+			judgeAnim2.setSize(0,0);
+		  }
         judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
+		
         if(onBomb){
             onUnmatched=true;
             bomb();
@@ -108,13 +116,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
         image.toBack();
         judgeAnim2.toFront();
         judgeAnim.toFront();
-		if(slow){
-			judgeAnim.setSize(48,48);
-			judgeAnim2.setSize(48,48);
-		  }else{
-			judgeAnim.setSize(0,0);
-			judgeAnim2.setSize(0,0);
-		  }
+		
         animation.update();
         animation2.update();
 	  }

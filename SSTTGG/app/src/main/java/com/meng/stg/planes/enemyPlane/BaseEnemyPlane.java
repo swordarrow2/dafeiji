@@ -53,8 +53,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
                 break;
 			  }
 		  }
-        moveManager=new MoveManager(this,new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))
-									);
+        moveManager=new MoveManager(this,new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f)));
 	  }
 
     public int getHp(){

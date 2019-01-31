@@ -35,8 +35,8 @@ public class stage1{
             case 260:
                 new EnemyPlane().Init(50,719,-2,-4);
                 break;
-            case 360:
-                new BossPlane1().Init(250,450,-2,-1,200);
+            case 10://360:
+                new BossPlane1().Init(250,450,-2,-1,7000);
                 MainScreen.onBoss=true;
                 break;
             case 380:
