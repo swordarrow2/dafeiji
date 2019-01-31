@@ -13,11 +13,7 @@ import com.meng.stg.move.*;
 
 public class BossPlane2 extends BaseEnemyPlane{
 
-	@Override
-	protected Drawable getDrawable(){
-		return getStayAnim();
-	  }
-
+	
 
     private boolean xx=false;
     private boolean yy=false;
@@ -25,61 +21,7 @@ public class BossPlane2 extends BaseEnemyPlane{
     private Drawable  d=null;
 
 	String reimu="zayu";
-	@Override
-    public Drawable getStayAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+96);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+97);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+98);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+99);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+100);
-			  
-		  }
-        return d;
-	  }
-
-    public Drawable getLeftMoveAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+101);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+102);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+103);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+104);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+105);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+106);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+107);
-			  break;
-            
-		  }
-        return d;
-	  }
-
-    public Drawable getRightMoveAnim(){
-        
-        return getLeftMoveAnim();
-	  }
-
+	
     @Override
     public void Init(float x,float y,float vx,float vy,int hp){
         super.Init(x,y,vx,vy,hp);
@@ -127,19 +69,7 @@ public class BossPlane2 extends BaseEnemyPlane{
         }
     }
 
-    @Override
-    protected void anim(){
-        if(objectCenter.x>enemyLastX){
-            enemyLastX=objectCenter.x;
-            image.setDrawable(getRightMoveAnim() );
-        }else if(objectCenter.x<enemyLastX){
-            enemyLastX=objectCenter.x;
-            image.setDrawable(getLeftMoveAnim() );
-        }else{
-            enemyLastX=objectCenter.x;
-            image.setDrawable(getDrawable() );
-        }
-    }
+
 
     @Override
     public void Kill(){

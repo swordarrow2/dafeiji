@@ -1,13 +1,11 @@
 package com.meng.stg.planes;
 
-import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.meng.stg.*;
-import com.meng.stg.planes.myPlane.*;
 import com.meng.stg.planes.enemyPlane.*;
 
 public class EnemyAnimationManager{
-  
-  private BaseEnemyPlane bep;
+
+	private BaseEnemyPlane bep;
     private int animFrom=0;
     private int animTo=7;
     private int everyAnimFrameTime=0;
@@ -25,8 +23,8 @@ public class EnemyAnimationManager{
     public EnemyAnimationManager(BaseEnemyPlane obj,int everyAnimFrameTime){
         this.everyAnimFrameTime=everyAnimFrameTime;	
 		bep=obj;
-            objectName="zayu"; 
-			animNum=bossAnim;
+		objectName="zayu"; 
+		animNum=bossAnim;
 	  }
 
     public void setStatus(MoveStatus mov){
@@ -34,26 +32,26 @@ public class EnemyAnimationManager{
             return;
 		  }
         status=mov;     
-            switch(status){
-                case stay:
-				  flip=false;
-				  animFrom=animNum[0][0];
-				  animTo=animNum[0][1];
-				  curFrameNumber=animFrom;
-				  break;
-                case leftMove:
-				  flip=false;
-				  animFrom=animNum[1][0];
-				  animTo=animNum[1][1];
-				  curFrameNumber=animFrom;
-				  break;
-                case rightMove:
-				  flip=true;
-				  animFrom=animNum[1][0];
-				  animTo=animNum[1][1];
-				  curFrameNumber=animFrom;
-				  break;
-			  }	  
+		switch(status){
+			case stay:
+			  flip=false;
+			  animFrom=animNum[0][0];
+			  animTo=animNum[0][1];
+			  curFrameNumber=animFrom;
+			  break;
+			case leftMove:
+			  flip=false;
+			  animFrom=animNum[1][0];
+			  animTo=animNum[1][1];
+			  curFrameNumber=animFrom;
+			  break;
+			case rightMove:
+			  flip=true;
+			  animFrom=animNum[1][0];
+			  animTo=animNum[1][1];
+			  curFrameNumber=animFrom;
+			  break;
+		  }	  
 	  }
 
     public void update(){
@@ -63,12 +61,12 @@ public class EnemyAnimationManager{
             time=0;
 		  }
         if(curFrameNumber>animTo){
-            curFrameNumber=animFrom+5;
+            curFrameNumber=animFrom;
 		  }
         if(flip){
-            bep.image.setDrawable( ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
+            bep.image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
 		  }else{
-			  bep.image.setDrawable( ResourcesManager.textures.get(objectName+curFrameNumber));
+			bep.image.setDrawable(ResourcesManager.textures.get(objectName+curFrameNumber));
 		  }
 	  }
   }
