@@ -22,68 +22,18 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public Drawable getStayAnim(){
-        
+        am.setStatus(MoveStatus.stay);
         return am.getImage();
 	  }
 
     public Drawable getLeftMoveAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+8);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+9);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+10);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+11);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+12);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+13);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+14);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+15);
-			  break;
-		  }
-        return d;
+        am.setStatus(MoveStatus.leftMove);
+        return am.getImage();
 	  }
 
     public Drawable getRightMoveAnim(){
-        switch(animFlag%32){
-            case 1:
-			  d=ResourcesManager.textures.get(reimu+16);
-			  break;
-            case 5:
-			  d=ResourcesManager.textures.get(reimu+17);
-			  break;
-            case 9:
-			  d=ResourcesManager.textures.get(reimu+18);
-			  break;
-            case 13:
-			  d=ResourcesManager.textures.get(reimu+19);
-			  break;
-            case 17:
-			  d=ResourcesManager.textures.get(reimu+20);
-			  break;
-            case 21:
-			  d=ResourcesManager.textures.get(reimu+21);
-			  break;
-            case 25:
-			  d=ResourcesManager.textures.get(reimu+22);
-			  break;
-            case 29:
-			  d=ResourcesManager.textures.get(reimu+23);
-			  break;
-		  }
-        return d;
+        am.setStatus(MoveStatus.rightMove);
+        return am.getImage();
 	  }
 
     @Override
@@ -99,7 +49,7 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void Init(){
         super.Init();
         bombTime=Data.ReimuBombTime;
-		am=new AnimationManager(this,15);
+		am=new AnimationManager(this,10);
         sp0=new subPlaneReimu();
         sp0.init(this,0);
         sp1=new subPlaneReimu();
