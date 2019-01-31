@@ -15,7 +15,7 @@ import com.meng.stg.planes.subPlane.subPlaneReimu;
  */
 public class MyPlaneReimu extends BaseMyPlane{
 
-    subPlaneReimu subPlane0, subPlane1, subPlane2, subPlane3;
+    subPlaneReimu subPlane1, subPlane2, subPlane3, subPlane4;
 
     @Override
     public void shoot(){
@@ -23,43 +23,60 @@ public class MyPlaneReimu extends BaseMyPlane{
             Vector2 vel=new Vector2(0,47);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+32),vel);
-        }
-    }
+		  }
+	  }
 
     @Override
     public void Init(){
         super.Init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-        subPlane0=new subPlaneReimu();
-        subPlane0.init(this,0);
-        subPlane1=new subPlaneReimu();
-        subPlane1.init(this,1);
-        subPlane2=new subPlaneReimu();
-        subPlane2.init(this,2);
-        subPlane3=new subPlaneReimu();
-        subPlane3.init(this,3);
-    }
+		switch(subPlaneCount){
+			case 4:subPlane4=new subPlaneReimu();
+			  subPlane4.init(this,4);
+			case 3:subPlane3=new subPlaneReimu();
+			  subPlane3.init(this,3);
+			case 2:subPlane2=new subPlaneReimu();
+			  subPlane2.init(this,2);
+			case 1:subPlane1=new subPlaneReimu();
+			  subPlane1.init(this,1);		  
+			case 0:
+		  }
+	  }
 
     @Override
     public void Kill(){
         super.Kill();
-        subPlane0.kill();
-        subPlane1.kill();
-        subPlane2.kill();
-        subPlane3.kill();
+		switch(subPlaneCount){
+			case 4:
+			  subPlane4.kill();
+			case 3:
+			  subPlane3.kill();
+			case 2:
+			  subPlane2.kill();
+			case 1:
+			  subPlane1.kill();
+			case 0:
+		  }                  
         Pools.imagePool.free(image);
         new MyPlaneReimu().Init();
-    }
+	  }
 
     @Override
     public void update(){
         super.update();
-        subPlane0.update();
-        subPlane1.update();
-        subPlane2.update();
-        subPlane3.update();
-    }
+        switch(subPlaneCount){
+			case 4:
+			  subPlane4.update();
+			case 3:
+			  subPlane3.update();
+			case 2:
+			  subPlane2.update();
+			case 1:
+			  subPlane1.update();
+			case 0:
+		  }	
+	  }
 
 
     @Override
@@ -67,18 +84,18 @@ public class MyPlaneReimu extends BaseMyPlane{
         Vector2 vel=new Vector2(0,30);
         if(bombTime%16==0){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x,0),vel);
-        }
+		  }
         if(bombTime%16==4){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+20,0),vel);
-        }
+		  }
         if(bombTime%16==8){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-40,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+40,0),vel);
-        }
+		  }
         if(bombTime%16==12){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+20,0),vel);
-        }
-    }
-}
+		  }
+	  }
+  }
