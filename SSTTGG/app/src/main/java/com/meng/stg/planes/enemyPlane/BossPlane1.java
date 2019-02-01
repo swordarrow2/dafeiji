@@ -79,6 +79,7 @@ public class BossPlane1 extends BaseEnemyPlane{
             SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
             vel.rotate(15);
 		  }
+		BaseBullet.killAllBullet();
         super.Kill();
 	  }
 

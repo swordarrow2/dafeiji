@@ -17,10 +17,10 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void shoot(){
         if(existTime%3==1){
             Vector2 vel=new Vector2(0,47);
-            ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
+			ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
             ReimuShoot.Pool.obtain().Init(new Vector2(objectCenter.x-8,objectCenter.y+32),vel);
-        }
-    }
+		  }
+	  }
 
     @Override
     public void Init(){
@@ -29,91 +29,91 @@ public class MyPlaneReimu extends BaseMyPlane{
         animationManager=new AnimationManager(this,5);
         switch(subPlaneCount){
             case 4:
-                subPlane4=new SubPlaneReimu();
-                subPlane4.init(this,4);
+			  subPlane4=new SubPlaneReimu();
+			  subPlane4.init(this,4);
             case 3:
-                subPlane3=new SubPlaneReimu();
-                subPlane3.init(this,3);
+			  subPlane3=new SubPlaneReimu();
+			  subPlane3.init(this,3);
             case 2:
-                subPlane2=new SubPlaneReimu();
-                subPlane2.init(this,2);
+			  subPlane2=new SubPlaneReimu();
+			  subPlane2.init(this,2);
             case 1:
-                subPlane1=new SubPlaneReimu();
-                subPlane1.init(this,1);
-        }
-    }
+			  subPlane1=new SubPlaneReimu();
+			  subPlane1.init(this,1);
+		  }
+	  }
 
     @Override
     public void Kill(){
-	  if(true){return;}
+		if(true){return;}
         super.Kill();
         switch(subPlaneCount){
             case 4:
-                subPlane4.kill();
+			  subPlane4.kill();
             case 3:
-                subPlane3.kill();
+			  subPlane3.kill();
             case 2:
-                subPlane2.kill();
+			  subPlane2.kill();
             case 1:
-                subPlane1.kill();
-        }
+			  subPlane1.kill();
+		  }
         Pools.imagePool.free(image);
         new MyPlaneReimu().Init();
-    }
+	  }
 
     @Override
     public void update(){
         super.update();
         switch(subPlaneCount){
             case 4:
-                subPlane4.update();
+			  subPlane4.update();
             case 3:
-                subPlane3.update();
+			  subPlane3.update();
             case 2:
-                subPlane2.update();
+			  subPlane2.update();
             case 1:
-                subPlane1.update();
-        }
-    }
+			  subPlane1.update();
+		  }
+	  }
 
     public void onPowerInc(){
         switch(subPlaneCount){
             case 4:
-                subPlane4=new SubPlaneReimu();
-                subPlane4.init(this,4);
-                break;
+			  subPlane4=new SubPlaneReimu();
+			  subPlane4.init(this,4);
+			  break;
             case 3:
-                subPlane3=new SubPlaneReimu();
-                subPlane3.init(this,3);
-                break;
+			  subPlane3=new SubPlaneReimu();
+			  subPlane3.init(this,3);
+			  break;
             case 2:
-                subPlane2=new SubPlaneReimu();
-                subPlane2.init(this,2);
-                break;
+			  subPlane2=new SubPlaneReimu();
+			  subPlane2.init(this,2);
+			  break;
             case 1:
-                subPlane1=new SubPlaneReimu();
-                subPlane1.init(this,1);
-                break;
-        }
-    }
+			  subPlane1=new SubPlaneReimu();
+			  subPlane1.init(this,1);
+			  break;
+		  }
+	  }
 
     @Override
     public void bomb(){
         Vector2 vel=new Vector2(0,30);
         if(bombTime%16==0){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x,0),vel);
-        }
+		  }
         if(bombTime%16==4){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+20,0),vel);
-        }
+		  }
         if(bombTime%16==8){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-40,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+40,0),vel);
-        }
+		  }
         if(bombTime%16==12){
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x-20,0),vel);
             ReimuBomb.Pool.obtain().Init(new Vector2(objectCenter.x+20,0),vel);
-        }
-    }
-}
+		  }
+	  }
+  }

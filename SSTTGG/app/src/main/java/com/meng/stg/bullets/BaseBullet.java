@@ -57,8 +57,12 @@ public abstract class BaseBullet extends BaseGameObject{
 
     public static void killAllBullet(){
         Iterator i=instances.iterator();
+		
         while(i.hasNext()){
-            ((BaseBullet)i.next()).kill();
+			BaseBullet bb=(BaseBullet)i.next();
+			if(bb instanceof BaseEnemyBullet){
+            bb.kill();
+			}
         }
     }
 

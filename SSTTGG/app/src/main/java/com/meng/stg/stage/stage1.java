@@ -24,35 +24,35 @@ public class stage1{
 			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)) );
                 break;
             case 120:
-                new EnemyPlane().Init(270,719,0,-1);
+                new EnemyPlane().Init(270,419,0,-1);
                 break;
             case 180:
-                new EnemyPlane().Init(150,719,-1,-2);
+                new EnemyPlane().Init(150,419,-1,-2);
                 break;
             case 240:
-                new EnemyPlane().Init(350,719,-3,-3);
+                new EnemyPlane().Init(350,419,-3,-3);
                 break;
             case 260:
-                new EnemyPlane().Init(50,719,-2,-4);
+                new EnemyPlane().Init(50,419,-2,-4);
                 break;
-            case 10://360:
-                new BossPlane1().Init(250,250,-2,-1,2000);
+            case 360:
+                new BossPlane1().Init(250,250,-2,-1,1000);
                 MainScreen.onBoss=true;
                 break;
             case 380:
-                new EnemyPlane().Init(220,719,-2,-5);
+                new EnemyPlane().Init(220,419,-2,-5);
                 break;
             case 400:
-                new EnemyPlane().Init(450,719,-1,-6);
+                new EnemyPlane().Init(450,419,-1,-6);
                 break;
             case 420:
-                new EnemyPlane().Init(540,650,-5,-3);
+                new EnemyPlane().Init(540,440,-5,-3);
                 break;
             case 440:
-                new EnemyPlane().Init(50,719,-9,2);
+                new EnemyPlane().Init(50,419,-9,2);
                 break;
             case 500:
-                new BossPlane2().Init(250,650,-2,-1,2000);
+                new BossPlane2().Init(250,450,-2,-1,2000);
                 MainScreen.onBoss=true;
                 break;
             case 620:

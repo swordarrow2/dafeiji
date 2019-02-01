@@ -50,9 +50,22 @@ public class SubPlaneReimu extends BaseSubPlane{
 				ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x+4,objectCenter.y+16),vel);
 				ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x-4,objectCenter.y+16),vel);  
 			  }else{
-				//if(existTime%2==1){
-					ReimuBulletInduce.Pool.obtain().Init(new Vector2(objectCenter.x,objectCenter.y),new Vector2(0,1));
-				//  }
+				Vector2 tmpv=null;
+				switch(subPlaneNumber){
+					case 3:
+						tmpv=new Vector2(0,8).rotate(-60);
+					  break;
+					case 1:
+						tmpv=new Vector2(0,8).rotate(-30);
+					  break; 
+					case 2:
+						tmpv=new Vector2(0,8).rotate(30);
+					  break;  
+					case 4:
+						tmpv=new Vector2(0,8).rotate(60);
+					  break;  
+				  }
+				ReimuBulletInduce.Pool.obtain().Init(new Vector2(objectCenter.x,objectCenter.y),tmpv);
 			  }
 		  }
 	  }
