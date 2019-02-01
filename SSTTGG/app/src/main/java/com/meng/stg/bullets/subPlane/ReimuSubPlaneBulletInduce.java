@@ -1,4 +1,4 @@
-package com.meng.stg.bullets.myPlane;
+package com.meng.stg.bullets.subPlane;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
@@ -8,18 +8,18 @@ import com.meng.stg.helpers.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.ui.*;
 
-public class ReimuBulletInduce extends BaseMyBullet{
+public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
     private Vector2 nearestEnemyPosition=new Vector2(0,1);
 	private Vector2 targetOnEnemy=new Vector2(0,2);
-	public static Pool<ReimuBulletInduce> Pool=new Pool<ReimuBulletInduce>(){
+	public static Pool<ReimuSubPlaneBulletInduce> Pool=new Pool<ReimuSubPlaneBulletInduce>(){
         @Override
-        protected ReimuBulletInduce newObject(){
-            return new ReimuBulletInduce();
+        protected ReimuSubPlaneBulletInduce newObject(){
+            return new ReimuSubPlaneBulletInduce();
 		  }
 	  };
     @Override
     public Drawable getDrawable(){
-        return ResourcesManager.textures.get("reimu31");
+        return ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
 	  }
 
     @Override

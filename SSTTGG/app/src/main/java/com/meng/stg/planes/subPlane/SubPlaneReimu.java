@@ -2,7 +2,6 @@ package com.meng.stg.planes.subPlane;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.stg.bullets.myPlane.*;
 import com.meng.stg.bullets.subPlane.*;
 import com.meng.stg.helpers.*;
 
@@ -47,8 +46,8 @@ public class SubPlaneReimu extends BaseSubPlane{
         if(existTime%7==1){
 			if(myPlane.slow){
 				Vector2 vel=new Vector2(0,37);
-				ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x+4,objectCenter.y+16),vel);
-				ReimuSubPlaneBullet.Pool.obtain().Init(new Vector2(objectCenter.x-4,objectCenter.y+16),vel);  
+				ReimuSubPlaneBulletStraight.Pool.obtain().Init(new Vector2(objectCenter.x+4,objectCenter.y+16),vel);
+				ReimuSubPlaneBulletStraight.Pool.obtain().Init(new Vector2(objectCenter.x-4,objectCenter.y+16),vel);
 			  }else{
 				Vector2 tmpv=null;
 				switch(subPlaneNumber){
@@ -65,7 +64,7 @@ public class SubPlaneReimu extends BaseSubPlane{
 						tmpv=new Vector2(0,8).rotate(-60);
 					  break;  
 				  }
-				ReimuBulletInduce.Pool.obtain().Init(new Vector2(objectCenter.x,objectCenter.y),tmpv);
+				ReimuSubPlaneBulletInduce.Pool.obtain().Init(new Vector2(objectCenter.x,objectCenter.y),tmpv);
 			  }
 		  }
 	  }

@@ -4,64 +4,62 @@ import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.SimpleRedBullet;
-import com.meng.stg.planes.enemyPlane.BossPlane1;
-import com.meng.stg.planes.enemyPlane.BossPlane2;
-import com.meng.stg.planes.enemyPlane.EnemyPlane;
-import com.meng.stg.planes.myPlane.BaseMyPlane;
+import com.meng.stg.move.MoveMethodStraight;
+import com.meng.stg.planes.enemyPlane.EnemyPlaneCreator;
+import com.meng.stg.planes.enemyPlane.EnemyType;
 import com.meng.stg.ui.MainScreen;
-import com.meng.stg.move.*;
-import com.meng.stg.planes.enemyPlane.*;
 
 /*
 stage data:when create enemy
  */
 public class stage1{
-  static EnemyPlaneCreator epc=new EnemyPlaneCreator();
+    static EnemyPlaneCreator epc=new EnemyPlaneCreator();
+
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-			  SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,new Vector2(0,-1)));
+                SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,new Vector2(0,-1)));
                 break;
             case 60:
-			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)) );
+                SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)));
                 break;
             case 120:
-			  epc.setCenter(270,419).createEnemy();
+                epc.setCenter(270,419).createEnemy();
                 break;
             case 180:
-			  epc.setCenter(150,419).createEnemy();
+                epc.setCenter(150,419).createEnemy();
                 break;
             case 240:
-			  epc.setCenter(350,419).createEnemy();
+                epc.setCenter(350,419).createEnemy();
                 break;
             case 260:
-			  epc.setCenter(50,419).createEnemy();
+                epc.setCenter(50,419).createEnemy();
                 break;
             case 360:
-                new BossPlane1().Init(250,250,-2,-1,1000);
+                epc.setCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();
                 MainScreen.onBoss=true;
                 break;
             case 380:
-                new EnemyPlane().Init(220,419,-2,-5);
+                epc.setCenter(220,419).createEnemy();
                 break;
             case 400:
-                new EnemyPlane().Init(450,419,-1,-6);
+                epc.setCenter(450,419).createEnemy();
                 break;
             case 420:
-                new EnemyPlane().Init(540,440,-5,-3);
+                epc.setCenter(540,419).createEnemy();
                 break;
             case 440:
-                new EnemyPlane().Init(50,419,-9,2);
+                epc.setCenter(50,419).createEnemy();
                 break;
             case 500:
-                new BossPlane2().Init(250,450,-2,-1,2000);
+                //      new BossPlane2().Init(250,450,-2,-1,2000);
                 MainScreen.onBoss=true;
                 break;
             case 620:
-           //     SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
+                //     SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
                 break;
             case 670:
-       //         SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
+                //         SimpleRedBullet.Pool.obtain().Init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
                 break;
         }
     }

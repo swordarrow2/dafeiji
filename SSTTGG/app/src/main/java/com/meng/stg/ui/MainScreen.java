@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.meng.stg.bullets.BaseBullet;
-import com.meng.stg.bullets.BulletShooter;
+import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.planes.PlayerInputProcessor;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;

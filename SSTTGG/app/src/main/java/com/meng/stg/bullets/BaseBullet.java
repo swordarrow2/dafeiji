@@ -15,7 +15,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class BaseBullet extends BaseGameObject{
 
-    public Vector2 size=new Vector2();
     public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();

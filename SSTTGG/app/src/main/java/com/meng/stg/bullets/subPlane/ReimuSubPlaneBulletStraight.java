@@ -10,18 +10,18 @@ import com.meng.stg.helpers.TextureNameManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-public class ReimuSubPlaneBullet extends BaseMyBullet{
-    public static com.badlogic.gdx.utils.Pool<ReimuSubPlaneBullet> Pool=new Pool<ReimuSubPlaneBullet>(){
+public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
+    public static com.badlogic.gdx.utils.Pool<ReimuSubPlaneBulletStraight> Pool=new Pool<ReimuSubPlaneBulletStraight>(){
         @Override
-        protected ReimuSubPlaneBullet newObject(){
-            return new ReimuSubPlaneBullet();
+        protected ReimuSubPlaneBulletStraight newObject(){
+            return new ReimuSubPlaneBulletStraight();
         }
     };
 
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
-            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBullet);
+            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight);
         }
         return drawable;
     }

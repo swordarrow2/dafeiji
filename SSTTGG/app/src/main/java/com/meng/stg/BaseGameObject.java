@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.move.MoveManager;
+
 /*
 base game object
  */
@@ -18,6 +19,7 @@ public abstract class BaseGameObject{
     public MoveManager moveManager=null;
     public Vector2 velocity=new Vector2();
     public int existTime=0;
+    public Vector2 size=new Vector2();
 
     public void update(){
         ++existTime;
