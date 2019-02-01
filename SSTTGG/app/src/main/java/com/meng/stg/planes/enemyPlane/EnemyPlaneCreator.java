@@ -13,7 +13,6 @@ public class EnemyPlaneCreator{
     private Color color=Color.RED;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))};
 
-
     public EnemyPlaneCreator(){
     }
 

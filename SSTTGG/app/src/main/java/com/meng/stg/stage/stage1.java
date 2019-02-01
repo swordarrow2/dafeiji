@@ -18,6 +18,7 @@ public class stage1{
     static EnemyPlaneCreator epc=new EnemyPlaneCreator();
 
     public static void addEnemy(){
+	  
         switch(MainScreen.gameTime){
             case 30:
                 SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,new Vector2(0,-1)));
@@ -28,14 +29,15 @@ public class stage1{
             case 120:
 			  epc.setEnemyCenter(270,419).setColor(Color.RED).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
+            case 140:
+			  epc.setEnemyCenter(150,419).setColor(Color.GREEN).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-2f))}).createEnemy();
+                break;
+            case 160:
+			  epc.setEnemyCenter(350,419).setColor(Color.YELLOW).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-8f),new Vector2(-2,-0.2f))}).createEnemy();
+                break;
             case 180:
-			  epc.setEnemyCenter(150,419).setColor(Color.GREEN).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
-                break;
-            case 240:
-			  epc.setEnemyCenter(350,419).setColor(Color.YELLOW).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
-                break;
-            case 260:
 			  epc.setEnemyCenter(50,419).setColor(Color.BLUE).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
+			  MainScreen.gameTime=119;
                 break;
             case 360:
                 epc.setEnemyCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();

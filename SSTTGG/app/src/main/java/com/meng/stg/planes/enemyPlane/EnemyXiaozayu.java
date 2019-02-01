@@ -19,7 +19,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
         moveManager.update();
         //  am.update();
         if(existTime%60==1){
-            bulletShooter.shoot();
+     //       bulletShooter.shoot();
         }
     }
 
