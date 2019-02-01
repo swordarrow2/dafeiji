@@ -10,11 +10,13 @@ import com.meng.stg.planes.enemyPlane.EnemyPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.*;
 
 /*
 stage data:when create enemy
  */
 public class stage1{
+  static EnemyPlaneCreator epc=new EnemyPlaneCreator();
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
@@ -24,16 +26,16 @@ public class stage1{
 			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)) );
                 break;
             case 120:
-                new EnemyPlane().Init(270,419,0,-1);
+			  epc.setCenter(270,419).createEnemy();
                 break;
             case 180:
-                new EnemyPlane().Init(150,419,-1,-2);
+			  epc.setCenter(150,419).createEnemy();
                 break;
             case 240:
-                new EnemyPlane().Init(350,419,-3,-3);
+			  epc.setCenter(350,419).createEnemy();
                 break;
             case 260:
-                new EnemyPlane().Init(50,419,-2,-4);
+			  epc.setCenter(50,419).createEnemy();
                 break;
             case 360:
                 new BossPlane1().Init(250,250,-2,-1,1000);
