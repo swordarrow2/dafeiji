@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveGradually;
+import android.text.method.*;
 
 public class EnemyPlaneCreator{
     private EnemyType enemyType=EnemyType.xiaozayu;
@@ -31,9 +32,8 @@ public class EnemyPlaneCreator{
         return this;
     }
 
-    public EnemyPlaneCreator setCenter(float x,float y){
-        enemyCenter.x=x;
-        enemyCenter.y=y;
+    public EnemyPlaneCreator setEnemyCenter(float x,float y){
+        enemyCenter=new Vector2(x,y);
         return this;
     }
 
@@ -50,10 +50,10 @@ public class EnemyPlaneCreator{
     public void createEnemy(){
         switch(enemyType){
             case xiaozayu:
-                new EnemyXiaozayu().Init(color,enemyCenter,hp,moveMethods);
+                new EnemyXiaozayu().Init(color,enemyCenter.cpy(),hp,moveMethods);
                 break;
             case dahudie:
-                new EnemyDahudie().Init(color,enemyCenter,hp,moveMethods);
+                new EnemyDahudie().Init(color,enemyCenter.cpy(),hp,moveMethods);
                 break;
             case Boss:
                 break;

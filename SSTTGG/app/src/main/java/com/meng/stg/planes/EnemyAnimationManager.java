@@ -40,9 +40,10 @@ public class EnemyAnimationManager{
             {41,47}
     };
 
-    public EnemyAnimationManager(BaseEnemyPlane obj,int everyAnimFrameTime){
+    public EnemyAnimationManager(BaseEnemyPlane obj,Color c,int everyAnimFrameTime){
         this.everyAnimFrameTime=everyAnimFrameTime;
         baseEnemyPlane=obj;
+		color=c;
         objectName="zayu";
         if(obj instanceof EnemyXiaozayu){
             if(color.equals(Color.BLUE)){

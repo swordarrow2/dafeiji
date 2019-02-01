@@ -34,8 +34,6 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
                 .setWaysDegree(60)
                 .setCengShu(10)
                 .setInFrame(10);
-        bulletShooter.shoot();
-        moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
     }
 
     @Override

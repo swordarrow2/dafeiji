@@ -40,7 +40,6 @@ public class EnemyDahudie extends BaseEnemyPlane{
                 .setWaysDegree(60)
                 .setCengShu(10)
                 .setInFrame(10);
-        bulletShooter.shoot();
         moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
     }
 
@@ -60,9 +59,9 @@ public class EnemyDahudie extends BaseEnemyPlane{
         }else if(objectCenter.y<100){
             yy=false;
         }
-        float vx=2;
+        float vx=-2;
         objectCenter.x=xx?objectCenter.x+vx:objectCenter.x-vx;
-        float vy=2;
+        float vy=-2;
         objectCenter.y=yy?objectCenter.y+vy:objectCenter.y-vy;
     }
 

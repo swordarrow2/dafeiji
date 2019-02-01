@@ -38,7 +38,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         color=c;
         isKilled=false;
         image=Pools.imagePool.obtain();
-        enemyAnimationManager=new EnemyAnimationManager(this,5);
+        enemyAnimationManager=new EnemyAnimationManager(this,c,5);
         objectCenter.set(center);
         this.hp=hp;
         size=getSize();

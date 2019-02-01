@@ -8,6 +8,8 @@ import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.EnemyPlaneCreator;
 import com.meng.stg.planes.enemyPlane.EnemyType;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.move.*;
+import com.badlogic.gdx.graphics.*;
 
 /*
 stage data:when create enemy
@@ -24,32 +26,32 @@ public class stage1{
                 SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)));
                 break;
             case 120:
-                epc.setCenter(270,419).createEnemy();
+			  epc.setEnemyCenter(270,419).setColor(Color.RED).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 180:
-                epc.setCenter(150,419).createEnemy();
+			  epc.setEnemyCenter(150,419).setColor(Color.GREEN).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 240:
-                epc.setCenter(350,419).createEnemy();
+			  epc.setEnemyCenter(350,419).setColor(Color.YELLOW).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 260:
-                epc.setCenter(50,419).createEnemy();
+			  epc.setEnemyCenter(50,419).setColor(Color.BLUE).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 360:
-                epc.setCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();
+                epc.setEnemyCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();
                 MainScreen.onBoss=true;
                 break;
             case 380:
-                epc.setCenter(220,419).createEnemy();
+                epc.setEnemyCenter(220,419).setHp(10).setEnemyType(EnemyType.xiaozayu).createEnemy();
                 break;
             case 400:
-                epc.setCenter(450,419).createEnemy();
+			  epc.setEnemyCenter(450,419).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 420:
-                epc.setCenter(540,419).createEnemy();
+			  epc.setEnemyCenter(540,419).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 440:
-                epc.setCenter(50,419).createEnemy();
+			  epc.setEnemyCenter(50,419).setMoveMethods(new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))}).createEnemy();
                 break;
             case 500:
                 //      new BossPlane2().Init(250,450,-2,-1,2000);
