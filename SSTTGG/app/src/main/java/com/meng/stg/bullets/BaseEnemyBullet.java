@@ -10,7 +10,7 @@ import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
-    public int refCount=1;
+    public int refCount=0;
     public int thoughCount=0;
 
     public abstract Drawable getDrawable();
@@ -26,11 +26,6 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     public void kill(){
         super.kill();
         bulletCount--;
-	  }
-
-    public void setRefAndThough(int ref,int tho){
-        refCount=ref;
-        thoughCount=tho;
 	  }
 
     @Override

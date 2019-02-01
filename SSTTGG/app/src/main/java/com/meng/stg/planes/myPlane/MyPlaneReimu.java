@@ -45,6 +45,7 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void Kill(){
+	  if(true){return;}
         super.Kill();
         switch(subPlaneCount){
             case 4:

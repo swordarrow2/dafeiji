@@ -32,9 +32,9 @@ public class BossPlane1 extends BaseEnemyPlane{
 		  .setBulletColor(BulletColor.red)
 		  .setBulletForm(BulletForm.liandan)
 		  .setStraightMove(true)
-		  .setWays(12)
-		  .setWaysDegree(30)
-		  .setCengShu(1)
+		  .setWays(6)
+		  .setWaysDegree(60)
+		  .setCengShu(10)
 		  .setInFrame(10);
 		bs.shoot();
         moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
