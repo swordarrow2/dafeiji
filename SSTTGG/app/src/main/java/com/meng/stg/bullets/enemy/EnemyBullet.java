@@ -8,19 +8,19 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 
-public class SimpleRedBullet extends BaseEnemyBullet{
+public class EnemyBullet extends BaseEnemyBullet{
 
-    public static Pool<SimpleRedBullet> Pool=new Pool<SimpleRedBullet>(){
+    public static Pool<EnemyBullet> Pool=new Pool<EnemyBullet>(){
         @Override
-        protected SimpleRedBullet newObject(){
-            return new SimpleRedBullet();
+        protected EnemyBullet newObject(){
+            return new EnemyBullet();
         }
     };
     private int colorNum=0;
     private int formNum=0;
 
     public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
-        SimpleRedBullet.Pool.obtain().Init(center,bf,bc,ref,mm);
+        EnemyBullet.Pool.obtain().Init(center,bf,bc,ref,mm);
     }
 
     public void Init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
@@ -141,6 +141,6 @@ public class SimpleRedBullet extends BaseEnemyBullet{
         if(drawable==null){
             drawable=ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
         }
-        return ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
+        return drawable;
     }
 }

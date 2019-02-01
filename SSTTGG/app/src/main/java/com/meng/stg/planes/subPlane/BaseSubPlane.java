@@ -12,8 +12,8 @@ import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseSubPlane extends BaseGameObject{
 
-    public Vector2 nowPosition=new Vector2();
-    public Vector2 size=new Vector2();
+    public Vector2 nowPosition;
+    public Vector2 size;
     public Image image=null;
     protected Rectangle drawBox=new Rectangle();
     public BaseMyPlane myPlane;
@@ -55,36 +55,28 @@ public abstract class BaseSubPlane extends BaseGameObject{
         switch(myPlane.subPlaneCount){
             case 1:
                 if(myPlane.slow){
-                    switch(subPlaneNumber){
-                        case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[0],subPlanePosition[1]);
-                            break;
-                    }
+                    nowPosition.set(myPlane.objectCenter.x+subPlanePosition[0],myPlane.objectCenter.y+subPlanePosition[1]);
                 }else{
-                    switch(subPlaneNumber){
-                        case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[2],subPlanePosition[3]);
-                            break;
-                    }
+                    nowPosition.set(myPlane.objectCenter.x+subPlanePosition[2],myPlane.objectCenter.y+subPlanePosition[3]);
                 }
                 break;
             case 2:
                 if(myPlane.slow){
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[4],subPlanePosition[5]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[4],myPlane.objectCenter.y+subPlanePosition[5]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[6],subPlanePosition[7]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[6],myPlane.objectCenter.y+subPlanePosition[7]);
                             break;
                     }
                 }else{
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[8],subPlanePosition[9]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[8],myPlane.objectCenter.y+subPlanePosition[9]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[10],subPlanePosition[11]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[10],myPlane.objectCenter.y+subPlanePosition[11]);
                             break;
                     }
                 }
@@ -93,25 +85,25 @@ public abstract class BaseSubPlane extends BaseGameObject{
                 if(myPlane.slow){
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[12],subPlanePosition[13]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[12],myPlane.objectCenter.y+subPlanePosition[13]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[14],subPlanePosition[15]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[14],myPlane.objectCenter.y+subPlanePosition[15]);
                             break;
                         case 3:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[16],subPlanePosition[17]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[16],myPlane.objectCenter.y+subPlanePosition[17]);
                             break;
                     }
                 }else{
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[18],subPlanePosition[19]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[18],myPlane.objectCenter.y+subPlanePosition[19]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[20],subPlanePosition[21]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[20],myPlane.objectCenter.y+subPlanePosition[21]);
                             break;
                         case 3:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[22],subPlanePosition[23]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[22],myPlane.objectCenter.y+subPlanePosition[23]);
                             break;
                     }
                 }
@@ -120,31 +112,31 @@ public abstract class BaseSubPlane extends BaseGameObject{
                 if(myPlane.slow){
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[24],subPlanePosition[25]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[24],myPlane.objectCenter.y+subPlanePosition[25]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[26],subPlanePosition[27]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[26],myPlane.objectCenter.y+subPlanePosition[27]);
                             break;
                         case 3:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[28],subPlanePosition[29]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[28],myPlane.objectCenter.y+subPlanePosition[29]);
                             break;
                         case 4:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[30],subPlanePosition[31]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[30],myPlane.objectCenter.y+subPlanePosition[31]);
                             break;
                     }
                 }else{
                     switch(subPlaneNumber){
                         case 1:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[32],subPlanePosition[33]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[32],myPlane.objectCenter.y+subPlanePosition[33]);
                             break;
                         case 2:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[34],subPlanePosition[35]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[34],myPlane.objectCenter.y+subPlanePosition[35]);
                             break;
                         case 3:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[36],subPlanePosition[37]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[36],myPlane.objectCenter.y+subPlanePosition[37]);
                             break;
                         case 4:
-                            nowPosition=myPlane.objectCenter.cpy().add(subPlanePosition[38],subPlanePosition[39]);
+                            nowPosition.set(myPlane.objectCenter.x+subPlanePosition[38],myPlane.objectCenter.y+subPlanePosition[39]);
                             break;
                     }
                 }

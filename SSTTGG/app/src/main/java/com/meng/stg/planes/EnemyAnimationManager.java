@@ -1,8 +1,8 @@
 package com.meng.stg.planes;
 
-import com.badlogic.gdx.graphics.Color;
 import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.planes.enemyPlane.EnemyColor;
 import com.meng.stg.planes.enemyPlane.EnemyDahudie;
 import com.meng.stg.planes.enemyPlane.EnemyXiaozayu;
 
@@ -18,7 +18,6 @@ public class EnemyAnimationManager{
     private String objectName="";
     private boolean flip=false;
     private int[][] animNum;
-    private Color color=Color.RED;
     private final int[][] dahudieAnim=new int[][]{
             {96,100},
             {101,107}
@@ -40,22 +39,24 @@ public class EnemyAnimationManager{
             {41,47}
     };
 
-    public EnemyAnimationManager(BaseEnemyPlane obj,Color c,int everyAnimFrameTime){
+    public EnemyAnimationManager(BaseEnemyPlane obj,EnemyColor enemyColor,int everyAnimFrameTime){
         this.everyAnimFrameTime=everyAnimFrameTime;
         baseEnemyPlane=obj;
-		color=c;
         objectName="zayu";
         if(obj instanceof EnemyXiaozayu){
-            if(color.equals(Color.BLUE)){
-                animNum=xiaozayuAnimLan;
-            }else if(color.equals(Color.RED)){
-                animNum=xiaozayuAnimHong;
-            }else if(color.equals(Color.GREEN)){
-                animNum=xiaozayuAnimLv;
-            }else if(color.equals(Color.YELLOW)){
-                animNum=xiaozayuAnimHuang;
-            }else{
-                animNum=xiaozayuAnimLan;
+            switch(enemyColor){
+                case red:
+                    animNum=xiaozayuAnimHong;
+                    break;
+                case blue:
+                    animNum=xiaozayuAnimLan;
+                    break;
+                case green:
+                    animNum=xiaozayuAnimLv;
+                    break;
+                case yellow:
+                    animNum=xiaozayuAnimHuang;
+                    break;
             }
         }else if(obj instanceof EnemyDahudie){
             animNum=dahudieAnim;
@@ -63,9 +64,7 @@ public class EnemyAnimationManager{
     }
 
     public void setStatus(MoveStatus mov){
-        if(mov==status){
-            return;
-        }
+        if(mov==status) return;
         status=mov;
         switch(status){
             case stay:

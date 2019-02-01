@@ -25,7 +25,6 @@ public abstract class BaseBullet extends BaseGameObject{
         toAdd.add(this);
         size=getSize();
         image=Pools.imagePool.obtain();
-        image.setDrawable(getDrawable());
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
@@ -47,21 +46,21 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
-        if(!drawBox.overlaps(MainScreen.fightArea)){
-            kill();
-        }else{
+        if(drawBox.overlaps(MainScreen.fightArea)){
             judge();
+        }else{
+            kill();
         }
     }
 
     public static void killAllBullet(){
         Iterator i=instances.iterator();
-		
+
         while(i.hasNext()){
-			BaseBullet bb=(BaseBullet)i.next();
-			if(bb instanceof BaseEnemyBullet){
-            bb.kill();
-			}
+            BaseBullet bb=(BaseBullet)i.next();
+            if(bb instanceof BaseEnemyBullet){
+                bb.kill();
+            }
         }
     }
 

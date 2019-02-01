@@ -1,8 +1,7 @@
 package com.meng.stg.planes;
 
-public enum MoveStatus
-{
-  stay,
-  moveLeft,
+public enum MoveStatus{
+    stay,
+    moveLeft,
     moveRight
 }

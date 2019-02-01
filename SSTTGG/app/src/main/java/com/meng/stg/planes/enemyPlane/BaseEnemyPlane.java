@@ -27,15 +27,15 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public float enemyLastX;
     public Rectangle drawBox=new Rectangle();
     public int hp=10;
-    public Color color=Color.RED;
+    public EnemyColor enemyColor;
     public boolean isKilled=false;
 
     public EnemyAnimationManager enemyAnimationManager;
 
     public BulletShooter bulletShooter;
 
-    public void Init(Color c,Vector2 center,int hp,BaseMoveMethod... bmm){
-        color=c;
+    public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
+        enemyColor=c;
         isKilled=false;
         image=Pools.imagePool.obtain();
         enemyAnimationManager=new EnemyAnimationManager(this,c,5);
@@ -90,10 +90,10 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
-        if(!drawBox.overlaps(MainScreen.fightArea)){
-            Kill();
-        }else{
+        if(drawBox.overlaps(MainScreen.fightArea)){
             Judge();
+        }else{
+            Kill();
         }
     }
 
@@ -110,7 +110,6 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public abstract void shoot();
-
 
     public Shape2D getCollisionArea(){
         return judgeCircle;

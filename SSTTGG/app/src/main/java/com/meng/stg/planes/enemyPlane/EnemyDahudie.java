@@ -1,13 +1,12 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.bullets.BaseBullet;
-import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
-import com.meng.stg.bullets.enemy.SimpleRedBullet;
+import com.meng.stg.bullets.enemy.BulletShooter;
+import com.meng.stg.bullets.enemy.EnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveManager;
 import com.meng.stg.move.MoveMethodStraight;
@@ -17,6 +16,8 @@ public class EnemyDahudie extends BaseEnemyPlane{
 
     private boolean xx=false;
     private boolean yy=false;
+    private float vx=-2;
+    private float vy=-2;
 
     @Override
     public void update(){
@@ -29,8 +30,8 @@ public class EnemyDahudie extends BaseEnemyPlane{
     }
 
     @Override
-    public void Init(Color c,Vector2 center,int hp,BaseMoveMethod... bmm){
-        super.Init(c,center,hp,bmm);
+    public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
+        super.init(c,center,hp,bmm);
         bulletShooter=new BulletShooter(this)
                 .setBulletCenter(objectCenter)
                 .setBulletColor(BulletColor.red)
@@ -59,9 +60,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
         }else if(objectCenter.y<100){
             yy=false;
         }
-        float vx=-2;
         objectCenter.x=xx?objectCenter.x+vx:objectCenter.x-vx;
-        float vy=-2;
         objectCenter.y=yy?objectCenter.y+vy:objectCenter.y-vy;
     }
 
@@ -72,7 +71,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
                 vel.rotate(30);
             }
         }
@@ -85,7 +84,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
+            EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
             vel.rotate(15);
         }
         BaseBullet.killAllBullet();

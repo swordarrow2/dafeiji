@@ -37,7 +37,7 @@ public class MainScreen extends ScreenAdapter{
     public static Rectangle fightArea;
     public static InputMultiplexer inputManager;
     public static BaseEnemyPlane[] enemys=new BaseEnemyPlane[32];
-    public static BitmapFont mainBitmapFont;
+    public static BitmapFont bitmapFont;
     public static boolean onBoss=false;
     public FitViewport sv;
     // enemyPlane e;
@@ -74,7 +74,7 @@ public class MainScreen extends ScreenAdapter{
         GameMain.spriteBatch.begin();
 
 
-        mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
+        bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
                         +"\nbullet:"+BaseEnemyBullet.bulletCount
                         +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
@@ -84,9 +84,9 @@ public class MainScreen extends ScreenAdapter{
             case Data.stageFlagStage1:
                 if(gameTime==700){
                     GlyphLayout glyphLayout=new GlyphLayout();
-                    glyphLayout.setText(mainBitmapFont,"stage Clear!!");
-                    mainBitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
-                    //      mainBitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
+                    glyphLayout.setText(bitmapFont,"stage Clear!!");
+                    bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
+                    //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
                 }
                 break;
         }
@@ -114,7 +114,7 @@ public class MainScreen extends ScreenAdapter{
 
     private void init(){
         instence=this;
-
+        BaseEnemyBullet.bulletCount=0;
         width=386;//540;//386;
         height=600;//720;//450;
         sv=new FitViewport(width,height);
@@ -122,9 +122,9 @@ public class MainScreen extends ScreenAdapter{
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
-        mainBitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));// new BitmapFont(Gdx.files.internal("font/bitmapfont.fnt"));
-        mainBitmapFont.setColor(Color.GREEN);
-
+        bitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));
+        bitmapFont.setColor(Color.GREEN);
+        bitmapFont.getData().scale(0.5f);
         Image background=new Image(new Texture(pixmap));
 
         background.setBounds(0,0,386,450);

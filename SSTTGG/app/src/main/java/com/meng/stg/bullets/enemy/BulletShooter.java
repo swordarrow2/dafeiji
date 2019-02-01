@@ -32,6 +32,7 @@ public class BulletShooter{
     private float cengDanSuCha=0.1f;
     private boolean straightMove=true;
     private int reflex=1;
+    private float beilv=1;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(BaseEnemyPlane baseEnemyPlane){
@@ -49,6 +50,7 @@ public class BulletShooter{
 
     public BulletShooter setStraightMove(boolean straightMove){
         this.straightMove=straightMove;
+        moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods;
         return this;
     }
 
@@ -121,16 +123,13 @@ public class BulletShooter{
     }
 
     public void shoot(){
-        moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,bulletVelocity)}:moveMethods;
-        //    SimpleRedBullet.create(bulletCenter,bf,bc,moveMethods);
-        //    SimpleRedBullet.create(bulletCenter,bf,bc,new MoveMethodStraight(inFrame,bulletVelocity));
-        float beilv=1;
+        beilv=1;
         for(int ceng=0;ceng<cengShu;++ceng){
             float allAngle=(ways-1)*waysDegree;
             Vector2 tmpv=bulletVelocity.cpy().scl(beilv);
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
-                SimpleRedBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,tmpv.cpy()));
+                EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,tmpv.cpy()));
                 tmpv.rotate(waysDegree);
             }
             beilv+=cengDanSuCha;

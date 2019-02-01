@@ -1,16 +1,14 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveGradually;
-import android.text.method.*;
 
 public class EnemyPlaneCreator{
     private EnemyType enemyType=EnemyType.xiaozayu;
     private Vector2 enemyCenter=Vector2.Zero;
     private int hp=10;
-    private Color color=Color.RED;
+    private EnemyColor enemyColor=EnemyColor.red;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))};
 
     public EnemyPlaneCreator(){
@@ -41,18 +39,18 @@ public class EnemyPlaneCreator{
         return this;
     }
 
-    public EnemyPlaneCreator setColor(Color color){
-        this.color=color;
+    public EnemyPlaneCreator setColor(EnemyColor color){
+        enemyColor=color;
         return this;
     }
 
     public void createEnemy(){
         switch(enemyType){
             case xiaozayu:
-                new EnemyXiaozayu().Init(color,enemyCenter.cpy(),hp,moveMethods);
+                new EnemyXiaozayu().init(enemyColor,enemyCenter.cpy(),hp,moveMethods);
                 break;
             case dahudie:
-                new EnemyDahudie().Init(color,enemyCenter.cpy(),hp,moveMethods);
+                new EnemyDahudie().init(enemyColor,enemyCenter.cpy(),hp,moveMethods);
                 break;
             case Boss:
                 break;

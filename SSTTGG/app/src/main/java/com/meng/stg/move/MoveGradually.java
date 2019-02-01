@@ -4,22 +4,19 @@ import com.badlogic.gdx.math.Vector2;
 
 public class MoveGradually extends BaseMoveMethod{
 
-    private float originSpeedX=1;
-    private float originSpeedY=1;
     private float speedXPerFrame=1;
     private float speedYPerFrame=1;
 
     public MoveGradually(int inFrame,Vector2 fromSpeed,Vector2 toSpeed){
         time=inFrame;
-        originSpeedX=fromSpeed.x;
-        originSpeedY=fromSpeed.y;
+        velocity=fromSpeed;
         speedXPerFrame=(toSpeed.x-fromSpeed.x)/time;
         speedYPerFrame=(toSpeed.y-fromSpeed.y)/time;
     }
 
     @Override
     public Vector2 getVelocity(){
-        return new Vector2(originSpeedX,originSpeedY);
+        return velocity;
     }
 
     @Override
@@ -29,8 +26,7 @@ public class MoveGradually extends BaseMoveMethod{
 
     @Override
     public void update(){
-        originSpeedX+=speedXPerFrame;
-        originSpeedY+=speedYPerFrame;
+        velocity.add(speedXPerFrame,speedYPerFrame);
         time--;
     }
 }
