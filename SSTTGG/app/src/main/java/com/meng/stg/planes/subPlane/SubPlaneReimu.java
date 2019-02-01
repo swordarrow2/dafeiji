@@ -28,12 +28,12 @@ public class SubPlaneReimu extends BaseSubPlane{
         return new int[]{
 			0,20,
 			0,32,
-			16,20,-16,20,
-			32,0,-32,0,
-			16,20,-16,20,0,30,
-			32,0,-32,0,0,-32,
-			16,20,-16,20,8,30,-8,30,
-			32,0,-32,0,16,-32,-16,-32
+			-16,20,16,20,
+			-32,0,32,0,
+			-16,20,0,30,16,20,
+			-32,0,0,32,32,0,
+		    -16,20,-8,30,8,30,16,20,
+			-32,0,-16,32,16,32,32,0,
 		  };
 	  }
 
@@ -52,17 +52,17 @@ public class SubPlaneReimu extends BaseSubPlane{
 			  }else{
 				Vector2 tmpv=null;
 				switch(subPlaneNumber){
-					case 3:
-						tmpv=new Vector2(0,8).rotate(-60);
-					  break;
 					case 1:
-						tmpv=new Vector2(0,8).rotate(-30);
-					  break; 
+						tmpv=new Vector2(0,8).rotate(60);
+					  break;
 					case 2:
 						tmpv=new Vector2(0,8).rotate(30);
+					  break; 
+					case 3:
+						tmpv=new Vector2(0,8).rotate(-30);
 					  break;  
 					case 4:
-						tmpv=new Vector2(0,8).rotate(60);
+						tmpv=new Vector2(0,8).rotate(-60);
 					  break;  
 				  }
 				ReimuBulletInduce.Pool.obtain().Init(new Vector2(objectCenter.x,objectCenter.y),tmpv);
