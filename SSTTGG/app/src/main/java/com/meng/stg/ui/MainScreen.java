@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.meng.stg.bullets.BaseBullet;
+import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.planes.PlayerInputProcessor;
@@ -22,7 +23,6 @@ import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.stage.stage1;
-import com.meng.stg.bullets.*;
 
 /*
  main layout
@@ -59,7 +59,7 @@ public class MainScreen extends ScreenAdapter{
     public void render(float delta){
         for(int i=0;i<32;i++){
             if(!(enemys[i]==null)){
-                if(!(enemys[i].isKilled())){
+                if(!(enemys[i].isKilled)){
                     enemys[i].update();
                 }else{
                     enemys[i]=null;
@@ -72,12 +72,12 @@ public class MainScreen extends ScreenAdapter{
         BaseBullet.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
-		
-		
+
+
         mainBitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
-						+"\nbullet:"+BaseEnemyBullet.bulletCount
-							+"\nmemory:"+(Runtime.getRuntime().totalMemory() * 1.0/ (1024 * 1024))
+                        +"\nbullet:"+BaseEnemyBullet.bulletCount
+                        +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()
                 ,10,590);
         switch(stageFlag){
@@ -114,7 +114,7 @@ public class MainScreen extends ScreenAdapter{
 
     private void init(){
         instence=this;
-		
+
         width=386;//540;//386;
         height=600;//720;//450;
         sv=new FitViewport(width,height);
@@ -124,7 +124,7 @@ public class MainScreen extends ScreenAdapter{
         pixmap.fill();
         mainBitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));// new BitmapFont(Gdx.files.internal("font/bitmapfont.fnt"));
         mainBitmapFont.setColor(Color.GREEN);
-		
+
         Image background=new Image(new Texture(pixmap));
 
         background.setBounds(0,0,386,450);
@@ -149,11 +149,11 @@ public class MainScreen extends ScreenAdapter{
     }
 
     public void restart(){
-		gameTime=0;
-		stage.clear();
-		mainGroup.clear();
-		onBoss=false;
-		enemys=new BaseEnemyPlane[32];
+        gameTime=0;
+        stage.clear();
+        mainGroup.clear();
+        onBoss=false;
+        enemys=new BaseEnemyPlane[32];
         init();
     }
 

@@ -28,6 +28,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public Rectangle drawBox=new Rectangle();
     public int hp=10;
     public Color color=Color.RED;
+    public boolean isKilled=false;
 
     public EnemyAnimationManager enemyAnimationManager;
 
@@ -35,6 +36,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void Init(Color c,Vector2 center,int hp,BaseMoveMethod... bmm){
         color=c;
+        isKilled=false;
         image=Pools.imagePool.obtain();
         enemyAnimationManager=new EnemyAnimationManager(this,5);
         objectCenter.set(center);
@@ -69,6 +71,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void Kill(){
         image.remove();
+        isKilled=true;
         judgeCircle=null;
         Pools.imagePool.free(image);
     }
