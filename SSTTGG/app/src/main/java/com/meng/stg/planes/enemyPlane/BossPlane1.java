@@ -34,7 +34,7 @@ public class BossPlane1 extends BaseEnemyPlane{
 		  .setStraightMove(true)
 		  .setWays(12)
 		  .setWaysDegree(30)
-		  .setCengShu(5)
+		  .setCengShu(1)
 		  .setInFrame(10);
 		bs.shoot();
         moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
@@ -62,7 +62,7 @@ public class BossPlane1 extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight());
+                SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
                 vel.rotate(30);
 			  }
 		  }
@@ -76,7 +76,7 @@ public class BossPlane1 extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,new MoveMethodStraight());
+            SimpleRedBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
             vel.rotate(15);
 		  }
         super.Kill();

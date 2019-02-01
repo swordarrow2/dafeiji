@@ -18,10 +18,10 @@ public class stage1{
     public static void addEnemy(){
         switch(MainScreen.gameTime){
             case 30:
-			  SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,new MoveMethodStraight(1,new Vector2(0,-1)));
+			  SimpleRedBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,new Vector2(0,-1)));
                 break;
             case 60:
-			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,new MoveMethodStraight(1,new Vector2(0,-1)) );
+			  SimpleRedBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,new Vector2(0,-1)) );
                 break;
             case 120:
                 new EnemyPlane().Init(270,719,0,-1);

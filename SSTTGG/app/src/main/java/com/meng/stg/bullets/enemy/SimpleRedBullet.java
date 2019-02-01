@@ -19,12 +19,13 @@ public class SimpleRedBullet extends BaseEnemyBullet{
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bf,BulletColor bc,BaseMoveMethod... mm){
-        SimpleRedBullet.Pool.obtain().Init(center,bf,bc,mm);
+    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
+        SimpleRedBullet.Pool.obtain().Init(center,bf,bc,ref,mm);
     }
 
-    public void Init(Vector2 center,BulletForm bf,BulletColor bc,BaseMoveMethod... mm){
+    public void Init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
         super.Init();
+		refCount=ref;
         objectCenter.set(center);
 		moveManager=new MoveManager(this,mm);
         image.setPosition(center.x,center.y,Align.center);

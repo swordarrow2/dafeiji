@@ -23,7 +23,7 @@ public class MoveManager{
             }else{
                 nowMoveMethod++;
             }
-        }
-        baseGameObject.velocity.set(tmpVec);
+			baseGameObject.velocity.set(tmpVec);
+        }   
     }
 }

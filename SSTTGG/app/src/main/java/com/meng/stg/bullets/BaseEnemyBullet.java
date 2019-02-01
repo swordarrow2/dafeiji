@@ -10,7 +10,7 @@ import com.meng.stg.ui.MainScreen;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
-    public int refCount=0;
+    public int refCount=1;
     public int thoughCount=0;
 
     public abstract Drawable getDrawable();
