@@ -1,24 +1,28 @@
 package com.meng.stg.planes;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.meng.stg.BaseGameObject;
 import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.helpers.*;
 
-public class JudgeCircleAnimation{
+public class JudgeCircleAnimation extends BaseGameObject{
 
     private int stat=0;
-    private Image judgeAnim;
 
     public JudgeCircleAnimation(){
-        judgeAnim=new Image(ResourcesManager.textures.get("slow23"));
+    }
+
+    @Override
+    public void init(){
+        super.init();
+        image.setDrawable(ResourcesManager.textures.get("slow23"));
     }
 
     public Image getImage(){
-        return judgeAnim;
+        return image;
     }
 
     public void update(){
-        judgeAnim.setRotation(stat);
+        image.setRotation(stat);
         stat+=2;
     }
 }

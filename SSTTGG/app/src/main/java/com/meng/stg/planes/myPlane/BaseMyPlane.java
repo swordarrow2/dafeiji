@@ -43,21 +43,22 @@ public abstract class BaseMyPlane extends BaseGameObject{
         instance=this;
         if(animation==null){
             animation=new JudgeCircleAnimation();
+            animation.init();
         }
         if(judgeAnim==null){
-            judgeAnim=ObjectPools.imagePool.obtain();
+            judgeAnim=new Image();// ObjectPools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
         }
         if(animation2==null){
             animation2=new JudgeCircleAnimation2();
+            animation2.init();
         }
         if(judgeAnim2==null){
-            judgeAnim2=ObjectPools.imagePool.obtain();
+            judgeAnim2=new Image();//ObjectPools.imagePool.obtain();
             judgeAnim2=animation2.getImage();
             judgeAnim2.setSize(48,48);
         }
-        image=ObjectPools.imagePool.obtain();
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);

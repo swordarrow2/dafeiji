@@ -57,7 +57,6 @@ public class MyPlaneReimu extends BaseMyPlane{
             case 1:
                 subPlane1.kill();
         }
-   //     ObjectPools.imagePool.free(image);
         new MyPlaneReimu().init();
     }
 
