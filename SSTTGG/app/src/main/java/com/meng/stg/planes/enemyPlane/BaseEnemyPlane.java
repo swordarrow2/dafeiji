@@ -34,9 +34,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public BulletShooter bulletShooter;
 
     public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
+	  super.init();
         enemyColor=c;
         isKilled=false;
-        image=ObjectPools.imagePool.obtain();
         enemyAnimationManager=new EnemyAnimationManager(this,c,5);
         objectCenter.set(center);
         this.hp=hp;
@@ -60,7 +60,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void hit(){
         if(--hp<1){
-            Kill();
+            kill();
         }
     }
 
@@ -68,11 +68,11 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return objectCenter;
     }
 
-    public void Kill(){
+    public void kill(){
+	  super.kill();
         image.remove();
         isKilled=true;
         judgeCircle=null;
-        ObjectPools.imagePool.free(image);
     }
 
     public void update(){
@@ -92,7 +92,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         if(drawBox.overlaps(MainScreen.fightArea)){
             Judge();
         }else{
-            Kill();
+            kill();
         }
     }
 
@@ -121,7 +121,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public void Judge(){
         if(getCollisionArea().contains(BaseMyPlane.instance.objectCenter)){
             hit();
-            BaseMyPlane.instance.Kill();
+            BaseMyPlane.instance.kill();
         }
     }
 

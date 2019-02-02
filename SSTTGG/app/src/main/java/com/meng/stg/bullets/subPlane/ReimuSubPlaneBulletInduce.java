@@ -25,15 +25,12 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
     public void update(){
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
-        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-       // drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);    
         judgeCircle.setPosition(objectCenter);
 		if(judgeCircle.x<-5||judgeCircle.x>390
-		   ||judgeCircle.y<-5||judgeCircle.y>460){
-            //judge();
+		   ||judgeCircle.y<-5||judgeCircle.y>460){         
 			kill();
-		  }else{
-			// kill();
+		  }else{		
 			judge();
 		  }
 

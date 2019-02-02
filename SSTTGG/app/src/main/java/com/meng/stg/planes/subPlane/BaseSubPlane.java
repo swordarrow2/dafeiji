@@ -12,22 +12,18 @@ import com.meng.stg.ui.MainScreen;
 public abstract class BaseSubPlane extends BaseGameObject{
 
     public Vector2 nowPosition=Vector2.Zero;
-    public Vector2 size=Vector2.Zero;
-    public Image image=null;
     public BaseMyPlane myPlane;
-
-    public Drawable drawable=null;
     public int bianHao=1;
 
     private int[] subPlanePosition;
 
     public void init(BaseMyPlane myPlane,int subPlaneNumber){
+	  super.init();
         this.bianHao=subPlaneNumber;
         subPlanePosition=getSubPlanePosition();
         this.myPlane=myPlane;
         size=getSize();
-        objectCenter=myPlane.objectCenter.cpy();
-        image=ObjectPools.imagePool.obtain();
+        objectCenter=myPlane.objectCenter.cpy();     
         image.setDrawable(getDrawable());
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
@@ -36,9 +32,9 @@ public abstract class BaseSubPlane extends BaseGameObject{
 	  }
 
     public void kill(){
+	  super.kill();
         image.setRotation(0);
         image.remove();
-        ObjectPools.imagePool.free(image);
 	  }
 
     public void update(){

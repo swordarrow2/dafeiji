@@ -38,13 +38,14 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public AnimationManager animationManager;
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 
-    public void Init(){
+    public void init(){
+	  super.init();
         instance=this;
         if(animation==null){
             animation=new JudgeCircleAnimation();
         }
         if(judgeAnim==null){
-            judgeAnim=new Image();// ObjectPools.imagePool.obtain();
+            judgeAnim=ObjectPools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
         }
@@ -70,7 +71,8 @@ public abstract class BaseMyPlane extends BaseGameObject{
         MainScreen.mainGroup.addActor(judgeAnim2);
     }
 
-    public void Kill(){
+    public void kill(){
+	  super.kill();
     }
 
     public void update(){

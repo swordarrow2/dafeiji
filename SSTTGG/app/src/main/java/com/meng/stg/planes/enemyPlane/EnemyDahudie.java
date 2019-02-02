@@ -78,7 +78,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
     }
 
     @Override
-    public void Kill(){
+    public void kill(){
         MainScreen.onBoss=false;
         int randVal=MathUtils.random(0,360);
         Vector2 vel=new Vector2(15,0);
@@ -88,7 +88,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
             vel.rotate(15);
         }
      //   BaseBullet.killAllBullet();
-        super.Kill();
+        super.kill();
     }
 
 }

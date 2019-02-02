@@ -16,13 +16,12 @@ public abstract class BaseBullet extends BaseGameObject{
     public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
-   // protected Rectangle drawBox=new Rectangle();
 
 
-    public void Init(){
+    public void init(){
+	  super.init();
         toAdd.add(this);
         size=getSize();
-        image=ObjectPools.imagePool.obtain();
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
@@ -30,10 +29,11 @@ public abstract class BaseBullet extends BaseGameObject{
     }
 
     public void kill(){
+	  super.kill();
         toDelete.add(this);
         image.setRotation(0);
         image.remove();
-        ObjectPools.imagePool.free(image);
+    //    ObjectPools.imagePool.free(image);
     }
 
     public void update(){

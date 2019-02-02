@@ -13,8 +13,8 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     public static int bulletCount=0;
 
-    public void Init(){
-        super.Init();
+    public void init(){
+        super.init();
         bulletCount++;
     }
 
@@ -73,7 +73,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     public void judge(){
         if(judgeCircle.contains(BaseMyPlane.instance.objectCenter)){
             kill();
-            BaseMyPlane.instance.Kill();
+            BaseMyPlane.instance.kill();
         }
     }
 

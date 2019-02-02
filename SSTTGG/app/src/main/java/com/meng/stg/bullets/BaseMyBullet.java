@@ -14,7 +14,7 @@ public abstract class BaseMyBullet extends BaseBullet{
     public abstract Drawable getDrawable();
 
     public void init(Vector2 center,Vector2 velocity){
-        super.Init();
+        super.init();
         objectCenter.set(center);
         this.velocity.set(velocity);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);

@@ -23,6 +23,7 @@ import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.stage.stage1;
+import com.meng.stg.helpers.*;
 
 /*
  main layout
@@ -75,7 +76,7 @@ public class MainScreen extends ScreenAdapter{
 
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
-                        //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
+                //        	+"\ncount:"+ObjectPools.reimuShootPool.max +"\n"
                 //        +"\nbullet:"+BaseEnemyBullet.bulletCount
             //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
              //           +isKilled()
@@ -137,7 +138,7 @@ public class MainScreen extends ScreenAdapter{
         stageFlag=Data.stageFlagStage1;
         switch(playerFlag){
             case Data.playerFlagReimu:
-                new MyPlaneReimu().Init();
+                new MyPlaneReimu().init();
                 break;
             case Data.playerFlagAlice:
                 //     new MyPlaneAlice().init();

@@ -17,11 +17,11 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int formNum=0;
 
     public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
-        ObjectPools.enemyBulletPool.obtain().Init(center,bf,bc,ref,mm);
+        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,mm);
     }
 
-    public void Init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
-        super.Init();
+    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
+        super.init();
         refCount=ref;
         objectCenter.set(center);
         moveManager=new MoveManager(this,mm);

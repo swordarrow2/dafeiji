@@ -21,8 +21,8 @@ public class MyPlaneReimu extends BaseMyPlane{
     }
 
     @Override
-    public void Init(){
-        super.Init();
+    public void init(){
+        super.init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
         switch(power){
@@ -42,11 +42,11 @@ public class MyPlaneReimu extends BaseMyPlane{
     }
 
     @Override
-    public void Kill(){
+    public void kill(){
         if(true){
             return;
         }
-        super.Kill();
+        super.kill();
         switch(power){
             case 4:
                 subPlane4.kill();
@@ -57,8 +57,8 @@ public class MyPlaneReimu extends BaseMyPlane{
             case 1:
                 subPlane1.kill();
         }
-        ObjectPools.imagePool.free(image);
-        new MyPlaneReimu().Init();
+   //     ObjectPools.imagePool.free(image);
+        new MyPlaneReimu().init();
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.meng.stg.move.MoveManager;
+import com.meng.stg.helpers.*;
 
 /*
 base game object
@@ -24,4 +25,12 @@ public abstract class BaseGameObject {
     public void update(){
         ++existTime;
     }
+	
+	public void init(){
+	  image=ObjectPools.imagePool.obtain();
+	}
+	
+	public void kill(){
+	  ObjectPools.imagePool.free(image);
+	}
 }
