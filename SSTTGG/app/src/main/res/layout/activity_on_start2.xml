@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
         android:layout_marginTop="16dp"
-        android:text="点击按钮开始游戏\n双指集中射击 三指bomb 四推把\n音量键左右移动 返回键普通射击 菜单键集中射击"
+        android:text="双指集中射击 三指bomb 四推把\n音量键左右移动 返回键普通射击 菜单键集中射击"
         android:textStyle="bold" />
 
         <RadioGroup
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
-                android:text="A:诱导+针"
+                android:text="A:诱导"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <RadioButton

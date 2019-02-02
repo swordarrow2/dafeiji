@@ -40,5 +40,4 @@ public class onStartActivity extends Activity{
 		RadioButton radioButton = (RadioButton)findViewById(player.getCheckedRadioButtonId());
 		pl=radioButton.getText().toString();
 	  }
-
   }

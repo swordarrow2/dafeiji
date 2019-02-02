@@ -27,7 +27,7 @@ public class MyPlaneReimu extends BaseMyPlane{
         super.init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-		if(onStartActivity.pl.equals("A:诱导+针")){
+		if(onStartActivity.pl.equals("A:诱导")){
 			switch(power){
 				case 4:
 				  subPlane4=new SubPlaneReimu();
