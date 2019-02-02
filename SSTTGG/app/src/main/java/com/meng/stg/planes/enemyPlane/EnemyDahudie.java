@@ -22,10 +22,10 @@ public class EnemyDahudie extends BaseEnemyPlane{
     @Override
     public void update(){
         super.update();
-        move();
-        //  am.update();
+    //    move();
+        moveManager.update();
         if(existTime%60==1){
-            bulletShooter.shoot();
+      //      bulletShooter.shoot();
         }
     }
 
@@ -41,7 +41,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
                 .setWaysDegree(60)
                 .setCengShu(10)
                 .setInFrame(10);
-        moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
+      //  moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
     }
 
     @Override
@@ -87,7 +87,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
             EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
             vel.rotate(15);
         }
-        BaseBullet.killAllBullet();
+     //   BaseBullet.killAllBullet();
         super.Kill();
     }
 

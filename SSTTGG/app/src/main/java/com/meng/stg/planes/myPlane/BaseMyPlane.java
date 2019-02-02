@@ -44,7 +44,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
             animation=new JudgeCircleAnimation();
         }
         if(judgeAnim==null){
-            judgeAnim=Pools.imagePool.obtain();
+            judgeAnim=new Image();// Pools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
         }
@@ -56,7 +56,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
             judgeAnim2=animation2.getImage();
             judgeAnim2.setSize(48,48);
         }
-        image=Pools.imagePool.obtain();
+        image= Pools.imagePool.obtain();
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);

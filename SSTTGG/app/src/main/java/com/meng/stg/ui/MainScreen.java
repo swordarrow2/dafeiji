@@ -76,9 +76,9 @@ public class MainScreen extends ScreenAdapter{
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                         //	+"\ntouch:"+PlayerInputProcessor.touchX+","+PlayerInputProcessor.touchY+"\n"
-                        +"\nbullet:"+BaseEnemyBullet.bulletCount
-                        +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
-                        +isKilled()
+                //        +"\nbullet:"+BaseEnemyBullet.bulletCount
+            //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
+             //           +isKilled()
                 ,10,590);
         switch(stageFlag){
             case Data.stageFlagStage1:
