@@ -27,20 +27,20 @@ public class MyPlaneReimu extends BaseMyPlane{
         super.Init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-        switch(subPlaneCount){
-            case 4:
+    //    switch(subPlaneCount){
+     //       case 4:
                 subPlane4=new SubPlaneReimu();
                 subPlane4.init(this,4);
-            case 3:
+      //      case 3:
                 subPlane3=new SubPlaneReimu();
                 subPlane3.init(this,3);
-            case 2:
+      //      case 2:
                 subPlane2=new SubPlaneReimu();
                 subPlane2.init(this,2);
-            case 1:
+      //      case 1:
                 subPlane1=new SubPlaneReimu();
                 subPlane1.init(this,1);
-        }
+    //    }
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MyPlaneReimu extends BaseMyPlane{
             return;
         }
         super.Kill();
-        switch(subPlaneCount){
+        switch(power){
             case 4:
                 subPlane4.kill();
             case 3:
@@ -66,20 +66,20 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void update(){
         super.update();
-        switch(subPlaneCount){
-            case 4:
+    //    switch(subPlaneCount){
+    //        case 4:
                 subPlane4.update();
-            case 3:
+     //       case 3:
                 subPlane3.update();
-            case 2:
+     //       case 2:
                 subPlane2.update();
-            case 1:
+     //       case 1:
                 subPlane1.update();
-        }
+   //     }
     }
 
     public void onPowerInc(){
-        switch(subPlaneCount){
+        switch(power){
             case 4:
                 subPlane4=new SubPlaneReimu();
                 subPlane4.init(this,4);

@@ -22,6 +22,7 @@ public class stage1{
 	  
         switch(MainScreen.gameTime){
             case 30:
+			 // MainScreen.gameTime=1;
                 EnemyBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,new Vector2(0,-1)));
                 break;
             case 60:

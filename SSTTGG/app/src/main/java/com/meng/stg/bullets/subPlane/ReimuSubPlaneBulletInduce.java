@@ -33,13 +33,16 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+       // drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
-        if(!drawBox.overlaps(MainScreen.fightArea)){
-            kill();
-        }else{
-            judge();
-        }
+		if(judgeCircle.x<-5||judgeCircle.x>390
+		   ||judgeCircle.y<-5||judgeCircle.y>460){
+            //judge();
+			kill();
+		  }else{
+			// kill();
+			judge();
+		  }
 
         nearestEnemyPosition.set(noEnemy);
         for(BaseEnemyPlane bep : MainScreen.enemys){

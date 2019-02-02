@@ -18,7 +18,7 @@ public abstract class BaseBullet extends BaseGameObject{
     public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
-    protected Rectangle drawBox=new Rectangle();
+   // protected Rectangle drawBox=new Rectangle();
 
 
     public void Init(){
@@ -44,12 +44,15 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+      //  drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
-        if(drawBox.overlaps(MainScreen.fightArea)){
-            judge();
+        if(judgeCircle.x<-5||judgeCircle.x>390
+		||judgeCircle.y<-5||judgeCircle.y>460){
+            //judge();
+			kill();
         }else{
-            kill();
+           // kill();
+		   judge();
         }
     }
 

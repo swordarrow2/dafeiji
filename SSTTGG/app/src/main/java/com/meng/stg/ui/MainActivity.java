@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.meng.stg.planes.myPlane.*;
 
 public class MainActivity extends AndroidApplication{
     public static MainActivity instance;
@@ -32,8 +33,22 @@ public class MainActivity extends AndroidApplication{
 
     @Override
     public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode==KeyEvent.KEYCODE_BACK){
+        if(keyCode==KeyEvent.KEYCODE_VOLUME_UP){
+		  BaseMyPlane.instance.objectCenter.x+=5;
+		  return true;
         }
+		if(keyCode==KeyEvent.KEYCODE_VOLUME_DOWN){
+			BaseMyPlane.instance.objectCenter.x-=5;
+			return true;
+		  }
+		if(keyCode==KeyEvent.KEYCODE_MENU){
+			BaseMyPlane.instance.slow=true;
+			return true;
+		  }
+		  if(keyCode==KeyEvent.KEYCODE_BACK){
+			BaseMyPlane.instance.slow=false;
+			return true;
+		  }
         return super.onKeyDown(keyCode,event);
     }
 
