@@ -28,10 +28,9 @@ public abstract class BaseMyPlane extends BaseGameObject{
 
     public int power=4;
 
-    public static JudgeCircleAnimation animation=null;
-    public static JudgeCircleAnimation2 animation2=null;
-    public static Image judgeAnim=null;
-    public static Image judgeAnim2=null;
+    public JudgeCircleAnimation animation=null;
+    public JudgeCircleAnimation2 animation2=null;
+
     private float playerLastX=270;
     public boolean slow=false;
 
@@ -39,59 +38,31 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 
     public void init(){
-	  super.init();
+		super.init();
         instance=this;
-        if(animation==null){
-            animation=new JudgeCircleAnimation();
-            animation.init();
-        }
-        if(judgeAnim==null){
-            judgeAnim=new Image();// ObjectPools.imagePool.obtain();
-            judgeAnim=animation.getImage();
-            judgeAnim.setSize(48,48);
-        }
-        if(animation2==null){
-            animation2=new JudgeCircleAnimation2();
-            animation2.init();
-        }
-        if(judgeAnim2==null){
-            judgeAnim2=new Image();//ObjectPools.imagePool.obtain();
-            judgeAnim2=animation2.getImage();
-            judgeAnim2.setSize(48,48);
-        }
+		animation=new JudgeCircleAnimation();
+		animation.init();
+		animation2=new JudgeCircleAnimation2();
+		animation2.init();
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
-        judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
-        unmatchedTime=1;
+		unmatchedTime=1;
         onUnmatched=true;
         MainScreen.mainGroup.addActor(image);
-        MainScreen.mainGroup.addActor(judgeAnim);
-        MainScreen.mainGroup.addActor(judgeAnim2);
-    }
+	  }
 
     public void kill(){
-	  super.kill();
-    }
+		super.kill();
+
+	  }
 
     public void update(){
         super.update();
         animFlag++;
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,0,MainScreen.width),MathUtils.clamp(objectCenter.y,0,MainScreen.height));
-        if(slow){
-            judgeAnim.setSize(48,48);
-            judgeAnim2.setSize(48,48);
-        }else{
-            judgeAnim.setSize(0,0);
-            judgeAnim2.setSize(0,0);
-        }
-        judgeAnim.setOrigin(judgeAnim.getWidth()/2,judgeAnim.getHeight()/2);
-        judgeAnim2.setOrigin(judgeAnim2.getWidth()/2,judgeAnim2.getHeight()/2);
 
-        judgeAnim.setPosition(objectCenter.x,objectCenter.y,Align.center);
-        judgeAnim2.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
 
@@ -99,39 +70,38 @@ public abstract class BaseMyPlane extends BaseGameObject{
             onUnmatched=true;
             bomb();
             bombTime--;
-        }
+		  }
         if(onUnmatched){
             unmatchedTime--;
-        }
+		  }
         if(bombTime==0){
             onBomb=false;
             bombTime=Data.ReimuBombTime;
-        }
+		  }
         if(unmatchedTime==0){
             onUnmatched=false;
             unmatchedTime=Data.ReimuUnmatchedTime;
-        }
+		  }
 
         if(objectCenter.x>playerLastX){
             playerLastX=objectCenter.x;
             animationManager.setStatus(MoveStatus.moveRight);
-        }else if(objectCenter.x<playerLastX){
+		  }else if(objectCenter.x<playerLastX){
             playerLastX=objectCenter.x;
             animationManager.setStatus(MoveStatus.moveLeft);
-        }else{
+		  }else{
             animationManager.setStatus(MoveStatus.stay);
-        }
+		  }
 
         animationManager.update();
         image.toBack();
-        judgeAnim2.toFront();
-        judgeAnim.toFront();
+
 
         animation.update();
         animation2.update();
-    }
+	  }
 
     public abstract void bomb();
 
     public abstract void shoot();
-}
+  }

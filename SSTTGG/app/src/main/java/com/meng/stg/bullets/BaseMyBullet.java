@@ -21,7 +21,13 @@ public abstract class BaseMyBullet extends BaseBullet{
         judgeCircle=new Circle(objectCenter,image.getHeight()/2*3); //中心、半径
         image.setDrawable(getDrawable());
         MainScreen.mainGroup.addActor(image);
-    }
+	  }
+
+	@Override
+	public void kill(){
+		super.kill();
+	  }
+	
 
     public void judge(){
         try{

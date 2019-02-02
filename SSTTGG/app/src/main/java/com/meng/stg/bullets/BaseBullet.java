@@ -19,22 +19,20 @@ public abstract class BaseBullet extends BaseGameObject{
 
 
     public void init(){
-	  super.init();
+		super.init();
         toAdd.add(this);
         size=getSize();
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         existTime=0;
-    }
+	  }
 
     public void kill(){
-	  super.kill();
+		super.kill();
         toDelete.add(this);
-        image.setRotation(0);
         image.remove();
-    //    ObjectPools.imagePool.free(image);
-    }
+	  }
 
     public void update(){
         super.update();
@@ -42,17 +40,17 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-      //  drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
+		//  drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
         if(judgeCircle.x<-5||judgeCircle.x>390
-		||judgeCircle.y<-5||judgeCircle.y>460){
+		   ||judgeCircle.y<-5||judgeCircle.y>460){
             //judge();
 			kill();
-        }else{
-           // kill();
-		   judge();
-        }
-    }
+		  }else{
+			// kill();
+			judge();
+		  }
+	  }
 
     public static void killAllBullet(){
         Iterator i=instances.iterator();
@@ -61,25 +59,25 @@ public abstract class BaseBullet extends BaseGameObject{
             BaseBullet bb=(BaseBullet)i.next();
             if(bb instanceof BaseEnemyBullet){
                 bb.kill();
-            }
-        }
-    }
+			  }
+		  }
+	  }
 
     public static void updateAll(){
         while(!toDelete.isEmpty()){
             instances.remove(toDelete.poll());
-        }
+		  }
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
-        }
+		  }
         for(BaseBullet baseBullet : instances){
             baseBullet.update();
-        }
-    }
+		  }
+	  }
 
     public Shape2D getCollisionArea(){
         return judgeCircle;
-    }
+	  }
 
     public abstract Drawable getDrawable();
 
@@ -88,4 +86,4 @@ public abstract class BaseBullet extends BaseGameObject{
     public abstract float getRotationDegree();
 
     public abstract Vector2 getSize();
-}
+  }

@@ -9,6 +9,7 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.helpers.TextureNameManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
+import com.meng.stg.helpers.*;
 
 public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
 
@@ -38,7 +39,13 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
         }catch(Exception e){
             e.printStackTrace();
         }
-    }
+	  }
+
+	@Override
+	public void kill(){
+		super.kill();
+		ObjectPools.reimuSubPlaneBulletStraightPool.free(this);
+	  }
 
     @Override
     public float getRotationDegree(){

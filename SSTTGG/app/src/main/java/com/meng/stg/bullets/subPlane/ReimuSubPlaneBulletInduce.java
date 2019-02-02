@@ -9,6 +9,7 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.helpers.TextureNameManager;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.helpers.*;
 
 public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
 
@@ -58,6 +59,12 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
     @Override
     public Vector2 getSize(){
         return new Vector2(16,16);
-    }
+	  }
+
+	@Override
+	public void kill(){
+		super.kill();
+		ObjectPools.reimuSubPlaneBulletInducePool.free(this);
+	  }
 
 }

@@ -132,7 +132,7 @@ public class EnemyBullet extends BaseEnemyBullet{
     public Vector2 getSize(){
         return new Vector2(16,16);
     }
-
+	
     @Override
     public Drawable getDrawable(){
         if(drawable==null){

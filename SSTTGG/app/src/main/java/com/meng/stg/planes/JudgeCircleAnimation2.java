@@ -1,8 +1,10 @@
 package com.meng.stg.planes;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.meng.stg.BaseGameObject;
-import com.meng.stg.helpers.ResourcesManager;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.helpers.*;
+import com.meng.stg.planes.myPlane.*;
+import com.meng.stg.ui.*;
 
 public class JudgeCircleAnimation2 extends BaseGameObject{
     private int stat=0;
@@ -14,15 +16,16 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
     public void init(){
         super.init();
         image.setDrawable(ResourcesManager.textures.get("slow24"));
-    }
-
-    public Image getImage(){
-        return image;
+		image.setSize(48,48);
+        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+		MainScreen.mainGroup.addActor(image);
     }
 
     public void update(){
+		objectCenter=BaseMyPlane.instance.objectCenter;
         image.setRotation(stat);
         stat-=2;
+		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
     }
 
     @Override

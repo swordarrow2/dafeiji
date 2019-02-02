@@ -16,6 +16,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
+import com.meng.stg.helpers.*;
 
 /*
  base class of enemy
@@ -29,7 +30,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public EnemyColor enemyColor;
     public boolean isKilled=false;
 
-    public EnemyAnimationManager enemyAnimationManager;
+    //public EnemyAnimationManager enemyAnimationManager;
 
     public BulletShooter bulletShooter;
 
@@ -37,10 +38,13 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 	  super.init();
         enemyColor=c;
         isKilled=false;
-        enemyAnimationManager=new EnemyAnimationManager(this,c,5);
+       // enemyAnimationManager=new EnemyAnimationManager(this,c,5);
         objectCenter.set(center);
         this.hp=hp;
         size=getSize();
+		image.setRotation(0);
+		image.setSize(size.x,size.y);
+		image.setDrawable(ResourcesManager.flipedTextures.get("zayu5"));
         judgeCircle=new Circle(objectCenter,image.getWidth()/4); //中心、半径
         moveManager=new MoveManager(this,bmm);
         MainScreen.mainGroup.addActor(image);
@@ -80,12 +84,12 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         time++;
         animFlag++;
         moveManager.update();
-        enemyAnimationManager.update();
+       // enemyAnimationManager.update();
         objectCenter.add(velocity);
         anim();
         shoot();
 
-        image.setSize(size.x,size.y);
+        
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
         drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
@@ -99,12 +103,12 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     private void anim(){
         if(objectCenter.x>enemyLastX){
             enemyLastX=objectCenter.x;
-            enemyAnimationManager.setStatus(MoveStatus.moveRight);
+          //  enemyAnimationManager.setStatus(MoveStatus.moveRight);
         }else if(objectCenter.x<enemyLastX){
             enemyLastX=objectCenter.x;
-            enemyAnimationManager.setStatus(MoveStatus.moveLeft);
+           // enemyAnimationManager.setStatus(MoveStatus.moveLeft);
         }else{
-            enemyAnimationManager.setStatus(MoveStatus.stay);
+          //  enemyAnimationManager.setStatus(MoveStatus.stay);
         }
     }
 
