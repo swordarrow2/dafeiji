@@ -32,7 +32,6 @@ public class ReimuShoot extends BaseMyBullet{
 	@Override
 	public void kill(){
 		super.kill();
-		ObjectPools.reimuShootPool.free(this);
 	  }
 	
 
