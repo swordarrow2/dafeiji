@@ -30,9 +30,9 @@ public class PlayerInputProcessor extends InputAdapter{
             BaseMyPlane.instance.onBomb=true;
         }
         if(pointer==3){
-      //      MainScreen.instence.restart();
-             BaseMyPlane.instance.power++;
-            ((MyPlaneReimu)BaseMyPlane.instance).onPowerInc();
+           MainScreen.instence.restart();
+            // BaseMyPlane.instance.power++;
+           // ((MyPlaneReimu)BaseMyPlane.instance).onPowerInc();
         }
         return super.touchDown(screenX,screenY,pointer,button);
     }

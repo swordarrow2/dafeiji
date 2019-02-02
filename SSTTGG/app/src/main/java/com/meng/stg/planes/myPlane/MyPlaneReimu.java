@@ -5,6 +5,8 @@ import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.planes.AnimationManager;
 import com.meng.stg.planes.subPlane.SubPlaneReimu;
+import com.meng.stg.ui.*;
+import com.meng.stg.planes.subPlane.*;
 
 /*
  my plane
@@ -17,102 +19,122 @@ public class MyPlaneReimu extends BaseMyPlane{
             Vector2 vel=new Vector2(0,47);
             ObjectPools.reimuShootPool.obtain().init(new Vector2(objectCenter.x+8,objectCenter.y+32),vel);
             ObjectPools.reimuShootPool.obtain().init(new Vector2(objectCenter.x-8,objectCenter.y+32),vel);
-        }
-    }
+		  }
+	  }
 
     @Override
     public void init(){
         super.init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-        switch(power){
-            case 4:
-                subPlane4=new SubPlaneReimu();
-                subPlane4.init(this,4);
-            case 3:
-                subPlane3=new SubPlaneReimu();
-                subPlane3.init(this,3);
-            case 2:
-                subPlane2=new SubPlaneReimu();
-                subPlane2.init(this,2);
-            case 1:
-                subPlane1=new SubPlaneReimu();
-                subPlane1.init(this,1);
-        }
-    }
+		if(onStartActivity.pl.equals("A:诱导+针")){
+			switch(power){
+				case 4:
+				  subPlane4=new SubPlaneReimu();
+				  subPlane4.init(this,4);
+				case 3:
+				  subPlane3=new SubPlaneReimu();
+				  subPlane3.init(this,3);
+				case 2:
+				  subPlane2=new SubPlaneReimu();
+				  subPlane2.init(this,2);
+				case 1:
+				  subPlane1=new SubPlaneReimu();
+				  subPlane1.init(this,1);
+			  }
+		  }else if(onStartActivity.pl.equals("B:针")){
+			switch(power){
+				case 4:
+				  subPlane4=new SubPlaneReimuB();
+				  subPlane4.init(this,4);
+				case 3:
+				  subPlane3=new SubPlaneReimuB();
+				  subPlane3.init(this,3);
+				case 2:
+				  subPlane2=new SubPlaneReimuB();
+				  subPlane2.init(this,2);
+				case 1:
+				  subPlane1=new SubPlaneReimuB();
+				  subPlane1.init(this,1);
+			  }
+		  }else{
+			power=0;
+		  }
+	  }
+
 
     @Override
     public void kill(){
         if(true){
             return;
-        }
+		  }
         super.kill();
         switch(power){
             case 4:
-                subPlane4.kill();
+			  subPlane4.kill();
             case 3:
-                subPlane3.kill();
+			  subPlane3.kill();
             case 2:
-                subPlane2.kill();
+			  subPlane2.kill();
             case 1:
-                subPlane1.kill();
-        }
+			  subPlane1.kill();
+		  }
         new MyPlaneReimu().init();
-    }
+	  }
 
     @Override
     public void update(){
         super.update();
         switch(power){
             case 4:
-                subPlane4.update();
+			  subPlane4.update();
             case 3:
-                subPlane3.update();
+			  subPlane3.update();
             case 2:
-                subPlane2.update();
+			  subPlane2.update();
             case 1:
-                subPlane1.update();
-        }
-    }
+			  subPlane1.update();
+		  }
+	  }
 
     public void onPowerInc(){
         switch(power){
             case 4:
-                subPlane4=new SubPlaneReimu();
-                subPlane4.init(this,4);
-                break;
+			  subPlane4=new SubPlaneReimu();
+			  subPlane4.init(this,4);
+			  break;
             case 3:
-                subPlane3=new SubPlaneReimu();
-                subPlane3.init(this,3);
-                break;
+			  subPlane3=new SubPlaneReimu();
+			  subPlane3.init(this,3);
+			  break;
             case 2:
-                subPlane2=new SubPlaneReimu();
-                subPlane2.init(this,2);
-                break;
+			  subPlane2=new SubPlaneReimu();
+			  subPlane2.init(this,2);
+			  break;
             case 1:
-                subPlane1=new SubPlaneReimu();
-                subPlane1.init(this,1);
-                break;
-        }
-    }
+			  subPlane1=new SubPlaneReimu();
+			  subPlane1.init(this,1);
+			  break;
+		  }
+	  }
 
     @Override
     public void bomb(){
         Vector2 vel=new Vector2(0,30);
         if(bombTime%16==0){
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x,0),vel);
-        }
+		  }
         if(bombTime%16==4){
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x-20,0),vel);
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x+20,0),vel);
-        }
+		  }
         if(bombTime%16==8){
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x-40,0),vel);
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x+40,0),vel);
-        }
+		  }
         if(bombTime%16==12){
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x-20,0),vel);
             ObjectPools.reimuBombPool.obtain().init(new Vector2(objectCenter.x+20,0),vel);
-        }
-    }
-}
+		  }
+	  }
+  }

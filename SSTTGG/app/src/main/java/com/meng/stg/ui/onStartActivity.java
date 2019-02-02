@@ -8,32 +8,37 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.meng.stg.R;
+import android.widget.CompoundButton.*;
+import android.widget.*;
 
 public class onStartActivity extends Activity{
     Button btn;
-    RadioGroup player;
-    RadioGroup diff;
-    RadioGroup stage;
-
+ RadioGroup player;
+    public static String pl="a";
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_start2);
-        Intent i=new Intent(onStartActivity.this,MainActivity.class);
-        startActivity(i);
-        finish();
-        if(true) return;
         btn=(Button)findViewById(R.id.btn);
         player=(RadioGroup)findViewById(R.id.radioplayer);
-        diff=(RadioGroup)findViewById(R.id.radiodifficulty);
-        stage=(RadioGroup)findViewById(R.id.radiostage);
+		player.setOnCheckedChangeListener(new RadioGroup. OnCheckedChangeListener(){
 
+			  @Override
+			  public void onCheckedChanged(RadioGroup p1,int p2){
+				  selectRadioBtn();
+				}
+			});
         btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent i=new Intent(onStartActivity.this,MainActivity.class);
-                startActivity(i);
-            }
-        });
-    }
-}
+			  @Override
+			  public void onClick(View view){
+				  Intent i=new Intent(onStartActivity.this,MainActivity.class);
+				  startActivity(i);
+				}
+			});
+			}
+	private void selectRadioBtn(){
+		RadioButton radioButton = (RadioButton)findViewById(player.getCheckedRadioButtonId());
+		pl=radioButton.getText().toString();
+	  }
+
+  }
