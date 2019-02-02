@@ -24,6 +24,11 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
     public void update(){
 		objectCenter=BaseMyPlane.instance.objectCenter;
         image.setRotation(stat);
+		if(BaseMyPlane.instance.slow){
+			image.setSize(48,48);
+		  }else{
+			image.setSize(0,0);
+		  }
         stat-=2;
 		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
     }
