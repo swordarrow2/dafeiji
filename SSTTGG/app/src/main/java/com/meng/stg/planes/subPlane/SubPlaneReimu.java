@@ -20,9 +20,9 @@ public class SubPlaneReimu extends BaseSubPlane{
             -16,20,16,20,
             -32,0,32,0,
             -16,20,0,30,16,20,
-            -32,0,0,32,32,0,
+            -32,0,0,-32,32,0,
             -16,20,-8,30,8,30,16,20,
-            -32,0,-16,32,16,32,32,0
+            -32,0,-16,-32,16,-32,32,0
     };
 
     @Override
@@ -35,16 +35,16 @@ public class SubPlaneReimu extends BaseSubPlane{
         super.init(myPlane,subPlaneNumber);
         switch(bianHao){
             case 1:
-                tmpv.set(0,8).rotate(60);
+                tmpv.set(0,8).rotate(10);
                 break;
             case 2:
-                tmpv.set(0,8).rotate(30);
+                tmpv.set(0,8);
                 break;
             case 3:
-                tmpv.set(0,8).rotate(-30);
+                tmpv.set(0,8);
                 break;
             case 4:
-                tmpv.set(0,8).rotate(-60);
+                tmpv.set(0,8).rotate(-10);
                 break;
         }
     }

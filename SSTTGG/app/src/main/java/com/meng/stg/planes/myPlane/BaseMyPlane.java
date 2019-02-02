@@ -97,8 +97,8 @@ public abstract class BaseMyPlane extends BaseGameObject{
         image.toBack();
 
 
-        animation.update();
         animation2.update();
+        animation.update();
 	  }
 
     public abstract void bomb();

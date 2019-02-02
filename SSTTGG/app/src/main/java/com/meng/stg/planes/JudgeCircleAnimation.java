@@ -38,5 +38,6 @@ public class JudgeCircleAnimation extends BaseGameObject{
 		}
         stat+=2;
 		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
+		image.toFront();
 	  }
   }
