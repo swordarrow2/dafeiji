@@ -9,7 +9,7 @@ import com.meng.stg.move.MoveManager;
 /*
 base game object
  */
-public abstract class BaseGameObject{
+public abstract class BaseGameObject {
 
     public Vector2 objectCenter=new Vector2();
     public Circle judgeCircle;

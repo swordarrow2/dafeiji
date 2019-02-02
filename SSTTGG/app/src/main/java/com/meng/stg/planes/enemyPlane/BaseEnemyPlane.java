@@ -1,6 +1,5 @@
 package com.meng.stg.planes.enemyPlane;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
@@ -8,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.helpers.Pools;
+import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveManager;
 import com.meng.stg.planes.EnemyAnimationManager;
@@ -37,7 +36,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
         enemyColor=c;
         isKilled=false;
-        image=Pools.imagePool.obtain();
+        image=ObjectPools.imagePool.obtain();
         enemyAnimationManager=new EnemyAnimationManager(this,c,5);
         objectCenter.set(center);
         this.hp=hp;
@@ -73,7 +72,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.remove();
         isKilled=true;
         judgeCircle=null;
-        Pools.imagePool.free(image);
+        ObjectPools.imagePool.free(image);
     }
 
     public void update(){

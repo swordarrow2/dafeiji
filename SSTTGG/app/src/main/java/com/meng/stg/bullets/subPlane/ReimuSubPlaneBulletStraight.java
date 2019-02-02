@@ -12,13 +12,6 @@ import static com.meng.stg.ui.MainScreen.enemys;
 
 public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
 
-    public static com.badlogic.gdx.utils.Pool<ReimuSubPlaneBulletStraight> Pool=new Pool<ReimuSubPlaneBulletStraight>(){
-        @Override
-        protected ReimuSubPlaneBulletStraight newObject(){
-            return new ReimuSubPlaneBulletStraight();
-        }
-    };
-
     @Override
     public Drawable getDrawable(){
         if(drawable==null){

@@ -1,13 +1,11 @@
 package com.meng.stg.bullets;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.helpers.Pools;
-import com.meng.stg.ui.MainScreen;
+import com.meng.stg.helpers.ObjectPools;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -24,7 +22,7 @@ public abstract class BaseBullet extends BaseGameObject{
     public void Init(){
         toAdd.add(this);
         size=getSize();
-        image=Pools.imagePool.obtain();
+        image=ObjectPools.imagePool.obtain();
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
@@ -35,7 +33,7 @@ public abstract class BaseBullet extends BaseGameObject{
         toDelete.add(this);
         image.setRotation(0);
         image.remove();
-        Pools.imagePool.free(image);
+        ObjectPools.imagePool.free(image);
     }
 
     public void update(){

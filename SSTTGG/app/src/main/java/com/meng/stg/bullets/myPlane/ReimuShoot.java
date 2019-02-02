@@ -9,13 +9,6 @@ import com.meng.stg.helpers.TextureNameManager;
 
 public class ReimuShoot extends BaseMyBullet{
 
-    public static Pool<ReimuShoot> Pool=new Pool<ReimuShoot>(){
-        @Override
-        protected ReimuShoot newObject(){
-            return new ReimuShoot();
-        }
-    };
-
     @Override
     public Drawable getDrawable(){
         if(drawable==null){

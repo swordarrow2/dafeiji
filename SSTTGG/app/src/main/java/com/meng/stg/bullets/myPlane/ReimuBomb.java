@@ -10,12 +10,6 @@ import com.meng.stg.helpers.ResourcesManager;
 import static com.meng.stg.ui.MainScreen.enemys;
 
 public class ReimuBomb extends BaseMyBullet{
-    public static Pool<ReimuBomb> Pool=new Pool<ReimuBomb>(){
-        @Override
-        protected ReimuBomb newObject(){
-            return new ReimuBomb();
-        }
-    };
 
     @Override
     public Drawable getDrawable(){

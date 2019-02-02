@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.helpers.Data;
-import com.meng.stg.helpers.Pools;
+import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.planes.AnimationManager;
 import com.meng.stg.planes.JudgeCircleAnimation;
 import com.meng.stg.planes.JudgeCircleAnimation2;
@@ -44,7 +44,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
             animation=new JudgeCircleAnimation();
         }
         if(judgeAnim==null){
-            judgeAnim=new Image();// Pools.imagePool.obtain();
+            judgeAnim=new Image();// ObjectPools.imagePool.obtain();
             judgeAnim=animation.getImage();
             judgeAnim.setSize(48,48);
         }
@@ -52,11 +52,11 @@ public abstract class BaseMyPlane extends BaseGameObject{
             animation2=new JudgeCircleAnimation2();
         }
         if(judgeAnim2==null){
-            judgeAnim2=Pools.imagePool.obtain();
+            judgeAnim2=ObjectPools.imagePool.obtain();
             judgeAnim2=animation2.getImage();
             judgeAnim2.setSize(48,48);
         }
-        image= Pools.imagePool.obtain();
+        image=ObjectPools.imagePool.obtain();
         existTime=0;
         objectCenter.set(MainScreen.width/2,80);
         image.setSize(30,46);

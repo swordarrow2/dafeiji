@@ -62,10 +62,10 @@ public class stage1{
                 MainScreen.onBoss=true;
                 break;
             case 620:
-                //     EnemyBullet.Pool.obtain().init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
+                //     EnemyBullet.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(BaseMyPlane.instance.objectCenter.x,0),null);
                 break;
             case 670:
-                //         EnemyBullet.Pool.obtain().init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
+                //         EnemyBullet.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(BaseMyPlane.instance.objectCenter.x,720),null);
                 break;
         }
     }

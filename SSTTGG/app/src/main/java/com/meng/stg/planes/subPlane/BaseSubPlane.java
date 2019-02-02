@@ -1,15 +1,13 @@
 package com.meng.stg.planes.subPlane;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
-import com.meng.stg.helpers.Pools;
+import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
-import com.meng.stg.bullets.subPlane.*;
 
 public abstract class BaseSubPlane extends BaseGameObject{
 
@@ -29,7 +27,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
         this.myPlane=myPlane;
         size=getSize();
         objectCenter=myPlane.objectCenter.cpy();
-        image=Pools.imagePool.obtain();
+        image=ObjectPools.imagePool.obtain();
         image.setDrawable(getDrawable());
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
@@ -40,7 +38,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
     public void kill(){
         image.setRotation(0);
         image.remove();
-        Pools.imagePool.free(image);
+        ObjectPools.imagePool.free(image);
 	  }
 
     public void update(){

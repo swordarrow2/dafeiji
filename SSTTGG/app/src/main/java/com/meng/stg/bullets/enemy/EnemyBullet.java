@@ -1,33 +1,30 @@
 package com.meng.stg.bullets.enemy;
 
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.badlogic.gdx.utils.*;
-import com.meng.stg.bullets.*;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Align;
+import com.meng.stg.bullets.BaseEnemyBullet;
+import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.move.*;
-import com.meng.stg.ui.*;
+import com.meng.stg.move.BaseMoveMethod;
+import com.meng.stg.move.MoveManager;
+import com.meng.stg.ui.MainScreen;
 
 public class EnemyBullet extends BaseEnemyBullet{
 
-    public static Pool<EnemyBullet> Pool=new Pool<EnemyBullet>(){
-        @Override
-        protected EnemyBullet newObject(){
-            return new EnemyBullet();
-        }
-    };
     private int colorNum=0;
     private int formNum=0;
 
     public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
-        EnemyBullet.Pool.obtain().Init(center,bf,bc,ref,mm);
+        ObjectPools.enemyBulletPool.obtain().Init(center,bf,bc,ref,mm);
     }
 
     public void Init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
         super.Init();
-		refCount=ref;
+        refCount=ref;
         objectCenter.set(center);
-		moveManager=new MoveManager(this,mm);
+        moveManager=new MoveManager(this,mm);
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
         switch(bc){
@@ -127,7 +124,7 @@ public class EnemyBullet extends BaseEnemyBullet{
                 formNum=0;
                 break;
         }
-		image.setDrawable(getDrawable());
+        image.setDrawable(getDrawable());
         MainScreen.mainGroup.addActor(image);
     }
 

@@ -16,13 +16,6 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
     private final Vector2 targetOnEnemy=new Vector2(0,2);
     private final Vector2 noEnemy=new Vector2(100000,100000);
 
-    public static Pool<ReimuSubPlaneBulletInduce> Pool=new Pool<ReimuSubPlaneBulletInduce>(){
-        @Override
-        protected ReimuSubPlaneBulletInduce newObject(){
-            return new ReimuSubPlaneBulletInduce();
-        }
-    };
-
     @Override
     public Drawable getDrawable(){
         return ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
