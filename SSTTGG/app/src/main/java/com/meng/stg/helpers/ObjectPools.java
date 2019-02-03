@@ -3,7 +3,7 @@ package com.meng.stg.helpers;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Pool;
 import com.meng.stg.bullets.enemy.EnemyBullet;
-import com.meng.stg.bullets.myPlane.ReimuBomb;
+import com.meng.stg.bullets.myPlane.ReimuSpell;
 import com.meng.stg.bullets.myPlane.ReimuShoot;
 import com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce;
 import com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight;
@@ -22,10 +22,10 @@ public final class ObjectPools{
 		  }
 	  };
 
-    public static Pool<ReimuBomb> reimuBombPool=new Pool<ReimuBomb>(){
+    public static Pool<ReimuSpell> reimuBombPool=new Pool<ReimuSpell>(){
         @Override
-        protected ReimuBomb newObject(){
-            return new ReimuBomb();
+        protected ReimuSpell newObject(){
+            return new ReimuSpell();
 		  }
 	  };
     public static Pool<ReimuShoot> reimuShootPool=new Pool<ReimuShoot>(){

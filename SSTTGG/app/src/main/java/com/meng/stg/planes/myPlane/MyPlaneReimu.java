@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.planes.AnimationManager;
-import com.meng.stg.planes.subPlane.SubPlaneReimu;
+import com.meng.stg.planes.subPlane.SubPlaneReimuA;
 import com.meng.stg.ui.*;
 import com.meng.stg.planes.subPlane.*;
 
@@ -30,16 +30,16 @@ public class MyPlaneReimu extends BaseMyPlane{
 		if(onStartActivity.pl.equals("A:诱导")){
 			switch(power){
 				case 4:
-				  subPlane4=new SubPlaneReimu();
+				  subPlane4=new SubPlaneReimuA();
 				  subPlane4.init(this,4);
 				case 3:
-				  subPlane3=new SubPlaneReimu();
+				  subPlane3=new SubPlaneReimuA();
 				  subPlane3.init(this,3);
 				case 2:
-				  subPlane2=new SubPlaneReimu();
+				  subPlane2=new SubPlaneReimuA();
 				  subPlane2.init(this,2);
 				case 1:
-				  subPlane1=new SubPlaneReimu();
+				  subPlane1=new SubPlaneReimuA();
 				  subPlane1.init(this,1);
 			  }
 		  }else if(onStartActivity.pl.equals("B:针")){
@@ -100,19 +100,19 @@ public class MyPlaneReimu extends BaseMyPlane{
     public void onPowerInc(){
         switch(power){
             case 4:
-			  subPlane4=new SubPlaneReimu();
+			  subPlane4=new SubPlaneReimuA();
 			  subPlane4.init(this,4);
 			  break;
             case 3:
-			  subPlane3=new SubPlaneReimu();
+			  subPlane3=new SubPlaneReimuA();
 			  subPlane3.init(this,3);
 			  break;
             case 2:
-			  subPlane2=new SubPlaneReimu();
+			  subPlane2=new SubPlaneReimuA();
 			  subPlane2.init(this,2);
 			  break;
             case 1:
-			  subPlane1=new SubPlaneReimu();
+			  subPlane1=new SubPlaneReimuA();
 			  subPlane1.init(this,1);
 			  break;
 		  }

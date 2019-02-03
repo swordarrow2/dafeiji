@@ -10,7 +10,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 /*
  subplane
  */
-public class SubPlaneReimu extends BaseSubPlane{
+public class SubPlaneReimuA extends BaseSubPlane{
     private int degree=0;
     private Vector2 tmpv=new Vector2();
     private int[] pos=new int[]{

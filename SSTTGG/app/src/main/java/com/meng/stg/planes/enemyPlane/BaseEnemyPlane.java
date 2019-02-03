@@ -39,6 +39,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         enemyColor=c;
         isKilled=false;
         enemyAnimationManager=new EnemyAnimationManager(this,c,5);
+		enemyAnimationManager.init();
         objectCenter.set(center);
         this.hp=hp;
         size=getSize();
@@ -76,6 +77,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.remove();
         isKilled=true;
         judgeCircle=null;
+		enemyAnimationManager.kill();
     }
 
     public void update(){

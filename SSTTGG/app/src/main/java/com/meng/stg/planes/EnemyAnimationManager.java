@@ -1,12 +1,12 @@
 package com.meng.stg.planes;
 
-import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-import com.meng.stg.planes.enemyPlane.EnemyColor;
-import com.meng.stg.planes.enemyPlane.EnemyDahudie;
-import com.meng.stg.planes.enemyPlane.EnemyXiaozayu;
+import com.meng.stg.*;
+import com.meng.stg.helpers.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.ui.*;
+import com.badlogic.gdx.utils.*;
 
-public class EnemyAnimationManager{
+public class EnemyAnimationManager extends BaseGameObject{
 
     private BaseEnemyPlane baseEnemyPlane;
     private int animFrom=0;
@@ -86,7 +86,22 @@ public class EnemyAnimationManager{
                 curFrameNumber=animFrom;
                 break;
         }
-    }
+	  }
+
+	@Override
+	public void init(){
+		super.init();
+		size.set(32,32);
+		image.setRotation(0);
+		image.setSize(size.x,size.y);
+        MainScreen.mainGroup.addActor(image);
+	  }
+
+	@Override
+	public void kill(){
+		super.kill();
+		image.remove();
+	  }
 
     public void update(){
         ++time;
@@ -97,10 +112,12 @@ public class EnemyAnimationManager{
         if(curFrameNumber>animTo){
             curFrameNumber=animFrom+4;
         }
+		objectCenter.set(baseEnemyPlane.objectCenter.x,baseEnemyPlane.objectCenter.y);
+		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         if(flip){
-            baseEnemyPlane.image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
+            image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
         }else{
-            baseEnemyPlane.image.setDrawable(ResourcesManager.textures.get(objectName+curFrameNumber));
+            image.setDrawable(ResourcesManager.textures.get(objectName+curFrameNumber));
         }
     }
 }

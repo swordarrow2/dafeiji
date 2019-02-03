@@ -9,7 +9,7 @@ import com.meng.stg.helpers.ResourcesManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-public class ReimuBomb extends BaseMyBullet{
+public class ReimuSpell extends BaseMyBullet{
 
     @Override
     public Drawable getDrawable(){
