@@ -14,29 +14,23 @@ public class ReimuShoot extends BaseMyBullet{
     public Drawable getDrawable(){
         if(drawable==null){
             drawable=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
-        }
+		  }
         return drawable;
-    }
+	  }
 
     @Override
     public void update(){
         super.update();
         image.toBack();
-    }
+	  }
 
     @Override
     public Vector2 getSize(){
         return new Vector2(64,16);
 	  }
-
-	@Override
-	public void kill(){
-		super.kill();
-	  }
 	
-
     @Override
     public float getRotationDegree(){
         return 90;
-    }
-}
+	  }
+  }

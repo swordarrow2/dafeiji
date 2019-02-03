@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 
 public abstract class BaseMyBullet extends BaseBullet{
@@ -23,12 +24,6 @@ public abstract class BaseMyBullet extends BaseBullet{
         MainScreen.mainGroup.addActor(image);
 	  }
 
-	@Override
-	public void kill(){
-		super.kill();
-	  }
-	
-
     public void judge(){
         try{
             for(int i=0;i<32;i++){
@@ -36,11 +31,11 @@ public abstract class BaseMyBullet extends BaseBullet{
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         kill();
                         enemys[i].hit();
-                    }
-                }
-            }
-        }catch(Exception e){
+					  }
+				  }
+			  }
+		  }catch(Exception e){
             e.printStackTrace();
-        }
-    }
-}
+		  }
+	  }
+  }

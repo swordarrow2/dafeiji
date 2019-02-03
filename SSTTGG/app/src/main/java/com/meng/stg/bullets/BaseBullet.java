@@ -28,10 +28,10 @@ public abstract class BaseBullet extends BaseGameObject{
         existTime=0;
 	  }
 
-    public void kill(){
-		super.kill();
+    public void kill(){	
         toDelete.add(this);
         image.remove();
+	//	super.kill();
 	  }
 
     public void update(){
@@ -40,14 +40,11 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-		//  drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
         judgeCircle.setPosition(objectCenter);
         if(judgeCircle.x<-5||judgeCircle.x>390
 		   ||judgeCircle.y<-5||judgeCircle.y>460){
-            //judge();
 			kill();
 		  }else{
-			// kill();
 			judge();
 		  }
 	  }

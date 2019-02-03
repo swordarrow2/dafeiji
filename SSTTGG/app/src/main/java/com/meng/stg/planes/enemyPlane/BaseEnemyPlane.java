@@ -94,12 +94,12 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
-        drawBox.set(image.getX(),image.getY(),image.getWidth(),image.getHeight());
-        if(drawBox.overlaps(MainScreen.fightArea)){
-            Judge();
-        }else{
-            kill();
-        }
+        if(judgeCircle.x<-5||judgeCircle.x>390
+		   ||judgeCircle.y<-5||judgeCircle.y>460){
+			kill();
+		  }else{
+			judge();
+		  }
     }
 
     private void anim(){
@@ -124,7 +124,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return judgeCircle;
     }
 
-    public void Judge(){
+    public void judge(){
         if(getCollisionArea().contains(BaseMyPlane.instance.objectCenter)){
             hit();
             BaseMyPlane.instance.kill();

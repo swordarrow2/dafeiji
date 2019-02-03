@@ -17,14 +17,14 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
     public Drawable getDrawable(){
         if(drawable==null){
             drawable=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight);
-        }
+		  }
         return drawable;
-    }
+	  }
 
     @Override
     public Vector2 getSize(){
         return new Vector2(64,16);
-    }
+	  }
 
     public void judge(){
         try{
@@ -33,21 +33,16 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         enemys[i].hit();
                         kill();
-                    }
-                }
-            }
-        }catch(Exception e){
+					  }
+				  }
+			  }
+		  }catch(Exception e){
             e.printStackTrace();
-        }
-	  }
-
-	@Override
-	public void kill(){
-		super.kill();
+		  }
 	  }
 
     @Override
     public float getRotationDegree(){
         return 90;
-    }
-}
+	  }
+  }
