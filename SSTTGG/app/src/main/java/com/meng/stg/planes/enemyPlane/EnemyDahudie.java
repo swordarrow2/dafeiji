@@ -2,13 +2,11 @@ package com.meng.stg.planes.enemyPlane;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.EnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveManager;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.ui.MainScreen;
 
@@ -22,16 +20,22 @@ public class EnemyDahudie extends BaseEnemyPlane{
     @Override
     public void update(){
         super.update();
-    //    move();
+        //    move();
         moveManager.update();
         if(existTime%60==1){
-      //      bulletShooter.shoot();
+            //      bulletShooter.shoot();
         }
     }
 
+    private final int[][] dahudieAnim=new int[][]{
+            {96,100},
+            {101,107}
+    };
+
     @Override
-    public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
-        super.init(c,center,hp,bmm);
+    public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+        super.init(c,center,enemyColor,everyAnimFrameTime,hp,bmm);
+        animNum=dahudieAnim;
         bulletShooter=new BulletShooter(this)
                 .setBulletCenter(objectCenter)
                 .setBulletColor(BulletColor.red)
@@ -41,7 +45,6 @@ public class EnemyDahudie extends BaseEnemyPlane{
                 .setWaysDegree(60)
                 .setCengShu(10)
                 .setInFrame(10);
-      //  moveManager=new MoveManager(this,new MoveMethodStraight(1,new Vector2(0,0)));
     }
 
     @Override
@@ -87,7 +90,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
             EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
             vel.rotate(15);
         }
-     //   BaseBullet.killAllBullet();
+        //   BaseBullet.killAllBullet();
         super.kill();
     }
 

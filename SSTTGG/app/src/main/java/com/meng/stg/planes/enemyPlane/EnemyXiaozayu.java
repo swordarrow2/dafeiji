@@ -8,9 +8,27 @@ import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.EnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
+import com.meng.stg.planes.MoveStatus;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
 
+
+    private final int[][] xiaozayuAnimLan=new int[][]{
+            {0,5},
+            {5,11}
+    };
+    private final int[][] xiaozayuAnimHong=new int[][]{
+            {12,17},
+            {17,23}
+    };
+    private final int[][] xiaozayuAnimLv=new int[][]{
+            {24,29},
+            {29,35}
+    };
+    private final int[][] xiaozayuAnimHuang=new int[][]{
+            {36,41},
+            {41,47}
+    };
     @Override
     public void update(){
         super.update();
@@ -21,8 +39,24 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
         }
     }
 
-    public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
-        super.init(c,center,hp,bmm);
+    @Override
+    public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+        super.init(c,center,enemyColor,everyAnimFrameTime,hp,bmm);
+        this.everyAnimFrameTime=everyAnimFrameTime;
+            switch(enemyColor){
+                case red:
+                    animNum=xiaozayuAnimHong;
+                    break;
+                case blue:
+                    animNum=xiaozayuAnimLan;
+                    break;
+                case green:
+                    animNum=xiaozayuAnimLv;
+                    break;
+                case yellow:
+                    animNum=xiaozayuAnimHuang;
+                    break;
+            }
         bulletShooter=new BulletShooter(this)
                 .setBulletCenter(objectCenter)
                 .setBulletColor(BulletColor.red)
@@ -33,6 +67,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
                 .setCengShu(10)
                 .setInFrame(10);
     }
+
 
     @Override
     public Vector2 getSize(){

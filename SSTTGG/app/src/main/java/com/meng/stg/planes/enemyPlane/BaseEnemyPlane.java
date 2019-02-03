@@ -1,23 +1,20 @@
 package com.meng.stg.planes.enemyPlane;
 
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.helpers.ObjectPools;
+import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveManager;
-import com.meng.stg.planes.EnemyAnimationManager;
 import com.meng.stg.planes.MoveStatus;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
-import com.meng.stg.helpers.*;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 /*
  base class of enemy
@@ -26,26 +23,31 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public int time=0;
     public float enemyLastX;
-    public Rectangle drawBox=new Rectangle();
     public int hp=10;
     public EnemyColor enemyColor;
     public boolean isKilled=false;
 
-    public EnemyAnimationManager enemyAnimationManager;
+    public int animFrom=0;
+    public int animTo=7;
+    public int everyAnimFrameTime=0;
+    public int curFrameNumber=0;
+    public MoveStatus status=MoveStatus.stay;
+    public String objectName="";
+    public boolean flip=false;
+    public int[][] animNum;
 
     public BulletShooter bulletShooter;
 
-    public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
-	  image=new Image();
-        enemyColor=c;
+    public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+        image=new Image();
+        objectName="zayu";
+        this.enemyColor=enemyColor;
         isKilled=false;
-        enemyAnimationManager=new EnemyAnimationManager(this,c,5);
-		enemyAnimationManager.init();
         objectCenter.set(center);
         this.hp=hp;
         size=getSize();
-		image.setRotation(0);
-		image.setSize(size.x,size.y);
+        image.setRotation(0);
+        image.setSize(size.x,size.y);
         judgeCircle=new Circle(objectCenter,image.getWidth()/4); //中心、半径
         moveManager=new MoveManager(this,bmm);
         MainScreen.mainGroup.addActor(image);
@@ -73,12 +75,36 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return objectCenter;
     }
 
+    public void setStatus(MoveStatus mov){
+        if(mov==status) return;
+        status=mov;
+        switch(status){
+            case stay:
+                flip=false;
+                animFrom=animNum[0][0];
+                animTo=animNum[0][1];
+                curFrameNumber=animFrom;
+                break;
+            case moveLeft:
+                flip=true;
+                animFrom=animNum[1][0];
+                animTo=animNum[1][1];
+                curFrameNumber=animFrom;
+                break;
+            case moveRight:
+                flip=false;
+                animFrom=animNum[1][0];
+                animTo=animNum[1][1];
+                curFrameNumber=animFrom;
+                break;
+        }
+    }
+
     public void kill(){
-	//  super.kill();
+        //  super.kill();
         image.remove();
         isKilled=true;
         judgeCircle=null;
-		enemyAnimationManager.kill();
     }
 
     public void update(){
@@ -86,31 +112,42 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         time++;
         animFlag++;
         moveManager.update();
-        enemyAnimationManager.update();
+
         objectCenter.add(velocity);
         anim();
         shoot();
 
-        
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
         if(judgeCircle.x<-5||judgeCircle.x>390
-		   ||judgeCircle.y<-5||judgeCircle.y>460){
-			kill();
-		  }else{
-			judge();
-		  }
+                ||judgeCircle.y<-5||judgeCircle.y>460){
+            kill();
+        }else{
+            judge();
+        }
     }
 
     private void anim(){
         if(objectCenter.x>enemyLastX){
             enemyLastX=objectCenter.x;
-           enemyAnimationManager.setStatus(MoveStatus.moveRight);
+            setStatus(MoveStatus.moveRight);
         }else if(objectCenter.x<enemyLastX){
             enemyLastX=objectCenter.x;
-            enemyAnimationManager.setStatus(MoveStatus.moveLeft);
+            setStatus(MoveStatus.moveLeft);
         }else{
-           enemyAnimationManager.setStatus(MoveStatus.stay);
+            setStatus(MoveStatus.stay);
+        }
+        if(time>=everyAnimFrameTime){
+            ++curFrameNumber;
+            time=0;
+        }
+        if(curFrameNumber>animTo){
+            curFrameNumber=animFrom+4;
+        }
+        if(flip){
+            image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));
+        }else{
+            image.setDrawable(ResourcesManager.textures.get(objectName+curFrameNumber));
         }
     }
 
