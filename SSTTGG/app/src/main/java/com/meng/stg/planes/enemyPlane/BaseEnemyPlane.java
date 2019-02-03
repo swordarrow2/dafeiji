@@ -141,7 +141,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
             time=0;
         }
         if(curFrameNumber>animTo){
-            curFrameNumber=animFrom+4;
+            curFrameNumber=animFrom+2;
         }
         if(flip){
             image.setDrawable(ResourcesManager.flipedTextures.get(objectName+curFrameNumber));

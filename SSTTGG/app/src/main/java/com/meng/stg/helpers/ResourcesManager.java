@@ -21,6 +21,7 @@ public final class ResourcesManager{
         loadEnemy("enemy");
         loadEffect("slow");
         loadBullets("bullet1");
+		loadBoss("chunhu");
     }
 
     private static void loadMyPlane(String name){
@@ -36,7 +37,22 @@ public final class ResourcesManager{
             }
         }
     }
-
+	private static void loadBoss(String name){
+        FileHandle plsanae=Gdx.files.internal("textures/enemy/"+name+".png");
+        FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");
+        String[] plsanaeWalkSheet=plsanaetxt.readString().replace("\n"," ").replace("*"," ").replace("+"," ").split("\\s");
+        Texture tplsanae=new Texture(plsanae);
+        int textureCount=getTextureCount(plsanaetxt);
+        for(int i=0, n=0;n<textureCount;i++){
+            if(plsanaeWalkSheet[i].equals("Sprite:")){
+                textures.put("chunhu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]))));
+                TextureRegion tr=new TextureRegion(tplsanae,Integer.parseInt(plsanaeWalkSheet[i+4]),Integer.parseInt(plsanaeWalkSheet[i+5]),Integer.parseInt(plsanaeWalkSheet[i+2]),Integer.parseInt(plsanaeWalkSheet[i+3]));
+                tr.flip(true,false);
+                flipedTextures.put("chunhu"+plsanaeWalkSheet[i+1],new TextureRegionDrawable(tr));
+                n++;
+			  }
+		  }
+	  }
     private static void loadEnemy(String name){
         FileHandle plsanae=Gdx.files.internal("textures/enemy/"+name+".png");
         FileHandle plsanaetxt=Gdx.files.internal(plsanae.pathWithoutExtension()+".txt");

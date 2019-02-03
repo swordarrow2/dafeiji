@@ -11,21 +11,10 @@ public class BossPlane extends BaseEnemyPlane{
 
 
     private final int[][] xiaozayuAnimLan=new int[][]{
-		  {0,5},
-		  {5,11}
+		  {10,14},
+		  {5,9}
 	  };
-    private final int[][] xiaozayuAnimHong=new int[][]{
-		  {12,17},
-		  {17,23}
-	  };
-    private final int[][] xiaozayuAnimLv=new int[][]{
-		  {24,29},
-		  {29,35}
-	  };
-    private final int[][] xiaozayuAnimHuang=new int[][]{
-		  {36,41},
-		  {41,47}
-	  };
+    
     @Override
     public void update(){
         super.update();
@@ -37,21 +26,9 @@ public class BossPlane extends BaseEnemyPlane{
     public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,enemyColor,everyAnimFrameTime,hp,bmm);
 		BaseBullet.killAllBullet();
-        this.everyAnimFrameTime=everyAnimFrameTime;
-		switch(enemyColor){
-			case red:
-			  animNum=xiaozayuAnimHong;
-			  break;
-			case blue:
+		objectName="chunhu";
+        this.everyAnimFrameTime=everyAnimFrameTime;	
 			  animNum=xiaozayuAnimLan;
-			  break;
-			case green:
-			  animNum=xiaozayuAnimLv;
-			  break;
-			case yellow:
-			  animNum=xiaozayuAnimHuang;
-			  break;
-		  }
         bulletShooter=new BulletShooter().init()
 		  .setBaseEnemyPlane(this)
 		  .setBulletCenter(objectCenter)
@@ -75,7 +52,7 @@ public class BossPlane extends BaseEnemyPlane{
 
     @Override
     public Vector2 getSize(){
-        return new Vector2(32,32);
+        return new Vector2(96,128);
 	  }
 
     @Override
