@@ -77,7 +77,7 @@ public class MainScreen extends ScreenAdapter{
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
                 //        	+"\ncount:"+ObjectPools.reimuShootPool.max +"\n"
-                //        +"\nbullet:"+BaseEnemyBullet.bulletCount
+                       +"\nbullet:"+BaseEnemyBullet.bulletCount
             //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
              //           +isKilled()
                 ,10,590);

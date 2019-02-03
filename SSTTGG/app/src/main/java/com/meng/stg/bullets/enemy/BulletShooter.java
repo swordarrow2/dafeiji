@@ -41,12 +41,14 @@ public class BulletShooter{
         toAdd.add(this);
 	  }
 
-    public void setReflex(int reflex){
+    public BulletShooter setReflex(int reflex){
         this.reflex=reflex;
+		return this;
 	  }
 
-    public void setCengDanSuCha(float cengDanSuCha){
+    public BulletShooter setCengDanSuCha(float cengDanSuCha){
         this.cengDanSuCha=cengDanSuCha;
+		return this;
 	  }
 
     public BulletShooter setStraightMove(boolean straightMove){
