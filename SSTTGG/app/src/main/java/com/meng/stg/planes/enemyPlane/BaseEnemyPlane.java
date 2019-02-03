@@ -3,7 +3,6 @@ package com.meng.stg.planes.enemyPlane;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletShooter;
@@ -39,7 +38,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public BulletShooter bulletShooter;
 
     public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
-        image=new Image();
+        super.init();
+        //image=new Image();
         objectName="zayu";
         this.enemyColor=enemyColor;
         isKilled=false;
@@ -101,7 +101,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public void kill(){
-        //  super.kill();
+        super.kill();
         image.remove();
         isKilled=true;
         judgeCircle=null;
