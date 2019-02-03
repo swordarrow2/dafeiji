@@ -7,8 +7,9 @@ public class MoveGradually extends BaseMoveMethod{
     private float speedXPerFrame=1;
     private float speedYPerFrame=1;
 
-    public MoveGradually(int inFrame,Vector2 fromSpeed,Vector2 toSpeed){
+    public MoveGradually(int inFrame,int afterFrames,Vector2 fromSpeed,Vector2 toSpeed){
         time=inFrame;
+		this.afterFrames=afterFrames;
         velocity=fromSpeed;
         speedXPerFrame=(toSpeed.x-fromSpeed.x)/time;
         speedYPerFrame=(toSpeed.y-fromSpeed.y)/time;
@@ -26,6 +27,10 @@ public class MoveGradually extends BaseMoveMethod{
 
     @Override
     public void update(){
+	  if(afterFrames>0){
+		--afterFrames;
+		return;
+	  }
         velocity.add(speedXPerFrame,speedYPerFrame);
         time--;
     }

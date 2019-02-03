@@ -17,6 +17,7 @@ import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 import com.meng.stg.helpers.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 
 /*
  base class of enemy
@@ -35,7 +36,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public BulletShooter bulletShooter;
 
     public void init(EnemyColor c,Vector2 center,int hp,BaseMoveMethod... bmm){
-	  super.init();
+	  image=new Image();
         enemyColor=c;
         isKilled=false;
         enemyAnimationManager=new EnemyAnimationManager(this,c,5);
@@ -73,7 +74,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public void kill(){
-	  super.kill();
+	//  super.kill();
         image.remove();
         isKilled=true;
         judgeCircle=null;

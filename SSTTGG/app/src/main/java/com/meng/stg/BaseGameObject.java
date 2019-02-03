@@ -27,10 +27,11 @@ public abstract class BaseGameObject {
     }
 	
 	public void init(){
-	  image=new Image();//ObjectPools.imagePool.obtain();
+	//  image=new Image();//ObjectPools.imagePool.obtain();
+	  image=ObjectPools.imagePool.obtain();
 	}
 	
 	public void kill(){
-	  //ObjectPools.imagePool.free(image);
+	  ObjectPools.imagePool.free(image);
 	}
 }

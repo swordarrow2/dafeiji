@@ -6,8 +6,9 @@ public class MoveMethodCircle extends BaseMoveMethod{
 
     private float degreePerFrame=0;
 
-    public MoveMethodCircle(int inFrame,float degree,boolean clock,Vector2 velo){
+    public MoveMethodCircle(int inFrame,int afterFrames,float degree,boolean clock,Vector2 velo){
         time=inFrame;
+		this.afterFrames=afterFrames;
         velocity=velo;
         if(clock){
             degreePerFrame=-degree/inFrame;
@@ -28,6 +29,10 @@ public class MoveMethodCircle extends BaseMoveMethod{
 
     @Override
     public void update(){
+	  if(afterFrames>0){
+		--afterFrames;
+		return;
+	  }
         time--;
     }
 }

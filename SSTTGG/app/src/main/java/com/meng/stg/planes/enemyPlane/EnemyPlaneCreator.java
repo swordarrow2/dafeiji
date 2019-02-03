@@ -9,7 +9,8 @@ public class EnemyPlaneCreator{
     private Vector2 enemyCenter=Vector2.Zero;
     private int hp=10;
     private EnemyColor enemyColor=EnemyColor.red;
-    private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveGradually(90,new Vector2(0,-7f),new Vector2(1,-0.1f))};
+	
+    private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveGradually(90,1,new Vector2(0,-7f),new Vector2(1,-0.1f))};
 
     public EnemyPlaneCreator(){
     }

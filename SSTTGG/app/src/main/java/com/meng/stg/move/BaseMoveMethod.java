@@ -6,6 +6,7 @@ public abstract class BaseMoveMethod{
 
     public Vector2 velocity;
     public int time=0;
+	public int afterFrames=0;
 
     public abstract Vector2 getVelocity();
 
