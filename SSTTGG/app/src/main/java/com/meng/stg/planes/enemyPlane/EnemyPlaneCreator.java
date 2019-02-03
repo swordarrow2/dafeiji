@@ -48,10 +48,10 @@ public class EnemyPlaneCreator{
     public void createEnemy(){
         switch(enemyType){
             case xiaozayu:
-                new EnemyXiaozayu().init(enemyColor,enemyCenter.cpy(),hp,moveMethods);
+			  new EnemyXiaozayu().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
             case dahudie:
-                new EnemyDahudie().init(enemyColor,enemyCenter.cpy(),hp,moveMethods);
+			  new EnemyDahudie().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
             case Boss:
                 break;

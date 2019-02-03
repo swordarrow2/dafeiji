@@ -40,8 +40,8 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
     }
 
     @Override
-    public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
-        super.init(c,center,enemyColor,everyAnimFrameTime,hp,bmm);
+    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+        super.init(center,enemyColor,everyAnimFrameTime,hp,bmm);
         this.everyAnimFrameTime=everyAnimFrameTime;
             switch(enemyColor){
                 case red:

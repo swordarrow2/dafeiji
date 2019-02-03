@@ -37,7 +37,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public BulletShooter bulletShooter;
 
-    public void init(EnemyColor c,Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init();
         //image=new Image();
         objectName="zayu";
