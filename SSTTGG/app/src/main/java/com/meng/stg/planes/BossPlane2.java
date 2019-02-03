@@ -1,16 +1,12 @@
-package com.meng.stg.planes.enemyPlane;
+package com.meng.stg.planes;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.enemy.BulletColor;
-import com.meng.stg.bullets.enemy.BulletForm;
-import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.bullets.enemy.EnemyBullet;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveMethodStraight;
-import com.meng.stg.planes.MoveStatus;
+import com.badlogic.gdx.math.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.ui.*;
 
-public class EnemyXiaozayu extends BaseEnemyPlane{
+public class BossPlane2 extends BaseEnemyPlane{
 
 
     private final int[][] xiaozayuAnimLan=new int[][]{
@@ -33,10 +29,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
     public void update(){
         super.update();
         moveManager.update();
-        //  am.update();
-        if(existTime%60==1){
-			bulletShooter.shoot();
-		  }
+        //  am.update();  
 	  }
 
     @Override
@@ -76,16 +69,17 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
         return new Vector2(32,32);
 	  }
 
+	@Override
+	public void kill(){
+		super.kill();
+		MainScreen.onBoss=false;
+	  }
+	  
+
     @Override
     public void shoot(){
-        if(time%30==31){
-            int randVal=MathUtils.random(0,360);
-            Vector2 vel=new Vector2(3,0);
-            vel.rotate(randVal);
-            for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
-                vel.rotate(30);
-			  }
+        if(existTime%60==1){
+			bulletShooter.shoot();
 		  }
 	  }
   }

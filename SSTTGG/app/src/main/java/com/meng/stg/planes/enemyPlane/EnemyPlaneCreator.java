@@ -3,6 +3,7 @@ package com.meng.stg.planes.enemyPlane;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveGradually;
+import com.meng.stg.planes.*;
 
 public class EnemyPlaneCreator{
     private EnemyType enemyType=EnemyType.xiaozayu;
@@ -54,6 +55,7 @@ public class EnemyPlaneCreator{
 			  new EnemyDahudie().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
             case Boss:
+			  new BossPlane().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
         }
     }

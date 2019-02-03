@@ -10,6 +10,7 @@ import com.meng.stg.helpers.ObjectPools;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.meng.stg.bullets.enemy.*;
 
 public abstract class BaseBullet extends BaseGameObject{
 
@@ -51,13 +52,13 @@ public abstract class BaseBullet extends BaseGameObject{
 
     public static void killAllBullet(){
         Iterator i=instances.iterator();
-
         while(i.hasNext()){
             BaseBullet bb=(BaseBullet)i.next();
             if(bb instanceof BaseEnemyBullet){
                 bb.kill();
 			  }
 		  }
+		  EnemyBullet.bulletCount=0;
 	  }
 
     public static void updateAll(){

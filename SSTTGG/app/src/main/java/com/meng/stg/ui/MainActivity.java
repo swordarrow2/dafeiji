@@ -45,12 +45,17 @@ public class MainActivity extends AndroidApplication{
 			BaseMyPlane.instance.slow=true;
 			return true;
 		  }
-		  if(keyCode==KeyEvent.KEYCODE_BACK){
+        return super.onKeyDown(keyCode,event);
+	  }
+
+	@Override
+	public boolean onKeyUp(int keyCode,KeyEvent event){
+		if(keyCode==KeyEvent.KEYCODE_MENU){
 			BaseMyPlane.instance.slow=false;
 			return true;
-		  }
-        return super.onKeyDown(keyCode,event);
-    }
+		  }  
+		return super.onKeyUp(keyCode,event);
+	  }
 
     @Override
     protected void onPause(){

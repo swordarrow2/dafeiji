@@ -24,6 +24,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.stage.stage1;
 import com.meng.stg.helpers.*;
+import com.badlogic.gdx.Input.*;
 
 /*
  main layout
@@ -48,13 +49,13 @@ public class MainScreen extends ScreenAdapter{
     public void show(){
         init();
         super.show();
-    }
+	  }
 
     @Override
     public void resize(int width,int height){
         super.resize(width,height);
         sv.update(width,height);
-    }
+	  }
 
     @Override
     public void render(float delta){
@@ -62,11 +63,11 @@ public class MainScreen extends ScreenAdapter{
             if(!(enemys[i]==null)){
                 if(!(enemys[i].isKilled)){
                     enemys[i].update();
-                }else{
+				  }else{
                     enemys[i]=null;
-                }
-            }
-        }
+				  }
+			  }
+		  }
 
         stage.draw();
         BulletShooter.updateAll();
@@ -76,42 +77,50 @@ public class MainScreen extends ScreenAdapter{
 
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
-                //        	+"\ncount:"+ObjectPools.reimuShootPool.max +"\n"
-                       +"\nbullet:"+BaseEnemyBullet.bulletCount
-            //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
-             //           +isKilled()
-                ,10,590);
+						//        	+"\ncount:"+ObjectPools.reimuShootPool.max +"\n"
+						+"\nbullet:"+BaseEnemyBullet.bulletCount
+						//            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
+						//           +isKilled()
+					//	+"\nAcce"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
+					//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
+
+						,10,590);
         switch(stageFlag){
             case Data.stageFlagStage1:
-                if(gameTime==700){
-                    GlyphLayout glyphLayout=new GlyphLayout();
-                    glyphLayout.setText(bitmapFont,"stage Clear!!");
-                    bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
-                    //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
+			  if(gameTime==700){
+				  GlyphLayout glyphLayout=new GlyphLayout();
+				  glyphLayout.setText(bitmapFont,"stage Clear!!");
+				  bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
+				  //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
                 }
-                break;
-        }
+			  break;
+		  }
         GameMain.spriteBatch.end();
         if(!onBoss){
             gameTime++;
             switch(stageFlag){
                 case Data.stageFlagStage1:
-                    stage1.addEnemy();
-                    break;
-            }
-        }
+				  stage1.addEnemy();
+				  break;
+			  }
+		  }
         super.render(delta);
-    }
+	  }
 
     private String isKilled(){
         String s="";
         for(int i=0;i<32;i++){
             if(!(enemys[i]==null)){
                 s+="\nHp:"+enemys[i].getHp();
-            }
-        }
+			  }
+		  }
         return s;
-    }
+	  }
 
     private void init(){
         instence=this;
@@ -138,16 +147,16 @@ public class MainScreen extends ScreenAdapter{
         stageFlag=Data.stageFlagStage1;
         switch(playerFlag){
             case Data.playerFlagReimu:
-                new MyPlaneReimu().init();
-                break;
+			  new MyPlaneReimu().init();
+			  break;
             case Data.playerFlagAlice:
-                //     new MyPlaneAlice().init();
-                break;
-        }
+			  //     new MyPlaneAlice().init();
+			  break;
+		  }
         inputManager=new InputMultiplexer();
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
-    }
+	  }
 
     public void restart(){
         gameTime=0;
@@ -156,11 +165,11 @@ public class MainScreen extends ScreenAdapter{
         onBoss=false;
         enemys=new BaseEnemyPlane[32];
         init();
-    }
+	  }
 
     @Override
     public void hide(){
         super.hide();
-    }
+	  }
 
-}
+  }

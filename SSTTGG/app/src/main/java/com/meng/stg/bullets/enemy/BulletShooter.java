@@ -36,9 +36,17 @@ public class BulletShooter{
 	private int afterFrames=0;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
-    public BulletShooter(BaseEnemyPlane baseEnemyPlane){
-        this.baseEnemyPlane=baseEnemyPlane;
-        toAdd.add(this);
+    public BulletShooter(){
+	  }
+
+	public BulletShooter init(){
+		toAdd.add(this);
+		return this;  
+	  }
+	
+	public BulletShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
+		this.baseEnemyPlane=baseEnemyPlane;
+		return this;
 	  }
 
     public BulletShooter setReflex(int reflex){

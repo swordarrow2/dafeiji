@@ -1,16 +1,13 @@
-package com.meng.stg.planes.enemyPlane;
+package com.meng.stg.planes;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.enemy.BulletColor;
-import com.meng.stg.bullets.enemy.BulletForm;
-import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.bullets.enemy.EnemyBullet;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveMethodStraight;
-import com.meng.stg.planes.MoveStatus;
+import com.badlogic.gdx.math.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.stage.*;
 
-public class EnemyXiaozayu extends BaseEnemyPlane{
+public class BossPlane extends BaseEnemyPlane{
 
 
     private final int[][] xiaozayuAnimLan=new int[][]{
@@ -33,15 +30,13 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
     public void update(){
         super.update();
         moveManager.update();
-        //  am.update();
-        if(existTime%60==1){
-			bulletShooter.shoot();
-		  }
+        //  am.update();  
 	  }
 
     @Override
     public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,enemyColor,everyAnimFrameTime,hp,bmm);
+		BaseBullet.killAllBullet();
         this.everyAnimFrameTime=everyAnimFrameTime;
 		switch(enemyColor){
 			case red:
@@ -70,6 +65,13 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
 		  .setInFrame(10);
 	  }
 
+	@Override
+	public void kill(){
+		super.kill();
+		new BossPlane2().init(new Vector2(50,419),enemyColor,5,hp,new MoveGradually(90,1,new Vector2(0,-7f),new Vector2(1,-0.1f)),new MoveMethodStraight(1,1,new Vector2(0,0)) );
+	//	stage1.epc.setEnemyCenter(50,419).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue).setMoveMethods(new MoveGradually(90,1,new Vector2(0,-7f),new Vector2(1,-0.1f)),new MoveMethodStraight(1,1,new Vector2(0,0)) ).createEnemy();
+	  }
+
 
     @Override
     public Vector2 getSize(){
@@ -78,14 +80,8 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
 
     @Override
     public void shoot(){
-        if(time%30==31){
-            int randVal=MathUtils.random(0,360);
-            Vector2 vel=new Vector2(3,0);
-            vel.rotate(randVal);
-            for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
-                vel.rotate(30);
-			  }
+        if(existTime%60==1){
+			bulletShooter.shoot();
 		  }
 	  }
   }

@@ -39,7 +39,6 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init();
-        //image=new Image();
         objectName="zayu";
         this.enemyColor=enemyColor;
         isKilled=false;
@@ -48,7 +47,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         size=getSize();
         image.setRotation(0);
         image.setSize(size.x,size.y);
-        judgeCircle=new Circle(objectCenter,image.getWidth()/4); //中心、半径
+        judgeCircle=new Circle(objectCenter,image.getWidth()/4);
         moveManager=new MoveManager(this,bmm);
         MainScreen.mainGroup.addActor(image);
         for(int i=0;i<32;i++){
