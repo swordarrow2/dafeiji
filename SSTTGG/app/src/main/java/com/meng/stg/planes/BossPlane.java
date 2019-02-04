@@ -44,6 +44,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setReflex(0)
 		  .setWaysDegree(15)
 		  .setCengShu(1)
+		  .setInterval(30)
 		  .setInFrame(1);
 
 
@@ -58,6 +59,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setReflex(0)
 		  .setWaysDegree(30)
 		  .setCengShu(1)
+		  .setInterval(60)
 		  .setInFrame(1);
 
 		p2b=new BulletShooter().init()
@@ -71,6 +73,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setReflex(0)
 		  .setWaysDegree(30)
 		  .setCengShu(1)
+		  .setInterval(60)
 		  .setInFrame(1);
 
 		p3a=new BulletShooter().init()
@@ -83,6 +86,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWays(40)
 		  .setReflex(0)
 		  .setWaysDegree(9)
+		  .setInterval(40)
 		  .setCengShu(1)
 		  .setInFrame(1);
 
@@ -96,6 +100,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWays(40)
 		  .setReflex(0)
 		  .setWaysDegree(9)
+		  .setInterval(40)
 		  .setCengShu(1)
 		  .setInFrame(1);
 
@@ -109,6 +114,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setReflex(0)
 		  .setWaysDegree(10)
 		  .setCengShu(1)
+		  .setInterval(8)
 		  .setInFrame(1);
 
 	  }
@@ -129,14 +135,13 @@ public class BossPlane extends BaseEnemyPlane{
 
     @Override
     public void shoot(){
-        if(existTime%30==1){
+        
 			bulletShooter
 			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
-		  }
-		if(existTime%60==1&&hp<5000){
+		
 			p2a
 			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
@@ -149,12 +154,12 @@ public class BossPlane extends BaseEnemyPlane{
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
 			  .setStraightMove(true)
 			  .shoot();
-		  }
-		if(hp<3010&&hp>3000){
+		  
+		if(hp<3020&&hp>3000){
 			BaseBullet.killAllBullet();
 		  }
 
-		if(existTime%40==1&&hp<3000){
+		
 			p3a
 			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
@@ -166,13 +171,11 @@ public class BossPlane extends BaseEnemyPlane{
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
-		  }
-
-		if(existTime%8==1&&hp<1000){
+		
 			p4
 			  .setBulletVelocity(new Vector2(0,-1).nor().scl(6))
 			  .setStraightMove(true)
 			  .shoot();
-		  }
+		  
 	  }
   }

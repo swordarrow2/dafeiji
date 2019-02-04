@@ -34,9 +34,15 @@ public class BulletShooter{
     private int reflex=1;
     private float beilv=1;
 	private int afterFrames=0;
+	private int interval=60;
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(){
+	  }
+
+	public BulletShooter setInterval(int interval){
+		this.interval=interval;
+		return this;
 	  }
 
 	public BulletShooter init(){
@@ -139,6 +145,9 @@ public class BulletShooter{
     public void shoot(){
 		if(afterFrames>0){
 			-- afterFrames;
+			return;
+		  }
+		  if(time%interval!=1){
 			return;
 		  }
         beilv=1;
