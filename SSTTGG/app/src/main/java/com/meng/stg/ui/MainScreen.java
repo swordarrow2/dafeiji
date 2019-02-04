@@ -81,7 +81,9 @@ public class MainScreen extends ScreenAdapter{
         BaseBullet.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
-
+		if(onSpellCard){
+		  bitmapFont.draw(GameMain.spriteBatch,"spell card attack",10,500);
+		}
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
 						//        	+"\ncount:"+ObjectPools.reimuShootPool.max +"\n"
@@ -180,10 +182,13 @@ public class MainScreen extends ScreenAdapter{
 	  }
 	  
 	  public static void normalMode(){
+		if(!onSpellCard)return ;
 		onSpellCard=false;
 	  }
 	  public static void spellMode(){
+		if(onSpellCard)return;
 		onSpellCard=true;
+		  MainScreen.sleep=75;
 	  }
 
   }

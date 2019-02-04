@@ -28,7 +28,7 @@ public class BulletShooter{
     private Vector2 offset=new Vector2(0,0);
     private int inFrame=1;
     private int ways=1;
-    private int waysDegree=0;
+    private float waysDegree=0;
     private int cengShu=1;
     private float cengDanSuCha=0.1f;
     private boolean straightMove=true;
@@ -132,7 +132,7 @@ public class BulletShooter{
         return this;
     }
 
-    public BulletShooter setWaysDegree(int waysDegree){
+    public BulletShooter setWaysDegree(float waysDegree){
         this.waysDegree=waysDegree;
         return this;
     }

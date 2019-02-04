@@ -16,7 +16,7 @@ public class Spell_PurelyBulletHell extends BaseSpellCard{
     public void init(BaseBossPlane b){
         boss=b;
 		MainScreen.spellMode();
-        shooters=new BulletShooter[]{
+        spellShooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
