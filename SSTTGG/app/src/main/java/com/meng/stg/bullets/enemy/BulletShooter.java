@@ -7,6 +7,7 @@ import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.*;
 
 /**
  * Created by Administrator on 2019/1/25.
@@ -35,11 +36,28 @@ public class BulletShooter{
     private float beilv=1;
 	private int afterFrames=0;
 	private int interval=60;
+	private float randomX=0;
+	private float randomY=0;
+	private boolean useRandomCenter=false;
+	private Random ran=new Random();
+	
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(){
 	  }
 
+	public BulletShooter setUseRandomCenter(boolean useRandomCenter){
+		this.useRandomCenter=useRandomCenter;
+		return this;
+	  }
+
+	  public BulletShooter setRandomCenter(float x,float y){
+		setUseRandomCenter(true);
+		randomX=x;
+		randomY=y;
+		return this;
+	  }
+	  
 	public BulletShooter setInterval(int interval){
 		this.interval=interval;
 		return this;
@@ -151,12 +169,19 @@ public class BulletShooter{
 			return;
 		  }
         beilv=1;
+		
+		float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
+		float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){
             float allAngle=(ways-1)*waysDegree;
             Vector2 tmpv=bulletVelocity.cpy().scl(beilv);
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
-                EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+			  if(useRandomCenter){	  
+				  EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+			  }else{
+				  EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+			  }	     
                 tmpv.rotate(waysDegree);
 			  }
             beilv+=cengDanSuCha;

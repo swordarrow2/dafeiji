@@ -45,6 +45,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(15)
 		  .setCengShu(1)
 		  .setInterval(30)
+		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
 
@@ -60,6 +61,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(30)
 		  .setCengShu(1)
 		  .setInterval(60)
+		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
 		p2b=new BulletShooter().init()
@@ -74,6 +76,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(30)
 		  .setCengShu(1)
 		  .setInterval(60)
+		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
 		p3a=new BulletShooter().init()
@@ -88,6 +91,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(9)
 		  .setInterval(40)
 		  .setCengShu(1)
+		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
 		p3b=new BulletShooter().init()
@@ -102,6 +106,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(9)
 		  .setInterval(40)
 		  .setCengShu(1)
+		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
 		p4=new BulletShooter().init()
@@ -137,20 +142,20 @@ public class BossPlane extends BaseEnemyPlane{
     public void shoot(){
         
 			bulletShooter
-			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
+			
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
 		
 			p2a
-			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
+		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
 			  .setStraightMove(true)
 			  .shoot();
 
 
 			p2b
-			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
+		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
 			  .setStraightMove(true)
 			  .shoot();
@@ -161,13 +166,13 @@ public class BossPlane extends BaseEnemyPlane{
 
 		
 			p3a
-			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
+		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
 
 			p3b
-			  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
+		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
 			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
