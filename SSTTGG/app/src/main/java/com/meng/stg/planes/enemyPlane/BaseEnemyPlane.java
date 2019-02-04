@@ -37,10 +37,10 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public BulletShooter bulletShooter;
 
-    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init();
+        this.everyAnimFrameTime=everyAnimFrameTime;
         objectName="zayu";
-        this.enemyColor=enemyColor;
         isKilled=false;
         objectCenter.set(center);
         this.hp=hp;
@@ -68,8 +68,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         if(hp<1){
             kill();
         }else{
-		  hp-=1.5f;
-		}
+            hp-=1.5f;
+        }
     }
 
     public Vector2 getLocation(){

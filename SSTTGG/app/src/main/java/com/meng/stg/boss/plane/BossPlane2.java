@@ -1,4 +1,4 @@
-package com.meng.stg.planes;
+package com.meng.stg.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.bullets.enemy.*;
@@ -7,7 +7,6 @@ import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.ui.*;
 
 public class BossPlane2 extends BaseEnemyPlane{
-
 
     private final int[][] xiaozayuAnimLan=new int[][]{
 		  {0,5},
