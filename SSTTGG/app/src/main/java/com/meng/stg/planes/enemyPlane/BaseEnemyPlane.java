@@ -64,11 +64,15 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return hp;
     }
 
-    public void hit(){
+    public void hit(float bulletDamage){
         if(hp<1){
             kill();
         }else{
-            hp-=1.5f;
+            if(MainScreen.onSpellCard){
+				hp=hp-bulletDamage/7;
+			}else{
+				hp-=bulletDamage;
+			}
         }
     }
 
@@ -164,7 +168,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void judge(){
         if(getCollisionArea().contains(BaseMyPlane.instance.objectCenter)){
-            hit();
+            hit(10.5f);
             BaseMyPlane.instance.kill();
         }
     }

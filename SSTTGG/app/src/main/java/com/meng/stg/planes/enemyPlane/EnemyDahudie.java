@@ -32,8 +32,8 @@ public class EnemyDahudie extends BaseEnemyPlane{
 		  {101,107}
 	  };
 
-    public void init(Vector2 center,EnemyColor enemyColor, int hp,BaseMoveMethod... bmm){
-        super.init(center ,hp,bmm);
+    public void init(Vector2 center,int everyAnimFrameTime,EnemyColor enemyColor,int hp,BaseMoveMethod... bmm){
+        super.init(center,everyAnimFrameTime ,hp,bmm);
         this.enemyColor=enemyColor;
         animNum=dahudieAnim;
         bulletShooter=new BulletShooter().init()

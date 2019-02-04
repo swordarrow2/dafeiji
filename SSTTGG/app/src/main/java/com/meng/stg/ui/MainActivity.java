@@ -24,11 +24,13 @@ public class MainActivity extends AndroidApplication{
         display.getSize(size);
         screenHeight=size.y;
         screenWidth=size.x;
+		
         AndroidApplicationConfiguration cfg=new AndroidApplicationConfiguration();
+		cfg.touchSleepTime=0;
         Game game=new GameMain();
-        initialize(game,cfg); //全屏的游戏
-        //如果你需要显示安卓原生标题栏，将initialize那行删去后，改为
-        //setContentView(initializeForView(game, cfg));
+		
+        initialize(game,cfg); 
+       
     }
 
     @Override

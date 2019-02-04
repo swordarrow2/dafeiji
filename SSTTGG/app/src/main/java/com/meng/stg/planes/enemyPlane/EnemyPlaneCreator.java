@@ -52,10 +52,10 @@ public class EnemyPlaneCreator{
 			  new EnemyXiaozayu().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
             case dahudie:
-			  new EnemyDahudie().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
+			  new EnemyDahudie().init(enemyCenter.cpy(),5,enemyColor,hp,moveMethods);
                 break;
             case Boss:
-			  new BossPlaneJunko().init(enemyCenter.cpy(),enemyColor,10,hp,moveMethods);
+			  new BossPlaneJunko().init(enemyCenter.cpy(),10,hp,moveMethods);
                 break;
         }
     }

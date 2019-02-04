@@ -30,7 +30,7 @@ public abstract class BaseMyBullet extends BaseBullet{
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         kill();
-                        enemys[i].hit();
+                        enemys[i].hit(10.5f);
 					  }
 				  }
 			  }

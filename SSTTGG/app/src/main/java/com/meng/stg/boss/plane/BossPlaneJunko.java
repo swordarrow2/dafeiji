@@ -5,6 +5,7 @@ import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.boss.danmaku.Spell_PurelyBulletHell;
 import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.move.BaseMoveMethod;
+import com.meng.stg.ui.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
@@ -122,7 +123,14 @@ public class BossPlaneJunko extends BaseBossPlane{
 		  .setInterval(8)
 		  .setInFrame(1);
 */
-    }
+	  }
+
+	@Override
+	public void kill(){
+		// TODO: Implement this method
+		super.kill();
+		MainScreen.sleep=90;
+	  }
 
 
     @Override

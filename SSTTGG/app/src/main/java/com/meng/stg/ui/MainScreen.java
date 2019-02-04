@@ -44,6 +44,8 @@ public class MainScreen extends ScreenAdapter{
     public FitViewport sv;
     // enemyPlane e;
     public static MainScreen instence;
+	public static int sleep=0;
+	public static boolean onSpellCard=false;
 
     @Override
     public void show(){
@@ -59,6 +61,11 @@ public class MainScreen extends ScreenAdapter{
 
     @Override
     public void render(float delta){
+		if(sleep>0){
+			try{
+				Thread.sleep(sleep--);
+			  }catch(InterruptedException e){} 
+		}
         for(int i=0;i<32;i++){
             if(!(enemys[i]==null)){
                 if(!(enemys[i].isKilled)){
@@ -170,6 +177,13 @@ public class MainScreen extends ScreenAdapter{
     @Override
     public void hide(){
         super.hide();
+	  }
+	  
+	  public static void normalMode(){
+		onSpellCard=false;
+	  }
+	  public static void spellMode(){
+		onSpellCard=true;
 	  }
 
   }

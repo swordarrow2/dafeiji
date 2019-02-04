@@ -31,9 +31,8 @@ public class BossPlane2 extends BaseEnemyPlane{
         //  am.update();  
 	  }
 
-    @Override
     public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
-        super.init(center,enemyColor,everyAnimFrameTime,hp,bmm);
+        super.init(center,everyAnimFrameTime,hp,bmm);
         this.everyAnimFrameTime=everyAnimFrameTime;
 		switch(enemyColor){
 			case red:
