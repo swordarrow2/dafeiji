@@ -22,7 +22,7 @@ public class BulletShooter{
     public static LinkedBlockingQueue<BulletShooter> toAdd=new LinkedBlockingQueue<BulletShooter>();
     private int time=0;
     private Vector2 bulletCenter=new Vector2(200,200);
-    private Vector2 bulletVelocity=new Vector2(0,-1);
+    private Vector2 bulletVelocity=new Vector2(0,1);
     private BulletForm bf=BulletForm.lindan;
     private BulletColor bc=BulletColor.white;
     private Vector2 offset=new Vector2(0,0);
@@ -39,11 +39,28 @@ public class BulletShooter{
 	private float randomX=0;
 	private float randomY=0;
 	private boolean useRandomCenter=false;
+	private boolean useRandomDegree=false;
+	private float randomDegree=0;
 	private Random ran=new Random();
-	
+
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(){
+	  }
+
+	public BulletShooter setUseRandomDegree(boolean useRandomDegree){
+		this.useRandomDegree=useRandomDegree;
+		return this;
+	  }
+
+	  public BulletShooter setBulletSpeed(float f){
+		bulletVelocity.nor().scl(f);
+		return this;
+	  }
+	public BulletShooter setRandomDegree(float randomDegree){
+		setUseRandomDegree(true);
+		this.randomDegree=randomDegree;
+		return this;
 	  }
 
 	public BulletShooter setUseRandomCenter(boolean useRandomCenter){
@@ -51,13 +68,13 @@ public class BulletShooter{
 		return this;
 	  }
 
-	  public BulletShooter setRandomCenter(float x,float y){
+	public BulletShooter setRandomCenter(float x,float y){
 		setUseRandomCenter(true);
 		randomX=x;
 		randomY=y;
 		return this;
 	  }
-	  
+
 	public BulletShooter setInterval(int interval){
 		this.interval=interval;
 		return this;
@@ -68,9 +85,9 @@ public class BulletShooter{
 		return this;  
 	  }
 	public BulletShooter setOffset(Vector2 v){
-	  offset=v;
-	  return this;
-	}
+		offset=v;
+		return this;
+	  }
 	public BulletShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
 		this.baseEnemyPlane=baseEnemyPlane;
 		return this;
@@ -165,11 +182,13 @@ public class BulletShooter{
 			-- afterFrames;
 			return;
 		  }
-		  if(time%interval!=1){
+		if(time%interval!=1){
 			return;
 		  }
         beilv=1;
-		
+		if(useRandomDegree){
+			bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
+		  }
 		float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
 		float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){
@@ -177,11 +196,11 @@ public class BulletShooter{
             Vector2 tmpv=bulletVelocity.cpy().scl(beilv);
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
-			  if(useRandomCenter){	  
-				  EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
-			  }else{
-				  EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
-			  }	     
+				if(useRandomCenter){	  
+					EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+				  }else{
+					EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+				  }	     
                 tmpv.rotate(waysDegree);
 			  }
             beilv+=cengDanSuCha;

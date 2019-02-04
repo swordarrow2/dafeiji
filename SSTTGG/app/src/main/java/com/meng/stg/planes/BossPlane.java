@@ -61,6 +61,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(30)
 		  .setCengShu(1)
 		  .setInterval(60)
+		  .setRandomDegree(360)
 		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
@@ -76,6 +77,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(30)
 		  .setCengShu(1)
 		  .setInterval(60)
+		  .setRandomDegree(360)
 		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
@@ -91,6 +93,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(9)
 		  .setInterval(40)
 		  .setCengShu(1)
+		  .setRandomDegree(360)
 		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
@@ -106,6 +109,7 @@ public class BossPlane extends BaseEnemyPlane{
 		  .setWaysDegree(9)
 		  .setInterval(40)
 		  .setCengShu(1)
+		  .setRandomDegree(360)
 		  .setRandomCenter(64,64)
 		  .setInFrame(1);
 
@@ -142,21 +146,23 @@ public class BossPlane extends BaseEnemyPlane{
     public void shoot(){
         
 			bulletShooter
-			
-			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
+			.setBulletSpeed(2)
+		//	  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
 		
 			p2a
+			.setBulletSpeed(0.7f)
 		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
-			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
+			//  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
 			  .setStraightMove(true)
 			  .shoot();
 
 
 			p2b
+			.setBulletSpeed(0.7f)
 		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
-			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
+		//	  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(0.7f))
 			  .setStraightMove(true)
 			  .shoot();
 		  
@@ -166,19 +172,20 @@ public class BossPlane extends BaseEnemyPlane{
 
 		
 			p3a
+			.setBulletSpeed(2)
 		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
-			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
+		//	  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
 
-			p3b
+			p3b.setBulletSpeed(2)
 		//	  .setBulletCenter(new Vector2(objectCenter.x-32+ran.nextInt(64),objectCenter.y-32+ran.nextInt(64)))
-			  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
+			//  .setBulletVelocity(new Vector2(ran.nextInt(1024),ran.nextInt(1024)).nor().scl(2))
 			  .setStraightMove(true)
 			  .shoot();
 		
-			p4
-			  .setBulletVelocity(new Vector2(0,-1).nor().scl(6))
+			p4.setBulletSpeed(6)
+			//  .setBulletVelocity(new Vector2(0,-1).nor().scl(6))
 			  .setStraightMove(true)
 			  .shoot();
 		  
