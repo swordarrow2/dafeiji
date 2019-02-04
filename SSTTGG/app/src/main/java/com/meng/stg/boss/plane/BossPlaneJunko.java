@@ -1,19 +1,20 @@
 package com.meng.stg.boss.plane;
 
-import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.boss.danmaku.Spell_PurelyBulletHell;
-import com.meng.stg.bullets.BaseBullet;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.ui.*;
+import com.badlogic.gdx.math.*;
+import com.meng.stg.boss.*;
 import com.meng.stg.boss.danmaku.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.stage.*;
+import com.meng.stg.ui.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
     private final int[][] junkoAnim=new int[][]{
-            {10,14},
-            {5,9}
-    };
+		  {10,14},
+		  {5,9}
+	  };
 
     @Override
     public void update(){
@@ -21,7 +22,7 @@ public class BossPlaneJunko extends BaseBossPlane{
         //  moveManager.update();
         //  am.update();
         objectCenter.set(193,350);
-    }
+	  }
 
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
@@ -39,13 +40,14 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 		MainScreen.sleep=90;
 		MainScreen.normalMode();
+		new BossPlane2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
 	  }
 
 
     @Override
     public Vector2 getSize(){
         return new Vector2(96,128);
-    }
+	  }
 
-  
-}
+
+  }
