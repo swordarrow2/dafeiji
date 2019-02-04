@@ -11,15 +11,16 @@ import com.meng.stg.planes.enemyPlane.EnemyType;
 import com.meng.stg.ui.MainScreen;
 import com.meng.stg.move.*;
 import com.badlogic.gdx.graphics.*;
+import com.meng.stg.item.*;
 
 /*
 stage data:when create enemy
  */
 public class stage1{
     public static EnemyPlaneCreator epc=new EnemyPlaneCreator();
-
+public static itemPower i=new itemPower().init(new Vector2(200,200),1);
     public static void addEnemy(){
-	  
+	  i.update();
         switch(MainScreen.gameTime){
             case 30:
 			 // MainScreen.gameTime=1;
@@ -42,9 +43,11 @@ public class stage1{
 		//	  MainScreen.gameTime=119;
                 break;
             case 20:
-			  epc.setEnemyCenter(193,350).setHp(20000).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue).setMoveMethods(new MoveMethodStraight(1,1,new Vector2(0,0.0001f)) ).createEnemy();
+		//i.update();
+			//  epc.setEnemyCenter(193,350).setHp(20000).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue).setMoveMethods(new MoveMethodStraight(1,1,new Vector2(0,0.0001f)) ).createEnemy();
           //      epc.setEnemyCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();
                 MainScreen.onBoss=true;
+				MainScreen.gameTime=2;
                 break;
             case 380:
                 epc.setEnemyCenter(220,419).setHp(10).setEnemyType(EnemyType.xiaozayu).createEnemy();

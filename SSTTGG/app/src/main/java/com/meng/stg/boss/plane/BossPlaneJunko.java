@@ -8,6 +8,7 @@ import com.meng.stg.move.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.stage.*;
 import com.meng.stg.ui.*;
+import com.meng.stg.item.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
@@ -40,6 +41,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 		MainScreen.sleep=90;
 		MainScreen.normalMode();
+		new itemPower().init(objectCenter.cpy());
 		new BossPlane2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
 	  }
 
