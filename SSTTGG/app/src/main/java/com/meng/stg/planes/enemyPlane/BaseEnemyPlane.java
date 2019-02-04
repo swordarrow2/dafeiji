@@ -22,7 +22,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public int time=0;
     public float enemyLastX;
-    public int hp=10;
+    public float hp=10;
     public EnemyColor enemyColor;
     public boolean isKilled=false;
 
@@ -60,14 +60,16 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public abstract Vector2 getSize();
 
-    public int getHp(){
+    public float getHp(){
         return hp;
     }
 
     public void hit(){
-        if(--hp<1){
+        if(hp<1){
             kill();
-        }
+        }else{
+		  hp-=1.5f;
+		}
     }
 
     public Vector2 getLocation(){

@@ -56,9 +56,10 @@ public abstract class BaseBullet extends BaseGameObject{
             BaseBullet bb=(BaseBullet)i.next();
             if(bb instanceof BaseEnemyBullet){
                 bb.kill();
+				--EnemyBullet.bulletCount;
 			  }
 		  }
-		  EnemyBullet.bulletCount=0;
+		  
 	  }
 
     public static void updateAll(){

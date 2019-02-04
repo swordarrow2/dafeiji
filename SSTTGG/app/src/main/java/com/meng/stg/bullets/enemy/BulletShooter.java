@@ -43,7 +43,10 @@ public class BulletShooter{
 		toAdd.add(this);
 		return this;  
 	  }
-	
+	public BulletShooter setOffset(Vector2 v){
+	  offset=v;
+	  return this;
+	}
 	public BulletShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
 		this.baseEnemyPlane=baseEnemyPlane;
 		return this;
@@ -144,7 +147,7 @@ public class BulletShooter{
             Vector2 tmpv=bulletVelocity.cpy().scl(beilv);
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
-                EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,15,tmpv.cpy()));
+                EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 tmpv.rotate(waysDegree);
 			  }
             beilv+=cengDanSuCha;

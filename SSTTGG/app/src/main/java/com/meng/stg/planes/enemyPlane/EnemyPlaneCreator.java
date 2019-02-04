@@ -55,7 +55,7 @@ public class EnemyPlaneCreator{
 			  new EnemyDahudie().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
                 break;
             case Boss:
-			  new BossPlane().init(enemyCenter.cpy(),enemyColor,15,hp,moveMethods);
+			  new BossPlane().init(enemyCenter.cpy(),enemyColor,10,hp,moveMethods);
                 break;
         }
     }
