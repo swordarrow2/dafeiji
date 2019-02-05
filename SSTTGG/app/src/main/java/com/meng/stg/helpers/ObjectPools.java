@@ -19,10 +19,10 @@ public final class ObjectPools{
 		  }
 	  };
 
-	public static Pool<com.meng.stg.item.enemy.EnemyItem> itemPool=new Pool<com.meng.stg.item.enemy.EnemyItem>(){
+	public static Pool<com.meng.stg.item.item.EnemyItem> itemPool=new Pool<com.meng.stg.item.item.EnemyItem>(){
         @Override
-        protected com.meng.stg.item.enemy.EnemyItem newObject(){
-            return new com.meng.stg.item.enemy.EnemyItem();
+        protected com.meng.stg.item.item.EnemyItem newObject(){
+            return new com.meng.stg.item.item.EnemyItem();
 		  }
 	  };
 

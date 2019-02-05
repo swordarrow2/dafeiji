@@ -8,9 +8,6 @@ import com.meng.stg.planes.subPlane.SubPlaneReimuA;
 import com.meng.stg.ui.*;
 import com.meng.stg.planes.subPlane.*;
 
-/*
- my plane
- */
 public class MyPlaneReimu extends BaseMyPlane{
 
     @Override

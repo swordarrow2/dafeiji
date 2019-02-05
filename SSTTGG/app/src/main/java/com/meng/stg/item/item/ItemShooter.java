@@ -1,4 +1,4 @@
-package com.meng.stg.item.enemy;
+package com.meng.stg.item.item;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.move.BaseMoveMethod;
@@ -23,8 +23,6 @@ public class ItemShooter{
     private int time=0;
     private Vector2 bulletCenter=new Vector2(200,200);
     private Vector2 bulletVelocity=new Vector2(0,1);
-    private Form bf=Form.lindan;
-    private Color bc=Color.white;
     private Vector2 offset=new Vector2(0,0);
     private int inFrame=1;
     private int ways=1;
@@ -59,106 +57,9 @@ public class ItemShooter{
         return this;
     }
 
-    public ItemShooter setBulletSpeed(float f){
-        bulletVelocity.nor().scl(f);
-        return this;
-    }
-
-    public ItemShooter setRandomDegree(float randomDegree){
-        setUseRandomDegree(true);
-        this.randomDegree=randomDegree;
-        return this;
-    }
-
-    public ItemShooter setUseRandomCenter(boolean useRandomCenter){
-        this.useRandomCenter=useRandomCenter;
-        return this;
-    }
-
-    public ItemShooter setRandomCenter(float x,float y){
-        setUseRandomCenter(true);
-        randomX=x;
-        randomY=y;
-        return this;
-    }
-
-    public ItemShooter setInterval(int interval){
-        this.interval=interval;
-        return this;
-    }
 
     public ItemShooter init(){
         toAdd.add(this);
-        return this;
-    }
-
-    public ItemShooter setOffset(Vector2 v){
-        offset=v;
-        return this;
-    }
-
-    public ItemShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
-        this.baseEnemyPlane=baseEnemyPlane;
-        return this;
-    }
-
-    public ItemShooter setReflex(int reflex){
-        this.reflex=reflex;
-        return this;
-    }
-
-    public ItemShooter setCengDanSuCha(float cengDanSuCha){
-        this.cengDanSuCha=cengDanSuCha;
-        return this;
-    }
-
-    public ItemShooter setStraightMove(boolean straightMove){
-        this.straightMove=straightMove;
-        return this;
-    }
-
-    public ItemShooter setMoveMethods(BaseMoveMethod... moveMethods){
-        this.moveMethods=moveMethods;
-        return this;
-    }
-
-    public ItemShooter setWays(int ways){
-        this.ways=ways;
-        return this;
-    }
-
-    public ItemShooter setCengShu(int cengShu){
-        this.cengShu=cengShu;
-        return this;
-    }
-
-    public ItemShooter setWaysDegree(float waysDegree){
-        this.waysDegree=waysDegree;
-        return this;
-    }
-
-    public ItemShooter setBulletCenter(Vector2 bulletCenter){
-        this.bulletCenter=bulletCenter;
-        return this;
-    }
-
-    public ItemShooter setBulletColor(Color bc){
-        this.bc=bc;
-        return this;
-    }
-
-    public ItemShooter setBulletForm(Form bf){
-        this.bf=bf;
-        return this;
-    }
-
-    public ItemShooter setBulletVelocity(Vector2 bulletVelocity){
-        this.bulletVelocity=bulletVelocity;
-        return this;
-    }
-
-    public ItemShooter setInFrame(int inFrame){
-        this.inFrame=inFrame;
         return this;
     }
 
@@ -207,9 +108,9 @@ public class ItemShooter{
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
                 if(useRandomCenter){
-                    EnemyItem.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+            //        EnemyItem.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }else{
-                    EnemyItem.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+            //        EnemyItem.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }
                 tmpv.rotate(waysDegree);
             }

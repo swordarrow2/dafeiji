@@ -8,10 +8,6 @@ import com.meng.stg.ui.MainScreen;
 import static com.meng.stg.planes.myPlane.BaseMyPlane.instance;
 import com.meng.stg.planes.myPlane.*;
 
-/**
- * my plane Ctrl
- */
-
 public class PlayerInputProcessor extends InputAdapter{
     private Vector2 vct2_downPosPlayer=new Vector2();
     private Vector2 vct2_downPosStage=new Vector2();

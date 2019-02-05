@@ -7,9 +7,6 @@ import com.meng.stg.move.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.ui.*;
 
-/*
- stage data:when create enemy
- */
 public class stage1{
     public static EnemyPlaneCreator epc=new EnemyPlaneCreator();
 	//public static itemPower i=null;

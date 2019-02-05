@@ -16,9 +16,6 @@ import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.planes.myPlane.*;
 import com.meng.stg.stage.*;
 
-/*
- main layout
- */
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
     public static int stageFlag;

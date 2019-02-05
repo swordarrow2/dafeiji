@@ -14,9 +14,6 @@ import com.meng.stg.planes.MoveStatus;
 import com.meng.stg.planes.subPlane.BaseSubPlane;
 import com.meng.stg.ui.MainScreen;
 
-/*
- base class of my plane
- */
 public abstract class BaseMyPlane extends BaseGameObject{
 
     public static BaseMyPlane instance;

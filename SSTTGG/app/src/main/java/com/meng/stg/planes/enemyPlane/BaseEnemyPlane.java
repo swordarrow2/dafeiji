@@ -15,9 +15,6 @@ import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 
-/*
- base class of enemy
- */
 public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public int time=0;

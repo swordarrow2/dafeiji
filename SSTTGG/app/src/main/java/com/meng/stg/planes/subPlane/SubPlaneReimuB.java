@@ -7,9 +7,6 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.helpers.TextureNameManager;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 
-/*
- subplane
- */
 public class SubPlaneReimuB extends BaseSubPlane{
     private int degree=0;
     private Vector2 vel=new Vector2(0,37);

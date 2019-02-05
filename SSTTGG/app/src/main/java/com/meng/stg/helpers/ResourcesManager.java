@@ -9,9 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.HashMap;
 
-/*
- all game resources
- */
 public final class ResourcesManager{
     public static HashMap<String,Drawable> textures=new HashMap<String,Drawable>();
     public static HashMap<String,Drawable> flipedTextures=new HashMap<String,Drawable>();
