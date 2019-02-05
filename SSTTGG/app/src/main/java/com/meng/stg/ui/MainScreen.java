@@ -1,30 +1,20 @@
 package com.meng.stg.ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.meng.stg.bullets.BaseBullet;
-import com.meng.stg.bullets.BaseEnemyBullet;
-import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.helpers.Data;
-import com.meng.stg.planes.PlayerInputProcessor;
-import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.planes.myPlane.MyPlaneReimu;
-import com.meng.stg.stage.stage1;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Pixmap.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.viewport.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.helpers.*;
-import com.badlogic.gdx.Input.*;
+import com.meng.stg.planes.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.planes.myPlane.*;
+import com.meng.stg.stage.*;
 
 /*
  main layout
@@ -65,7 +55,7 @@ public class MainScreen extends ScreenAdapter{
 			try{
 				Thread.sleep(sleep--);
 			  }catch(InterruptedException e){} 
-		}
+		  }
         for(int i=0;i<32;i++){
             if(!(enemys[i]==null)){
                 if(!(enemys[i].isKilled)){
@@ -78,25 +68,26 @@ public class MainScreen extends ScreenAdapter{
 
         stage.draw();
         BulletShooter.updateAll();
-        BaseBullet.updateAll();
+		com.meng.stg.item.BaseItem.updateAll();
+		com.meng.stg.bullets.  BaseBullet.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
 		if(onSpellCard){
-		  bitmapFont.draw(GameMain.spriteBatch,"spell card attack",10,500);
-		}
+			bitmapFont.draw(GameMain.spriteBatch,"spell card attack",10,500);
+		  }
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
-						       	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y +"\n"
-		//				+"\nbullet:"+BaseItem.bulletCount
+						+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
+						//				+"\nbullet:"+BaseItem.bulletCount
 						//            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
-						          +isKilled()
-					//	+"\nAcce"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
-					//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
+						+isKilled()
+						//	+"\nAcce"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
+						//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
 
 						,10,590);
         switch(stageFlag){
@@ -180,15 +171,15 @@ public class MainScreen extends ScreenAdapter{
     public void hide(){
         super.hide();
 	  }
-	  
-	  public static void normalMode(){
+
+	public static void normalMode(){
 		if(!onSpellCard)return ;
 		onSpellCard=false;
 	  }
-	  public static void spellMode(){
+	public static void spellMode(){
 		if(onSpellCard)return;
 		onSpellCard=true;
-		  MainScreen.sleep=75;
+		MainScreen.sleep=75;
 	  }
 
   }

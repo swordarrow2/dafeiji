@@ -1,8 +1,6 @@
-package com.meng.stg.item.itemTest.enemy;
+package com.meng.stg.item.enemy;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.enemy.BulletColor;
-import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
@@ -15,18 +13,18 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Created by Administrator on 2019/1/25.
  */
 
-public class ItemPoint{
+public class ItemShooter{
 
     private BaseEnemyPlane baseEnemyPlane;
 
-    public static HashSet<ItemPoint> instances=new HashSet<ItemPoint>();
-    public static LinkedBlockingQueue<ItemPoint> toDelete=new LinkedBlockingQueue<ItemPoint>();
-    public static LinkedBlockingQueue<ItemPoint> toAdd=new LinkedBlockingQueue<ItemPoint>();
+    public static HashSet<ItemShooter> instances=new HashSet<ItemShooter>();
+    public static LinkedBlockingQueue<ItemShooter> toDelete=new LinkedBlockingQueue<ItemShooter>();
+    public static LinkedBlockingQueue<ItemShooter> toAdd=new LinkedBlockingQueue<ItemShooter>();
     private int time=0;
     private Vector2 bulletCenter=new Vector2(200,200);
     private Vector2 bulletVelocity=new Vector2(0,1);
-    private BulletForm bf=BulletForm.lindan;
-    private BulletColor bc=BulletColor.white;
+    private Form bf=Form.lindan;
+    private Color bc=Color.white;
     private Vector2 offset=new Vector2(0,0);
     private int inFrame=1;
     private int ways=1;
@@ -48,118 +46,118 @@ public class ItemPoint{
 
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
-    public ItemPoint(){
+    public ItemShooter(){
     }
 
-    public ItemPoint setThrough(int through){
+    public ItemShooter setThrough(int through){
         this.through=through;
         return this;
     }
 
-    public ItemPoint setUseRandomDegree(boolean useRandomDegree){
+    public ItemShooter setUseRandomDegree(boolean useRandomDegree){
         this.useRandomDegree=useRandomDegree;
         return this;
     }
 
-    public ItemPoint setBulletSpeed(float f){
+    public ItemShooter setBulletSpeed(float f){
         bulletVelocity.nor().scl(f);
         return this;
     }
 
-    public ItemPoint setRandomDegree(float randomDegree){
+    public ItemShooter setRandomDegree(float randomDegree){
         setUseRandomDegree(true);
         this.randomDegree=randomDegree;
         return this;
     }
 
-    public ItemPoint setUseRandomCenter(boolean useRandomCenter){
+    public ItemShooter setUseRandomCenter(boolean useRandomCenter){
         this.useRandomCenter=useRandomCenter;
         return this;
     }
 
-    public ItemPoint setRandomCenter(float x,float y){
+    public ItemShooter setRandomCenter(float x,float y){
         setUseRandomCenter(true);
         randomX=x;
         randomY=y;
         return this;
     }
 
-    public ItemPoint setInterval(int interval){
+    public ItemShooter setInterval(int interval){
         this.interval=interval;
         return this;
     }
 
-    public ItemPoint init(){
+    public ItemShooter init(){
         toAdd.add(this);
         return this;
     }
 
-    public ItemPoint setOffset(Vector2 v){
+    public ItemShooter setOffset(Vector2 v){
         offset=v;
         return this;
     }
 
-    public ItemPoint setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
+    public ItemShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane){
         this.baseEnemyPlane=baseEnemyPlane;
         return this;
     }
 
-    public ItemPoint setReflex(int reflex){
+    public ItemShooter setReflex(int reflex){
         this.reflex=reflex;
         return this;
     }
 
-    public ItemPoint setCengDanSuCha(float cengDanSuCha){
+    public ItemShooter setCengDanSuCha(float cengDanSuCha){
         this.cengDanSuCha=cengDanSuCha;
         return this;
     }
 
-    public ItemPoint setStraightMove(boolean straightMove){
+    public ItemShooter setStraightMove(boolean straightMove){
         this.straightMove=straightMove;
         return this;
     }
 
-    public ItemPoint setMoveMethods(BaseMoveMethod... moveMethods){
+    public ItemShooter setMoveMethods(BaseMoveMethod... moveMethods){
         this.moveMethods=moveMethods;
         return this;
     }
 
-    public ItemPoint setWays(int ways){
+    public ItemShooter setWays(int ways){
         this.ways=ways;
         return this;
     }
 
-    public ItemPoint setCengShu(int cengShu){
+    public ItemShooter setCengShu(int cengShu){
         this.cengShu=cengShu;
         return this;
     }
 
-    public ItemPoint setWaysDegree(float waysDegree){
+    public ItemShooter setWaysDegree(float waysDegree){
         this.waysDegree=waysDegree;
         return this;
     }
 
-    public ItemPoint setBulletCenter(Vector2 bulletCenter){
+    public ItemShooter setBulletCenter(Vector2 bulletCenter){
         this.bulletCenter=bulletCenter;
         return this;
     }
 
-    public ItemPoint setBulletColor(BulletColor bc){
+    public ItemShooter setBulletColor(Color bc){
         this.bc=bc;
         return this;
     }
 
-    public ItemPoint setBulletForm(BulletForm bf){
+    public ItemShooter setBulletForm(Form bf){
         this.bf=bf;
         return this;
     }
 
-    public ItemPoint setBulletVelocity(Vector2 bulletVelocity){
+    public ItemShooter setBulletVelocity(Vector2 bulletVelocity){
         this.bulletVelocity=bulletVelocity;
         return this;
     }
 
-    public ItemPoint setInFrame(int inFrame){
+    public ItemShooter setInFrame(int inFrame){
         this.inFrame=inFrame;
         return this;
     }
@@ -182,7 +180,7 @@ public class ItemPoint{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
         }
-        for(ItemPoint shooter : instances){
+        for(ItemShooter shooter : instances){
             shooter.update();
         }
     }
@@ -200,7 +198,7 @@ public class ItemPoint{
             bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
         }
         moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
-
+		
         float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
         float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){
@@ -209,9 +207,9 @@ public class ItemPoint{
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
                 if(useRandomCenter){
-                    BaseItem.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+                    EnemyItem.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }else{
-                    BaseItem.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+                    EnemyItem.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }
                 tmpv.rotate(waysDegree);
             }

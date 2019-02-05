@@ -1,4 +1,4 @@
-package com.meng.stg.item;
+package com.meng.stg.backupItem;
 
 public enum ItemType{
 	power,

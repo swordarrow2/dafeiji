@@ -1,21 +1,22 @@
-package com.meng.stg.bullets;
+package com.meng.stg.item;
 
+import com.badlogic.gdx.math.Shape2D;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.utils.Align;
+import com.meng.stg.BaseGameObject;
+import com.meng.stg.helpers.ObjectPools;
 
-
-import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.badlogic.gdx.utils.*;
-import com.meng.stg.*;
-import com.meng.stg.bullets.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.concurrent.LinkedBlockingQueue;
 import com.meng.stg.bullets.enemy.*;
-import java.util.*;
-import java.util.concurrent.*;
 
-public abstract class BaseBullet extends BaseGameObject{
+public abstract class BaseItem extends BaseGameObject{
 
-    public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
+    public static HashSet<BaseItem> instances=new HashSet<BaseItem>();
+    public static LinkedBlockingQueue<BaseItem> toDelete=new LinkedBlockingQueue<BaseItem>();
+    public static LinkedBlockingQueue<BaseItem> toAdd=new LinkedBlockingQueue<BaseItem>();
 
 
     public void init(){
@@ -52,8 +53,8 @@ public abstract class BaseBullet extends BaseGameObject{
     public static void killAllBullet(){
         Iterator i=instances.iterator();
         while(i.hasNext()){
-            BaseBullet bb=(BaseBullet)i.next();
-            if(bb instanceof BaseEnemyBullet){
+            BaseItem bb=(BaseItem)i.next();
+            if(bb instanceof BaseEnemyItem){
                 bb.kill();
 				--EnemyBullet.bulletCount;
 			  }
@@ -68,7 +69,7 @@ public abstract class BaseBullet extends BaseGameObject{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
 		  }
-        for(BaseBullet baseBullet : instances){
+        for(BaseItem baseBullet : instances){
             baseBullet.update();
 		  }
 	  }

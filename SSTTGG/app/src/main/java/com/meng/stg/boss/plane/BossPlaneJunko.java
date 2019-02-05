@@ -6,7 +6,7 @@ import com.meng.stg.boss.danmaku.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
-import com.meng.stg.item.*;
+import com.meng.stg.backupItem.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 

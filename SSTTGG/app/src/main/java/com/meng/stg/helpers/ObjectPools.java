@@ -1,12 +1,9 @@
 package com.meng.stg.helpers;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Pool;
-import com.meng.stg.bullets.enemy.EnemyBullet;
-import com.meng.stg.bullets.myPlane.ReimuSpell;
-import com.meng.stg.bullets.myPlane.ReimuShoot;
-import com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce;
-import com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.bullets.myPlane.*;
+import com.meng.stg.bullets.subPlane.*;
 
 public final class ObjectPools{
     public static Pool<Image> imagePool=new Pool<Image>(500){
@@ -15,10 +12,17 @@ public final class ObjectPools{
             return new Image();
 		  }
 	  };
-    public static Pool<EnemyBullet> enemyBulletPool=new Pool<EnemyBullet>(){
+    public static Pool<com.meng.stg.bullets.enemy.EnemyBullet> enemyBulletPool=new Pool<com.meng.stg.bullets.enemy.EnemyBullet>(){
         @Override
-        protected EnemyBullet newObject(){
-            return new EnemyBullet();
+        protected com.meng.stg.bullets.enemy.EnemyBullet newObject(){
+            return new com.meng.stg.bullets.enemy.EnemyBullet();
+		  }
+	  };
+
+	public static Pool<com.meng.stg.item.enemy.EnemyItem> itemPool=new Pool<com.meng.stg.item.enemy.EnemyItem>(){
+        @Override
+        protected com.meng.stg.item.enemy.EnemyItem newObject(){
+            return new com.meng.stg.item.enemy.EnemyItem();
 		  }
 	  };
 
