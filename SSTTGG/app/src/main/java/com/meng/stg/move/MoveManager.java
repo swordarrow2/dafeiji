@@ -9,7 +9,7 @@ public class MoveManager{
     private BaseMoveMethod[] moveMethodList;
     private int nowMoveMethod=0;
     private Vector2 tmpVec=new Vector2(1,0);
-
+	
     public MoveManager(BaseGameObject baseGameObject,BaseMoveMethod... moveActions){
         this.baseGameObject=baseGameObject;
         moveMethodList=moveActions;

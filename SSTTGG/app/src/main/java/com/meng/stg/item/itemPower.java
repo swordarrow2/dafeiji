@@ -13,7 +13,7 @@ public class itemPower extends baseItem{
 
 	@Override
 	public Drawable getDrawable(){
-		return ResourcesManager.textures.get("item520");
+		return ResourcesManager.textures.get("item518");
 	  }
 
 	public itemPower init(Vector2 center,int i){

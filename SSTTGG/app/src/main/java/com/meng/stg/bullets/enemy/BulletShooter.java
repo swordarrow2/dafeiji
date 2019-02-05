@@ -36,7 +36,7 @@ public class BulletShooter{
     private int through=0;
     private float beilv=1;
     private int afterFrames=0;
-    private int interval=0;
+    private int interval=1;
     private float randomX=0;
     private float randomY=0;
     private boolean useRandomCenter=false;
@@ -198,6 +198,7 @@ public class BulletShooter{
             bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
         }
         moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
+		
         float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
         float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){

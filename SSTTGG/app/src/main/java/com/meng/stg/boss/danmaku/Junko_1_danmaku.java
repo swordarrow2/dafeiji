@@ -3,6 +3,7 @@ import com.badlogic.gdx.math.*;
 import com.meng.stg.boss.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.ui.*;
+import com.meng.stg.move.*;
 
 public class Junko_1_danmaku extends BaseSpellCard{
 
@@ -26,10 +27,12 @@ public class Junko_1_danmaku extends BaseSpellCard{
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.yellow_light)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(112)
+			.setWays(12)
 			.setWaysDegree(3.21428571f)
 			.setInterval(120)
 			.setBulletSpeed(3)
+			.setStraightMove(false)
+			
 		  };
         partFrame=new int[]{
 			0,1800
