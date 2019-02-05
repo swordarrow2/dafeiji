@@ -94,6 +94,7 @@ public class MyPlaneReimu extends BaseMyPlane{
 		  }
 	  }
 
+	@Override
     public void onPowerInc(){
         switch(power){
             case 4:
@@ -114,6 +115,12 @@ public class MyPlaneReimu extends BaseMyPlane{
 			  break;
 		  }
 	  }
+
+	@Override
+	public void onPowerDec(){
+		// TODO: Implement this method
+	  }
+
 
     @Override
     public void bomb(){

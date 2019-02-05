@@ -1,16 +1,13 @@
 package com.meng.stg.item;
 
-import com.badlogic.gdx.math.Shape2D;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.stg.BaseGameObject;
-import com.meng.stg.helpers.ObjectPools;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.LinkedBlockingQueue;
-import com.meng.stg.bullets.enemy.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.move.*;
+import com.meng.stg.planes.myPlane.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public abstract class BaseItem extends BaseGameObject{
 
@@ -22,23 +19,20 @@ public abstract class BaseItem extends BaseGameObject{
     public void init(){
 		super.init();
         toAdd.add(this);
-        size=getSize();
-        image.setSize(size.x,size.y);
-        image.setRotation(getRotationDegree());
-        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        existTime=0;
+		existTime=0;
+		moveManager=new MoveManager(this,new MoveMethodStraight(1,1,new Vector2(0,-1)));
 	  }
 
     public void kill(){	
         toDelete.add(this);
         image.remove();
-	//	super.kill();
+		//	super.kill();
 	  }
 
     public void update(){
         super.update();
         objectCenter.add(velocity);
-        image.setRotation(getRotationDegree());
+        image.setRotation(0);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         judgeCircle.setPosition(objectCenter);
@@ -48,18 +42,7 @@ public abstract class BaseItem extends BaseGameObject{
 		  }else{
 			judge();
 		  }
-	  }
-
-    public static void killAllBullet(){
-        Iterator i=instances.iterator();
-        while(i.hasNext()){
-            BaseItem bb=(BaseItem)i.next();
-            if(bb instanceof BaseEnemyItem){
-                bb.kill();
-				--EnemyBullet.bulletCount;
-			  }
-		  }
-		  
+		moveManager.update();
 	  }
 
     public static void updateAll(){
@@ -69,8 +52,8 @@ public abstract class BaseItem extends BaseGameObject{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
 		  }
-        for(BaseItem baseBullet : instances){
-            baseBullet.update();
+        for(BaseItem item : instances){
+            item.update();
 		  }
 	  }
 
@@ -80,9 +63,12 @@ public abstract class BaseItem extends BaseGameObject{
 
     public abstract Drawable getDrawable();
 
-    public abstract void judge();
-
-    public abstract float getRotationDegree();
+    public void judge(){
+		if(judgeCircle.contains(BaseMyPlane.instance.objectCenter)){
+            kill();
+			BaseMyPlane.instance.incPower(1);
+		  }
+	  }
 
     public abstract Vector2 getSize();
   }

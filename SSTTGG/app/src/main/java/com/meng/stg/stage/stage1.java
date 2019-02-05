@@ -39,7 +39,7 @@ public class stage1{
 			  break;
             case 20:
 			  //i.update();
-			    epc.setEnemyCenter(193,350).setHp(20000).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue).setMoveMethods(new MoveMethodStraight(1,1,new Vector2(0,0.0001f)) ).createEnemy();
+			    epc.setEnemyCenter(193,350).setHp(200).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue).setMoveMethods(new MoveMethodStraight(1,1,new Vector2(0,0.0001f)) ).createEnemy();
 			  //      epc.setEnemyCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();
 			       MainScreen.onBoss=true;
 		//	  MainScreen.gameTime=2;

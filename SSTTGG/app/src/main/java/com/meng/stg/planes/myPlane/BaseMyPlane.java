@@ -23,7 +23,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 
-    public int power=4;
+    public int power=2;
 
     public JudgeCircleAnimation animation=null;
     public JudgeCircleAnimation2 animation2=null;
@@ -93,12 +93,24 @@ public abstract class BaseMyPlane extends BaseGameObject{
         animationManager.update();
         image.toBack();
 
-
         animation2.update();
         animation.update();
+	  }
+	  public void incPower(int p){
+		power+=p;
+		onPowerInc();
+		
+	  }
+	  public void decPower(int p){
+		power-=p;
+		onPowerDec();
 	  }
 
     public abstract void bomb();
 
     public abstract void shoot();
+	
+	public abstract void onPowerInc();
+	
+	public abstract void onPowerDec();
   }
