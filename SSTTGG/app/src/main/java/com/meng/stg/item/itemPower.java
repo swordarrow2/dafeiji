@@ -1,10 +1,9 @@
 package com.meng.stg.item;
 import com.badlogic.gdx.math.*;
 import com.meng.stg.helpers.*;
-import com.meng.stg.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 
-public class itemPower extends baseItem{
+public class itemPower extends BaseItem{
 
 	@Override
 	public Vector2 getSize(){	

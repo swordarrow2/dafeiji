@@ -8,9 +8,9 @@ import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.ui.*;
 
-public class Spell_PurelyBulletHell extends BaseSpellCard{
+public class Junko_7_danmaku extends BaseSpellCard{
 
-    public Spell_PurelyBulletHell(){
+    public Junko_7_danmaku(){
 	  }
 
     public void init(BaseBossPlane b){

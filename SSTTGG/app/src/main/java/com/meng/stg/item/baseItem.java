@@ -6,7 +6,7 @@ import com.meng.stg.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 
-public abstract class baseItem extends BaseGameObject{
+public abstract class BaseItem extends BaseGameObject{
 
 	public int time=0;
 

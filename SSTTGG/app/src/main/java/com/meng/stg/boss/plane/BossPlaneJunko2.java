@@ -7,7 +7,7 @@ import com.meng.stg.bullets.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 
-public class BossPlane2 extends BaseBossPlane{
+public class BossPlaneJunko2 extends BaseBossPlane{
 
     private final int[][] junkoAnim=new int[][]{
 		  {10,14},
@@ -29,7 +29,7 @@ public class BossPlane2 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-        spellCard=new Spell_PurelyBulletHell();
+        spellCard=new Junko_7_danmaku();
         spellCard.init(this);
 	  }
 
