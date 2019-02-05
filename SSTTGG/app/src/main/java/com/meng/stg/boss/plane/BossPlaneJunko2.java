@@ -36,6 +36,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
 	@Override
 	public void kill(){
 		super.kill();
+		BaseEnemyBullet.killAllBullet();
 		MainScreen.sleep=90;
 		MainScreen.normalMode();
 	  }

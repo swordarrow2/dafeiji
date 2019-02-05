@@ -20,6 +20,7 @@ public abstract class BaseItem extends BaseGameObject{
 		super.init();
         toAdd.add(this);
 		existTime=0;
+		judgeCircle=new Circle(objectCenter,16);
 		moveManager=new MoveManager(this,new MoveMethodStraight(1,1,new Vector2(0,-1)));
 	  }
 
@@ -31,7 +32,9 @@ public abstract class BaseItem extends BaseGameObject{
 
     public void update(){
         super.update();
-        objectCenter.add(velocity);
+		Vector2 nowPosition=BaseMyPlane.instance.objectCenter.cpy();
+		objectCenter.add(nowPosition.sub(objectCenter).nor().scl(2f));
+     //   objectCenter.add(velocity);
         image.setRotation(0);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
@@ -42,7 +45,7 @@ public abstract class BaseItem extends BaseGameObject{
 		  }else{
 			judge();
 		  }
-		moveManager.update();
+	//	moveManager.update();
 	  }
 
     public static void updateAll(){
@@ -64,9 +67,10 @@ public abstract class BaseItem extends BaseGameObject{
     public abstract Drawable getDrawable();
 
     public void judge(){
-		if(judgeCircle.contains(BaseMyPlane.instance.objectCenter)){
+	  Vector2 v=BaseMyPlane.instance.objectCenter.cpy();
+		if(Math.abs(judgeCircle.x-v.x)<5&&Math.abs(judgeCircle.y-v.y)<5){
             kill();
-			BaseMyPlane.instance.incPower(1);
+		//	BaseMyPlane.instance.incPower(1);
 		  }
 	  }
 

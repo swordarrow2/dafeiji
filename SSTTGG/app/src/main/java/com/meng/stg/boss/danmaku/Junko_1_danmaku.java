@@ -27,7 +27,7 @@ public class Junko_1_danmaku extends BaseSpellCard{
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.yellow_light)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(12)
+			.setWays(112)
 			.setWaysDegree(3.21428571f)
 			.setInterval(120)
 			.setBulletSpeed(3)

@@ -23,7 +23,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 
-    public int power=2;
+    public int power=4;
 
     public JudgeCircleAnimation animation=null;
     public JudgeCircleAnimation2 animation2=null;

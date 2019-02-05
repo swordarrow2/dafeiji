@@ -10,6 +10,7 @@ import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
 import java.util.*;
 import java.util.concurrent.*;
+import com.meng.stg.item.item.*;
 
 public abstract class BaseBullet extends BaseGameObject{
 
@@ -56,6 +57,7 @@ public abstract class BaseBullet extends BaseGameObject{
             if(bb instanceof BaseEnemyBullet){
                 bb.kill();
 				--EnemyBullet.bulletCount;
+				EnemyItem.create(bb.objectCenter,ItemType.highScoreMediam);
 			  }
 		  }
 		  
