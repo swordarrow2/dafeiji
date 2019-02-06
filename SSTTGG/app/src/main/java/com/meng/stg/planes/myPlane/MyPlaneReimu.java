@@ -96,23 +96,55 @@ public class MyPlaneReimu extends BaseMyPlane{
 
 	@Override
     public void onPowerInc(){
-        switch(power){
-            case 4:
-			  subPlane4=new SubPlaneReimuA();
-			  subPlane4.init(this,4);
-			  break;
-            case 3:
-			  subPlane3=new SubPlaneReimuA();
-			  subPlane3.init(this,3);
-			  break;
-            case 2:
-			  subPlane2=new SubPlaneReimuA();
-			  subPlane2.init(this,2);
-			  break;
-            case 1:
-			  subPlane1=new SubPlaneReimuA();
-			  subPlane1.init(this,1);
-			  break;
+		if(power>=4){
+			power=4;
+		  }
+        if(onStartActivity.pl.equals("A:诱导")){
+			switch(power){
+				case 4:
+				  if(subPlane4==null){
+					  subPlane4=new SubPlaneReimuA();
+					  subPlane4.init(this,4);
+					}
+				case 3:
+				  if(subPlane3==null){
+					  subPlane3=new SubPlaneReimuA();
+					  subPlane3.init(this,3);
+					}
+				case 2:
+				  if(subPlane2==null){
+					  subPlane2=new SubPlaneReimuA();
+					  subPlane2.init(this,2);
+					}
+				case 1:
+				  if(subPlane1==null){
+					  subPlane1=new SubPlaneReimuA();
+					  subPlane1.init(this,1);
+					}
+			  }
+		  }else if(onStartActivity.pl.equals("B:针")){
+			switch(power){
+				case 4:
+				  if(subPlane4==null){
+					  subPlane4=new SubPlaneReimuB();
+					  subPlane4.init(this,4);
+					}
+				case 3:
+				  if(subPlane4==null){
+					  subPlane3=new SubPlaneReimuB();
+					  subPlane3.init(this,3);
+					}
+				case 2:
+				  if(subPlane4==null){
+					  subPlane2=new SubPlaneReimuB();
+					  subPlane2.init(this,2);
+					}
+				case 1:
+				  if(subPlane4==null){
+					  subPlane1=new SubPlaneReimuB();
+					  subPlane1.init(this,1);
+					}
+			  }
 		  }
 	  }
 

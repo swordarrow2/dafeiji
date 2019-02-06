@@ -8,7 +8,6 @@ public class Junko_1_danmaku extends BaseSpellCard{
 
 	public void init(BaseBossPlane b){
         boss=b;
-		MainScreen.normalMode();
         normalShooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
@@ -17,7 +16,7 @@ public class Junko_1_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(96)
 			.setWaysDegree(3.75f)
-			.setInterval(120)
+			.setInterval(60)
 			.setBulletSpeed(3)
 		  };
 		spellShooters=new BulletShooter[]{
@@ -47,9 +46,6 @@ public class Junko_1_danmaku extends BaseSpellCard{
 		if(boss.hp<4000){
 		  MainScreen.spellMode();
 		}
-		if(boss.hp<4020&&boss.hp>4000){
-			BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
-		  }
 	  }
 
   }

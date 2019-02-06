@@ -4,11 +4,12 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.item.item.*;
 import com.meng.stg.move.*;
 import com.meng.stg.planes.myPlane.*;
 import java.util.*;
 import java.util.concurrent.*;
-import com.meng.stg.bullets.enemy.*;
 
 public abstract class BaseItem extends BaseGameObject{
 
@@ -17,6 +18,7 @@ public abstract class BaseItem extends BaseGameObject{
     public static LinkedBlockingQueue<BaseItem> toAdd=new LinkedBlockingQueue<BaseItem>();
 
 	public BulletKillMode bulletKillMode;
+	public ItemType itemType;
 	
     public void init(){
 		super.init();
@@ -35,7 +37,9 @@ public abstract class BaseItem extends BaseGameObject{
 
     public void update(){
         super.update();
-		//   objectCenter.add(velocity);
+		if(BaseMyPlane.instance.objectCenter.y>380||objectCenter.cpy().sub(BaseMyPlane.instance.objectCenter).len2()<800){
+		  bulletKillMode=BulletKillMode.killWithScorePointAndCollect;
+		}
 		switch(bulletKillMode){
 			case killWithScorePoint:
 			  moveManager.update();
@@ -80,7 +84,15 @@ public abstract class BaseItem extends BaseGameObject{
 		Vector2 v=BaseMyPlane.instance.objectCenter.cpy();
 		if(Math.abs(judgeCircle.x-v.x)<5&&Math.abs(judgeCircle.y-v.y)<5){
             kill();
-			//	BaseMyPlane.instance.incPower(1);
+			switch(itemType){
+			  case power:
+				  BaseMyPlane.instance.incPower(1);
+				  break;
+				case highScoreMediam:
+				  BaseMyPlane.instance.maxPoint+=10;
+				  break;
+			}
+				
 		  }
 	  }
 

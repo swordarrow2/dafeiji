@@ -97,6 +97,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 
 	@Override
 	public void update(){
+	  
 		super.update();
 		if(boss.hp<3540&&boss.hp>3500){
 		  BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);

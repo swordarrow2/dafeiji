@@ -27,21 +27,21 @@ public class BossPlaneJunko2 extends BaseBossPlane{
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
    //     BaseBullet.killAllBullet();
+		spellCard=new Junko_7_danmaku();
+		spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-        spellCard=new Junko_7_danmaku();
-        spellCard.init(this);
+        
 	  }
 
 	@Override
 	public void kill(){
 		super.kill();
 		BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePointAndCollect);
+		MainScreen.onSpellCard=false;
 		MainScreen.sleep=90;
-		MainScreen.normalMode();
 	  }
-
 
     @Override
     public Vector2 getSize(){

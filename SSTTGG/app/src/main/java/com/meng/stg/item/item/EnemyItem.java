@@ -26,7 +26,7 @@ public class EnemyItem extends BaseItem{
 		bulletKillMode=bkm;
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
-
+		itemType=bf;
         switch(bf){
             case power:
 			  DrawableNumber=500  ;

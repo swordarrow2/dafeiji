@@ -12,11 +12,17 @@ public abstract class BaseSpellCard{
     public float partHp[];
     public int frame=0;
     public int partFrame[];
+	
+	public int waitFrameNormal=60;
+	public int waitFrameSpell=60;
 
     public abstract void init(BaseBossPlane boss);
 
     public void update(){
         if(MainScreen.onSpellCard){
+			if(waitFrameSpell -->0){
+				return;
+			  }
 			for(int i=0;i<spellShooters.length;++i){
 				if(boss.hp>partHp[i]&&frame<partFrame[i]){
 					continue;
@@ -25,6 +31,9 @@ public abstract class BaseSpellCard{
 			  }
 			frame++;
 		}else{
+			if(waitFrameNormal -->0){
+				return;
+			  }
 			for(int i=0;i<normalShooters.length;++i){
 				if(boss.hp>partHp[i]&&frame<partFrame[i]){
 					continue;

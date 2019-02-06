@@ -75,7 +75,7 @@ public class MainScreen extends ScreenAdapter{
 
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
 						+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
-						//				+"\nbullet:"+BaseItem.bulletCount
+									+"\nMaxPoint:"+BaseMyPlane.instance.maxPoint
 						//            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
 						+isKilled()
 						//	+"\nAcce"
@@ -172,10 +172,12 @@ public class MainScreen extends ScreenAdapter{
 	public static void normalMode(){
 		if(!onSpellCard)return ;
 		onSpellCard=false;
+		BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
 	  }
 	public static void spellMode(){
 		if(onSpellCard)return;
 		onSpellCard=true;
+		BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
 	//	MainScreen.sleep=0;
 	  }
 

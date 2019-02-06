@@ -40,7 +40,6 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 	//	MainScreen.sleep=90;
 		MainScreen.normalMode();
-		BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePointAndCollect);
 		EnemyItem.create(objectCenter.cpy(),ItemType.power);
 		new BossPlaneJunko2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
 	  }
