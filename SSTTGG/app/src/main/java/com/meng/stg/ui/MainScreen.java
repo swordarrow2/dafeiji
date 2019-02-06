@@ -176,7 +176,7 @@ public class MainScreen extends ScreenAdapter{
 	public static void spellMode(){
 		if(onSpellCard)return;
 		onSpellCard=true;
-		MainScreen.sleep=75;
+	//	MainScreen.sleep=0;
 	  }
 
   }

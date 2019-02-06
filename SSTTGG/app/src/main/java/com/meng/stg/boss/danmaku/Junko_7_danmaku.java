@@ -7,6 +7,8 @@ import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.ui.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.*;
 
 public class Junko_7_danmaku extends BaseSpellCard{
 
@@ -96,7 +98,9 @@ public class Junko_7_danmaku extends BaseSpellCard{
 	@Override
 	public void update(){
 		super.update();
-		
+		if(boss.hp<3540&&boss.hp>3500){
+		  BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
+		}
 	  }
 	  
   }

@@ -6,6 +6,7 @@ import com.meng.stg.boss.danmaku.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
+import com.meng.stg.bullets.enemy.*;
 
 public class BossPlaneJunko2 extends BaseBossPlane{
 
@@ -25,7 +26,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
-        BaseBullet.killAllBullet();
+   //     BaseBullet.killAllBullet();
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
@@ -36,7 +37,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
 	@Override
 	public void kill(){
 		super.kill();
-		BaseEnemyBullet.killAllBullet();
+		BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePointAndCollect);
 		MainScreen.sleep=90;
 		MainScreen.normalMode();
 	  }

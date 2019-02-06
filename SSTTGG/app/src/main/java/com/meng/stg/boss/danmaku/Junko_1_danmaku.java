@@ -1,9 +1,8 @@
 package com.meng.stg.boss.danmaku;
-import com.badlogic.gdx.math.*;
 import com.meng.stg.boss.*;
+import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.ui.*;
-import com.meng.stg.move.*;
 
 public class Junko_1_danmaku extends BaseSpellCard{
 
@@ -48,6 +47,9 @@ public class Junko_1_danmaku extends BaseSpellCard{
 		if(boss.hp<4000){
 		  MainScreen.spellMode();
 		}
+		if(boss.hp<4020&&boss.hp>4000){
+			BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
+		  }
 	  }
 
   }

@@ -1,7 +1,5 @@
 package com.meng.stg.bullets;
 
-
-
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
@@ -17,7 +15,6 @@ public abstract class BaseBullet extends BaseGameObject{
     public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
     public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
-
 
     public void init(){
 		super.init();
@@ -42,27 +39,27 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         judgeCircle.setPosition(objectCenter);
-        if(judgeCircle.x<-5||judgeCircle.x>390
-		   ||judgeCircle.y<-5||judgeCircle.y>460){
+        if(judgeCircle.x<-5||judgeCircle.x>390||judgeCircle.y<-5||judgeCircle.y>460){
 			kill();
 		  }else{
 			judge();
 		  }
 	  }
 
-    public static void killAllBullet(){
+    public static void killAllBullet(BulletKillMode bkm){
         Iterator i=instances.iterator();
         while(i.hasNext()){
             BaseBullet bb=(BaseBullet)i.next();
-            if(bb instanceof BaseEnemyBullet){
-                bb.kill();
-				--EnemyBullet.bulletCount;
-				EnemyItem.create(bb.objectCenter,ItemType.highScoreMediam);
+            if(bb instanceof BaseEnemyBullet){ 
+				EnemyBullet.bulletCount--;
+				if(bkm!=BulletKillMode.killWithNothing){
+					EnemyItem.create(bb.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
+				}
+				bb.kill();
 			  }
-		  }
-		  
+		  }	  
 	  }
-
+	  
     public static void updateAll(){
         while(!toDelete.isEmpty()){
             instances.remove(toDelete.poll());
