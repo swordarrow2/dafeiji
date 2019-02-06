@@ -6,6 +6,8 @@ import com.meng.stg.ui.*;
 
 public class Junko_1_danmaku extends BaseSpellCard{
 
+  private float ro=0;
+  
 	public void init(BaseBossPlane b){
         boss=b;
         normalShooters=new BulletShooter[]{
@@ -25,12 +27,11 @@ public class Junko_1_danmaku extends BaseSpellCard{
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.yellow_light)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(112)
-			.setWaysDegree(3.21428571f)
-			.setInterval(120)
+			.setWays(5)
+			.setWaysDegree(72)
+			.setInterval(2)
 			.setBulletSpeed(3)
 			.setStraightMove(false)
-			
 		  };
         partFrame=new int[]{
 			0,1800
@@ -42,7 +43,31 @@ public class Junko_1_danmaku extends BaseSpellCard{
 
 	@Override
 	public void update(){
-		super.update();
+		if(MainScreen.onSpellCard){
+			if(waitFrameSpell -->0){
+				return;
+			  }
+			for(int i=0;i<spellShooters.length;++i){
+				if(boss.hp>partHp[i]&&frame<partFrame[i]){
+					continue;
+				  }
+				spellShooters[i].shoot();
+				spellShooters[i].bulletVelocity.rotate(ro);
+				ro+=0.1f;
+			  }
+			frame++;
+		  }else{
+			if(waitFrameNormal -->0){
+				return;
+			  }
+			for(int i=0;i<normalShooters.length;++i){
+				if(boss.hp>partHp[i]&&frame<partFrame[i]){
+					continue;
+				  }
+				normalShooters[i].shoot();
+			  }
+			frame++;
+		  }
 		if(boss.hp<4000){
 		  MainScreen.spellMode();
 		}

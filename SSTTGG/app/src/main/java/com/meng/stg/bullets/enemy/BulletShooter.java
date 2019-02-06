@@ -22,7 +22,7 @@ public class BulletShooter{
     public static LinkedBlockingQueue<BulletShooter> toAdd=new LinkedBlockingQueue<BulletShooter>();
     private int time=0;
     private Vector2 bulletCenter=new Vector2(200,200);
-    private Vector2 bulletVelocity=new Vector2(0,1);
+    public Vector2 bulletVelocity=new Vector2(0,1);
     private BulletForm bf=BulletForm.lindan;
     private BulletColor bc=BulletColor.white;
     private Vector2 offset=new Vector2(0,0);
@@ -151,6 +151,10 @@ public class BulletShooter{
         this.bf=bf;
         return this;
     }
+	
+	public Vector2 getBulletVelocity(){
+	  return bulletVelocity;
+	}
 
     public BulletShooter setBulletVelocity(Vector2 bulletVelocity){
         this.bulletVelocity=bulletVelocity;
