@@ -99,6 +99,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 	public void update(){
 	  
 		super.update();
+		boss.moveTo(193,350);
 		if(boss.hp<3540&&boss.hp>3500){
 		  BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
 		}

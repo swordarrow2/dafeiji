@@ -50,7 +50,7 @@ public class SubPlaneReimuB extends BaseSubPlane{
 
     @Override
     public void shoot(){
-        if(existTime%4==1){
+        if(myPlane.existTime%4==1){
 			ObjectPools.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(objectCenter.x+4,objectCenter.y+16),vel);
 			ObjectPools.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(objectCenter.x-4,objectCenter.y+16),vel);
 		  }

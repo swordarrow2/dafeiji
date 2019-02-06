@@ -11,7 +11,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 
     private final int[][] junkoAnim=new int[][]{
 		  {10,14},
-		  {5,9}
+		  {5,8}
 	  };
 
     @Override
@@ -19,7 +19,7 @@ public class BossPlaneJunko extends BaseBossPlane{
         super.update();
         //  moveManager.update();
         //  am.update();
-        objectCenter.set(193,350);
+    //    objectCenter.set(193,350);
 	  }
 
     @Override
@@ -27,6 +27,7 @@ public class BossPlaneJunko extends BaseBossPlane{
         super.init(center,everyAnimFrameTime,hp,bmm);
      //   BaseBullet.killAllBullet();
         objectName="chunhu";
+		targetPosition=center.cpy();
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
         spellCard=new Junko_1_danmaku();

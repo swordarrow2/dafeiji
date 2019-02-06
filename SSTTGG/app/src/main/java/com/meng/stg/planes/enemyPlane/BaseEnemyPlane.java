@@ -40,7 +40,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         this.everyAnimFrameTime=everyAnimFrameTime;
         objectName="zayu";
         isKilled=false;
-        objectCenter.set(center);
+        objectCenter=center;
         this.hp=hp;
         size=getSize();
         image.setRotation(0);

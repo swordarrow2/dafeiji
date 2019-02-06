@@ -10,6 +10,7 @@ import com.meng.stg.helpers.TextureNameManager;
 
 import static com.meng.stg.ui.MainScreen.enemys;
 import com.meng.stg.helpers.*;
+import com.meng.stg.planes.myPlane.*;
 
 public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
 
@@ -31,7 +32,7 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
             for(int i=0;i<32;i++){
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
-                        enemys[i].hit(10.5f);
+                        enemys[i].hit(BaseMyPlane.instance.slow?17.5f:10.5f);
                         kill();
 					  }
 				  }

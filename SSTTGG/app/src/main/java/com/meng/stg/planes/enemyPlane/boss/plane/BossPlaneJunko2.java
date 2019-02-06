@@ -20,13 +20,14 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         super.update();
         //  moveManager.update();
         //  am.update();
-        objectCenter.set(193,350);
+    //    objectCenter.set(193,350);
 	  }
 
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
    //     BaseBullet.killAllBullet();
+		targetPosition=center.cpy();
 		spellCard=new Junko_7_danmaku();
 		spellCard.init(this);
         objectName="chunhu";
