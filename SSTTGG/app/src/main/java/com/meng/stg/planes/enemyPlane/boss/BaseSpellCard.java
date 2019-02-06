@@ -1,4 +1,4 @@
-package com.meng.stg.boss;
+package com.meng.stg.planes.enemyPlane.boss;
 
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.ui.*;

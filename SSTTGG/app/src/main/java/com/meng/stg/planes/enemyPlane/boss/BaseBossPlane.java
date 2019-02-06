@@ -1,7 +1,6 @@
-package com.meng.stg.boss;
+package com.meng.stg.planes.enemyPlane.boss;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.bullets.BaseBullet;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 public abstract class BaseBossPlane extends BaseEnemyPlane{

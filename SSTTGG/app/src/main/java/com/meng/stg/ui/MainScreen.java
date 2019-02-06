@@ -130,7 +130,7 @@ public class MainScreen extends ScreenAdapter{
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
-        bitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));
+        bitmapFont=new BitmapFont(Gdx.files.internal("font/font.fnt"));
         bitmapFont.setColor(Color.GREEN);
         Image background=new Image(new Texture(pixmap));
 

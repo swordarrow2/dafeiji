@@ -3,7 +3,9 @@ package com.meng.stg.stage;
 import com.badlogic.gdx.math.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.move.*;
-import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.planes.enemyPlane.normal.EnemyColor;
+import com.meng.stg.planes.enemyPlane.normal.EnemyPlaneCreator;
+import com.meng.stg.planes.enemyPlane.normal.EnemyType;
 import com.meng.stg.ui.*;
 
 public class stage1{

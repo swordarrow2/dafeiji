@@ -1,8 +1,8 @@
-package com.meng.stg.boss.danmaku;
+package com.meng.stg.planes.enemyPlane.boss.danmaku;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.boss.BaseSpellCard;
+import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
+import com.meng.stg.planes.enemyPlane.boss.BaseSpellCard;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;

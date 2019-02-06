@@ -1,13 +1,11 @@
-package com.meng.stg.boss.plane;
+package com.meng.stg.planes.enemyPlane.boss.plane;
 
 import com.badlogic.gdx.math.*;
-import com.meng.stg.boss.*;
-import com.meng.stg.boss.danmaku.*;
-import com.meng.stg.bullets.*;
+import com.meng.stg.planes.enemyPlane.boss.*;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 import com.meng.stg.item.item.*;
-import com.meng.stg.bullets.enemy.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 

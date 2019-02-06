@@ -1,6 +1,5 @@
-package com.meng.stg.boss.danmaku;
-import com.meng.stg.boss.*;
-import com.meng.stg.bullets.*;
+package com.meng.stg.planes.enemyPlane.boss.danmaku;
+import com.meng.stg.planes.enemyPlane.boss.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.ui.*;
 

@@ -10,6 +10,7 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveManager;
 import com.meng.stg.planes.MoveStatus;
+import com.meng.stg.planes.enemyPlane.normal.EnemyColor;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 

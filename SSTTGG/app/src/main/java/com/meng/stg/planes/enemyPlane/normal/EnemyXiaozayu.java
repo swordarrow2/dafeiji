@@ -1,4 +1,4 @@
-package com.meng.stg.planes.enemyPlane;
+package com.meng.stg.planes.enemyPlane.normal;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -8,6 +8,7 @@ import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.EnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
+import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
 
