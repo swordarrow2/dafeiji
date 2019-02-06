@@ -32,7 +32,6 @@ public abstract class BaseMyPlane extends BaseGameObject{
 
     private float playerLastX=270;
     public boolean slow=false;
-
     public AnimationManager animationManager;
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 
