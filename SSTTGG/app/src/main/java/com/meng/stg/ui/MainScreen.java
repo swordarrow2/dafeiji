@@ -73,9 +73,10 @@ public class MainScreen extends ScreenAdapter{
 			bitmapFont.draw(GameMain.spriteBatch,"spell card attack",10,500);
 		  }
 
-        bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()
-						+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
-									+"\nMaxPoint:"+BaseMyPlane.instance.maxPoint
+        bitmapFont.draw(GameMain.spriteBatch,//"FPS:"+Gdx.graphics.getFramesPerSecond()
+					//	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
+									"MaxPoint:"+BaseMyPlane.instance.maxPoint
+									+"\nmiss:"+BaseMyPlane.instance.miss+"\n"
 						//            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
 						+isKilled()
 						//	+"\nAcce"
@@ -131,7 +132,6 @@ public class MainScreen extends ScreenAdapter{
         pixmap.fill();
         bitmapFont=new BitmapFont(Gdx.files.internal("font/fo.fnt"));
         bitmapFont.setColor(Color.GREEN);
-        bitmapFont.getData().scale(0.02f);
         Image background=new Image(new Texture(pixmap));
 
         background.setBounds(0,0,386,450);

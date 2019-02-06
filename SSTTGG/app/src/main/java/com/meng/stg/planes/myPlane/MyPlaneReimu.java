@@ -62,6 +62,7 @@ public class MyPlaneReimu extends BaseMyPlane{
 
     @Override
     public void kill(){
+		miss++;
         if(true){
             return;
 		  }
