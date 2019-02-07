@@ -6,8 +6,7 @@ import java.util.*;
 import com.meng.stg.planes.enemyPlane.bossTask.*;
 
 public class Junko_1_danmaku extends BaseNormalDanmaku{
-
-	TaskManager tm;
+  	TaskManager tm;
 	public void init(BaseBossPlane b){
         boss=b;
 		tm=new TaskManager(b);
@@ -22,16 +21,16 @@ public class Junko_1_danmaku extends BaseNormalDanmaku{
 			//	.setInterval(120)
 			.setBulletSpeed(3)
 		  };
+		tm.addTask(new TaskShoot(normalShooters));
+		tm.addTask(new TaskWait(60));
+		tm.addTask(new TaskMove(10000,10000));
+		tm.addTask(new TaskWait(60));
+		
 	  }
 	@Override
 	public void update(){
 		super.update();
 		tm.update();
-		if(frame%120==0){
-			for(int i=0;i<normalShooters.length;++i){
-				normalShooters[i].shoot();
-			  }	
-		  }
 		frame++; 
 		/*
 		 if(MainScreen.onSpellCard){

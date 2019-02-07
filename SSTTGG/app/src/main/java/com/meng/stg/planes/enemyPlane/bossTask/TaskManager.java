@@ -3,6 +3,8 @@ import java.util.*;
 import com.meng.stg.planes.enemyPlane.boss.*;
 
 public class TaskManager{
+	Random ran=new Random();
+
 	BaseBossPlane boss;
 	int holdingTime=0;
 	int addTaskFlag=0;
@@ -19,20 +21,29 @@ public class TaskManager{
 	  }
 	public void update(){
 		if(getTaskFlag<addTaskFlag){          
-			if(bossTask.get(getTaskFlag).holdingTime>0){
+			if(bossTask.get(getTaskFlag).holdingTime-holdingTime>0){
 				doTask(bossTask.get(getTaskFlag));				 	 
 			  }else{
+				holdingTime=0;
 				getTaskFlag++;
-			  }		
-		  }   
+			  }
+		  }else{
+			holdingTime=0;
+			getTaskFlag=0;
+		  }		
 	  }
 	public void doTask(Task t){
 		if(t instanceof TaskMove){
-			boss.moveTo(t.targetPosition.x,t.targetPosition.y);
+			if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
+				boss.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
+			  }else{
+				boss.moveTo(t.targetPosition.x,t.targetPosition.y);
+			  } 
 		  }else if(t instanceof TaskShoot){
-			t.bulletShooter.shoot();
+			for(int i=0;i<t.bulletShooter.length;++i){
+				t.bulletShooter[i].shoot();
+			  }	
 		  }
-		bossTask.get(getTaskFlag).holdingTime--;
-
+		holdingTime++;
 	  }
   }

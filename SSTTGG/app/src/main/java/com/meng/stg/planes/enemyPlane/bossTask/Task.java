@@ -5,6 +5,6 @@ import com.meng.stg.bullets.enemy.*;
 
 public class Task{
 	public int holdingTime=1;
-	public BulletShooter bulletShooter;
+	public BulletShooter[] bulletShooter;
 	public Vector2 targetPosition=new Vector2();
   }

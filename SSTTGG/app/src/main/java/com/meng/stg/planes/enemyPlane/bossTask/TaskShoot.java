@@ -3,8 +3,7 @@ import com.meng.stg.bullets.enemy.*;
 
 public class TaskShoot extends Task{
 	
-	public TaskShoot(int holdingTime,BulletShooter bs){
-		this.holdingTime=holdingTime;
+	public TaskShoot(BulletShooter... bs){
 		bulletShooter=bs;
 	  }
   }
