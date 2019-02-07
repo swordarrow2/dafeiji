@@ -22,6 +22,10 @@ public final class ResourcesManager{
         loadBoss("chunhu");
         loadItems("item");
         //p:519
+
+        FileHandle plsanae=Gdx.files.internal("textures/junkoface.png");
+        Texture tplsanae=new Texture(plsanae);
+        textures.put("junkoface",new TextureRegionDrawable(new TextureRegion(tplsanae)));
     }
 
     private static void loadMyPlane(String name){

@@ -10,10 +10,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.meng.stg.bigFace.BaseBigFace;
+import com.meng.stg.bigFace.item.BigFace;
+import com.meng.stg.bigFace.item.FaceCharacter;
 import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.enemy.BulletKillMode;
@@ -78,11 +82,12 @@ public class MainScreen extends ScreenAdapter{
         com.meng.stg.item.BaseItem.updateAll();
         com.meng.stg.bullets.BaseBullet.updateAll();
         com.meng.stg.effects.BaseEffect.updateAll();
+        BaseBigFace.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
         if(onSpellCard){
             GlyphLayout glyphLayout=new GlyphLayout();
-            glyphLayout.setText(bitmapFont,"spell card attack\n"+BaseBossPlane.instence.spellCard.spellName);
+            glyphLayout.setText(bitmapFont,BaseBossPlane.instence.spellCard.spellName);
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,450);
         }
 
@@ -191,6 +196,7 @@ public class MainScreen extends ScreenAdapter{
     public static void spellMode(){
         if(onSpellCard) return;
         onSpellCard=true;
+        new BigFace().init(new Vector2(200,300),FaceCharacter.Junko);
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
         //	MainScreen.sleep=0;
     }
