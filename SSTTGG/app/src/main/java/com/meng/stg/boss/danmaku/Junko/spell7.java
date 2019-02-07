@@ -17,6 +17,7 @@ public class spell7 extends BaseSpellCard{
 
     public void init(BaseBossPlane b){
         boss=b;
+		waitFrameSpell=120;
         spellName="纯符「纯粹的弹幕地狱」";
         spellShooters=new BulletShooter[]{
                 new BulletShooter().init()
@@ -88,6 +89,7 @@ public class spell7 extends BaseSpellCard{
     public void update(){
         super.update();
         boss.moveTo(193,350);
+		if(waitFrameSpell-->0)return;
         if(boss.hp<3540&&boss.hp>3500){
             BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
         }

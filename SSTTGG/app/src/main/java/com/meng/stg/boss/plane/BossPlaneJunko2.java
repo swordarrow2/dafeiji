@@ -14,13 +14,14 @@ public class BossPlaneJunko2 extends BaseBossPlane{
 		  {10,14},
 		  {5,9}
 	  };
-
+int wf=200;
     @Override
     public void update(){
         super.update();
         //  moveManager.update();
         //  am.update();
     //    objectCenter.set(193,350);
+	if(wf-->0)return;
 	MainScreen.spellMode();
 	spellCard.update();
 	  }
@@ -37,6 +38,14 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         animNum=junkoAnim;
         
 	  }
+
+	@Override
+	public void hit(float bulletDamage){
+		if(wf>0)return;
+		super.hit(bulletDamage);
+	  }
+	  
+	  
 
 	@Override
 	public void kill(){

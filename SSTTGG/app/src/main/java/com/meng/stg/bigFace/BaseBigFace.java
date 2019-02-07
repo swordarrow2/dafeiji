@@ -39,7 +39,7 @@ public abstract class BaseBigFace extends BaseGameObject{
         if(existTime>60){
             kill();
         }else{
-            objectCenter.y+=4;
+            objectCenter.y+=1;
         }
     }
 
