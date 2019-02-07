@@ -88,9 +88,48 @@ public abstract class BaseItem extends BaseGameObject{
 			  case power:
 				  BaseMyPlane.instance.incPower(1);
 				  break;
+				case powerBig:
+					BaseMyPlane.instance.incPower(1);
+					BaseMyPlane.instance.incPower(1);
+					BaseMyPlane.instance.incPower(1);
+					break;
+				case point:
+					break;
+				case player:
+					break;
+				case playerFragment:
+					break;
+				case bomb:
+					break;
+				case bombFragment:
+					break;
+				case powerFull:
+					break;
+				case powerPointer:
+					break;
+				case powerBigPointer:
+					break;
+				case pointPointer:
+					break;
+				case playerPointer:
+					break;
+				case playerFragmentPointer:
+					break;
+				case bombPointer:
+					break;
+				case bombFragmentPointer:
+					break;
+				case powerFullPointer:
+					break;
+				case highScoreSmall:
+					BaseMyPlane.instance.maxPoint+=5;
+					break;
 				case highScoreMediam:
 				  BaseMyPlane.instance.maxPoint+=10;
 				  break;
+				case highScoreLarge:
+					BaseMyPlane.instance.maxPoint+=20;
+					break;
 			}
 				
 		  }

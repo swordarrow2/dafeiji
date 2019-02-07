@@ -1,56 +1,59 @@
 package com.meng.stg.helpers;
 
-import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.*;
-import com.meng.stg.bullets.myPlane.*;
-import com.meng.stg.bullets.subPlane.*;
+import com.badlogic.gdx.utils.Pool;
 
 public final class ObjectPools{
-    public static Pool<Image> imagePool=new Pool<Image>(500){
+    public static Pool<com.badlogic.gdx.scenes.scene2d.ui.Image> imagePool=new Pool<com.badlogic.gdx.scenes.scene2d.ui.Image>(500){
         @Override
-        protected Image newObject(){
-            return new Image();
-		  }
-	  };
+        protected com.badlogic.gdx.scenes.scene2d.ui.Image newObject(){
+            return new com.badlogic.gdx.scenes.scene2d.ui.Image();
+        }
+    };
     public static Pool<com.meng.stg.bullets.enemy.EnemyBullet> enemyBulletPool=new Pool<com.meng.stg.bullets.enemy.EnemyBullet>(){
         @Override
         protected com.meng.stg.bullets.enemy.EnemyBullet newObject(){
             return new com.meng.stg.bullets.enemy.EnemyBullet();
-		  }
-	  };
+        }
+    };
 
-	public static Pool<com.meng.stg.item.item.EnemyItem> itemPool=new Pool<com.meng.stg.item.item.EnemyItem>(){
+    public static Pool<com.meng.stg.item.item.EnemyItem> itemPool=new Pool<com.meng.stg.item.item.EnemyItem>(){
         @Override
         protected com.meng.stg.item.item.EnemyItem newObject(){
             return new com.meng.stg.item.item.EnemyItem();
-		  }
-	  };
+        }
+    };
 
-    public static Pool<ReimuSpell> reimuBombPool=new Pool<ReimuSpell>(){
+    public static Pool<com.meng.stg.bullets.myPlane.ReimuSpell> reimuBombPool=new Pool<com.meng.stg.bullets.myPlane.ReimuSpell>(){
         @Override
-        protected ReimuSpell newObject(){
-            return new ReimuSpell();
-		  }
-	  };
-    public static Pool<ReimuShoot> reimuShootPool=new Pool<ReimuShoot>(){
+        protected com.meng.stg.bullets.myPlane.ReimuSpell newObject(){
+            return new com.meng.stg.bullets.myPlane.ReimuSpell();
+        }
+    };
+    public static Pool<com.meng.stg.bullets.myPlane.ReimuShoot> reimuShootPool=new Pool<com.meng.stg.bullets.myPlane.ReimuShoot>(){
         @Override
-        protected ReimuShoot newObject(){
-            return new ReimuShoot();
-		  }
-	  };
+        protected com.meng.stg.bullets.myPlane.ReimuShoot newObject(){
+            return new com.meng.stg.bullets.myPlane.ReimuShoot();
+        }
+    };
 
-    public static Pool<ReimuSubPlaneBulletStraight> reimuSubPlaneBulletStraightPool=new Pool<ReimuSubPlaneBulletStraight>(){
+    public static Pool<com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight> reimuSubPlaneBulletStraightPool=new Pool<com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight>(){
         @Override
-        protected ReimuSubPlaneBulletStraight newObject(){
-            return new ReimuSubPlaneBulletStraight();
-		  }
-	  };
+        protected com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight newObject(){
+            return new com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletStraight();
+        }
+    };
 
-    public static Pool<ReimuSubPlaneBulletInduce> reimuSubPlaneBulletInducePool=new Pool<ReimuSubPlaneBulletInduce>(){
+    public static Pool<com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce> reimuSubPlaneBulletInducePool=new Pool<com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce>(){
         @Override
-        protected ReimuSubPlaneBulletInduce newObject(){
-            return new ReimuSubPlaneBulletInduce();
-		  }
-	  };
+        protected com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce newObject(){
+            return new com.meng.stg.bullets.subPlane.ReimuSubPlaneBulletInduce();
+        }
+    };
 
-  }
+    public static Pool<com.meng.stg.effects.enemy.EnemyEffect> effectPool=new Pool<com.meng.stg.effects.enemy.EnemyEffect>(){
+        @Override
+        protected com.meng.stg.effects.enemy.EnemyEffect newObject(){
+            return new com.meng.stg.effects.enemy.EnemyEffect();
+        }
+    };
+}
