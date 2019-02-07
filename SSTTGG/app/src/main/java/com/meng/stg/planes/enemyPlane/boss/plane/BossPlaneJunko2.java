@@ -21,6 +21,8 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         //  moveManager.update();
         //  am.update();
     //    objectCenter.set(193,350);
+	MainScreen.spellMode();
+	spellCard.update();
 	  }
 
     @Override

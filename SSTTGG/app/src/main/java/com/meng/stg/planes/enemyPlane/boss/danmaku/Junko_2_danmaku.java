@@ -13,7 +13,7 @@ public class Junko_2_danmaku extends BaseSpellCard{
 	public void init(BaseBossPlane b){
         boss=b;
 		tm=new TaskManager(b);
-
+		waitFrameSpell=120;
 		spellShooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
@@ -26,19 +26,24 @@ public class Junko_2_danmaku extends BaseSpellCard{
 			.setBulletSpeed(3)
 			.setStraightMove(false)
 		  };
+		//	  boss.moveTo(193,250);
 	  }
 
 	@Override
 	public void update(){
-	 
-		tm.update();
+
+		boss.moveTo(193,250);
+		//super.update();
+		if(waitFrameSpell>0){
+			waitFrameSpell--;
+			return;
+		  }
 		frame++;
-		if(frame%1==0){
-			for(int i=0;i<spellShooters.length;++i){
-				spellShooters[i].shoot();
-				spellShooters[i].bulletVelocity.rotate(ro);
-				ro+=0.1f;
-			  }
+		tm.update();
+		for(int i=0;i<spellShooters.length;++i){
+			spellShooters[i].shoot();
+			spellShooters[i].bulletVelocity.rotate(ro);
+			ro+=0.15f;
 		  }
 		/*
 		 if(MainScreen.onSpellCard){
@@ -62,12 +67,12 @@ public class Junko_2_danmaku extends BaseSpellCard{
 		 }
 		 frame++;
 		 }
-		 
-		if(boss.hp<4000){
-			boss.moveTo(193,250);
-			MainScreen.spellMode();
-		  }
-		  */
+
+		 if(boss.hp<4000){
+		 boss.moveTo(193,250);
+		 MainScreen.spellMode();
+		 }
+		 */
 	  }
 
   }

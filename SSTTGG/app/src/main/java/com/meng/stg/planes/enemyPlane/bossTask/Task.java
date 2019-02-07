@@ -7,4 +7,6 @@ public class Task{
 	public int holdingTime=1;
 	public BulletShooter[] bulletShooter;
 	public Vector2 targetPosition=new Vector2();
+	public Runnable r;
+	
   }

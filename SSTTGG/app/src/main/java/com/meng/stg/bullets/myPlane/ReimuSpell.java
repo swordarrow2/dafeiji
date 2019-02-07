@@ -29,7 +29,7 @@ public class ReimuSpell extends BaseMyBullet{
             for(int i=0;i<32;i++){
                 if(!(enemys[i]==null)){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
-                        enemys[i].hit(100.5f);
+                        enemys[i].hit(70.5f);
                     }
                 }
             }

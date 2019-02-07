@@ -9,6 +9,7 @@ import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.ui.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
+import android.text.format.*;
 
 public class Junko_7_danmaku extends BaseSpellCard{
 
@@ -26,7 +27,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(24)
 			.setWaysDegree(15)
-		//	.setInterval(30)
+			//	.setInterval(30)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
 			new BulletShooter().init()
@@ -37,7 +38,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(12)
 			.setWaysDegree(30)
-		//	.setInterval(60)
+			//	.setInterval(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(0.7f)
 			.setRandomCenter(64,64),
@@ -49,7 +50,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(12)
 			.setWaysDegree(30)
-		//	.setInterval(60)
+			//	.setInterval(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(0.7f)
 			.setRandomCenter(64,64),
@@ -61,7 +62,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(40)
 			.setWaysDegree(9)
-		//	.setInterval(40)
+			//	.setInterval(40)
 			.setRandomDegree(360)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
@@ -73,7 +74,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(40)
 			.setWaysDegree(9)
-		//	.setInterval(40)
+			//	.setInterval(40)
 			.setRandomDegree(360)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
@@ -85,18 +86,37 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setWays(36)
 			.setWaysDegree(10)
 			.setBulletSpeed(6)
-		//	.setInterval(8)
+			//	.setInterval(8)
 		  };
 	  }
 
 	@Override
 	public void update(){
-	  
+
 		super.update();
 		boss.moveTo(193,350);
 		if(boss.hp<3540&&boss.hp>3500){
-		  BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
-		}
+			BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
+		  }
+
+		if(boss.existTime%30==0){
+			spellShooters[0].shoot();
+		  }
+		if(boss.hp>5500)return;
+
+		if(boss.existTime%60==0){
+			spellShooters[1].shoot();
+			spellShooters[2].shoot();
+		  }
+		if(boss.hp>3500)return;
+		if(boss.existTime%30==0){
+			spellShooters[3].shoot();
+			spellShooters[4].shoot();
+		  }
+		if(boss.hp>1200)return;
+		if(boss.existTime%5==0){
+			spellShooters[5].shoot();
+		  }
 	  }
-	  
+
   }

@@ -43,6 +43,8 @@ public class TaskManager{
 			for(int i=0;i<t.bulletShooter.length;++i){
 				t.bulletShooter[i].shoot();
 			  }	
+		  }else if(t instanceof TaskRunnable){
+			t.r.run();
 		  }
 		holdingTime++;
 	  }

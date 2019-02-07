@@ -21,8 +21,10 @@ public class BossPlaneJunko extends BaseBossPlane{
         //  am.update();
 		//    objectCenter.set(193,350);
 		if(hp>4000){
+		  MainScreen.normalMode();
 			normalDanmaku.update();
 		  }else{
+			MainScreen.spellMode();
 			spellCard.update();
 		  }
 	  }

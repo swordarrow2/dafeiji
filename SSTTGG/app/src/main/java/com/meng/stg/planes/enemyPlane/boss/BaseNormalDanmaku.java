@@ -17,7 +17,6 @@ public abstract class BaseNormalDanmaku{
     public void update(){
 		if(waitFrameNormal -->0){
 			return;
-		  }
-		
+		  }	
 	  }
   }

@@ -10,17 +10,14 @@ public abstract class BaseSpellCard{
 	public BulletShooter[] spellShooters;
     public int frame=0;
 
-	public int waitFrameNormal=60;
 	public int waitFrameSpell=60;
 
     public abstract void init(BaseBossPlane boss);
 
     public void update(){
-		if(waitFrameSpell -->0){
+		if(waitFrameSpell>0){
+			waitFrameSpell--;
 			return;
-		  }
-		for(int i=0;i<spellShooters.length;++i){
-			spellShooters[i].shoot();
 		  }
 		frame++;
 	  }
