@@ -19,30 +19,38 @@ public class BossPlaneJunko extends BaseBossPlane{
         super.update();
         //  moveManager.update();
         //  am.update();
-    //    objectCenter.set(193,350);
+		//    objectCenter.set(193,350);
+		if(hp>4000){
+			normalDanmaku.update();
+		  }else{
+			spellCard.update();
+		  }
 	  }
 
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
-     //   BaseBullet.killAllBullet();
+		//   BaseBullet.killAllBullet();
         objectName="chunhu";
 		targetPosition=center.cpy();
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-        spellCard=new Junko_1_danmaku();
-        spellCard.init(this);
+        normalDanmaku=new Junko_1_danmaku();
+        normalDanmaku.init(this);
+		spellCard=new Junko_2_danmaku();
+		spellCard.init(this);
+
 	  }
 
 	@Override
 	public void kill(){
 		super.kill();
-	//	MainScreen.sleep=90;
+		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
 		EnemyItem.create(objectCenter.cpy(),ItemType.power);
 		new BossPlaneJunko2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
 	  }
-	  
+
 
     @Override
     public Vector2 getSize(){

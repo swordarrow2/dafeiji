@@ -26,7 +26,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(24)
 			.setWaysDegree(15)
-			.setInterval(30)
+		//	.setInterval(30)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
 			new BulletShooter().init()
@@ -37,7 +37,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(12)
 			.setWaysDegree(30)
-			.setInterval(60)
+		//	.setInterval(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(0.7f)
 			.setRandomCenter(64,64),
@@ -49,7 +49,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(12)
 			.setWaysDegree(30)
-			.setInterval(60)
+		//	.setInterval(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(0.7f)
 			.setRandomCenter(64,64),
@@ -61,7 +61,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(40)
 			.setWaysDegree(9)
-			.setInterval(40)
+		//	.setInterval(40)
 			.setRandomDegree(360)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
@@ -73,7 +73,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(40)
 			.setWaysDegree(9)
-			.setInterval(40)
+		//	.setInterval(40)
 			.setRandomDegree(360)
 			.setBulletSpeed(2)
 			.setRandomCenter(64,64),
@@ -85,13 +85,7 @@ public class Junko_7_danmaku extends BaseSpellCard{
 			.setWays(36)
 			.setWaysDegree(10)
 			.setBulletSpeed(6)
-			.setInterval(8)
-		  };
-        partFrame=new int[]{
-			0,1800,1800,3600,3600,5400
-		  };
-        partHp=new float[]{
-			7000,5500,5500,3500,3500,1200
+		//	.setInterval(8)
 		  };
 	  }
 

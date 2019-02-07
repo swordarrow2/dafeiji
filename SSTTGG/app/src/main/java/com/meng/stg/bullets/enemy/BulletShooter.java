@@ -36,8 +36,7 @@ public class BulletShooter{
     private int through=0;
     private float beilv=1;
     private int afterFrames=0;
-    private int interval=1;
-    private float randomX=0;
+      private float randomX=0;
     private float randomY=0;
     private boolean useRandomCenter=false;
     private boolean useRandomDegree=false;
@@ -81,13 +80,7 @@ public class BulletShooter{
         randomY=y;
         return this;
     }
-
-    public BulletShooter setInterval(int interval){
-        this.interval=interval;
-        return this;
-    }
-
-    public BulletShooter init(){
+   public BulletShooter init(){
         toAdd.add(this);
         return this;
     }
@@ -193,10 +186,7 @@ public class BulletShooter{
         if(afterFrames>0){
             --afterFrames;
             return;
-        }
-        if(time%interval!=1){
-            return;
-        }
+        } 
         beilv=1;
         if(useRandomDegree){
             bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);

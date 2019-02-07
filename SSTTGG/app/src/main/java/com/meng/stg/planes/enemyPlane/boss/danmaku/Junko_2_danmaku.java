@@ -1,52 +1,51 @@
 package com.meng.stg.planes.enemyPlane.boss.danmaku;
-import com.meng.stg.planes.enemyPlane.boss.*;
+
 import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.planes.enemyPlane.boss.*;
+import com.meng.stg.planes.enemyPlane.bossTask.*;
 import com.meng.stg.ui.*;
 import java.util.*;
-import com.meng.stg.planes.enemyPlane.bossTask.*;
 
-public class Junko_1_danmaku extends BaseNormalDanmaku{
+public class Junko_2_danmaku extends BaseSpellCard{
 
 	TaskManager tm;
+	private float ro=0;
 	public void init(BaseBossPlane b){
         boss=b;
 		tm=new TaskManager(b);
-        normalShooters=new BulletShooter[]{
+
+		spellShooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
-			.setBulletColor(BulletColor.red)
+			.setBulletColor(BulletColor.yellow_light)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(96)
-			.setWaysDegree(3.75f)
-			//	.setInterval(120)
+			.setWays(5)
+			.setWaysDegree(72)
+
 			.setBulletSpeed(3)
+			.setStraightMove(false)
 		  };
 	  }
+
 	@Override
 	public void update(){
-		super.update();
+	 
 		tm.update();
-		if(frame%120==0){
-			for(int i=0;i<normalShooters.length;++i){
-				normalShooters[i].shoot();
-			  }	
+		frame++;
+		if(frame%1==0){
+			for(int i=0;i<spellShooters.length;++i){
+				spellShooters[i].shoot();
+				spellShooters[i].bulletVelocity.rotate(ro);
+				ro+=0.1f;
+			  }
 		  }
-		frame++; 
 		/*
 		 if(MainScreen.onSpellCard){
 		 if(waitFrameSpell -->0){
 		 return;
 		 }
-		 for(int i=0;i<spellShooters.length;++i){
-		 if(boss.hp>partHp[i]&&frame<partFrame[i]){
-		 continue;
-		 }
-		 spellShooters[i].shoot();
-		 spellShooters[i].bulletVelocity.rotate(ro);
-		 ro+=0.1f;
-		 }
-		 frame++;
+
 		 }else{	
 		 if(waitFrameNormal -->0){
 		 return;
@@ -63,12 +62,12 @@ public class Junko_1_danmaku extends BaseNormalDanmaku{
 		 }
 		 frame++;
 		 }
-
-		 if(boss.hp<4000){
-		 boss.moveTo(193,250);
-		 MainScreen.spellMode();
-		 }
-		 */
+		 
+		if(boss.hp<4000){
+			boss.moveTo(193,250);
+			MainScreen.spellMode();
+		  }
+		  */
 	  }
 
   }
