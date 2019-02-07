@@ -1,12 +1,14 @@
-package com.meng.stg.planes.enemyPlane.boss;
+package com.meng.stg.planes.enemyPlane.boss.danmaku;
 
 import com.meng.stg.bullets.enemy.BulletShooter;
+import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
 import com.meng.stg.ui.*;
 
 public abstract class BaseSpellCard{
 
     public BaseBossPlane boss;
     public int spellTime=1000;
+    public String spellName="";
 	public BulletShooter[] spellShooters;
     public int frame=0;
 

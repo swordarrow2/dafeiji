@@ -1,56 +1,50 @@
-package com.meng.stg.planes.enemyPlane.boss.danmaku;
-
-import com.meng.stg.bullets.enemy.*;
+package com.meng.stg.planes.enemyPlane.boss.danmaku.Junko;
 import com.meng.stg.planes.enemyPlane.boss.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.planes.enemyPlane.bossTask.*;
-import com.meng.stg.ui.*;
-import java.util.*;
 
-public class Junko_2_danmaku extends BaseSpellCard{
-
-	TaskManager tm;
-	private float ro=0;
+public class normal1 extends BaseNormalDanmaku{
+  	TaskManager tm;
 	public void init(BaseBossPlane b){
         boss=b;
-		tm=new TaskManager(b);
-		waitFrameSpell=120;
-		spellShooters=new BulletShooter[]{
+		tm=new TaskManager(b,TaskMode.repeatAll);
+        normalShooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
-			.setBulletColor(BulletColor.yellow_light)
+			.setBulletColor(BulletColor.red)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(5)
-			.setWaysDegree(72)
-
+			.setWays(96)
+			.setWaysDegree(3.75f)
+			//	.setInterval(120)
 			.setBulletSpeed(3)
-			.setStraightMove(false)
 		  };
-		//	  boss.moveTo(193,250);
+		tm.addTask(new TaskShoot(normalShooters));
+		tm.addTask(new TaskWait(60));
+		tm.addTask(new TaskMove(10000,10000));
+		tm.addTask(new TaskWait(60));
+		
 	  }
-
 	@Override
 	public void update(){
-
-		boss.moveTo(193,250);
-		//super.update();
-		if(waitFrameSpell>0){
-			waitFrameSpell--;
-			return;
-		  }
-		frame++;
+		super.update();
 		tm.update();
-		for(int i=0;i<spellShooters.length;++i){
-			spellShooters[i].shoot();
-			spellShooters[i].bulletVelocity.rotate(ro);
-			ro+=0.15f;
-		  }
+		frame++; 
 		/*
 		 if(MainScreen.onSpellCard){
 		 if(waitFrameSpell -->0){
 		 return;
 		 }
-
+		 for(int i=0;i<spellShooters.length;++i){
+		 if(boss.hp>partHp[i]&&frame<partFrame[i]){
+		 continue;
+		 }
+		 spellShooters[i].shoot();
+		 spellShooters[i].bulletVelocity.rotate(ro);
+		 ro+=0.1f;
+		 }
+		 frame++;
 		 }else{	
 		 if(waitFrameNormal -->0){
 		 return;

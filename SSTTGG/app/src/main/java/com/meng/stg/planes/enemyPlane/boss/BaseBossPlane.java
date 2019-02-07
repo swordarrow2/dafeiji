@@ -1,10 +1,14 @@
 package com.meng.stg.planes.enemyPlane.boss;
 
 import com.badlogic.gdx.math.Vector2;
+import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.BaseNormalDanmaku;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.BaseSpellCard;
 
 public abstract class BaseBossPlane extends BaseEnemyPlane{
 
+	public static BaseBossPlane instence;
 	public BaseNormalDanmaku normalDanmaku;
     public BaseSpellCard spellCard;
 	public Vector2 targetPosition=new Vector2();
@@ -17,7 +21,13 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     //    spellCard.update();
 	  }
 
-    @Override
+	@Override
+	public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+		super.init(center,everyAnimFrameTime,hp,bmm);
+		instence=this;
+	}
+
+	@Override
     public void kill(){
         super.kill();
 		//    BaseBullet.killAllBullet();

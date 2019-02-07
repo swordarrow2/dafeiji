@@ -13,6 +13,7 @@ import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.helpers.*;
 import com.meng.stg.planes.*;
 import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
 import com.meng.stg.planes.myPlane.*;
 import com.meng.stg.stage.*;
 
@@ -70,7 +71,10 @@ public class MainScreen extends ScreenAdapter{
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
 		if(onSpellCard){
-			bitmapFont.draw(GameMain.spriteBatch,"spell card attack",10,500);
+			bitmapFont.draw(GameMain.spriteBatch,"spell card attack\n"+BaseBossPlane.instence.spellCard.spellName,10,500);
+            GlyphLayout glyphLayout=new GlyphLayout();
+            glyphLayout.setText(bitmapFont,"spell card attack\n"+BaseBossPlane.instence.spellCard.spellName);
+            bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,440);
 		  }
 
         bitmapFont.draw(GameMain.spriteBatch,//"FPS:"+Gdx.graphics.getFramesPerSecond()

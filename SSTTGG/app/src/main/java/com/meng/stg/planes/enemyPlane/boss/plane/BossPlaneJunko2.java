@@ -2,9 +2,9 @@ package com.meng.stg.planes.enemyPlane.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.planes.enemyPlane.boss.*;
-import com.meng.stg.planes.enemyPlane.boss.danmaku.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.Junko.spell7;
 import com.meng.stg.ui.*;
 import com.meng.stg.bullets.enemy.*;
 
@@ -30,7 +30,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         super.init(center,everyAnimFrameTime,hp,bmm);
    //     BaseBullet.killAllBullet();
 		targetPosition=center.cpy();
-		spellCard=new Junko_7_danmaku();
+		spellCard=new spell7();
 		spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;

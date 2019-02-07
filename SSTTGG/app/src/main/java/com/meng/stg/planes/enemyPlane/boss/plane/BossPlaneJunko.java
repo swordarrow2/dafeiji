@@ -2,8 +2,9 @@ package com.meng.stg.planes.enemyPlane.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.planes.enemyPlane.boss.*;
-import com.meng.stg.planes.enemyPlane.boss.danmaku.*;
 import com.meng.stg.move.*;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.Junko.normal1;
+import com.meng.stg.planes.enemyPlane.boss.danmaku.Junko.spell1;
 import com.meng.stg.ui.*;
 import com.meng.stg.item.item.*;
 
@@ -37,9 +38,9 @@ public class BossPlaneJunko extends BaseBossPlane{
 		targetPosition=center.cpy();
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-        normalDanmaku=new Junko_1_danmaku();
+        normalDanmaku=new normal1();
         normalDanmaku.init(this);
-		spellCard=new Junko_2_danmaku();
+		spellCard=new spell1();
 		spellCard.init(this);
 
 	  }
