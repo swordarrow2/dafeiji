@@ -1,7 +1,7 @@
-package com.meng.stg.planes.enemyPlane.boss.danmaku;
+package com.meng.stg.boss.danmaku;
 
 import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
+import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.ui.*;
 
 public abstract class BaseSpellCard{

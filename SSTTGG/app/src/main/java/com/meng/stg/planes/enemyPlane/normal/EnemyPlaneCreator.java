@@ -1,7 +1,7 @@
 package com.meng.stg.planes.enemyPlane.normal;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg.planes.enemyPlane.boss.plane.BossPlaneJunko;
+import com.meng.stg.boss.plane.BossPlaneJunko;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveGradually;
 

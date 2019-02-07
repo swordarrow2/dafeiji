@@ -8,6 +8,9 @@ import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
 import java.util.*;
 import java.util.concurrent.*;
+
+import com.meng.stg.effects.enemy.Effect;
+import com.meng.stg.effects.enemy.EffectType;
 import com.meng.stg.item.item.*;
 
 public abstract class BaseBullet extends BaseGameObject{
@@ -49,13 +52,14 @@ public abstract class BaseBullet extends BaseGameObject{
     public static void killAllBullet(BulletKillMode bkm){
         Iterator i=instances.iterator();
         while(i.hasNext()){
-            BaseBullet bb=(BaseBullet)i.next();
-            if(bb instanceof BaseEnemyBullet){ 
+            BaseBullet bullet=(BaseBullet)i.next();
+            if(bullet instanceof BaseEnemyBullet){
 				EnemyBullet.bulletCount--;
 				if(bkm!=BulletKillMode.killWithNothing){
-					EnemyItem.create(bb.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
+					EnemyItem.create(bullet.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
 				}
-				bb.kill();
+                Effect.create(bullet.objectCenter.cpy(),EffectType.explore);
+				bullet.kill();
 			  }
 		  }	  
 	  }

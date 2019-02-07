@@ -14,13 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.enemy.BulletKillMode;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.Data;
 import com.meng.stg.planes.PlayerInputProcessor;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.planes.myPlane.MyPlaneReimu;
 import com.meng.stg.stage.stage1;
@@ -64,11 +64,11 @@ public class MainScreen extends ScreenAdapter{
             }
         }
         for(int i=0;i<32;i++){
-            if(!(enemys[i]==null)){
-                if(!(enemys[i].isKilled)){
-                    enemys[i].update();
-                }else{
+            if(enemys[i]!=null){
+                if((enemys[i].isKilled)){
                     enemys[i]=null;
+                }else{
+                    enemys[i].update();
                 }
             }
         }
@@ -81,15 +81,14 @@ public class MainScreen extends ScreenAdapter{
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
         if(onSpellCard){
-            bitmapFont.draw(GameMain.spriteBatch,"spell card attack\n"+BaseBossPlane.instence.spellCard.spellName,10,500);
             GlyphLayout glyphLayout=new GlyphLayout();
             glyphLayout.setText(bitmapFont,"spell card attack\n"+BaseBossPlane.instence.spellCard.spellName);
-            bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,440);
+            bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,450);
         }
 
-        bitmapFont.draw(GameMain.spriteBatch,//"FPS:"+Gdx.graphics.getFramesPerSecond()
-                //	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
-                "MaxPoint:"+BaseMyPlane.instance.maxPoint
+        bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
+                        //	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
+                        "MaxPoint:"+BaseMyPlane.instance.maxPoint
                         +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
                         //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()

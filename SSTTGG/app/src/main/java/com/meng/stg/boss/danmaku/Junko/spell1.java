@@ -1,16 +1,16 @@
-package com.meng.stg.planes.enemyPlane.boss.danmaku.Junko;
+package com.meng.stg.boss.danmaku.Junko;
 
 import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.planes.enemyPlane.boss.*;
-import com.meng.stg.planes.enemyPlane.boss.danmaku.BaseSpellCard;
-import com.meng.stg.planes.enemyPlane.bossTask.*;
+import com.meng.stg.boss.*;
+import com.meng.stg.boss.danmaku.BaseSpellCard;
+import com.meng.stg.boss.bossTask.*;
 
 public class spell1 extends BaseSpellCard{
 
 	public TaskManager tm;
 	private float ro=0;
 	public void init(BaseBossPlane b){
-		spellName="掌上的纯光";
+		spellName="「掌上的纯光」";
         boss=b;
 		tm=new TaskManager(b,TaskMode.repeatLast);
 		waitFrameSpell=120;

@@ -1,4 +1,4 @@
-package com.meng.stg.planes.enemyPlane.boss.danmaku.Junko;
+package com.meng.stg.boss.danmaku.Junko;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.bullets.BaseEnemyBullet;
@@ -6,8 +6,8 @@ import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletKillMode;
 import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
-import com.meng.stg.planes.enemyPlane.boss.danmaku.BaseSpellCard;
+import com.meng.stg.boss.BaseBossPlane;
+import com.meng.stg.boss.danmaku.BaseSpellCard;
 import com.meng.stg.ui.MainScreen;
 
 public class spell7 extends BaseSpellCard{
@@ -17,7 +17,7 @@ public class spell7 extends BaseSpellCard{
 
     public void init(BaseBossPlane b){
         boss=b;
-        spellName="「纯符」纯粹的弹幕地狱";
+        spellName="纯符「纯粹的弹幕地狱」";
         spellShooters=new BulletShooter[]{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)

@@ -1,6 +1,6 @@
-package com.meng.stg.planes.enemyPlane.bossTask;
+package com.meng.stg.boss.bossTask;
 
-import com.meng.stg.planes.enemyPlane.boss.BaseBossPlane;
+import com.meng.stg.boss.BaseBossPlane;
 
 import java.util.HashMap;
 import java.util.Random;

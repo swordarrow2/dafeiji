@@ -1,6 +1,4 @@
-package com.meng.stg.planes.enemyPlane.bossTask;
-
-import com.badlogic.gdx.math.*;
+package com.meng.stg.boss.bossTask;
 
 public class TaskMove extends Task{
 	

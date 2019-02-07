@@ -1,10 +1,10 @@
-package com.meng.stg.planes.enemyPlane.boss.plane;
+package com.meng.stg.boss.plane;
 
 import com.badlogic.gdx.math.*;
-import com.meng.stg.planes.enemyPlane.boss.*;
+import com.meng.stg.boss.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.move.*;
-import com.meng.stg.planes.enemyPlane.boss.danmaku.Junko.spell7;
+import com.meng.stg.boss.danmaku.Junko.spell7;
 import com.meng.stg.ui.*;
 import com.meng.stg.bullets.enemy.*;
 

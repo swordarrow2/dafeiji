@@ -104,8 +104,7 @@ public class EnemyItem extends BaseItem{
 			  DrawableNumber=518 ;
 			  size=new Vector2(16,16);
 			  break;
-		  }  
-		size=getSize();
+		  }
         image.setSize(size.x,size.y);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);  
         image.setDrawable(getDrawable());

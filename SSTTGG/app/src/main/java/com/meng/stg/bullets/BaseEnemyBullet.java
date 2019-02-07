@@ -1,6 +1,8 @@
 package com.meng.stg.bullets;
 
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.meng.stg.effects.enemy.Effect;
+import com.meng.stg.effects.enemy.EffectType;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 

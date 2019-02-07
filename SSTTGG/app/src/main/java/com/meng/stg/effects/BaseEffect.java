@@ -18,7 +18,7 @@ public abstract class BaseEffect extends BaseGameObject{
     public static LinkedBlockingQueue<BaseEffect> toDelete=new LinkedBlockingQueue<BaseEffect>();
     public static LinkedBlockingQueue<BaseEffect> toAdd=new LinkedBlockingQueue<BaseEffect>();
 
-    public EffectType itemType;
+    public EffectType effectType;
 
     public void init(){
         super.init();
@@ -36,12 +36,7 @@ public abstract class BaseEffect extends BaseGameObject{
 
     public void update(){
         super.update();
-        image.setRotation(0);
-        image.setPosition(objectCenter.x,objectCenter.y,Align.center);
-        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        judgeCircle.setPosition(objectCenter);
-        if(judgeCircle.x<-5||judgeCircle.x>390
-                ||judgeCircle.y<-5||judgeCircle.y>460){
+        if(existTime>40||judgeCircle.x<-5||judgeCircle.x>390||judgeCircle.y<-5||judgeCircle.y>460){
             kill();
         }
     }

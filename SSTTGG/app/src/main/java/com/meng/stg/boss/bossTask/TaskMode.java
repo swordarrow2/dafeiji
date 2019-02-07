@@ -1,4 +1,4 @@
-package com.meng.stg.planes.enemyPlane.bossTask;
+package com.meng.stg.boss.bossTask;
 
 public enum TaskMode{
     repeatAll,

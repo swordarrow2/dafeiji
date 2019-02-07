@@ -15,7 +15,7 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
     @Override
     public void init(){
         super.init();
-        image.setDrawable(ResourcesManager.textures.get("slow24"));
+        image.setDrawable(ResourcesManager.textures.get("effect24"));
 		image.setSize(48,48);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 		MainScreen.mainGroup.addActor(image);
