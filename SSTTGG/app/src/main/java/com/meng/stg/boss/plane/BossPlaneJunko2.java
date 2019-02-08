@@ -50,7 +50,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
     @Override
     public void kill(){
         super.kill();
-        BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePointAndCollect);
+        BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
         MainScreen.onSpellCard=false;
         MainScreen.sleep=90;
     }

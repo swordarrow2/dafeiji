@@ -1,17 +1,15 @@
 package com.meng.stg.bullets;
 
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.bullets.enemy.BulletKillMode;
-import com.meng.stg.effects.enemy.Effect;
-import com.meng.stg.effects.enemy.EffectType;
-import com.meng.stg.item.item.EnemyItem;
-import com.meng.stg.item.item.ItemType;
-import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.ui.MainScreen;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.LinkedBlockingQueue;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg.boss.*;
+import com.meng.stg.bulletRemover.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.effects.enemy.*;
+import com.meng.stg.item.item.*;
+import com.meng.stg.planes.myPlane.*;
+import com.meng.stg.ui.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
@@ -94,15 +92,21 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     }
 
     public static void killAllBullet(BulletKillMode bkm){
-        Iterator i=instances.iterator();
-        while(i.hasNext()){
-            BaseEnemyBullet bullet=(BaseEnemyBullet)i.next();
-            if(bkm!=BulletKillMode.killWithNothing){
-                EnemyItem.create(bullet.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
-            }
-            Effect.create(bullet.objectCenter.cpy(),EffectType.explore);
-            bullet.kill();
-        }
+	//  if(true)return;
+	  if(bkm==BulletKillMode.KillOnBossLastDeath){
+		  new BaseRemover().init(BaseBossPlane.instence.objectCenter.cpy());
+	  }else{
+		  Iterator i=instances.iterator();
+		  while(i.hasNext()){
+			  BaseEnemyBullet bullet=(BaseEnemyBullet)i.next();
+			  if(bkm!=BulletKillMode.killWithNothing){
+				  EnemyItem.create(bullet.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
+				}
+			  Effect.create(bullet.objectCenter.cpy(),EffectType.explore);
+			  bullet.kill();
+			}
+	  }
+		
     }
 
     @Override
