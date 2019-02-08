@@ -19,6 +19,7 @@ import com.meng.stg.bigFace.BaseBigFace;
 import com.meng.stg.bigFace.item.BigFace;
 import com.meng.stg.bigFace.item.FaceCharacter;
 import com.meng.stg.boss.BaseBossPlane;
+import com.meng.stg.bulletRemover.BaseMyRemover;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.BaseMyBullet;
 import com.meng.stg.bullets.enemy.BulletKillMode;
@@ -86,6 +87,7 @@ public class MainScreen extends ScreenAdapter{
         com.meng.stg.bullets.BaseMyBullet.updateAll();
         com.meng.stg.bullets.BaseEnemyBullet.updateAll();
         com.meng.stg.effects.BaseEffect.updateAll();
+        BaseMyRemover.updateAll();
         BaseBigFace.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
@@ -99,7 +101,7 @@ public class MainScreen extends ScreenAdapter{
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,spellHeight);
         }
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
-                        //	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
+                        //	+"\npos:"+BaseRemover.instance.objectCenter.x+" "+BaseRemover.instance.objectCenter.y+"\n"
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
                         +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
                         +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"

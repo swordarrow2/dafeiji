@@ -30,7 +30,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
-        //     BaseBullet.killAllBullet();
+        //     BaseRemover.killAllBullet();
         targetPosition=center.cpy();
         spellCard=new spell7();
         spellCard.init(this);
