@@ -82,7 +82,8 @@ public class MainScreen extends ScreenAdapter{
         stage.draw();
         BulletShooter.updateAll();
         com.meng.stg.item.BaseItem.updateAll();
-        com.meng.stg.bullets.BaseBullet.updateAll();
+        com.meng.stg.bullets.BaseMyBullet.updateAll();
+        com.meng.stg.bullets.BaseEnemyBullet.updateAll();
         com.meng.stg.effects.BaseEffect.updateAll();
         BaseBigFace.updateAll();
         BaseMyPlane.instance.update();
