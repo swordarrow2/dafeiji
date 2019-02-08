@@ -9,6 +9,7 @@ public class spell1 extends BaseSpellCard{
 
 	public TaskManager tm;
 	private float ro=0;
+
 	public void init(BaseBossPlane b){
 		spellName="「掌上的纯光」";
         boss=b;
@@ -22,7 +23,6 @@ public class spell1 extends BaseSpellCard{
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(5)
 			.setWaysDegree(72)
-
 			.setBulletSpeed(3)
 			.setStraightMove(false)
 		  };
