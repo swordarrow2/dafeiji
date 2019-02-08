@@ -109,7 +109,6 @@ public class MainScreen extends ScreenAdapter{
 						//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
 						//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
 						//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
-
 						,10,590);
         switch(stageFlag){
             case Data.stageFlagStage1:
