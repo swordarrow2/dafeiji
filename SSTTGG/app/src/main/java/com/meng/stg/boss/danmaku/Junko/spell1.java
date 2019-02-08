@@ -7,7 +7,6 @@ import com.meng.stg.boss.bossTask.*;
 
 public class spell1 extends BaseSpellCard{
 
-	public TaskManager tm;
 	private float ro=0;
 
 	public void init(BaseBossPlane b){
@@ -15,7 +14,7 @@ public class spell1 extends BaseSpellCard{
         boss=b;
 		tm=new TaskManager(b,TaskMode.repeatLast);
 		waitFrameSpell=120;
-		spellShooters=new BulletShooter[]{
+		shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
@@ -26,13 +25,12 @@ public class spell1 extends BaseSpellCard{
 			.setBulletSpeed(3)
 			.setStraightMove(false)
 		  };
-		//	  boss.moveTo(193,250);
 		tm.addTask(new TaskRunnable(new Runnable(){
 			@Override
 			public void run(){
-				for(int i=0;i<spellShooters.length;++i){
-					spellShooters[i].shoot();
-					spellShooters[i].bulletVelocity.rotate(ro);
+				for(int i=0;i<shooters.length;++i){
+					shooters[i].shoot();
+					shooters[i].bulletVelocity.rotate(ro);
 					ro+=0.15f;
 				}
 			}
@@ -65,11 +63,11 @@ public class spell1 extends BaseSpellCard{
 		 if(moveFlag%120==1){
 		 boss.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
 		 }
-		 for(int i=0;i<normalShooters.length;++i){
+		 for(int i=0;i<shooters.length;++i){
 		 if(boss.hp>partHp[i]&&frame<partFrame[i]){
 		 continue;
 		 }
-		 normalShooters[i].shoot();
+		 shooters[i].shoot();
 		 }
 		 frame++;
 		 }

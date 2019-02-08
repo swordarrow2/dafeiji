@@ -20,6 +20,7 @@ import com.meng.stg.bigFace.item.BigFace;
 import com.meng.stg.bigFace.item.FaceCharacter;
 import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.bullets.BaseEnemyBullet;
+import com.meng.stg.bullets.BaseMyBullet;
 import com.meng.stg.bullets.enemy.BulletKillMode;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.Data;
@@ -46,38 +47,38 @@ public class MainScreen extends ScreenAdapter{
     public static MainScreen instence;
     public static int sleep=0;
     public static boolean onSpellCard=false;
-	static int spellHeight=450;
+    static int spellHeight=450;
 
     @Override
     public void show(){
         init();
         super.show();
-	  }
+    }
 
     @Override
     public void resize(int width,int height){
         super.resize(width,height);
         fitViewport.update(width,height);
-	  }
+    }
 
     @Override
     public void render(float delta){
         if(sleep>0){
             try{
                 Thread.sleep(sleep--);
-			  }catch(InterruptedException e){
-			  }
-		  }
-		  
+            }catch(InterruptedException e){
+            }
+        }
+
         for(int i=0;i<32;i++){
             if(enemys[i]!=null){
                 if((enemys[i].isKilled)){
                     enemys[i]=null;
-				  }else{
+                }else{
                     enemys[i].update();
-				  }
-			  }
-		  }
+                }
+            }
+        }
 
         stage.draw();
         BulletShooter.updateAll();
@@ -91,61 +92,67 @@ public class MainScreen extends ScreenAdapter{
         if(onSpellCard){
             GlyphLayout glyphLayout=new GlyphLayout();
             glyphLayout.setText(bitmapFont,BaseBossPlane.instence.spellCard.spellName);
-			spellHeight+=3;
-			if(spellHeight>450){
-				spellHeight=450;
-			  }
+            spellHeight+=3;
+            if(spellHeight>450){
+                spellHeight=450;
+            }
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,spellHeight);
-		  }
+        }
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
                         //	+"\npos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
                         +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
+                        +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
                         //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()
-						//	+"\nAcce"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
-						,10,590);
+                //	+"\nAcce"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
+                //	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
+                ,10,590);
         switch(stageFlag){
             case Data.stageFlagStage1:
-			  if(gameTime==700){
-				  GlyphLayout glyphLayout=new GlyphLayout();
-				  glyphLayout.setText(bitmapFont,"stage Clear!!");
-				  bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
-				  //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
+                if(gameTime==700){
+                    GlyphLayout glyphLayout=new GlyphLayout();
+                    glyphLayout.setText(bitmapFont,"stage Clear!!");
+                    bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
+                    //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
                 }
-			  break;
-		  }
+                break;
+        }
         GameMain.spriteBatch.end();
         if(!onBoss){
             gameTime++;
             switch(stageFlag){
                 case Data.stageFlagStage1:
-				  stage1.addEnemy();
-				  break;
-			  }
-		  }
+                    stage1.addEnemy();
+                    break;
+            }
+        }
         super.render(delta);
-	  }
+    }
 
     private String isKilled(){
         String s="";
         for(int i=0;i<32;i++){
-            if(!(enemys[i]==null)){
+            if(enemys[i]!=null){
                 s+="\nHp:"+enemys[i].getHp();
-			  }
-		  }
+            }
+        }
         return s;
-	  }
+    }
 
     private void init(){
         instence=this;
-        BaseEnemyBullet.bulletCount=0;
+        BaseEnemyBullet.instances.clear();
+        BaseEnemyBullet.toAdd.clear();
+        BaseEnemyBullet.toDelete.clear();
+        BaseMyBullet.instances.clear();
+        BaseMyBullet.toAdd.clear();
+        BaseMyBullet.toDelete.clear();
         width=386;//540;//386;
         height=600;//720;//450;
         fitViewport=new FitViewport(width,height);
@@ -167,16 +174,16 @@ public class MainScreen extends ScreenAdapter{
         stageFlag=Data.stageFlagStage1;
         switch(playerFlag){
             case Data.playerFlagReimu:
-			  new MyPlaneReimu().init();
-			  break;
+                new MyPlaneReimu().init();
+                break;
             case Data.playerFlagAlice:
-			  //     new MyPlaneAlice().init();
-			  break;
-		  }
+                //     new MyPlaneAlice().init();
+                break;
+        }
         inputManager=new InputMultiplexer();
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
-	  }
+    }
 
     public void restart(){
         gameTime=0;
@@ -185,26 +192,26 @@ public class MainScreen extends ScreenAdapter{
         onBoss=false;
         enemys=new BaseEnemyPlane[32];
         init();
-	  }
+    }
 
     @Override
     public void hide(){
         super.hide();
-	  }
+    }
 
     public static void normalMode(){
         if(!onSpellCard) return;
         onSpellCard=false;
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
-	  }
+    }
 
     public static void spellMode(){
         if(onSpellCard) return;
         onSpellCard=true;
-		spellHeight=200;
+        spellHeight=200;
         new BigFace().init(new Vector2(300,200),FaceCharacter.Junko);
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
         //	MainScreen.sleep=0;
-	  }
+    }
 
-  }
+}

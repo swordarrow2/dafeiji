@@ -15,21 +15,18 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
-    public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
+    public static HashSet<BaseEnemyBullet> instances=new HashSet<BaseEnemyBullet>();
+    public static LinkedBlockingQueue<BaseEnemyBullet> toDelete=new LinkedBlockingQueue<BaseEnemyBullet>();
+    public static LinkedBlockingQueue<BaseEnemyBullet> toAdd=new LinkedBlockingQueue<BaseEnemyBullet>();
 
     public int refCount=0;
     public int thoughCount=0;
 
     public abstract Drawable getDrawable();
 
-    public static int bulletCount=0;
-
     public void init(){
         super.init();
         toAdd.add(this);
-        bulletCount++;
     }
 
     @Override
@@ -37,7 +34,6 @@ public abstract class BaseEnemyBullet extends BaseBullet{
         super.kill();
         toDelete.add(this);
         image.remove();
-        bulletCount--;
     }
 
     public static void updateAll(){
@@ -47,7 +43,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
         }
-        for(BaseBullet baseBullet : instances){
+        for(BaseEnemyBullet baseBullet : instances){
             baseBullet.update();
         }
     }
@@ -100,8 +96,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     public static void killAllBullet(BulletKillMode bkm){
         Iterator i=instances.iterator();
         while(i.hasNext()){
-            BaseBullet bullet=(BaseBullet)i.next();
-            bulletCount--;
+            BaseEnemyBullet bullet=(BaseEnemyBullet)i.next();
             if(bkm!=BulletKillMode.killWithNothing){
                 EnemyItem.create(bullet.objectCenter.cpy(),ItemType.highScoreMediam,bkm);
             }

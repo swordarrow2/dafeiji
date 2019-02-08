@@ -2,6 +2,7 @@ package com.meng.stg.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.boss.*;
+import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.move.*;
 import com.meng.stg.boss.danmaku.Junko.normal1;
 import com.meng.stg.boss.danmaku.Junko.spell1;

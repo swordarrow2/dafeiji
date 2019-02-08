@@ -36,7 +36,7 @@ public abstract class BaseBigFace extends BaseGameObject{
         image.setRotation(0);
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.toBack();
-        if(existTime>60){
+        if(existTime>120){
             kill();
         }else{
             objectCenter.y+=1;

@@ -14,9 +14,9 @@ import static com.meng.stg.ui.MainScreen.enemys;
 
 public abstract class BaseMyBullet extends BaseBullet{
 
-    public static HashSet<BaseBullet> instances=new HashSet<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toDelete=new LinkedBlockingQueue<BaseBullet>();
-    public static LinkedBlockingQueue<BaseBullet> toAdd=new LinkedBlockingQueue<BaseBullet>();
+    public static HashSet<BaseMyBullet> instances=new HashSet<BaseMyBullet>();
+    public static LinkedBlockingQueue<BaseMyBullet> toDelete=new LinkedBlockingQueue<BaseMyBullet>();
+    public static LinkedBlockingQueue<BaseMyBullet> toAdd=new LinkedBlockingQueue<BaseMyBullet>();
 
     public abstract Drawable getDrawable();
 
@@ -45,7 +45,7 @@ public abstract class BaseMyBullet extends BaseBullet{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
         }
-        for(BaseBullet baseBullet : instances){
+        for(BaseMyBullet baseBullet : instances){
             baseBullet.update();
         }
     }

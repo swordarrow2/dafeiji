@@ -1,14 +1,13 @@
 package com.meng.stg.boss.danmaku.Junko;
 
 import com.badlogic.gdx.math.Vector2;
+import com.meng.stg.boss.BaseBossPlane;
+import com.meng.stg.boss.danmaku.BaseSpellCard;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletKillMode;
 import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.boss.danmaku.BaseSpellCard;
-import com.meng.stg.ui.MainScreen;
 
 public class spell7 extends BaseSpellCard{
 
@@ -17,9 +16,9 @@ public class spell7 extends BaseSpellCard{
 
     public void init(BaseBossPlane b){
         boss=b;
-		waitFrameSpell=120;
+        waitFrameSpell=120;
         spellName="纯符「纯粹的弹幕地狱」";
-        spellShooters=new BulletShooter[]{
+        shooters=new BulletShooter[]{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
@@ -81,7 +80,6 @@ public class spell7 extends BaseSpellCard{
                         .setWays(36)
                         .setWaysDegree(10)
                         .setBulletSpeed(6)
-                //	.setInterval(8)
         };
     }
 
@@ -89,26 +87,26 @@ public class spell7 extends BaseSpellCard{
     public void update(){
         super.update();
         boss.moveTo(193,350);
-		if(waitFrameSpell-->0)return;
+        if(waitFrameSpell-->0) return;
         if(boss.hp<3540&&boss.hp>3500){
             BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
         }
         if(boss.existTime%30==0){
-            spellShooters[0].shoot();
+            shooters[0].shoot();
         }
         if(boss.hp>5500) return;
         if(boss.existTime%60==0){
-            spellShooters[1].shoot();
-            spellShooters[2].shoot();
+            shooters[1].shoot();
+            shooters[2].shoot();
         }
         if(boss.hp>3500) return;
         if(boss.existTime%30==0){
-            spellShooters[3].shoot();
-            spellShooters[4].shoot();
+            shooters[3].shoot();
+            shooters[4].shoot();
         }
         if(boss.hp>1200) return;
         if(boss.existTime%5==0){
-            spellShooters[5].shoot();
+            shooters[5].shoot();
         }
     }
 }
