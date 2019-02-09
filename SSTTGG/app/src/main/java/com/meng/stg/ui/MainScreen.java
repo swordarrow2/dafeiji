@@ -19,7 +19,7 @@ import com.meng.stg.bigFace.BaseBigFace;
 import com.meng.stg.bigFace.item.BigFace;
 import com.meng.stg.bigFace.item.FaceCharacter;
 import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.bulletRemover.BaseRemover;
+import com.meng.stg.bullets.BulletRemover;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.bullets.BaseMyBullet;
 import com.meng.stg.bullets.enemy.BulletKillMode;
@@ -87,7 +87,7 @@ public class MainScreen extends ScreenAdapter{
         com.meng.stg.bullets.BaseMyBullet.updateAll();
         com.meng.stg.bullets.BaseEnemyBullet.updateAll();
         com.meng.stg.effects.BaseEffect.updateAll();
-        BaseRemover.updateAll();
+        BulletRemover.updateAll();
         BaseBigFace.updateAll();
         BaseMyPlane.instance.update();
         GameMain.spriteBatch.begin();
@@ -101,7 +101,7 @@ public class MainScreen extends ScreenAdapter{
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,spellHeight);
         }
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
-                        //	+"\npos:"+BaseRemover.instance.objectCenter.x+" "+BaseRemover.instance.objectCenter.y+"\n"
+                        //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
                         +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
                         +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
@@ -204,7 +204,7 @@ public class MainScreen extends ScreenAdapter{
     public static void normalMode(){
         if(!onSpellCard) return;
         onSpellCard=false;
-        BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
+        BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
     }
 
     public static void spellMode(){
@@ -212,7 +212,7 @@ public class MainScreen extends ScreenAdapter{
         onSpellCard=true;
         spellHeight=200;
         new BigFace().init(new Vector2(300,200),FaceCharacter.Junko);
-        BaseEnemyBullet.killAllBullet(BulletKillMode.killWithScorePoint);
+        BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
         //	MainScreen.sleep=0;
     }
 

@@ -34,7 +34,7 @@ public class BossPlaneJunko extends BaseBossPlane{
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
-		//   BaseRemover.killAllBullet();
+		//   BulletRemover.killAllBullet();
         objectName="chunhu";
 		targetPosition=center.cpy();
         this.everyAnimFrameTime=everyAnimFrameTime;

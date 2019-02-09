@@ -1,20 +1,18 @@
-package com.meng.stg.bulletRemover;
+package com.meng.stg.bullets;
 
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.*;
-import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.BulletKillMode;
 import com.meng.stg.effects.enemy.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-import static com.meng.stg.ui.MainScreen.enemys;
+public  class BulletRemover extends BaseGameObject{
 
-public  class BaseRemover extends BaseGameObject{
-
-	public static HashSet<BaseRemover> instances=new HashSet<BaseRemover>();
-    public static LinkedBlockingQueue<BaseRemover> toDelete=new LinkedBlockingQueue<BaseRemover>();
-    public static LinkedBlockingQueue<BaseRemover> toAdd=new LinkedBlockingQueue<BaseRemover>();
+	public static HashSet<BulletRemover> instances=new HashSet<BulletRemover>();
+    public static LinkedBlockingQueue<BulletRemover> toDelete=new LinkedBlockingQueue<BulletRemover>();
+    public static LinkedBlockingQueue<BulletRemover> toAdd=new LinkedBlockingQueue<BulletRemover>();
 
 	public void init(Vector2 center){
         existTime=0;
@@ -44,7 +42,7 @@ public  class BaseRemover extends BaseGameObject{
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
 		  }
-        for(BaseRemover baseBullet : instances){
+        for(BulletRemover baseBullet : instances){
             baseBullet.update();
 		  }
 	  }
@@ -53,15 +51,8 @@ public  class BaseRemover extends BaseGameObject{
         for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
             if(judgeCircle.contains(baseBullet.objectCenter)){
 				Effect.create(baseBullet.objectCenter.cpy(),EffectType.explore);	
-                baseBullet.kill();
+                baseBullet.kill(BulletKillMode.KillOnBossLastDeath);
 			  }
 		  }
 	  }
-
-    public Shape2D getCollisionArea(){
-        return judgeCircle;
-	  }
-
-
-
   }
