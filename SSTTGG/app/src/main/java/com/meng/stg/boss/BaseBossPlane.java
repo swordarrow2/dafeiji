@@ -3,7 +3,6 @@ package com.meng.stg.boss;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.boss.danmaku.BaseSpellCard;
-import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
@@ -30,7 +29,6 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     @Override
     public void kill(){
         super.kill();
-        BaseEnemyBullet.toAdd.clear();
     }
 
     public void moveTo(float x,float y){

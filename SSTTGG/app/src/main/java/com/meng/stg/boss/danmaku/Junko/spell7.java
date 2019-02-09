@@ -24,18 +24,18 @@ public class spell7 extends BaseSpellCard{
                         .setBulletCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.red)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(24)
-                        .setWaysDegree(15)
+                        .setWays(28)
+                        .setWaysDegree(12.8571429f)
                         .setBulletSpeed(2)
-                        .setRandomCenter(64,64),
+                        .setRandomCenter(48,48),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setOffset(new Vector2(-120,0))
                         .setBulletColor(BulletColor.purple)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(12)
-                        .setWaysDegree(30)
+                        .setWays(10)
+                        .setWaysDegree(36)
                         .setRandomDegree(360)
                         .setBulletSpeed(0.7f)
                         .setRandomCenter(64,64),
@@ -45,8 +45,8 @@ public class spell7 extends BaseSpellCard{
                         .setOffset(new Vector2(120,0))
                         .setBulletColor(BulletColor.purple)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(12)
-                        .setWaysDegree(30)
+                        .setWays(10)
+                        .setWaysDegree(36)
                         .setRandomDegree(360)
                         .setBulletSpeed(0.7f)
                         .setRandomCenter(64,64),
@@ -56,10 +56,10 @@ public class spell7 extends BaseSpellCard{
                         .setOffset(new Vector2(-160,0))
                         .setBulletColor(BulletColor.blue)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(40)
-                        .setWaysDegree(9)
+                        .setWays(52)
+                        .setWaysDegree(6.92307692f)
                         .setRandomDegree(360)
-                        .setBulletSpeed(2)
+                        .setBulletSpeed(2.5f)
                         .setRandomCenter(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
@@ -67,19 +67,19 @@ public class spell7 extends BaseSpellCard{
                         .setOffset(new Vector2(160,0))
                         .setBulletColor(BulletColor.blue)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(40)
-                        .setWaysDegree(9)
+                        .setWays(52)
+                        .setWaysDegree(6.92307692f)
                         .setRandomDegree(360)
-                        .setBulletSpeed(2)
+                        .setBulletSpeed(2.5f)
                         .setRandomCenter(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.yellow_dark)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(36)
-                        .setWaysDegree(10)
-                        .setBulletSpeed(6)
+                        .setWays(24)
+                        .setWaysDegree(15)
+                        .setBulletSpeed(4)
         };
     }
 
@@ -91,21 +91,21 @@ public class spell7 extends BaseSpellCard{
         if(boss.hp<3540&&boss.hp>3500){
             BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
         }
-        if(boss.existTime%30==0){
+        if(boss.existTime%20==0){
             shooters[0].shoot();
         }
         if(boss.hp>5500) return;
-        if(boss.existTime%60==0){
+        if(boss.existTime%30==0){
             shooters[1].shoot();
             shooters[2].shoot();
         }
         if(boss.hp>3500) return;
-        if(boss.existTime%30==0){
+        if(boss.existTime%60==0){
             shooters[3].shoot();
             shooters[4].shoot();
         }
         if(boss.hp>1200) return;
-        if(boss.existTime%5==0){
+        if(boss.existTime%10==0){
             shooters[5].shoot();
         }
     }
