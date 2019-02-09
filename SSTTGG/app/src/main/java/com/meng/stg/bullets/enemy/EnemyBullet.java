@@ -16,13 +16,14 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,mm);
+    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,int through,BaseMoveMethod... mm){
+        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,through,mm);
     }
 
-    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,BaseMoveMethod... mm){
+    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,int though,BaseMoveMethod... mm){
         super.init();
         refCount=ref;
+        thoughCount=though;
         objectCenter.set(center);
         moveManager=new MoveManager(this,mm);
         image.setPosition(center.x,center.y,Align.center);
@@ -132,7 +133,7 @@ public class EnemyBullet extends BaseEnemyBullet{
     public Vector2 getSize(){
         return new Vector2(16,16);
     }
-	
+
     @Override
     public Drawable getDrawable(){
         if(drawable==null){

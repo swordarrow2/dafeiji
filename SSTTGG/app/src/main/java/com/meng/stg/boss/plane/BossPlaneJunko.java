@@ -2,6 +2,7 @@ package com.meng.stg.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.boss.*;
+import com.meng.stg.boss.danmaku.Junko.test1;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.move.*;
 import com.meng.stg.boss.danmaku.Junko.normal1;
@@ -39,7 +40,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		targetPosition=center.cpy();
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-        normalDanmaku=new normal1();
+        normalDanmaku=new test1();
         normalDanmaku.init(this);
 		spellCard=new spell1();
 		spellCard.init(this);
@@ -55,11 +56,9 @@ public class BossPlaneJunko extends BaseBossPlane{
 		new BossPlaneJunko2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
 	  }
 
-
     @Override
     public Vector2 getSize(){
         return new Vector2(96,128);
 	  }
-
 
   }

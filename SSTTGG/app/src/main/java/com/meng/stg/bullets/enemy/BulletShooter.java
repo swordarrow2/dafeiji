@@ -36,7 +36,7 @@ public class BulletShooter{
     private int through=0;
     private float beilv=1;
     private int afterFrames=0;
-      private float randomX=0;
+    private float randomX=0;
     private float randomY=0;
     private boolean useRandomCenter=false;
     private boolean useRandomDegree=false;
@@ -80,7 +80,8 @@ public class BulletShooter{
         randomY=y;
         return this;
     }
-   public BulletShooter init(){
+
+    public BulletShooter init(){
         toAdd.add(this);
         return this;
     }
@@ -144,10 +145,10 @@ public class BulletShooter{
         this.bf=bf;
         return this;
     }
-	
-	public Vector2 getBulletVelocity(){
-	  return bulletVelocity;
-	}
+
+    public Vector2 getBulletVelocity(){
+        return bulletVelocity;
+    }
 
     public BulletShooter setBulletVelocity(Vector2 bulletVelocity){
         this.bulletVelocity=bulletVelocity;
@@ -186,13 +187,13 @@ public class BulletShooter{
         if(afterFrames>0){
             --afterFrames;
             return;
-        } 
+        }
         beilv=1;
         if(useRandomDegree){
             bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
         }
         moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
-		
+
         float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
         float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){
@@ -201,9 +202,9 @@ public class BulletShooter{
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
                 if(useRandomCenter){
-                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,through,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }else{
-                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,through,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
                 }
                 tmpv.rotate(waysDegree);
             }
