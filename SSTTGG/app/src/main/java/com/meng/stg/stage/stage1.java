@@ -20,10 +20,10 @@ public class stage1{
         switch(MainScreen.gameTime){
             case 30:
 			  // MainScreen.gameTime=1;
-			  EnemyBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
+			  EnemyBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
 			  break;
             case 60:
-			  EnemyBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
+			  EnemyBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
 			  break;
             case 120:
 			  epc.setEnemyCenter(270,419).setColor(EnemyColor.red).setMoveMethods(new MoveGradually(90,30,new Vector2(0,-7f),new Vector2(1,-0.1f))).createEnemy();

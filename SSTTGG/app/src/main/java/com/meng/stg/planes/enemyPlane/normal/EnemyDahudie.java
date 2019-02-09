@@ -76,7 +76,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new MoveMethodStraight());
                 vel.rotate(30);
 			  }
 		  }
@@ -89,7 +89,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
         Vector2 vel=new Vector2(15,0);
         vel.rotate(randVal);
         for(int i=0;i<24;i++){
-            EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,new MoveMethodStraight());
+            EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new MoveMethodStraight());
             vel.rotate(15);
 		  }
         //   BaseBullet.killAllBullet();

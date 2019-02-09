@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.planes.myPlane.BaseMyPlane;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -22,7 +23,9 @@ public class BulletShooter{
     public static LinkedBlockingQueue<BulletShooter> toAdd=new LinkedBlockingQueue<BulletShooter>();
     private int time=0;
     private Vector2 bulletCenter=new Vector2(200,200);
-    public Vector2 bulletVelocity=new Vector2(0,1);
+    public Vector2 bulletVelocity=new Vector2(1,0);
+    private float bulletSpeed=1;
+    private float bulletRotation=0;
     private BulletForm bf=BulletForm.lindan;
     private BulletColor bc=BulletColor.white;
     private Vector2 offset=new Vector2(0,0);
@@ -42,10 +45,16 @@ public class BulletShooter{
     private boolean useRandomDegree=false;
     private float randomDegree=0;
     private Random ran=new Random();
+    private BulletStyle bulletStyle=BulletStyle.nothing;
 
     private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveMethodStraight()};
 
     public BulletShooter(){
+    }
+
+    public BulletShooter setBulletStyle(BulletStyle bulletStyle){
+        this.bulletStyle=bulletStyle;
+        return this;
     }
 
     public BulletShooter setThrough(int through){
@@ -58,8 +67,13 @@ public class BulletShooter{
         return this;
     }
 
-    public BulletShooter setBulletSpeed(float f){
-        bulletVelocity.nor().scl(f);
+    public BulletShooter setBulletSpeed(float bulletSpeed){
+        this.bulletSpeed=bulletSpeed;
+        return this;
+    }
+
+    public BulletShooter setBulletRotation(float bulletRotation){
+        this.bulletRotation=bulletRotation;
         return this;
     }
 
@@ -146,15 +160,6 @@ public class BulletShooter{
         return this;
     }
 
-    public Vector2 getBulletVelocity(){
-        return bulletVelocity;
-    }
-
-    public BulletShooter setBulletVelocity(Vector2 bulletVelocity){
-        this.bulletVelocity=bulletVelocity;
-        return this;
-    }
-
     public BulletShooter setInFrame(int inFrame){
         this.inFrame=inFrame;
         return this;
@@ -192,8 +197,11 @@ public class BulletShooter{
         if(useRandomDegree){
             bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
         }
-        moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
-
+        if(bulletStyle==BulletStyle.snipe){
+            bulletVelocity=BaseMyPlane.instance.objectCenter.cpy().sub(bulletCenter).nor().scl(bulletSpeed);
+        }else{
+            moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
+        }
         float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
         float nowCenterY=-randomY/2+ran.nextFloat()*randomY;
         for(int ceng=0;ceng<cengShu;++ceng){
