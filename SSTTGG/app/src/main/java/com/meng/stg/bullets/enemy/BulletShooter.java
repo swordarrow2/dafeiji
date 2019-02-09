@@ -200,7 +200,8 @@ public class BulletShooter{
         if(bulletStyle==BulletStyle.snipe){
             bulletVelocity=BaseMyPlane.instance.objectCenter.cpy().sub(bulletCenter).nor().scl(bulletSpeed);
         }else{
-            moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
+		  bulletVelocity.nor().scl(bulletSpeed);
+      //      moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
         }
         float nowCenterX=-randomX/2+ran.nextFloat()*randomX;
         float nowCenterY=-randomY/2+ran.nextFloat()*randomY;

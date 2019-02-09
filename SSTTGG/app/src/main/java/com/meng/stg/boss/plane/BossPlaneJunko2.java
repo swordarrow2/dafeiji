@@ -37,7 +37,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-
+MainScreen.instence.nextPart=1200;
     }
 
     @Override

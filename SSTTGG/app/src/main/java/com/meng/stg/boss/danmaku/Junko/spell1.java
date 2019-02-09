@@ -23,7 +23,6 @@ public class spell1 extends BaseSpellCard{
 			.setWays(5)
 			.setWaysDegree(72)
 			.setBulletSpeed(3)
-			.setStraightMove(false)
 		  };
 		tm.addTask(new TaskRunnable(new Runnable(){
 			@Override

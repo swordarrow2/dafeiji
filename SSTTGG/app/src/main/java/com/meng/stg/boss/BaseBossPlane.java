@@ -5,6 +5,7 @@ import com.meng.stg.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.boss.danmaku.BaseSpellCard;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.ui.*;
 
 public abstract class BaseBossPlane extends BaseEnemyPlane{
 
@@ -23,6 +24,7 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     @Override
     public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
+		MainScreen.instence.bossMaxHp=hp;
         instence=this;
     }
 
