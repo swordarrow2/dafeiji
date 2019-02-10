@@ -1,36 +1,23 @@
 package com.meng.stg.ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.meng.stg.bigFace.BaseBigFace;
-import com.meng.stg.bigFace.item.BigFace;
-import com.meng.stg.bigFace.item.FaceCharacter;
-import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.bullets.BulletRemover;
-import com.meng.stg.bullets.BaseEnemyBullet;
-import com.meng.stg.bullets.BaseMyBullet;
-import com.meng.stg.bullets.enemy.BulletKillMode;
-import com.meng.stg.bullets.enemy.BulletShooter;
-import com.meng.stg.helpers.Data;
-import com.meng.stg.planes.PlayerInputProcessor;
-import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.planes.myPlane.MyPlaneReimu;
-import com.meng.stg.stage.stage1;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Pixmap.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.viewport.*;
+import com.meng.stg.bigFace.*;
+import com.meng.stg.bigFace.item.*;
+import com.meng.stg.boss.*;
+import com.meng.stg.bullets.*;
+import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.helpers.*;
+import com.meng.stg.planes.*;
+import com.meng.stg.planes.enemyPlane.*;
+import com.meng.stg.planes.myPlane.*;
+import com.meng.stg.stage.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -104,9 +91,16 @@ public class MainScreen extends ScreenAdapter{
 			i.setWidth(BaseBossPlane.instence.hp/bossMaxHp*386);
 			i.setPosition(0,450);
 			i.draw(GameMain.spriteBatch,1);
-			Image j=new Image(new Texture(partFlag));
-			j.setPosition(nextPart/bossMaxHp*386,450);
-			j.draw(GameMain.spriteBatch,1);
+			if(BaseBossPlane.instence.hp>nextPart){	
+				Image j=new Image(new Texture(partFlag));
+				j.setPosition(nextPart/bossMaxHp*386,450);
+				j.draw(GameMain.spriteBatch,1);
+			  }else{
+				Image j=new Image(new Texture(partFlag));
+				j.setPosition(0,450);
+				j.setWidth(BaseBossPlane.instence.hp/bossMaxHp*386);	  
+				j.draw(GameMain.spriteBatch,1); 
+			  }
 		  }
 
         if(onSpellCard){
