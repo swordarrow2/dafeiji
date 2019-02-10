@@ -18,6 +18,7 @@ import com.meng.stg.planes.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.planes.myPlane.*;
 import com.meng.stg.stage.*;
+import java.util.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -38,11 +39,10 @@ public class MainScreen extends ScreenAdapter{
     public static boolean onSpellCard=false;
     static int spellHeight=450;
 	public Pixmap bossLife;
-	public Pixmap partFlag;
 
-	public float bili=1;
 	public float bossMaxHp=1;
-	public float nextPart=1;
+
+	public ArrayList<partAgent> nextPart=new ArrayList<partAgent>();
 
     @Override
     public void show(){
@@ -91,15 +91,8 @@ public class MainScreen extends ScreenAdapter{
 			i.setWidth(BaseBossPlane.instence.hp/bossMaxHp*386);
 			i.setPosition(0,450);
 			i.draw(GameMain.spriteBatch,1);
-			if(BaseBossPlane.instence.hp>nextPart){	
-				Image j=new Image(new Texture(partFlag));
-				j.setPosition(nextPart/bossMaxHp*386,450);
-				j.draw(GameMain.spriteBatch,1);
-			  }else{
-				Image j=new Image(new Texture(partFlag));
-				j.setPosition(0,450);
-				j.setWidth(BaseBossPlane.instence.hp/bossMaxHp*386);	  
-				j.draw(GameMain.spriteBatch,1); 
+			for(partAgent p:nextPart){
+				p.update();
 			  }
 		  }
 
@@ -115,7 +108,7 @@ public class MainScreen extends ScreenAdapter{
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
                         //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
-                        +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
+                        +"\nmiss:"+BaseMyPlane.instance.miss/2+"\n"
                         +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
                         //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()
@@ -173,10 +166,7 @@ public class MainScreen extends ScreenAdapter{
         stage=new Stage(fitViewport,GameMain.spriteBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
 		bossLife=new Pixmap(386,5,Format.RGBA8888);
-		partFlag=new Pixmap(5,5,Format.RGBA8888);
-		partFlag.setColor(Color.GREEN);
-		partFlag.fill();
-		bossLife.setColor(Color.RED);
+		bossLife.setColor(Color.WHITE);
 		bossLife.fill();
         pixmap.setColor(Color.GRAY);
         pixmap.fill();

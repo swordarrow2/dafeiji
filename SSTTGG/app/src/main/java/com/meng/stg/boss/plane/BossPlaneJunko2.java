@@ -7,6 +7,7 @@ import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
+import com.badlogic.gdx.graphics.*;
 
 public class BossPlaneJunko2 extends BaseBossPlane{
 
@@ -33,7 +34,9 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.nextPart=1200;
+		MainScreen.instence.nextPart.add(new partAgent(5500,Color.YELLOW));
+		MainScreen.instence.nextPart.add(new partAgent(3500,Color.ORANGE));
+		MainScreen.instence.nextPart.add(new partAgent(1200,Color.RED));
 	  }
 
     @Override

@@ -58,7 +58,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public void update(){
         super.update();
         animFlag++;
-        objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,5,381),MathUtils.clamp(objectCenter.y,5,445));
+        objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,10,376),MathUtils.clamp(objectCenter.y,10,440));
 
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
