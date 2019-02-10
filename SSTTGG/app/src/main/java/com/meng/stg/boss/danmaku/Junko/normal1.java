@@ -16,8 +16,8 @@ public class normal1 extends BaseNormalDanmaku{
 			.setBulletColor(BulletColor.red)
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(48)
-			.setWaysDegree(7.5f)
 			.setBulletSpeed(2)
+			.setBulletStyle(BulletStyle.round)
 		  };
 		tm.addTask(new TaskShoot(shooters));
 		tm.addTask(new TaskWait(60));
