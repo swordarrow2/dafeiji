@@ -85,7 +85,7 @@ public class MainScreen extends ScreenAdapter{
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
                         //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
-                        +"\nmiss:"+BaseMyPlane.instance.miss/2+"\n"
+                        +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
                         +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
 						+"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()

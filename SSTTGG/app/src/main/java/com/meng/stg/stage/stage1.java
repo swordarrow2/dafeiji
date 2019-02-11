@@ -38,7 +38,7 @@ public class stage1{
 			  epc.setEnemyCenter(50,419).setColor(EnemyColor.blue).createEnemy();
 			  //	  MainScreen.gameTime=119;
 			  break;
-            case 200:
+            case 370:
 			  //i.update();
 			    epc.setEnemyCenter(193,350).setHp(20000).setEnemyType(EnemyType.Boss).setColor(EnemyColor.blue ).createEnemy();
 			  //      epc.setEnemyCenter(50,419).setHp(1000).setEnemyType(EnemyType.dahudie).createEnemy();

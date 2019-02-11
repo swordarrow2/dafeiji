@@ -126,10 +126,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
     @Override
     public void judge(){
-        if(judgeCircle.contains(BaseMyPlane.instance.objectCenter)){
-            kill();
-            BaseMyPlane.instance.kill();
-		  }
+    
 	  }
 
     @Override
