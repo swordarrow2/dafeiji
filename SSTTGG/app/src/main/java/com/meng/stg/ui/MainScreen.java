@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.*;
 import com.meng.stg.bigFace.item.*;
 import com.meng.stg.boss.*;
@@ -70,6 +71,7 @@ public class MainScreen extends ScreenAdapter{
 				  }
 			  }
 		  }
+		stage.act();
 		stage.draw();
         GameMain.spriteBatch.begin();	
         layoutManager.update();	
@@ -136,7 +138,6 @@ public class MainScreen extends ScreenAdapter{
         fitViewport=new FitViewport(width,height);
         stage=new Stage(fitViewport,GameMain.spriteBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
-
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
         bitmapFont=new BitmapFont(Gdx.files.internal("font/font.fnt"));
@@ -159,7 +160,21 @@ public class MainScreen extends ScreenAdapter{
 			  //     new MyPlaneAlice().init();
 			  break;
 		  }
+
+		Button.ButtonStyle style = new Button.ButtonStyle();
+		style.up=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
+		style.down=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
+		Button button = new Button(style);
+		button.setPosition(10,10);
+		button.addListener(new ClickListener() {
+			  @Override
+			  public void clicked(InputEvent event,float x,float y){
+				  BaseMyPlane.instance.onBomb=true;
+				}
+			});
+        mainGroup.addActor(button);	  
         inputManager=new InputMultiplexer();
+		inputManager.addProcessor(stage);
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
 	  }
