@@ -1,13 +1,11 @@
 package com.meng.stg;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.meng.stg.move.MoveManager;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.meng.stg.helpers.*;
 
-public abstract class BaseGameObject {
+public abstract class BaseGameObject{
 
     public Vector2 objectCenter=new Vector2();
     public Circle judgeCircle;
@@ -20,14 +18,14 @@ public abstract class BaseGameObject {
 
     public void update(){
         ++existTime;
-    }
-	
+	  }
+
 	public void init(){
-	//  image=new Image();//ObjectPools.imagePool.obtain();
-	  image=ObjectPools.imagePool.obtain();
-	}
-	
+		//  image=new Image();//ObjectPools.imagePool.obtain();
+		image=ObjectPools.imagePool.obtain();
+	  }
+
 	public void kill(){
-	  ObjectPools.imagePool.free(image);
-	}
-}
+		ObjectPools.imagePool.free(image);
+	  }
+  }

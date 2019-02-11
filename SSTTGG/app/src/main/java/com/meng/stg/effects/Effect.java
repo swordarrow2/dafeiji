@@ -1,18 +1,13 @@
 package com.meng.stg.effects;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.stg.BaseGameObject;
-import com.meng.stg.helpers.ObjectPools;
-import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.move.MoveManager;
-import com.meng.stg.move.MoveMethodStraight;
-import com.meng.stg.ui.MainScreen;
-
-import java.util.HashSet;
-import java.util.concurrent.LinkedBlockingQueue;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg.*;
+import com.meng.stg.helpers.*;
+import com.meng.stg.ui.*;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class Effect extends BaseGameObject{
 
@@ -44,7 +39,6 @@ public class Effect extends BaseGameObject{
     public void kill(){
         toDelete.add(this);
         image.remove();
-        //	super.kill();
     }
 
     public void update(){
