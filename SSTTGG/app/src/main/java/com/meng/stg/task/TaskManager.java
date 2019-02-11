@@ -9,8 +9,8 @@ import com.meng.stg.planes.enemyPlane.*;
 public class TaskManager{
     private Random ran=new Random();
     private TaskRepeatMode repeatMode;
-    private BaseEnemyPlane enemy;
-    private BaseEnemyBullet bullet;
+    private BaseEnemyPlane enemy=null;
+    private BaseEnemyBullet bullet=null;
     private int holdingTime=0;
     private int addTaskFlag=0;
     private int getTaskFlag=0;

@@ -36,7 +36,13 @@ public abstract class BaseMyBullet extends BaseBullet{
         super.kill();
         toDelete.add(this);
         image.remove();
-    }
+	  }
+
+	@Override
+	public void update(){
+		objectCenter.add(velocity);
+		super.update();
+	  }
 
     public static void updateAll(){
         while(!toDelete.isEmpty()){

@@ -7,6 +7,7 @@ import com.meng.stg.boss.danmaku.Junko.spell1;
 import com.meng.stg.dropItems.DropItemType;
 import com.meng.stg.ui.*;
 import com.meng.stg.task.*;
+import com.meng.stg.dropItems.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
@@ -50,7 +51,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
-		EnemyItem.create(objectCenter.cpy(),DropItemType.power);
+		DropItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossPlaneJunko2().init(objectCenter,10,7000,new Task[]{
 									   new TaskMove(193,250)
 									 });

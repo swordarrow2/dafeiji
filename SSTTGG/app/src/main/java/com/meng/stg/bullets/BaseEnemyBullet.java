@@ -86,6 +86,10 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     public void update(){
         super.update();
         taskManager.update();
+		if(objectCenter.cpy().sub(targetPosition).len2()>10){
+			velocity=targetPosition.cpy().sub(objectCenter).nor().scl(3f);
+            objectCenter.add(velocity);
+		  }
         if(refCount>0){
             if(objectCenter.x<=0){
                 velocity.x=-velocity.x;

@@ -40,7 +40,7 @@ public class DropItem extends BaseGameObject{
         toAdd.add(this);
         existTime=0;
         judgeCircle=new Circle(objectCenter,16);
-        moveManager=new MoveManager(this,new MoveMethodStraight(90,1,new Vector2(0,-1)));
+     //   moveManager=new MoveManager(this,new MoveMethodStraight(90,1,new Vector2(0,-1)));
         objectCenter.set(center);
         this.bulletKillMode=bulletKillMode;
         image.setPosition(center.x,center.y,Align.center);
@@ -143,7 +143,7 @@ public class DropItem extends BaseGameObject{
         }
         switch(bulletKillMode){
             case killWithScorePoint:
-                moveManager.update();
+       //         moveManager.update();
                 objectCenter.add(velocity);
                 break;
             case killWithScorePointAndCollect:

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.*;
 import com.meng.stg.move.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.planes.myPlane.*;
+import com.meng.stg.task.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -211,9 +212,19 @@ public class BulletShooter{
             tmpv.rotate(-allAngle/2);
             for(int i=0;i<ways;i++){
                 if(useRandomCenter){
-                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x+nowCenterX,bulletCenter.y+offset.y+nowCenterY),bf,bc,reflex,through,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+					float finalX=bulletCenter.x+offset.x+nowCenterX;
+					float finalY=bulletCenter.y+offset.y+nowCenterY;
+					Vector2 tmp=tmpv.cpy().scl(1000);
+                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,reflex,through,new Task[]{
+										   new TaskMove(tmp.x+finalX,tmp.y+finalY)
+										 });
 				  }else{
-                    EnemyBullet.create(new Vector2(bulletCenter.x+offset.x,bulletCenter.y+offset.y),bf,bc,reflex,through,new MoveMethodStraight(inFrame,0,tmpv.cpy()));
+					float finalX=bulletCenter.x+offset.x;
+					float finalY=bulletCenter.y+offset.y;
+					  Vector2 tmp=tmpv.cpy().scl(1000);
+					  EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,reflex,through,new Task[]{
+											 new TaskMove(tmp.x+finalX,tmp.y+finalY)
+										   });
 				  }
                 tmpv.rotate(waysDegree);
 			  }

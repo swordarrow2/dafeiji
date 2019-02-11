@@ -7,6 +7,7 @@ import com.meng.stg.effects.EffectType;
 
 import java.util.*;
 import java.util.concurrent.*;
+import com.meng.stg.effects.*;
 
 public  class BulletRemover extends BaseGameObject{
 

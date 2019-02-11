@@ -2,10 +2,8 @@ package com.meng.stg.stage;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.move.*;
-import com.meng.stg.planes.enemyPlane.normal.EnemyColor;
-import com.meng.stg.planes.enemyPlane.normal.EnemyPlaneCreator;
-import com.meng.stg.planes.enemyPlane.normal.EnemyType;
+import com.meng.stg.planes.enemyPlane.normal.*;
+import com.meng.stg.task.*;
 import com.meng.stg.ui.*;
 
 public class stage1{
@@ -20,10 +18,14 @@ public class stage1{
         switch(MainScreen.gameTime){
             case 30:
 			  // MainScreen.gameTime=1;
-			  EnemyBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
+			  EnemyBullet.create(new Vector2(270,400),BulletForm.lindan,BulletColor.blue,0,0,new Task[]{
+									 new TaskMove(193,250)
+								   });
 			  break;
             case 60:
-			  EnemyBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,0,new MoveMethodStraight(1,10,new Vector2(0,-1)));
+			  EnemyBullet.create(new Vector2(70,400),BulletForm.huanyu,BulletColor.grayAndRed,0,0,new Task[]{
+									 new TaskMove(193,250)
+								   });
 			  break;
             case 120:
 			  epc.setHp(200).setEnemyCenter(270,419).setColor(EnemyColor.red).createEnemy();

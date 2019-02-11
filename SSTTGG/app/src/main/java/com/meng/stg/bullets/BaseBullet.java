@@ -24,7 +24,7 @@ public abstract class BaseBullet extends BaseGameObject{
 
     public void update(){
         super.update();
-        objectCenter.add(velocity);
+    //    
         image.setRotation(getRotationDegree());
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);

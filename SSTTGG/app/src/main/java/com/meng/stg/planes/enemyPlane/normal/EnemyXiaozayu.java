@@ -83,7 +83,9 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new MoveMethodStraight());
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new Task[]{
+									   new TaskMove(193,250)
+									 });
                 vel.rotate(30);
             }
         }

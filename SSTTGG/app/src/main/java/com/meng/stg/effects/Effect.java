@@ -32,7 +32,6 @@ public class Effect extends BaseGameObject{
         toAdd.add(this);
         existTime=0;
         judgeCircle=new Circle(objectCenter,16);
-        moveManager=new MoveManager(this,new MoveMethodStraight(90,1,new Vector2(0,-1)));
         objectCenter.set(center);
         image.setPosition(center.x,center.y,Align.center);
         effectType=type;
