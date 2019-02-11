@@ -4,7 +4,7 @@ import com.meng.stg.boss.*;
 import com.meng.stg.boss.danmaku.*;
 import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.task.TaskManager;
-import com.meng.stg.task.TaskMode;
+import com.meng.stg.task.TaskRepeatMode;
 import com.meng.stg.task.TaskRunnable;
 
 public class spell1 extends BaseSpellCard{
@@ -14,7 +14,7 @@ public class spell1 extends BaseSpellCard{
 	public void init(BaseBossPlane b){
 		spellName="「掌上的纯光」";
         boss=b;
-		boss.taskManager=new TaskManager(b,TaskMode.repeatLast);
+		boss.taskManager=new TaskManager(b,TaskRepeatMode.repeatLast);
 		waitFrameSpell=120;
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()

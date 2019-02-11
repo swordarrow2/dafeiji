@@ -31,6 +31,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public String objectName="";
     public boolean flip=false;
     public int[][] animNum;
+	
+	public Vector2 targetPosition=new Vector2();
 
     public BulletShooter bulletShooter;
     public TaskManager taskManager;
@@ -61,6 +63,11 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return hp;
     }
 
+	public void moveTo(float x,float y){
+        targetPosition.x=x;
+        targetPosition.y=y;
+	  }
+	
     public void hit(float bulletDamage){
         if(hp<1){
             kill();
@@ -115,6 +122,10 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         animFlag++;
 
         objectCenter.add(velocity);
+		
+		if(objectCenter.cpy().sub(targetPosition).len2()>10){
+            objectCenter.add(targetPosition.cpy().sub(objectCenter).nor().scl(3f));
+		  }
         anim();
         shoot();
 
@@ -126,6 +137,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         }else{
             judge();
         }
+		
     }
 
     private void anim(){

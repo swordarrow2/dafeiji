@@ -1,6 +1,6 @@
 package com.meng.stg.task;
 
-public enum TaskMode{
+public enum TaskRepeatMode{
     repeatAll,
     repeatLast,
     noRepeat

@@ -11,7 +11,7 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     public static BaseBossPlane instence;
     public BaseNormalDanmaku normalDanmaku;
     public BaseSpellCard spellCard;
-    public Vector2 targetPosition=new Vector2();
+    
 
     @Override
     public abstract Vector2 getSize();
@@ -32,17 +32,10 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
         super.kill();
     }
 
-    public void moveTo(float x,float y){
-        targetPosition.x=x;
-        targetPosition.y=y;
-    }
-
     @Override
     public void update(){
         super.update();
-        if(objectCenter.cpy().sub(targetPosition).len2()>10){
-            objectCenter.add(targetPosition.cpy().sub(objectCenter).nor().scl(3f));
-        }
+        
     }
 
 

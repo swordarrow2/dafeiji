@@ -7,6 +7,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.meng.stg.task.*;
 
 /**
  * Created by Administrator on 2019/1/25.
@@ -43,6 +44,7 @@ public class BulletShooter{
     private boolean useRandomDegree=false;
     private float randomDegree=0;
     private Random ran=new Random();
+	private Task[] task=new Task[]{ };
     private BulletStyle bulletStyle=BulletStyle.normal;
 
     public BulletShooter(){

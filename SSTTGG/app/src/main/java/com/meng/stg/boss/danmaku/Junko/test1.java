@@ -2,7 +2,7 @@ package com.meng.stg.boss.danmaku.Junko;
 
 import com.meng.stg.boss.BaseBossPlane;
 import com.meng.stg.task.TaskManager;
-import com.meng.stg.task.TaskMode;
+import com.meng.stg.task.TaskRepeatMode;
 import com.meng.stg.task.TaskMove;
 import com.meng.stg.task.TaskShoot;
 import com.meng.stg.task.TaskWait;
@@ -17,7 +17,7 @@ public class test1 extends BaseNormalDanmaku{
 
     public void init(BaseBossPlane b){
         boss=b;
-        tm=new TaskManager(b,TaskMode.repeatAll);
+        tm=new TaskManager(b,TaskRepeatMode.repeatAll);
         shooters=new BulletShooter[]{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)

@@ -8,18 +8,22 @@ import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.task.*;
 
 public class EnemyBullet extends BaseEnemyBullet{
 
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,int through){
-        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,through);
+    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,int through,Task[] task){
+        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,through,task);
     }
 
-    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,int though){
+    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,int though,Task[] task){
         super.init();
+		for(Task t:task){
+		  taskManager.addTask(t);
+		}
         refCount=ref;
         thoughCount=though;
         objectCenter.set(center);

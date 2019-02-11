@@ -76,6 +76,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     @Override
     public void update(){
         super.update();
+		taskManager.update();
         if(refCount>0){
             if(objectCenter.x<=0){
                 velocity.x=-velocity.x;
