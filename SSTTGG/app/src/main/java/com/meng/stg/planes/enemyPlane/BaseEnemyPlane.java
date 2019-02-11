@@ -7,15 +7,12 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveManager;
 import com.meng.stg.planes.MoveStatus;
 import com.meng.stg.planes.enemyPlane.normal.EnemyColor;
-import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public abstract class BaseEnemyPlane extends BaseGameObject{
 
@@ -37,13 +34,13 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public BulletShooter bulletShooter;
 	public Vector2 targetPosition=new Vector2();
 	
-	public TaskManager tm;
+	public TaskManager taskManager;
 	
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] task){
         super.init();
-		tm=new TaskManager(this,TaskMode.noRepeat);
+		taskManager=new TaskManager(this,TaskRepeatMode.noRepeat);
 		for(Task t:task){
-		  tm.addTask(t);
+		  taskManager.addTask(t);
 		}
         this.everyAnimFrameTime=everyAnimFrameTime;
         objectName="zayu";
@@ -126,7 +123,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         super.update();
         time++;
         animFlag++;
-        tm.update();
+        taskManager.update();
 
         anim();
         shoot();
@@ -180,10 +177,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     }
 
     public void judge(){
-        if(getCollisionArea().contains(BaseMyPlane.instance.objectCenter)){
-            hit(10.5f);
-            BaseMyPlane.instance.kill();
-        }
+
     }
 
 }

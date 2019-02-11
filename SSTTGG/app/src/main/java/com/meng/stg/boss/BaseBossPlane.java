@@ -3,10 +3,9 @@ package com.meng.stg.boss;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.boss.danmaku.BaseSpellCard;
-import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.ui.*;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public abstract class BaseBossPlane extends BaseEnemyPlane{
 

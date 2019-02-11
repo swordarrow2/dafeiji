@@ -5,10 +5,9 @@ import com.meng.stg.boss.*;
 import com.meng.stg.boss.danmaku.Junko.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 import com.badlogic.gdx.graphics.*;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public class BossPlaneJunko2 extends BaseBossPlane{
 

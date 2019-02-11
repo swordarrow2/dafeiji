@@ -1,7 +1,7 @@
 package com.meng.stg.boss.danmaku.Junko;
 
 import com.meng.stg.boss.*;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 import com.meng.stg.boss.danmaku.*;
 import com.meng.stg.bullets.enemy.*;
 
@@ -12,7 +12,7 @@ public class spell1 extends BaseSpellCard{
 	public void init(BaseBossPlane b){
 		spellName="「掌上的纯光」";
         boss=b;
-		tm=new TaskManager(b,TaskMode.repeatLast);
+		tm=new TaskManager(b,TaskRepeatMode.repeatLast);
 		waitFrameSpell=120;
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()

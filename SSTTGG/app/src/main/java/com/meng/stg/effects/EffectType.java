@@ -1,4 +1,4 @@
-package com.meng.stg.effects.enemy;
+package com.meng.stg.effects;
 
 public enum EffectType{
     explore

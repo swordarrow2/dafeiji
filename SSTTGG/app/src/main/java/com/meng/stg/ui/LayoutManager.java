@@ -6,8 +6,8 @@ import com.meng.stg.bigFace.*;
 import com.meng.stg.boss.*;
 import com.meng.stg.bullets.*;
 import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.effects.*;
-import com.meng.stg.item.*;
+import com.meng.stg.dropItems.*;
+import com.meng.stg.effects.Effect;
 import com.meng.stg.planes.myPlane.*;
 import java.util.*;
 
@@ -26,10 +26,10 @@ public class LayoutManager{
 	  
 	public void update(){
 		BulletShooter.updateAll();
-        BaseItem.updateAll();
+        DropItem.updateAll();
         BaseMyBullet.updateAll();
         BaseEnemyBullet.updateAll();
-        BaseEffect.updateAll();
+        Effect.updateAll();
         BulletRemover.updateAll();
         BaseBigFace.updateAll();
         BaseMyPlane.instance.update();

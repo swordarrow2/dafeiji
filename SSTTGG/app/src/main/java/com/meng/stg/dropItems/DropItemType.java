@@ -1,6 +1,6 @@
-package com.meng.stg.item.item;
+package com.meng.stg.dropItems;
 
-public enum ItemType{
+public enum DropItemType{
     power, //500
     powerBig,//504
     point,//502

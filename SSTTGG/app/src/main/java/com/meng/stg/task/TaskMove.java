@@ -1,4 +1,4 @@
-package com.meng.stg.boss.bossTask;
+package com.meng.stg.task;
 
 public class TaskMove extends Task{
 	

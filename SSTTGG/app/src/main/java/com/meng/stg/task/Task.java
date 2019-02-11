@@ -1,4 +1,4 @@
-package com.meng.stg.boss.bossTask;
+package com.meng.stg.task;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.bullets.enemy.*;

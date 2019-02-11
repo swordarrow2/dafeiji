@@ -2,15 +2,11 @@ package com.meng.stg.boss.plane;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg.boss.*;
-import com.meng.stg.boss.danmaku.Junko.test1;
-import com.meng.stg.bullets.BaseEnemyBullet;
-import com.meng.stg.move.*;
 import com.meng.stg.boss.danmaku.Junko.normal1;
 import com.meng.stg.boss.danmaku.Junko.spell1;
+import com.meng.stg.dropItems.DropItemType;
 import com.meng.stg.ui.*;
-import com.meng.stg.item.item.*;
-import com.badlogic.gdx.graphics.*;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
@@ -54,7 +50,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
-		EnemyItem.create(objectCenter.cpy(),ItemType.power);
+		EnemyItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossPlaneJunko2().init(objectCenter,10,7000,new Task[]{
 									   new TaskMove(193,250)
 									 });

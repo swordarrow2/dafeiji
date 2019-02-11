@@ -1,7 +1,7 @@
 package com.meng.stg.boss.danmaku;
 
 import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.boss.bossTask.TaskManager;
+import com.meng.stg.task.TaskManager;
 import com.meng.stg.bullets.enemy.BulletShooter;
 
 public abstract class BaseSpellCard{

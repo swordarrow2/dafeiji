@@ -2,9 +2,7 @@ package com.meng.stg.planes.enemyPlane.normal;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.boss.plane.BossPlaneJunko;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveGradually;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public class EnemyPlaneCreator{
     private EnemyType enemyType=EnemyType.xiaozayu;

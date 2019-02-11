@@ -6,10 +6,9 @@ import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.EnemyBullet;
-import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
-import com.meng.stg.boss.bossTask.*;
+import com.meng.stg.task.*;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
 
