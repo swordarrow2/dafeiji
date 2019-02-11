@@ -2,16 +2,12 @@ package com.meng.stg.planes.enemyPlane.normal;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg.boss.plane.BossPlaneJunko;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveGradually;
 
 public class EnemyPlaneCreator{
     private EnemyType enemyType=EnemyType.xiaozayu;
     private Vector2 enemyCenter=Vector2.Zero;
     private int hp=10;
     private EnemyColor enemyColor=EnemyColor.red;
-	
-    private BaseMoveMethod[] moveMethods=new BaseMoveMethod[]{new MoveGradually(90,1,new Vector2(0,-7f),new Vector2(1,-0.1f))};
 
     public EnemyPlaneCreator(){
     }
@@ -23,11 +19,6 @@ public class EnemyPlaneCreator{
 
     public EnemyPlaneCreator setHp(int hp){
         this.hp=hp;
-        return this;
-    }
-
-    public EnemyPlaneCreator setMoveMethods(BaseMoveMethod... moveMethods){
-        this.moveMethods=moveMethods;
         return this;
     }
 
@@ -49,13 +40,13 @@ public class EnemyPlaneCreator{
     public void createEnemy(){
         switch(enemyType){
             case xiaozayu:
-			  new EnemyXiaozayu().init(enemyCenter.cpy(),enemyColor,5,hp,moveMethods);
+                new EnemyXiaozayu().init(enemyCenter.cpy(),enemyColor,5,hp);
                 break;
             case dahudie:
-			  new EnemyDahudie().init(enemyCenter.cpy(),5,enemyColor,hp,moveMethods);
+                new EnemyDahudie().init(enemyCenter.cpy(),5,enemyColor,hp);
                 break;
             case Boss:
-			  new BossPlaneJunko().init(enemyCenter.cpy(),10,hp,moveMethods);
+                new BossPlaneJunko().init(enemyCenter.cpy(),10,hp);
                 break;
         }
     }

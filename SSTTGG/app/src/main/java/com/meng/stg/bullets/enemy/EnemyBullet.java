@@ -7,8 +7,6 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.bullets.BaseEnemyBullet;
 import com.meng.stg.helpers.ObjectPools;
 import com.meng.stg.helpers.ResourcesManager;
-import com.meng.stg.move.BaseMoveMethod;
-import com.meng.stg.move.MoveManager;
 import com.meng.stg.ui.MainScreen;
 
 public class EnemyBullet extends BaseEnemyBullet{
@@ -16,16 +14,15 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,int through,BaseMoveMethod... mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,through,mm);
+    public static void create(Vector2 center,BulletForm bf,BulletColor bc,int ref,int through){
+        ObjectPools.enemyBulletPool.obtain().init(center,bf,bc,ref,through);
     }
 
-    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,int though,BaseMoveMethod... mm){
+    public void init(Vector2 center,BulletForm bf,BulletColor bc,int ref,int though){
         super.init();
         refCount=ref;
         thoughCount=though;
         objectCenter.set(center);
-        moveManager=new MoveManager(this,mm);
         image.setPosition(center.x,center.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getWidth()/2);
         switch(bc){

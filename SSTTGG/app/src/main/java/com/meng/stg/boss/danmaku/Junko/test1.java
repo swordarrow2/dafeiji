@@ -1,11 +1,11 @@
 package com.meng.stg.boss.danmaku.Junko;
 
 import com.meng.stg.boss.BaseBossPlane;
-import com.meng.stg.boss.bossTask.TaskManager;
-import com.meng.stg.boss.bossTask.TaskMode;
-import com.meng.stg.boss.bossTask.TaskMove;
-import com.meng.stg.boss.bossTask.TaskShoot;
-import com.meng.stg.boss.bossTask.TaskWait;
+import com.meng.stg.task.TaskManager;
+import com.meng.stg.task.TaskMode;
+import com.meng.stg.task.TaskMove;
+import com.meng.stg.task.TaskShoot;
+import com.meng.stg.task.TaskWait;
 import com.meng.stg.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;

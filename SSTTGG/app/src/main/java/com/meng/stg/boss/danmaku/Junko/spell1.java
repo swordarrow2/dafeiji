@@ -1,9 +1,11 @@
 package com.meng.stg.boss.danmaku.Junko;
 
 import com.meng.stg.boss.*;
-import com.meng.stg.boss.bossTask.*;
 import com.meng.stg.boss.danmaku.*;
 import com.meng.stg.bullets.enemy.*;
+import com.meng.stg.task.TaskManager;
+import com.meng.stg.task.TaskMode;
+import com.meng.stg.task.TaskRunnable;
 
 public class spell1 extends BaseSpellCard{
 
@@ -12,7 +14,7 @@ public class spell1 extends BaseSpellCard{
 	public void init(BaseBossPlane b){
 		spellName="「掌上的纯光」";
         boss=b;
-		tm=new TaskManager(b,TaskMode.repeatLast);
+		boss.taskManager=new TaskManager(b,TaskMode.repeatLast);
 		waitFrameSpell=120;
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()
@@ -24,14 +26,14 @@ public class spell1 extends BaseSpellCard{
 			.setWaysDegree(72)
 			.setBulletSpeed(3)
 		  };
-		tm.addTask(new TaskRunnable(new Runnable(){
+		boss.taskManager.addTask(new TaskRunnable(new Runnable(){
 						 @Override
 						 public void run(){
-							 for(int i=0;i<shooters.length;++i){
-								 shooters[i].shoot();
-								 shooters[i].bulletVelocity.rotate(ro);
+							 for(BulletShooter shooter : shooters){
+								 shooter.shoot();
+								 shooter.bulletVelocity.rotate(ro);
 								 ro+=0.15f;
-							   }
+							 }
 						   }
 					   }));
 	  }
@@ -44,7 +46,7 @@ public class spell1 extends BaseSpellCard{
 			return;
 		  }
 		frame++;
-		tm.update();
+		boss.taskManager.update();
 	  }
 
   }
