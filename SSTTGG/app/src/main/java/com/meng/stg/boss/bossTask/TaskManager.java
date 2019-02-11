@@ -9,20 +9,20 @@ import com.meng.stg.planes.enemyPlane.*;
 public class TaskManager{
     private Random ran=new Random();
     private TaskMode mode;
-    private BaseEnemyPlane boss;
+    private BaseEnemyPlane enemy;
     private int holdingTime=0;
     private int addTaskFlag=0;
     private int getTaskFlag=0;
-    private HashMap<Integer,Task> bossTask;
+    private HashMap<Integer,Task> enemyTask;
 
-    public TaskManager(BaseEnemyPlane boss,TaskMode mode){
+    public TaskManager(BaseEnemyPlane enemy,TaskMode mode){
         this.mode=mode;
-        this.boss=boss;
-        bossTask=new HashMap<>();
+        this.enemy=enemy;
+        enemyTask=new HashMap<>();
     }
 
     public void addTask(Task t){
-        bossTask.put(addTaskFlag,t);
+        enemyTask.put(addTaskFlag,t);
         addTaskFlag++;
     }
 
@@ -30,8 +30,8 @@ public class TaskManager{
         switch(mode){
             case repeatAll:
                 if(getTaskFlag<addTaskFlag){
-                    if(bossTask.get(getTaskFlag).holdingTime-holdingTime>0){
-                        doTask(bossTask.get(getTaskFlag));
+                    if(enemyTask.get(getTaskFlag).holdingTime-holdingTime>0){
+                        doTask(enemyTask.get(getTaskFlag));
                     }else{
                         holdingTime=0;
                         getTaskFlag++;
@@ -43,8 +43,8 @@ public class TaskManager{
                 break;
             case repeatLast:
                 if(getTaskFlag<addTaskFlag){
-                    if(bossTask.get(getTaskFlag).holdingTime-holdingTime>0){
-                        doTask(bossTask.get(getTaskFlag));
+                    if(enemyTask.get(getTaskFlag).holdingTime-holdingTime>0){
+                        doTask(enemyTask.get(getTaskFlag));
                     }else{
                         holdingTime=0;
                         getTaskFlag++;
@@ -56,8 +56,8 @@ public class TaskManager{
                 break;
             case noRepeat:
                 if(getTaskFlag<addTaskFlag){
-                    if(bossTask.get(getTaskFlag).holdingTime-holdingTime>0){
-                        doTask(bossTask.get(getTaskFlag));
+                    if(enemyTask.get(getTaskFlag).holdingTime-holdingTime>0){
+                        doTask(enemyTask.get(getTaskFlag));
                     }else{
                         holdingTime=0;
                         getTaskFlag++;
@@ -72,9 +72,9 @@ public class TaskManager{
     public void doTask(Task t){
         if(t instanceof TaskMove){
             if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
-                boss.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
+                enemy.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
             }else{
-                boss.moveTo(t.targetPosition.x,t.targetPosition.y);
+                enemy.moveTo(t.targetPosition.x,t.targetPosition.y);
             }
         }else if(t instanceof TaskShoot){
             for(int i=0;i<t.bulletShooter.length;++i){
