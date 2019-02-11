@@ -15,7 +15,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
 		  {10,14},
 		  {5,9}
 	  };
-    int wf=200;
+	private int wf=200;
 
     @Override
     public void update(){
@@ -34,9 +34,9 @@ public class BossPlaneJunko2 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.nextPart.add(new partAgent(5500,Color.YELLOW));
-		MainScreen.instence.nextPart.add(new partAgent(3500,Color.ORANGE));
-		MainScreen.instence.nextPart.add(new partAgent(1200,Color.RED));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(5500,Color.YELLOW));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(3500,Color.ORANGE));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(1200,Color.RED));
 	  }
 
     @Override

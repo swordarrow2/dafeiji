@@ -20,7 +20,7 @@ public class partAgent{
 	public partAgent(float hp){
 		this.hp=hp;
 		Pixmap p=new Pixmap(5,5,Pixmap.Format.RGBA8888);
-		p.setColor(Color.ORANGE);
+		p.setColor(Color.PURPLE);
 		p.fill();
 	  	ima=new Image(new Texture(p));
 		positionX=hp/MainScreen.instence.bossMaxHp*386;

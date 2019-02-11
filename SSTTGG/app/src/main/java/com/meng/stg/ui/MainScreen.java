@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.*;
-import com.meng.stg.bigFace.*;
 import com.meng.stg.bigFace.item.*;
 import com.meng.stg.boss.*;
 import com.meng.stg.bullets.*;
@@ -18,7 +17,6 @@ import com.meng.stg.planes.*;
 import com.meng.stg.planes.enemyPlane.*;
 import com.meng.stg.planes.myPlane.*;
 import com.meng.stg.stage.*;
-import java.util.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -38,12 +36,10 @@ public class MainScreen extends ScreenAdapter{
     public static int sleep=0;
     public static boolean onSpellCard=false;
     static int spellHeight=450;
-	public Pixmap bossLife;
 
 	public float bossMaxHp=1;
 
-	public ArrayList<partAgent> nextPart=new ArrayList<partAgent>();
-
+	public LayoutManager layoutManager;
     @Override
     public void show(){
         init();
@@ -74,28 +70,9 @@ public class MainScreen extends ScreenAdapter{
 				  }
 			  }
 		  }
-
-        stage.draw();
-        BulletShooter.updateAll();
-        com.meng.stg.item.BaseItem.updateAll();
-        com.meng.stg.bullets.BaseMyBullet.updateAll();
-        com.meng.stg.bullets.BaseEnemyBullet.updateAll();
-        com.meng.stg.effects.BaseEffect.updateAll();
-        BulletRemover.updateAll();
-        BaseBigFace.updateAll();
-        BaseMyPlane.instance.update();
-        GameMain.spriteBatch.begin();
-
-		if(BaseBossPlane.instence!=null&&BaseBossPlane.instence.hp>0){
-			Image i=new Image(new Texture(bossLife));
-			i.setWidth(BaseBossPlane.instence.hp/bossMaxHp*386);
-			i.setPosition(0,450);
-			i.draw(GameMain.spriteBatch,1);
-			for(partAgent p:nextPart){
-				p.update();
-			  }
-		  }
-
+		stage.draw();
+        GameMain.spriteBatch.begin();	
+        layoutManager.update();	
         if(onSpellCard){
             GlyphLayout glyphLayout=new GlyphLayout();
             glyphLayout.setText(bitmapFont,BaseBossPlane.instence.spellCard.spellName);
@@ -110,15 +87,8 @@ public class MainScreen extends ScreenAdapter{
                         "MaxPoint:"+BaseMyPlane.instance.maxPoint
                         +"\nmiss:"+BaseMyPlane.instance.miss/2+"\n"
                         +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
-                        //            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
+						+"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
                         +isKilled()
-						//	+"\nAcce"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Accelerometer)+"\nCom;"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Compass)+"\nhard:"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.HardwareKeyboard)+"\nmul:"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen)+"\non"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.OnscreenKeyboard)+"\nVib"
-						//	+Gdx.input.isPeripheralAvailable(Peripheral.Vibrator)
 						,10,590);
         switch(stageFlag){
             case Data.stageFlagStage1:
@@ -160,14 +130,13 @@ public class MainScreen extends ScreenAdapter{
         BaseMyBullet.instances.clear();
         BaseMyBullet.toAdd.clear();
         BaseMyBullet.toDelete.clear();
+		layoutManager=new LayoutManager();
         width=386;//540;//386;
         height=600;//720;//450;
         fitViewport=new FitViewport(width,height);
         stage=new Stage(fitViewport,GameMain.spriteBatch);
         Pixmap pixmap=new Pixmap(1,1,Format.RGBA8888);
-		bossLife=new Pixmap(386,5,Format.RGBA8888);
-		bossLife.setColor(Color.WHITE);
-		bossLife.fill();
+
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
         bitmapFont=new BitmapFont(Gdx.files.internal("font/font.fnt"));

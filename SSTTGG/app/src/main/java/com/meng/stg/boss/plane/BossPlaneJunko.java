@@ -45,7 +45,7 @@ public class BossPlaneJunko extends BaseBossPlane{
         normalDanmaku.init(this);
 		spellCard=new spell1();
 		spellCard.init(this);
-		MainScreen.instence.nextPart.add(new partAgent(4000));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(4000));
 	  }
 
 	@Override
