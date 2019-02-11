@@ -1,4 +1,4 @@
-package com.meng.stg.task;
+package com.meng.stg.boss.bossTask;
 
 public class TaskWait extends Task{
 	public TaskWait(int holdingTime){

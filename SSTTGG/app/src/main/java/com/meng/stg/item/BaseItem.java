@@ -1,20 +1,21 @@
 package com.meng.stg.item;
 
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Shape2D;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletKillMode;
-import com.meng.stg.helpers.ObjectPools;
-import com.meng.stg.helpers.ResourcesManager;
+import com.meng.stg.item.item.ItemType;
+import com.meng.stg.move.MoveManager;
+import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.ui.MainScreen;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class BaseItem extends BaseGameObject{
+public abstract class BaseItem extends BaseGameObject{
 
     public static HashSet<BaseItem> instances=new HashSet<BaseItem>();
     public static LinkedBlockingQueue<BaseItem> toDelete=new LinkedBlockingQueue<BaseItem>();
@@ -22,114 +23,20 @@ public class BaseItem extends BaseGameObject{
 
     public BulletKillMode bulletKillMode;
     public ItemType itemType;
-    private int DrawableNumber=0;
 
-    public static void create(Vector2 cpy,ItemType power){
-        create(cpy,power,BulletKillMode.killWithScorePoint);
-    }
-
-    public static void create(Vector2 center,ItemType bf,BulletKillMode bkm){
-        ObjectPools.itemPool.obtain().init(center,bf,bkm);
-    }
-
-    public void init(Vector2 center,ItemType bf,BulletKillMode bkm){
+    public void init(){
         super.init();
         bulletKillMode=BulletKillMode.killWithNothing;
         toAdd.add(this);
         existTime=0;
         judgeCircle=new Circle(objectCenter,16);
-        objectCenter.set(center);
-        bulletKillMode=bkm;
-        image.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(objectCenter,image.getWidth()/2);
-        itemType=bf;
-        switch(bf){
-            case power:
-                DrawableNumber=500;
-                size=new Vector2(16,16);
-                break;
-            case powerBig:
-                DrawableNumber=504;
-                size=new Vector2(32,32);
-                break;
-            case point:
-                DrawableNumber=502;
-                size=new Vector2(16,16);
-                break;
-            case player:
-                DrawableNumber=508;
-                size=new Vector2(32,32);
-                break;
-            case playerFragment:
-                DrawableNumber=506;
-                size=new Vector2(32,32);
-                break;
-            case bomb:
-                DrawableNumber=512;
-                size=new Vector2(32,32);
-                break;
-            case bombFragment:
-                DrawableNumber=510;
-                size=new Vector2(32,32);
-                break;
-            case powerFull:
-                DrawableNumber=514;
-                size=new Vector2(32,32);
-                break;
-            case powerPointer:
-                DrawableNumber=501;
-                size=new Vector2(16,16);
-                break;
-            case powerBigPointer:
-                DrawableNumber=505;
-                size=new Vector2(32,32);
-                break;
-            case pointPointer:
-                DrawableNumber=503;
-                size=new Vector2(16,16);
-                break;
-            case playerPointer:
-                DrawableNumber=509;
-                size=new Vector2(32,32);
-                break;
-            case playerFragmentPointer:
-                DrawableNumber=507;
-                size=new Vector2(32,32);
-                break;
-            case bombPointer:
-                DrawableNumber=513;
-                size=new Vector2(32,32);
-                break;
-            case bombFragmentPointer:
-                DrawableNumber=511;
-                size=new Vector2(32,32);
-                break;
-            case powerFullPointer:
-                DrawableNumber=515;
-                size=new Vector2(32,32);
-                break;
-            case highScoreSmall:
-                DrawableNumber=516;
-                size=new Vector2(16,16);
-                break;
-            case highScoreMediam:
-                DrawableNumber=517;
-                size=new Vector2(16,16);
-                break;
-            case highScoreLarge:
-                DrawableNumber=518;
-                size=new Vector2(16,16);
-                break;
-        }
-        image.setSize(size.x,size.y);
-        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        moveManager=new MoveManager(this,new MoveMethodStraight(90,1,new Vector2(0,-1)));
     }
 
     public void kill(){
         toDelete.add(this);
         image.remove();
+        //	super.kill();
     }
 
     public void update(){
@@ -139,7 +46,7 @@ public class BaseItem extends BaseGameObject{
         }
         switch(bulletKillMode){
             case killWithScorePoint:
-
+                moveManager.update();
                 objectCenter.add(velocity);
                 break;
             case killWithScorePointAndCollect:
@@ -172,12 +79,11 @@ public class BaseItem extends BaseGameObject{
         }
     }
 
-    public Drawable getDrawable(){
-        if(drawable==null){
-            drawable=ResourcesManager.textures.get("item"+DrawableNumber);
-        }
-        return drawable;
+    public Shape2D getCollisionArea(){
+        return judgeCircle;
     }
+
+    public abstract Drawable getDrawable();
 
     public void judge(){
         Vector2 v=BaseMyPlane.instance.objectCenter.cpy();
@@ -234,4 +140,5 @@ public class BaseItem extends BaseGameObject{
         }
     }
 
+    public abstract Vector2 getSize();
 }

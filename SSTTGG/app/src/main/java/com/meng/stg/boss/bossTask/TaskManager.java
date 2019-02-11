@@ -1,4 +1,4 @@
-package com.meng.stg.task;
+package com.meng.stg.boss.bossTask;
 
 import com.meng.stg.boss.BaseBossPlane;
 
@@ -7,14 +7,14 @@ import java.util.Random;
 
 public class TaskManager{
     private Random ran=new Random();
-    private TaskRepeatMode mode;
+    private TaskMode mode;
     private BaseBossPlane boss;
     private int holdingTime=0;
     private int addTaskFlag=0;
     private int getTaskFlag=0;
     private HashMap<Integer,Task> bossTask;
 
-    public TaskManager(BaseBossPlane boss,TaskRepeatMode mode){
+    public TaskManager(BaseBossPlane boss,TaskMode mode){
         this.mode=mode;
         this.boss=boss;
         bossTask=new HashMap<>();

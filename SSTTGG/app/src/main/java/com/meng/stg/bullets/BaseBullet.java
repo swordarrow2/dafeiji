@@ -8,7 +8,6 @@ import com.meng.stg.BaseGameObject;
 
 public abstract class BaseBullet extends BaseGameObject{
 
-	public Vector2 velocity=new Vector2();
 
     public void init(){
         super.init();
@@ -17,11 +16,11 @@ public abstract class BaseBullet extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         existTime=0;
-	  }
+    }
 
     public void kill(){
         //	super.kill();
-	  }
+    }
 
     public void update(){
         super.update();
@@ -32,15 +31,15 @@ public abstract class BaseBullet extends BaseGameObject{
         judgeCircle.setPosition(objectCenter);
         if(judgeCircle.x<-5||judgeCircle.x>390||judgeCircle.y<-5||judgeCircle.y>460){
             kill();
-		  }else{
+        }else{
             judge();
-		  }
-	  }
+        }
+    }
 
 
     public Shape2D getCollisionArea(){
         return judgeCircle;
-	  }
+    }
 
     public abstract Drawable getDrawable();
 
@@ -49,4 +48,4 @@ public abstract class BaseBullet extends BaseGameObject{
     public abstract float getRotationDegree();
 
     public abstract Vector2 getSize();
-  }
+}

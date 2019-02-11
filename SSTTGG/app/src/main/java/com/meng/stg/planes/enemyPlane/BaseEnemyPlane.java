@@ -7,10 +7,11 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.stg.BaseGameObject;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.helpers.ResourcesManager;
+import com.meng.stg.move.BaseMoveMethod;
+import com.meng.stg.move.MoveManager;
 import com.meng.stg.planes.MoveStatus;
 import com.meng.stg.planes.enemyPlane.normal.EnemyColor;
 import com.meng.stg.planes.myPlane.BaseMyPlane;
-import com.meng.stg.task.TaskManager;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
@@ -31,13 +32,10 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public String objectName="";
     public boolean flip=false;
     public int[][] animNum;
-	
-	public Vector2 targetPosition=new Vector2();
 
     public BulletShooter bulletShooter;
-    public TaskManager taskManager;
 
-    public void init(Vector2 center,int everyAnimFrameTime,int hp){
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
         super.init();
         this.everyAnimFrameTime=everyAnimFrameTime;
         objectName="zayu";
@@ -48,6 +46,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.setRotation(0);
         image.setSize(size.x,size.y);
         judgeCircle=new Circle(objectCenter,image.getWidth()/4);
+        moveManager=new MoveManager(this,bmm);
         MainScreen.mainGroup.addActor(image);
         for(int i=0;i<32;i++){
             if(enemys[i]==null){
@@ -63,20 +62,15 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         return hp;
     }
 
-	public void moveTo(float x,float y){
-        targetPosition.x=x;
-        targetPosition.y=y;
-	  }
-	
     public void hit(float bulletDamage){
         if(hp<1){
             kill();
         }else{
             if(MainScreen.onSpellCard){
-                hp=hp-bulletDamage/7;
-            }else{
-                hp-=bulletDamage;
-            }
+				hp=hp-bulletDamage/7;
+			}else{
+				hp-=bulletDamage;
+			}
         }
     }
 
@@ -120,12 +114,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         super.update();
         time++;
         animFlag++;
+        moveManager.update();
 
         objectCenter.add(velocity);
-		
-		if(objectCenter.cpy().sub(targetPosition).len2()>10){
-            objectCenter.add(targetPosition.cpy().sub(objectCenter).nor().scl(3f));
-		  }
         anim();
         shoot();
 
@@ -137,7 +128,6 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         }else{
             judge();
         }
-		
     }
 
     private void anim(){
@@ -150,7 +140,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         }else{
             setStatus(MoveStatus.stay);
         }
-        if(time >= everyAnimFrameTime){
+        if(time>=everyAnimFrameTime){
             ++curFrameNumber;
             time=0;
         }

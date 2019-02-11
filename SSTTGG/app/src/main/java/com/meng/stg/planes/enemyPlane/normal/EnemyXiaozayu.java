@@ -6,6 +6,8 @@ import com.meng.stg.bullets.enemy.BulletColor;
 import com.meng.stg.bullets.enemy.BulletForm;
 import com.meng.stg.bullets.enemy.BulletShooter;
 import com.meng.stg.bullets.enemy.EnemyBullet;
+import com.meng.stg.move.BaseMoveMethod;
+import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
@@ -31,14 +33,15 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
     @Override
     public void update(){
         super.update();
+        moveManager.update();
         //  am.update();
         if(existTime%60==1){
             bulletShooter.shoot();
         }
     }
 
-    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp){
-        super.init(center,everyAnimFrameTime,hp);
+    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+        super.init(center,everyAnimFrameTime,hp,bmm);
         this.enemyColor=enemyColor;
         this.everyAnimFrameTime=everyAnimFrameTime;
         switch(enemyColor){
@@ -81,7 +84,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0);
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new MoveMethodStraight());
                 vel.rotate(30);
             }
         }

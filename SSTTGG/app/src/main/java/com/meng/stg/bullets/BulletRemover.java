@@ -3,9 +3,7 @@ package com.meng.stg.bullets;
 import com.badlogic.gdx.math.*;
 import com.meng.stg.*;
 import com.meng.stg.bullets.enemy.*;
-import com.meng.stg.effects.BaseEffect;
-import com.meng.stg.effects.EffectType;
-
+import com.meng.stg.effects.enemy.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -70,7 +68,7 @@ public  class BulletRemover extends BaseGameObject{
     public void judge(){
         for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
             if(judgeCircle.contains(baseBullet.objectCenter)){
-				BaseEffect.create(baseBullet.objectCenter.cpy(),EffectType.explore);
+				Effect.create(baseBullet.objectCenter.cpy(),EffectType.explore);	
                 baseBullet.kill(bkm);
 			  }
 		  }

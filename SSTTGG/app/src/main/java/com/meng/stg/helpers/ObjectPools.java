@@ -1,6 +1,7 @@
 package com.meng.stg.helpers;
 
 import com.badlogic.gdx.utils.Pool;
+import com.meng.stg.effects.enemy.Effect;
 
 public final class ObjectPools{
     public static Pool<com.badlogic.gdx.scenes.scene2d.ui.Image> imagePool=new Pool<com.badlogic.gdx.scenes.scene2d.ui.Image>(500){
@@ -16,10 +17,10 @@ public final class ObjectPools{
         }
     };
 
-    public static Pool<com.meng.stg.item.BaseItem> itemPool=new Pool<com.meng.stg.item.BaseItem>(){
+    public static Pool<com.meng.stg.item.item.EnemyItem> itemPool=new Pool<com.meng.stg.item.item.EnemyItem>(){
         @Override
-        protected com.meng.stg.item.BaseItem newObject(){
-            return new com.meng.stg.item.BaseItem();
+        protected com.meng.stg.item.item.EnemyItem newObject(){
+            return new com.meng.stg.item.item.EnemyItem();
         }
     };
 
@@ -50,10 +51,10 @@ public final class ObjectPools{
         }
     };
 
-    public static Pool<com.meng.stg.effects.BaseEffect> effectPool=new Pool<com.meng.stg.effects.BaseEffect>(){
+    public static Pool<Effect> effectPool=new Pool<Effect>(){
         @Override
-        protected com.meng.stg.effects.BaseEffect newObject(){
-            return new com.meng.stg.effects.BaseEffect();
+        protected Effect newObject(){
+            return new Effect();
         }
     };
 }
