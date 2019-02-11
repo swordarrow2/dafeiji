@@ -9,6 +9,7 @@ import com.meng.stg.bullets.enemy.EnemyBullet;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg.boss.bossTask.*;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
 
@@ -33,14 +34,13 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
     @Override
     public void update(){
         super.update();
-        moveManager.update();
         //  am.update();
         if(existTime%60==1){
             bulletShooter.shoot();
         }
     }
 
-    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,EnemyColor enemyColor,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         this.enemyColor=enemyColor;
         this.everyAnimFrameTime=everyAnimFrameTime;

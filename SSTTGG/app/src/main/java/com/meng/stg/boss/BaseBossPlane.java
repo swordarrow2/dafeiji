@@ -6,14 +6,14 @@ import com.meng.stg.boss.danmaku.BaseSpellCard;
 import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.ui.*;
+import com.meng.stg.boss.bossTask.*;
 
 public abstract class BaseBossPlane extends BaseEnemyPlane{
 
     public static BaseBossPlane instence;
     public BaseNormalDanmaku normalDanmaku;
     public BaseSpellCard spellCard;
-    public Vector2 targetPosition=new Vector2();
-
+    
     @Override
     public abstract Vector2 getSize();
 
@@ -22,7 +22,7 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     }
 
     @Override
-    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
 		MainScreen.instence.bossMaxHp=hp;
         instence=this;
@@ -32,19 +32,5 @@ public abstract class BaseBossPlane extends BaseEnemyPlane{
     public void kill(){
         super.kill();
     }
-
-    public void moveTo(float x,float y){
-        targetPosition.x=x;
-        targetPosition.y=y;
-    }
-
-    @Override
-    public void update(){
-        super.update();
-        if(objectCenter.cpy().sub(targetPosition).len2()>10){
-            objectCenter.add(targetPosition.cpy().sub(objectCenter).nor().scl(3f));
-        }
-    }
-
 
 }

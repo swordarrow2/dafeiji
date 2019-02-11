@@ -8,6 +8,7 @@ import com.meng.stg.bullets.enemy.*;
 import com.meng.stg.move.*;
 import com.meng.stg.ui.*;
 import com.badlogic.gdx.graphics.*;
+import com.meng.stg.boss.bossTask.*;
 
 public class BossPlaneJunko2 extends BaseBossPlane{
 
@@ -26,7 +27,7 @@ public class BossPlaneJunko2 extends BaseBossPlane{
 	  }
 
     @Override
-    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         targetPosition=center.cpy();
         spellCard=new spell7();

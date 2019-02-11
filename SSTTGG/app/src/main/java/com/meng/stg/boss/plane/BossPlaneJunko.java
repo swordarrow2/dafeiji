@@ -10,6 +10,7 @@ import com.meng.stg.boss.danmaku.Junko.spell1;
 import com.meng.stg.ui.*;
 import com.meng.stg.item.item.*;
 import com.badlogic.gdx.graphics.*;
+import com.meng.stg.boss.bossTask.*;
 
 public class BossPlaneJunko extends BaseBossPlane{
 
@@ -34,7 +35,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 	  }
 
     @Override
-    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
 		//   BulletRemover.killAllBullet();
         objectName="chunhu";
@@ -54,7 +55,9 @@ public class BossPlaneJunko extends BaseBossPlane{
 		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
 		EnemyItem.create(objectCenter.cpy(),ItemType.power);
-		new BossPlaneJunko2().init(objectCenter,10,7000,new MoveMethodStraight(1,1,new Vector2(0,0.0001f)));
+		new BossPlaneJunko2().init(objectCenter,10,7000,new Task[]{
+									   new TaskMove(193,250)
+									 });
 	  }
 
     @Override

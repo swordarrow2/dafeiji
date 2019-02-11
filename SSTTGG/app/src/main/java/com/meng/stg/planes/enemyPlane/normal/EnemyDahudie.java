@@ -10,6 +10,7 @@ import com.meng.stg.move.BaseMoveMethod;
 import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.ui.MainScreen;
+import com.meng.stg.boss.bossTask.*;
 
 public class EnemyDahudie extends BaseEnemyPlane{
 
@@ -22,7 +23,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
     public void update(){
         super.update();
         //    move();
-        moveManager.update();
+        tm.update();
         if(existTime%60==1){
             //      bulletShooter.shoot();
 		  }
@@ -33,8 +34,8 @@ public class EnemyDahudie extends BaseEnemyPlane{
 		  {101,107}
 	  };
 
-    public void init(Vector2 center,int everyAnimFrameTime,EnemyColor enemyColor,int hp,BaseMoveMethod... bmm){
-        super.init(center,everyAnimFrameTime ,hp,bmm);
+    public void init(Vector2 center,int everyAnimFrameTime,EnemyColor enemyColor,int hp,Task[] t){
+        super.init(center,everyAnimFrameTime ,hp,t);
         this.enemyColor=enemyColor;
         animNum=dahudieAnim;
         bulletShooter=new BulletShooter().init()

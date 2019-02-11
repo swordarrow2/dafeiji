@@ -15,6 +15,7 @@ import com.meng.stg.planes.myPlane.BaseMyPlane;
 import com.meng.stg.ui.MainScreen;
 
 import static com.meng.stg.ui.MainScreen.enemys;
+import com.meng.stg.boss.bossTask.*;
 
 public abstract class BaseEnemyPlane extends BaseGameObject{
 
@@ -34,9 +35,16 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public int[][] animNum;
 
     public BulletShooter bulletShooter;
-
-    public void init(Vector2 center,int everyAnimFrameTime,int hp,BaseMoveMethod... bmm){
+	public Vector2 targetPosition=new Vector2();
+	
+	public TaskManager tm;
+	
+    public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] task){
         super.init();
+		tm=new TaskManager(this,TaskMode.noRepeat);
+		for(Task t:task){
+		  tm.addTask(t);
+		}
         this.everyAnimFrameTime=everyAnimFrameTime;
         objectName="zayu";
         isKilled=false;
@@ -46,7 +54,6 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.setRotation(0);
         image.setSize(size.x,size.y);
         judgeCircle=new Circle(objectCenter,image.getWidth()/4);
-        moveManager=new MoveManager(this,bmm);
         MainScreen.mainGroup.addActor(image);
         for(int i=0;i<32;i++){
             if(enemys[i]==null){
@@ -77,6 +84,11 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public Vector2 getLocation(){
         return objectCenter;
     }
+	
+	public void moveTo(float x,float y){
+        targetPosition.x=x;
+        targetPosition.y=y;
+	  }
 
     public void setStatus(MoveStatus mov){
         if(mov==status) return;
@@ -114,9 +126,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         super.update();
         time++;
         animFlag++;
-        moveManager.update();
+        tm.update();
 
-        objectCenter.add(velocity);
         anim();
         shoot();
 
@@ -128,6 +139,10 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         }else{
             judge();
         }
+		
+		if(objectCenter.cpy().sub(targetPosition).len2()>10){
+            objectCenter.add(targetPosition.cpy().sub(objectCenter).nor().scl(3f));
+		  }
     }
 
     private void anim(){
