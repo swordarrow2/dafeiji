@@ -215,14 +215,14 @@ public class BulletShooter{
 					float finalX=bulletCenter.x+offset.x+nowCenterX;
 					float finalY=bulletCenter.y+offset.y+nowCenterY;
 					Vector2 tmp=tmpv.cpy().scl(1000);
-                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,bulletSpeed,reflex,through,new Task[]{
+                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,reflex,through,new Task[]{
 										   new TaskMove(tmp.x+finalX,tmp.y+finalY)
 										 });
 				  }else{
 					float finalX=bulletCenter.x+offset.x;
 					float finalY=bulletCenter.y+offset.y;
 					  Vector2 tmp=tmpv.cpy().scl(1000);
-					  EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,bulletSpeed,reflex,through,new Task[]{
+					  EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,reflex,through,new Task[]{
 											 new TaskMove(tmp.x+finalX,tmp.y+finalY)
 										   });
 				  }

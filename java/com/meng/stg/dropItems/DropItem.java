@@ -129,6 +129,7 @@ public class DropItem extends BaseGameObject{
     public void kill(){
         toDelete.add(this);
         image.remove();
+        //	super.kill();
 	  }
 
     public void update(){
@@ -138,12 +139,15 @@ public class DropItem extends BaseGameObject{
 		  }
         switch(bulletKillMode){
             case killWithScorePoint:
+			  
+			  //         moveManager.update();
+			  
 			  objectCenter.add(velocity);
 			  velocity.y-=0.1f;
 			  break;
             case killWithScorePointAndCollect:
             case KillOnBossLastDeath:
-			  objectCenter.add(BaseMyPlane.instance.objectCenter.cpy().sub(objectCenter).nor().scl(7f));
+			  objectCenter.add(BaseMyPlane.instance.objectCenter.cpy().sub(objectCenter).nor().scl(8f));
 			  break;
 		  }
         image.setRotation(0);

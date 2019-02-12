@@ -29,8 +29,6 @@ public abstract class BaseEnemyBullet extends BaseBullet{
     public abstract Drawable getDrawable();
 
     public TaskManager taskManager;
-	
-	public float bulletSpeed=1;
 
     public void init(){
         super.init();
@@ -89,7 +87,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
         super.update();
         taskManager.update();
 		if(objectCenter.cpy().sub(targetPosition).len2()>10){
-			velocity=targetPosition.cpy().sub(objectCenter).nor().scl(bulletSpeed);
+			velocity=targetPosition.cpy().sub(objectCenter).nor().scl(3f);
             objectCenter.add(velocity);
 		  }
         if(refCount>0){

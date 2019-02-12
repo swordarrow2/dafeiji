@@ -10,7 +10,6 @@ import com.meng.stg.move.MoveMethodStraight;
 import com.meng.stg.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.stg.ui.MainScreen;
 import com.meng.stg.task.*;
-import com.meng.stg.bullets.enemy.*;
 
 public class EnemyDahudie extends BaseEnemyPlane{
 
@@ -44,12 +43,10 @@ public class EnemyDahudie extends BaseEnemyPlane{
 		  .setBulletColor(BulletColor.red)
 		  .setBulletForm(BulletForm.liandan)
 		  .setStraightMove(true)
-		  .setWays(6) 
+		  .setWays(6)
 		  .setWaysDegree(60)
 		  .setCengShu(10)
-		  .setInFrame(10)
-		  .setBulletStyle(BulletStyle.snipe)
-		  ;
+		  .setInFrame(10);
 	  }
 
     @Override
@@ -74,14 +71,32 @@ public class EnemyDahudie extends BaseEnemyPlane{
 
     @Override
     public void shoot(){
-        if(time%30==1){
-            bulletShooter.shoot();
+        if(time%30==31){
+            int randVal=MathUtils.random(0,360);
+            Vector2 vel=new Vector2(3,0);
+            vel.rotate(randVal);
+            for(int i=0;i<12;i++){
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new Task[]{
+									   new TaskMove(193,250)
+									 });
+                vel.rotate(30);
+			  }
 		  }
 	  }
 
     @Override
     public void kill(){
-        bulletShooter.setWays(30).setBulletColor(BulletColor.yellow_light).setBulletForm(BulletForm.zadan).setBulletStyle(BulletStyle.round).shoot();
+        MainScreen.onBoss=false;
+        int randVal=MathUtils.random(0,360);
+        Vector2 vel=new Vector2(15,0);
+        vel.rotate(randVal);
+        for(int i=0;i<24;i++){
+            EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new Task[]{
+								   new TaskMove(193,250)
+								 });
+            vel.rotate(15);
+		  }
+        //   BaseBullet.killAllBullet();
         super.kill();
 	  }
 

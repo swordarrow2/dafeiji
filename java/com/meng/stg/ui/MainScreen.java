@@ -71,7 +71,7 @@ public class MainScreen extends ScreenAdapter{
 				  }
 			  }
 		  }
-	//	stage.act();
+		stage.act();
 		stage.draw();
         GameMain.spriteBatch.begin();	
         layoutManager.update();	
@@ -161,7 +161,7 @@ public class MainScreen extends ScreenAdapter{
 			  break;
 		  }
 
-	/*	Button.ButtonStyle style = new Button.ButtonStyle();
+		Button.ButtonStyle style = new Button.ButtonStyle();
 		style.up=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
 		style.down=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
 		Button button = new Button(style);
@@ -172,10 +172,9 @@ public class MainScreen extends ScreenAdapter{
 				  BaseMyPlane.instance.onBomb=true;
 				}
 			});
-        mainGroup.addActor(button);	 
-		*/
+        mainGroup.addActor(button);	  
         inputManager=new InputMultiplexer();
-	//	inputManager.addProcessor(stage);
+		inputManager.addProcessor(stage);
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
 	  }

@@ -14,19 +14,19 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
 
 
     private final int[][] xiaozayuAnimLan=new int[][]{
-            {0,4},
+            {0,5},
             {5,11}
     };
     private final int[][] xiaozayuAnimHong=new int[][]{
-            {12,16},
+            {12,17},
             {17,23}
     };
     private final int[][] xiaozayuAnimLv=new int[][]{
-            {24,28},
+            {24,29},
             {29,35}
     };
     private final int[][] xiaozayuAnimHuang=new int[][]{
-            {36,40},
+            {36,41},
             {41,47}
     };
 
@@ -83,7 +83,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,3,0,0,new Task[]{
+                EnemyBullet.create(objectCenter,BulletForm.ganjundan,BulletColor.purple,0,0,new Task[]{
 									   new TaskMove(193,250)
 									 });
                 vel.rotate(30);
