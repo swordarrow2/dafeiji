@@ -79,8 +79,8 @@ public class PlayerReimu extends Player {
 			animationDrawable.setAnimation(animationStay);
 		}
 		existTime++;
-		ReimuWingShoot = Gdx.input.isKeyPressed(KeySettings.positiveKey) && wingShoot() && bombFrames <= 60;
-		mShoot = Gdx.input.isKeyPressed(KeySettings.positiveKey) && existTime % 3 == 1 && bombFrames <= 60;
+		ReimuWingShoot = /*Gdx.input.isKeyPressed(KeySettings.positiveKey) &&*/ wingShoot() && bombFrames <= 60;
+		mShoot =/* Gdx.input.isKeyPressed(KeySettings.positiveKey) &&*/ existTime % 3 == 1 && bombFrames <= 60;
 		if (mShoot && existTime % 9 == 1) {
 			THSoundEffects.PlShoot.sound.play(0.6f);
 		}

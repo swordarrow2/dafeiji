@@ -17,6 +17,24 @@ import cn.s3bit.th902.utils.ImmutableWrapper;
 import cn.s3bit.th902.utils.LineSegment;
 
 public class ReimuBullet1 extends Component implements IJudgeCallback {
+
+	@Override
+	public boolean canHurt(){
+		// TODO: Implement this method
+		return false;
+	  }
+
+	@Override
+	public void onHurt(float damage){
+		// TODO: Implement this method
+	  }
+
+	@Override
+	public float getBombResist(){
+		// TODO: Implement this method
+		return 0;
+	  }
+
 	/**
 	 * An easy method to create the bullet.
 	 * 

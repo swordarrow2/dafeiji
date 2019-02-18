@@ -4,10 +4,10 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Pixmap.*;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.graphics.glutils.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.*;
 import com.meng.stg.bigFace.item.*;
 import com.meng.stg.boss.*;
@@ -73,6 +73,13 @@ public class MainScreen extends ScreenAdapter{
 		  }
 	//	stage.act();
 		stage.draw();
+	/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
+		shapeRenderer.setAutoShapeType(true);
+		shapeRenderer.begin();
+
+		shapeRenderer.rectLine(10, 10, 300, 400, 80);
+		
+		shapeRenderer.end();*/
         GameMain.spriteBatch.begin();	
         layoutManager.update();	
         if(onSpellCard){

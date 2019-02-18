@@ -108,7 +108,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
 
     public void judge(){
         for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
-            if(baseBullet.judgeCircle.contains(objectCenter)){
+            if(baseBullet.getCollisionArea().contains(objectCenter)){
                 baseBullet.kill();
                 kill();
             }

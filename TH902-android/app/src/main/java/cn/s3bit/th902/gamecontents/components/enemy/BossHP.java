@@ -8,6 +8,12 @@ import cn.s3bit.th902.gamecontents.ISpellInfoProvider;
 import cn.s3bit.th902.gamecontents.components.Component;
 
 public class BossHP extends Component implements IJudgeCallback, ISpellInfoProvider {
+
+	@Override
+	public void onCollide(){
+		// TODO: Implement this method
+	  }
+
 	public boolean immune = false;
 	public boolean noMelee = false;
 	public float hp = 0;

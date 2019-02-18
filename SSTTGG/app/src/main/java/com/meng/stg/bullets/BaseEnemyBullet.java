@@ -14,6 +14,7 @@ import com.meng.stg.ui.MainScreen;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.badlogic.gdx.math.*;
 
 public abstract class BaseEnemyBullet extends BaseBullet{
 
@@ -143,8 +144,19 @@ public abstract class BaseEnemyBullet extends BaseBullet{
                 break;
         }
 
-    }
+	  }
 
+	@Override
+	public Shape2D getCollisionArea(){
+		// TODO: Implement this method
+		Rectangle r=new Rectangle();
+		r.setSize(164,18);
+		
+		r.setPosition(objectCenter.x-164/2,objectCenter.y-18/2);
+		return r ;
+	  }
+
+	
     @Override
     public void judge(){
 

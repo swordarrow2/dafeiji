@@ -52,13 +52,21 @@ public class SpellFantasySeal extends Component {
 			entity.AddComponent(new ParticleRenderer(particleEffect).attachToGroup(FightScreen.drawingLayers.entity9));
 			mEntity = entity;
 			mTransform = entity.GetComponent(Transform.class);
-			yield.append(() -> {
-				relativePos.add(dir);
-				dir.rotate(mRotateSpeed);
-				relativePos.rotate(mRotateSpeed);
+			yield.append(new Runnable() {
+
+				  @Override
+				  public void run(){
+					  relativePos.add(dir);
+					  dir.rotate(mRotateSpeed);
+					  relativePos.rotate(mRotateSpeed);
+					}			
 			}, 60);
-			yield.append(() -> {
-				relativePos.rotate(mRotateSpeed);
+			yield.append(new Runnable() {
+
+				  @Override
+				  public void run(){
+					  relativePos.rotate(mRotateSpeed);
+					}			
 			}, 90);
 			
 			particleEffect.start();
@@ -85,7 +93,13 @@ public class SpellFantasySeal extends Component {
 				else if (!isChasing)
 					isChasing = MathUtils.randomBoolean(0.4f);
 				if (particleEffect.isComplete() || reimu.bombFrames <= 1) {
-					yield.append(() -> { mEntity.Destroy(); }, 1);
+					yield.append(new Runnable() {
+
+						  @Override
+						  public void run(){
+							  mEntity.Destroy();
+							}
+						},1);
 				}
 			}
 			else 
@@ -100,7 +114,13 @@ public class SpellFantasySeal extends Component {
 				}
 				for (final Entry<ImmutableWrapper<Vector2>, Entity> entry : JudgingSystem.clearByBombs.entrySet()) {
 					if (judge.contains(entry.getKey().getData())) {
-						Entity.postUpdate.add(() -> { entry.getValue().Destroy(); });
+						Entity.postUpdate.add(new Runnable() {
+
+							  @Override
+							  public void run(){
+								  entry.getValue().Destroy();
+								}
+							});
 					}
 				}
 			}

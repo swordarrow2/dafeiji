@@ -20,7 +20,7 @@ import cn.s3bit.th902.gamecontents.components.Transform;
 public abstract class Player extends Component {
 	public Vector2 velocity;
 	public static boolean slow;
-	protected Transform transform;
+	public static Transform transform;
 	protected PlayerAnimation playerAnimation;
 	public static boolean Bomb = false;
 	public int bombFrames = 0;
@@ -28,6 +28,7 @@ public abstract class Player extends Component {
 	public boolean Chaos = false;
 	public static boolean onLine = false;
 	public boolean needNewBombEntity = true;
+	public static boolean onBomb=false;
 	public int bombTimeCount=0;
 
 	@Override
@@ -75,7 +76,7 @@ public abstract class Player extends Component {
 		} else if (Gdx.input.isKeyPressed(KeySettings.right)) {
 			velocity.add(1, 0);
 		}
-		slow = Gdx.input.isKeyPressed(KeySettings.shift);
+		//slow = Gdx.input.isKeyPressed(KeySettings.shift);
 		if (slow) {
 			velocity.nor().scl(3f);
 		} else {
@@ -94,7 +95,7 @@ public abstract class Player extends Component {
 			FightScreen.bombCount = 3;
 			transform.position.set(280f, 100f);
 		}
-		if (Gdx.input.isKeyPressed(KeySettings.negativeKey) && !Bomb && FightScreen.bombCount > 0) {
+		if (onBomb && !Bomb && FightScreen.bombCount > 0) {
 			if (PlayerDeathEffect.getTimeLeft() > 0 && PlayerDeathEffect.getTimeLeft() < 50) return;
 			PlayerDeathEffect.timeleft = Math.min(PlayerDeathEffect.timeleft, 1);
 			Bomb = true;

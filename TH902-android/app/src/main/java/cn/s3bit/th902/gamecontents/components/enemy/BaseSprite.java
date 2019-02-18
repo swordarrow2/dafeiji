@@ -15,6 +15,35 @@ import cn.s3bit.th902.gamecontents.components.Transform;
 import cn.s3bit.th902.utils.AnimationDrawable;
 
 public class BaseSprite extends Component implements IJudgeCallback {
+
+	@Override
+	public float getDamage(){
+		// TODO: Implement this method
+		return 1;
+	  }
+
+	@Override
+	public boolean canHurt(){
+		// TODO: Implement this method
+		return false;
+	  }
+
+	@Override
+	public void onHurt(float damage){
+		// TODO: Implement this method
+	  }
+
+	@Override
+	public void onCollide(){
+		// TODO: Implement this method
+	  }
+
+	@Override
+	public float getBombResist(){
+		// TODO: Implement this method
+		return 0;
+	  }
+
 	public Transform transform;
 	public AnimationDrawable animation;
 	public Entity entity;
