@@ -12,18 +12,11 @@ import cn.s3bit.th902.*;
 
 public class MainActivity extends AndroidApplication{
     public static MainActivity instance;
-    public static int screenHeight;
-    public static int screenWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         instance=this;
-        Display display=getWindowManager().getDefaultDisplay();
-        Point size=new Point();
-        display.getSize(size);
-        screenHeight=size.y;
-        screenWidth=size.x;
         AndroidApplicationConfiguration cfg=new AndroidApplicationConfiguration();
         Game game=new cn.s3bit.th902.GameMain();
         initialize(game,cfg); //全屏的游戏
