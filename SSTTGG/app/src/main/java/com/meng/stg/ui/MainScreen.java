@@ -78,10 +78,10 @@ public class MainScreen extends ScreenAdapter{
 		shapeRenderer.begin();
 
 		shapeRenderer.rectLine(10, 10, 300, 400, 80);
-		
+
 		shapeRenderer.end();*/
-        GameMain.spriteBatch.begin();	
-        layoutManager.update();	
+        GameMain.spriteBatch.begin();
+        layoutManager.update();
         if(onSpellCard){
             GlyphLayout glyphLayout=new GlyphLayout();
             glyphLayout.setText(bitmapFont,BaseBossPlane.instence.spellCard.spellName);

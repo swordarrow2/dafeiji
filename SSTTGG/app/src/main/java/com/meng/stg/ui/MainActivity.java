@@ -12,19 +12,12 @@ import com.meng.stg.planes.myPlane.*;
 
 public class MainActivity extends AndroidApplication{
     public static MainActivity instance;
-    public static int screenHeight;
-    public static int screenWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         instance=this;
-        Display display=getWindowManager().getDefaultDisplay();
-        Point size=new Point();
-        display.getSize(size);
-        screenHeight=size.y;
-        screenWidth=size.x;
-		
+
         AndroidApplicationConfiguration cfg=new AndroidApplicationConfiguration();
 		cfg.touchSleepTime=0;
         Game game=new GameMain();
