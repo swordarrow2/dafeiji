@@ -16,6 +16,7 @@ import cn.s3bit.mbgparser.item.ReflexBoard;
 import cn.s3bit.th902.FightScreen;
 import cn.s3bit.th902.contents.BossSpell;
 import cn.s3bit.th902.gamecontents.Entity;
+import cn.s3bit.th902.gamecontents.components.*;
 /**
  * CrazyStorm的解析实现，这样就可以直接放到游戏里来了
  */
@@ -124,17 +125,17 @@ public class MBGScene extends BossSpell {
 	public void start() {
 		globalTime = 0;
 		entities = new LinkedBlockingQueue<>();
-		Iterator  iterator =(Iterator)bulletEmitters.keys();
+		Iterator  iterator =(Iterator)bulletEmitters.values();
 		while (iterator.hasNext()) {
 			Entity em = Entity.Create();
-			em.AddComponent(bulletEmitters.get((Integer)iterator.next()));
+			em.AddComponent((Component)iterator.next());
 			entities.add(em);
 			}
-
-		Iterator  iterator2 =(Iterator)reflexBoards.keys();
+			
+		Iterator  iterator2 =(Iterator)reflexBoards.values();
 		while (iterator2.hasNext()) {
 			Entity em = Entity.Create();
-			em.AddComponent(reflexBoards.get((Integer)iterator2.next()));
+			em.AddComponent((Component)iterator2.next());
 			entities.add(em);
 
 		}

@@ -63,7 +63,7 @@ public class ReimuBullet1 extends Component implements IJudgeCallback {
 	public static void Create(Vector2 position, int bulletType) {
 		switch (bulletType) {
 		case BulletTypeSelfFast:
-			for (float i=-30f; i<=30f; i+=20) {
+			for (float i=-16f; i<=16f; i+=32) {
 				Entity entity14 = Entity.Create();
 				entity14.AddComponent(new Transform(position.cpy().add(i, 0)));
 				ReimuBullet1 bullet14 = new ReimuBullet1(new Vector2(0, 17));			
@@ -73,7 +73,7 @@ public class ReimuBullet1 extends Component implements IJudgeCallback {
 			}
 			break;
 		case BulletTypeSelfSlow:
-			for (float i=-22.5f; i<22.6f; i+=15) {
+			  for (float i=-16f; i<=16f; i+=32) {
 				Entity entity21 = Entity.Create();
 				entity21.AddComponent(new Transform(position.cpy().add(i, 0)));
 				ReimuBullet1 bullet21 = new ReimuBullet1(new Vector2(0,17));			

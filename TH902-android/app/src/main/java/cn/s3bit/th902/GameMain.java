@@ -59,7 +59,7 @@ public class GameMain extends Game {
 				activeStage.dispose();
 			}
 			//activeStage = new Stage();
-			  activeStage=new Stage(new FitViewport(386*2,600*2),new SpriteBatch());
+			  activeStage=new Stage(new FitViewport(386,450+150),new SpriteBatch());
 			Entity.Reset();
 		}
 		super.setScreen(screen);

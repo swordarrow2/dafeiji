@@ -108,7 +108,7 @@ public class FightScreen extends ScreenAdapter{
 		MusicManager.StopBGM();
 		drawingLayers=new DrawingLayers();
 		Entity player = Entity.Create();
-		Entity fightScreen = Entity.Create();
+	//	Entity fightScreen = Entity.Create();
 		Entity difficulty = Entity.Create();
 		Entity score = Entity.Create();
 		Entity highScore = Entity.Create();
@@ -120,7 +120,7 @@ public class FightScreen extends ScreenAdapter{
 		Entity bombs[] = new Entity[8];
 		Entity hearts[] = new Entity[8];
 
-		fightScreen.AddComponent(new Transform(new Vector2(480,360)));
+	//	fightScreen.AddComponent(new Transform(new Vector2(480,360)));
 		player.AddComponent(new Transform(new Vector2(280,100),new Vector2(0.4f,0.4f)));
 		difficulty.AddComponent(new Transform(new Vector2(760,670)));
 		score.AddComponent(new Transform(new Vector2(810,570)));
@@ -155,7 +155,7 @@ public class FightScreen extends ScreenAdapter{
 			mHearts[i].attachToGroup(drawingLayers.ui1);
 			mHearts[i].image.setColor(1,1,1,0);
 		  }
-		fightScreen.AddComponent(new ImageRenderer(ResourceManager.textures.get("FightScreen"),0).attachToGroup(drawingLayers.ui1));
+	//	fightScreen.AddComponent(new ImageRenderer(ResourceManager.textures.get("FightScreen"),0).attachToGroup(drawingLayers.ui1));
 		if(PlayerChara==PlayerTypeReimu){
 			player.AddComponent(new PlayerReimu(PlayerType));
 		  }else if(PlayerChara==PlayerTypeMarisa){
@@ -175,7 +175,8 @@ public class FightScreen extends ScreenAdapter{
 		gameTime++;
 		GameMain.instance.activeStage.getBatch().begin();
 		bf.draw(GameMain.instance.activeStage.getBatch(),"difficulty:"+DifficultySelectScreen.difficulty
-				+"\nplayer:"+playerCount+"\nbomb:"+bombCount+"\npower:"+powerCount+"\npoint:"+pointCount,
+				+"\nplayer:"+playerCount+"\nbomb:"+bombCount+"\npower:"+powerCount+"\npoint:"+pointCount+
+				"\nFPS: " + Gdx.graphics.getFramesPerSecond(),
 				20,705);
 		GameMain.instance.activeStage.getBatch().end();
 
