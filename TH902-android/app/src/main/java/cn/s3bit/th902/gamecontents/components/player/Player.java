@@ -52,8 +52,6 @@ public abstract class Player extends Component {
 
 	@Override
 	public void Update() {
-		
-
 		existTime++;
 		onLine = transform.position.y >= 500;
 		JudgingSystem.playerJudge.set(transform.position);
