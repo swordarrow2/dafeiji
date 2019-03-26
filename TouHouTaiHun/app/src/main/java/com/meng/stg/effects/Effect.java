@@ -39,6 +39,7 @@ public class Effect extends BaseGameObject{
     public void kill(){
         toDelete.add(this);
         image.remove();
+        ObjectPools.effectPool.free(this);
     }
 
     public void update(){

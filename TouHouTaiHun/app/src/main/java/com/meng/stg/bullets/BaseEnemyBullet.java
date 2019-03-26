@@ -145,8 +145,7 @@ public abstract class BaseEnemyBullet extends BaseBullet{
 
 	@Override
 	public Shape2D getCollisionArea(){
-	  return judgeCircle;
-		// TODO: Implement this method
+	  return judgeCircle; 
 		/*
 		Rectangle r=new Rectangle();
 		r.setSize(164,18);

@@ -10,121 +10,121 @@ import com.meng.stg.helpers.ResourcesManager;
 import com.meng.stg.task.Task;
 import com.meng.stg.ui.MainScreen;
 
-public class EnemyBullet extends BaseEnemyBullet{
+public class EnemyBullet extends BaseEnemyBullet {
 
-    private int colorNum=0;
-    private int formNum=0;
+    private int colorNum = 0;
+    private int formNum = 0;
 
-    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,Task[] mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,speed,ref,through,mm);
+    public static void create(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, float speed, int ref, int through, Task[] mm) {
+        ObjectPools.enemyBulletPool.obtain().init(center, bulletForm, bulletColor, speed, ref, through, mm);
     }
 
-    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,Task[] tasks){
+    public void init(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, float speed, int ref, int though, Task[] tasks) {
         super.init();
-        for(Task task : tasks){
+        for (Task task : tasks) {
             taskManager.addTask(task);
         }
-		bulletSpeed=speed;
-        refCount=ref;
-        thoughCount=though;
+        bulletSpeed = speed;
+        refCount = ref;
+        thoughCount = though;
         objectCenter.set(center);
-        image.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(objectCenter,image.getWidth()/2);
-        switch(bulletColor){
+        image.setPosition(center.x, center.y, Align.center);
+        judgeCircle = new Circle(objectCenter, image.getWidth() / 2);
+        switch (bulletColor) {
             case gray:
-                colorNum=0;
+                colorNum = 0;
                 break;
             case grayAndRed:
-                colorNum=1;
+                colorNum = 1;
                 break;
             case red:
-                colorNum=2;
+                colorNum = 2;
                 break;
             case grayAndPurple:
-                colorNum=3;
+                colorNum = 3;
                 break;
             case purple:
-                colorNum=4;
+                colorNum = 4;
                 break;
             case grayAndBlue:
-                colorNum=5;
+                colorNum = 5;
                 break;
             case blue:
-                colorNum=6;
+                colorNum = 6;
                 break;
             case grayAndLightBlue:
-                colorNum=7;
+                colorNum = 7;
                 break;
             case lightBlue:
-                colorNum=8;
+                colorNum = 8;
                 break;
             case grayAndGreen:
-                colorNum=9;
+                colorNum = 9;
                 break;
             case green:
-                colorNum=10;
+                colorNum = 10;
                 break;
             case grayAndYellow:
-                colorNum=11;
+                colorNum = 11;
                 break;
             case yellow_dark:
-                colorNum=12;
+                colorNum = 12;
                 break;
             case yellow_light:
-                colorNum=13;
+                colorNum = 13;
                 break;
             case orange:
-                colorNum=14;
+                colorNum = 14;
                 break;
             case white:
-                colorNum=15;
+                colorNum = 15;
                 break;
         }
-        switch(bulletForm){
+        switch (bulletForm) {
             case jiguangkuai:
-                formNum=22;
+                formNum = 22;
                 break;
             case lindan:
-                formNum=14;
+                formNum = 14;
                 break;
             case huanyu:
-                formNum=6;
+                formNum = 6;
                 break;
             case xiaoyu:
-                formNum=4;
+                formNum = 4;
                 break;
             case midan:
-                formNum=8;
+                formNum = 8;
                 break;
             case liandan:
-                formNum=10;
+                formNum = 10;
                 break;
             case zhendan:
-                formNum=11;
+                formNum = 11;
                 break;
             case zadan:
-                formNum=13;
+                formNum = 13;
                 break;
             case chongdan:
-                formNum=15;
+                formNum = 15;
                 break;
             case ganjundan:
-                formNum=17;
+                formNum = 17;
                 break;
             case xingdan:
-                formNum=18;
+                formNum = 18;
                 break;
             case xiaodan:
-                formNum=16;
+                formNum = 16;
                 break;
             case jundan:
-                formNum=3;
+                formNum = 3;
                 break;
             case lidan:
-                formNum=4;
+                formNum = 4;
                 break;
             case diandan:
-                formNum=0;
+                formNum = 0;
                 break;
         }
         image.setDrawable(getDrawable());
@@ -132,17 +132,24 @@ public class EnemyBullet extends BaseEnemyBullet{
     }
 
     @Override
-    public Vector2 getSize(){
-        return new Vector2(16,16);
+    public Vector2 getSize() {
+        return new Vector2(16, 16);
     }
 
     @Override
-    public Drawable getDrawable(){
-		if(formNum==13||formNum==14){
-			image.setSize(14,16);
-		  }
-        if(drawable==null){
-            drawable=ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
+    public void kill() {
+        super.kill();
+        drawable=null;
+        ObjectPools.enemyBulletPool.free(this);
+    }
+
+    @Override
+    public Drawable getDrawable() {
+        if (formNum == 13 || formNum == 14) {
+            image.setSize(14, 16);
+        }
+        if (drawable == null) {
+            drawable = ResourcesManager.textures.get("bullet" + (formNum * 16 + colorNum));
         }
         return drawable;
     }

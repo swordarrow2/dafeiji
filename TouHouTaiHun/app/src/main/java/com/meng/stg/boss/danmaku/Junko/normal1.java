@@ -5,10 +5,9 @@ import com.meng.stg.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg.task.*;
 
 public class normal1 extends BaseNormalDanmaku{
-  	TaskManager tm;
-	public void init(BaseBossPlane b){
-        boss=b;
-		tm=new TaskManager(b,TaskRepeatMode.repeatAll);
+  	private TaskManager taskManager;
+	public void init(BaseBossPlane baseBossPlane){
+        boss=baseBossPlane;
         shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
@@ -19,16 +18,17 @@ public class normal1 extends BaseNormalDanmaku{
 			.setBulletSpeed(2)
 			.setBulletStyle(BulletStyle.round)
 		  };
-		tm.addTask(new TaskShoot(shooters));
-		tm.addTask(new TaskWait(60));
-		tm.addTask(new TaskMove(10000,10000));
-		tm.addTask(new TaskWait(60));
+		taskManager =new TaskManager(baseBossPlane,TaskRepeatMode.repeatAll);
+		taskManager.addTask(new TaskShoot(shooters));
+		taskManager.addTask(new TaskWait(60));
+		taskManager.addTask(new TaskMove(10000,10000));
+		taskManager.addTask(new TaskWait(60));
 	  }
 
 	@Override
 	public void update(){
 		super.update();
-		tm.update();
+		taskManager.update();
 		frame++;
 	  }
 
