@@ -81,7 +81,7 @@ public class EnemyDahudie extends BaseEnemyPlane{
 
     @Override
     public void kill(){
-        bulletShooter.setWays(30).setBulletColor(BulletColor.yellow_light).setBulletForm(BulletForm.zadan).setBulletStyle(BulletStyle.round).shoot();
+        bulletShooter.setWays(30).setBulletColor(BulletColor.red).setBulletForm(BulletForm.zadan).setBulletStyle(BulletStyle.round).shoot();
         super.kill();
 	  }
 

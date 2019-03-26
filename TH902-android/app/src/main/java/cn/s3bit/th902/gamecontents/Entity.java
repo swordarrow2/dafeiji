@@ -7,6 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import cn.s3bit.th902.GameMain;
 import cn.s3bit.th902.gamecontents.components.Component;
+import com.badlogic.gdx.utils.*;
 
 public class Entity {
 	public static HashSet<Entity> instances = new HashSet<>();
@@ -14,12 +15,21 @@ public class Entity {
 	
 	private HashMap<Class<?>, Component> mComponents;
 	private LinkedBlockingQueue<Class<?>> toDel;
+	
+	public static Pool<Entity> entityPool=new Pool<Entity>(){
+
+		@Override
+		protected Entity newObject(){
+			// TODO: Implement this method
+			return new Entity();
+		  }
+	  };
 	private Entity() {
 		
 	}
 	
 	public static Entity Create() {
-		final Entity entity = new Entity();
+		final Entity entity = entityPool.obtain();
 		entity.mComponents = new HashMap<>();
 		entity.toDel = new LinkedBlockingQueue<>();
 		postUpdate.add(new Runnable(){
