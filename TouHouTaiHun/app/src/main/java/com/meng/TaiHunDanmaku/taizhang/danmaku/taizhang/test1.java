@@ -1,12 +1,12 @@
-package com.meng.TaiHunDanmaku.boss.danmaku.Junko;
+package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
-import com.meng.TaiHunDanmaku.boss.BaseBossPlane;
+import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
 import com.meng.TaiHunDanmaku.task.TaskManager;
 import com.meng.TaiHunDanmaku.task.TaskRepeatMode;
 import com.meng.TaiHunDanmaku.task.TaskMove;
 import com.meng.TaiHunDanmaku.task.TaskShoot;
 import com.meng.TaiHunDanmaku.task.TaskWait;
-import com.meng.TaiHunDanmaku.boss.danmaku.BaseNormalDanmaku;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseNormalDanmaku;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletColor;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletForm;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;

@@ -127,8 +127,10 @@ public class DropItem extends BaseGameObject{
 	  }
 
     public void kill(){
+    	super.kill();
         toDelete.add(this);
         image.remove();
+        ObjectPools.itemPool.free(this);
 	  }
 
     public void update(){

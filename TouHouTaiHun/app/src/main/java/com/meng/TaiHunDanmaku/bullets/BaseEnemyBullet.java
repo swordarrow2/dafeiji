@@ -2,11 +2,10 @@ package com.meng.TaiHunDanmaku.bullets;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.TaiHunDanmaku.boss.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.dropItems.*;
 import com.meng.TaiHunDanmaku.effects.*;
-import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
@@ -155,7 +154,7 @@ public abstract class BaseEnemyBullet extends BaseBullet {
 		return r ;
 		*/
     }
- 
+
     @Override
     public void judge() {
 

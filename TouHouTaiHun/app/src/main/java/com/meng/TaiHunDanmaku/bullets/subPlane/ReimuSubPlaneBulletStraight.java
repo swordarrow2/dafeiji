@@ -43,6 +43,12 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
 	  }
 
     @Override
+    public void kill() {
+        super.kill();
+     //   ObjectPools.reimuSubPlaneBulletStraightPool.free(this);
+    }
+
+    @Override
     public float getRotationDegree(){
         return 90;
 	  }

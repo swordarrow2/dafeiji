@@ -1,6 +1,6 @@
-package com.meng.TaiHunDanmaku.boss.danmaku;
+package com.meng.TaiHunDanmaku.taizhang.danmaku;
 
-import com.meng.TaiHunDanmaku.boss.BaseBossPlane;
+import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
 import com.meng.TaiHunDanmaku.task.TaskManager;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
 

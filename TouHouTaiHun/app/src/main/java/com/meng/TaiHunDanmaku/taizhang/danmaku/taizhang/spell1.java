@@ -1,8 +1,8 @@
-package com.meng.TaiHunDanmaku.boss.danmaku.Junko;
+package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
-import com.meng.TaiHunDanmaku.boss.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.task.*;
-import com.meng.TaiHunDanmaku.boss.danmaku.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 
 public class spell1 extends BaseSpellCard{

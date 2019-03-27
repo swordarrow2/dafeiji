@@ -1,11 +1,12 @@
-package com.meng.TaiHunDanmaku.boss.danmaku;
+package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
-import com.meng.TaiHunDanmaku.boss.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
 import com.meng.TaiHunDanmaku.task.*;
 import java.util.*;
 
-public class yonghengdewenrou extends BaseSpellCard{
+public class yonghengdewenrou extends BaseSpellCard {
 
 	private float ro=0;
 	Random r=new Random();
@@ -21,7 +22,7 @@ public class yonghengdewenrou extends BaseSpellCard{
 			.setBulletColor(BulletColor.blue)
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(30)
-			.setWaysDegree(72)
+			.setWaysDegree(12)
 			.setBulletSpeed(10)
 			,
 			new BulletShooter().init()
@@ -30,7 +31,7 @@ public class yonghengdewenrou extends BaseSpellCard{
 			.setBulletColor(BulletColor.blue)
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(20)
-			.setWaysDegree(72)
+			.setWaysDegree(18)
 			.setBulletSpeed(8)
 			,
 			new BulletShooter().init()

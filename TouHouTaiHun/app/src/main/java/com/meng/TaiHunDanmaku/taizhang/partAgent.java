@@ -1,4 +1,4 @@
-package com.meng.TaiHunDanmaku.boss;
+package com.meng.TaiHunDanmaku.taizhang;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.graphics.*;
 import com.meng.TaiHunDanmaku.ui.*;

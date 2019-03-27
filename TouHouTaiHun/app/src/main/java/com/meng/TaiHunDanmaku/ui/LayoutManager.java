@@ -3,7 +3,7 @@ package com.meng.TaiHunDanmaku.ui;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.meng.TaiHunDanmaku.bigFace.*;
-import com.meng.TaiHunDanmaku.boss.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.dropItems.*;

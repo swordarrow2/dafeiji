@@ -1,15 +1,15 @@
-package com.meng.TaiHunDanmaku.boss.plane;
+package com.meng.TaiHunDanmaku.taizhang.body;
 
 import com.badlogic.gdx.math.*;
-import com.meng.TaiHunDanmaku.boss.*;
-import com.meng.TaiHunDanmaku.boss.danmaku.Junko.normal1;
-import com.meng.TaiHunDanmaku.boss.danmaku.Junko.spell1;
+import com.meng.TaiHunDanmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.normal1;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.spell1;
 import com.meng.TaiHunDanmaku.dropItems.DropItemType;
 import com.meng.TaiHunDanmaku.ui.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.dropItems.*;
 
-public class BossPlaneJunko extends BaseBossPlane{
+public class BossTaiZhang1 extends BaseBossPlane{
 
     private final int[][] junkoAnim=new int[][]{
 		  {10,14},

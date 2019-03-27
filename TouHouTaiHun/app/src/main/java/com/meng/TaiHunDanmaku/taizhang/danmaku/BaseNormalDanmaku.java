@@ -1,8 +1,7 @@
-package com.meng.TaiHunDanmaku.boss.danmaku;
+package com.meng.TaiHunDanmaku.taizhang.danmaku;
 
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.boss.BaseBossPlane;
-import com.meng.TaiHunDanmaku.ui.*;
+import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
 
 public abstract class BaseNormalDanmaku{
 

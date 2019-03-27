@@ -64,6 +64,7 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
 	@Override
 	public void kill(){
 		super.kill();
+        ObjectPools.reimuSubPlaneBulletInducePool.free(this);
 	  }
 
 }

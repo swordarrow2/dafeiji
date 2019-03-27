@@ -1,8 +1,8 @@
-package com.meng.TaiHunDanmaku.boss.danmaku.Junko;
+package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.TaiHunDanmaku.boss.BaseBossPlane;
-import com.meng.TaiHunDanmaku.boss.danmaku.BaseSpellCard;
+import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
 import com.meng.TaiHunDanmaku.bullets.BaseEnemyBullet;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletColor;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletForm;

@@ -1,7 +1,7 @@
-package com.meng.TaiHunDanmaku.boss.danmaku.Junko;
-import com.meng.TaiHunDanmaku.boss.*;
+package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.boss.danmaku.BaseNormalDanmaku;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseNormalDanmaku;
 import com.meng.TaiHunDanmaku.task.*;
 
 public class normal1 extends BaseNormalDanmaku{
