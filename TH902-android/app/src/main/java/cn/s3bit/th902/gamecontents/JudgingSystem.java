@@ -37,22 +37,34 @@ public class JudgingSystem{
 	  }
 
     public static PlayerCollisionData playerCollision(){		
-		mJudgeEntry=null;		
-		Iterator iter = enemyJudges.entrySet().iterator();		
-		while(iter.hasNext()){		
-			Map.Entry entry = (Map.Entry) iter.next();		
-			ImmutableWrapper<Ellipse> key =(ImmutableWrapper<Ellipse>) entry.getKey();		
-			PlayerCollisionData val= (JudgingSystem.PlayerCollisionData) entry.getValue();		
-			if(val.judgeCallback.getDamage()<=0||Math.max(key.getData().width,key.getData().height)<0.1f){		
-				continue;			
-			  }		
-			Vector2 tmp = new Vector2(playerJudge);		
-			tmp.sub(key.getData().x,key.getData().y).rotate(-val.transform.rotation).add(key.getData().x,key.getData().y);		
-			if(key.getData().contains(tmp)){		
-				mJudgeEntry=entry;			
-			  }	
-		  }		
-		return mJudgeEntry==null? null :mJudgeEntry.getValue();	
+		mJudgeEntry=null;
+        for (Object o : enemyJudges.entrySet()) {
+            Entry entry = (Entry) o;
+            ImmutableWrapper<Ellipse> key = (ImmutableWrapper<Ellipse>) entry.getKey();
+            PlayerCollisionData val = (PlayerCollisionData) entry.getValue();
+            if (val.judgeCallback.getDamage() <= 0 || Math.max(key.getData().width, key.getData().height) < 0.1f) {
+                continue;
+            }
+            Vector2 tmp = new Vector2(playerJudge);
+            tmp.sub(key.getData().x, key.getData().y).rotate(-val.transform.rotation).add(key.getData().x, key.getData().y);
+            if (key.getData().contains(tmp)) {
+                mJudgeEntry = entry;
+            }
+        }
+        /*while(iter.hasNext()){
+			Map.Entry entry = (Map.Entry) iter.next();
+			ImmutableWrapper<Ellipse> key =(ImmutableWrapper<Ellipse>) entry.getKey();
+			PlayerCollisionData val= (JudgingSystem.PlayerCollisionData) entry.getValue();
+			if(val.judgeCallback.getDamage()<=0||Math.max(key.getData().width,key.getData().height)<0.1f){
+				continue;
+			  }
+			Vector2 tmp = new Vector2(playerJudge);
+			tmp.sub(key.getData().x,key.getData().y).rotate(-val.transform.rotation).add(key.getData().x,key.getData().y);
+			if(key.getData().contains(tmp)){
+				mJudgeEntry=entry;
+			  }
+		  }		*/
+        return mJudgeEntry==null? null :mJudgeEntry.getValue();
 	  }
 
     public static IJudgeCallback collideFriendlyBullets(Ellipse judge,float rotation){
