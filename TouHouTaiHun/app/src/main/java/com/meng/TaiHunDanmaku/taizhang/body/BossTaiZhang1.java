@@ -1,13 +1,12 @@
 package com.meng.TaiHunDanmaku.taizhang.body;
 
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
-import com.meng.TaiHunDanmaku.taizhang.*;
-import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.normal1;
-import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.spell1;
-import com.meng.TaiHunDanmaku.dropItems.DropItemType;
-import com.meng.TaiHunDanmaku.ui.*;
-import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.dropItems.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.task.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public class BossTaiZhang1 extends BaseBossPlane{
 
@@ -43,7 +42,7 @@ public class BossTaiZhang1 extends BaseBossPlane{
         normalDanmaku.init(this);
 		spellCard=new spell1();
 		spellCard.init(this);
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(4000));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(4000,Color.GREEN));
 	  }
 
 	@Override

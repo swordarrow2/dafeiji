@@ -148,6 +148,12 @@ public class EnemyBullet extends BaseEnemyBullet {
         if (formNum == 13 || formNum == 14) {
             image.setSize(14, 16);
         }
+		if(formNum==0){
+		  image.setSize(8,8);
+		}
+		if(formNum==8){
+		  image.setSize(8,12);
+		}
         if (drawable == null) {
             drawable = ResourcesManager.textures.get("bullet" + (formNum * 16 + colorNum));
         }

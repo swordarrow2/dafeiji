@@ -11,7 +11,7 @@ public class yonghengdewenrou extends BaseSpellCard {
 	private float ro=0;
 	Random r=new Random();
 	public void init(BaseBossPlane b){
-		spellName="「yhdwr」";
+		spellName="台符「永恒的温柔」";
         boss=b;
 		tm=new TaskManager(b,TaskRepeatMode.repeatLast);
 		waitFrameSpell=120;
@@ -20,9 +20,9 @@ public class yonghengdewenrou extends BaseSpellCard {
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.blue)
-			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(30)
-			.setWaysDegree(12)
+			.setBulletForm(BulletForm.diandan)
+			.setWays(15)
+			.setWaysDegree(24)
 			.setBulletSpeed(10)
 			,
 			new BulletShooter().init()
@@ -30,18 +30,10 @@ public class yonghengdewenrou extends BaseSpellCard {
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.blue)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(20)
-			.setWaysDegree(18)
-			.setBulletSpeed(8)
-			,
-			new BulletShooter().init()
-			.setBaseEnemyPlane(boss)
-			.setBulletCenter(boss.objectCenter)
-			.setBulletColor(BulletColor.blue)
-			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(17)
-			.setWaysDegree(72)
-			.setBulletSpeed(9)
+			.setWays(10)
+			.setWaysDegree(36)
+			.setBulletSpeed(7)
+			
 		  };
 		tm.addTask(new TaskRunnable(new Runnable(){
 						 @Override

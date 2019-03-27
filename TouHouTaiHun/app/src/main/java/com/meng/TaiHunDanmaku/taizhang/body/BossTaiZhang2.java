@@ -9,6 +9,7 @@ import com.meng.TaiHunDanmaku.dropItems.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.yonghengdewenrou;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
 
 public class BossTaiZhang2 extends BaseBossPlane{
 
@@ -30,12 +31,12 @@ public class BossTaiZhang2 extends BaseBossPlane{
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         targetPosition=center.cpy();
-        spellCard=new yonghengdewenrou();
+        spellCard=new wushuangfengshen();
         spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(7000,Color.YELLOW));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(7000,Color.GREEN));
 	  }
 
     @Override

@@ -22,7 +22,7 @@ public class spell7 extends BaseSpellCard{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
-                        .setBulletColor(BulletColor.red)
+                        .setBulletColor(BulletColor.green)//red
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(28)
                         .setWaysDegree(12.8571429f)
@@ -32,7 +32,7 @@ public class spell7 extends BaseSpellCard{
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setOffset(new Vector2(-120,-30))
-                        .setBulletColor(BulletColor.purple)
+			.setBulletColor(BulletColor.green)//purple
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(10)
                         .setWaysDegree(36)
@@ -43,7 +43,7 @@ public class spell7 extends BaseSpellCard{
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setOffset(new Vector2(120,-30))
-                        .setBulletColor(BulletColor.purple)
+			.setBulletColor(BulletColor.green)//purple
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(10)
                         .setWaysDegree(36)
@@ -54,7 +54,7 @@ public class spell7 extends BaseSpellCard{
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setOffset(new Vector2(-160,0))
-                        .setBulletColor(BulletColor.blue)
+			.setBulletColor(BulletColor.green)//blue
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(52)
                         .setWaysDegree(6.92307692f)
@@ -65,7 +65,7 @@ public class spell7 extends BaseSpellCard{
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
                         .setOffset(new Vector2(160,0))
-                        .setBulletColor(BulletColor.blue)
+			.setBulletColor(BulletColor.green)//blue
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(52)
                         .setWaysDegree(6.92307692f)
@@ -75,7 +75,7 @@ public class spell7 extends BaseSpellCard{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
                         .setBulletCenter(boss.objectCenter)
-                        .setBulletColor(BulletColor.yellow_dark)
+			.setBulletColor(BulletColor.green)//yellow_dark
                         .setBulletForm(BulletForm.xiaoyu)
                         .setWays(24)
                         .setWaysDegree(15)

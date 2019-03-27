@@ -18,7 +18,7 @@ public class spell1 extends BaseSpellCard{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
-			.setBulletColor(BulletColor.yellow_light)
+			.setBulletColor(BulletColor.green)
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(5)
 			.setWaysDegree(72)
