@@ -33,7 +33,7 @@ public final class ResourceManager {
 			enemies.add(new Texture(Gdx.files.internal("resources/Enemies/enemy" + i + ".png")));
 		}
 		Collections.addAll(toLoad, new String[] {
-			"Bomb",
+			"onBomb",
 			"Easy",
 			"Exit",	
 			"FightScreen",

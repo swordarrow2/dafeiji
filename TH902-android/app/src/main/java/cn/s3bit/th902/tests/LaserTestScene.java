@@ -11,10 +11,10 @@ public class LaserTestScene extends DanmakuScene {
 
 	@Override
 	public void Initialize(Entity entity) {
-		yield.append(new Runnable(){
+		yield.append(new Runnable() {
 			@Override
-			public void run(){
-				Entity proj=MovingLaser.Create(new Vector2(285,500),4,30,1200,5f);
+			public void run() {
+				Entity proj = MovingLaser.Create(new Vector2(285, 500), 4, 30, 1200, 5f);
 				proj.AddComponent(new MoveTracking(3f));
 			}
 		});

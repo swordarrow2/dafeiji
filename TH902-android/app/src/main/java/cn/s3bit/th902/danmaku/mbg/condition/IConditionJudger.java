@@ -5,7 +5,7 @@ import cn.s3bit.mbgparser.event.Condition.Expression;
 import cn.s3bit.th902.danmaku.mbg.AbstractMBGComponent;
 
 public interface IConditionJudger<T extends AbstractMBGComponent<?>> {
-	public  boolean judgeCondition(T obj, Condition condition, int scaledTime);/* {
+    boolean judgeCondition(T obj, Condition condition, int scaledTime);/* {
 		if (condition.Second != null) {
 			switch (condition.Second.LogincOp) {
 			case And:
@@ -17,5 +17,6 @@ public interface IConditionJudger<T extends AbstractMBGComponent<?>> {
 		}
 		return judgeExpr(obj, condition.First, scaledTime);
 	}*/
-	public boolean judgeExpr(T obj, Expression expression, int scaledTime);
+
+    boolean judgeExpr(T obj, Expression expression, int scaledTime);
 }

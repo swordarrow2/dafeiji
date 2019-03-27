@@ -51,7 +51,7 @@ public class LazerEmitter implements BindState.IBindable, Serializable
 
 	public boolean 启用射线激光;
 
-	public static Tuple<LazerEmitter, Action> parseFrom(String c,final Layer layer)
+	public static Tuple<LazerEmitter, Action> parseFrom(String c, final Layer layer)
 	{
 		final LazerEmitter l = new LazerEmitter();
 
@@ -119,17 +119,17 @@ public class LazerEmitter implements BindState.IBindable, Serializable
 		l.子弹运动.motion.accelerationDirection.randValue = readFloat(tempRef_c);
 		final boolean 深度绑定 = readBool(tempRef_c);
 
-		Action binder =new Action(){
+		Action binder = new Action() {
 			@Override
-			public void invoke(){
+			public void invoke() {
 			}
 		};
 		if (绑定ID != -1)
 		{
-			binder =new Action(){
+			binder = new Action() {
 				@Override
-				public void invoke(){
-					l.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(l,深度绑定,相对方向);
+				public void invoke() {
+					l.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(l, 深度绑定, 相对方向);
 				}
 			};
 		}

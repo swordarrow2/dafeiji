@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
@@ -23,6 +22,7 @@ import cn.s3bit.th902.gamecontents.components.Component;
 import cn.s3bit.th902.gamecontents.components.ParticleRenderer;
 import cn.s3bit.th902.gamecontents.components.Transform;
 import cn.s3bit.th902.utils.ImmutableWrapper;
+import cn.s3bit.th902.utils.RandomPool;
 import cn.s3bit.th902.utils.Yield;
 
 public class SpellFantasySeal extends Component {
@@ -42,7 +42,7 @@ public class SpellFantasySeal extends Component {
 		
 		public FantasySealCircle(float angle) {
 			String[] colors = {"Pink", "Purple", "Orange", "Green", "Blue"};
-			particleEffect.load(Gdx.files.internal("resources/Particles/FantasySeal/FantasySealCircle" + colors[MathUtils.random(4)] + ".dat"), Gdx.files.internal("resources/Particles/"));
+			particleEffect.load(Gdx.files.internal("resources/Particles/FantasySeal/FantasySealCircle" + colors[RandomPool.get(4).random(4)] + ".dat"), Gdx.files.internal("resources/Particles/"));
 			particleEffect.scaleEffect(2);
 			dir.set(1, 0).rotate(angle).scl(3);
 		}
@@ -53,20 +53,18 @@ public class SpellFantasySeal extends Component {
 			mEntity = entity;
 			mTransform = entity.GetComponent(Transform.class);
 			yield.append(new Runnable() {
-
-				  @Override
-				  public void run(){
-					  relativePos.add(dir);
-					  dir.rotate(mRotateSpeed);
-					  relativePos.rotate(mRotateSpeed);
-					}			
+				@Override
+				public void run() {
+					relativePos.add(dir);
+					dir.rotate(mRotateSpeed);
+					relativePos.rotate(mRotateSpeed);
+				}
 			}, 60);
 			yield.append(new Runnable() {
-
-				  @Override
-				  public void run(){
-					  relativePos.rotate(mRotateSpeed);
-					}			
+				@Override
+				public void run() {
+					relativePos.rotate(mRotateSpeed);
+				}
 			}, 90);
 			
 			particleEffect.start();
@@ -91,15 +89,14 @@ public class SpellFantasySeal extends Component {
 					mTransform.position.add(dir.set(relativePos).rotate90(1).nor().scl(4));
 				}
 				else if (!isChasing)
-					isChasing = MathUtils.randomBoolean(0.4f);
+					isChasing = RandomPool.get(4).randomBoolean(40);
 				if (particleEffect.isComplete() || reimu.bombFrames <= 1) {
 					yield.append(new Runnable() {
-
-						  @Override
-						  public void run(){
-							  mEntity.Destroy();
-							}
-						},1);
+						@Override
+						public void run() {
+							mEntity.Destroy();
+						}
+					}, 1);
 				}
 			}
 			else 
@@ -115,12 +112,11 @@ public class SpellFantasySeal extends Component {
 				for (final Entry<ImmutableWrapper<Vector2>, Entity> entry : JudgingSystem.clearByBombs.entrySet()) {
 					if (judge.contains(entry.getKey().getData())) {
 						Entity.postUpdate.add(new Runnable() {
-
-							  @Override
-							  public void run(){
-								  entry.getValue().Destroy();
-								}
-							});
+							@Override
+							public void run() {
+								entry.getValue().Destroy();
+							}
+						});
 					}
 				}
 			}

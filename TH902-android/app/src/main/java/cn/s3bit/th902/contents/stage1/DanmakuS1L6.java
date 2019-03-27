@@ -2,7 +2,6 @@ package cn.s3bit.th902.contents.stage1;
 
 import java.util.concurrent.Callable;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import cn.s3bit.th902.gamecontents.DanmakuScene;
@@ -18,39 +17,40 @@ import cn.s3bit.th902.gamecontents.components.enemy.BaseSprite;
 import cn.s3bit.th902.gamecontents.components.enemy.BulletType;
 import cn.s3bit.th902.gamecontents.components.enemy.EnemyJudgeCircle;
 import cn.s3bit.th902.gamecontents.components.enemy.ProjectileFactory;
+import cn.s3bit.th902.utils.RandomPool;
 
 public class DanmakuS1L6 extends DanmakuScene {
 	static Entity[] sprites = {null, null};
 	@Override
 	public void Initialize(Entity entity) {
-		Callable<Object> pause =new Callable<Object>(){
+		Callable<Object> pause = new Callable<Object>() {
 			@Override
-			public Object call() throws Exception{
+			public Object call() throws Exception {
 				return null;
 			}
 		};
 		yield.append(pause, 120);
-		yield.append(new Runnable(){
+		yield.append(new Runnable() {
 			@Override
-			public void run(){
-				for(int i=0;i<=1;i++){
-					Entity sprite=BaseSprite.Create(new Vector2(135+i*300,730),i,300+i*300);
-					sprites[i]=sprite;
-					final Transform tr=sprite.GetComponent(Transform.class);
-					tr.scale.set(0.5f,0.5f);
-					sprite.AddComponent(new LambdaComponent(new Runnable(){
+			public void run() {
+				for (int i = 0; i <= 1; i++) {
+					Entity sprite = BaseSprite.Create(new Vector2(135 + i * 300, 730), i, 300 + i * 300);
+					sprites[i] = sprite;
+					final Transform tr = sprite.GetComponent(Transform.class);
+					tr.scale.set(0.5f, 0.5f);
+					sprite.AddComponent(new LambdaComponent(new Runnable() {
 						@Override
-						public void run(){
-							for(int angle=MathUtils.random(360), k=0;k<24;angle+=15,k++)
-								ProjectileFactory.Create(tr.position.cpy(),BulletType.FormCircleLightM,BulletType.ColorYellow,
+						public void run() {
+							for (int angle = RandomPool.get(1).random(360), k = 0; k < 24; angle += 15, k++)
+								ProjectileFactory.Create(tr.position.cpy(), BulletType.FormCircleLightM, BulletType.ColorYellow,
 										new EnemyJudgeCircle(13),
-										new MoveBasic(new Vector2(7.2f,0).rotate(angle)));
+										new MoveBasic(new Vector2(7.2f, 0).rotate(angle)));
 						}
-					},40,30));
-					sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY,MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+					}, 40, 30));
+					sprite.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, new IMoveFunction() {
 						@Override
-						public Vector2 getTargetVal(int time){
-							return IMoveFunction.vct2_tmp1.set(0,time<30?-8:0);
+						public Vector2 getTargetVal(int time) {
+							return IMoveFunction.vct2_tmp1.set(0, time < 30 ? -8 : 0);
 						}
 					}));
 				}

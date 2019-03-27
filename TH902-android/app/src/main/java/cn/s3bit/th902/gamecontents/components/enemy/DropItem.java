@@ -56,7 +56,7 @@ public class DropItem extends BaseProjectile {
 		if (dirVec.y < -5f) {
 			dirVec.y = -5f;
 		}
-		if (PlayerDeathEffect.getTimeLeft() <= 0 && transform.position.dst2(JudgingSystem.playerJudge) < 6400||Player.onLine||Player.Bomb) {
+		if (PlayerDeathEffect.getTimeLeft() <= 0 && transform.position.dst2(JudgingSystem.playerJudge) < 6400||Player.onLine||Player.onBomb) {
 			mIsDragged = true;
 			if (transform.position.dst2(JudgingSystem.playerJudge) < 400) {
 				if (itemGetLogic.onGet()) {

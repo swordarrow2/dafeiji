@@ -27,9 +27,9 @@ public abstract class BossSpell extends DanmakuScene {
 	protected SpellHP hp;
 	@Override
 	public void Initialize(Entity entity) {
-		yield.append(new Callable<Object>(){
+		yield.append(new Callable<Object>() {
 			@Override
-			public Object call() throws Exception{
+			public Object call() throws Exception {
 				return null;
 			}
 		});
@@ -47,10 +47,10 @@ public abstract class BossSpell extends DanmakuScene {
 			boss.AddComponent(new EnemyJudgeCircle(Math.min(getTexture().getHeight(), getTexture().getWidth()) * 0.9f, hp));
 			boss.AddComponent(new EnemyChaseable(hp));
 			if (isDefaultEntering())
-				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, new IMoveFunction() {
 					@Override
-					public Vector2 getTargetVal(int time){
-						return IMoveFunction.vct2_tmp1.set(0,time<40?-4f:0);
+					public Vector2 getTargetVal(int time) {
+						return IMoveFunction.vct2_tmp1.set(0, time < 40 ? -4f : 0);
 					}
 				}));
 			EnemySpellInfoSystem.activate(boss);

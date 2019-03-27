@@ -31,7 +31,7 @@ public class Mask implements BindState.IBindable, Serializable
 
 	public ArrayList<EventGroup> 发射器事件组 = new ArrayList<>(), 子弹事件组 = new ArrayList<>();
 
-	public static Tuple<Mask, Action> parseFrom(String content,final Layer layer)
+	public static Tuple<Mask, Action> parseFrom(String content, final Layer layer)
 	{
 		final Mask m = new Mask();
 
@@ -68,17 +68,17 @@ public class Mask implements BindState.IBindable, Serializable
 		final int 绑定ID = readInt(tempRef_content);
 		final boolean 深度绑定 = readBool(tempRef_content);
 
-		Action binder =new Action(){
+		Action binder = new Action() {
 			@Override
-			public void invoke(){
+			public void invoke() {
 			}
 		};
 		if (绑定ID != -1)
 		{
-			binder =new Action(){
+			binder = new Action() {
 				@Override
-				public void invoke(){
-					m.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(m,深度绑定,false);
+				public void invoke() {
+					m.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(m, 深度绑定, false);
 				}
 			};
 		}

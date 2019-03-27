@@ -7,18 +7,6 @@ import cn.s3bit.th902.gamecontents.components.Component;
 import cn.s3bit.th902.gamecontents.components.ExtraDrop;
 
 public class EnemyHP extends Component implements IJudgeCallback {
-
-	@Override
-	public void onCollide(){
-		// TODO: Implement this method
-	  }
-
-	@Override
-	public float getBombResist(){
-		// TODO: Implement this method
-		return 0;
-	  }
-
 	public boolean immune = false;
 	public boolean noMelee = false;
 	public float hp = 0;
@@ -42,7 +30,17 @@ public class EnemyHP extends Component implements IJudgeCallback {
 			hp -= damage;
 		}
 	}
-	
+
+	@Override
+	public void onCollide() {
+
+	}
+
+	@Override
+	public float getBombResist() {
+		return 1;
+	}
+
 	@Override
 	public float getDamage() {
 		return noMelee ? 0 : 1;

@@ -24,37 +24,37 @@ public class DanmakuS1L4 extends DanmakuScene {
 
 	@Override
 	public void Initialize(Entity entity) {
-		yield.append(new Runnable(){
+		yield.append(new Runnable() {
 			@Override
-			public void run(){
+			public void run() {
 			}
 		}, 300);
-		yield.append(new Runnable(){
+		yield.append(new Runnable() {
 			@Override
-			public void run(){
-				Entity boss=Entity.Create();
-				final Transform transform=new Transform(new Vector2(285,730),new Vector2(2,2));
+			public void run() {
+				Entity boss = Entity.Create();
+				final Transform transform = new Transform(new Vector2(285, 730), new Vector2(2, 2));
 				boss.AddComponent(transform);
-				boss.AddComponent(new ImageRenderer(ResourceManager.barrages.get(230),0).attachToGroup(FightScreen.drawingLayers.entity8));
-				BossHP hp=new BossHP(
-						new int[]{1800,1800,3600},
-						new int[]{1200,1200,2400},
-						new float[]{1f,1f,1.6f},
-						new String[]{null,null,"动符「弹跳」"},
-						new Runnable[]{null,null,null},
-						new Runnable[]{null,null,new Runnable(){
+				boss.AddComponent(new ImageRenderer(ResourceManager.barrages.get(230), 0).attachToGroup(FightScreen.drawingLayers.entity8));
+				BossHP hp = new BossHP(
+						new int[]{1800, 1800, 3600},
+						new int[]{1200, 1200, 2400},
+						new float[]{1f, 1f, 1.6f},
+						new String[]{null, null, "动符「弹跳」"},
+						new Runnable[]{null, null, null},
+						new Runnable[]{null, null, new Runnable() {
 							@Override
-							public void run(){
-								DropItem.CreateDropItem(transform.position.cpy(),241);
+							public void run() {
+								DropItem.CreateDropItem(transform.position.cpy(), 241);
 							}
 						}});
 				boss.AddComponent(hp);
-				boss.AddComponent(new EnemyJudgeCircle(54,hp));
+				boss.AddComponent(new EnemyJudgeCircle(54, hp));
 				boss.AddComponent(new EnemyChaseable(hp));
-				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY,MoveFunctionType.ASSIGNMENT,new IMoveFunction(){
+				boss.AddComponent(new MoveFunction(MoveFunctionTarget.VELOCITY, MoveFunctionType.ASSIGNMENT, new IMoveFunction() {
 					@Override
-					public Vector2 getTargetVal(int time){
-						return IMoveFunction.vct2_tmp1.set(0,time<40?-4f:0);
+					public Vector2 getTargetVal(int time) {
+						return IMoveFunction.vct2_tmp1.set(0, time < 40 ? -4f : 0);
 					}
 				}));
 				boss.AddComponent(new AIS1L4Boss());
@@ -67,9 +67,9 @@ public class DanmakuS1L4 extends DanmakuScene {
 	public void Update() {
 		yield.yield();
 		if (yield.isFinished()) {
-			yield.append(new Callable<Object>(){
+			yield.append(new Callable<Object>() {
 				@Override
-				public Object call() throws Exception{
+				public Object call() throws Exception {
 					return null;
 				}
 			}, 1048576);

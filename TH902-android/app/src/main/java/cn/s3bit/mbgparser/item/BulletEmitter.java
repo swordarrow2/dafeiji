@@ -60,7 +60,7 @@ public class BulletEmitter implements BindState.IBindable, Serializable
 	public String stringData;
 	public Layer layer;
 
-	public static Tuple<BulletEmitter, Action> parseFrom(String content,final Layer layer)
+	public static Tuple<BulletEmitter, Action> parseFrom(String content, final Layer layer)
 	{
 		final BulletEmitter e = new BulletEmitter();
 		e.stringData = content;
@@ -157,18 +157,18 @@ public class BulletEmitter implements BindState.IBindable, Serializable
 
 		final boolean 深度绑定 = readBool(tempRef_content);
 
-		Action binder =new Action(){
+		Action binder = new Action() {
 			@Override
-			public void invoke(){
+			public void invoke() {
 			}
 		};
 
 		if (绑定ID != -1)
 		{
-			binder =new Action(){
+			binder = new Action() {
 				@Override
-				public void invoke(){
-					e.绑定状态=layer.findBulletEmitterByID(绑定ID).bind(e,深度绑定,相对方向);
+				public void invoke() {
+					e.绑定状态 = layer.findBulletEmitterByID(绑定ID).bind(e, 深度绑定, 相对方向);
 				}
 			};
 		}

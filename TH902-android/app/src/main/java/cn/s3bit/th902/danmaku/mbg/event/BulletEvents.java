@@ -1,5 +1,6 @@
 package cn.s3bit.th902.danmaku.mbg.event;
 
+import cn.s3bit.mbgparser.event.CommandAction;
 import cn.s3bit.mbgparser.item.BulletEmitter;
 import cn.s3bit.th902.danmaku.mbg.AbstractMBGComponent;
 import cn.s3bit.th902.danmaku.mbg.MBGBullet;
@@ -7,15 +8,8 @@ import cn.s3bit.th902.danmaku.mbg.MBGEventTask;
 import cn.s3bit.th902.gamecontents.components.ai.IMoveFunction;
 
 import static cn.s3bit.th902.danmaku.mbg.event.BulletEmitterEvents.getFloatDelta;
-import cn.s3bit.mbgparser.event.*;
 
 public final class BulletEvents implements IEventFirer<AbstractMBGComponent<BulletEmitter>> {
-
-	@Override
-	public void fireCommand(AbstractMBGComponent<BulletEmitter> obj,CommandAction action){
-		return;
-	  }
-
 	public static final BulletEvents instance = new BulletEvents();
 	@Override
 	public void fireDataOperation(AbstractMBGComponent<BulletEmitter> obj, MBGEventTask task) {
@@ -98,5 +92,10 @@ public final class BulletEvents implements IEventFirer<AbstractMBGComponent<Bull
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void fireCommand(AbstractMBGComponent<BulletEmitter> obj, CommandAction action) {
+
 	}
 }

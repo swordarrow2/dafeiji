@@ -1,9 +1,13 @@
 package cn.s3bit.th902.gamecontents;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 
+import cn.s3bit.th902.GameMain;
 import cn.s3bit.th902.ResourceManager;
 import cn.s3bit.th902.contents.stage1.DanmakuS1L1;
 import cn.s3bit.th902.contents.stage1.DanmakuS1L2;
@@ -19,41 +23,41 @@ import cn.s3bit.th902.contents.stage6.SpellWaveParticleChanged1;
 import cn.s3bit.th902.danmaku.mbg.MBGScene;
 
 public class SceneSystem {
-	public static SceneSystem Create(int difficulty, int stageid) {
-		return Create(difficulty, stageid, null);
-	}
+    public static SceneSystem Create(int difficulty, int stageid) {
+        return Create(difficulty, stageid, null);
+    }
 
-	public static SceneSystem Create(int difficulty, int stageid, Runnable afterFinish) {
-		// test
-		SceneSystem system = new SceneSystem();
-		// Stage 1
-		system.mScenes.add(new DanmakuS1L1());
-		system.mScenes.add(new DanmakuS1L2());
-		system.mScenes.add(new DanmakuS1L3());
-		system.mScenes.add(new DanmakuS1L4());
-		system.mScenes.add(new DanmakuS1L5());
-		system.mScenes.add(new DanmakuS1L6());
-		system.mScenes.add(new DanmakuS1LLast());
-		
-		// Stage 2
-		system.mScenes.add(new DanmakuS2L1());
-		system.mScenes.add(new DanmakuS2L2());
-		system.mScenes.add(new DanmakuS2L3());
-		system.mScenes.add(new MBGScene(3500, 2400, 1.7f, ResourceManager.barrages.get(230), "", true, false, Gdx.files.internal("resources/Danmaku/feifu1.mbg"), 180, 0));
-		system.mScenes.add(new MBGScene(5000, 3000, 2.2f, ResourceManager.barrages.get(230), "「贰壹叁壹伍」", false, false, Gdx.files.internal("resources/Danmaku/21315.mbg"), 0, 60));
-		system.mScenes.add(new MBGScene(2000, 1500, 1f, ResourceManager.barrages.get(230), "", false, false, Gdx.files.internal("resources/Danmaku/yifei.mbg"), 0, 60));
-		system.mScenes.add(new MBGScene(1073741824, 2000, 0f, ResourceManager.barrages.get(230), "「极光与流星」", false, false, Gdx.files.internal("resources/Danmaku/jiguangyuliuxing.mbg"), 0, 120));
-		system.mScenes.add(new MBGScene(12000, 3000, 4f, ResourceManager.barrages.get(230), "终符「弹幕结界」", false, true, Gdx.files.internal("resources/Danmaku/danmujiejie.mbg")));
+    public static SceneSystem Create(int difficulty, int stageid, Runnable afterFinish) {
+        // test
+        SceneSystem system = new SceneSystem();
+        // Stage 1
+        system.mScenes.add(new DanmakuS1L1());
+        system.mScenes.add(new DanmakuS1L2());
+        system.mScenes.add(new DanmakuS1L3());
+        system.mScenes.add(new DanmakuS1L4());
+        system.mScenes.add(new DanmakuS1L5());
+        system.mScenes.add(new DanmakuS1L6());
+        system.mScenes.add(new DanmakuS1LLast());
 
-		// Stage 5
-		system.mScenes.add(new MBGScene(5000, 3000, 2.25f, ResourceManager.barrages.get(230), "算符「四重递归」", true, true, Gdx.files.internal("resources/Danmaku/sichongdigui.mbg"), 360, 0));
-		
-		// Stage 6
-		system.mScenes.add(new MBGScene(5000, 3000, 2.1f, ResourceManager.barrages.get(230), "", true, false, Gdx.files.internal("resources/Danmaku/yaobai.mbg"), 360, 0));
-		system.mScenes.add(new MBGScene(1073741824, 2200, 0f, ResourceManager.barrages.get(230), "里冬「天青色旋转木马」", false, false, Gdx.files.internal("resources/Danmaku/lidong.mbg"), 0, 120));
-		system.mScenes.add(new MBGScene(4000, 2000, 1.8f, ResourceManager.barrages.get(230), "", false, false, Gdx.files.internal("resources/Danmaku/zuotu.mbg"), 0, 60));
-		system.mScenes.add(new SpellWaveParticleChanged1());
-		system.mScenes.add(new MBGScene(7700, 2400, 2f, ResourceManager.barrages.get(230), "里冬「绽放的烟花」", false, true, Gdx.files.internal("resources/Danmaku/1233Y7Resave.mbg"), 0, 400));
+        // Stage 2
+        system.mScenes.add(new DanmakuS2L1());
+        system.mScenes.add(new DanmakuS2L2());
+        system.mScenes.add(new DanmakuS2L3());
+        system.mScenes.add(new MBGScene(3500, 2400, 1.7f, ResourceManager.barrages.get(230), "", true, false, Gdx.files.internal("resources/Danmaku/非符1.mbg"), 180, 0));
+        system.mScenes.add(new MBGScene(5000, 3000, 2.2f, ResourceManager.barrages.get(230), "「贰壹叁壹伍」", false, false, Gdx.files.internal("resources/Danmaku/21315.mbg"), 0, 60));
+        system.mScenes.add(new MBGScene(2000, 1500, 1f, ResourceManager.barrages.get(230), "", false, false, Gdx.files.internal("resources/Danmaku/一非.mbg"), 0, 60));
+        system.mScenes.add(new MBGScene(1073741824, 2000, 0f, ResourceManager.barrages.get(230), "「极光与流星」", false, false, Gdx.files.internal("resources/Danmaku/极光与流星.mbg"), 0, 120));
+        system.mScenes.add(new MBGScene(12000, 3000, 4f, ResourceManager.barrages.get(230), "终符「弹幕结界」", false, true, Gdx.files.internal("resources/Danmaku/弹幕结界.mbg")));
+
+        // Stage 5
+        system.mScenes.add(new MBGScene(5000, 3000, 2.25f, ResourceManager.barrages.get(230), "算符「四重递归」", true, true, Gdx.files.internal("resources/Danmaku/四重递归.mbg"), 360, 0));
+
+        // Stage 6
+        system.mScenes.add(new MBGScene(5000, 3000, 2.1f, ResourceManager.barrages.get(230), "", true, false, Gdx.files.internal("resources/Danmaku/摇摆.mbg"), 360, 0));
+        system.mScenes.add(new MBGScene(1073741824, 2200, 0f, ResourceManager.barrages.get(230), "里冬「天青色旋转木马」", false, false, Gdx.files.internal("resources/Danmaku/里冬.mbg"), 0, 120));
+        system.mScenes.add(new MBGScene(4000, 2000, 1.8f, ResourceManager.barrages.get(230), "", false, false, Gdx.files.internal("resources/Danmaku/作图.mbg"), 0, 60));
+        system.mScenes.add(new SpellWaveParticleChanged1());
+        system.mScenes.add(new MBGScene(7700, 2400, 2f, ResourceManager.barrages.get(230), "里冬「绽放的烟花」", false, true, Gdx.files.internal("resources/Danmaku/1233Y7Resave.mbg"), 0, 400));
 		/*system.mScenes.add(new MBGScene(1000, 1000, 1, ResourceManager.barrages.get(230), true, true,
 				"Crazy Storm Data 1.01\n"+
 				"Center:315,240,0,0,0,0,\n"+
@@ -65,50 +69,57 @@ public class SceneSystem {
 				"Layer3:empty\n"+
 				"Layer4:empty\n"
 			));*/
-		//system.mScenes.add(new ExampleDanmakuScene());
-		//system.mScenes.add(new ExampleDanmakuScene());
-		system.afterFinish = afterFinish;
-		return system;
-	}
+        //system.mScenes.add(new ExampleDanmakuScene());
+        //system.mScenes.add(new ExampleDanmakuScene());
+        system.afterFinish = afterFinish;
+        if (system.afterFinish == null) {
+            system.afterFinish = new Runnable() {
+                @Override
+                public void run() {
+                }
+            };
+        }
+        return system;
+    }
 
-	private SceneSystem() {
-		mScenes = new ArrayList<>();
-		mCurrentIndex = 0;
-		afterFinish = null;
-		sceneManager = null;
-	}
+    private SceneSystem() {
+        mScenes = new ArrayList<>();
+        mCurrentIndex = 0;
+        afterFinish = null;
+        sceneManager = null;
+    }
 
-	private ArrayList<DanmakuScene> mScenes;
-	private int mCurrentIndex;
-	private Runnable afterFinish;
-	public Entity sceneManager;
+    private ArrayList<DanmakuScene> mScenes;
+    private int mCurrentIndex;
+    private Runnable afterFinish;
+    public Entity sceneManager;
 
-	public void PreUpdate() {
-		if (mCurrentIndex >= mScenes.size()) {
-			if (afterFinish != null) {
-				afterFinish.run();
-				afterFinish = null;
-			}
-			return;
-		}
-		DanmakuScene scene = mScenes.get(mCurrentIndex);
-		if (sceneManager == null) {
-			sceneManager = Entity.Create();
-			sceneManager.AddComponent(scene);
-		}
-	}
+    public void PreUpdate() {
+        if (mCurrentIndex >= mScenes.size()) {
+            if (afterFinish != null) {
+                afterFinish.run();
+                afterFinish = null;
+            }
+            return;
+        }
+        DanmakuScene scene = mScenes.get(mCurrentIndex);
+        if (sceneManager == null) {
+            sceneManager = Entity.Create();
+            sceneManager.AddComponent(scene);
+        }
+    }
 
-	public void PostUpdate() {
-		if (mCurrentIndex >= mScenes.size() || sceneManager == null)
-			return;
-		DanmakuScene scene = mScenes.get(mCurrentIndex);
-		if (scene.yield.isFinished()) {
-			nextScene();
-		}
-	}
-	
-	public void nextScene() {
-		mCurrentIndex++;
-		sceneManager = null;
-	}
+    public void PostUpdate() {
+        if (mCurrentIndex >= mScenes.size() || sceneManager == null)
+            return;
+        DanmakuScene scene = mScenes.get(mCurrentIndex);
+        if (scene.yield.isFinished()) {
+            nextScene();
+        }
+    }
+
+    public void nextScene() {
+        mCurrentIndex++;
+        sceneManager = null;
+    }
 }
