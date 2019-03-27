@@ -52,7 +52,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
-		new BossPlaneJunko2().init(objectCenter.cpy(),10,7000,new Task[]{
+		new BossTaiZhang2().init(objectCenter.cpy(),10,7000,new Task[]{
 									   new TaskMove(193,250)
 									 });
 		super.kill();							 
