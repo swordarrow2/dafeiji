@@ -55,7 +55,7 @@ public class Entity {
     }
 
     public static Entity Create(int updateOrder) {
-        final Entity entity = new Entity();//entityPool.obtain(); // new Entity();
+        final Entity entity = entityPool.obtain(); // new Entity();
         entity.mComponents = new TreeMap<>(new Comparator<Class<?>>() {
 
             @Override

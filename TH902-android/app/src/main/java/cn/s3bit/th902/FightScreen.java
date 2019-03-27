@@ -161,7 +161,7 @@ public class FightScreen extends ScreenAdapter {
             hearts[i] = Entity.Create();
             bombs[i].AddComponent(new Transform(new Vector2(720.5f + 30.0f * i, 450.5f)));
             hearts[i].AddComponent(new Transform(new Vector2(720.5f + 30.0f * i, 500.5f)));
-            bombs[i].AddComponent(new ImageRenderer(ResourceManager.textures.get("onBomb"), 1));
+            bombs[i].AddComponent(new ImageRenderer(ResourceManager.textures.get("Bomb"), 1));
             hearts[i].AddComponent(new ImageRenderer(ResourceManager.textures.get("Heart"), 1));
             mBombs[i] = bombs[i].GetComponent(ImageRenderer.class);
             mHearts[i] = hearts[i].GetComponent(ImageRenderer.class);
