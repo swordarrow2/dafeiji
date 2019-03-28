@@ -20,5 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/gdx.jar')
+    implementation files('libs/gdx-backend-android.jar')
 }
