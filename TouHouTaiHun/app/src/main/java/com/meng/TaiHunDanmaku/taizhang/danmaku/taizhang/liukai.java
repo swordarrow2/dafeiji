@@ -89,8 +89,8 @@ public class liukai extends BaseSpellCard{
 		if(boss.existTime%6==0)
 		for(BulletShooter bs:shooters){
 			bs.offset.x+=offset;
-			if(bs.offset.x>195){
-				bs.offset.x=-195;
+			if(bs.offset.x>150){
+				bs.offset.x=-150;
 			  }
 			bs.shoot();
 		  }

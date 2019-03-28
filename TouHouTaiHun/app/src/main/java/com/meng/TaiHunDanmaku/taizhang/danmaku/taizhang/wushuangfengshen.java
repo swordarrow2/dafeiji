@@ -110,7 +110,6 @@ public class wushuangfengshen extends BaseSpellCard{
 			return;
 		  }
 		frame++;
-		if(boss.existTime%2==0)
 		tm.update();
 	  }
 

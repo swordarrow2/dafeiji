@@ -9,7 +9,7 @@ public final class ObjectPools{
             return new com.badlogic.gdx.scenes.scene2d.ui.Image();
         }
     };
-    public static Pool<com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet> enemyBulletPool=new Pool<com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet>(512){
+    public static Pool<com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet> enemyBulletPool=new Pool<com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet>(8192){
         @Override
         protected com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet newObject(){
             return new com.meng.TaiHunDanmaku.bullets.enemy.EnemyBullet();
@@ -50,7 +50,7 @@ public final class ObjectPools{
         }
     };
 
-    public static Pool<com.meng.TaiHunDanmaku.effects.Effect> effectPool=new Pool<com.meng.TaiHunDanmaku.effects.Effect>(512){
+    public static Pool<com.meng.TaiHunDanmaku.effects.Effect> effectPool=new Pool<com.meng.TaiHunDanmaku.effects.Effect>(4096){
         @Override
         protected com.meng.TaiHunDanmaku.effects.Effect newObject(){
             return new com.meng.TaiHunDanmaku.effects.Effect();

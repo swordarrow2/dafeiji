@@ -1,16 +1,23 @@
 package com.meng.TaiHunDanmaku.bullets.myPlane;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Pool;
-import com.meng.TaiHunDanmaku.bullets.BaseMyBullet;
-import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.effects.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
 
 public class ReimuSpell extends BaseMyBullet{
 
+	@Override
+	public void init(Vector2 center,Vector2 velocity){
+		super.init(center,velocity);
+		judgeCircle.setRadius(20);
+	  }
+
+  
     @Override
     public Drawable getDrawable(){
         if(drawable==null){
@@ -33,6 +40,12 @@ public class ReimuSpell extends BaseMyBullet{
                     }
                 }
             }
+			for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
+				if(judgeCircle.contains(baseBullet.objectCenter)){
+					Effect.create(baseBullet.objectCenter.cpy(),EffectType.explore);
+					baseBullet.kill(BulletKillMode.killWithScorePointAndCollect);
+				  }
+			  }
         }catch(Exception e){
             e.printStackTrace();
         }

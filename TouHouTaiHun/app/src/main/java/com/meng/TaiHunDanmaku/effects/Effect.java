@@ -20,7 +20,7 @@ public class Effect extends BaseGameObject{
 
     public static void create(Vector2 center,EffectType type){
         ObjectPools.effectPool.obtain().init(center,type);
-    }
+	  }
 
     public void init(Vector2 center,EffectType type){
         super.init();
@@ -34,39 +34,37 @@ public class Effect extends BaseGameObject{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
         MainScreen.mainGroup.addActor(image);
-    }
+	  }
 
     public void kill(){
         toDelete.add(this);
         image.remove();
         ObjectPools.effectPool.free(this);
-    }
+	  }
 
     public void update(){
         super.update();
         if(existTime>40||judgeCircle.x<-5||judgeCircle.x>390||judgeCircle.y<-5||judgeCircle.y>460){
             kill();
-        }
+		  }
         drawableNumber=existTime/2;
         image.setDrawable(ResourcesManager.textures.get("effect"+(drawableNumber+540)));
-    }
+	  }
 
     public static void updateAll(){
         while(!toDelete.isEmpty()){
             instances.remove(toDelete.poll());
-        }
+		  }
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
-        }
+		  }
         for(Effect item : instances){
             item.update();
-        }
-    }
+		  }
+	  }
 
     public Drawable getDrawable(){
-        if(drawable==null){
-            drawable=ResourcesManager.textures.get("effect540");
-        }
+		drawable=ResourcesManager.textures.get("effect540");
         return drawable;
-    }
-}
+	  }
+  }
