@@ -1,16 +1,15 @@
 package com.meng.TaiHunDanmaku.taizhang.body;
 
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
-import com.meng.TaiHunDanmaku.bullets.*;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.dropItems.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
-import com.meng.TaiHunDanmaku.task.*;
+import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.ui.*;
+import com.badlogic.gdx.graphics.*;
+import com.meng.TaiHunDanmaku.task.*;
 
-public class BossTaiZhang3 extends BaseBossPlane{
+public class BossTaiZhang4 extends BaseBossPlane{
 
     private final int[][] junkoAnim=new int[][]{
 		  {10,14},
@@ -30,12 +29,14 @@ public class BossTaiZhang3 extends BaseBossPlane{
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         targetPosition=center.cpy();
-        spellCard=new liukai();
+        spellCard=new spell7();
         spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(7000,Color.GREEN));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(5500,Color.YELLOW));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(3500,Color.ORANGE));
+		MainScreen.instence.layoutManager.nextPart.add(new partAgent(1200,Color.RED));
 	  }
 
     @Override
@@ -46,12 +47,10 @@ public class BossTaiZhang3 extends BaseBossPlane{
 
     @Override
     public void kill(){
-        BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
-		DropItem.create(objectCenter.cpy(),DropItemType.power);
-		new BossTaiZhang4().init(objectCenter.cpy(),10,7000,new Task[]{
-									 new TaskMove(193,250)
-								   });
         super.kill();
+        BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
+        MainScreen.onSpellCard=false;
+        MainScreen.sleep=75;
 	  }
 
     @Override
@@ -59,4 +58,3 @@ public class BossTaiZhang3 extends BaseBossPlane{
         return new Vector2(96,128);
 	  }
   }
-

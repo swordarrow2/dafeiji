@@ -32,6 +32,7 @@ public class wushuangfengshen extends BaseSpellCard{
 		tm.addTask(new TaskRunnable(new Runnable(){
 						 @Override
 						 public void run(){
+						   if(boss.existTime%3==0)
 							 for(int i=0;i<shooters.length;++i){
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
@@ -109,6 +110,7 @@ public class wushuangfengshen extends BaseSpellCard{
 			return;
 		  }
 		frame++;
+		if(boss.existTime%2==0)
 		tm.update();
 	  }
 

@@ -22,7 +22,7 @@ public class BulletShooter {
     private float bulletRotation = 0;
     private BulletForm bf = BulletForm.lindan;
     private BulletColor bc = BulletColor.white;
-    private Vector2 offset = new Vector2(0, 0);
+    public Vector2 offset = new Vector2(0, 0);
     private int inFrame = 1;
     private int ways = 1;
     private float waysDegree = 0;
