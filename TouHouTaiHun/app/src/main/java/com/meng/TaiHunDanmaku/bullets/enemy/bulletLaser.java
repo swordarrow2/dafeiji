@@ -21,26 +21,22 @@ public class bulletLaser {
     public Color rayColor = new Color(Color.WHITE);
     public float degrees;
     public Sprite begin1, begin2, mid1, mid2, end1, end2;
-    public Vector2 p1, p2;
-    public Rectangle rectangle;
-
-    public bulletLaser(Sprite s1, Sprite s2, Sprite m1, Sprite m2, Sprite e1, Sprite e2, Vector2 p1, Vector2 p2,
-                       Vector2 p3, Vector2 p4) {
+    public Vector2 p1=new Vector2();
+	public Vector2 p2=new Vector2();
+	
+    public bulletLaser(Sprite s1, Sprite s2, Sprite m1, Sprite m2, Sprite e1, Sprite e2) {
         begin1 = s1;
         begin2 = s2;
         mid1 = m1;
         mid2 = m2;
         end1 = e1;
         end2 = e2;
-        this.p1 = p1;
-        this.p2 = p2;
     }
 
     public void render() {
-        rectangle = mid1.getBoundingRectangle();
         begin1.setColor(color);
         begin2.setColor(rayColor);
-        begin2.setColor(rayColor);
+        mid1.setColor(color);
         mid2.setColor(rayColor);
         end1.setColor(color);
         end2.setColor(rayColor);
@@ -63,16 +59,7 @@ public class bulletLaser {
         mid1.setRotation(degrees);
         mid2.setRotation(degrees);
         end1.setRotation(degrees);
-        end2.setRotation(degrees);
-        Vector2 r0 = new Vector2(begin1.getX() + begin1.getOriginX(), begin1.getY() + begin1.getOriginY());
-        Vector2 v = new Vector2(end1.getX() + end1.getOriginX(), end1.getY() + end1.getOriginY());
-        Vector2 v2 = new Vector2((float) ((v.x - r0.x) * Math.cos(degrees) - (v.y - r0.y) * Math.sin(degrees) + r0.x),
-                (float) ((v.x - r0.x) * Math.sin(degrees) + (v.y - r0.y) * Math.cos(degrees) + r0.y));
-        mid1.setColor(pointToLine(r0.x, r0.y, v2.x, v2.y, BaseMyPlane.instance.objectCenter.x,
-                BaseMyPlane.instance.objectCenter.y) < 5 ? Color.RED : color);
-        p1.set(v2);
-        p2.set((float)pointToLine(r0.x, r0.y, v2.x, v2.y, BaseMyPlane.instance.objectCenter.x,
-                BaseMyPlane.instance.objectCenter.y),0);
+        end2.setRotation(degrees);    
         GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         GameMain.spriteBatch.begin();
         begin1.draw(GameMain.spriteBatch);
@@ -83,7 +70,13 @@ public class bulletLaser {
         end2.draw(GameMain.spriteBatch);
         GameMain.spriteBatch.end();
         GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
+		 p1 = new Vector2(begin1.getX() + begin1.getOriginX(), begin1.getY() + begin1.getOriginY());
+         p2 = new Vector2((float)(begin1.getX()+begin1.getOriginX()+distance*Math.cos(Math.toRadians(degrees+90))), 
+								(float)(begin1.getY()+begin1.getOriginY()+distance*Math.sin(Math.toRadians(degrees+90))));
+		if(pointToLine(p1.x, p1.y, p2.x, p2.y, BaseMyPlane.instance.objectCenter.x,
+					BaseMyPlane.instance.objectCenter.y)<5){
+					  ++BaseMyPlane.instance.miss;
+					}
     }
 
     // 点到直线的最短距离的判断 点（x0,y0） 到由两点组成的线段（x1,y1） ,( x2,y2 )

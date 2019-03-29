@@ -14,18 +14,16 @@ public class normal1 extends BaseNormalDanmaku{
 	public bulletLaser ls;
 	public void init(BaseBossPlane baseBossPlane){
         boss=baseBossPlane;
-
 		ls=new bulletLaser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
 						   new Sprite(new Texture(Gdx.files.internal("textures/beamstart2.png"))),
 						   new Sprite(new Texture(Gdx.files.internal("textures/beammid1.png"))),
 						   new Sprite(new Texture(Gdx.files.internal("textures/beammid2.png"))),
 						   new Sprite(new Texture(Gdx.files.internal("textures/beamend1.png"))),
-						   new Sprite(new Texture(Gdx.files.internal("textures/beamend2.png"))), 
-						   new Vector2(),new Vector2(),new Vector2(),new Vector2());
+						   new Sprite(new Texture(Gdx.files.internal("textures/beamend2.png"))));
 		ls.color=Color.GREEN;
-		ls.position=boss.objectCenter;	
-		ls.degrees=0;
-		ls.distance=100;
+		ls.position.set(boss.objectCenter);	
+		ls.degrees=180;
+		ls.distance=190;
 		MainScreen.bl=ls;
         shooters=new BulletShooter[]{
 			new BulletShooter().init()
@@ -49,7 +47,7 @@ public class normal1 extends BaseNormalDanmaku{
 		super.update();
 		taskManager.update();
 		frame++;
-		ls.degrees=frame;
+		ls.degrees=frame*0.3f;
 	  }
 
   }

@@ -9,7 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.viewport.*;
 import com.meng.TaiHunDanmaku.bigFace.item.*;
-import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.helpers.*;
@@ -17,7 +16,7 @@ import com.meng.TaiHunDanmaku.planes.*;
 import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.stage.*;
-import java.util.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -39,25 +38,25 @@ public class MainScreen extends ScreenAdapter{
     static int spellHeight=450;
 	public static  bulletLaser bl;
 	public float bossMaxHp=1;
-	
+
 	public static Group highLight=new Group();
 	Actor changeBlend1 = new Actor() {
-		public void draw(Batch batch, float parentAlpha) {
+		public void draw(Batch batch,float parentAlpha){
 			GameMain.spriteBatch.end();
-			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE);
 			GameMain.spriteBatch.begin();
 		  }
 	  };
-	
+
 	Actor changeBlend2 = new Actor() {
-		public void draw(Batch batch, float parentAlpha) {
+		public void draw(Batch batch,float parentAlpha){
 			GameMain.spriteBatch.end();
-			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
 			GameMain.spriteBatch.begin();
 		  }
 	  };
-	
-	
+
+
 	public LayoutManager layoutManager;
     @Override
     public void show(){
@@ -79,7 +78,7 @@ public class MainScreen extends ScreenAdapter{
 			  }catch(InterruptedException e){
 			  }
 		  }
-		  
+
         for(int i=0;i<32;i++){
             if(enemys[i]!=null){
                 if((enemys[i].isKilled)){
@@ -89,16 +88,16 @@ public class MainScreen extends ScreenAdapter{
 				  }
 			  }
 		  }  	  
-		
-		
-	//	stage.act();
+
+
+		//	stage.act();
 		stage.draw();
-	/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
-		shapeRenderer.setAutoShapeType(true);
-		shapeRenderer.begin();
-		shapeRenderer.rectLine(10, 10, 300, 400, 80);
-		shapeRenderer.end();*/
-		
+		/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
+		 shapeRenderer.setAutoShapeType(true);
+		 shapeRenderer.begin();
+		 shapeRenderer.rectLine(10, 10, 300, 400, 80);
+		 shapeRenderer.end();*/
+
 		if(bl!=null){
 			bl.render();
 		  }
@@ -113,25 +112,15 @@ public class MainScreen extends ScreenAdapter{
 			  }
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,spellHeight);
 		  }
-        try {
-            bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
-                            //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
-                            "MaxPoint:"+BaseMyPlane.instance.maxPoint
-                            +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
-                            +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
-
-                            +"\nx:"+bl.end1.getX()+"\n"
-                            +"y:"+bl.end1.getY()+"\n"
-                            +"x:"+bl.p1.x+"\n"
-                            +"y:"+bl.p1.y+"\n"
-                            +"y:"+bl.p2.x+"\n"
-                            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
-                            +isKilled()
-                    ,10,590);
-
-        } catch (Exception e) {
-            // TODO: handle exception
-        }    switch(stageFlag){
+		bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
+						//	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
+						"MaxPoint:"+BaseMyPlane.instance.maxPoint
+						+"\nmiss:"+BaseMyPlane.instance.miss+"\n"
+						+"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
+						+"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
+						+isKilled()
+						,10,590);
+		switch(stageFlag){
             case Data.stageFlagStage1:
 			  if(gameTime==700){
 				  GlyphLayout glyphLayout=new GlyphLayout();
@@ -202,21 +191,21 @@ public class MainScreen extends ScreenAdapter{
 			  break;
 		  }
 
-	/*	Button.ButtonStyle style = new Button.ButtonStyle();
-		style.up=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
-		style.down=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
-		Button button = new Button(style);
-		button.setPosition(10,10);
-		button.addListener(new ClickListener() {
-			  @Override
-			  public void clicked(InputEvent event,float x,float y){
-				  BaseMyPlane.instance.onBomb=true;
-				}
-			});
-        mainGroup.addActor(button);	 
-		*/
+		/*	Button.ButtonStyle style = new Button.ButtonStyle();
+		 style.up=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
+		 style.down=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
+		 Button button = new Button(style);
+		 button.setPosition(10,10);
+		 button.addListener(new ClickListener() {
+		 @Override
+		 public void clicked(InputEvent event,float x,float y){
+		 BaseMyPlane.instance.onBomb=true;
+		 }
+		 });
+		 mainGroup.addActor(button);	 
+		 */
         inputManager=new InputMultiplexer();
-	//	inputManager.addProcessor(stage);
+		//	inputManager.addProcessor(stage);
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
 	  }
