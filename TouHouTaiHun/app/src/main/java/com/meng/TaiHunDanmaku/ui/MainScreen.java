@@ -37,7 +37,7 @@ public class MainScreen extends ScreenAdapter{
     public static int sleep=0;
     public static boolean onSpellCard=false;
     static int spellHeight=450;
-
+	public static  bulletLaser bl;
 	public float bossMaxHp=1;
 	
 	public static Group highLight=new Group();
@@ -79,7 +79,7 @@ public class MainScreen extends ScreenAdapter{
 			  }catch(InterruptedException e){
 			  }
 		  }
-
+		  
         for(int i=0;i<32;i++){
             if(enemys[i]!=null){
                 if((enemys[i].isKilled)){
@@ -96,11 +96,12 @@ public class MainScreen extends ScreenAdapter{
 	/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setAutoShapeType(true);
 		shapeRenderer.begin();
-
 		shapeRenderer.rectLine(10, 10, 300, 400, 80);
-
 		shapeRenderer.end();*/
 		
+		if(bl!=null){
+			bl.render();
+		  }
         GameMain.spriteBatch.begin();
         layoutManager.update();
         if(onSpellCard){
