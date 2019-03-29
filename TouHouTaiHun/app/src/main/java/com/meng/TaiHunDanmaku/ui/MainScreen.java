@@ -113,15 +113,25 @@ public class MainScreen extends ScreenAdapter{
 			  }
             bitmapFont.draw(GameMain.spriteBatch,glyphLayout,width-glyphLayout.width,spellHeight);
 		  }
-        bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
-                        //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
-                        "MaxPoint:"+BaseMyPlane.instance.maxPoint
-                        +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
-                        +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
-						+"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
-                        +isKilled()
-						,10,590);
-        switch(stageFlag){
+        try {
+            bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
+                            //	+"\npos:"+BulletRemover.instance.objectCenter.x+" "+BulletRemover.instance.objectCenter.y+"\n"
+                            "MaxPoint:"+BaseMyPlane.instance.maxPoint
+                            +"\nmiss:"+BaseMyPlane.instance.miss+"\n"
+                            +"\nbullet:"+BaseEnemyBullet.instances.size()+"\n"
+
+                            +"\nx:"+bl.end1.getX()+"\n"
+                            +"y:"+bl.end1.getY()+"\n"
+                            +"x:"+bl.p1.x+"\n"
+                            +"y:"+bl.p1.y+"\n"
+                            +"y:"+bl.p2.x+"\n"
+                            +"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
+                            +isKilled()
+                    ,10,590);
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }    switch(stageFlag){
             case Data.stageFlagStage1:
 			  if(gameTime==700){
 				  GlyphLayout glyphLayout=new GlyphLayout();
