@@ -36,6 +36,7 @@ public class liukai extends BaseSpellCard{
 			.setWaysDegree(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(0.7f)
+			.setHighLight(true)
 			.setRandomCenter(64,64),
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
@@ -69,6 +70,7 @@ public class liukai extends BaseSpellCard{
 			.setWaysDegree(60)
 			.setRandomDegree(360)
 			.setBulletSpeed(2.5f)
+			.setHighLight(true)
 			.setRandomCenter(64,64),
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)

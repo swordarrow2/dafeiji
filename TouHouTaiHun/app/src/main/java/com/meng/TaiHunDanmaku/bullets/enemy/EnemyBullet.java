@@ -16,11 +16,11 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int colorNum = 0;
     private int formNum = 0;
 
-    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,Task[] mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,speed,ref,through,mm);
+    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,boolean highLight,float speed,int ref,int through,Task[] mm){
+        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,highLight,speed,ref,through,mm);
 	  }
 
-    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,Task[] tasks){
+    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,boolean highLight,float speed,int ref,int though,Task[] tasks){
         super.init();
         for(Task task : tasks){
             taskManager.addTask(task);
@@ -129,9 +129,11 @@ public class EnemyBullet extends BaseEnemyBullet{
 			  break;
 		  }
         image.setDrawable(getDrawable());
-      //  MainScreen.mainGroup.addActor(image);
-	  MainScreen.highLight.addActor(image);
-		
+		if(highLight){
+			MainScreen.highLight.addActor(image);
+		  }else{
+			MainScreen.mainGroup.addActor(image);
+		  }
 	  }
 
     @Override
