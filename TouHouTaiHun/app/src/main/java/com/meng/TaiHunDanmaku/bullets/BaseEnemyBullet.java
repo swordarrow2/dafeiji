@@ -93,24 +93,24 @@ public abstract class BaseEnemyBullet extends BaseBullet {
             objectCenter.add(velocity);
         }
         if (refCount > 0) {
-            if (objectCenter.x <= 0) {
+            if (objectCenter.x <= 5) {
                 velocity.x = -velocity.x;
-                objectCenter.x = 1;
+                objectCenter.x = 5;
                 refCount--;
             }
-            if (objectCenter.x >= MainScreen.fightArea.width) {
+            if (objectCenter.x >= MainScreen.fightArea.width-5) {
                 velocity.x = -velocity.x;
-                objectCenter.x = MainScreen.fightArea.width - 1;
+                objectCenter.x = MainScreen.fightArea.width - 5;
                 refCount--;
             }
-            if (objectCenter.y <= 0) {
+            if (objectCenter.y <= 5) {
                 velocity.y = -velocity.y;
-                objectCenter.y = 1;
+                objectCenter.y = 5;
                 refCount--;
             }
-            if (objectCenter.y >= MainScreen.fightArea.height) {
+            if (objectCenter.y >= MainScreen.fightArea.height-5) {
                 velocity.y = -velocity.y;
-                objectCenter.y = MainScreen.fightArea.height - 1;
+                objectCenter.y = MainScreen.fightArea.height - 5;
                 refCount--;
             }
         } else if (thoughCount > 0) {

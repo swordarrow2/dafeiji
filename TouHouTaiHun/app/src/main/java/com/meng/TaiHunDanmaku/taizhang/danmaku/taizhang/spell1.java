@@ -10,7 +10,7 @@ public class spell1 extends BaseSpellCard{
 
 	private float ro=0;
 
-	public void init(BaseBossPlane b){
+	public void init(final BaseBossPlane b){
 		spellName="「FPS test」";
         boss=b;
 		tm=new TaskManager(b,TaskRepeatMode.repeatLast);
@@ -21,11 +21,20 @@ public class spell1 extends BaseSpellCard{
 			.setBulletCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.green)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(60)
-			.setWaysDegree(6)
-			.setBulletSpeed(0.4f)
+			.setWays(30)
+			.setRandomCenter(128,32)
+			.setWaysDegree(12)
+			.setReflex(1)
+			.setBulletSpeed(2f)
 			
 		  };
+		tm.addTask(new TaskRunnable(new Runnable(){
+
+						 @Override
+						 public void run(){
+							 b.moveTo(193,350);
+						   }
+					   }));
 		tm.addTask(new TaskRunnable(new Runnable(){
 						 @Override
 						 public void run(){
@@ -41,7 +50,7 @@ public class spell1 extends BaseSpellCard{
 	@Override
 	public void update(){
 	  if(Gdx.graphics.getFramesPerSecond()<58)return;
-		boss.moveTo(193,250);
+		
 		if(waitFrameSpell>0){
 			waitFrameSpell--;
 			return;
