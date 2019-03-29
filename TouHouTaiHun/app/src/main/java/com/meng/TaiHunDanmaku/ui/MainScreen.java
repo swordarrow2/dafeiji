@@ -17,6 +17,7 @@ import com.meng.TaiHunDanmaku.planes.*;
 import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.stage.*;
+import java.util.*;
 
 public class MainScreen extends ScreenAdapter{
     public static int playerFlag;//角色
@@ -38,7 +39,25 @@ public class MainScreen extends ScreenAdapter{
     static int spellHeight=450;
 
 	public float bossMaxHp=1;
-
+	
+	public static Group highLight=new Group();
+	Actor changeBlend1 = new Actor() {
+		public void draw(Batch batch, float parentAlpha) {
+			GameMain.spriteBatch.end();
+			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+			GameMain.spriteBatch.begin();
+		  }
+	  };
+	
+	Actor changeBlend2 = new Actor() {
+		public void draw(Batch batch, float parentAlpha) {
+			GameMain.spriteBatch.end();
+			GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+			GameMain.spriteBatch.begin();
+		  }
+	  };
+	
+	
 	public LayoutManager layoutManager;
     @Override
     public void show(){
@@ -69,7 +88,9 @@ public class MainScreen extends ScreenAdapter{
                     enemys[i].update();
 				  }
 			  }
-		  }
+		  }  	  
+		
+		
 	//	stage.act();
 		stage.draw();
 	/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
@@ -79,6 +100,7 @@ public class MainScreen extends ScreenAdapter{
 		shapeRenderer.rectLine(10, 10, 300, 400, 80);
 
 		shapeRenderer.end();*/
+		
         GameMain.spriteBatch.begin();
         layoutManager.update();
         if(onSpellCard){
@@ -154,8 +176,10 @@ public class MainScreen extends ScreenAdapter{
         stage.addActor(background);
         mainGroup=new Group();
         stage.addActor(mainGroup);
+		stage.addActor(changeBlend1);
+		stage.addActor(highLight);
+		stage.addActor(changeBlend2);
         fightArea=new Rectangle(0,0,386,450);
-
         playerFlag=Data.playerFlagReimu;
         stageFlag=Data.stageFlagStage1;
         switch(playerFlag){

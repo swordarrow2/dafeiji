@@ -28,7 +28,13 @@ public class LayoutManager{
 		BulletShooter.updateAll();
         DropItem.updateAll();
         BaseMyBullet.updateAll();
+		GameMain.spriteBatch.end();
+		GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+		GameMain.spriteBatch.begin();
         BaseEnemyBullet.updateAll();
+		GameMain.spriteBatch.end();
+		GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		GameMain.spriteBatch.begin();
         Effect.updateAll();
         BulletRemover.updateAll();
         BaseBigFace.updateAll();

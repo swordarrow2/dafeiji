@@ -131,17 +131,17 @@ public class MyPlaneReimu extends BaseMyPlane{
                         subPlane4.init(this,4);
                     }
                 case 3:
-                    if(subPlane4==null){
+                    if(subPlane3==null){
                         subPlane3=new SubPlaneReimuB();
                         subPlane3.init(this,3);
                     }
                 case 2:
-                    if(subPlane4==null){
+                    if(subPlane2==null){
                         subPlane2=new SubPlaneReimuB();
                         subPlane2.init(this,2);
                     }
                 case 1:
-                    if(subPlane4==null){
+                    if(subPlane1==null){
                         subPlane1=new SubPlaneReimuB();
                         subPlane1.init(this,1);
                     }

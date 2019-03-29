@@ -23,7 +23,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public int bombTime;
     public boolean onBomb=false;
 
-    public int power=3;
+    public int power=1;
     public int maxPoint=10000;
     public int miss=0;
 
@@ -59,7 +59,9 @@ public abstract class BaseMyPlane extends BaseGameObject{
         super.update();
         animFlag++;
         objectCenter=new Vector2(MathUtils.clamp(objectCenter.x,10,376),MathUtils.clamp(objectCenter.y,10,440));
-
+		if(image.getRotation()!=0){
+		  image.setRotation(0);
+		}
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         shoot();
         judge();

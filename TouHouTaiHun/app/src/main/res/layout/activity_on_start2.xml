@@ -26,10 +26,7 @@
                 android:text="B:针"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <RadioButton
-                android:text="C:未实装"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            
         </RadioGroup>
         
 

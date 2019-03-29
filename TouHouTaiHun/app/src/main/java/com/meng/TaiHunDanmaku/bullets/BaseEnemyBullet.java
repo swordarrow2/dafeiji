@@ -1,14 +1,14 @@
 package com.meng.TaiHunDanmaku.bullets;
 
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
-import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.dropItems.*;
 import com.meng.TaiHunDanmaku.effects.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
-
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -77,9 +77,11 @@ public abstract class BaseEnemyBullet extends BaseBullet {
         while (!toAdd.isEmpty()) {
             instances.add(toAdd.poll());
         }
+	//	GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         for (BaseEnemyBullet baseBullet : instances) {
             baseBullet.update();
         }
+	//	GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 
     @Override

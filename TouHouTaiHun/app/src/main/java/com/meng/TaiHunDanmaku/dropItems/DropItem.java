@@ -175,9 +175,7 @@ public class DropItem extends BaseGameObject{
 	  }
 
     public Drawable getDrawable(){
-        if(drawable==null){
             drawable=ResourcesManager.textures.get("item"+DrawableNumber);
-		  }
         return drawable;
 	  }
 

@@ -1,14 +1,15 @@
 package com.meng.TaiHunDanmaku.bullets.enemy;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.TaiHunDanmaku.bullets.BaseEnemyBullet;
-import com.meng.TaiHunDanmaku.helpers.ObjectPools;
-import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
-import com.meng.TaiHunDanmaku.task.Task;
-import com.meng.TaiHunDanmaku.ui.MainScreen;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.helpers.*;
+import com.meng.TaiHunDanmaku.task.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public class EnemyBullet extends BaseEnemyBullet{
 
@@ -128,7 +129,9 @@ public class EnemyBullet extends BaseEnemyBullet{
 			  break;
 		  }
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+      //  MainScreen.mainGroup.addActor(image);
+	  MainScreen.highLight.addActor(image);
+		
 	  }
 
     @Override

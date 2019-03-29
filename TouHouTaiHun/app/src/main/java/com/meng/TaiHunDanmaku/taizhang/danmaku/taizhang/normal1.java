@@ -12,9 +12,9 @@ public class normal1 extends BaseNormalDanmaku{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
 			.setBulletCenter(boss.objectCenter)
-			.setBulletColor(BulletColor.green)
+			.setBulletColor(BulletColor.white)
 			.setBulletForm(BulletForm.huanyu)
-			.setWays(48)
+			.setWays(112)
 			.setBulletSpeed(2)
 			.setBulletStyle(BulletStyle.round)
 		  };
