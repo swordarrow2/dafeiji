@@ -2,7 +2,7 @@ package com.meng.guirenzhengxie;
 
 import java.util.*;
 
-public class javabean{
+public class PersonInfoJavaBean {
 	public ArrayList<MapBiliUser> mapBiliUser=new ArrayList<MapBiliUser>();
 
 	public class MapBiliUser{
@@ -11,5 +11,8 @@ public class javabean{
 		public long bid=0;
 		public long bliveRoom=0;
 		public boolean autoTip=false;
+	  }
+	  public MapBiliUser getNewBean(){
+		return  new MapBiliUser();
 	  }
   }
