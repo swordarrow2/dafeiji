@@ -120,6 +120,9 @@ public class MainScreen extends ScreenAdapter{
 						+"\nmemory:"+(Runtime.getRuntime().totalMemory()*1.0/(1024*1024))
 						+isKilled()
 						,10,590);
+						if(bl!=null){
+						  bitmapFont.draw(GameMain.spriteBatch,"o",bl.p2.x,bl.p2.y);
+						}
 		switch(stageFlag){
             case Data.stageFlagStage1:
 			  if(gameTime==700){

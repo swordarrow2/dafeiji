@@ -59,13 +59,17 @@ public class bulletLaser{
         begin2.draw(GameMain.spriteBatch);
         mid1.draw(GameMain.spriteBatch);
         mid2.draw(GameMain.spriteBatch);
-        end1.draw(GameMain.spriteBatch);
-        end2.draw(GameMain.spriteBatch);
+		end1.draw(GameMain.spriteBatch);
+		end2.draw(GameMain.spriteBatch);
         GameMain.spriteBatch.end();
         GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
 		p1=new Vector2(begin1.getX()+begin1.getOriginX(),begin1.getY()+begin1.getOriginY());
 		p2=new Vector2((float)(begin1.getX()+begin1.getOriginX()+distance*Math.cos(Math.toRadians(degrees+90))), 
 					   (float)(begin1.getY()+begin1.getOriginY()+distance*Math.sin(Math.toRadians(degrees+90))));
+		Vector2 v3=new Vector2(p2.x-p1.x,p2.y-p1.y).nor();
+		v3.scl(distance+begin1.getHeight());
+		v3.add(p1);
+		p2.set(v3);
 		if(pointToLine(p1.x,p1.y,p2.x,p2.y,BaseMyPlane.instance.objectCenter.x,
 					   BaseMyPlane.instance.objectCenter.y)<5){
 			++BaseMyPlane.instance.miss;
