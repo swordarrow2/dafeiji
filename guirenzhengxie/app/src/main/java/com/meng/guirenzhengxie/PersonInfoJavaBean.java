@@ -12,7 +12,4 @@ public class PersonInfoJavaBean {
 		public long bliveRoom=0;
 		public boolean autoTip=false;
 	  }
-	  public MapBiliUser getNewBean(){
-		return  new MapBiliUser();
-	  }
   }
