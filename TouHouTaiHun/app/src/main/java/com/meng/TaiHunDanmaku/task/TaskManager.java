@@ -1,11 +1,11 @@
 package com.meng.TaiHunDanmaku.task;
 
 import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import java.util.*;
 
 public class TaskManager{
-    private Random ran=new Random();
     private TaskRepeatMode repeatMode;
     private BaseEnemyPlane enemy=null;
     private BaseEnemyBullet bullet=null;
@@ -78,7 +78,7 @@ public class TaskManager{
         if(enemy==null){
             if(t instanceof TaskMove){
                 if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
-                    bullet.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
+                    bullet.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
 				  }else{
 			//		  if(bullet.existTime>100)return;
                     bullet.moveTo(t.targetPosition.x,t.targetPosition.y);
@@ -89,7 +89,7 @@ public class TaskManager{
 		  }else{
             if(t instanceof TaskMove){
                 if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
-                    enemy.moveTo(ran.nextInt(250)+136,ran.nextInt(250)+150);
+					  enemy.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
 				  }else{
                     enemy.moveTo(t.targetPosition.x,t.targetPosition.y);
 				  }

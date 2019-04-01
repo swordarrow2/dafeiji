@@ -1,16 +1,15 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
+import com.badlogic.gdx.math.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.task.*;
-import java.util.*;
-import com.badlogic.gdx.math.*;
 
 public class wushuangfengshen extends BaseSpellCard{
 
 	private float ro=0;
-	Random r=new Random();
 	public void init(BaseBossPlane b){
 		spellName="台符「无双风神」";
         boss=b;
@@ -36,67 +35,67 @@ public class wushuangfengshen extends BaseSpellCard{
 							 for(int i=0;i<shooters.length;++i){
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 								 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=-r.nextFloat()*60-60;
+								 ro=-ObjectPools.randomPool.nextFloat()*60-60;
 							   }
 						   }
 					   }));

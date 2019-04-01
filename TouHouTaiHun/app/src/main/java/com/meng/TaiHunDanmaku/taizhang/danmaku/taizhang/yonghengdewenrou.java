@@ -5,11 +5,11 @@ import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
 import com.meng.TaiHunDanmaku.task.*;
 import java.util.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public class yonghengdewenrou extends BaseSpellCard {
 
 	private float ro=0;
-	Random r=new Random();
 	public void init(BaseBossPlane b){
 		spellName="台符「永恒的温柔」";
         boss=b;
@@ -41,7 +41,7 @@ public class yonghengdewenrou extends BaseSpellCard {
 							 for(int i=0;i<shooters.length;++i){
 								 shooters[i].shoot();
 								 shooters[i].bulletVelocity.setAngle(ro);
-								 ro=r.nextFloat()*360;
+								 ro=ObjectPools.randomPool.nextFloat()*360;
 							   }
 						   }
 					   }));

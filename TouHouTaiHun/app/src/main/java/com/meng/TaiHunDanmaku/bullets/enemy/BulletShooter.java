@@ -1,6 +1,7 @@
 package com.meng.TaiHunDanmaku.bullets.enemy;
 
 import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.task.*;
@@ -37,7 +38,6 @@ public class BulletShooter{
     private boolean useRandomCenter = false;
     private boolean useRandomDegree = false;
     private float randomDegree = 0;
-    private Random ran = new Random();
     private BulletStyle bulletStyle = BulletStyle.normal;
 	private boolean highLight=false;
 
@@ -187,7 +187,7 @@ public class BulletShooter{
 		  }
         beilv=1;
         if(useRandomDegree){
-            bulletVelocity.rotate(bulletVelocity.angle()+ran.nextFloat()*randomDegree);
+            bulletVelocity.rotate(bulletVelocity.angle()+ObjectPools.randomPool.nextFloat()*randomDegree);
 		  }
         if(bulletStyle==BulletStyle.snipe){
             bulletVelocity=BaseMyPlane.instance.objectCenter.cpy().sub(bulletCenter).nor().scl(bulletSpeed);
@@ -198,8 +198,8 @@ public class BulletShooter{
 		  }else{
             bulletVelocity.nor().scl(bulletSpeed);
 		  }
-        float nowCenterX = -randomX/2+ran.nextFloat()*randomX;
-        float nowCenterY = -randomY/2+ran.nextFloat()*randomY;
+        float nowCenterX = -randomX/2+ObjectPools.randomPool.nextFloat()*randomX;
+        float nowCenterY = -randomY/2+ObjectPools.randomPool.nextFloat()*randomY;
         for(int ceng = 0; ceng<cengShu; ++ceng){
             float allAngle = (ways-1)*waysDegree;
             Vector2 tmpv = bulletVelocity.cpy().scl(beilv);

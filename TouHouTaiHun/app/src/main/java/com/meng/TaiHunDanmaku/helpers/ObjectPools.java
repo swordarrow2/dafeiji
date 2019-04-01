@@ -1,8 +1,12 @@
 package com.meng.TaiHunDanmaku.helpers;
 
 import com.badlogic.gdx.utils.Pool;
+import com.badlogic.gdx.math.*;
 
 public final class ObjectPools{
+  
+  public static RandomXS128 randomPool=new RandomXS128(9961);
+  
     public static Pool<com.badlogic.gdx.scenes.scene2d.ui.Image> imagePool=new Pool<com.badlogic.gdx.scenes.scene2d.ui.Image>(512){
         @Override
         protected com.badlogic.gdx.scenes.scene2d.ui.Image newObject(){
