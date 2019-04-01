@@ -49,7 +49,7 @@ public class BossTaiZhang3 extends BaseBossPlane{
         BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossTaiZhang4().init(objectCenter.cpy(),10,7000,new Task[]{
-									 new TaskMove(193,250)
+									 new TaskMoveTo(193,250)
 								   });
         super.kill();
 	  }

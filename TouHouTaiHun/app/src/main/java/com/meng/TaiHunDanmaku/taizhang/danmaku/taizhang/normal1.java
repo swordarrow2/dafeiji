@@ -38,7 +38,7 @@ public class normal1 extends BaseNormalDanmaku{
 		taskManager=new TaskManager(baseBossPlane,TaskRepeatMode.repeatAll);
 		taskManager.addTask(new TaskShoot(shooters));
 		taskManager.addTask(new TaskWait(60));
-		taskManager.addTask(new TaskMove(10000,10000));
+		taskManager.addTask(new TaskMoveTo(10000,10000));
 		taskManager.addTask(new TaskWait(60));
 	  }
 

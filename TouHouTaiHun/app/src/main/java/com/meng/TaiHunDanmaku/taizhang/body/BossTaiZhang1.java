@@ -53,7 +53,7 @@ public class BossTaiZhang1 extends BaseBossPlane{
 		MainScreen.normalMode();
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossTaiZhang2().init(objectCenter.cpy(),10,7000,new Task[]{
-									   new TaskMove(193,250)
+									   new TaskMoveTo(193,250)
 									 });
 		super.kill();							 
 	  }

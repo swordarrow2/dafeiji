@@ -48,7 +48,7 @@ public class spell1 extends BaseSpellCard{
 						   }
 					   }));
 					   tm.addTask(new TaskWait(30));
-					   tm.addTask(new TaskChangeAcce(0,0.5f));
+					   tm.addTask(new TaskChangeAcceleration(0,0.5f));
 	  }
 
 	@Override

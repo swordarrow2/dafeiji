@@ -3,7 +3,7 @@ package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
 import com.meng.TaiHunDanmaku.task.TaskManager;
 import com.meng.TaiHunDanmaku.task.TaskRepeatMode;
-import com.meng.TaiHunDanmaku.task.TaskMove;
+import com.meng.TaiHunDanmaku.task.TaskMoveTo;
 import com.meng.TaiHunDanmaku.task.TaskShoot;
 import com.meng.TaiHunDanmaku.task.TaskWait;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseNormalDanmaku;
@@ -31,7 +31,7 @@ public class test1 extends BaseNormalDanmaku{
         };
         tm.addTask(new TaskShoot(shooters));
         tm.addTask(new TaskWait(60));
-        tm.addTask(new TaskMove(10000,10000));
+        tm.addTask(new TaskMoveTo(10000,10000));
         tm.addTask(new TaskWait(60));
     }
 
