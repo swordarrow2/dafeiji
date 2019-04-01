@@ -18,7 +18,6 @@ public class BulletShooter{
     private int time = 0;
     private Vector2 bulletCenter = new Vector2(200,200);
     public Vector2 bulletVelocity = new Vector2(1,0);
-    private float bulletSpeed = 1;
     private float bulletRotation = 0;
     private BulletForm bf = BulletForm.lindan;
     private BulletColor bc = BulletColor.white;
@@ -65,7 +64,7 @@ public class BulletShooter{
 	  }
 
     public BulletShooter setBulletSpeed(float bulletSpeed){
-        this.bulletSpeed=bulletSpeed;
+    //    this.bulletSpeed=bulletSpeed;
         return this;
 	  }
 
@@ -190,13 +189,9 @@ public class BulletShooter{
             bulletVelocity.rotate(bulletVelocity.angle()+ObjectPools.randomPool.nextFloat()*randomDegree);
 		  }
         if(bulletStyle==BulletStyle.snipe){
-            bulletVelocity=BaseMyPlane.instance.objectCenter.cpy().sub(bulletCenter).nor().scl(bulletSpeed);
+            bulletVelocity=BaseMyPlane.instance.objectCenter.cpy().sub(bulletCenter).nor();
 		  }else if(bulletStyle==bulletStyle.round){
             setWaysDegree(360f/ways);
-            bulletVelocity.nor().scl(bulletSpeed);
-            //      moveMethods=straightMove?new BaseMoveMethod[]{new MoveMethodStraight(inFrame,15,bulletVelocity)}:moveMethods;
-		  }else{
-            bulletVelocity.nor().scl(bulletSpeed);
 		  }
         float nowCenterX = -randomX/2+ObjectPools.randomPool.nextFloat()*randomX;
         float nowCenterY = -randomY/2+ObjectPools.randomPool.nextFloat()*randomY;
@@ -209,14 +204,14 @@ public class BulletShooter{
                     float finalX = bulletCenter.x+offset.x+nowCenterX;
                     float finalY = bulletCenter.y+offset.y+nowCenterY;
                     Vector2 tmp = tmpv.cpy().scl(1000);
-                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,highLight,bulletSpeed,reflex,through,new Task[]{
+                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,highLight,reflex,through,new Task[]{
 										   new TaskMove(tmp.x+finalX,tmp.y+finalY)
 										 });
 				  }else{
                     float finalX = bulletCenter.x+offset.x;
                     float finalY = bulletCenter.y+offset.y;
                     Vector2 tmp = tmpv.cpy().scl(1000);
-                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,highLight,bulletSpeed,reflex,through,new Task[]{
+                    EnemyBullet.create(new Vector2(finalX,finalY),bf,bc,highLight,reflex,through,new Task[]{
 										   new TaskMove(tmp.x+finalX,tmp.y+finalY)
 										 });
 				  }

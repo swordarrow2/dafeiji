@@ -78,18 +78,18 @@ public class TaskManager{
         if(enemy==null){
             if(t instanceof TaskMove){
                 if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
-                    bullet.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
+					//           bullet.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
 				  }else{
-			//		  if(bullet.existTime>100)return;
-                    bullet.moveTo(t.targetPosition.x,t.targetPosition.y);
+					int i=1;
+					//           bullet.moveTo(t.targetPosition.x,t.targetPosition.y);
 				  }
 			  }else if(t instanceof TaskChangeAcce){
-				  bullet.acce.set(((TaskChangeAcce)t).x,((TaskChangeAcce)t).y);
+				bullet.acceleration.set(((TaskChangeAcce)t).x,((TaskChangeAcce)t).y);
 			  }
 		  }else{
             if(t instanceof TaskMove){
                 if(t.targetPosition.x==10000&&t.targetPosition.y==10000){
-					  enemy.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
+					enemy.moveTo(ObjectPools.randomPool.nextInt(250)+136,ObjectPools.randomPool.nextInt(250)+150);
 				  }else{
                     enemy.moveTo(t.targetPosition.x,t.targetPosition.y);
 				  }
