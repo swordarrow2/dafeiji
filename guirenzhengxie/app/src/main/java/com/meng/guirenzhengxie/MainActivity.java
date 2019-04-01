@@ -138,7 +138,7 @@ public class MainActivity extends Activity {
                     int bufferSize = 1024;
                     char[] buffer = new char[bufferSize];
                     StringBuilder out = new StringBuilder();
-                    Reader in = new InputStreamReader(socket.getInputStream(), "UTF-8");
+                    Reader in = new InputStreamReader(socket.getInputStream());
                     int rsz = 0;
                     while ((rsz = in.read(buffer, 0, buffer.length)) > 0) {
                         out.append(buffer, 0, rsz);
