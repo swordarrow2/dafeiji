@@ -18,14 +18,13 @@ public class wushuangfengshen extends BaseSpellCard{
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
-			.setOffset(new Vector2(0,0))
 			.setBulletColor(BulletColor.green)
 			.setBulletForm(BulletForm.midan)
-			.setWays(1)
-			.setBulletCenter(new Vector2(195,450))
-			.setRandomCenter(385,0)
-			.setWaysDegree(2)
-			.setBulletSpeed(3)
+			.setBulletWays(1)
+			.setBulletShooterCenter(new Vector2(195,450))
+			.setShooterCenterRandomRange(385,0)
+			.setBulletWaysDegree(2)
+			.setBulletVelocity(new Vector2(0,-3))
 			
 		  };
 		tm.addTask(new TaskRunnable(new Runnable(){

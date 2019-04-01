@@ -8,6 +8,7 @@ import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
+import com.badlogic.gdx.math.*;
 
 public class normal1 extends BaseNormalDanmaku{
   	private TaskManager taskManager;
@@ -28,11 +29,11 @@ public class normal1 extends BaseNormalDanmaku{
         shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
-			.setBulletCenter(boss.objectCenter)
+			.setBulletShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.white)
 			.setBulletForm(BulletForm.huanyu)
-			.setWays(112)
-			.setBulletSpeed(2)
+			.setBulletWays(112)
+			.setBulletVelocity(new Vector2(0,-2))
 			.setBulletStyle(BulletStyle.round)
 		  };
 		taskManager=new TaskManager(baseBossPlane,TaskRepeatMode.repeatAll);

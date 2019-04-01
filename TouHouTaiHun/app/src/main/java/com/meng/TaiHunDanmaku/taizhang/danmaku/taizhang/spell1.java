@@ -5,6 +5,7 @@ import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.math.*;
 
 public class spell1 extends BaseSpellCard{
 
@@ -18,14 +19,14 @@ public class spell1 extends BaseSpellCard{
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
-			.setBulletCenter(boss.objectCenter)
+			.setBulletShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.green)
 			.setBulletForm(BulletForm.midan)
-			.setWays(30)
-			.setRandomCenter(256,32)
-			.setWaysDegree(12)
-			.setReflex(1)
-			.setBulletSpeed(2f)
+			.setBulletWays(30)
+			.setShooterCenterRandomRange(256,32)
+			.setBulletWaysDegree(12)
+			.setReflexCount(1)
+			.setBulletVelocity(new Vector2(0,-2))
 
 		  };
 

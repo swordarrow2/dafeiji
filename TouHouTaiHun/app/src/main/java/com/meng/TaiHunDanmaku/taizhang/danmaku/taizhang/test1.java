@@ -11,6 +11,7 @@ import com.meng.TaiHunDanmaku.bullets.enemy.BulletColor;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletForm;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletStyle;
+import com.badlogic.gdx.math.*;
 
 public class test1 extends BaseNormalDanmaku{
     TaskManager tm;
@@ -21,13 +22,13 @@ public class test1 extends BaseNormalDanmaku{
         shooters=new BulletShooter[]{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
+                        .setBulletShooterCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.red)
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(1)
+                        .setBulletWays(1)
                         .setBulletStyle(BulletStyle.snipe)
-                        .setWaysDegree(3.75f)
-                        .setBulletSpeed(5)
+                        .setBulletWaysDegree(3.75f)
+                        .setBulletVelocity(new Vector2(0,-5))
         };
         tm.addTask(new TaskShoot(shooters));
         tm.addTask(new TaskWait(60));

@@ -6,6 +6,7 @@ import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
 import com.meng.TaiHunDanmaku.task.*;
 import java.util.*;
 import com.meng.TaiHunDanmaku.helpers.*;
+import com.badlogic.gdx.math.*;
 
 public class yonghengdewenrou extends BaseSpellCard {
 
@@ -18,21 +19,21 @@ public class yonghengdewenrou extends BaseSpellCard {
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
-			.setBulletCenter(boss.objectCenter)
+			.setBulletShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.blue)
 			.setBulletForm(BulletForm.diandan)
-			.setWays(15)
-			.setWaysDegree(24)
-			.setBulletSpeed(10)
+			.setBulletWays(15)
+			.setBulletWaysDegree(24)
+			.setBulletVelocity(new Vector2(0,-10))
 			,
 			new BulletShooter().init()
 			.setBaseEnemyPlane(boss)
-			.setBulletCenter(boss.objectCenter)
+			.setBulletShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.blue)
 			.setBulletForm(BulletForm.xiaoyu)
-			.setWays(10)
-			.setWaysDegree(36)
-			.setBulletSpeed(7)
+			.setBulletWays(10)
+			.setBulletWaysDegree(36)
+			.setBulletVelocity(new Vector2(0,-7))
 			
 		  };
 		tm.addTask(new TaskRunnable(new Runnable(){

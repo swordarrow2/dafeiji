@@ -21,65 +21,65 @@ public class spell7 extends BaseSpellCard{
         shooters=new BulletShooter[]{
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
+                        .setBulletShooterCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.green)//red
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(28)
-                        .setWaysDegree(12.8571429f)
-                        .setBulletSpeed(2)
-                        .setRandomCenter(48,48),
+                        .setBulletWays(28)
+                        .setBulletWaysDegree(12.8571429f)
+                        .setBulletVelocity(new Vector2(0,-2))
+                        .setShooterCenterRandomRange(48,48),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
-                        .setOffset(new Vector2(-120,-30))
+                        .setBulletShooterCenter(boss.objectCenter)
+                        .setShootCenterOffset(new Vector2(-120,-30))
 			.setBulletColor(BulletColor.green)//purple
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(10)
-                        .setWaysDegree(36)
-                        .setRandomDegree(360)
-                        .setBulletSpeed(0.7f)
-                        .setRandomCenter(64,64),
+                        .setBulletWays(10)
+                        .setBulletWaysDegree(36)
+                        .setRandomDegreeRange(360)
+                        .setBulletVelocity(new Vector2(0,-0.7f))
+                        .setShooterCenterRandomRange(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
-                        .setOffset(new Vector2(120,-30))
+                        .setBulletShooterCenter(boss.objectCenter)
+                        .setShootCenterOffset(new Vector2(120,-30))
 			.setBulletColor(BulletColor.green)//purple
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(10)
-                        .setWaysDegree(36)
-                        .setRandomDegree(360)
-                        .setBulletSpeed(0.7f)
-                        .setRandomCenter(64,64),
+                        .setBulletWays(10)
+                        .setBulletWaysDegree(36)
+                        .setRandomDegreeRange(360)
+                        .setBulletVelocity(new Vector2(0,-0.7f))
+                        .setShooterCenterRandomRange(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
-                        .setOffset(new Vector2(-160,0))
+                        .setBulletShooterCenter(boss.objectCenter)
+                        .setShootCenterOffset(new Vector2(-160,0))
 			.setBulletColor(BulletColor.green)//blue
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(52)
-                        .setWaysDegree(6.92307692f)
-                        .setRandomDegree(360)
-                        .setBulletSpeed(2.5f)
-                        .setRandomCenter(64,64),
+                        .setBulletWays(52)
+                        .setBulletWaysDegree(6.92307692f)
+                        .setRandomDegreeRange(360)
+                        .setBulletVelocity(new Vector2(0,-2.5f))
+                        .setShooterCenterRandomRange(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
-                        .setOffset(new Vector2(160,0))
+                        .setBulletShooterCenter(boss.objectCenter)
+                        .setShootCenterOffset(new Vector2(160,0))
 			.setBulletColor(BulletColor.green)//blue
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(52)
-                        .setWaysDegree(6.92307692f)
-                        .setRandomDegree(360)
-                        .setBulletSpeed(2.5f)
-                        .setRandomCenter(64,64),
+                        .setBulletWays(52)
+                        .setBulletWaysDegree(6.92307692f)
+                        .setRandomDegreeRange(360)
+                        .setBulletVelocity(new Vector2(0,-2.5f))
+                        .setShooterCenterRandomRange(64,64),
                 new BulletShooter().init()
                         .setBaseEnemyPlane(boss)
-                        .setBulletCenter(boss.objectCenter)
+                        .setBulletShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.green)//yellow_dark
                         .setBulletForm(BulletForm.xiaoyu)
-                        .setWays(24)
-                        .setWaysDegree(15)
-                        .setBulletSpeed(4)
+                        .setBulletWays(24)
+                        .setBulletWaysDegree(15)
+                        .setBulletVelocity(new Vector2(0,-4))
         };
     }
 
