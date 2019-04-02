@@ -78,7 +78,7 @@ public abstract class BaseEnemyBullet extends BaseBullet {
         if (taskManager != null) {
             taskManager.update();
         }
-        velocity.add(acceleration.rotate(velocity.angle()));
+        velocity.add(acceleration);
         objectCenter.add(velocity);
     }
 

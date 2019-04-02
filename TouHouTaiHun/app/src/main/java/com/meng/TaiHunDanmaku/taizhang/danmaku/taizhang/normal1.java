@@ -31,9 +31,11 @@ public class normal1 extends BaseNormalDanmaku {
         MainScreen.lasers.add(laser);
         */
         ArrayList<Task> arrayList = new ArrayList<Task>();
-        arrayList.add(new TaskWait(240));
-        arrayList.add(new TaskMoveTo(10001, 10001));
-        arrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
+        arrayList.add(new TaskWait(100));
+      //  arrayList.add(new TaskMoveTo(10001, 10001));
+        arrayList.add(new TaskChangeAcceleration(-4f, 0, ChangeMode.scl));
+		arrayList.add(new TaskWait(30));
+		arrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -41,11 +43,11 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletColor(BulletColor.blue)
                         .setBulletForm(BulletForm.huanyu)
                         .setBulletWays(112)
-                        .setBulletVelocity(new Vector2(0, -2))
+                        .setBulletVelocity(new Vector2(0, -1))
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
                         .setBulletLiveOutOfScreen(1000)
-                        .setBulletAcceleration(new Vector2(0, -0.1f))
+                        .setBulletAcceleration(new Vector2(0, -0.05f))
                         .setBulletTasks(arrayList)
         };
         taskManager = new TaskManagerEnemyPlane(baseBossPlane, TaskRepeatMode.repeatAll);
