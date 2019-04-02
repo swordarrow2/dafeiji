@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class normal1 extends BaseNormalDanmaku {
     private TaskManagerEnemyPlane taskManager;
-    public Laser laser;
+    //  public Laser laser;
 
     public void init(BaseBossPlane baseBossPlane) {
         boss = baseBossPlane;
-        laser = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
+   /*     laser = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beamstart2.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid2.png"))),
@@ -29,9 +29,11 @@ public class normal1 extends BaseNormalDanmaku {
         laser.degrees = 180;
         laser.distance = 190;
         MainScreen.lasers.add(laser);
+        */
         ArrayList<Task> arrayList = new ArrayList<Task>();
-        arrayList.add(new TaskWait(30));
-        arrayList.add(new TaskMoveTo(10000, 10000));
+        arrayList.add(new TaskWait(240));
+        arrayList.add(new TaskMoveTo(10001, 10001));
+        arrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -42,7 +44,8 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletVelocity(new Vector2(0, -2))
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
-                        .setBulletLiveOutOfScreen(60)
+                        .setBulletLiveOutOfScreen(1000)
+                        .setBulletAcceleration(new Vector2(0, -0.1f))
                         .setBulletTasks(arrayList)
         };
         taskManager = new TaskManagerEnemyPlane(baseBossPlane, TaskRepeatMode.repeatAll);
@@ -57,7 +60,7 @@ public class normal1 extends BaseNormalDanmaku {
         super.update();
         taskManager.update();
         frame++;
-        laser.degrees = frame * 0.3f;
+        //   laser.degrees = frame * 0.3f;
     }
 
 }

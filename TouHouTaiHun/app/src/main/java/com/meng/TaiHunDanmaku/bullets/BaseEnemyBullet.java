@@ -22,6 +22,7 @@ public abstract class BaseEnemyBullet extends BaseBullet {
     public int colorNum = 0;
     public int formNum = 0;
     public int liveOutOfScreen = 0;
+    public int bulletLife = 7200;
 
     public Vector2 acceleration = new Vector2();
 
@@ -77,7 +78,7 @@ public abstract class BaseEnemyBullet extends BaseBullet {
         if (taskManager != null) {
             taskManager.update();
         }
-        velocity.add(acceleration);
+        velocity.add(acceleration.rotate(velocity.angle()));
         objectCenter.add(velocity);
     }
 

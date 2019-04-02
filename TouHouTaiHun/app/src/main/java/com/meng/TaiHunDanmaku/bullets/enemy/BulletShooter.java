@@ -34,6 +34,7 @@ public class BulletShooter {
     public int shooterShootAfterFrames = 0;
     public float bulletRandomDegreeRange = 0;
     public boolean bulletHighLight = false;
+    public int bulletLife = 7200;
     public int bulletLiveOutOfScreen = 0;
     public ArrayList<Task> bulletTasks = new ArrayList<Task>();
 
@@ -42,6 +43,7 @@ public class BulletShooter {
     private float angle = 0;
     private float cengJianBeiLv = 1;
     private Vector2 tmpv = new Vector2(0, 0);
+    private Vector2 tmpa = new Vector2(0, 0);
 
     public BulletShooter init() {
         return this;
@@ -158,6 +160,11 @@ public class BulletShooter {
         return this;
     }
 
+    public BulletShooter setBulletLife(int bulletLife) {
+        this.bulletLife = bulletLife;
+        return this;
+    }
+
     public void update() {
         ++shooterExistTime;
         if (enemyPlane.judgeCircle == null) {
@@ -218,9 +225,13 @@ public class BulletShooter {
             angle = (bulletWays - 1) * bulletWaysDegree;
             for (int ceng = 0; ceng < bulletCengShu; ++ceng) {
                 tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
-                tmpv.rotate(-angle / 2);
+                tmpa = bulletAcceleration.cpy();
+                float tmpangle = -angle / 2;
+                tmpv.rotate(tmpangle);
+                tmpa.rotate(tmpangle);
                 for (int i = 0; i < bulletWays; i++) {
-                    EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                    //     EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, tmpa, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                    EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
                     tmpv.rotate(bulletWaysDegree);
                 }
                 cengJianBeiLv += bulletCengDanSuCha;
@@ -228,19 +239,25 @@ public class BulletShooter {
         } else if (bulletCengShu > 1) {
             for (int ceng = 0; ceng < bulletCengShu; ++ceng) {
                 tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
-                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                tmpa = bulletAcceleration.cpy().rotate(bulletVelocity.angle());
+                //     EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, tmpa, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
                 cengJianBeiLv += bulletCengDanSuCha;
             }
         } else if (bulletWays > 1) {
             angle = (bulletWays - 1) * bulletWaysDegree;
             tmpv = bulletVelocity.cpy();
-            tmpv.rotate(-angle / 2);
+            tmpa = bulletAcceleration.cpy();
+            float tmpangle = -angle / 2;
+            tmpv.rotate(tmpangle);
+            tmpa.rotate(tmpangle);
             for (int i = 0; i < bulletWays; i++) {
-                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                //     EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, tmpa, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
                 tmpv.rotate(bulletWaysDegree);
             }
         } else {
-            EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletVelocity, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+            EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletVelocity, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
         }
     }
 }

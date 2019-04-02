@@ -12,11 +12,11 @@ import java.util.ArrayList;
 
 public class EnemyBullet extends BaseEnemyBullet {
 
-    public static void create(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int liveOutScreen, boolean highLight, int ref, int through, ArrayList<Task> tasks) {
-        ObjectPools.enemyBulletPool.obtain().init(center, velocity, acceleration, bulletForm, bulletColor, liveOutScreen, highLight, ref, through, tasks);
+    public static void create(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int liveOutScreen, boolean highLight, int ref, int through, ArrayList<Task> tasks) {
+        ObjectPools.enemyBulletPool.obtain().init(center, velocity, acceleration, bulletForm, bulletColor, life, liveOutScreen, highLight, ref, through, tasks);
     }
 
-    public void init(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int liveOutScreen, boolean highLight, int reflex, int through, ArrayList<Task> tasks) {
+    public void init(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int lifeOutScreen, boolean highLight, int reflex, int through, ArrayList<Task> tasks) {
         super.init();
         for (Task t : tasks) {
             taskManager.addTask(t);
@@ -26,7 +26,8 @@ public class EnemyBullet extends BaseEnemyBullet {
         objectCenter.set(center);
         this.velocity.set(velocity);
         this.acceleration.set(acceleration);
-        this.liveOutOfScreen = liveOutScreen;
+        this.liveOutOfScreen = lifeOutScreen;
+        bulletLife = life;
         image.setPosition(center.x, center.y, Align.center);
         judgeCircle = new Circle(objectCenter, Math.min(image.getWidth(), image.getHeight()) / 3);
         switch (bulletColor) {
@@ -150,6 +151,15 @@ public class EnemyBullet extends BaseEnemyBullet {
         image.remove();
         drawable = null;
         ObjectPools.enemyBulletPool.free(this);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        --bulletLife;
+        if (bulletLife < 0) {
+            killByJudge();
+        }
     }
 
     public void killByJudge() {

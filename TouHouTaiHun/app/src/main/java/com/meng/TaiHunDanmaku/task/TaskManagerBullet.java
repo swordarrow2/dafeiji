@@ -74,13 +74,28 @@ public class TaskManagerBullet {
                 Vector2 vector2 = new Vector2(BaseMyPlane.instance.objectCenter.x - bullet.objectCenter.x, BaseMyPlane.instance.objectCenter.y - bullet.objectCenter.y).nor();
                 vector2.scl(bullet.velocity.len());
                 bullet.velocity.set(vector2);
+            } else if (task.tmpVector2.x == 10001f && task.tmpVector2.y == 10001f) {
+                bullet.velocity = bullet.velocity.scl(-1);
             } else {
                 Vector2 vector2 = new Vector2(task.tmpVector2.x - bullet.objectCenter.x, task.tmpVector2.y - bullet.objectCenter.y).nor();
                 vector2.scl(bullet.velocity.len());
                 bullet.velocity.set(vector2);
             }
         } else if (task instanceof TaskChangeAcceleration) {
-            bullet.acceleration.set(task.tmpVector2);
+            switch (task.changeMode) {
+                case set:
+                    bullet.acceleration.set(task.tmpVector2);
+                    break;
+                case add:
+                    bullet.acceleration.add(task.tmpVector2);
+                    break;
+                case sub:
+                    bullet.acceleration.sub(task.tmpVector2);
+                    break;
+                case scl:
+                    bullet.acceleration.scl(task.tmpVector2.x);
+                    break;
+            }
         } else if (task instanceof TaskMoveBy) {
             bullet.velocity.set(task.tmpVector2);
         }
