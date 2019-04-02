@@ -29,6 +29,7 @@ public class MainScreen extends ScreenAdapter {
     public static Group groupNormal;
     public static Group groupHighLight;
     public static HashSet<Laser> lasers;
+    public static HashSet<ReflexAndThrough> reflexAndThroughs;
     public static Rectangle fightArea;
     public static InputMultiplexer inputManager;
     public static BaseEnemyPlane[] enemys = new BaseEnemyPlane[32];
@@ -99,9 +100,18 @@ public class MainScreen extends ScreenAdapter {
 		 shapeRenderer.begin();
 		 shapeRenderer.rectLine(10, 10, 300, 400, 80);
 		 shapeRenderer.end();*/
+        for (ReflexAndThrough reflexAndThrough : reflexAndThroughs) {
+            reflexAndThrough.update();
+        }
+
+        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+        GameMain.spriteBatch.begin();
         for (Laser b : lasers) {
             b.render();
         }
+        GameMain.spriteBatch.end();
+        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
         GameMain.spriteBatch.begin();
         layoutManager.update();
         if (onSpellCard) {
@@ -161,7 +171,8 @@ public class MainScreen extends ScreenAdapter {
         BaseMyBullet.instances.clear();
         BaseMyBullet.toAdd.clear();
         BaseMyBullet.toDelete.clear();
-        lasers=new HashSet<Laser>();
+        lasers = new HashSet<Laser>();
+        reflexAndThroughs = new HashSet<ReflexAndThrough>();
         layoutManager = new LayoutManager();
         width = 386;//540;//386;
         height = 600;//720;//450;

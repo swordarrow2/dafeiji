@@ -1,11 +1,13 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
+import com.meng.TaiHunDanmaku.bullets.ReflexAndThrough;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.ui.MainScreen;
 
 public class spell1 extends BaseSpellCard {
 
@@ -16,6 +18,12 @@ public class spell1 extends BaseSpellCard {
         boss = b;
         taskManagerEnemyPlane = new TaskManagerEnemyPlane(b, TaskRepeatMode.repeatAll);
         waitFrameSpell = 120;
+        ReflexAndThrough reflexAndThrough1 = new ReflexAndThrough(ReflexAndThrough.Position.Top);
+        ReflexAndThrough reflexAndThrough2 = new ReflexAndThrough(ReflexAndThrough.Position.Left);
+        ReflexAndThrough reflexAndThrough3 = new ReflexAndThrough(ReflexAndThrough.Position.Right);
+        MainScreen.reflexAndThroughs.add(reflexAndThrough1);
+        MainScreen.reflexAndThroughs.add(reflexAndThrough2);
+        MainScreen.reflexAndThroughs.add(reflexAndThrough3);
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -25,7 +33,9 @@ public class spell1 extends BaseSpellCard {
                         .setBulletWays(30)
                         .setShooterCenterRandomRange(128, 32)
                         .setBulletWaysDegree(12)
-                        .setBulletReflexCount(1)
+                        .setReflexLeftCount(1)
+                        .setReflexRightCount(1)
+                        .setReflexTopCount(1)
                         .setBulletVelocity(new Vector2(0, -2))
 
         };

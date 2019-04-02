@@ -12,17 +12,23 @@ import java.util.ArrayList;
 
 public class EnemyBullet extends BaseEnemyBullet {
 
-    public static void create(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int liveOutScreen, boolean highLight, int ref, int through, ArrayList<Task> tasks) {
-        ObjectPools.enemyBulletPool.obtain().init(center, velocity, acceleration, bulletForm, bulletColor, life, liveOutScreen, highLight, ref, through, tasks);
+    public static void create(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int liveOutScreen, boolean highLight, int reflexT, int reflexB, int reflexL, int reflexR, int throughT, int throughB, int throughL, int throughR, ArrayList<Task> tasks) {
+        ObjectPools.enemyBulletPool.obtain().init(center, velocity, acceleration, bulletForm, bulletColor, life, liveOutScreen, highLight, reflexT, reflexB, reflexL, reflexR, throughT, throughB, throughL, throughR, tasks);
     }
 
-    public void init(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int lifeOutScreen, boolean highLight, int reflex, int through, ArrayList<Task> tasks) {
+    public void init(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int life, int lifeOutScreen, boolean highLight, int reflexT, int reflexB, int reflexL, int reflexR, int throughT, int throughB, int throughL, int throughR, ArrayList<Task> tasks) {
         super.init();
         for (Task t : tasks) {
             taskManager.addTask(t);
         }
-        refCount = reflex;
-        thoughCount = through;
+        reflexTopCount = reflexT;
+        reflexBottomCount = reflexB;
+        reflexLeftCount = reflexL;
+        reflexRightCount = reflexR;
+        thoughTopCount = throughT;
+        thoughBottomCount = throughB;
+        thoughLeftCount = throughL;
+        thoughRightCount = throughR;
         objectCenter.set(center);
         this.velocity.set(velocity);
         this.acceleration.set(acceleration);

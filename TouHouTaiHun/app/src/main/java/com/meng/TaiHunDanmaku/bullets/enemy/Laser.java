@@ -53,17 +53,13 @@ public class Laser extends Actor{
         mid1.setRotation(degrees);
         mid2.setRotation(degrees);
         end1.setRotation(degrees);
-        end2.setRotation(degrees);    
-        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE);
-        GameMain.spriteBatch.begin();
+        end2.setRotation(degrees);
         begin1.draw(GameMain.spriteBatch);
         begin2.draw(GameMain.spriteBatch);
         mid1.draw(GameMain.spriteBatch);
         mid2.draw(GameMain.spriteBatch);
 		end1.draw(GameMain.spriteBatch);
 		end2.draw(GameMain.spriteBatch);
-        GameMain.spriteBatch.end();
-        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
 		p1=new Vector2(begin1.getX()+begin1.getOriginX(),begin1.getY()+begin1.getOriginY());
 		p2=new Vector2((float)(begin1.getX()+begin1.getOriginX()+distance*Math.cos(Math.toRadians(degrees+90))), 
 					   (float)(begin1.getY()+begin1.getOriginY()+distance*Math.sin(Math.toRadians(degrees+90))));
