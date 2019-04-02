@@ -3,7 +3,6 @@ package com.meng.guirenzhengxie;
 import android.app.*;
 import android.content.*;
 import android.os.*;
-import android.util.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
@@ -18,11 +17,13 @@ import Decoder.BASE64Decoder;
 import Decoder.BASE64Encoder;
 
 public class MainActivity extends Activity {
-    public ListView listView;
+    public ListView listViewGroupReply, listViewQQNotReply, listViewWordNotReply,
+            listViewGroupRepeater, listViewGroupDicReply, listViewPersonInfo;
     public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
-    public PersonInfoJavaBean personInfoJavaBean;
+    public ConfigJavaBean configJavaBean;
     public ActionBar actionBar;
     public String msg = "";
+    public TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +31,155 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
         actionBar = getActionBar();
         actionBar.show();
-        listView = (ListView) findViewById(R.id.mainListView);
-        getJsonString();
-        listView.setOnItemClickListener(new OnItemClickListener() {
 
+        listViewGroupReply = (ListView) findViewById(R.id.mainListView_GroupReply);
+        listViewQQNotReply = (ListView) findViewById(R.id.mainListView_QQNotReply);
+        listViewWordNotReply = (ListView) findViewById(R.id.mainListView_WordNotReply);
+        listViewGroupRepeater = (ListView) findViewById(R.id.mainListView_GroupRepeater);
+        listViewGroupDicReply = (ListView) findViewById(R.id.mainListView_GroupDicReply);
+        listViewPersonInfo = (ListView) findViewById(R.id.mainListView_PersonInfo);
+
+        tabHost = (TabHost) findViewById(R.id.pixiv_download_main_tabhost);
+        tabHost.setup();
+        tabHost.addTab(tabHost.newTabSpec("one").setIndicator("GroupReply").setContent(R.id.mainListView_GroupReply));
+        tabHost.addTab(tabHost.newTabSpec("two").setIndicator("QQNotReply").setContent(R.id.mainListView_QQNotReply));
+        tabHost.addTab(tabHost.newTabSpec("three").setIndicator("WordNotReply").setContent(R.id.mainListView_WordNotReply));
+        tabHost.addTab(tabHost.newTabSpec("four").setIndicator("GroupRepeater").setContent(R.id.mainListView_GroupRepeater));
+        tabHost.addTab(tabHost.newTabSpec("five").setIndicator("GroupDicReply").setContent(R.id.mainListView_GroupDicReply));
+        tabHost.addTab(tabHost.newTabSpec("six").setIndicator("PersonInfo").setContent(R.id.mainListView_PersonInfo));
+
+        getJsonString();
+
+        listViewGroupReply.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(String.valueOf(configJavaBean.mapGroupReply.get(i)));
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                configJavaBean.mapGroupReply.set(i, Long.parseLong(editText.getText().toString()));
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        listViewQQNotReply.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(String.valueOf(configJavaBean.mapQQNotReply.get(i)));
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                configJavaBean.mapQQNotReply.set(i, Long.parseLong(editText.getText().toString()));
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        listViewWordNotReply.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(configJavaBean.mapWordNotReply.get(i));
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                configJavaBean.mapWordNotReply.set(i, editText.getText().toString());
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        listViewGroupRepeater.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(configJavaBean.mapGroupRepeater.get(i));
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                configJavaBean.mapGroupRepeater.set(i, editText.getText().toString());
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        listViewGroupDicReply.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(String.valueOf(configJavaBean.mapGroupDicReply.get(i)));
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                configJavaBean.mapGroupDicReply.set(i, Long.parseLong(editText.getText().toString()));
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
+        });
+        listViewPersonInfo.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> p1, View p2, final int p3, long p4) {
-                View view = getLayoutInflater().inflate(R.layout.edit_view, null);
+                View view = getLayoutInflater().inflate(R.layout.person_info_edit_view, null);
                 editTextName = (EditText) view.findViewById(R.id.edit_viewEditText_name);
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-                final PersonInfoJavaBean.MapBiliUser mapBiliUser = personInfoJavaBean.mapBiliUser.get(p3);
+                final ConfigJavaBean.BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
                 editTextName.setText(mapBiliUser.name);
                 editTextQQNumber.setText(String.valueOf(mapBiliUser.qq));
                 editTextBilibiliId.setText(String.valueOf(mapBiliUser.bid));
@@ -62,9 +199,9 @@ public class MainActivity extends Activity {
                                             public void onClick(DialogInterface p11, int p2) {
                                                 mapBiliUser.name = editTextName.getText().toString();
                                                 mapBiliUser.qq = Long.parseLong(editTextQQNumber.getText().toString());
-                                                mapBiliUser.bid = Long.parseLong(editTextBilibiliId.getText().toString().replace("UID:", ""));
-                                                mapBiliUser.bliveRoom = Long.parseLong(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
-                                                setJsonString(new Gson().toJson(personInfoJavaBean));
+                                                mapBiliUser.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
+                                                mapBiliUser.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
+                                                setJsonString(new Gson().toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -85,46 +222,117 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getTitle().equals("添加")) {
-            View view = getLayoutInflater().inflate(R.layout.edit_view, null);
-            editTextName = (EditText) view.findViewById(R.id.edit_viewEditText_name);
-            editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
-            editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
-            editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
+            if (tabHost.getCurrentTabTag().equals("six")) {
+                View view = getLayoutInflater().inflate(R.layout.person_info_edit_view, null);
+                editTextName = (EditText) view.findViewById(R.id.edit_viewEditText_name);
+                editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
+                editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
+                editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-            new AlertDialog.Builder(MainActivity.this)
-                    .setView(view)
-                    .setTitle("编辑")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface p11, int p2) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(view)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
 
-                            new AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("确定修改吗")
-                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface p11, int p2) {
-                                            PersonInfoJavaBean.MapBiliUser user = (new PersonInfoJavaBean()).new MapBiliUser();
-                                            user.name = editTextName.getText().toString();
-                                            user.qq = Long.parseLong(editTextQQNumber.getText().toString());
-                                            user.bid = Long.parseLong(editTextBilibiliId.getText().toString().replace("UID:", ""));
-                                            user.bliveRoom = Long.parseLong(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
-                                            personInfoJavaBean.mapBiliUser.add(user);
-                                            setJsonString(new Gson().toJson(personInfoJavaBean));
-                                        }
-                                    }).setNegativeButton("取消", null).show();
-                        }
-                    }).setNegativeButton("取消", null).show();
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+                                                ConfigJavaBean.BilibiliUser user = (new ConfigJavaBean()).new BilibiliUser();
+                                                user.name = editTextName.getText().toString();
+                                                user.qq = Long.parseLong(editTextQQNumber.getText().toString());
+                                                user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
+                                                user.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
+                                                configJavaBean.mapBiliUser.add(user);
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            } else {
+                final EditText editText = new EditText(MainActivity.this);
+                new AlertDialog.Builder(MainActivity.this)
+                        .setView(editText)
+                        .setTitle("编辑")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface p11, int p2) {
+
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("确定修改吗")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface p11, int p2) {
+
+                                                switch (tabHost.getCurrentTab()) {
+                                                    case 0:
+                                                        configJavaBean.mapGroupReply.add(Long.parseLong(editText.getText().toString()));
+                                                        break;
+                                                    case 1:
+                                                        configJavaBean.mapQQNotReply.add(Long.parseLong(editText.getText().toString()));
+                                                        break;
+                                                    case 2:
+                                                        configJavaBean.mapWordNotReply.add(editText.getText().toString());
+                                                        break;
+                                                    case 3:
+                                                        configJavaBean.mapGroupRepeater.add(editText.getText().toString());
+                                                        break;
+                                                    case 4:
+                                                        configJavaBean.mapGroupDicReply.add(Long.parseLong(editText.getText().toString()));
+                                                        break;
+                                                }
+                                                setJsonString(new Gson().toJson(configJavaBean));
+                                            }
+                                        }).setNegativeButton("取消", null).show();
+                            }
+                        }).setNegativeButton("取消", null).show();
+            }
         }
         return true;
     }
 
-    private void loadData(String s) {
-        personInfoJavaBean = new Gson().fromJson(s, PersonInfoJavaBean.class);
+    private void loadConfigData(String s) {
+        configJavaBean = new Gson().fromJson(s, ConfigJavaBean.class);
+
         ArrayList<String> list = new ArrayList<String>();
-        for (PersonInfoJavaBean.MapBiliUser mapBiliUser : personInfoJavaBean.mapBiliUser) {
-            list.add(mapBiliUser.name + "  " + mapBiliUser.qq + "  " + mapBiliUser.bid + "  " + mapBiliUser.bliveRoom);
+        for (long l : configJavaBean.mapGroupReply) {
+            list.add(String.valueOf(l));
         }
-        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
+        listViewGroupReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
+
+        ArrayList<String> list2 = new ArrayList<String>();
+        for (long l : configJavaBean.mapQQNotReply) {
+            list2.add(String.valueOf(l));
+        }
+        listViewQQNotReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2));
+
+        ArrayList<String> list3 = new ArrayList<String>();
+        for (String l : configJavaBean.mapWordNotReply) {
+            list3.add(l);
+        }
+        listViewWordNotReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list3));
+
+        ArrayList<String> list4 = new ArrayList<String>();
+        for (String l : configJavaBean.mapGroupRepeater) {
+            list4.add(l);
+        }
+        listViewGroupRepeater.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list4));
+
+        ArrayList<String> list5 = new ArrayList<String>();
+        for (long l : configJavaBean.mapGroupDicReply) {
+            list5.add(String.valueOf(l));
+        }
+        listViewGroupReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list5));
+
+        ArrayList<String> list6 = new ArrayList<String>();
+        for (ConfigJavaBean.BilibiliUser mapBiliUser : configJavaBean.mapBiliUser) {
+            list6.add(mapBiliUser.name + "  " + mapBiliUser.qq + "  " + mapBiliUser.bid + "  " + mapBiliUser.bliveRoom);
+        }
+        listViewPersonInfo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list6));
+
     }
 
     private void getJsonString() {
@@ -149,7 +357,7 @@ public class MainActivity extends Activity {
                         public void run() {
                             BASE64Decoder d = new BASE64Decoder();
                             try {
-                                loadData(new String(d.decodeBuffer(msg), "utf-8"));
+                                loadConfigData(new String(d.decodeBuffer(msg), "utf-8"));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -188,7 +396,7 @@ public class MainActivity extends Activity {
         }).start();
     }
 
-    /* private void loadData() {
+    /* private void loadPersonInfoData() {
          personInfoJavaBean = new Gson().fromJson(loadFromSDFile(new File(Environment.getExternalStorageDirectory() + "/grzx.json")), PersonInfoJavaBean.class);
          ArrayList<String> list = new ArrayList<String>();
          for (PersonInfoJavaBean.MapBiliUser mapBiliUser : personInfoJavaBean.mapBiliUser) {
