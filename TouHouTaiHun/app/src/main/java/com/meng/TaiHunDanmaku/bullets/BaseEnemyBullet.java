@@ -17,14 +17,16 @@ public abstract class BaseEnemyBullet extends BaseBullet {
     public static LinkedBlockingQueue<BaseEnemyBullet> toDelete = new LinkedBlockingQueue<BaseEnemyBullet>();
     public static LinkedBlockingQueue<BaseEnemyBullet> toAdd = new LinkedBlockingQueue<BaseEnemyBullet>();
 
+    public int reflexCount = 0;
     public int reflexTopCount = 0;
     public int reflexBottomCount = 0;
     public int reflexLeftCount = 0;
     public int reflexRightCount = 0;
-    public int thoughTopCount = 0;
-    public int thoughBottomCount = 0;
-    public int thoughLeftCount = 0;
-    public int thoughRightCount = 0;
+    public int throughCount = 0;
+    public int throughTopCount = 0;
+    public int throughBottomCount = 0;
+    public int throughLeftCount = 0;
+    public int throughRightCount = 0;
     public int colorNum = 0;
     public int formNum = 0;
     public int liveOutOfScreen = 0;

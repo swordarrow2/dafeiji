@@ -30,14 +30,16 @@ public class BulletShooter {
     public int bulletCengShu = 1;
     public float bulletCengDanSuCha = 0.1f;
 
+    public int reflexCount = 0;
     public int reflexTopCount = 0;
     public int reflexBottomCount = 0;
     public int reflexLeftCount = 0;
     public int reflexRightCount = 0;
-    public int thoughTopCount = 0;
-    public int thoughBottomCount = 0;
-    public int thoughLeftCount = 0;
-    public int thoughRightCount = 0;
+    public int throughCount = 0;
+    public int throughTopCount = 0;
+    public int throughBottomCount = 0;
+    public int throughLeftCount = 0;
+    public int throughRightCount = 0;
 
     public int shooterShootAfterFrames = 0;
     public float bulletRandomDegreeRange = 0;
@@ -108,43 +110,21 @@ public class BulletShooter {
         return this;
     }
 
-    public BulletShooter setReflexTopCount(int reflexTopCount) {
-        this.reflexTopCount = reflexTopCount;
+    public BulletShooter setReflexCount(int all, int t, int b, int l, int r) {
+        this.reflexCount = all;
+        this.reflexTopCount = t;
+        this.reflexBottomCount = b;
+        this.reflexLeftCount = l;
+        this.reflexRightCount = r;
         return this;
     }
 
-    public BulletShooter setReflexBottomCount(int reflexBottomCount) {
-        this.reflexBottomCount = reflexBottomCount;
-        return this;
-    }
-
-    public BulletShooter setReflexLeftCount(int reflexLeftCount) {
-        this.reflexLeftCount = reflexLeftCount;
-        return this;
-    }
-
-    public BulletShooter setReflexRightCount(int reflexRightCount) {
-        this.reflexRightCount = reflexRightCount;
-        return this;
-    }
-
-    public BulletShooter setThoughTopCount(int thoughTopCount) {
-        this.thoughTopCount = thoughTopCount;
-        return this;
-    }
-
-    public BulletShooter setThoughBottomCount(int thoughBottomCount) {
-        this.thoughBottomCount = thoughBottomCount;
-        return this;
-    }
-
-    public BulletShooter setThoughRightCount(int thoughRightCount) {
-        this.thoughRightCount = thoughRightCount;
-        return this;
-    }
-
-    public BulletShooter setThoughLeftCount(int thoughLeftCount) {
-        this.thoughLeftCount = thoughLeftCount;
+    public BulletShooter setThoughCount(int all, int t, int b, int l, int r) {
+        this.throughCount = all;
+        this.throughTopCount = t;
+        this.throughBottomCount = b;
+        this.throughLeftCount = l;
+        this.throughRightCount = r;
         return this;
     }
 
@@ -266,7 +246,7 @@ public class BulletShooter {
                 float tmpangle = -angle / 2;
                 tmpv.rotate(tmpangle);
                 for (int i = 0; i < bulletWays; i++) {
-                    EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()).setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, thoughTopCount, thoughBottomCount, thoughLeftCount, thoughRightCount, bulletTasks);
+                    EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()).setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexCount, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, throughCount, throughTopCount, throughBottomCount, throughLeftCount, throughRightCount, bulletTasks);
                     tmpv.rotate(bulletWaysDegree);
                 }
                 cengJianBeiLv += bulletCengDanSuCha;
@@ -274,7 +254,7 @@ public class BulletShooter {
         } else if (bulletCengShu > 1) {
             for (int ceng = 0; ceng < bulletCengShu; ++ceng) {
                 tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
-                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()).setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, thoughTopCount, thoughBottomCount, thoughLeftCount, thoughRightCount, bulletTasks);
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()).setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexCount, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, throughCount, throughTopCount, throughBottomCount, throughLeftCount, throughRightCount, bulletTasks);
                 cengJianBeiLv += bulletCengDanSuCha;
             }
         } else if (bulletWays > 1) {
@@ -283,11 +263,11 @@ public class BulletShooter {
             float tmpangle = -angle / 2;
             tmpv.rotate(tmpangle);
             for (int i = 0; i < bulletWays; i++) {
-                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, thoughTopCount, thoughBottomCount, thoughLeftCount, thoughRightCount, bulletTasks);
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration.cpy().setAngle(tmpv.angle()), bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexCount, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, throughCount, throughTopCount, throughBottomCount, throughLeftCount, throughRightCount, bulletTasks);
                 tmpv.rotate(bulletWaysDegree);
             }
         } else {
-            EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletVelocity, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, thoughTopCount, thoughBottomCount, thoughLeftCount, thoughRightCount, bulletTasks);
+            EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletVelocity, bulletAcceleration, bulletForm, bulletColor, bulletLife, bulletLiveOutOfScreen, bulletHighLight, reflexCount, reflexTopCount, reflexBottomCount, reflexLeftCount, reflexRightCount, throughCount, throughTopCount, throughBottomCount, throughLeftCount, throughRightCount, bulletTasks);
         }
     }
 }

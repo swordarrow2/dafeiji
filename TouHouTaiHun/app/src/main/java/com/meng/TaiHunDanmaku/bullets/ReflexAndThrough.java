@@ -29,46 +29,54 @@ public class ReflexAndThrough {
             if (rectangle.contains(baseBullet.objectCenter)) {
                 switch (position) {
                     case Top:
-                        if (baseBullet.reflexTopCount > 0) {
+                        if (baseBullet.reflexCount > 0 && baseBullet.reflexTopCount > 0) {
                             --baseBullet.reflexTopCount;
+                            --baseBullet.reflexCount;
                             baseBullet.objectCenter.y -= baseBullet.velocity.y;
                             baseBullet.velocity.y = -baseBullet.velocity.y;
                             baseBullet.acceleration.y = -baseBullet.acceleration.y;
-                        } else if (baseBullet.thoughTopCount > 0) {
-                            --baseBullet.thoughTopCount;
+                        } else if (baseBullet.throughCount > 0 && baseBullet.throughTopCount > 0) {
+                            --baseBullet.throughCount;
+                            --baseBullet.throughTopCount;
                             baseBullet.objectCenter.y = 6;
                         }
                         break;
                     case Bottom:
-                        if (baseBullet.reflexBottomCount > 0) {
+                        if (baseBullet.reflexCount > 0 && baseBullet.reflexBottomCount > 0) {
                             --baseBullet.reflexBottomCount;
+                            --baseBullet.reflexCount;
                             baseBullet.objectCenter.y -= baseBullet.velocity.y;
                             baseBullet.velocity.y = -baseBullet.velocity.y;
                             baseBullet.acceleration.y = -baseBullet.acceleration.y;
-                        } else if (baseBullet.thoughBottomCount > 0) {
-                            --baseBullet.thoughBottomCount;
+                        } else if (baseBullet.throughCount > 0 && baseBullet.throughBottomCount > 0) {
+                            --baseBullet.throughCount;
+                            --baseBullet.throughBottomCount;
                             baseBullet.objectCenter.y = 444;
                         }
                         break;
                     case Left:
-                        if (baseBullet.reflexLeftCount > 0) {
+                        if (baseBullet.reflexCount > 0 && baseBullet.reflexLeftCount > 0) {
                             --baseBullet.reflexLeftCount;
+                            --baseBullet.reflexCount;
                             baseBullet.objectCenter.x -= baseBullet.velocity.x;
                             baseBullet.velocity.x = -baseBullet.velocity.x;
                             baseBullet.acceleration.x = -baseBullet.acceleration.x;
-                        } else if (baseBullet.thoughLeftCount > 0) {
-                            --baseBullet.thoughLeftCount;
+                        } else if (baseBullet.throughCount > 0 && baseBullet.throughLeftCount > 0) {
+                            --baseBullet.throughCount;
+                            --baseBullet.throughLeftCount;
                             baseBullet.objectCenter.x = 380;
                         }
                         break;
                     case Right:
-                        if (baseBullet.reflexRightCount > 0) {
+                        if (baseBullet.reflexCount > 0 && baseBullet.reflexRightCount > 0) {
                             --baseBullet.reflexRightCount;
+                            --baseBullet.reflexCount;
                             baseBullet.objectCenter.x -= baseBullet.velocity.x;
                             baseBullet.velocity.x = -baseBullet.velocity.x;
                             baseBullet.acceleration.x = -baseBullet.acceleration.x;
-                        } else if (baseBullet.thoughRightCount > 0) {
-                            --baseBullet.thoughRightCount;
+                        } else if (baseBullet.throughCount > 0 && baseBullet.throughRightCount > 0) {
+                            --baseBullet.throughCount;
+                            --baseBullet.throughRightCount;
                             baseBullet.objectCenter.x = 6;
                         }
                         break;

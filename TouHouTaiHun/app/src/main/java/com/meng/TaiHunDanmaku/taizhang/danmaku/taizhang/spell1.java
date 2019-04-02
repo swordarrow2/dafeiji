@@ -18,24 +18,19 @@ public class spell1 extends BaseSpellCard {
         boss = b;
         taskManagerEnemyPlane = new TaskManagerEnemyPlane(b, TaskRepeatMode.repeatAll);
         waitFrameSpell = 120;
-        ReflexAndThrough reflexAndThrough1 = new ReflexAndThrough(ReflexAndThrough.Position.Top);
-        ReflexAndThrough reflexAndThrough2 = new ReflexAndThrough(ReflexAndThrough.Position.Left);
-        ReflexAndThrough reflexAndThrough3 = new ReflexAndThrough(ReflexAndThrough.Position.Right);
-        MainScreen.reflexAndThroughs.add(reflexAndThrough1);
-        MainScreen.reflexAndThroughs.add(reflexAndThrough2);
-        MainScreen.reflexAndThroughs.add(reflexAndThrough3);
+        MainScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Top));
+        MainScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Left));
+        MainScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Right));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
                         .setShooterCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.green)
                         .setBulletForm(BulletForm.midan)
-                        .setBulletWays(30)
+                        .setBulletWays(60)
                         .setShooterCenterRandomRange(128, 32)
                         .setBulletWaysDegree(12)
-                        .setReflexLeftCount(1)
-                        .setReflexRightCount(1)
-                        .setReflexTopCount(1)
+                        .setReflexCount(1, 1, 0, 1, 1)
                         .setBulletVelocity(new Vector2(0, -2))
 
         };
