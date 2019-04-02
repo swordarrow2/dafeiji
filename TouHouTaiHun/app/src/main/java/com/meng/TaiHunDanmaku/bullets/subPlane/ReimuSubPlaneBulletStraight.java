@@ -3,13 +3,12 @@ package com.meng.TaiHunDanmaku.bullets.subPlane;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Pool;
 import com.meng.TaiHunDanmaku.bullets.BaseMyBullet;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 import com.meng.TaiHunDanmaku.helpers.TextureNameManager;
 
 import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
-import com.meng.TaiHunDanmaku.helpers.*;
+
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 
 public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
@@ -33,7 +32,7 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         enemys[i].hit(BaseMyPlane.instance.slow?13.5f:10.5f);
-                        kill();
+                        killByOutOfScreen();
 					  }
 				  }
 			  }
@@ -43,8 +42,8 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet{
 	  }
 
     @Override
-    public void kill() {
-        super.kill();
+    public void killByOutOfScreen() {
+        super.killByOutOfScreen();
      //   ObjectPools.reimuSubPlaneBulletStraightPool.free(this);
     }
 

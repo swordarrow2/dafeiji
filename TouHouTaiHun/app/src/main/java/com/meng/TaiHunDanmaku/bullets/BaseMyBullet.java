@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.meng.TaiHunDanmaku.helpers.ObjectPools;
 import com.meng.TaiHunDanmaku.ui.MainScreen;
 
 import java.util.HashSet;
@@ -29,12 +28,12 @@ public abstract class BaseMyBullet extends BaseBullet{
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getHeight()/2*3); //中心、半径
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.groupNormal.addActor(image);
     }
 
     @Override
-    public void kill(){
-        super.kill();
+    public void killByOutOfScreen(){
+        super.killByOutOfScreen();
         toDelete.add(this);
         image.remove();
 	  }
@@ -62,7 +61,7 @@ public abstract class BaseMyBullet extends BaseBullet{
             for(int i=0;i<32;i++){
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
-                        kill();
+                        killByOutOfScreen();
                         enemys[i].hit(10.5f);
                     }
                 }

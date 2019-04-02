@@ -32,11 +32,11 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public BulletShooter bulletShooter;
 	public Vector2 targetPosition=new Vector2();
 	
-	public TaskManager taskManager;
+	public TaskManagerEnemyPlane taskManager;
 	
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] task){
         super.init();
-		taskManager=new TaskManager(this,TaskRepeatMode.noRepeat);
+		taskManager=new TaskManagerEnemyPlane(this,TaskRepeatMode.noRepeat);
 		for(Task t:task){
 		  taskManager.addTask(t);
 		}
@@ -49,7 +49,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.setRotation(0);
         image.setSize(size.x,size.y);
         judgeCircle=new Circle(objectCenter,image.getWidth()/4);
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.groupNormal.addActor(image);
         for(int i=0;i<32;i++){
             if(enemys[i]==null){
                 enemys[i]=this;

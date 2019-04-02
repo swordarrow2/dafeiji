@@ -1,6 +1,5 @@
 package com.meng.TaiHunDanmaku.bullets;
 
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.meng.TaiHunDanmaku.bullets.enemy.*;
@@ -8,7 +7,6 @@ import com.meng.TaiHunDanmaku.dropItems.*;
 import com.meng.TaiHunDanmaku.effects.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.task.*;
-import com.meng.TaiHunDanmaku.ui.*;
 
 import java.util.*;
 import java.util.concurrent.*;
@@ -23,29 +21,24 @@ public abstract class BaseEnemyBullet extends BaseBullet {
     public int thoughCount = 0;
     public int colorNum = 0;
     public int formNum = 0;
+    public int liveOutOfScreen = 0;
 
     public Vector2 acceleration = new Vector2();
 
     public abstract Drawable getDrawable();
 
-    public TaskManager taskManager;
+    public TaskManagerBullet taskManager;
 
     public void init() {
         super.init();
         toAdd.add(this);
-        taskManager = new TaskManager(this, TaskRepeatMode.noRepeat);
+        taskManager = new TaskManagerBullet(this, TaskRepeatMode.noRepeat);
     }
 
-    @Override
-    public void kill() {
-        super.kill();
-        toDelete.add(this);
-        image.remove();
-        //	ObjectPools.imagePool.free(image);
-    }
+    public abstract void killByJudge();
 
-    public void kill(BulletKillMode bkm) {
-        super.kill();
+    public void killByJudge(BulletKillMode bkm) {
+        super.killByOutOfScreen();
         toDelete.add(this);
         image.remove();
         Effect.create(objectCenter.cpy(), EffectType.explore);
@@ -81,47 +74,9 @@ public abstract class BaseEnemyBullet extends BaseBullet {
     @Override
     public void update() {
         super.update();
-        taskManager.update();
-		/*	if (refCount > 0) {
-		 if (objectCenter.x < 5) {
-		 tmpVector2.x = -tmpVector2.x;
-		 objectCenter.x = 5;
-		 refCount--;
-		 }
-		 if (objectCenter.x >= MainScreen.fightArea.width-5) {
-		 tmpVector2.x = -tmpVector2.x;
-		 objectCenter.x = MainScreen.fightArea.width - 5;
-		 refCount--;
-		 }
-		 if (objectCenter.y < 5) {
-		 tmpVector2.y = -tmpVector2.y;
-		 objectCenter.y = 5;
-		 refCount--;
-		 }
-		 if (objectCenter.y > MainScreen.fightArea.height-5) {
-		 tmpVector2.y = -tmpVector2.y;
-		 objectCenter.y = MainScreen.fightArea.height - 5;
-		 refCount--;
-		 }
-		 } else if (thoughCount > 0) {
-		 if (objectCenter.x < 5) {
-		 objectCenter.x = MainScreen.fightArea.width - 4;
-		 thoughCount--;
-		 }
-		 if (objectCenter.x > MainScreen.fightArea.width-5) {
-		 objectCenter.x = 5;
-		 thoughCount--;
-		 }
-		 if (objectCenter.y < 5) {
-		 objectCenter.y = MainScreen.fightArea.height - 5;
-		 thoughCount--;
-		 }
-		 if (objectCenter.y > MainScreen.fightArea.height-5) {
-		 objectCenter.y = 5;
-		 thoughCount--;
-		 }
-		 }
-		 */
+        if (taskManager != null) {
+            taskManager.update();
+        }
         velocity.add(acceleration);
         objectCenter.add(velocity);
     }

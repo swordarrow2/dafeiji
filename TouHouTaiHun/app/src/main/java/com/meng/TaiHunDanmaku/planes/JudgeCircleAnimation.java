@@ -1,6 +1,5 @@
 package com.meng.TaiHunDanmaku.planes;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.meng.TaiHunDanmaku.BaseGameObject;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
@@ -18,7 +17,7 @@ public class JudgeCircleAnimation extends BaseGameObject{
     public void init(){
         super.init();
         image.setDrawable(ResourcesManager.textures.get("effect23"));
-		MainScreen.mainGroup.addActor(image);
+		MainScreen.groupNormal.addActor(image);
 		image.setSize(48,48);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 	  }

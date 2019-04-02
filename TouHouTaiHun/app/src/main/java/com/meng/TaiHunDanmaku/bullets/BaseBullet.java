@@ -17,7 +17,7 @@ public abstract class BaseBullet extends BaseGameObject {
         existTime = 0;
     }
 
-    public void kill() {
+    public void killByOutOfScreen() {
         super.kill();
     }
 
@@ -28,7 +28,7 @@ public abstract class BaseBullet extends BaseGameObject {
         image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
         judgeCircle.setPosition(objectCenter);
         if (judgeCircle.x < -5 || judgeCircle.x > 390 || judgeCircle.y < -5 || judgeCircle.y > 460) {
-            kill();
+            killByOutOfScreen();
         } else {
             judge();
         }

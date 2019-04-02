@@ -18,28 +18,29 @@ import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.stage.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 
+import java.util.HashSet;
+
 public class MainScreen extends ScreenAdapter {
     public static int playerFlag;//角色
     public static int stageFlag;
     public static int gameTime = 0;
     public static int width, height;
     public static Stage stage;
-    public static Group mainGroup;
+    public static Group groupNormal;
+    public static Group groupHighLight;
+    public static HashSet<Laser> lasers;
     public static Rectangle fightArea;
     public static InputMultiplexer inputManager;
     public static BaseEnemyPlane[] enemys = new BaseEnemyPlane[32];
     public static BitmapFont bitmapFont;
     public static boolean onBoss = false;
     public FitViewport fitViewport;
-    // enemyPlane e;
     public static MainScreen instence;
     public static int sleep = 0;
     public static boolean onSpellCard = false;
     static int spellHeight = 450;
-    public static bulletLaser bl;
     public float bossMaxHp = 1;
 
-    public static Group highLight = new Group();
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch, float parentAlpha) {
             GameMain.spriteBatch.end();
@@ -98,9 +99,8 @@ public class MainScreen extends ScreenAdapter {
 		 shapeRenderer.begin();
 		 shapeRenderer.rectLine(10, 10, 300, 400, 80);
 		 shapeRenderer.end();*/
-
-        if (bl != null) {
-            bl.render();
+        for (Laser b : lasers) {
+            b.render();
         }
         GameMain.spriteBatch.begin();
         layoutManager.update();
@@ -121,9 +121,6 @@ public class MainScreen extends ScreenAdapter {
                         + "\nmemory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
                         + isKilled()
                 , 10, 590);
-        if (bl != null) {
-            bitmapFont.draw(GameMain.spriteBatch, "o", bl.p2.x, bl.p2.y);
-        }
         switch (stageFlag) {
             case Data.stageFlagStage1:
                 if (gameTime == 700) {
@@ -164,6 +161,7 @@ public class MainScreen extends ScreenAdapter {
         BaseMyBullet.instances.clear();
         BaseMyBullet.toAdd.clear();
         BaseMyBullet.toDelete.clear();
+        lasers=new HashSet<Laser>();
         layoutManager = new LayoutManager();
         width = 386;//540;//386;
         height = 600;//720;//450;
@@ -178,10 +176,11 @@ public class MainScreen extends ScreenAdapter {
 
         background.setBounds(0, 0, 386, 450);
         stage.addActor(background);
-        mainGroup = new Group();
-        stage.addActor(mainGroup);
+        groupNormal = new Group();
+        groupHighLight = new Group();
+        stage.addActor(groupNormal);
         stage.addActor(changeBlend1);
-        stage.addActor(highLight);
+        stage.addActor(groupHighLight);
         stage.addActor(changeBlend2);
         fightArea = new Rectangle(0, 0, 386, 450);
         playerFlag = Data.playerFlagReimu;
@@ -206,7 +205,7 @@ public class MainScreen extends ScreenAdapter {
 		 BaseMyPlane.instance.onBomb=true;
 		 }
 		 });
-		 mainGroup.addActor(button);	 
+		 groupNormal.addActor(button);
 		 */
         inputManager = new InputMultiplexer();
         //	inputManager.addProcessor(stage);
@@ -217,7 +216,7 @@ public class MainScreen extends ScreenAdapter {
     public void restart() {
         gameTime = 0;
         stage.clear();
-        mainGroup.clear();
+        groupNormal.clear();
         onBoss = false;
         enemys = new BaseEnemyPlane[32];
         init();

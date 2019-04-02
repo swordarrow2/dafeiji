@@ -28,7 +28,7 @@ public abstract class BaseBigFace extends BaseGameObject{
     public void kill(){
         toDelete.add(this);
         image.remove();
-        //	super.kill();
+        //	super.killByJudge();
     }
 
     public void update(){

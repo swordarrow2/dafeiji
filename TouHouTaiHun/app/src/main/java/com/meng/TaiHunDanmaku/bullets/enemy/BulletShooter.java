@@ -11,13 +11,13 @@ import java.util.concurrent.*;
 
 public class BulletShooter {
 
-    public BaseEnemyPlane baseEnemyPlane;
+    public BaseEnemyPlane enemyPlane;
 
     public static HashSet<BulletShooter> instances = new HashSet<BulletShooter>();
     public static LinkedBlockingQueue<BulletShooter> toDelete = new LinkedBlockingQueue<BulletShooter>();
     public static LinkedBlockingQueue<BulletShooter> toAdd = new LinkedBlockingQueue<BulletShooter>();
-    public int time = 0;
-    public Vector2 bulletShooterCenter = new Vector2(200, 200);
+    public int shooterExistTime = 0;
+    public Vector2 shooterCenter = new Vector2(200, 200);
     public Vector2 bulletVelocity = new Vector2(1, 0);
     public Vector2 bulletAcceleration = new Vector2(0, 0);
     public Vector2 shootCenterOffset = new Vector2(0, 0);
@@ -27,129 +27,142 @@ public class BulletShooter {
     public BulletStyle bulletStyle = BulletStyle.normal;
     public int bulletWays = 1;
     public float bulletWaysDegree = 0;
-    public int cengShu = 1;
-    public float cengDanSuCha = 0.1f;
-    public int reflexCount = 0;
-    public int throughCount = 0;
-    public float cengJianBeiLv = 1;
-    public int shootAfterFrames = 0;
-    public float randomDegreeRange = 0;
-    public boolean highLight = false;
+    public int bulletCengShu = 1;
+    public float bulletCengDanSuCha = 0.1f;
+    public int bulletReflexCount = 0;
+    public int bulletThroughCount = 0;
+    public int shooterShootAfterFrames = 0;
+    public float bulletRandomDegreeRange = 0;
+    public boolean bulletHighLight = false;
+    public int bulletLiveOutOfScreen = 0;
+    public ArrayList<Task> bulletTasks = new ArrayList<Task>();
 
     private float nowCenterX = 0;
     private float nowCenterY = 0;
+    private float angle = 0;
+    private float cengJianBeiLv = 1;
+    private Vector2 tmpv = new Vector2(0, 0);
 
-	public BulletShooter init(){
-	  return this;
-	}
-	
-    public BulletShooter setBaseEnemyPlane(BaseEnemyPlane baseEnemyPlane) {
-        this.baseEnemyPlane = baseEnemyPlane;
-		return this;
+    public BulletShooter init() {
+        return this;
     }
 
-    public BulletShooter setBulletShooterCenter(Vector2 bulletShooterCenter) {
-        this.bulletShooterCenter = bulletShooterCenter;
-		return this;
+    public BulletShooter setEnemyPlane(BaseEnemyPlane enemyPlane) {
+        this.enemyPlane = enemyPlane;
+        return this;
+    }
+
+    public BulletShooter setShooterCenter(Vector2 bulletShooterCenter) {
+        this.shooterCenter = bulletShooterCenter;
+        return this;
     }
 
     public BulletShooter setBulletVelocity(Vector2 bulletVelocity) {
         this.bulletVelocity = bulletVelocity;
-		return this;
+        return this;
     }
 
     public BulletShooter setBulletAcceleration(Vector2 bulletAcceleration) {
         this.bulletAcceleration = bulletAcceleration;
-		return this;
+        return this;
     }
 
     public BulletShooter setShootCenterOffset(Vector2 shootCenterOffset) {
         this.shootCenterOffset = shootCenterOffset;
-		return this;
+        return this;
     }
 
     public BulletShooter setShooterCenterRandomRange(Vector2 shooterCenterRandomRange) {
         this.shooterCenterRandomRange = shooterCenterRandomRange;
-		return this;
+        return this;
     }
 
-	public BulletShooter setShooterCenterRandomRange(float x,float y) {
-        shooterCenterRandomRange.x=x;
-		shooterCenterRandomRange.y=y;
-		return this;
-	  }
-	
+    public BulletShooter setShooterCenterRandomRange(float x, float y) {
+        shooterCenterRandomRange.x = x;
+        shooterCenterRandomRange.y = y;
+        return this;
+    }
+
     public BulletShooter setBulletForm(BulletForm bulletForm) {
         this.bulletForm = bulletForm;
-		return this;
+        return this;
     }
 
     public BulletShooter setBulletColor(BulletColor bulletColor) {
         this.bulletColor = bulletColor;
-		return this;
+        return this;
     }
 
     public BulletShooter setBulletStyle(BulletStyle bulletStyle) {
         this.bulletStyle = bulletStyle;
-		return this;
+        return this;
     }
 
-    public BulletShooter setReflexCount(int reflexCount) {
-        this.reflexCount = reflexCount;
-		return this;
+    public BulletShooter setBulletReflexCount(int bulletReflexCount) {
+        this.bulletReflexCount = bulletReflexCount;
+        return this;
     }
 
-    public BulletShooter setThroughCount(int throughCount) {
-        this.throughCount = throughCount;
-		return this;
+    public BulletShooter setBulletThroughCount(int bulletThroughCount) {
+        this.bulletThroughCount = bulletThroughCount;
+        return this;
     }
 
     public BulletShooter setBulletWays(int bulletWays) {
         this.bulletWays = bulletWays;
-		return this;
+        return this;
     }
 
     public BulletShooter setBulletWaysDegree(float bulletWaysDegree) {
         this.bulletWaysDegree = bulletWaysDegree;
-		return this;
+        return this;
     }
 
-    public BulletShooter setCengShu(int cengShu) {
-        this.cengShu = cengShu;
-		return this;
+    public BulletShooter setBulletCengShu(int bulletCengShu) {
+        this.bulletCengShu = bulletCengShu;
+        return this;
     }
 
-    public BulletShooter setCengDanSuCha(float cengDanSuCha) {
-        this.cengDanSuCha = cengDanSuCha;
-		return this;
+    public BulletShooter setBulletCengDanSuCha(float bulletCengDanSuCha) {
+        this.bulletCengDanSuCha = bulletCengDanSuCha;
+        return this;
     }
 
     public BulletShooter setCengJianBeiLv(float cengJianBeiLv) {
         this.cengJianBeiLv = cengJianBeiLv;
-		return this;
+        return this;
     }
 
-    public BulletShooter setShootAfterFrames(int shootAfterFrames) {
-        this.shootAfterFrames = shootAfterFrames;
-		return this;
+    public BulletShooter setShooterShootAfterFrames(int shooterShootAfterFrames) {
+        this.shooterShootAfterFrames = shooterShootAfterFrames;
+        return this;
     }
 
-    public BulletShooter setRandomDegreeRange(float randomDegreeRange) {
-        this.randomDegreeRange = randomDegreeRange;
-		return this;
+    public BulletShooter setBulletRandomDegreeRange(float bulletRandomDegreeRange) {
+        this.bulletRandomDegreeRange = bulletRandomDegreeRange;
+        return this;
     }
 
-    public BulletShooter setHighLight(boolean highLight) {
-        this.highLight = highLight;
-		return this;
+    public BulletShooter setBulletHighLight(boolean bulletHighLight) {
+        this.bulletHighLight = bulletHighLight;
+        return this;
     }
 
-    public BulletShooter update() {
-        ++time;
-        if (baseEnemyPlane.judgeCircle == null) {
+    public BulletShooter setBulletTasks(ArrayList<Task> bulletTasks) {
+        this.bulletTasks = bulletTasks;
+        return this;
+    }
+
+    public BulletShooter setBulletLiveOutOfScreen(int bulletLiveOutOfScreen) {
+        this.bulletLiveOutOfScreen = bulletLiveOutOfScreen;
+        return this;
+    }
+
+    public void update() {
+        ++shooterExistTime;
+        if (enemyPlane.judgeCircle == null) {
             kill();
-		  }
-		return this;
+        }
     }
 
     public void kill() {
@@ -169,27 +182,27 @@ public class BulletShooter {
     }
 
     public void shoot() {
-        if (shootAfterFrames > 0) {
-            --shootAfterFrames;
+        if (shooterShootAfterFrames > 0) {
+            --shooterShootAfterFrames;
             return;
         }
         cengJianBeiLv = 1;
-        if (randomDegreeRange > 0) {
-            bulletVelocity.rotate(bulletVelocity.angle() + ObjectPools.randomPool.nextFloat() * randomDegreeRange * (ObjectPools.randomPool.nextBoolean() ? 1 : -1));
+        if (bulletRandomDegreeRange > 0) {
+            bulletVelocity.rotate(bulletVelocity.angle() + ObjectPools.randomPool.nextFloat() * bulletRandomDegreeRange * (ObjectPools.randomPool.nextBoolean() ? 1 : -1));
         }
         switch (bulletStyle) {
             case normal:
                 break;
             case snipe:
-                bulletVelocity = BaseMyPlane.instance.objectCenter.cpy().sub(bulletShooterCenter).nor();
+                bulletVelocity = BaseMyPlane.instance.objectCenter.cpy().sub(shooterCenter).nor().scl(bulletVelocity.len());
                 break;
             case round:
                 bulletWaysDegree = 360f / bulletWays;
                 break;
         }
 
-        nowCenterX = bulletShooterCenter.x;
-        nowCenterY = bulletShooterCenter.y;
+        nowCenterX = shooterCenter.x;
+        nowCenterY = shooterCenter.y;
 
         nowCenterX += shootCenterOffset.x;
         nowCenterY += shootCenterOffset.y;
@@ -201,18 +214,33 @@ public class BulletShooter {
             nowCenterY += shooterCenterRandomRange.y * ObjectPools.randomPool.nextFloat() * (ObjectPools.randomPool.nextBoolean() ? 1 : -1);
         }
 
-        float angle = (bulletWays - 1) * bulletWaysDegree;
-        Vector2 tmpv;
-        for (int ceng = 0; ceng < cengShu; ++ceng) {
-            tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
+        if (bulletCengShu > 1 && bulletWays > 1) {
+            angle = (bulletWays - 1) * bulletWaysDegree;
+            for (int ceng = 0; ceng < bulletCengShu; ++ceng) {
+                tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
+                tmpv.rotate(-angle / 2);
+                for (int i = 0; i < bulletWays; i++) {
+                    EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                    tmpv.rotate(bulletWaysDegree);
+                }
+                cengJianBeiLv += bulletCengDanSuCha;
+            }
+        } else if (bulletCengShu > 1) {
+            for (int ceng = 0; ceng < bulletCengShu; ++ceng) {
+                tmpv = bulletVelocity.cpy().scl(cengJianBeiLv);
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
+                cengJianBeiLv += bulletCengDanSuCha;
+            }
+        } else if (bulletWays > 1) {
+            angle = (bulletWays - 1) * bulletWaysDegree;
+            tmpv = bulletVelocity.cpy();
             tmpv.rotate(-angle / 2);
             for (int i = 0; i < bulletWays; i++) {
-                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletForm, bulletColor, highLight, reflexCount, throughCount, new Task[]{
-                        new TaskMoveBy(tmpv)
-                });
+                EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), tmpv, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
                 tmpv.rotate(bulletWaysDegree);
             }
-            cengJianBeiLv += cengDanSuCha;
+        } else {
+            EnemyBullet.create(new Vector2(nowCenterX, nowCenterY), bulletVelocity, bulletAcceleration, bulletForm, bulletColor, bulletLiveOutOfScreen, bulletHighLight, bulletReflexCount, bulletThroughCount, bulletTasks);
         }
     }
 }

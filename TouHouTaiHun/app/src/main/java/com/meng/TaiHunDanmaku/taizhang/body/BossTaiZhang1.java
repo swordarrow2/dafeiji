@@ -27,7 +27,7 @@ public class BossTaiZhang1 extends BaseBossPlane{
 		  }else{
 			MainScreen.spellMode();
 			spellCard.update();
-			MainScreen.bl=null;
+			MainScreen.lasers.clear();
 		  }
 	  }
 

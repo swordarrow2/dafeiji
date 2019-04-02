@@ -1,8 +1,9 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku;
 
 import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
-import com.meng.TaiHunDanmaku.task.TaskManager;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
+import com.meng.TaiHunDanmaku.task.TaskManagerBullet;
+import com.meng.TaiHunDanmaku.task.TaskManagerEnemyPlane;
 
 public abstract class BaseSpellCard{
 
@@ -11,7 +12,7 @@ public abstract class BaseSpellCard{
     public String spellName="";
     public BulletShooter[] shooters;
     public int frame=0;
-    public TaskManager tm;
+    public TaskManagerEnemyPlane taskManagerEnemyPlane;
 
     public int waitFrameSpell=60;
 

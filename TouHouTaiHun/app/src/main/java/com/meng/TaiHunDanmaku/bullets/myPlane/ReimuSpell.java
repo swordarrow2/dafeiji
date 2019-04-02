@@ -43,7 +43,7 @@ public class ReimuSpell extends BaseMyBullet{
 			for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
 				if(judgeCircle.contains(baseBullet.objectCenter)){
 					Effect.create(baseBullet.objectCenter.cpy(),EffectType.explore);
-					baseBullet.kill(BulletKillMode.KillOnBossLastDeath);
+					baseBullet.killByJudge(BulletKillMode.KillOnBossLastDeath);
 				  }
 			  }
         }catch(Exception e){

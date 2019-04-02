@@ -3,10 +3,11 @@ package com.meng.TaiHunDanmaku.bullets.enemy;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
-public class bulletLaser{
+public class Laser extends Actor{
 
     public Vector2 position = new Vector2();
     public float distance;
@@ -17,7 +18,7 @@ public class bulletLaser{
     public Vector2 p1=new Vector2();
 	public Vector2 p2=new Vector2();
 
-    public bulletLaser(Sprite s1,Sprite s2,Sprite m1,Sprite m2,Sprite e1,Sprite e2){
+    public Laser(Sprite s1, Sprite s2, Sprite m1, Sprite m2, Sprite e1, Sprite e2){
         begin1=s1;
         begin2=s2;
         mid1=m1;

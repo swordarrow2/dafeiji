@@ -71,7 +71,7 @@ public  class BulletRemover extends BaseGameObject{
         for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
             if(judgeCircle.contains(baseBullet.objectCenter)){
 				Effect.create(baseBullet.objectCenter.cpy(),EffectType.explore);
-                baseBullet.kill(bkm);
+                baseBullet.killByJudge(bkm);
 			  }
 		  }
 	  }

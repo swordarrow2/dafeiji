@@ -33,7 +33,7 @@ public class Effect extends BaseGameObject{
         image.setSize(16,16);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.groupNormal.addActor(image);
 	  }
 
     public void kill(){

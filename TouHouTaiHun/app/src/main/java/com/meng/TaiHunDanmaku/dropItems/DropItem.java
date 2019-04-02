@@ -10,7 +10,6 @@ import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.ui.*;
 import java.util.*;
 import java.util.concurrent.*;
-import com.meng.TaiHunDanmaku.task.*;
 
 public class DropItem extends BaseGameObject{
 
@@ -123,7 +122,7 @@ public class DropItem extends BaseGameObject{
         image.setSize(size.x,size.y);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.groupNormal.addActor(image);
 	  }
 
     public void kill(){

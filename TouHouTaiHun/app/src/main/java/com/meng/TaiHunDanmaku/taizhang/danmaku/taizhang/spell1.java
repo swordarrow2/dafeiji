@@ -14,31 +14,31 @@ public class spell1 extends BaseSpellCard{
 	public void init(final BaseBossPlane b){
 		spellName="「FPS test」";
         boss=b;
-		tm=new TaskManager(b,TaskRepeatMode.repeatAll);
+		taskManagerEnemyPlane =new TaskManagerEnemyPlane(b,TaskRepeatMode.repeatAll);
 		waitFrameSpell=120;
 		shooters=new BulletShooter[]{
 			new BulletShooter().init()
-			.setBaseEnemyPlane(boss)
-			.setBulletShooterCenter(boss.objectCenter)
+			.setEnemyPlane(boss)
+			.setShooterCenter(boss.objectCenter)
 			.setBulletColor(BulletColor.green)
 			.setBulletForm(BulletForm.midan)
 			.setBulletWays(30)
-			.setShooterCenterRandomRange(256,32)
+			.setShooterCenterRandomRange(128,32)
 			.setBulletWaysDegree(12)
-			.setReflexCount(1)
+			.setBulletReflexCount(1)
 			.setBulletVelocity(new Vector2(0,-2))
 
 		  };
 
-		tm.addTask(new TaskRunnable(new Runnable(){
+		taskManagerEnemyPlane.addTask(new TaskRunnable(new Runnable(){
 
 						 @Override
 						 public void run(){
 							 b.moveTo(193,350);
 						   }
 					   }));
-		tm.addTask(new TaskWait(5));
-		tm.addTask(new TaskRunnable(new Runnable(){
+		taskManagerEnemyPlane.addTask(new TaskWait(5));
+		taskManagerEnemyPlane.addTask(new TaskRunnable(new Runnable(){
 						 @Override
 						 public void run(){
 							 for(int i=0;i<shooters.length;++i){
@@ -48,8 +48,8 @@ public class spell1 extends BaseSpellCard{
 							   }
 						   }
 					   }));
-					   tm.addTask(new TaskWait(30));
-					   tm.addTask(new TaskChangeAcceleration(0,0.5f));
+					   taskManagerEnemyPlane.addTask(new TaskWait(30));
+					   taskManagerEnemyPlane.addTask(new TaskChangeAcceleration(0,0.5f));
 	  }
 
 	@Override
@@ -61,7 +61,7 @@ public class spell1 extends BaseSpellCard{
 			return;
 		  }
 		frame++;
-		tm.update();
+		taskManagerEnemyPlane.update();
 	  }
 
   }

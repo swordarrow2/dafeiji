@@ -30,7 +30,7 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
         judgeCircle.setPosition(objectCenter);
 		if(judgeCircle.x<-50||judgeCircle.x>4400
 		   ||judgeCircle.y<-50||judgeCircle.y>510){         
-			kill();
+			killByOutOfScreen();
 		  }else{		
 			judge();
 		  }
@@ -62,7 +62,7 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
                         enemys[i].hit(BaseMyPlane.instance.slow?36.5f:30.5f);
-                        kill();
+                        killByOutOfScreen();
 					  }
 				  }
 			  }
@@ -76,8 +76,8 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
 	  }
 
 	@Override
-	public void kill(){
-		super.kill();
+	public void killByOutOfScreen(){
+		super.killByOutOfScreen();
         ObjectPools.reimuSubPlaneBulletInducePool.free(this);
 	  }
 

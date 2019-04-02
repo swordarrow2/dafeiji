@@ -1,9 +1,6 @@
 package com.meng.TaiHunDanmaku.bullets.enemy;
 
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
-import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.TaiHunDanmaku.bullets.*;
@@ -11,20 +8,25 @@ import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
+import java.util.ArrayList;
+
 public class EnemyBullet extends BaseEnemyBullet {
 
-    public static void create(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, boolean highLight, int ref, int through, Task[] mm) {
-        ObjectPools.enemyBulletPool.obtain().init(center, bulletForm, bulletColor, highLight, ref, through, mm);
+    public static void create(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int liveOutScreen, boolean highLight, int ref, int through, ArrayList<Task> tasks) {
+        ObjectPools.enemyBulletPool.obtain().init(center, velocity, acceleration, bulletForm, bulletColor, liveOutScreen, highLight, ref, through, tasks);
     }
 
-    public void init(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, boolean highLight, int reflex, int through, Task[] tasks) {
+    public void init(Vector2 center, Vector2 velocity, Vector2 acceleration, BulletForm bulletForm, BulletColor bulletColor, int liveOutScreen, boolean highLight, int reflex, int through, ArrayList<Task> tasks) {
         super.init();
-        for (Task task : tasks) {
-            taskManager.addTask(task);
+        for (Task t : tasks) {
+            taskManager.addTask(t);
         }
         refCount = reflex;
         thoughCount = through;
         objectCenter.set(center);
+        this.velocity.set(velocity);
+        this.acceleration.set(acceleration);
+        this.liveOutOfScreen = liveOutScreen;
         image.setPosition(center.x, center.y, Align.center);
         judgeCircle = new Circle(objectCenter, Math.min(image.getWidth(), image.getHeight()) / 3);
         switch (bulletColor) {
@@ -126,9 +128,9 @@ public class EnemyBullet extends BaseEnemyBullet {
         }
         image.setDrawable(getDrawable());
         if (highLight) {
-            MainScreen.highLight.addActor(image);
+            MainScreen.groupHighLight.addActor(image);
         } else {
-            MainScreen.mainGroup.addActor(image);
+            MainScreen.groupNormal.addActor(image);
         }
     }
 
@@ -138,8 +140,22 @@ public class EnemyBullet extends BaseEnemyBullet {
     }
 
     @Override
-    public void kill() {
-        super.kill();
+    public void killByOutOfScreen() {
+        if (liveOutOfScreen > 0) {
+            --liveOutOfScreen;
+            return;
+        }
+        super.killByOutOfScreen();
+        toDelete.add(this);
+        image.remove();
+        drawable = null;
+        ObjectPools.enemyBulletPool.free(this);
+    }
+
+    public void killByJudge() {
+        super.killByOutOfScreen();
+        toDelete.add(this);
+        image.remove();
         drawable = null;
         ObjectPools.enemyBulletPool.free(this);
     }

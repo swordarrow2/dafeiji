@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.meng.TaiHunDanmaku.BaseGameObject;
-import com.meng.TaiHunDanmaku.bullets.BaseBullet;
 import com.meng.TaiHunDanmaku.bullets.BaseEnemyBullet;
 import com.meng.TaiHunDanmaku.helpers.Data;
 import com.meng.TaiHunDanmaku.planes.AnimationManager;
@@ -48,7 +47,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.groupNormal.addActor(image);
     }
 
     public void kill(){
@@ -111,7 +110,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
     public void judge(){
         for(BaseEnemyBullet baseBullet : BaseEnemyBullet.instances){
             if(baseBullet.getCollisionArea().contains(objectCenter)){
-                baseBullet.kill();
+                baseBullet.killByJudge();
                 kill();
             }
         }
