@@ -28,11 +28,10 @@ public class spell1 extends BaseSpellCard {
                         .setBulletColor(BulletColor.green)
                         .setBulletForm(BulletForm.midan)
                         .setBulletWays(60)
+						.setBulletStyle(BulletStyle.round)
                         .setShooterCenterRandomRange(128, 32)
-                        .setBulletWaysDegree(12)
-                        .setReflexCount(1, 1, 0, 1, 1)
+                        .setReflexCount(495, 1000, 0, 1000, 1000)
                         .setBulletVelocity(new Vector2(0, -2))
-
         };
 
         taskManagerEnemyPlane.addTask(new TaskRunnable(new Runnable() {

@@ -21,6 +21,7 @@ import com.meng.TaiHunDanmaku.taizhang.*;
 import java.util.HashSet;
 
 public class MainScreen extends ScreenAdapter {
+  public Game gameMain;
     public static int playerFlag;//角色
     public static int stageFlag;
     public static int gameTime = 0;
@@ -66,6 +67,10 @@ public class MainScreen extends ScreenAdapter {
         init();
         super.show();
     }
+	
+	public MainScreen(Game g){
+	  gameMain=g;
+	}
 
     @Override
     public void resize(int width, int height) {
@@ -133,7 +138,7 @@ public class MainScreen extends ScreenAdapter {
                 , 10, 590);
         switch (stageFlag) {
             case Data.stageFlagStage1:
-                if (gameTime == 700) {
+                if (gameTime > 100) {
                     GlyphLayout glyphLayout = new GlyphLayout();
                     glyphLayout.setText(bitmapFont, "stage Clear!!");
                     bitmapFont.draw(GameMain.spriteBatch, glyphLayout, (width - glyphLayout.width) / 2, height / 2);
