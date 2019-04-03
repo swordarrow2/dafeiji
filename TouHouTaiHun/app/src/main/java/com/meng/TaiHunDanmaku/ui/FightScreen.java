@@ -20,8 +20,10 @@ import com.meng.TaiHunDanmaku.taizhang.*;
 
 import java.util.HashSet;
 
+import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
+
 public class FightScreen extends ScreenAdapter {
-    public Game gameMain;
+    public GameMain gameMain;
     public static int playerFlag;
     public static int difficultFlag;
     public static int stageFlag;
@@ -33,9 +35,8 @@ public class FightScreen extends ScreenAdapter {
     public static HashSet<Laser> lasers;
     public static HashSet<ReflexAndThrough> reflexAndThroughs;
     public static Rectangle fightArea;
-    public static InputMultiplexer inputManager;
+    public InputMultiplexer inputManager;
     public static BaseEnemyPlane[] enemys = new BaseEnemyPlane[32];
-    public static BitmapFont bitmapFont;
     public static boolean onBoss = false;
     public FitViewport fitViewport;
     public static FightScreen instence;
@@ -69,7 +70,7 @@ public class FightScreen extends ScreenAdapter {
         super.show();
     }
 
-    public FightScreen(Game game) {
+    public FightScreen(GameMain game) {
         gameMain = game;
     }
 
@@ -98,8 +99,6 @@ public class FightScreen extends ScreenAdapter {
             }
         }
 
-
-        //	stage.act();
         stage.draw();
 		/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
 		 shapeRenderer.setAutoShapeType(true);
@@ -143,7 +142,9 @@ public class FightScreen extends ScreenAdapter {
                     GlyphLayout glyphLayout = new GlyphLayout();
                     glyphLayout.setText(bitmapFont, "stage Clear!!");
                     bitmapFont.draw(GameMain.spriteBatch, glyphLayout, (width - glyphLayout.width) / 2, height / 2);
-                    //      bitmapFont.draw(GameMain.spriteBatch,"stage Clear!!",height/2,width/2);
+                }
+                if (gameTime > 300) {
+                    gameMain.setSelectDiffScreen();
                 }
                 break;
         }
@@ -187,8 +188,6 @@ public class FightScreen extends ScreenAdapter {
         Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
-        bitmapFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
-        bitmapFont.setColor(Color.GREEN);
         Image background = new Image(new Texture(pixmap));
 
         background.setBounds(0, 0, 386, 450);
@@ -210,22 +209,7 @@ public class FightScreen extends ScreenAdapter {
                 //     new MyPlaneAlice().init();
                 break;
         }
-
-		/*	Button.ButtonStyle style = new Button.ButtonStyle();
-		 style.up=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
-		 style.down=ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce);
-		 Button button = new Button(style);
-		 button.setPosition(10,10);
-		 button.addListener(new ClickListener() {
-		 @Override
-		 public void clicked(InputEvent event,float x,float y){
-		 BaseMyPlane.instance.onBomb=true;
-		 }
-		 });
-		 groupNormal.addActor(button);
-		 */
         inputManager = new InputMultiplexer();
-        //	inputManager.addProcessor(stage);
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
     }
