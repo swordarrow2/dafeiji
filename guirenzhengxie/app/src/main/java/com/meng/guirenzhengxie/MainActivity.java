@@ -41,12 +41,12 @@ public class MainActivity extends Activity {
 
         tabHost = (TabHost) findViewById(R.id.pixiv_download_main_tabhost);
         tabHost.setup();
-        tabHost.addTab(tabHost.newTabSpec("one").setIndicator("GroupReply").setContent(R.id.mainListView_GroupReply));
-        tabHost.addTab(tabHost.newTabSpec("two").setIndicator("QQNotReply").setContent(R.id.mainListView_QQNotReply));
-        tabHost.addTab(tabHost.newTabSpec("three").setIndicator("WordNotReply").setContent(R.id.mainListView_WordNotReply));
-        tabHost.addTab(tabHost.newTabSpec("four").setIndicator("GroupRepeater").setContent(R.id.mainListView_GroupRepeater));
-        tabHost.addTab(tabHost.newTabSpec("five").setIndicator("GroupDicReply").setContent(R.id.mainListView_GroupDicReply));
-        tabHost.addTab(tabHost.newTabSpec("six").setIndicator("PersonInfo").setContent(R.id.mainListView_PersonInfo));
+        tabHost.addTab(tabHost.newTabSpec("one").setIndicator("回复的群").setContent(R.id.mainListView_GroupReply));
+        tabHost.addTab(tabHost.newTabSpec("two").setIndicator("不回复的QQ").setContent(R.id.mainListView_QQNotReply));
+        tabHost.addTab(tabHost.newTabSpec("three").setIndicator("不回复的字").setContent(R.id.mainListView_WordNotReply));
+        tabHost.addTab(tabHost.newTabSpec("four").setIndicator("复读机").setContent(R.id.mainListView_GroupRepeater));
+        tabHost.addTab(tabHost.newTabSpec("five").setIndicator("群组词库").setContent(R.id.mainListView_GroupDicReply));
+        tabHost.addTab(tabHost.newTabSpec("six").setIndicator("账号").setContent(R.id.mainListView_PersonInfo));
 
         getJsonString();
 
@@ -325,7 +325,7 @@ public class MainActivity extends Activity {
         for (long l : configJavaBean.mapGroupDicReply) {
             list5.add(String.valueOf(l));
         }
-        listViewGroupReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list5));
+        listViewGroupDicReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list5));
 
         ArrayList<String> list6 = new ArrayList<String>();
         for (ConfigJavaBean.BilibiliUser mapBiliUser : configJavaBean.mapBiliUser) {
