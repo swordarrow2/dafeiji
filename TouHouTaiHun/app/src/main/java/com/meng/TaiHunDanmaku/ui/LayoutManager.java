@@ -40,7 +40,7 @@ public class LayoutManager{
         BaseBigFace.updateAll();
         BaseMyPlane.instance.update();
 		if(BaseBossPlane.instence!=null&&BaseBossPlane.instence.hp>0){
-			bossLifeImage.setWidth(BaseBossPlane.instence.hp/MainScreen.instence.bossMaxHp*386);	
+			bossLifeImage.setWidth(BaseBossPlane.instence.hp/ FightScreen.instence.bossMaxHp*386);
 			bossLifeImage.draw(GameMain.spriteBatch,1);
 			for(partAgent p:nextPart){
 				p.update();

@@ -20,9 +20,10 @@ import com.meng.TaiHunDanmaku.taizhang.*;
 
 import java.util.HashSet;
 
-public class MainScreen extends ScreenAdapter {
-  public Game gameMain;
-    public static int playerFlag;//角色
+public class FightScreen extends ScreenAdapter {
+    public Game gameMain;
+    public static int playerFlag;
+    public static int difficultFlag;
     public static int stageFlag;
     public static int gameTime = 0;
     public static int width, height;
@@ -37,7 +38,7 @@ public class MainScreen extends ScreenAdapter {
     public static BitmapFont bitmapFont;
     public static boolean onBoss = false;
     public FitViewport fitViewport;
-    public static MainScreen instence;
+    public static FightScreen instence;
     public static int sleep = 0;
     public static boolean onSpellCard = false;
     static int spellHeight = 450;
@@ -67,10 +68,10 @@ public class MainScreen extends ScreenAdapter {
         init();
         super.show();
     }
-	
-	public MainScreen(Game g){
-	  gameMain=g;
-	}
+
+    public FightScreen(Game game) {
+        gameMain = game;
+    }
 
     @Override
     public void resize(int width, int height) {
@@ -255,7 +256,7 @@ public class MainScreen extends ScreenAdapter {
         spellHeight = 200;
         new BigFace().init(new Vector2(300, 200), FaceCharacter.Junko);
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
-        //	MainScreen.sleep=0;
+        //	FightScreen.sleep=0;
     }
 
 }

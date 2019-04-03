@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.TaiHunDanmaku.BaseGameObject;
 import com.meng.TaiHunDanmaku.planes.myPlane.BaseMyPlane;
-import com.meng.TaiHunDanmaku.ui.MainScreen;
+import com.meng.TaiHunDanmaku.ui.FightScreen;
 
 public abstract class BaseSubPlane extends BaseGameObject{
 
@@ -26,7 +26,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        MainScreen.groupNormal.addActor(image);
+        FightScreen.groupNormal.addActor(image);
     }
 
     public void kill(){

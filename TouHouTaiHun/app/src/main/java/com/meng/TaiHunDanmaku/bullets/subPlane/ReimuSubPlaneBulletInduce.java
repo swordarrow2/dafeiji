@@ -9,7 +9,7 @@ import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
-import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
+import static com.meng.TaiHunDanmaku.ui.FightScreen.enemys;
 
 public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
 
@@ -36,7 +36,7 @@ public class ReimuSubPlaneBulletInduce extends BaseMyBullet{
 		  }
 
         nearestEnemyPosition.set(noEnemy);
-        for(BaseEnemyPlane bep : MainScreen.enemys){
+        for(BaseEnemyPlane bep : FightScreen.enemys){
             if(bep==null){
                 continue;
 			  }

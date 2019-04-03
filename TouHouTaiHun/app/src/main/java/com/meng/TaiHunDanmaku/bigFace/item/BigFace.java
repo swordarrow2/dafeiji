@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
 import com.meng.TaiHunDanmaku.bigFace.BaseBigFace;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
-import com.meng.TaiHunDanmaku.ui.MainScreen;
+import com.meng.TaiHunDanmaku.ui.FightScreen;
 
 public class BigFace extends BaseBigFace{
 
@@ -16,7 +16,7 @@ public class BigFace extends BaseBigFace{
         faceCharacter=fc;
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        MainScreen.groupNormal.addActor(image);
+        FightScreen.groupNormal.addActor(image);
     }
 
     @Override

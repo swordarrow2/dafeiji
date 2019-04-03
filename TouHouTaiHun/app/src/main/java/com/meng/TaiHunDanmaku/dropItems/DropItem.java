@@ -122,7 +122,7 @@ public class DropItem extends BaseGameObject{
         image.setSize(size.x,size.y);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        MainScreen.groupNormal.addActor(image);
+        FightScreen.groupNormal.addActor(image);
 	  }
 
     public void kill(){

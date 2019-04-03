@@ -7,7 +7,7 @@ import com.meng.TaiHunDanmaku.bullets.BaseMyBullet;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 import com.meng.TaiHunDanmaku.helpers.TextureNameManager;
 
-import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
+import static com.meng.TaiHunDanmaku.ui.FightScreen.enemys;
 
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 

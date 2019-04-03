@@ -22,7 +22,7 @@ public class BossTaiZhang3 extends BaseBossPlane{
     public void update(){
         super.update();
         if(wf-->0) return;
-        MainScreen.spellMode();
+        FightScreen.spellMode();
         spellCard.update();
 	  }
 
@@ -35,7 +35,7 @@ public class BossTaiZhang3 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(7000,Color.GREEN));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(7000,Color.GREEN));
 	  }
 
     @Override

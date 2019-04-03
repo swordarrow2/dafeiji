@@ -22,12 +22,12 @@ public class BossTaiZhang1 extends BaseBossPlane{
         //  am.update();
 		//    objectCenter.set(193,350);
 		if(hp>4000){
-			MainScreen.normalMode();
+			FightScreen.normalMode();
 			normalDanmaku.update();
 		  }else{
-			MainScreen.spellMode();
+			FightScreen.spellMode();
 			spellCard.update();
-			MainScreen.lasers.clear();
+			FightScreen.lasers.clear();
 		  }
 	  }
 
@@ -43,14 +43,14 @@ public class BossTaiZhang1 extends BaseBossPlane{
         normalDanmaku.init(this);
 		spellCard=new spell1();
 		spellCard.init(this);
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(4000,Color.GREEN));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(4000,Color.GREEN));
 	  }
 
 	@Override
 	public void kill(){
 		
-		//	MainScreen.sleep=90;
-		MainScreen.normalMode();
+		//	FightScreen.sleep=90;
+		FightScreen.normalMode();
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossTaiZhang2().init(objectCenter.cpy(),10,7000,new Task[]{
 									   new TaskMoveTo(193,250)

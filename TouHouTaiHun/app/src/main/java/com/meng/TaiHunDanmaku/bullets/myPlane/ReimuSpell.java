@@ -7,7 +7,7 @@ import com.meng.TaiHunDanmaku.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.effects.*;
 import com.meng.TaiHunDanmaku.helpers.*;
 
-import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
+import static com.meng.TaiHunDanmaku.ui.FightScreen.enemys;
 
 public class ReimuSpell extends BaseMyBullet{
 

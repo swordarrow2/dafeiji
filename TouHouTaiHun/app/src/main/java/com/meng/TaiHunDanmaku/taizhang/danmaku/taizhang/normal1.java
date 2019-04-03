@@ -29,7 +29,7 @@ public class normal1 extends BaseNormalDanmaku {
         laser.position.set(boss.objectCenter);
         laser.degrees = 180;
         laser.distance = 190;
-        MainScreen.lasers.add(laser);
+        FightScreen.lasers.add(laser);
 
         laser2 = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beamstart2.png"))),
@@ -41,7 +41,7 @@ public class normal1 extends BaseNormalDanmaku {
         laser2.position.set(boss.objectCenter.x - 10, boss.objectCenter.y - 10);
         laser2.degrees = 160;
         laser2.distance = 190;
-        MainScreen.lasers.add(laser2);
+        FightScreen.lasers.add(laser2);
 
         ArrayList<Task> arrayList = new ArrayList<Task>();
         arrayList.add(new TaskWait(100));

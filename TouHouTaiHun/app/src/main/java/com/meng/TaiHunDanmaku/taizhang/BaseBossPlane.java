@@ -23,15 +23,15 @@ public abstract class BaseBossPlane extends BaseEnemyPlane {
     @Override
     public void init(Vector2 center, int everyAnimFrameTime, int hp, Task[] bmm) {
         super.init(center, everyAnimFrameTime, hp, bmm);
-        MainScreen.instence.bossMaxHp = hp;
+        FightScreen.instence.bossMaxHp = hp;
         instence = this;
     }
 
     @Override
     public void kill() {
         super.kill();
-        MainScreen.lasers.clear();
-        MainScreen.reflexAndThroughs.clear();
+        FightScreen.lasers.clear();
+        FightScreen.reflexAndThroughs.clear();
     }
 
 }

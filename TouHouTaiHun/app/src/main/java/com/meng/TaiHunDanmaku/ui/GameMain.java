@@ -12,7 +12,7 @@ public class GameMain extends Game {
 	public void create() {
 		spriteBatch= new SpriteBatch();
 		ResourcesManager.Load();
-		setScreen(new MainScreen(this));
+		setScreen(new FightScreen(this));
 	}
 	@Override
 	public void render() {

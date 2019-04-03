@@ -8,10 +8,10 @@ import com.meng.TaiHunDanmaku.ui.*;
 public class stage1{
 
     public static void addEnemy(){
-        switch(MainScreen.gameTime){
+        switch(FightScreen.gameTime){
             case 30:
 			  new BossTaiZhang1().init(new Vector2(193,350),10,20000,new Task[]{ new TaskMoveTo(193,250) });
-			  MainScreen.onBoss=true;
+			  FightScreen.onBoss=true;
 			  break;
 		  }
 	  }

@@ -17,7 +17,7 @@ public class JudgeCircleAnimation extends BaseGameObject{
     public void init(){
         super.init();
         image.setDrawable(ResourcesManager.textures.get("effect23"));
-		MainScreen.groupNormal.addActor(image);
+		FightScreen.groupNormal.addActor(image);
 		image.setSize(48,48);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 	  }

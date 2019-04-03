@@ -8,9 +8,9 @@ import com.meng.TaiHunDanmaku.BaseGameObject;
 import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 import com.meng.TaiHunDanmaku.planes.MoveStatus;
-import com.meng.TaiHunDanmaku.ui.MainScreen;
+import com.meng.TaiHunDanmaku.ui.FightScreen;
 
-import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
+import static com.meng.TaiHunDanmaku.ui.FightScreen.enemys;
 import com.meng.TaiHunDanmaku.task.*;
 
 public abstract class BaseEnemyPlane extends BaseGameObject{
@@ -49,7 +49,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         image.setRotation(0);
         image.setSize(size.x,size.y);
         judgeCircle=new Circle(objectCenter,image.getWidth()/4);
-        MainScreen.groupNormal.addActor(image);
+        FightScreen.groupNormal.addActor(image);
         for(int i=0;i<32;i++){
             if(enemys[i]==null){
                 enemys[i]=this;
@@ -68,7 +68,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         if(hp<1){
             kill();
         }else{
-            if(MainScreen.onSpellCard){
+            if(FightScreen.onSpellCard){
 				hp=hp-bulletDamage/7;
 			}else{
 				hp-=bulletDamage;

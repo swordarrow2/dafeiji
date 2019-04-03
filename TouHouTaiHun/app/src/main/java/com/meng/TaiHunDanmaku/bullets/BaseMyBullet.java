@@ -4,12 +4,12 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Align;
-import com.meng.TaiHunDanmaku.ui.MainScreen;
+import com.meng.TaiHunDanmaku.ui.FightScreen;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static com.meng.TaiHunDanmaku.ui.MainScreen.enemys;
+import static com.meng.TaiHunDanmaku.ui.FightScreen.enemys;
 
 
 public abstract class BaseMyBullet extends BaseBullet{
@@ -28,7 +28,7 @@ public abstract class BaseMyBullet extends BaseBullet{
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         judgeCircle=new Circle(objectCenter,image.getHeight()/2*3); //中心、半径
         image.setDrawable(getDrawable());
-        MainScreen.groupNormal.addActor(image);
+        FightScreen.groupNormal.addActor(image);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class partAgent{
 		p.setColor(c);
 		p.fill();
 	  	ima=new Image(new Texture(p));
-		positionX=hp/MainScreen.instence.bossMaxHp*386;
+		positionX=hp/ FightScreen.instence.bossMaxHp*386;
 	  }
 
 	public partAgent(float hp){
@@ -23,7 +23,7 @@ public class partAgent{
 		p.setColor(Color.PURPLE);
 		p.fill();
 	  	ima=new Image(new Texture(p));
-		positionX=hp/MainScreen.instence.bossMaxHp*386;
+		positionX=hp/ FightScreen.instence.bossMaxHp*386;
 	  }
 	  
 	public void update(){
@@ -31,11 +31,11 @@ public class partAgent{
 		//	ima.setPosition(positionX,450);
 		//	ima.draw(GameMain.spriteBatch,1);
 			ima.setPosition(0,450);
-			ima.setWidth(hp/MainScreen.instence.bossMaxHp*386);
+			ima.setWidth(hp/ FightScreen.instence.bossMaxHp*386);
 			ima.draw(GameMain.spriteBatch,1); 
 		  }else{
 			ima.setPosition(0,450);
-			ima.setWidth(BaseBossPlane.instence.hp/MainScreen.instence.bossMaxHp*386);	  
+			ima.setWidth(BaseBossPlane.instence.hp/ FightScreen.instence.bossMaxHp*386);
 			ima.draw(GameMain.spriteBatch,1); 
 		  }	
 	  }

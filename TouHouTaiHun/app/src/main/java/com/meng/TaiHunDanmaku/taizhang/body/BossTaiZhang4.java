@@ -21,7 +21,7 @@ public class BossTaiZhang4 extends BaseBossPlane{
     public void update(){
         super.update();
         if(wf-->0) return;
-        MainScreen.spellMode();
+        FightScreen.spellMode();
         spellCard.update();
 	  }
 
@@ -34,9 +34,9 @@ public class BossTaiZhang4 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(5500,Color.YELLOW));
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(3500,Color.ORANGE));
-		MainScreen.instence.layoutManager.nextPart.add(new partAgent(1200,Color.RED));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(5500,Color.YELLOW));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(3500,Color.ORANGE));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(1200,Color.RED));
 	  }
 
     @Override
@@ -49,9 +49,9 @@ public class BossTaiZhang4 extends BaseBossPlane{
     public void kill(){
         super.kill();
         BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
-        MainScreen.onSpellCard=false;
-        MainScreen.sleep=75;
-		MainScreen.onBoss=false;
+        FightScreen.onSpellCard=false;
+        FightScreen.sleep=75;
+		FightScreen.onBoss=false;
 	  }
 
     @Override
