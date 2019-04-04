@@ -66,7 +66,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
 
     public void hit(float bulletDamage){
         if(hp<1){
-            killByJudge();
+            kill();
         }else{
             if(FightScreen.onSpellCard){
 				hp=hp-bulletDamage/7;
@@ -110,7 +110,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         }
     }
 
-    public void killByJudge(){
+    public void kill(){
         super.kill();
         image.remove();
         isKilled=true;
@@ -130,7 +130,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
         judgeCircle.setPosition(objectCenter.x,objectCenter.y);
         if(judgeCircle.x<-5||judgeCircle.x>390
                 ||judgeCircle.y<-5||judgeCircle.y>460){
-            killByJudge();
+            kill();
         }else{
             judge();
         }

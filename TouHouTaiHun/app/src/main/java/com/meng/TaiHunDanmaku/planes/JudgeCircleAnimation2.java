@@ -32,4 +32,9 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
         stat-=2;
 		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
     }
+
+    @Override
+    public void kill(){
+        super.kill();
+    }
 }

@@ -28,8 +28,8 @@ public abstract class BaseBossPlane extends BaseEnemyPlane {
     }
 
     @Override
-    public void killByJudge() {
-        super.killByJudge();
+    public void kill() {
+        super.kill();
         FightScreen.lasers.clear();
         FightScreen.reflexAndThroughs.clear();
     }

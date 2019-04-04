@@ -44,9 +44,7 @@ public abstract class BaseEnemyBullet extends BaseBullet {
         taskManager = new TaskManagerBullet(this, TaskRepeatMode.noRepeat);
     }
 
-    public void killByJudge() {
-        super.kill();
-    }
+    public abstract void killByJudge();
 
     public void killByJudge(BulletKillMode bkm) {
         super.killByOutOfScreen();

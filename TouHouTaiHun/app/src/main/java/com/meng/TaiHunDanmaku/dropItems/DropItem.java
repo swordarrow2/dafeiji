@@ -125,7 +125,7 @@ public class DropItem extends BaseGameObject{
         FightScreen.groupNormal.addActor(image);
 	  }
 
-    public void killByJudge(){
+    public void kill(){
     	super.kill();
         toDelete.add(this);
         image.remove();
@@ -154,7 +154,7 @@ public class DropItem extends BaseGameObject{
         judgeCircle.setPosition(objectCenter);
         if(judgeCircle.x<-5||judgeCircle.x>390
 		   ||judgeCircle.y<-5||judgeCircle.y>460){
-            killByJudge();
+            kill();
 		  }else{
             judge();
 		  }
@@ -181,7 +181,7 @@ public class DropItem extends BaseGameObject{
     public void judge(){
         Vector2 v=BaseMyPlane.instance.objectCenter.cpy();
         if(Math.abs(judgeCircle.x-v.x)<5&&Math.abs(judgeCircle.y-v.y)<5){
-            killByJudge();
+            kill();
             switch(itemType){
                 case power:
 				  BaseMyPlane.instance.incPower(1);

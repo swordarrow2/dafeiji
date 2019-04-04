@@ -38,14 +38,7 @@ public abstract class BaseMyBullet extends BaseBullet{
         image.remove();
 	  }
 
-    @Override
-    public void killByJudge() {
-        super.killByJudge();
-        toDelete.add(this);
-        image.remove();
-    }
-
-    @Override
+	@Override
 	public void update(){
 		objectCenter.add(velocity);
 		super.update();
@@ -68,7 +61,7 @@ public abstract class BaseMyBullet extends BaseBullet{
             for(int i=0;i<32;i++){
                 if(enemys[i]!=null){
                     if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
-                        killByJudge();
+                        killByOutOfScreen();
                         enemys[i].hit(10.5f);
                     }
                 }

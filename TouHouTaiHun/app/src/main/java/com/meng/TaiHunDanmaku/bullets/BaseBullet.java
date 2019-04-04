@@ -21,10 +21,6 @@ public abstract class BaseBullet extends BaseGameObject {
         super.kill();
     }
 
-    public void killByJudge() {
-        super.kill();
-    }
-
     public void update() {
         super.update();
         image.setRotation(getRotationDegree());
