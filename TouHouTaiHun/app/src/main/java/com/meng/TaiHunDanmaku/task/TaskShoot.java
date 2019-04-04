@@ -1,5 +1,5 @@
 package com.meng.TaiHunDanmaku.task;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
 
 public class TaskShoot extends Task{
 	

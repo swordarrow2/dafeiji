@@ -1,7 +1,7 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku;
 
 import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletShooter;
 import com.meng.TaiHunDanmaku.task.TaskManagerBullet;
 import com.meng.TaiHunDanmaku.task.TaskManagerEnemyPlane;
 

@@ -100,11 +100,11 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonEx.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
-				  if(FightScreen.difficultFlag!=4){
-					  FightScreen.difficultFlag=4;
-					  return;
-					}
-				  gameMain.setSelectCharScreen();
+			//	  if(FightScreen.difficultFlag!=4){
+			//		  FightScreen.difficultFlag=4;
+			//		  return;
+			//		}
+			//	  gameMain.setSelectCharScreen();
 				}
 			});
 

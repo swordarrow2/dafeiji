@@ -1,10 +1,10 @@
 package com.meng.TaiHunDanmaku.task;
 
 import com.badlogic.gdx.math.Vector2;
-import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
 import com.meng.TaiHunDanmaku.helpers.*;
-import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
-import com.meng.TaiHunDanmaku.planes.myPlane.BaseMyPlane;
+import com.meng.TaiHunDanmaku.baseObjects.planes.enemyPlane.*;
+import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
 
 import java.util.*;
 

@@ -3,7 +3,7 @@ package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.task.*;

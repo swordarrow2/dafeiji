@@ -3,7 +3,7 @@ package com.meng.TaiHunDanmaku.taizhang;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseNormalDanmaku;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
-import com.meng.TaiHunDanmaku.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.TaiHunDanmaku.baseObjects.planes.enemyPlane.BaseEnemyPlane;
 import com.meng.TaiHunDanmaku.ui.*;
 import com.meng.TaiHunDanmaku.task.*;
 

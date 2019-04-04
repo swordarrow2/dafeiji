@@ -8,10 +8,10 @@ import com.meng.TaiHunDanmaku.task.TaskMoveTo;
 import com.meng.TaiHunDanmaku.task.TaskShoot;
 import com.meng.TaiHunDanmaku.task.TaskWait;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseNormalDanmaku;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletColor;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletForm;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletStyle;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletColor;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletForm;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletShooter;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletStyle;
 import com.badlogic.gdx.math.*;
 
 public class test1 extends BaseNormalDanmaku{

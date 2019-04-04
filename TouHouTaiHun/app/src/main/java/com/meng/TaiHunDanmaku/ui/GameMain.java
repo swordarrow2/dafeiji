@@ -8,10 +8,9 @@ import com.meng.TaiHunDanmaku.helpers.*;
 
 public class GameMain extends Game {
     public static SpriteBatch spriteBatch;
-    private Screen fightScreen;
-    private Screen selectCharScreen;
-    private Screen selectDiffScreen;
     public static BitmapFont bitmapFont;
+    public String replayFileName="replay/myfilerep5235.txt";
+    public boolean onReplay=true;
 
     @Override
     public void create() {
@@ -19,8 +18,6 @@ public class GameMain extends Game {
         ResourcesManager.Load();
         bitmapFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
         bitmapFont.setColor(Color.GREEN);
-		FileHandle file = Gdx.files.external("replay/myfile.txt");
-	//	file.writeBytes(
         setScreen(new SelectDiffScreen(this));
     }
 

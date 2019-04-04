@@ -2,13 +2,13 @@ package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.meng.TaiHunDanmaku.bigFace.*;
+import com.meng.TaiHunDanmaku.baseObjects.bigFace.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
-import com.meng.TaiHunDanmaku.bullets.*;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.dropItems.*;
-import com.meng.TaiHunDanmaku.effects.Effect;
-import com.meng.TaiHunDanmaku.planes.myPlane.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
+import com.meng.TaiHunDanmaku.baseObjects.effects.Effect;
+import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
 import java.util.*;
 
 public class LayoutManager{

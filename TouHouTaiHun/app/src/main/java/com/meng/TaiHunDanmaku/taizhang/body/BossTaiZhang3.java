@@ -2,9 +2,9 @@ package com.meng.TaiHunDanmaku.taizhang.body;
 
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
-import com.meng.TaiHunDanmaku.bullets.*;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.dropItems.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.task.*;

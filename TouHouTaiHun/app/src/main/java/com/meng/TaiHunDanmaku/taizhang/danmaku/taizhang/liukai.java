@@ -1,7 +1,7 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
 import com.badlogic.gdx.math.*;
-import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 

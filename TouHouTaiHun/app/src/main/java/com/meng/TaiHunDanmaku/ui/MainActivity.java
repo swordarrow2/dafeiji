@@ -8,7 +8,7 @@ import android.view.KeyEvent;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.meng.TaiHunDanmaku.planes.myPlane.*;
+import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
 
 public class MainActivity extends AndroidApplication{
     public static MainActivity instance;

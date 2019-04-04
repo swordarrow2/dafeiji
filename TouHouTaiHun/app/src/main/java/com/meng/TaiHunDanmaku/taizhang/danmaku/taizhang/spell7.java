@@ -3,11 +3,11 @@ package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.BaseSpellCard;
-import com.meng.TaiHunDanmaku.bullets.BaseEnemyBullet;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletColor;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletForm;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletKillMode;
-import com.meng.TaiHunDanmaku.bullets.enemy.BulletShooter;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.BaseEnemyBullet;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletColor;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletForm;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletKillMode;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletShooter;
 
 public class spell7 extends BaseSpellCard{
 
