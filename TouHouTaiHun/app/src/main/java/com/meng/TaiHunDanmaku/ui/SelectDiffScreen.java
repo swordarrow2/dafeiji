@@ -40,15 +40,15 @@ public class SelectDiffScreen extends ScreenAdapter {
         buttons = new Group();
 
         Button buttonE = new Button(ResourcesManager.textures.get("easy"), ResourcesManager.textures.get("easy_c"));
-        buttonE.setPosition(121, 32);
+        buttonE.setPosition(51, 352);
         Button buttonN = new Button(ResourcesManager.textures.get("normal"), ResourcesManager.textures.get("normal_c"));
-        buttonN.setPosition(121, 112);
+        buttonN.setPosition(91, 272);
         Button buttonH = new Button(ResourcesManager.textures.get("hard"), ResourcesManager.textures.get("hard_c"));
         buttonH.setPosition(121, 192);
         Button buttonL = new Button(ResourcesManager.textures.get("lunatic"), ResourcesManager.textures.get("lunatic_c"));
-        buttonL.setPosition(121, 272);
+        buttonL.setPosition(161, 112);
         Button buttonEx = new Button(ResourcesManager.textures.get("extra"), ResourcesManager.textures.get("extra_c"));
-        buttonEx.setPosition(121, 352);
+        buttonEx.setPosition(181, 32);
 
 
         buttonE.addListener(new ClickListener() {

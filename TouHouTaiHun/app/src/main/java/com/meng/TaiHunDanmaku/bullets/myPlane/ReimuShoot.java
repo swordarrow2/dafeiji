@@ -8,29 +8,41 @@ import com.meng.TaiHunDanmaku.bullets.BaseMyBullet;
 import com.meng.TaiHunDanmaku.helpers.TextureNameManager;
 import com.meng.TaiHunDanmaku.helpers.*;
 
-public class ReimuShoot extends BaseMyBullet{
+public class ReimuShoot extends BaseMyBullet {
 
     @Override
-    public Drawable getDrawable(){
-        if(drawable==null){
-            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
-		  }
+    public Drawable getDrawable() {
+        if (drawable == null) {
+            drawable = ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
+        }
         return drawable;
-	  }
+    }
 
     @Override
-    public void update(){
+    public void killByJudge() {
+        super.killByJudge();
+        ObjectPools.reimuShootPool.free(this);
+    }
+
+    @Override
+    public void killByOutOfScreen() {
+        super.killByOutOfScreen();
+        ObjectPools.reimuShootPool.free(this);
+    }
+
+    @Override
+    public void update() {
         super.update();
         image.toBack();
-	  }
+    }
 
     @Override
-    public Vector2 getSize(){
-        return new Vector2(64,16);
-	  }
-	
+    public Vector2 getSize() {
+        return new Vector2(64, 16);
+    }
+
     @Override
-    public float getRotationDegree(){
+    public float getRotationDegree() {
         return 90;
-	  }
-  }
+    }
+}

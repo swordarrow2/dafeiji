@@ -36,7 +36,7 @@ public class Effect extends BaseGameObject{
         FightScreen.groupNormal.addActor(image);
 	  }
 
-    public void kill(){
+    public void killByJudge(){
         toDelete.add(this);
         image.remove();
         ObjectPools.effectPool.free(this);
@@ -45,7 +45,7 @@ public class Effect extends BaseGameObject{
     public void update(){
         super.update();
         if(existTime>40||judgeCircle.x<-5||judgeCircle.x>390||judgeCircle.y<-5||judgeCircle.y>460){
-            kill();
+            killByJudge();
 		  }
         drawableNumber=existTime/2;
         image.setDrawable(ResourcesManager.textures.get("effect"+(drawableNumber+540)));

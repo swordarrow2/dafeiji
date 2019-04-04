@@ -25,7 +25,7 @@ public abstract class BaseBigFace extends BaseGameObject{
         image.setSize(399,512);
     }
 
-    public void kill(){
+    public void killByJudge(){
         toDelete.add(this);
         image.remove();
         //	super.killByJudge();
@@ -37,7 +37,7 @@ public abstract class BaseBigFace extends BaseGameObject{
         image.setPosition(objectCenter.x,objectCenter.y,Align.center);
         image.toBack();
         if(existTime>120){
-            kill();
+            killByJudge();
         }else{
             objectCenter.y+=1;
         }

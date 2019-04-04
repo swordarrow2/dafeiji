@@ -47,7 +47,7 @@ public class BossTaiZhang1 extends BaseBossPlane{
 	  }
 
 	@Override
-	public void kill(){
+	public void killByJudge(){
 		
 		//	FightScreen.sleep=90;
 		FightScreen.normalMode();
@@ -55,7 +55,7 @@ public class BossTaiZhang1 extends BaseBossPlane{
 		new BossTaiZhang2().init(objectCenter.cpy(),10,7000,new Task[]{
 									   new TaskMoveTo(193,250)
 									 });
-		super.kill();							 
+		super.killByJudge();
 	  }
 
     @Override

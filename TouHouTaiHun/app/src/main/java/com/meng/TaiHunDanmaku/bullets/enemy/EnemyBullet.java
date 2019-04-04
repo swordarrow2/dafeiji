@@ -171,9 +171,16 @@ public class EnemyBullet extends BaseEnemyBullet {
     }
 
     public void killByJudge() {
-        super.killByOutOfScreen();
+        super.killByJudge();
         toDelete.add(this);
         image.remove();
+        drawable = null;
+        ObjectPools.enemyBulletPool.free(this);
+    }
+
+    @Override
+    public void killByJudge(BulletKillMode bkm) {
+        super.killByJudge(bkm);
         drawable = null;
         ObjectPools.enemyBulletPool.free(this);
     }

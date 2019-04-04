@@ -50,10 +50,6 @@ public abstract class BaseMyPlane extends BaseGameObject{
         FightScreen.groupNormal.addActor(image);
     }
 
-    public void kill(){
-        super.kill();
-    }
-
     public void update(){
         super.update();
         animFlag++;

@@ -27,7 +27,7 @@ public  class BulletRemover extends BaseGameObject{
 		bkm=BulletKillMode.KillOnBossLastDeath;
 	  }
 
-    public void kill(){
+    public void killByJudge(){
 		toDelete.add(this);
 	  }
 
@@ -45,11 +45,11 @@ public  class BulletRemover extends BaseGameObject{
 		if(flag==0){
 			judgeCircle.setRadius(existTime*7);
 			if(existTime>90){
-				kill();
+				killByJudge();
 			  }
 		  }else{
 			if(existTime>3){
-				kill();
+				killByJudge();
 			  }
 		  }
 		judge();

@@ -22,11 +22,6 @@ public class JudgeCircleAnimation extends BaseGameObject{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 	  }
 
-	@Override
-	public void kill(){
-		super.kill();
-	  }
-
     public void update(){
 		objectCenter=BaseMyPlane.instance.objectCenter;
         image.setRotation(stat);
