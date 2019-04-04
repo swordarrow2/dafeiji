@@ -1,11 +1,10 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
+import com.badlogic.gdx.files.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public class GameMain extends Game {
     public static SpriteBatch spriteBatch;
@@ -20,6 +19,8 @@ public class GameMain extends Game {
         ResourcesManager.Load();
         bitmapFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
         bitmapFont.setColor(Color.GREEN);
+		FileHandle file = Gdx.files.external("replay/myfile.txt");
+	//	file.writeBytes(
         setScreen(new SelectDiffScreen(this));
     }
 

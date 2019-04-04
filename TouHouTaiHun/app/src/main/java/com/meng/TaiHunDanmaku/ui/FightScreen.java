@@ -1,6 +1,7 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.files.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Pixmap.*;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -17,10 +18,10 @@ import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.stage.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
-
-import java.util.HashSet;
+import java.util.*;
 
 import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
+import java.io.*;
 
 public class FightScreen extends ScreenAdapter{
     public GameMain gameMain;
@@ -45,7 +46,12 @@ public class FightScreen extends ScreenAdapter{
     static int spellHeight = 450;
     public float bossMaxHp = 1;
 	public static String pl="B";
-
+	public static StringBuilder repInfo;
+	FileHandle file = Gdx.files.external("replay/myfilerep.txt");
+	
+	byte[] px;
+	byte[] py;
+	
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){
             GameMain.spriteBatch.end();
@@ -159,8 +165,16 @@ public class FightScreen extends ScreenAdapter{
 				  break;
 			  }
 		  }
+		int i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.x);
+		String s=Integer.toHexString(i);
+		repInfo.append(s);
+		i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.y);
+		s=Integer.toHexString(i);
+		repInfo.append(s);
+		file.writeBytes(repInfo.toString().getBytes(),false);
         super.render(delta);
 	  }
+	  
 
     private String isKilled(){
         String s = "";
@@ -184,6 +198,8 @@ public class FightScreen extends ScreenAdapter{
         reflexAndThroughs=new HashSet<ReflexAndThrough>();
         layoutManager=new LayoutManager();
         enemys= new BaseEnemyPlane[32];
+		repInfo=new StringBuilder();
+		
         width=386;//540;//386;
         height=600;//720;//450;
         fitViewport=new FitViewport(width,height);
