@@ -59,7 +59,7 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletVelocity(new Vector2(0, -1))
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
-                        .setBulletLiveOutOfScreen(1000)
+                        .setBulletLiveOutOfScreen(500)
                         .setBulletAcceleration(new Vector2(0, -0.05f))
                         .setBulletTasks(arrayList)
         };
