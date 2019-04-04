@@ -1,12 +1,10 @@
 package com.meng.TaiHunDanmaku.planes.myPlane;
 
-import com.badlogic.gdx.math.Vector2;
-import com.meng.TaiHunDanmaku.helpers.Data;
-import com.meng.TaiHunDanmaku.helpers.ObjectPools;
-import com.meng.TaiHunDanmaku.planes.AnimationManager;
-import com.meng.TaiHunDanmaku.planes.subPlane.SubPlaneReimuA;
-import com.meng.TaiHunDanmaku.planes.subPlane.SubPlaneReimuB;
-import com.meng.TaiHunDanmaku.ui.onStartActivity;
+import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.helpers.*;
+import com.meng.TaiHunDanmaku.planes.*;
+import com.meng.TaiHunDanmaku.planes.subPlane.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public class MyPlaneReimu extends BaseMyPlane{
 
@@ -24,7 +22,7 @@ public class MyPlaneReimu extends BaseMyPlane{
         super.init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-        if(onStartActivity.pl.equals("A:诱导")){
+        if(FightScreen.pl.equals("A")){
             switch(power){
                 case 4:
                     subPlane4=new SubPlaneReimuA();
@@ -39,7 +37,7 @@ public class MyPlaneReimu extends BaseMyPlane{
                     subPlane1=new SubPlaneReimuA();
                     subPlane1.init(this,1);
             }
-        }else if(onStartActivity.pl.equals("B:针")){
+        }else if(FightScreen.pl.equals("B")){
             switch(power){
                 case 4:
                     subPlane4=new SubPlaneReimuB();
@@ -100,7 +98,7 @@ public class MyPlaneReimu extends BaseMyPlane{
         if(power >= 4){
             power=4;
         }
-        if(onStartActivity.pl.equals("A:诱导")){
+        if(FightScreen.pl.equals("A")){
             switch(power){
                 case 4:
                     if(subPlane4==null){
@@ -123,7 +121,7 @@ public class MyPlaneReimu extends BaseMyPlane{
                         subPlane1.init(this,1);
                     }
             }
-        }else if(onStartActivity.pl.equals("B:针")){
+        }else if(FightScreen.pl.equals("B")){
             switch(power){
                 case 4:
                     if(subPlane4==null){

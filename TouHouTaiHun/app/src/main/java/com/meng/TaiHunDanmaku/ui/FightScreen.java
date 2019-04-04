@@ -44,6 +44,7 @@ public class FightScreen extends ScreenAdapter{
     public static boolean onSpellCard = false;
     static int spellHeight = 450;
     public float bossMaxHp = 1;
+	public static String pl="B";
 
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){

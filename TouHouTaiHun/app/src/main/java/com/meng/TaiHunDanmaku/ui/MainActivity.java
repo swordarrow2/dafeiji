@@ -25,31 +25,4 @@ public class MainActivity extends AndroidApplication{
         initialize(game,cfg); 
        
     }
-
-    @Override
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode==KeyEvent.KEYCODE_VOLUME_UP){
-		  BaseMyPlane.instance.objectCenter.x+=5;
-		  return true;
-        }
-		if(keyCode==KeyEvent.KEYCODE_VOLUME_DOWN){
-			BaseMyPlane.instance.objectCenter.x-=5;
-			return true;
-		  }
-		if(keyCode==KeyEvent.KEYCODE_MENU){
-			BaseMyPlane.instance.slow=true;
-			return true;
-		  }
-		if(keyCode==KeyEvent.KEYCODE_BACK){
-			BaseMyPlane.instance.slow=false;
-			return true;
-		  }
-        return super.onKeyDown(keyCode,event);
-	  }
-
-	
-    @Override
-    protected void onPause(){
-        super.onPause();
-    }
 }
