@@ -47,11 +47,13 @@ public class FightScreen extends ScreenAdapter{
     public float bossMaxHp = 1;
 	public static String pl="B";
 	public static StringBuilder repInfo;
-	FileHandle file = Gdx.files.external("replay/myfilerep.txt");
-	
+    FileHandle file ;
+    FileHandle file2 ;
+    ArrayList<String> rep=null;
+
 	byte[] px;
 	byte[] py;
-	
+
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){
             GameMain.spriteBatch.end();
@@ -151,6 +153,7 @@ public class FightScreen extends ScreenAdapter{
 				  bitmapFont.draw(GameMain.spriteBatch,glyphLayout,(width-glyphLayout.width)/2,height/2);
                 }
 			  if(gameTime>300){
+                  file.writeBytes(repInfo.toString().getBytes(),false);
 				  restart();
 				  gameMain.setSelectDiffScreen();
                 }
@@ -165,16 +168,56 @@ public class FightScreen extends ScreenAdapter{
 				  break;
 			  }
 		  }
-		int i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.x);
-		String s=Integer.toHexString(i);
-		repInfo.append(s);
-		i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.y);
-		s=Integer.toHexString(i);
-		repInfo.append(s);
-		file.writeBytes(repInfo.toString().getBytes(),false);
+		if(!file2.exists()&&gameTime>0){
+            int i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.x);
+            String s=Integer.toHexString(i);
+            repInfo.append(s);
+            repInfo.append(" ");
+            i=Float.floatToIntBits(BaseMyPlane.instance.objectCenter.y);
+            s=Integer.toHexString(i);
+            repInfo.append(s);
+            repInfo.append(" ");
+            int tmp=0;
+            if(BaseMyPlane.instance.slow){
+                tmp=1;
+            }
+            if(BaseMyPlane.instance.onBomb){
+                tmp=2;
+            }
+            if(BaseMyPlane.instance.slow&&BaseMyPlane.instance.onBomb){
+                tmp=3;
+            }
+            repInfo.append(tmp);
+            repInfo.append("\n");
+        }
+        if(rep!=null){
+            String[] s=rep.get(gameTime).split("\\s");
+            int i=Integer.parseInt(s[0],16);
+            BaseMyPlane.instance.objectCenter.x=Float.intBitsToFloat(i);
+            i=Integer.parseInt(s[1],16);
+            BaseMyPlane.instance.objectCenter.y=Float.intBitsToFloat(i);
+            i=Integer.parseInt(s[2]);
+            switch (i){
+                case 1:
+                    BaseMyPlane.instance.slow=true;
+                    break;
+                case 2:
+                    BaseMyPlane.instance.onBomb=true;
+                    break;
+                case 3:
+                    BaseMyPlane.instance.slow=true;
+                    BaseMyPlane.instance.onBomb=true;
+                    break;
+            }
+
+
+
+        }
+
+
         super.render(delta);
 	  }
-	  
+
 
     private String isKilled(){
         String s = "";
@@ -199,7 +242,14 @@ public class FightScreen extends ScreenAdapter{
         layoutManager=new LayoutManager();
         enemys= new BaseEnemyPlane[32];
 		repInfo=new StringBuilder();
-		
+        file= Gdx.files.external("replay/myfilerep"+System.currentTimeMillis()+".txt");
+        file2= Gdx.files.external("replay/myfilerep.txt");
+        if(file2.exists()){
+            rep=new ArrayList<String>(131071);
+                String s=file2.readString();
+                String[] ss=s.split("\n");
+            rep.addAll(Arrays.asList(ss));
+        }
         width=386;//540;//386;
         height=600;//720;//450;
         fitViewport=new FitViewport(width,height);
