@@ -160,8 +160,7 @@ public class FightScreen extends ScreenAdapter {
         pixmap.fill();
         Image background = new Image(new Texture(pixmap));
         long seed = System.currentTimeMillis();
-        ObjectPools.randomPool = new RandomXS128(seed);
-        ReplayManager.init(gameMain.replayFileName, gameMain.onReplay);
+        ReplayManager.init(gameMain.replayFileName, gameMain.onReplay, seed);
         ReplayManager.appendData(GameMain.equipment + " " + GameMain.difficultFlag + " " + GameMain.playerFlag + " " + GameMain.stageFlag + " " + seed + "\n");
         background.setBounds(0, 0, 386, 450);
         stage.addActor(background);

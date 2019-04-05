@@ -17,12 +17,12 @@ public class ReplayManager {
 
     public ReplayManager() {
 
-    }
+	  }
 
-    public static void init(String fileName, boolean onReplay) {
-        file = Gdx.files.external(fileName);
+	public static void init(String replayFileName,boolean onReplay,long seed){
+        file = Gdx.files.external(replayFileName);
+		ReplayManager.onReplay = onReplay;
         if (onReplay) {
-            ReplayManager.onReplay = true;
             rep = new ArrayList<Float[]>(131071);
             String allString = file.readString();
             String[] playInfo = allString.substring(0, allString.indexOf("\n")).split("\\s");
@@ -43,7 +43,9 @@ public class ReplayManager {
                 });
             }
             rep.add(new Float[]{0f, 0f, 0f, 0f});
-        }
+        }else{
+			ObjectPools.randomPool = new RandomXS128(seed);
+		}
     }
 
     public static void appendData(String s) {
