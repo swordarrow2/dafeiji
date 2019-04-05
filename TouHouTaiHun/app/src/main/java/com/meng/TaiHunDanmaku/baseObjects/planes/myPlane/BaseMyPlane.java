@@ -12,6 +12,7 @@ import com.meng.TaiHunDanmaku.baseObjects.planes.JudgeCircleAnimation2;
 import com.meng.TaiHunDanmaku.baseObjects.planes.MoveStatus;
 import com.meng.TaiHunDanmaku.baseObjects.planes.subPlane.BaseSubPlane;
 import com.meng.TaiHunDanmaku.ui.FightScreen;
+import com.meng.TaiHunDanmaku.ui.GameMain;
 
 public abstract class BaseMyPlane extends BaseGameObject{
 
@@ -42,12 +43,12 @@ public abstract class BaseMyPlane extends BaseGameObject{
         animation2=new JudgeCircleAnimation2();
         animation2.init();
         existTime=0;
-        objectCenter.set(FightScreen.width/2,80);
+        objectCenter.set(GameMain.width/2,80);
         image.setSize(30,46);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         unmatchedTime=1;
         onUnmatched=true;
-        FightScreen.groupNormal.addActor(image);
+        FightScreen.instence.groupNormal.addActor(image);
     }
 
     public void kill(){

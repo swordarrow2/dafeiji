@@ -17,37 +17,28 @@ import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.baseObjects.planes.enemyPlane.*;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.stage.*;
-import com.meng.TaiHunDanmaku.taizhang.*;
 
 import java.util.*;
 
 import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
 
 public class FightScreen extends ScreenAdapter {
-    public GameMain gameMain;
-    public static int playerFlag;
-    public static int difficultFlag;
-    public static int stageFlag;
-    public static int enemyTimeFlag = 0;
-    public static int gameTimeFlag = 0;
-    public static int width, height;
-    public static Stage stage;
-    public static Group groupNormal;
-    public static Group groupHighLight;
-    public static HashSet<Laser> lasers;
-    public static HashSet<ReflexAndThrough> reflexAndThroughs;
-    public static Rectangle fightArea;
-    public InputMultiplexer inputManager;
-    public static BaseEnemyPlane[] enemys;
-    public static boolean onBoss = false;
-    public FitViewport fitViewport;
     public static FightScreen instence;
-    public static int sleep = 0;
-    public static boolean onSpellCard = false;
+    public GameMain gameMain;
+    public int enemyTimeFlag = 0;
+    public int gameTimeFlag = 0;
+    public Stage stage;
+    public Group groupNormal;
+    public Group groupHighLight;
+    public HashSet<ReflexAndThrough> reflexAndThroughs;
+    public BaseEnemyPlane[] enemys;
+    public boolean onBoss = false;
+    public int sleep = 0;
+    public boolean onSpellCard = false;
     static int spellHeight = 450;
-    public float bossMaxHp = 1;
-    public static String pl;
-    private Float[] data;
+    private FitViewport fitViewport;
+    private GameStage gameStage;
+    public LaserManager laserManager = new LaserManager();
 
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch, float parentAlpha) {
@@ -86,21 +77,8 @@ public class FightScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        ReplayManager.update(gameTimeFlag);
         ++gameTimeFlag;
-        if (ReplayManager.onReplay) {
-            data = ReplayManager.getData(gameTimeFlag);
-            BaseMyPlane.instance.objectCenter.x = data[0];
-            BaseMyPlane.instance.objectCenter.y = data[1];
-            BaseMyPlane.instance.slow = data[2] == 1f;
-            BaseMyPlane.instance.onBomb = data[3] == 1f;
-        } else {
-            ReplayManager.appendData(
-                    BaseMyPlane.instance.objectCenter.x +
-                            " " + BaseMyPlane.instance.objectCenter.y +
-                            " " + (BaseMyPlane.instance.slow ? 1 : 0) +
-                            " " + (BaseMyPlane.instance.onBomb ? 1 : 0) +
-                            "\n");
-        }
         if (sleep > 0) {
             try {
                 Thread.sleep(sleep--);
@@ -117,7 +95,6 @@ public class FightScreen extends ScreenAdapter {
                 }
             }
         }
-
         stage.draw();
 		/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
 		 shapeRenderer.setAutoShapeType(true);
@@ -128,25 +105,10 @@ public class FightScreen extends ScreenAdapter {
             reflexAndThrough.update();
         }
 
-        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
-        GameMain.spriteBatch.begin();
-        for (Laser b : lasers) {
-            b.render();
-        }
-        GameMain.spriteBatch.end();
-        GameMain.spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-
+        laserManager.draw();
         GameMain.spriteBatch.begin();
         layoutManager.update();
-        if (onSpellCard) {
-            GlyphLayout glyphLayout = new GlyphLayout();
-            glyphLayout.setText(bitmapFont, BaseBossPlane.instence.spellCard.spellName);
-            spellHeight += 3;
-            if (spellHeight > 450) {
-                spellHeight = 450;
-            }
-            bitmapFont.draw(GameMain.spriteBatch, glyphLayout, width - glyphLayout.width, spellHeight);
-        }
+
         bitmapFont.draw(GameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond() + "\n" +
                         "\npos:" + BaseMyPlane.instance.objectCenter.x + " " + BaseMyPlane.instance.objectCenter.y + "\n" +
                         "MaxPoint:" + BaseMyPlane.instance.maxPoint
@@ -155,41 +117,22 @@ public class FightScreen extends ScreenAdapter {
                         + "\nmemory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
                         + isKilled()
                 , 10, 590);
-        switch (stageFlag) {
-            case Data.stageFlagStage1:
-                if (enemyTimeFlag > 100) {
-                    GlyphLayout glyphLayout = new GlyphLayout();
-                    glyphLayout.setText(bitmapFont, "stage Clear!!");
-                    bitmapFont.draw(GameMain.spriteBatch, glyphLayout, (width - glyphLayout.width) / 2, height / 2);
-                }
-                if (enemyTimeFlag > 300) {
-                    ReplayManager.saveRepaly();
-                    gameMain.setSelectDiffScreen();
-                }
-                break;
-        }
         GameMain.spriteBatch.end();
         if (!onBoss) {
-            enemyTimeFlag++;
-            switch (stageFlag) {
-                case Data.stageFlagStage1:
-                    stage1.addEnemy();
-                    break;
-            }
+            gameStage.addEnemy(++enemyTimeFlag);
         }
-
         super.render(delta);
     }
 
 
     private String isKilled() {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < 32; i++) {
             if (enemys[i] != null) {
-                s += "\nHp:" + enemys[i].getHp();
+                s.append("\nHp:").append(enemys[i].getHp());
             }
         }
-        return s;
+        return s.toString();
     }
 
     private void init() {
@@ -200,13 +143,17 @@ public class FightScreen extends ScreenAdapter {
         BaseMyBullet.instances.clear();
         BaseMyBullet.toAdd.clear();
         BaseMyBullet.toDelete.clear();
-        lasers = new HashSet<Laser>();
         reflexAndThroughs = new HashSet<ReflexAndThrough>();
         layoutManager = new LayoutManager();
         enemys = new BaseEnemyPlane[32];
-        width = 386;//540;//386;
-        height = 600;//720;//450;
-        fitViewport = new FitViewport(width, height);
+        switch (GameMain.stageFlag) {
+            case 1:
+                gameStage = new GameStage1(gameMain);
+                break;
+        }
+        GameMain.width = 386;//540;//386;
+        GameMain.height = 600;//720;//450;
+        fitViewport = new FitViewport(GameMain.width, GameMain.height);
         stage = new Stage(fitViewport, GameMain.spriteBatch);
         Pixmap pixmap = new Pixmap(1, 1, Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
@@ -214,7 +161,8 @@ public class FightScreen extends ScreenAdapter {
         Image background = new Image(new Texture(pixmap));
         long seed = System.currentTimeMillis();
         ObjectPools.randomPool = new RandomXS128(seed);
-        ReplayManager.appendData(pl + " " + difficultFlag + " " + playerFlag + " " + stageFlag + " " + seed + "\n");
+        ReplayManager.init(gameMain.replayFileName, gameMain.onReplay);
+        ReplayManager.appendData(GameMain.equipment + " " + GameMain.difficultFlag + " " + GameMain.playerFlag + " " + GameMain.stageFlag + " " + seed + "\n");
         background.setBounds(0, 0, 386, 450);
         stage.addActor(background);
         groupNormal = new Group();
@@ -223,10 +171,7 @@ public class FightScreen extends ScreenAdapter {
         stage.addActor(changeBlend1);
         stage.addActor(groupHighLight);
         stage.addActor(changeBlend2);
-        fightArea = new Rectangle(0, 0, 386, 450);
-        playerFlag = Data.playerFlagReimu;
-        stageFlag = Data.stageFlagStage1;
-        switch (playerFlag) {
+        switch (GameMain.playerFlag) {
             case Data.playerFlagReimu:
                 new MyPlaneReimu().init();
                 break;
@@ -234,7 +179,7 @@ public class FightScreen extends ScreenAdapter {
                 //     new MyPlaneAlice().init();
                 break;
         }
-        inputManager = new InputMultiplexer();
+        InputMultiplexer inputManager = new InputMultiplexer();
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
     }
@@ -251,14 +196,16 @@ public class FightScreen extends ScreenAdapter {
     }
 
     public static void normalMode() {
-        if (!onSpellCard) return;
-        onSpellCard = false;
+        if (!instence.onSpellCard) return;
+        instence.laserManager.clear();
+        instence.onSpellCard = false;
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
     }
 
     public static void spellMode() {
-        if (onSpellCard) return;
-        onSpellCard = true;
+        if (instence.onSpellCard) return;
+        instence.laserManager.clear();
+        instence.onSpellCard = true;
         spellHeight = 200;
         new BigFace().init(new Vector2(300, 200), FaceCharacter.Junko);
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);

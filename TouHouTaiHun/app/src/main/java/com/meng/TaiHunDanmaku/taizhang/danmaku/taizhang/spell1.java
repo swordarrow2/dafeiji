@@ -18,9 +18,9 @@ public class spell1 extends BaseSpellCard {
         boss = b;
         taskManagerEnemyPlane = new TaskManagerEnemyPlane(b, TaskRepeatMode.repeatAll);
         waitFrameSpell = 120;
-        FightScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Top));
-        FightScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Left));
-        FightScreen.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Right));
+        FightScreen.instence.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Top));
+        FightScreen.instence.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Left));
+        FightScreen.instence.reflexAndThroughs.add(new ReflexAndThrough(ReflexAndThrough.Position.Right));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)

@@ -16,7 +16,7 @@ public class BigFace extends BaseBigFace{
         faceCharacter=fc;
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        FightScreen.groupNormal.addActor(image);
+        FightScreen.instence.groupNormal.addActor(image);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class MyPlaneReimu extends BaseMyPlane{
         super.init();
         bombTime=Data.ReimuBombTime;
         animationManager=new AnimationManager(this,5);
-        if(FightScreen.pl.equals("A")){
+        if(GameMain.equipment.equals("A")){
             switch(power){
                 case 4:
                     subPlane4=new SubPlaneReimuA();
@@ -37,7 +37,7 @@ public class MyPlaneReimu extends BaseMyPlane{
                     subPlane1=new SubPlaneReimuA();
                     subPlane1.init(this,1);
             }
-        }else if(FightScreen.pl.equals("B")){
+        }else if(GameMain.equipment.equals("B")){
             switch(power){
                 case 4:
                     subPlane4=new SubPlaneReimuB();
@@ -98,7 +98,7 @@ public class MyPlaneReimu extends BaseMyPlane{
         if(power >= 4){
             power=4;
         }
-        if(FightScreen.pl.equals("A")){
+        if(GameMain.equipment.equals("A")){
             switch(power){
                 case 4:
                     if(subPlane4==null){
@@ -121,7 +121,7 @@ public class MyPlaneReimu extends BaseMyPlane{
                         subPlane1.init(this,1);
                     }
             }
-        }else if(FightScreen.pl.equals("B")){
+        }else if(GameMain.equipment.equals("B")){
             switch(power){
                 case 4:
                     if(subPlane4==null){

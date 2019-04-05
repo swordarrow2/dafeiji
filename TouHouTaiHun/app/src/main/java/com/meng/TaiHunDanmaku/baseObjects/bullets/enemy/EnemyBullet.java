@@ -137,9 +137,9 @@ public class EnemyBullet extends BaseEnemyBullet {
         }
         image.setDrawable(getDrawable());
         if (highLight) {
-            FightScreen.groupHighLight.addActor(image);
+            FightScreen.instence.groupHighLight.addActor(image);
         } else {
-            FightScreen.groupNormal.addActor(image);
+            FightScreen.instence.groupNormal.addActor(image);
         }
     }
 

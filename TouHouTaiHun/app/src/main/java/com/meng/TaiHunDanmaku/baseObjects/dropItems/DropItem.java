@@ -33,7 +33,7 @@ public class DropItem extends BaseGameObject{
         this.bulletKillMode=BulletKillMode.killWithNothing;
         toAdd.add(this);
 		velocity=new Vector2(0,3);
-		
+
         existTime=0;
         judgeCircle=new Circle(objectCenter,16);
         objectCenter.set(center);
@@ -122,7 +122,7 @@ public class DropItem extends BaseGameObject{
         image.setSize(size.x,size.y);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
-        FightScreen.groupNormal.addActor(image);
+		FightScreen.instence.groupNormal.addActor(image);
 	  }
 
     public void kill(){

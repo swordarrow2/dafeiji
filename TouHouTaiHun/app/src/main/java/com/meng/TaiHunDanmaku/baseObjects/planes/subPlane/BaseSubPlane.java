@@ -26,7 +26,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
         image.setSize(size.x,size.y);
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
-        FightScreen.groupNormal.addActor(image);
+        FightScreen.instence.groupNormal.addActor(image);
     }
 
     public void kill(){

@@ -11,24 +11,16 @@ import com.badlogic.gdx.utils.viewport.*;
 import com.meng.TaiHunDanmaku.control.ReplayManager;
 import com.meng.TaiHunDanmaku.helpers.*;
 
-import static com.meng.TaiHunDanmaku.ui.FightScreen.difficultFlag;
-import static com.meng.TaiHunDanmaku.ui.FightScreen.pl;
-import static com.meng.TaiHunDanmaku.ui.FightScreen.playerFlag;
-import static com.meng.TaiHunDanmaku.ui.FightScreen.stageFlag;
 import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
 import static com.meng.TaiHunDanmaku.ui.GameMain.spriteBatch;
 
 public class SelectDiffScreen extends ScreenAdapter {
     private FitViewport fitViewport;
-    public GameMain gameMain;
-    public Stage stage;
-    private int width = 386;
-    private int height = 600;
-    private Group buttons;
-    private InputMultiplexer inputManager;
-    TextureRegion backgroundTexture;
-    int time = 0;
-    int tmp = 1;
+    private GameMain gameMain;
+    private Stage stage;
+    private TextureRegion backgroundTexture;
+    private int time = 0;
+    private int tmp = 1;
 
     public SelectDiffScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -40,6 +32,8 @@ public class SelectDiffScreen extends ScreenAdapter {
         Texture texture = new Texture(Gdx.files.internal("skyBackground.jpg"));
         backgroundTexture = new TextureRegion(texture, 0, 0, 2048, 563);
 
+        int width = 386;
+        int height = 600;
         fitViewport = new FitViewport(width, height);
         stage = new Stage(fitViewport, GameMain.spriteBatch);
 
@@ -50,7 +44,7 @@ public class SelectDiffScreen extends ScreenAdapter {
 
 		 background.setBounds(0,0,386,450);
 		 stage.addActor(background);*/
-        buttons = new Group();
+        Group buttons = new Group();
 
         Button buttonE = new Button(ResourcesManager.textures.get("easy"), ResourcesManager.textures.get("easy_c"));
         buttonE.setPosition(51, 352);
@@ -68,7 +62,6 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
-                ReplayManager.init(gameMain.replayFileName, false);
                 gameMain.setSelectCharScreen();
             }
         });
@@ -76,7 +69,6 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
-                ReplayManager.init(gameMain.replayFileName, false);
                 gameMain.setSelectCharScreen();
             }
         });
@@ -84,7 +76,6 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
-                ReplayManager.init(gameMain.replayFileName, false);
                 gameMain.setSelectCharScreen();
             }
         });
@@ -92,7 +83,6 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
-                ReplayManager.init(gameMain.replayFileName, false);
                 gameMain.setSelectCharScreen();
             }
         });
@@ -100,7 +90,6 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = true;
-                ReplayManager.init(gameMain.replayFileName, true);
                 gameMain.setFightScreen();
             }
         });
@@ -112,7 +101,7 @@ public class SelectDiffScreen extends ScreenAdapter {
         buttons.addActor(buttonEx);
         stage.addActor(buttons);
 
-        inputManager = new InputMultiplexer();
+        InputMultiplexer inputManager = new InputMultiplexer();
         inputManager.addProcessor(stage);
         Gdx.input.setInputProcessor(inputManager);
     }

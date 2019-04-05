@@ -42,20 +42,14 @@ public class SelectCharScreen extends ScreenAdapter{
         buttonA.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                FightScreen.pl = "A";
-                FightScreen.enemyTimeFlag = 0;
-				FightScreen.gameTimeFlag =0;
-                FightScreen.onBoss = false;
+                GameMain.equipment = "A";
                 gameMain.setFightScreen();
             }
         });
         buttonB.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                FightScreen.pl = "B";
-                FightScreen.enemyTimeFlag = 0;
-				FightScreen.gameTimeFlag =0;
-                FightScreen.onBoss = false;
+                GameMain.equipment = "B";
                 gameMain.setFightScreen();
             }
         });

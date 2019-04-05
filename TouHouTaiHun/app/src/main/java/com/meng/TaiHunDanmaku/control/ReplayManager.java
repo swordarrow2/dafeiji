@@ -1,15 +1,13 @@
 package com.meng.TaiHunDanmaku.control;
 
-import android.util.Log;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.RandomXS128;
+import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
 import com.meng.TaiHunDanmaku.helpers.ObjectPools;
-import com.meng.TaiHunDanmaku.ui.FightScreen;
+import com.meng.TaiHunDanmaku.ui.GameMain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ReplayManager {
     public static boolean onReplay = false;
@@ -28,10 +26,10 @@ public class ReplayManager {
             rep = new ArrayList<Float[]>(131071);
             String allString = file.readString();
             String[] playInfo = allString.substring(0, allString.indexOf("\n")).split("\\s");
-            FightScreen.pl = playInfo[0];
-            FightScreen.difficultFlag = Integer.parseInt(playInfo[1]);
-            FightScreen.playerFlag = Integer.parseInt(playInfo[2]);
-            FightScreen.stageFlag = Integer.parseInt(playInfo[3]);
+            GameMain.equipment = playInfo[0];
+            GameMain.difficultFlag = Integer.parseInt(playInfo[1]);
+            GameMain.playerFlag = Integer.parseInt(playInfo[2]);
+            GameMain.stageFlag = Integer.parseInt(playInfo[3]);
             ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
             String[] splitedAllFrameInfo = allString.substring(allString.indexOf("\n") + 1).split("\n");
             String[] frameInfo;
@@ -44,6 +42,7 @@ public class ReplayManager {
                         Float.parseFloat(frameInfo[3])
                 });
             }
+            rep.add(new Float[]{0f, 0f, 0f, 0f});
         }
     }
 
@@ -52,8 +51,20 @@ public class ReplayManager {
         repInfo.append(s);
     }
 
-    public static Float[] getData(int gameTime) {
-        return rep.get(gameTime);
+    public static void update(int gameTime) {
+        if (onReplay) {
+            BaseMyPlane.instance.objectCenter.x = rep.get(gameTime)[0];
+            BaseMyPlane.instance.objectCenter.y = rep.get(gameTime)[1];
+            BaseMyPlane.instance.slow = rep.get(gameTime)[2] == 1f;
+            BaseMyPlane.instance.onBomb = rep.get(gameTime)[3] == 1f;
+        } else {
+            appendData(
+                    BaseMyPlane.instance.objectCenter.x +
+                            " " + BaseMyPlane.instance.objectCenter.y +
+                            " " + (BaseMyPlane.instance.slow ? 1 : 0) +
+                            " " + (BaseMyPlane.instance.onBomb ? 1 : 0) +
+                            "\n");
+        }
     }
 
     public static void saveRepaly() {

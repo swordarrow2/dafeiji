@@ -8,8 +8,14 @@ import com.meng.TaiHunDanmaku.helpers.*;
 public class GameMain extends Game {
     public static SpriteBatch spriteBatch;
     public static BitmapFont bitmapFont;
-    public String replayFileName="replay/myfilerep115235.txt";
-    public boolean onReplay=true;
+    public String replayFileName = "replay/myfilerep115235.txt";
+    public boolean onReplay = true;
+
+    public static int width, height;
+    public static int playerFlag;
+    public static int difficultFlag;
+    public static int stageFlag = 1;
+    public static String equipment;
 
     @Override
     public void create() {
@@ -30,9 +36,6 @@ public class GameMain extends Game {
     }
 
     public void setFightScreen() {
-	  FightScreen.gameTimeFlag =0;
-	  FightScreen.enemyTimeFlag =0;
-	  FightScreen.onBoss=false;
         setScreen(new FightScreen(this));
     }
 

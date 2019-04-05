@@ -49,9 +49,9 @@ public class BossTaiZhang4 extends BaseBossPlane{
     public void kill(){
         super.kill();
         BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
-        FightScreen.onSpellCard=false;
-        FightScreen.sleep=75;
-		FightScreen.onBoss=false;
+        FightScreen.instence.onSpellCard=false;
+        FightScreen.instence.sleep=75;
+        FightScreen.instence.onBoss=false;
 	  }
 
     @Override
