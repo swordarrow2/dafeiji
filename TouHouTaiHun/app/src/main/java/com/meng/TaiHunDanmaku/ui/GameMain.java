@@ -1,7 +1,6 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.files.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.meng.TaiHunDanmaku.helpers.*;
@@ -31,8 +30,8 @@ public class GameMain extends Game {
     }
 
     public void setFightScreen() {
-	  FightScreen.gameTime=0;
-	  FightScreen.enemyFlag=0;
+	  FightScreen.gameTimeFlag =0;
+	  FightScreen.enemyTimeFlag =0;
 	  FightScreen.onBoss=false;
         setScreen(new FightScreen(this));
     }

@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class ReplayManager {
     public static boolean onReplay = false;
     private static StringBuilder repInfo = new StringBuilder();
-    private static ArrayList<String> rep = new ArrayList<String>();
+    private static ArrayList<Float[]> rep = new ArrayList<Float[]>();
     private static FileHandle file;
 
     public ReplayManager() {
@@ -25,7 +25,7 @@ public class ReplayManager {
         file = Gdx.files.external(fileName);
         if (onReplay) {
             ReplayManager.onReplay = true;
-            rep = new ArrayList<String>(131071);
+            rep = new ArrayList<Float[]>(131071);
             String allString = file.readString();
             String[] playInfo = allString.substring(0, allString.indexOf("\n")).split("\\s");
             FightScreen.pl = playInfo[0];
@@ -33,8 +33,17 @@ public class ReplayManager {
             FightScreen.playerFlag = Integer.parseInt(playInfo[2]);
             FightScreen.stageFlag = Integer.parseInt(playInfo[3]);
             ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
-            String[] ss = allString.substring(allString.indexOf("\n")).split("\n");
-            rep.addAll(Arrays.asList(ss));
+            String[] splitedAllFrameInfo = allString.substring(allString.indexOf("\n") + 1).split("\n");
+            String[] frameInfo;
+            for (String s : splitedAllFrameInfo) {
+                frameInfo = s.split("\\s");
+                rep.add(new Float[]{
+                        Float.parseFloat(frameInfo[0]),
+                        Float.parseFloat(frameInfo[1]),
+                        Float.parseFloat(frameInfo[2]),
+                        Float.parseFloat(frameInfo[3])
+                });
+            }
         }
     }
 
@@ -43,8 +52,8 @@ public class ReplayManager {
         repInfo.append(s);
     }
 
-    public static String[] getData(int gameTime) {
-        return ReplayManager.rep.get(gameTime).split("\\s");
+    public static Float[] getData(int gameTime) {
+        return rep.get(gameTime);
     }
 
     public static void saveRepaly() {
