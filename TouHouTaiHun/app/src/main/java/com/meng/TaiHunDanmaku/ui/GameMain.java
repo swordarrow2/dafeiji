@@ -9,7 +9,7 @@ import com.meng.TaiHunDanmaku.helpers.*;
 public class GameMain extends Game {
     public static SpriteBatch spriteBatch;
     public static BitmapFont bitmapFont;
-    public String replayFileName="replay/myfilerep5235.txt";
+    public String replayFileName="replay/myfilerep115235.txt";
     public boolean onReplay=true;
 
     @Override
@@ -31,6 +31,9 @@ public class GameMain extends Game {
     }
 
     public void setFightScreen() {
+	  FightScreen.gameTime=0;
+	  FightScreen.enemyFlag=0;
+	  FightScreen.onBoss=false;
         setScreen(new FightScreen(this));
     }
 

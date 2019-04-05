@@ -60,6 +60,7 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonE.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
+				  gameMain.onReplay=false;
 				  if(FightScreen.difficultFlag!=0){
 					  FightScreen.difficultFlag=0;
 					  return;
@@ -70,6 +71,7 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonN.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
+				  gameMain.onReplay=false;
 				  if(FightScreen.difficultFlag!=1){
 					  FightScreen.difficultFlag=1;
 					  return;
@@ -80,6 +82,7 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonH.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
+				  gameMain.onReplay=false;
 				  if(FightScreen.difficultFlag!=2){
 					  FightScreen.difficultFlag=2;
 					  return;
@@ -90,6 +93,7 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonL.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
+				  gameMain.onReplay=false;
 				  if(FightScreen.difficultFlag!=3){
 					  FightScreen.difficultFlag=3;
 					  return;
@@ -100,6 +104,9 @@ public class SelectDiffScreen extends ScreenAdapter{
         buttonEx.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
+
+				  gameMain.onReplay=true;
+				  gameMain.setFightScreen();
 			//	  if(FightScreen.difficultFlag!=4){
 			//		  FightScreen.difficultFlag=4;
 			//		  return;

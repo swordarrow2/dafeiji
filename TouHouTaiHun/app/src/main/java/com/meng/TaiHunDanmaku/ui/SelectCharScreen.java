@@ -44,6 +44,7 @@ public class SelectCharScreen extends ScreenAdapter{
             public void clicked(InputEvent event, float x, float y) {
                 FightScreen.pl = "A";
                 FightScreen.enemyFlag = 0;
+				FightScreen.gameTime=0;
                 FightScreen.onBoss = false;
                 gameMain.setFightScreen();
             }
@@ -53,6 +54,7 @@ public class SelectCharScreen extends ScreenAdapter{
             public void clicked(InputEvent event, float x, float y) {
                 FightScreen.pl = "B";
                 FightScreen.enemyFlag = 0;
+				FightScreen.gameTime=0;
                 FightScreen.onBoss = false;
                 gameMain.setFightScreen();
             }
