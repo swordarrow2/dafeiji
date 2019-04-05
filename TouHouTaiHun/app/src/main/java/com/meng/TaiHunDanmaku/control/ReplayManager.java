@@ -31,6 +31,7 @@ public class ReplayManager {
             GameMain.playerFlag = Integer.parseInt(playInfo[2]);
             GameMain.stageFlag = Integer.parseInt(playInfo[3]);
             ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
+		//	ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
             String[] splitedAllFrameInfo = allString.substring(allString.indexOf("\n") + 1).split("\n");
             String[] frameInfo;
             for (String s : splitedAllFrameInfo) {
