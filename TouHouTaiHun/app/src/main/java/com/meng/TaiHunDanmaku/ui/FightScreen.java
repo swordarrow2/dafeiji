@@ -39,7 +39,7 @@ public class FightScreen extends ScreenAdapter{
     private FitViewport fitViewport;
     private GameStage gameStage;
     public LaserManager laserManager = new LaserManager();
-
+	private TextureRegion backgroundTexture;
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){
             GameMain.spriteBatch.end();
@@ -97,14 +97,15 @@ public class FightScreen extends ScreenAdapter{
 		  }
 		GameMain.spriteBatch.begin();
         layoutManager.update();
-		StringBuilder sb=new StringBuilder();
+	//	StringBuilder sb=new StringBuilder();
 		if(onSpellCard){
-			for(int i=0;i<50;i++){
-				sb.append("台台台台台台台台台台台台台台台台台台台台台台台台台台台台台台\n");
-			  }
+	//		for(int i=0;i<50;i++){
+	//			sb.append("台台台台台台台台台台台台台台台台台台台台台台台台台台台台台台\n");
+	//		  }
+			GameMain.spriteBatch.draw(backgroundTexture, 0, 0, 386, 450);
 		  }
-		bitmapFont.setColor(Color.GREEN);
-		bitmapFont.draw(GameMain.spriteBatch,sb.toString(),2,450);
+	//	bitmapFont.setColor(Color.GREEN);
+	//	bitmapFont.draw(GameMain.spriteBatch,sb.toString(),2,450);
 		bitmapFont.setColor(Color.RED);
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
 						(ReplayManager.onReplay?"replay\n":"\n")+
@@ -161,6 +162,9 @@ public class FightScreen extends ScreenAdapter{
 			  gameStage=new GameStage1(gameMain);
 			  break;
 		  }
+		Texture texture = new Texture(Gdx.files.internal("bg.jpg"));
+        backgroundTexture = new TextureRegion(texture, 0, 0, 476, 588);
+		
         GameMain.width=386;//540;//386;
         GameMain.height=600;//720;//450;
         fitViewport=new FitViewport(GameMain.width,GameMain.height);

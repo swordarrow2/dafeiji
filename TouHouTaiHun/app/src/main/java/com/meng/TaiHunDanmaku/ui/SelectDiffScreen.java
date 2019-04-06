@@ -29,8 +29,8 @@ public class SelectDiffScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
-        Texture texture = new Texture(Gdx.files.internal("skyBackground.jpg"));
-        backgroundTexture = new TextureRegion(texture, 0, 0, 2048, 563);
+        Texture texture = new Texture(Gdx.files.internal("bg.jpg"));
+        backgroundTexture = new TextureRegion(texture, 0, 0, 476, 588);
 
         int width = 386;
         int height = 600;
@@ -122,7 +122,7 @@ public class SelectDiffScreen extends ScreenAdapter {
         GameMain.spriteBatch.begin();
         //for(int i = 0; i<30; i++){
 
-        GameMain.spriteBatch.draw(backgroundTexture, -(time % 900), 0, 2900, 800);
+        GameMain.spriteBatch.draw(backgroundTexture, 0, 0, 386, 450);
         //	}
         bitmapFont.draw(GameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond(), 10, 590);
         GameMain.spriteBatch.end();
