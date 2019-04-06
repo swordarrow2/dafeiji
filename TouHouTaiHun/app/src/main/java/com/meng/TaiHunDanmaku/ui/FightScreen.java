@@ -39,8 +39,8 @@ public class FightScreen extends ScreenAdapter{
     private FitViewport fitViewport;
     private GameStage gameStage;
     public LaserManager laserManager = new LaserManager();
-	private TextureRegion backgroundTexture;
-	Image background ;
+	Image spellBackground;
+	Image normalBackground ;
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){
             GameMain.spriteBatch.end();
@@ -96,20 +96,9 @@ public class FightScreen extends ScreenAdapter{
 				  }
 			  }
 		  }
+		stage.draw();
 		GameMain.spriteBatch.begin();
-        layoutManager.update();
-	//	StringBuilder sb=new StringBuilder();
-		if(onSpellCard){
-	//		for(int i=0;i<50;i++){
-	//			sb.append("台台台台台台台台台台台台台台台台台台台台台台台台台台台台台台\n");
-	//		  }
-			GameMain.spriteBatch.draw(backgroundTexture, 0, 0, 386, 450);
-		  }else{
-			background.draw(gameMain.spriteBatch,1f);
-		  }
-	//	bitmapFont.setColor(Color.GREEN);
-	//	bitmapFont.draw(GameMain.spriteBatch,sb.toString(),2,450);
-		bitmapFont.setColor(Color.RED);
+		layoutManager.update();
         bitmapFont.draw(GameMain.spriteBatch,"FPS:"+Gdx.graphics.getFramesPerSecond()+"\n"+
 						(ReplayManager.onReplay?"replay\n":"\n")+
 						//    "pos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"+
@@ -120,13 +109,7 @@ public class FightScreen extends ScreenAdapter{
                         +isKilled()
 						,10,590);
         GameMain.spriteBatch.end();
-        stage.draw();
-		/*	ShapeRenderer shapeRenderer = new ShapeRenderer();
-		 shapeRenderer.setAutoShapeType(true);
-		 shapeRenderer.begin();
-		 shapeRenderer.rectLine(10, 10, 300, 400, 80);
-		 shapeRenderer.end();*/
-        for(ReflexAndThrough reflexAndThrough : reflexAndThroughs){
+		for(ReflexAndThrough reflexAndThrough : reflexAndThroughs){
             reflexAndThrough.update();
 		  }
 
@@ -165,22 +148,25 @@ public class FightScreen extends ScreenAdapter{
 			  gameStage=new GameStage1(gameMain);
 			  break;
 		  }
-		Texture texture = new Texture(Gdx.files.internal("bg.jpg"));
-        backgroundTexture = new TextureRegion(texture, 0, 0, 476, 588);
-		
-        GameMain.width=386;//540;//386;
-        GameMain.height=600;//720;//450;
+
         fitViewport=new FitViewport(GameMain.width,GameMain.height);
         stage=new Stage(fitViewport,GameMain.spriteBatch);
-        Pixmap pixmap = new Pixmap(1,1,Format.RGBA8888);
+
+        spellBackground=new Image(new Texture(Gdx.files.internal("bg.jpg")));
+		spellBackground.setBounds(0,0,0,0);     
+		
+		Pixmap pixmap = new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
-         background = new Image(new Texture(pixmap));
+		normalBackground=new Image(new Texture(pixmap));
+		normalBackground.setBounds(0,0,386,450);
+		stage.addActor(spellBackground);
+		stage.addActor(normalBackground);
+		spellBackground.setZIndex(Data.zIndexBackground);
+		normalBackground.setZIndex(Data.zIndexBackground);
         long seed = System.currentTimeMillis();
         ReplayManager.init(gameMain.replayFileName,gameMain.onReplay,seed);
         ReplayManager.appendData(GameMain.equipment+" "+GameMain.difficultFlag+" "+GameMain.playerFlag+" "+GameMain.stageFlag+" "+seed+"\n");
-        background.setBounds(0,0,386,450);
-		//   stage.addActor(background);
         groupNormal=new Group();
         groupHighLight=new Group();
         stage.addActor(groupNormal);
@@ -213,6 +199,8 @@ public class FightScreen extends ScreenAdapter{
 
     public static void normalMode(){
         if(!instence.onSpellCard) return;
+		instence.spellBackground.setSize(0,0);
+		instence.normalBackground.setSize(386,450);
         instence.laserManager.clear();
         instence.onSpellCard=false;
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
@@ -220,6 +208,8 @@ public class FightScreen extends ScreenAdapter{
 
     public static void spellMode(){
         if(instence.onSpellCard) return;
+		instence.spellBackground.setSize(386,450);
+		instence.normalBackground.setSize(0,0);
         instence.laserManager.clear();
         instence.onSpellCard=true;
         spellHeight=200;

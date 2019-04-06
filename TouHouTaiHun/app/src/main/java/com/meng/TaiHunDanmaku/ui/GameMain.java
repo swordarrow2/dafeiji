@@ -22,7 +22,9 @@ public class GameMain extends Game {
         spriteBatch = new SpriteBatch();
         ResourcesManager.Load();
         bitmapFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
-        bitmapFont.setColor(Color.GREEN);
+		bitmapFont.setColor(Color.RED);
+		width=386;//540;//386;
+        height=600;//720;//450;
         setScreen(new SelectDiffScreen(this));
     }
 
