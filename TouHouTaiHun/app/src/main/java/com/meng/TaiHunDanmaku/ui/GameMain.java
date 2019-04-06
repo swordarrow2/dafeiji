@@ -8,8 +8,8 @@ import com.meng.TaiHunDanmaku.helpers.*;
 public class GameMain extends Game {
     public SpriteBatch spriteBatch;
     public BitmapFont bitmapFont;
-    public String replayFileName = "replay/myfilerep115235.txt";
-    public boolean onReplay = true;
+    public String replayFileName = "replay/myfilerep115235.zip";
+    public boolean onReplay = false;
 
     public int width = 386;//540;//386;
     public int height = 600;//720;//450;

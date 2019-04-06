@@ -60,6 +60,7 @@ public class MainMenuScreen extends ScreenAdapter {
         gameStart.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+				gameMain.onReplay=false;
                 gameMain.setSelectDiffScreen();
             }
         });
@@ -67,6 +68,7 @@ public class MainMenuScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.difficultFlag = "Extra";
+				gameMain.onReplay=false;
                 gameMain.setFightScreen();
             }
         });
