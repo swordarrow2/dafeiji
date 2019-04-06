@@ -8,6 +8,7 @@ import com.meng.TaiHunDanmaku.ui.FightScreen;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 
 public abstract class BaseMyBullet extends BaseBullet {
@@ -24,9 +25,10 @@ public abstract class BaseMyBullet extends BaseBullet {
         objectCenter.set(center);
         this.velocity.set(velocity);
         image.setPosition(objectCenter.x, objectCenter.y, Align.center);
-        judgeCircle = new Circle(objectCenter, image.getHeight() / 2 * 3); //中心、半径
-        image.setDrawable(getDrawable());
+		judgeCircle = new Circle(objectCenter, image.getHeight() / 2 * 3); //中心、半径
+        image.setDrawable(getDrawable());	
         FightScreen.instence.groupNormal.addActor(image);
+		image.setZIndex(Data.zIndexMyBullet);
     }
 
     @Override

@@ -49,6 +49,7 @@ public abstract class BaseMyPlane extends BaseGameObject{
         unmatchedTime=1;
         onUnmatched=true;
         FightScreen.instence.groupNormal.addActor(image);
+		image.setZIndex(Data.zIndexMyPlane);
     }
 
     public void kill(){

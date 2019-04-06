@@ -40,6 +40,7 @@ public class FightScreen extends ScreenAdapter{
     private GameStage gameStage;
     public LaserManager laserManager = new LaserManager();
 	private TextureRegion backgroundTexture;
+	Image background ;
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch,float parentAlpha){
             GameMain.spriteBatch.end();
@@ -103,6 +104,8 @@ public class FightScreen extends ScreenAdapter{
 	//			sb.append("台台台台台台台台台台台台台台台台台台台台台台台台台台台台台台\n");
 	//		  }
 			GameMain.spriteBatch.draw(backgroundTexture, 0, 0, 386, 450);
+		  }else{
+			background.draw(gameMain.spriteBatch,1f);
 		  }
 	//	bitmapFont.setColor(Color.GREEN);
 	//	bitmapFont.draw(GameMain.spriteBatch,sb.toString(),2,450);
@@ -172,7 +175,7 @@ public class FightScreen extends ScreenAdapter{
         Pixmap pixmap = new Pixmap(1,1,Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
-        Image background = new Image(new Texture(pixmap));
+         background = new Image(new Texture(pixmap));
         long seed = System.currentTimeMillis();
         ReplayManager.init(gameMain.replayFileName,gameMain.onReplay,seed);
         ReplayManager.appendData(GameMain.equipment+" "+GameMain.difficultFlag+" "+GameMain.playerFlag+" "+GameMain.stageFlag+" "+seed+"\n");

@@ -34,6 +34,7 @@ public class Effect extends BaseGameObject{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
         FightScreen.instence.groupNormal.addActor(image);
+		image.setZIndex(Data.zIndexEffect);
 	  }
 
     public void kill(){

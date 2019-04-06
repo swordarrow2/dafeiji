@@ -36,7 +36,7 @@ public  class BulletRemover extends BaseGameObject{
 		toAdd.add(this);
         objectCenter.set(193,225);
         velocity.set(0,0);
-        judgeCircle=new Circle(objectCenter,500);
+        judgeCircle=new Circle(objectCenter,5000);
 		bkm=BulletKillMode.killWithNothing;
 	  }
 

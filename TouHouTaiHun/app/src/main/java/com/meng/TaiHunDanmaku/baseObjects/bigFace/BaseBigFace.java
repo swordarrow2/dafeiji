@@ -8,6 +8,7 @@ import com.meng.TaiHunDanmaku.baseObjects.bigFace.item.FaceCharacter;
 
 import java.util.HashSet;
 import java.util.concurrent.LinkedBlockingQueue;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public abstract class BaseBigFace extends BaseGameObject{
 
@@ -23,13 +24,13 @@ public abstract class BaseBigFace extends BaseGameObject{
         existTime=0;
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setSize(399,512);
-    }
+	  }
 
     public void kill(){
         toDelete.add(this);
         image.remove();
         //	super.killByJudge();
-    }
+	  }
 
     public void update(){
         super.update();
@@ -38,24 +39,24 @@ public abstract class BaseBigFace extends BaseGameObject{
         image.toBack();
         if(existTime>120){
             kill();
-        }else{
+		  }else{
             objectCenter.y+=1;
-        }
-    }
+		  }
+	  }
 
     public static void updateAll(){
         while(!toDelete.isEmpty()){
             instances.remove(toDelete.poll());
-        }
+		  }
         while(!toAdd.isEmpty()){
             instances.add(toAdd.poll());
-        }
+		  }
         for(BaseBigFace item : instances){
             item.update();
-        }
-    }
+		  }
+	  }
 
     public abstract Drawable getDrawable();
 
     public abstract Vector2 getSize();
-}
+  }

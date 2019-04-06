@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align;
 import com.meng.TaiHunDanmaku.BaseGameObject;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
 import com.meng.TaiHunDanmaku.ui.FightScreen;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public abstract class BaseSubPlane extends BaseGameObject{
 
@@ -27,6 +28,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
         image.setRotation(getRotationDegree());
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         FightScreen.instence.groupNormal.addActor(image);
+		image.setZIndex(Data.zIndexMyPlane);
     }
 
     public void kill(){

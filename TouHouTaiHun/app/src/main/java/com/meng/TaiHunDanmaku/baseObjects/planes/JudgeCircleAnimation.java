@@ -5,6 +5,7 @@ import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.ui.*;
 import com.badlogic.gdx.utils.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public class JudgeCircleAnimation extends BaseGameObject{
 
@@ -19,6 +20,7 @@ public class JudgeCircleAnimation extends BaseGameObject{
         image.setDrawable(ResourcesManager.textures.get("effect23"));
 		FightScreen.instence.groupNormal.addActor(image);
 		image.setSize(48,48);
+		image.setZIndex(Data.zIndexJudgePoint);
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 	  }
 
@@ -37,6 +39,5 @@ public class JudgeCircleAnimation extends BaseGameObject{
 		}
         stat+=2;
 		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
-		image.toFront();
 	  }
   }

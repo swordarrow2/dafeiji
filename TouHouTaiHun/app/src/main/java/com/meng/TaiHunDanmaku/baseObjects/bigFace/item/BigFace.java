@@ -1,11 +1,11 @@
 package com.meng.TaiHunDanmaku.baseObjects.bigFace.item;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.TaiHunDanmaku.baseObjects.bigFace.BaseBigFace;
-import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
-import com.meng.TaiHunDanmaku.ui.FightScreen;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.TaiHunDanmaku.baseObjects.bigFace.*;
+import com.meng.TaiHunDanmaku.helpers.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public class BigFace extends BaseBigFace{
 
@@ -17,6 +17,7 @@ public class BigFace extends BaseBigFace{
         image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         image.setDrawable(getDrawable());
         FightScreen.instence.groupNormal.addActor(image);
+		image.setZIndex(Data.zIndexBigFace);	
     }
 
     @Override

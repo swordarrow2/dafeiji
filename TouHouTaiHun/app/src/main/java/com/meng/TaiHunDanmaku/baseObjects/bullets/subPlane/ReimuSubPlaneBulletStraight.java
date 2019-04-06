@@ -24,8 +24,8 @@ public class ReimuSubPlaneBulletStraight extends BaseMyBullet {
     @Override
     public Vector2 getSize() {
         return new Vector2(64, 16);
-    }
-
+	  }
+	  
     public void judge() {
         try {
             for (int i = 0; i < 32; i++) {

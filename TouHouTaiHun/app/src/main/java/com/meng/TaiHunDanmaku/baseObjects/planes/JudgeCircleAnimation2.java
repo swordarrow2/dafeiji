@@ -10,16 +10,17 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
     private int stat=0;
 
     public JudgeCircleAnimation2(){
-    }
+	  }
 
     @Override
     public void init(){
         super.init();
         image.setDrawable(ResourcesManager.textures.get("effect24"));
 		image.setSize(48,48);
-        image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+		image.setOrigin(image.getWidth()/2,image.getHeight()/2);
         FightScreen.instence.groupNormal.addActor(image);
-    }
+		image.setZIndex(Data.zIndexJudgePoint);
+	  }
 
     public void update(){
 		objectCenter=BaseMyPlane.instance.objectCenter;
@@ -31,10 +32,10 @@ public class JudgeCircleAnimation2 extends BaseGameObject{
 		  }
         stat-=2;
 		image.setPosition(objectCenter.x,objectCenter.y,Align.center);
-    }
+	  }
 
     @Override
     public void kill(){
         super.kill();
-    }
-}
+	  }
+  }

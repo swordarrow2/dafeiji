@@ -24,7 +24,7 @@ public final class ResourcesManager {
         //p:519
         loadDiff();
 
-        FileHandle plsanae = Gdx.files.internal("textures/junkoface.jpg");
+        FileHandle plsanae = Gdx.files.internal("textures/junkoface.png");
         Texture tplsanae = new Texture(plsanae);
         textures.put("junkoface", new TextureRegionDrawable(new TextureRegion(tplsanae)));
 
