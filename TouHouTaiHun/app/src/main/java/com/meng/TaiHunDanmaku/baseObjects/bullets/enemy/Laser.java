@@ -27,7 +27,7 @@ public class Laser extends Actor{
         end2=e2;
 	  }
 
-    public void render(){
+    public void render(GameMain gameMain){
         begin1.setColor(color);
         begin2.setColor(rayColor);
         mid1.setColor(color);
@@ -54,12 +54,12 @@ public class Laser extends Actor{
         mid2.setRotation(degrees);
         end1.setRotation(degrees);
         end2.setRotation(degrees);
-        begin1.draw(GameMain.spriteBatch);
-        begin2.draw(GameMain.spriteBatch);
-        mid1.draw(GameMain.spriteBatch);
-        mid2.draw(GameMain.spriteBatch);
-		end1.draw(GameMain.spriteBatch);
-		end2.draw(GameMain.spriteBatch);
+        begin1.draw(gameMain.spriteBatch);
+        begin2.draw(gameMain.spriteBatch);
+        mid1.draw(gameMain.spriteBatch);
+        mid2.draw(gameMain.spriteBatch);
+		end1.draw(gameMain.spriteBatch);
+		end2.draw(gameMain.spriteBatch);
 		p1=new Vector2(begin1.getX()+begin1.getOriginX(),begin1.getY()+begin1.getOriginY());
 		p2=new Vector2((float)(begin1.getX()+begin1.getOriginX()+distance*Math.cos(Math.toRadians(degrees+90))), 
 					   (float)(begin1.getY()+begin1.getOriginY()+distance*Math.sin(Math.toRadians(degrees+90))));

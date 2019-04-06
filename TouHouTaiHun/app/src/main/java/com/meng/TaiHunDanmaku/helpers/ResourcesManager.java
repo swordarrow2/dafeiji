@@ -20,14 +20,15 @@ public final class ResourcesManager {
         loadEffect("etbreak");
         loadBullets("bullet1");
         loadBoss("chunhu");
-        loadItems("item");
+        loadDropItems();
         //p:519
         loadDiff();
+        loadMainMenu();
+        loadBackground();
 
-        FileHandle plsanae = Gdx.files.internal("textures/junkoface.png");
+        FileHandle plsanae = Gdx.files.internal("textures/bigface/junkoface.png");
         Texture tplsanae = new Texture(plsanae);
         textures.put("junkoface", new TextureRegionDrawable(new TextureRegion(tplsanae)));
-
 
     }
 
@@ -45,8 +46,8 @@ public final class ResourcesManager {
         }
     }
 
-    private static void loadItems(String name) {
-        FileHandle plsanae = Gdx.files.internal("textures/" + name + ".png");
+    private static void loadDropItems() {
+        FileHandle plsanae = Gdx.files.internal("textures/items/item.png");
         FileHandle plsanaetxt = Gdx.files.internal(plsanae.pathWithoutExtension() + ".txt");
         String[] plsanaeWalkSheet = plsanaetxt.readString().replace("\n", " ").replace("*", " ").replace("+", " ").split("\\s");
         Texture tplsanae = new Texture(plsanae);
@@ -121,13 +122,35 @@ public final class ResourcesManager {
         }
     }
 
+
+    private static void loadMainMenu() {
+        FileHandle textureFile = Gdx.files.internal("textures/items/title_item00.png");
+        FileHandle sheetFile = Gdx.files.internal(textureFile.pathWithoutExtension() + ".txt");
+        String[] sheetString = sheetFile.readString().replace("\n", " ").replace("*", " ").replace("+", " ").split("\\s");
+        Texture sheet = new Texture(textureFile);
+        int textureCount = getTextureCount(sheetFile);
+        for (int i = 0, n = 0; n < textureCount; i++) {
+            if (sheetString[i].equals("Sprite:")) {
+                textures.put("menu" + sheetString[i + 1], new TextureRegionDrawable(new TextureRegion(sheet, Integer.parseInt(sheetString[i + 4])/2, Integer.parseInt(sheetString[i + 5])/2, Integer.parseInt(sheetString[i + 2])/2, Integer.parseInt(sheetString[i + 3])/2)));
+                n++;
+            }
+        }
+    }
+
     private static void loadDiff() {
         FileHandle projDir = Gdx.files.internal("textures/diff/");
         FileHandle[] projFiles = projDir.list();
         for (FileHandle projFile : projFiles) {
             textures.put(projFile.nameWithoutExtension(), new TextureRegionDrawable(new TextureRegion(new Texture(projFile))));
         }
+    }
 
+    private static void loadBackground() {
+        FileHandle projDir = Gdx.files.internal("textures/background/");
+        FileHandle[] projFiles = projDir.list();
+        for (FileHandle projFile : projFiles) {
+            textures.put(projFile.nameWithoutExtension(), new TextureRegionDrawable(new TextureRegion(new Texture(projFile))));
+        }
     }
 
     private static int getTextureCount(FileHandle txt) {

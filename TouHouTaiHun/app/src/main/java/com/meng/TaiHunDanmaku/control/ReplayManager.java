@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.RandomXS128;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
 import com.meng.TaiHunDanmaku.helpers.ObjectPools;
+import com.meng.TaiHunDanmaku.ui.FightScreen;
 import com.meng.TaiHunDanmaku.ui.GameMain;
 
 import java.util.ArrayList;
@@ -12,41 +13,49 @@ import java.util.ArrayList;
 public class ReplayManager {
     public static boolean onReplay = false;
     private static StringBuilder repInfo = new StringBuilder();
-    private static ArrayList<Float[]> rep = new ArrayList<Float[]>();
+    private static ArrayList<float[]> rep = new ArrayList<float[]>();
     private static FileHandle file;
 
     public ReplayManager() {
 
-	  }
+    }
 
-	public static void init(String replayFileName,boolean onReplay,long seed){
-        file = Gdx.files.external(replayFileName);
-		ReplayManager.onReplay = onReplay;
+    public static void init(GameMain gameMain, long seed) {
+        file = Gdx.files.external(gameMain.replayFileName);
+        ReplayManager.onReplay = gameMain.onReplay;
         if (onReplay) {
-            rep = new ArrayList<Float[]>(131071);
+            rep = new ArrayList<float[]>(131071);
             String allString = file.readString();
             String[] playInfo = allString.substring(0, allString.indexOf("\n")).split("\\s");
-            GameMain.equipment = playInfo[0];
-            GameMain.difficultFlag = Integer.parseInt(playInfo[1]);
-            GameMain.playerFlag = Integer.parseInt(playInfo[2]);
-            GameMain.stageFlag = Integer.parseInt(playInfo[3]);
-            ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
-		//	ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[4]));
+            gameMain.charaFlag = playInfo[0];
+            gameMain.equipmentFlag = playInfo[1];
+            gameMain.difficultFlag = playInfo[2];
+            gameMain.stageFlag = playInfo[3];
+            BaseMyPlane.instance.power = Integer.parseInt(playInfo[4]);
+            ObjectPools.randomPool = new RandomXS128(Long.parseLong(playInfo[5]));
             String[] splitedAllFrameInfo = allString.substring(allString.indexOf("\n") + 1).split("\n");
             String[] frameInfo;
             for (String s : splitedAllFrameInfo) {
                 frameInfo = s.split("\\s");
-                rep.add(new Float[]{
+                rep.add(new float[]{
                         Float.parseFloat(frameInfo[0]),
                         Float.parseFloat(frameInfo[1]),
                         Float.parseFloat(frameInfo[2]),
-                        Float.parseFloat(frameInfo[3])
+                        Float.parseFloat(frameInfo[3]),
+                        Float.parseFloat(frameInfo[4])
                 });
             }
-            rep.add(new Float[]{0f, 0f, 0f, 0f});
-        }else{
-			ObjectPools.randomPool = new RandomXS128(seed);
-		}
+            rep.add(new float[]{0f, 0f, 0f, 0f, 0f});
+        } else {
+            ObjectPools.randomPool = new RandomXS128(seed);
+            appendData(
+                    gameMain.charaFlag + " " +
+                            gameMain.equipmentFlag + " " +
+                            gameMain.difficultFlag + " " +
+                            gameMain.stageFlag + " " +
+                            BaseMyPlane.instance.power + " " +
+                            seed + "\n");
+        }
     }
 
     public static void appendData(String s) {
@@ -56,16 +65,19 @@ public class ReplayManager {
 
     public static void update(int gameTime) {
         if (onReplay) {
-            BaseMyPlane.instance.objectCenter.x = rep.get(gameTime)[0];
-            BaseMyPlane.instance.objectCenter.y = rep.get(gameTime)[1];
-            BaseMyPlane.instance.slow = rep.get(gameTime)[2] == 1f;
-            BaseMyPlane.instance.onBomb = rep.get(gameTime)[3] == 1f;
+            float[] eachFrameInfo = rep.get(gameTime);
+            BaseMyPlane.instance.objectCenter.x = eachFrameInfo[0];
+            BaseMyPlane.instance.objectCenter.y = eachFrameInfo[1];
+            BaseMyPlane.instance.slow = eachFrameInfo[2] == 1f;
+            BaseMyPlane.instance.onBomb = eachFrameInfo[3] == 1f;
+            FightScreen.instence.replayFPS = (int) eachFrameInfo[4];
         } else {
             appendData(
                     BaseMyPlane.instance.objectCenter.x +
                             " " + BaseMyPlane.instance.objectCenter.y +
                             " " + (BaseMyPlane.instance.slow ? 1 : 0) +
                             " " + (BaseMyPlane.instance.onBomb ? 1 : 0) +
+                            " " + FightScreen.instence.nowFps +
                             "\n");
         }
     }

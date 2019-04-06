@@ -1,24 +1,18 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.math.RandomXS128;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.*;
-import com.meng.TaiHunDanmaku.control.ReplayManager;
 import com.meng.TaiHunDanmaku.helpers.*;
 
-import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
-import static com.meng.TaiHunDanmaku.ui.GameMain.spriteBatch;
 
 public class SelectDiffScreen extends ScreenAdapter {
     private FitViewport fitViewport;
     private GameMain gameMain;
     private Stage stage;
-    private TextureRegion backgroundTexture;
+    private Image background;
     private int time = 0;
     private int tmp = 1;
 
@@ -29,13 +23,12 @@ public class SelectDiffScreen extends ScreenAdapter {
     @Override
     public void show() {
         super.show();
-        Texture texture = new Texture(Gdx.files.internal("bg.jpg"));
-        backgroundTexture = new TextureRegion(texture, 0, 0, 476, 588);
-
+        background = new Image(ResourcesManager.textures.get("spellbackground"));
+        background.setBounds(0, 0, 386, 450);
         int width = 386;
         int height = 600;
         fitViewport = new FitViewport(width, height);
-        stage = new Stage(fitViewport, GameMain.spriteBatch);
+        stage = new Stage(fitViewport, gameMain.spriteBatch);
 
 		/*     Pixmap pixmap = new Pixmap(1,1,Pixmap.Format.RGBA8888);
 		 pixmap.setColor(Color.GRAY);
@@ -46,22 +39,21 @@ public class SelectDiffScreen extends ScreenAdapter {
 		 stage.addActor(background);*/
         Group buttons = new Group();
 
+        int buttonX = 120;
+        int buttonY = 80;
         Button buttonE = new Button(ResourcesManager.textures.get("easy"), ResourcesManager.textures.get("easy_c"));
-        buttonE.setPosition(51, 352);
+        buttonE.setPosition(buttonX, buttonY + 200);
         Button buttonN = new Button(ResourcesManager.textures.get("normal"), ResourcesManager.textures.get("normal_c"));
-        buttonN.setPosition(91, 272);
+        buttonN.setPosition(buttonX, buttonY + 150);
         Button buttonH = new Button(ResourcesManager.textures.get("hard"), ResourcesManager.textures.get("hard_c"));
-        buttonH.setPosition(121, 192);
+        buttonH.setPosition(buttonX, buttonY + 100);
         Button buttonL = new Button(ResourcesManager.textures.get("lunatic"), ResourcesManager.textures.get("lunatic_c"));
-        buttonL.setPosition(161, 112);
-        Button buttonEx = new Button(ResourcesManager.textures.get("extra"), ResourcesManager.textures.get("extra_c"));
-        buttonEx.setPosition(181, 32);
-
-
+        buttonL.setPosition(buttonX, buttonY + 50);
         buttonE.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
+                gameMain.difficultFlag = "Easy";
                 gameMain.setSelectCharScreen();
             }
         });
@@ -69,6 +61,7 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
+                gameMain.difficultFlag = "Normal";
                 gameMain.setSelectCharScreen();
             }
         });
@@ -76,6 +69,7 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
+                gameMain.difficultFlag = "Hard";
                 gameMain.setSelectCharScreen();
             }
         });
@@ -83,22 +77,14 @@ public class SelectDiffScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
+                gameMain.difficultFlag = "Lunatic";
                 gameMain.setSelectCharScreen();
             }
         });
-        buttonEx.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameMain.onReplay = true;
-                gameMain.setFightScreen();
-            }
-        });
-
         buttons.addActor(buttonE);
         buttons.addActor(buttonN);
         buttons.addActor(buttonH);
         buttons.addActor(buttonL);
-        buttons.addActor(buttonEx);
         stage.addActor(buttons);
 
         InputMultiplexer inputManager = new InputMultiplexer();
@@ -119,13 +105,10 @@ public class SelectDiffScreen extends ScreenAdapter {
         else if (time == 0)
             tmp = 1;
         time += tmp;
-        GameMain.spriteBatch.begin();
-        //for(int i = 0; i<30; i++){
-
-        GameMain.spriteBatch.draw(backgroundTexture, 0, 0, 386, 450);
-        //	}
-        bitmapFont.draw(GameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond(), 10, 590);
-        GameMain.spriteBatch.end();
+        gameMain.spriteBatch.begin();
+        background.draw(gameMain.spriteBatch, 1f);
+        gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond(), 10, 590);
+        gameMain.spriteBatch.end();
         stage.draw();
         super.render(delta);
     }

@@ -1,28 +1,42 @@
 package com.meng.TaiHunDanmaku.ui;
 
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.KeyEvent;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
 
-public class MainActivity extends AndroidApplication{
+public class MainActivity extends AndroidApplication {
     public static MainActivity instance;
+    GameMain gameMain;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        instance=this;
+        instance = this;
+        gameMain = new GameMain();
+        initialize(gameMain, new AndroidApplicationConfiguration());
+    }
 
-        AndroidApplicationConfiguration cfg=new AndroidApplicationConfiguration();
-		cfg.touchSleepTime=0;
-        Game game=new GameMain();
-		
-        initialize(game,cfg); 
-       
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            switch (gameMain.screenFlag) {
+                case 1:
+                    gameMain.setMainMenuScreen();
+                    return true;
+                case 2:
+                    gameMain.setSelectDiffScreen();
+                    return true;
+                case 3:
+                    if (gameMain.difficultFlag.equals("Extra")) {
+                        gameMain.setMainMenuScreen();
+                    } else {
+                        gameMain.setSelectCharScreen();
+                    }
+                    return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

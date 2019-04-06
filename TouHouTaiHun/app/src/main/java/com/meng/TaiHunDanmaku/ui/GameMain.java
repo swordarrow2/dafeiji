@@ -6,26 +6,26 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.meng.TaiHunDanmaku.helpers.*;
 
 public class GameMain extends Game {
-    public static SpriteBatch spriteBatch;
-    public static BitmapFont bitmapFont;
+    public SpriteBatch spriteBatch;
+    public BitmapFont bitmapFont;
     public String replayFileName = "replay/myfilerep115235.txt";
     public boolean onReplay = true;
 
-    public static int width, height;
-    public static int playerFlag;
-    public static int difficultFlag;
-    public static int stageFlag = 1;
-    public static String equipment;
+    public int width = 386;//540;//386;
+    public int height = 600;//720;//450;
+    public String charaFlag = "Reimu";
+    public String difficultFlag = "Easy";
+    public String stageFlag = "Stage1";
+    public String equipmentFlag = "A";
+    public int screenFlag = 0;
 
     @Override
     public void create() {
         spriteBatch = new SpriteBatch();
         ResourcesManager.Load();
         bitmapFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
-		bitmapFont.setColor(Color.RED);
-		width=386;//540;//386;
-        height=600;//720;//450;
-        setScreen(new SelectDiffScreen(this));
+        bitmapFont.setColor(Color.RED);
+        setMainMenuScreen();
     }
 
     @Override
@@ -37,16 +37,23 @@ public class GameMain extends Game {
         super.render();
     }
 
-    public void setFightScreen() {
-        setScreen(new FightScreen(this));
-    }
-
-    public void setSelectCharScreen() {
-        setScreen(new SelectCharScreen(this));
+    public void setMainMenuScreen() {
+        screenFlag = 0;
+        setScreen(new MainMenuScreen(this));
     }
 
     public void setSelectDiffScreen() {
+        screenFlag = 1;
         setScreen(new SelectDiffScreen(this));
     }
 
+    public void setSelectCharScreen() {
+        screenFlag = 2;
+        setScreen(new SelectCharScreen(this));
+    }
+
+    public void setFightScreen() {
+        screenFlag = 3;
+        setScreen(new FightScreen(this));
+    }
 }

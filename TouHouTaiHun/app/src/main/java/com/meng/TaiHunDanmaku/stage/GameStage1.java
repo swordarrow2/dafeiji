@@ -7,7 +7,6 @@ import com.meng.TaiHunDanmaku.taizhang.body.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
-import static com.meng.TaiHunDanmaku.ui.GameMain.bitmapFont;
 
 public class GameStage1 extends GameStage {
 
@@ -24,15 +23,15 @@ public class GameStage1 extends GameStage {
                 break;
         }
         if (enemyTimeFlag > 100) {
-            GameMain.spriteBatch.begin();
+            gameMain.spriteBatch.begin();
             GlyphLayout glyphLayout = new GlyphLayout();
-            glyphLayout.setText(bitmapFont, "stage Clear!!");
-            bitmapFont.draw(GameMain.spriteBatch, glyphLayout, (GameMain.width - glyphLayout.width) / 2, GameMain.height / 2);
-            GameMain.spriteBatch.end();
+            glyphLayout.setText(gameMain.bitmapFont, "stage Clear!!");
+            gameMain.bitmapFont.draw(gameMain.spriteBatch, glyphLayout, (gameMain.width - glyphLayout.width) / 2, gameMain.height / 2);
+            gameMain.spriteBatch.end();
         }
         if (enemyTimeFlag > 300) {
             ReplayManager.saveRepaly();
-            gameMain.setSelectDiffScreen();
+            gameMain.setMainMenuScreen();
         }
     }
 }

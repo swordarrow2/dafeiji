@@ -24,15 +24,15 @@ public class partAgent {
         ima = new Image(new Texture(p));
     }
 
-    public void update() {
+    public void update(GameMain gameMain) {
         if (BaseBossPlane.instence.hp > flagHp) {
             ima.setPosition(0, 450);
             ima.setWidth(flagHp / FightScreen.instence.layoutManager.bossMaxHp * 386);
-            ima.draw(GameMain.spriteBatch, 1);
+            ima.draw(gameMain.spriteBatch, 1);
         } else {
             ima.setPosition(0, 450);
             ima.setWidth(BaseBossPlane.instence.hp / FightScreen.instence.layoutManager.bossMaxHp * 386);
-            ima.draw(GameMain.spriteBatch, 1);
+            ima.draw(gameMain.spriteBatch, 1);
         }
     }
 
