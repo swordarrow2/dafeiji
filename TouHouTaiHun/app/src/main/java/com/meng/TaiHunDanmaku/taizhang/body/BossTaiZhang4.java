@@ -34,7 +34,7 @@ public class BossTaiZhang4 extends BaseBossPlane{
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		FightScreen.instence.layoutManager.nextPart.add(new partAgent(2600));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(4800));
 	  }
 
     @Override
