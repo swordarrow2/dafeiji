@@ -21,7 +21,7 @@ public class spell2 extends BaseSpellCard {
                         .setEnemyPlane(boss)
                         .setShooterCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.blue)
-                        .setBulletForm(BulletForm.diandan)
+                        .setBulletForm(BulletForm.xiaoyu)
                         .setBulletWays(15)
                         .setBulletWaysDegree(24)
                         .setBulletVelocity(new Vector2(0, -10))

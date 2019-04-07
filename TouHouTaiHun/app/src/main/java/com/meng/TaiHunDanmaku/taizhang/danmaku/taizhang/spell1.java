@@ -27,7 +27,7 @@ public class spell1 extends BaseSpellCard {
                         .setShooterCenter(boss.objectCenter)
                         .setBulletColor(BulletColor.green)
                         .setBulletForm(BulletForm.midan)
-                        .setBulletWays(60)
+                        .setBulletWays(45)
 						.setBulletStyle(BulletStyle.round)
                         .setShooterCenterRandomRange(128, 32)
                         .setReflexCount(495, 1000, 0, 1000, 1000)

@@ -48,21 +48,25 @@ public class GameMain extends Game {
 
     public void setMainMenuScreen() {
         screenFlag = 0;
+		miss=0;
         setScreen(new MainMenuScreen(this));
     }
 
     public void setSelectDiffScreen() {
         screenFlag = 1;
+		miss=0;
         setScreen(new SelectDiffScreen(this));
     }
 
     public void setSelectCharScreen() {
         screenFlag = 2;
+		miss=0;
         setScreen(new SelectCharScreen(this));
     }
 
     public void setFightScreen() {
         screenFlag = 3;
+		miss=0;
         setScreen(new FightScreen(this));
     }
 }

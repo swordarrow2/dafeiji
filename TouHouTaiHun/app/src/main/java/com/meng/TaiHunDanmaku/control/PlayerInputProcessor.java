@@ -23,7 +23,7 @@ public class PlayerInputProcessor extends InputAdapter {
             BaseMyPlane.instance.slow = true;
         }
         if (pointer == 2) {
-       //     BaseMyPlane.instance.onBomb = true;
+           BaseMyPlane.instance.onBomb = true;
         }
         if (pointer == 3) {
             FightScreen.instence.restart();

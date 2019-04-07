@@ -18,9 +18,9 @@ public class BossTaiZhang5 extends BaseBossPlane{
 	private int wf=200;
 
     @Override
-    public void update(){
-        if(wf-->0) return;
+    public void update(){     
         super.update();
+		if(wf-->0) return;
         FightScreen.instence.spellMode();
         spellCard.update();
 	  }

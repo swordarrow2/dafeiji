@@ -1,16 +1,13 @@
 package com.meng.TaiHunDanmaku.taizhang.body;
 
-import com.badlogic.gdx.math.Vector2;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.BaseEnemyBullet;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.BulletKillMode;
-import com.meng.TaiHunDanmaku.baseObjects.dropItems.DropItem;
-import com.meng.TaiHunDanmaku.baseObjects.dropItems.DropItemType;
-import com.meng.TaiHunDanmaku.taizhang.BaseBossPlane;
-import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.spell3;
-import com.meng.TaiHunDanmaku.taizhang.partAgent;
-import com.meng.TaiHunDanmaku.task.Task;
-import com.meng.TaiHunDanmaku.task.TaskMoveTo;
-import com.meng.TaiHunDanmaku.ui.FightScreen;
+import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
+import com.meng.TaiHunDanmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.task.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public class BossTaiZhang3 extends BaseBossPlane{
 
@@ -32,7 +29,7 @@ public class BossTaiZhang3 extends BaseBossPlane{
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         targetPosition=center.cpy();
-        spellCard=new spell3();
+       spellCard=new spell3();
         spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
@@ -51,8 +48,8 @@ public class BossTaiZhang3 extends BaseBossPlane{
         BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
 		new BossTaiZhang4().init(objectCenter.cpy(),10,4800,new Task[]{
-									   new TaskMoveTo(193,250)
-									 });
+									 new TaskMoveTo(193,250)
+								   });
         super.kill();
 	  }
 
