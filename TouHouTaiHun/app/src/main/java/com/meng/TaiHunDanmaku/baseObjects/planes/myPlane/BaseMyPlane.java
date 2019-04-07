@@ -23,10 +23,6 @@ public abstract class BaseMyPlane extends BaseGameObject {
     public int bombTime;
     public boolean onBomb = false;
 
-    public int power = 3;
-    public int maxPoint = 10000;
-    public int miss = 0;
-
     public JudgeCircleAnimation animation = null;
     public JudgeCircleAnimation2 animation2 = null;
 
@@ -103,12 +99,12 @@ public abstract class BaseMyPlane extends BaseGameObject {
     }
 
     public void incPower(int p) {
-        power += p;
+        FightScreen.instence.gameMain.power += p;
         onPowerInc();
     }
 
     public void decPower(int p) {
-        power -= p;
+        FightScreen.instence.gameMain.power -= p;
         onPowerDec();
     }
 

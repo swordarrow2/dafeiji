@@ -69,7 +69,7 @@ public class Laser extends Actor{
 		p2.set(v3);
 		if(pointToLine(p1.x,p1.y,p2.x,p2.y,BaseMyPlane.instance.objectCenter.x,
 					   BaseMyPlane.instance.objectCenter.y)<5){
-			++BaseMyPlane.instance.miss;
+			++gameMain.miss;
 		  }
 	  }
 

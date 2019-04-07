@@ -38,7 +38,7 @@ public abstract class BaseSubPlane extends BaseGameObject{
 
     public void update(){
         super.update();
-        switch(myPlane.power){
+        switch(FightScreen.instence.gameMain.power){
             case 1:
                 if(myPlane.slow){
                     nowPosition.set(myPlane.objectCenter.x+subPlanePosition[0],myPlane.objectCenter.y+subPlanePosition[1]);

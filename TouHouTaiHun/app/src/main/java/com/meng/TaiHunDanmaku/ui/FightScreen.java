@@ -103,8 +103,8 @@ public class FightScreen extends ScreenAdapter {
         gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + nowFps + "\n" +
                         (ReplayManager.onReplay ? "replay FPS:" + replayFPS + "\n" : "") +
                         //    "pos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"+
-                        "MaxPoint:" + BaseMyPlane.instance.maxPoint
-                        + "\nmiss:" + BaseMyPlane.instance.miss + "\n"
+                        "MaxPoint:" + gameMain.maxPoint
+                        + "\nmiss:" + gameMain.miss + "\n"
                         + "\nbullet:" + BaseEnemyBullet.instances.size() + "\n"
                         //        + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
                         + isKilled()
@@ -183,7 +183,6 @@ public class FightScreen extends ScreenAdapter {
         InputMultiplexer inputManager = new InputMultiplexer();
         inputManager.addProcessor(new PlayerInputProcessor());
         Gdx.input.setInputProcessor(inputManager);
-        ReplayManager.init(gameMain, System.currentTimeMillis());
     }
 
     public void restart() {

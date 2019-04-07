@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.meng.TaiHunDanmaku.control.ReplayManager;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
 
 public class MainMenuScreen extends ScreenAdapter{
@@ -69,13 +70,14 @@ public class MainMenuScreen extends ScreenAdapter{
 			  public void clicked(InputEvent event,float x,float y){
 				  gameMain.difficultFlag="Extra";
 				  gameMain.onReplay=false;
-				  gameMain.setFightScreen();
+				  gameMain.setSelectCharScreen();
 				}
 			});
         replay.addListener(new ClickListener() {
 			  @Override
 			  public void clicked(InputEvent event,float x,float y){
 				  gameMain.onReplay=true;
+                  ReplayManager.init(gameMain, System.currentTimeMillis());
 				  gameMain.setFightScreen();
 				}
 			});

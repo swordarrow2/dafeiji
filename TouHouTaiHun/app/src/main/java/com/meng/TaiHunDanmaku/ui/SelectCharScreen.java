@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.*;
+import com.meng.TaiHunDanmaku.control.ReplayManager;
 import com.meng.TaiHunDanmaku.helpers.*;
 
 
@@ -43,6 +44,7 @@ public class SelectCharScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.equipmentFlag = "A";
+                ReplayManager.init(gameMain, System.currentTimeMillis());
                 gameMain.setFightScreen();
             }
         });
@@ -50,6 +52,7 @@ public class SelectCharScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.equipmentFlag = "B";
+                ReplayManager.init(gameMain, System.currentTimeMillis());
                 gameMain.setFightScreen();
             }
         });

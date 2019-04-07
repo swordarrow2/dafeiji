@@ -23,7 +23,7 @@ public class MyPlaneReimu extends BaseMyPlane {
         bombTime = Data.ReimuBombTime;
         animationManager = new AnimationManager(this, 5);
         if (gameMain.equipmentFlag.equals("A")) {
-            switch (power) {
+            switch (FightScreen.instence.gameMain.power) {
                 case 4:
                     subPlane4 = new SubPlaneReimuA();
                     subPlane4.init(this, 4);
@@ -38,7 +38,7 @@ public class MyPlaneReimu extends BaseMyPlane {
                     subPlane1.init(this, 1);
             }
         } else if (gameMain.equipmentFlag.equals("B")) {
-            switch (power) {
+            switch (FightScreen.instence.gameMain.power) {
                 case 4:
                     subPlane4 = new SubPlaneReimuB();
                     subPlane4.init(this, 4);
@@ -53,19 +53,19 @@ public class MyPlaneReimu extends BaseMyPlane {
                     subPlane1.init(this, 1);
             }
         } else {
-            power = 0;
+            FightScreen.instence.gameMain.power = 0;
         }
     }
 
 
     @Override
     public void kill() {
-        miss++;
+        FightScreen.instence.gameMain.miss++;
         if (true) {
             return;
         }
         super.kill();
-        switch (power) {
+        switch (FightScreen.instence.gameMain.power) {
             case 4:
                 subPlane4.kill();
             case 3:
@@ -81,7 +81,7 @@ public class MyPlaneReimu extends BaseMyPlane {
     @Override
     public void update() {
         super.update();
-        switch (power) {
+        switch (FightScreen.instence.gameMain.power) {
             case 4:
                 subPlane4.update();
             case 3:
@@ -95,11 +95,11 @@ public class MyPlaneReimu extends BaseMyPlane {
 
     @Override
     public void onPowerInc() {
-        if (power >= 4) {
-            power = 4;
+        if (FightScreen.instence.gameMain.power >= 4) {
+            FightScreen.instence.gameMain.power = 4;
         }
         if (gameMain.equipmentFlag.equals("A")) {
-            switch (power) {
+            switch (FightScreen.instence.gameMain.power) {
                 case 4:
                     if (subPlane4 == null) {
                         subPlane4 = new SubPlaneReimuA();
@@ -122,7 +122,7 @@ public class MyPlaneReimu extends BaseMyPlane {
                     }
             }
         } else if (gameMain.equipmentFlag.equals("B")) {
-            switch (power) {
+            switch (FightScreen.instence.gameMain.power) {
                 case 4:
                     if (subPlane4 == null) {
                         subPlane4 = new SubPlaneReimuB();

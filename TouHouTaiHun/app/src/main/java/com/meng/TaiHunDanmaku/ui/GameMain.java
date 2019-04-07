@@ -18,6 +18,9 @@ public class GameMain extends Game {
     public String stageFlag = "Stage1";
     public String equipmentFlag = "A";
     public int screenFlag = 0;
+    public int power = 3;
+    public int maxPoint = 10000;
+    public int miss = 0;
 
     @Override
     public void create() {
