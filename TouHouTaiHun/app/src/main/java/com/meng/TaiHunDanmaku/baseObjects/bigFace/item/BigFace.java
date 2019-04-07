@@ -30,7 +30,7 @@ public class BigFace extends BaseBigFace{
         if(drawable==null){
             switch(faceCharacter){
                 case Junko:
-                    drawable=ResourcesManager.textures.get("junkoface");
+                    drawable=ResourcesManager.textures.get("sjf");
                     break;
             }
         }

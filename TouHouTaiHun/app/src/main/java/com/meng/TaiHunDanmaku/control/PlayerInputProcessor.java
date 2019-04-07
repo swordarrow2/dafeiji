@@ -11,7 +11,6 @@ public class PlayerInputProcessor extends InputAdapter {
     private Vector2 vct2_downPosPlayer = new Vector2();
     private Vector2 vct2_downPosStage = new Vector2();
     private Vector2 vct2_tmp1 = new Vector2();
-    public static byte points = 0;
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
@@ -24,7 +23,7 @@ public class PlayerInputProcessor extends InputAdapter {
             BaseMyPlane.instance.slow = true;
         }
         if (pointer == 2) {
-            BaseMyPlane.instance.onBomb = true;
+       //     BaseMyPlane.instance.onBomb = true;
         }
         if (pointer == 3) {
             FightScreen.instence.restart();

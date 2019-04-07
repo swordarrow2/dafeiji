@@ -14,12 +14,10 @@ import java.util.ArrayList;
 
 public class normal1 extends BaseNormalDanmaku {
     private TaskManagerEnemyPlane taskManager;
-    public Laser laser;
-    public Laser laser2;
 
     public void init(BaseBossPlane baseBossPlane) {
         boss = baseBossPlane;
-        laser = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
+        /*Laser laser = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beamstart2.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid2.png"))),
@@ -31,7 +29,7 @@ public class normal1 extends BaseNormalDanmaku {
         laser.distance = 190;
         FightScreen.instence.laserManager.addLaser(laser);
 
-        laser2 = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
+        Laser laser2 = new Laser(new Sprite(new Texture(Gdx.files.internal("textures/beamstart1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beamstart2.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid1.png"))),
                 new Sprite(new Texture(Gdx.files.internal("textures/beammid2.png"))),
@@ -42,13 +40,8 @@ public class normal1 extends BaseNormalDanmaku {
         laser2.degrees = 160;
         laser2.distance = 190;
         FightScreen.instence.laserManager.addLaser(laser2);
-
+*/
         ArrayList<Task> arrayList = new ArrayList<Task>();
-        arrayList.add(new TaskWait(100));
-        //  arrayList.add(new TaskMoveTo(10001, 10001));
-        arrayList.add(new TaskChangeAcceleration(-4f, 0, ChangeMode.scl));
-        arrayList.add(new TaskWait(30));
-        arrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -59,7 +52,6 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletVelocity(new Vector2(0, -1))
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
-                        .setBulletLiveOutOfScreen(500)
                         .setBulletAcceleration(new Vector2(0, -0.05f))
                         .setBulletTasks(arrayList)
         };

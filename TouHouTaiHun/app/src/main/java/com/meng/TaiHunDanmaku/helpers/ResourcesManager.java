@@ -26,9 +26,9 @@ public final class ResourcesManager {
         loadMainMenu();
         loadBackground();
 
-        FileHandle plsanae = Gdx.files.internal("textures/bigface/junkoface.png");
+        FileHandle plsanae = Gdx.files.internal("textures/bigface/sjf.png");
         Texture tplsanae = new Texture(plsanae);
-        textures.put("junkoface", new TextureRegionDrawable(new TextureRegion(tplsanae)));
+        textures.put("sjf", new TextureRegionDrawable(new TextureRegion(tplsanae)));
 
     }
 

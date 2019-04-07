@@ -1,14 +1,16 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.meng.TaiHunDanmaku.helpers.*;
 
 public class GameMain extends Game {
+    public AndroidApplication androidApplication;
     public SpriteBatch spriteBatch;
     public BitmapFont bitmapFont;
-    public String replayFileName = "replay/myfilerep115235.zip";
+    public String replayFileName = "replay/th_taihun.rpy";
     public boolean onReplay = false;
 
     public int width = 386;//540;//386;
@@ -21,6 +23,10 @@ public class GameMain extends Game {
     public int power = 3;
     public int maxPoint = 10000;
     public int miss = 0;
+
+    public GameMain(AndroidApplication androidApplication) {
+        this.androidApplication = androidApplication;
+    }
 
     @Override
     public void create() {

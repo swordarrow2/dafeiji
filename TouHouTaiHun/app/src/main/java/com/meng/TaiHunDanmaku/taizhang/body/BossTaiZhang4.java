@@ -2,12 +2,12 @@ package com.meng.TaiHunDanmaku.taizhang.body;
 
 import com.badlogic.gdx.math.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
-import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
 import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.ui.*;
-import com.badlogic.gdx.graphics.*;
+import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
 import com.meng.TaiHunDanmaku.task.*;
+import com.meng.TaiHunDanmaku.ui.*;
+import com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang.*;
 
 public class BossTaiZhang4 extends BaseBossPlane{
 
@@ -21,7 +21,7 @@ public class BossTaiZhang4 extends BaseBossPlane{
     public void update(){
         super.update();
         if(wf-->0) return;
-        FightScreen.spellMode();
+        FightScreen.instence.spellMode();
         spellCard.update();
 	  }
 
@@ -29,14 +29,12 @@ public class BossTaiZhang4 extends BaseBossPlane{
     public void init(Vector2 center,int everyAnimFrameTime,int hp,Task[] bmm){
         super.init(center,everyAnimFrameTime,hp,bmm);
         targetPosition=center.cpy();
-        spellCard=new spell7();
+        spellCard=new spell4();
         spellCard.init(this);
         objectName="chunhu";
         this.everyAnimFrameTime=everyAnimFrameTime;
         animNum=junkoAnim;
-		FightScreen.instence.layoutManager.nextPart.add(new partAgent(5500,Color.YELLOW));
-		FightScreen.instence.layoutManager.nextPart.add(new partAgent(3500,Color.ORANGE));
-		FightScreen.instence.layoutManager.nextPart.add(new partAgent(1200,Color.RED));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(2600));
 	  }
 
     @Override
@@ -47,11 +45,12 @@ public class BossTaiZhang4 extends BaseBossPlane{
 
     @Override
     public void kill(){
-        super.kill();
         BaseEnemyBullet.killAllBullet(BulletKillMode.KillOnBossLastDeath);
-        FightScreen.instence.onSpellCard=false;
-        FightScreen.instence.sleep=75;
-        FightScreen.instence.onBoss=false;
+		DropItem.create(objectCenter.cpy(),DropItemType.power);
+		new BossTaiZhang5().init(objectCenter.cpy(),10,7200,new Task[]{
+									   new TaskMoveTo(193,250)
+									 });
+        super.kill();
 	  }
 
     @Override

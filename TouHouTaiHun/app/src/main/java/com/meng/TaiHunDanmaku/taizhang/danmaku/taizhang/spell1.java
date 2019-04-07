@@ -14,7 +14,7 @@ public class spell1 extends BaseSpellCard {
     private float ro = 0;
 
     public void init(final BaseBossPlane b) {
-        spellName = "「FPS test」";
+        spellName = "台符「495次的真香」";
         boss = b;
         taskManagerEnemyPlane = new TaskManagerEnemyPlane(b, TaskRepeatMode.repeatAll);
         waitFrameSpell = 120;

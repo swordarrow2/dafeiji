@@ -16,8 +16,7 @@ public class SelectCharScreen extends ScreenAdapter {
     public Stage stage;
     private int width = 386;
     private int height = 600;
-    private InputMultiplexer inputManager;
-    private Group buttons;
+    private boolean A = false;
 
     public SelectCharScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -28,24 +27,23 @@ public class SelectCharScreen extends ScreenAdapter {
         super.show();
         fitViewport = new FitViewport(width, height);
         stage = new Stage(fitViewport, gameMain.spriteBatch);
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.GRAY);
-        pixmap.fill();
-        Image background = new Image(new Texture(pixmap));
+
+        Image background = new Image(ResourcesManager.textures.get("spellbackground"));
         background.setBounds(0, 0, 386, 450);
         stage.addActor(background);
-        buttons = new Group();
+        Group buttons = new Group();
 
         Button buttonA = new Button(ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce), ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletInduce));
-        buttonA.setPosition(121, 32);
+        buttonA.setPosition(120, 200);
         Button buttonB = new Button(ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight), ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight));
-        buttonB.setPosition(121, 112);
+        buttonB.setPosition(120, 150);
         buttonA.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                gameMain.equipmentFlag = "A";
-                ReplayManager.init(gameMain, System.currentTimeMillis());
-                gameMain.setFightScreen();
+                //         gameMain.equipmentFlag = "A";
+                //        ReplayManager.init(gameMain, System.currentTimeMillis());
+                //        gameMain.setFightScreen();
+                A=true;
             }
         });
         buttonB.addListener(new ClickListener() {
@@ -60,9 +58,7 @@ public class SelectCharScreen extends ScreenAdapter {
         buttons.addActor(buttonB);
         stage.addActor(buttons);
 
-        inputManager = new InputMultiplexer();
-        inputManager.addProcessor(stage);
-        Gdx.input.setInputProcessor(inputManager);
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -76,6 +72,10 @@ public class SelectCharScreen extends ScreenAdapter {
         stage.draw();
         gameMain.spriteBatch.begin();
         gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond(), 10, 590);
+        gameMain.bitmapFont.draw(gameMain.spriteBatch, "选择装备：", 50, 250);
+        if (A) {
+            gameMain.bitmapFont.draw(gameMain.spriteBatch, "售罄", 165, 215);
+        }
         gameMain.spriteBatch.end();
         super.render(delta);
     }

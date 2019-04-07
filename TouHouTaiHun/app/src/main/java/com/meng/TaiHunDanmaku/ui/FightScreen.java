@@ -100,30 +100,34 @@ public class FightScreen extends ScreenAdapter {
         stage.draw();
         gameMain.spriteBatch.begin();
         layoutManager.update();
-        gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + nowFps + "\n" +
-                        (ReplayManager.onReplay ? "replay FPS:" + replayFPS + "\n" : "") +
-                        //    "pos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"+
-                        "MaxPoint:" + gameMain.maxPoint
-                        + "\nmiss:" + gameMain.miss + "\n"
-                        + "\nbullet:" + BaseEnemyBullet.instances.size() + "\n"
-                        //        + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
-                        + isKilled()
+     /*      gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + nowFps + "\n" +
+                    (ReplayManager.onReplay ? "replay FPS:" + replayFPS + "\n" : "") +
+         "pos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"+
+                "MaxPoint:" + gameMain.maxPoint
+                   + "\nmiss:" + gameMain.miss + "\n"
+           + "\nbullet:" + BaseEnemyBullet.instances.size() + "\n"
+               + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
+             + isKilled()
+               , 10, 590);*/
+        gameMain.bitmapFont.draw(gameMain.spriteBatch,
+                "FPS:" + nowFps +
+                        (ReplayManager.onReplay ? "\nreplay FPS:" + replayFPS : "") +
+                        "\nmiss:" + gameMain.miss
                 , 10, 590);
+        gameMain.bitmapFont.draw(gameMain.spriteBatch,
+                "Player:未实装\nBomb:未实装\nGraze:未实装\n最大得点:未实装\nScore:未实装\nHiScore:未实装", 190, 590);
         gameMain.spriteBatch.end();
         for (ReflexAndThrough reflexAndThrough : reflexAndThroughs) {
             reflexAndThrough.update();
         }
-
         laserManager.draw();
-
         if (!onBoss) {
             gameStage.addEnemy(++enemyTimeFlag);
         }
         super.render(delta);
     }
 
-
-    private String isKilled() {
+   /* private String isKilled() {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < 32; i++) {
             if (enemys[i] != null) {
@@ -131,7 +135,7 @@ public class FightScreen extends ScreenAdapter {
             }
         }
         return s.toString();
-    }
+    }*/
 
     private void init() {
         instence = this;
@@ -162,6 +166,13 @@ public class FightScreen extends ScreenAdapter {
         pixmap.fill();
         normalBackground = new Image(new Texture(pixmap));
         normalBackground.setBounds(0, 0, 386, 450);
+
+        Pixmap pixmap2 = new Pixmap(1, 1, Format.RGBA8888);
+        pixmap2.setColor(Color.GREEN);
+        pixmap2.fill();
+        Image UI = new Image(new Texture(pixmap2));
+        UI.setBounds(0, 450, 386, 150);
+
         stage.addActor(spellBackground);
         stage.addActor(normalBackground);
         spellBackground.setZIndex(Data.zIndexBackground);
@@ -172,6 +183,7 @@ public class FightScreen extends ScreenAdapter {
         stage.addActor(changeBlend1);
         stage.addActor(groupHighLight);
         stage.addActor(changeBlend2);
+        stage.addActor(UI);
         switch (gameMain.charaFlag) {
             case "Reimu":
                 new MyPlaneReimu().init(gameMain);
@@ -196,21 +208,21 @@ public class FightScreen extends ScreenAdapter {
         super.hide();
     }
 
-    public static void normalMode() {
-        if (!instence.onSpellCard) return;
-        instence.spellBackground.setSize(0, 0);
-        instence.normalBackground.setSize(386, 450);
-        instence.laserManager.clear();
-        instence.onSpellCard = false;
+    public void normalMode() {
+        if (!onSpellCard) return;
+        spellBackground.setSize(0, 0);
+        normalBackground.setSize(386, 450);
+        laserManager.clear();
+        onSpellCard = false;
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);
     }
 
-    public static void spellMode() {
-        if (instence.onSpellCard) return;
-        instence.spellBackground.setSize(386, 450);
-        instence.normalBackground.setSize(0, 0);
-        instence.laserManager.clear();
-        instence.onSpellCard = true;
+    public void spellMode() {
+        if (onSpellCard) return;
+        spellBackground.setSize(386, 450);
+        normalBackground.setSize(0, 0);
+        laserManager.clear();
+        onSpellCard = true;
         spellHeight = 200;
         new BigFace().init(new Vector2(300, 200), FaceCharacter.Junko);
         BaseEnemyBullet.killAllBullet(BulletKillMode.killWithNothing);

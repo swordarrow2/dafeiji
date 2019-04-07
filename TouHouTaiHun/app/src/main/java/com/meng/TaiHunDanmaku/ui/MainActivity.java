@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.meng.TaiHunDanmaku.control.ReplayManager;
 
 public class MainActivity extends AndroidApplication {
     public static MainActivity instance;
@@ -14,7 +15,7 @@ public class MainActivity extends AndroidApplication {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
-        gameMain = new GameMain();
+        gameMain = new GameMain(this);
         initialize(gameMain, new AndroidApplicationConfiguration());
     }
 
@@ -29,6 +30,10 @@ public class MainActivity extends AndroidApplication {
                     gameMain.setSelectDiffScreen();
                     return true;
                 case 3:
+                    if(ReplayManager.onReplay){
+                        gameMain.setMainMenuScreen();
+                        return true;
+                    }
                     if (gameMain.difficultFlag.equals("Extra")) {
                         gameMain.setMainMenuScreen();
                     } else {

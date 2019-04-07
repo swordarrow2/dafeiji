@@ -1,14 +1,18 @@
 package com.meng.TaiHunDanmaku.control;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.RandomXS128;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
 import com.meng.TaiHunDanmaku.helpers.ObjectPools;
-import com.meng.TaiHunDanmaku.helpers.ZipManager;
 import com.meng.TaiHunDanmaku.ui.FightScreen;
 import com.meng.TaiHunDanmaku.ui.GameMain;
 
 import java.util.ArrayList;
 import java.io.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class ReplayManager {
     public static boolean onReplay = false;
@@ -26,7 +30,20 @@ public class ReplayManager {
             rep = new ArrayList<float[]>(131071);
             String allString = "";
             try {
-                allString = ZipManager.readReplayFile(gameMain.replayFileName);
+                byte[] doc = new byte[512];
+                ZipInputStream zipis = new ZipInputStream(Gdx.files.external(gameMain.replayFileName).read());
+                FileHandle tmpFile = Gdx.files.external(gameMain.replayFileName + ".txt");
+                while (zipis.getNextEntry() != null) {
+                    FileOutputStream out = (FileOutputStream) tmpFile.write(false);
+                    int n;
+                    while ((n = zipis.read(doc, 0, 512)) != -1) {
+                        out.write(doc, 0, n);
+                    }
+                    out.close();
+                }
+                zipis.close();
+                allString = tmpFile.readString();
+                tmpFile.delete();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -93,7 +110,18 @@ public class ReplayManager {
         if (onReplay) return;
         repInfo.append("end");
         try {
-            ZipManager.saveReplayFile(repInfo.toString(), FightScreen.instence.gameMain.replayFileName);
+            FileHandle fh = Gdx.files.external(FightScreen.instence.gameMain.replayFileName);
+            InputStream input = new ByteArrayInputStream(repInfo.toString().getBytes());
+            ZipOutputStream zipOut = new ZipOutputStream(fh.write(false));
+            zipOut.putNextEntry(new ZipEntry("bin.txt"));
+            zipOut.setComment("FaFaFa");  // 设置注释
+            int temp = 0;
+            while ((temp = input.read()) != -1) {
+                zipOut.write(temp);
+            }
+            input.close();
+            zipOut.flush();
+            zipOut.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

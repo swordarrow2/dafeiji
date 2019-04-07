@@ -1,6 +1,5 @@
 package com.meng.TaiHunDanmaku.taizhang.body;
 
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.math.*;
 import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
@@ -22,10 +21,10 @@ public class BossTaiZhang1 extends BaseBossPlane{
         //  am.update();
 		//    objectCenter.set(193,350);
 		if(hp>4000){
-			FightScreen.normalMode();
+			FightScreen.instence.normalMode();
 			normalDanmaku.update();
 		  }else{
-			FightScreen.spellMode();
+			FightScreen.instence.spellMode();
 			spellCard.update();
 		  }
 	  }
@@ -42,19 +41,19 @@ public class BossTaiZhang1 extends BaseBossPlane{
         normalDanmaku.init(this);
 		spellCard=new spell1();
 		spellCard.init(this);
-		FightScreen.instence.layoutManager.nextPart.add(new partAgent(4000,Color.GREEN));
+		FightScreen.instence.layoutManager.nextPart.add(new partAgent(4000));
 	  }
 
 	@Override
 	public void kill(){
-		
+
 		//	FightScreen.sleep=90;
-		FightScreen.normalMode();
+		FightScreen.instence.normalMode();
 		DropItem.create(objectCenter.cpy(),DropItemType.power);
-		new BossTaiZhang2().init(objectCenter.cpy(),10,7000,new Task[]{
+		new BossTaiZhang2().init(objectCenter.cpy(),10,21000,new Task[]{
 									   new TaskMoveTo(193,250)
 									 });
-		super.kill();							 
+		super.kill();
 	  }
 
     @Override

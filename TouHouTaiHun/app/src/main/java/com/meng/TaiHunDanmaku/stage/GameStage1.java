@@ -18,7 +18,7 @@ public class GameStage1 extends GameStage {
     public void addEnemy(int enemyTimeFlag) {
         switch (enemyTimeFlag) {
             case 30:
-                new BossTaiZhang4().init(new Vector2(193, 350), 10, 2000, new Task[]{new TaskMoveTo(193, 250)});
+                new BossTaiZhang1().init(new Vector2(193, 350), 10, 21000, new Task[]{new TaskMoveTo(193, 250)});
                 FightScreen.instence.onBoss = true;
                 break;
         }
