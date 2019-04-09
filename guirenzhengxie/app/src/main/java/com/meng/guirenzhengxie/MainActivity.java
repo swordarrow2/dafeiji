@@ -20,6 +20,8 @@ public class MainActivity extends Activity{
     public ActionBar actionBar;
     public String msg = "";
     public TabHost tabHost;
+	public  final String IP = "123.207.65.93";// 服务器地址
+	public  final int PORT = 9760;// 服务器端口号
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,9 +45,7 @@ public class MainActivity extends Activity{
         tabHost.addTab(tabHost.newTabSpec("four").setIndicator("复读机").setContent(R.id.mainListView_GroupRepeater));
         tabHost.addTab(tabHost.newTabSpec("five").setIndicator("群组词库").setContent(R.id.mainListView_GroupDicReply));
         tabHost.addTab(tabHost.newTabSpec("six").setIndicator("账号").setContent(R.id.mainListView_PersonInfo));
-
 		getJsonString();
-		
 		listViewGroupReply.setOnItemClickListener(new OnItemClickListener() {
 			  @Override
 			  public void onItemClick(AdapterView<?> adapterView,View view,final int i,long l){
@@ -61,12 +61,12 @@ public class MainActivity extends Activity{
 							  .setTitle("确定修改吗")
 							  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
 								  @Override
-								  public void onClick(DialogInterface p11,int p2){
-									  ConfigJavaBean.GroupReply groupReply= new ConfigJavaBean().new GroupReply();
+								  public void onClick(DialogInterface p11,int p2){												
+									  GroupReply groupReply=new GroupReply();
 									  groupReply.groupNum=Long.parseLong(editText.getText().toString());
 									  groupReply.reply=true;
 									  configJavaBean.mapGroupReply.set(i,groupReply);
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  loadConfigData(new Gson().toJson(configJavaBean));
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -90,7 +90,7 @@ public class MainActivity extends Activity{
 								  @Override
 								  public void onClick(DialogInterface p11,int p2){
 									  configJavaBean.mapQQNotReply.set(i,Long.parseLong(editText.getText().toString()));
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  loadConfigData(new Gson().toJson(configJavaBean));
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -113,8 +113,8 @@ public class MainActivity extends Activity{
 							  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
 								  @Override
 								  public void onClick(DialogInterface p11,int p2){
-									  configJavaBean.mapWordNotReply.set(i,editText.getText().toString());
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  configJavaBean.mapWordNotReply.set(i,editText.getText().toString());					
+									  loadConfigData(new Gson().toJson(configJavaBean));	
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -138,8 +138,8 @@ public class MainActivity extends Activity{
 							  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
 								  @Override
 								  public void onClick(DialogInterface p11,int p2){
-									  configJavaBean.mapGroupRepeater.set(i,editText.getText().toString());
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  configJavaBean.mapGroupRepeater.set(i,editText.getText().toString());					
+									  loadConfigData(new Gson().toJson(configJavaBean));		  
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -150,25 +150,28 @@ public class MainActivity extends Activity{
 		listViewGroupDicReply.setOnItemClickListener(new OnItemClickListener() {
 			  @Override
 			  public void onItemClick(AdapterView<?> adapterView,View view,final int i,long l){
-				  final EditText editText = new EditText(MainActivity.this);
-				  editText.setText(String.valueOf(configJavaBean.mapGroupDicReply.get(i)));
-				  new AlertDialog.Builder(MainActivity.this)
-					.setView(editText)
-					.setTitle("编辑")
-					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface p11,int p2){
-							new AlertDialog.Builder(MainActivity.this)
-							  .setTitle("确定修改吗")
-							  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
-								  @Override
-								  public void onClick(DialogInterface p11,int p2){
-									  configJavaBean.mapGroupDicReply.set(i,Long.parseLong(editText.getText().toString()));
-									  setJsonString(new Gson().toJson(configJavaBean));
-									}
-								}).setNegativeButton("取消",null).show();
-						  }
-					  }).setNegativeButton("取消",null).show();
+				  //	  final EditText editText = new EditText(MainActivity.this);
+				  //	  editText.setText(String.valueOf(configJavaBean.mapGroupDicReply.get(i)));
+				  //	  new AlertDialog.Builder(MainActivity.this)
+				  //		.setView(editText)
+				  //	.setTitle("编辑")
+				  //	.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+				  //		@Override
+				  //		public void onClick(DialogInterface p11,int p2){
+				  //new AlertDialog.Builder(MainActivity.this)
+				  //  .setTitle("确定修改吗")
+				  //  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
+				  //	  @Override
+				  //	  public void onClick(DialogInterface p11,int p2){
+				  //  configJavaBean.mapGroupDicReply.set(i,Long.parseLong(editText.getText().toString()));				
+				  // loadConfigData(new Gson().toJson(configJavaBean));	
+				  Intent in=new Intent(MainActivity.this,DicEdit.class);
+				  in.putExtra("group",configJavaBean.mapGroupDicReply.get(i));
+				  startActivity(in);
+				  //		}
+				  //	}).setNegativeButton("取消",null).show();
+				  //	  }
+				  //  }).setNegativeButton("取消",null).show();
 				}
 			});
         listViewPersonInfo.setOnItemClickListener(new OnItemClickListener() {
@@ -180,7 +183,7 @@ public class MainActivity extends Activity{
 				  editTextBilibiliId=(EditText) view.findViewById(R.id.edit_viewEditText_bid);
 				  editTextBilibiliLiveRoom=(EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-				  final ConfigJavaBean.BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
+				  final BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
 				  editTextName.setText(mapBiliUser.name);
 				  editTextQQNumber.setText(String.valueOf(mapBiliUser.qq));
 				  editTextBilibiliId.setText(String.valueOf(mapBiliUser.bid));
@@ -200,8 +203,8 @@ public class MainActivity extends Activity{
 									  mapBiliUser.name=editTextName.getText().toString();
 									  mapBiliUser.qq=Long.parseLong(editTextQQNumber.getText().toString());
 									  mapBiliUser.bid=Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:",""));
-									  mapBiliUser.bliveRoom=Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""));
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  mapBiliUser.bliveRoom=Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""));					  
+									  loadConfigData(new Gson().toJson(configJavaBean));
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -219,7 +222,7 @@ public class MainActivity extends Activity{
 						@Override
 						public void onClick(DialogInterface p11,int p2){
 							configJavaBean.mapGroupReply.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;
@@ -235,8 +238,8 @@ public class MainActivity extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
-							configJavaBean.mapQQNotReply.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							configJavaBean.mapQQNotReply.remove(p3);	
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;
@@ -252,8 +255,8 @@ public class MainActivity extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
-							configJavaBean.mapWordNotReply.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							configJavaBean.mapWordNotReply.remove(p3);	
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;
@@ -270,8 +273,8 @@ public class MainActivity extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
-							configJavaBean.mapGroupRepeater.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							configJavaBean.mapGroupRepeater.remove(p3);		
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;
@@ -287,8 +290,8 @@ public class MainActivity extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
-							configJavaBean.mapGroupDicReply.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							configJavaBean.mapGroupDicReply.remove(p3);		
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;
@@ -304,8 +307,8 @@ public class MainActivity extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
-							configJavaBean.mapBiliUser.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							configJavaBean.mapBiliUser.remove(p3);	
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;	
@@ -321,7 +324,7 @@ public class MainActivity extends Activity{
 				  editTextBilibiliId=(EditText) view.findViewById(R.id.edit_viewEditText_bid);
 				  editTextBilibiliLiveRoom=(EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-				  final ConfigJavaBean.BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
+				  final BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
 				  editTextName.setText(mapBiliUser.name);
 				  editTextQQNumber.setText(String.valueOf(mapBiliUser.qq));
 				  editTextBilibiliId.setText(String.valueOf(mapBiliUser.bid));
@@ -341,8 +344,8 @@ public class MainActivity extends Activity{
 									  mapBiliUser.name=editTextName.getText().toString();
 									  mapBiliUser.qq=Long.parseLong(editTextQQNumber.getText().toString());
 									  mapBiliUser.bid=Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:",""));
-									  mapBiliUser.bliveRoom=Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""));
-									  setJsonString(new Gson().toJson(configJavaBean));
+									  mapBiliUser.bliveRoom=Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""));								  
+									  loadConfigData(new Gson().toJson(configJavaBean));
 									}
 								}).setNegativeButton("取消",null).show();
 						  }
@@ -359,7 +362,7 @@ public class MainActivity extends Activity{
 						@Override
 						public void onClick(DialogInterface p11,int p2){
 							configJavaBean.mapBiliUser.remove(p3);
-							setJsonString(new Gson().toJson(configJavaBean));
+							loadConfigData(new Gson().toJson(configJavaBean));
 						  }
 					  }).setNegativeButton("取消",null).show();
 				  return true;	
@@ -373,6 +376,12 @@ public class MainActivity extends Activity{
         MenuItem add = menu.add(0,0,0,"添加");
         add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         add.setIcon(android.R.drawable.ic_menu_add);
+		MenuItem add2=menu.add(1,1,1,"从服务器获取信息");
+		add2.setIcon(android.R.drawable.stat_sys_download);
+		add2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		MenuItem add3=menu.add(2,2,2,"提交修改到服务器");
+		add3.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		add3.setIcon(android.R.drawable.stat_sys_upload);
         return true;
 	  }
 
@@ -398,13 +407,21 @@ public class MainActivity extends Activity{
 							.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface p11,int p2){
-									ConfigJavaBean.BilibiliUser user = (new ConfigJavaBean()).new BilibiliUser();
+									for(BilibiliUser user:configJavaBean.mapBiliUser){
+										if(Long.parseLong(editTextBilibiliId.getText().toString())==user.bid&&
+										   Long.parseLong(editTextQQNumber.getText().toString())==user.qq&&
+										   editTextName.getText().toString().equals(user.name)&&
+										   Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""))==user.bliveRoom){
+											return;
+										  }
+									  }
+									BilibiliUser user =new BilibiliUser();
 									user.name=editTextName.getText().toString();
 									user.qq=Long.parseLong(editTextQQNumber.getText().toString());
 									user.bid=Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:",""));
 									user.bliveRoom=Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/","").replace("?share_source=copy_link",""));
 									configJavaBean.mapBiliUser.add(user);
-									setJsonString(new Gson().toJson(configJavaBean));
+									loadConfigData(new Gson().toJson(configJavaBean));
 								  }
 							  }).setNegativeButton("取消",null).show();
 						}
@@ -426,30 +443,59 @@ public class MainActivity extends Activity{
 
 									switch(tabHost.getCurrentTab()){
 										case 0:
-                                            ConfigJavaBean.GroupReply groupReply=new ConfigJavaBean().new GroupReply();
-                                            groupReply.groupNum=Long.parseLong(editText.getText().toString());
-                                            groupReply.reply=true;
-                                            configJavaBean.mapGroupReply.add(groupReply);
+										  for(GroupReply g:configJavaBean.mapGroupReply){
+											  if(g.groupNum==Long.parseLong(editText.getText().toString())){
+												  return;
+												}
+											}
+										  GroupReply groupReply=new GroupReply();
+										  groupReply.groupNum=Long.parseLong(editText.getText().toString());
+										  groupReply.reply=true;
+										  configJavaBean.mapGroupReply.add(groupReply);
 										  break;
 										case 1:
+										  for(long l:configJavaBean.mapQQNotReply){
+											  if(l==Long.parseLong(editText.getText().toString())){
+												  return;
+												}
+											}
 										  configJavaBean.mapQQNotReply.add(Long.parseLong(editText.getText().toString()));
 										  break;
 										case 2:
+										  for(String l:configJavaBean.mapWordNotReply){
+											  if(l.equals(editText.getText().toString())){
+												  return;
+												}
+											}
 										  configJavaBean.mapWordNotReply.add(editText.getText().toString());
 										  break;
 										case 3:
+										  for(String l:configJavaBean.mapGroupRepeater){
+											  if(l.equals(editText.getText().toString())){
+												  return;
+												}
+											}
 										  configJavaBean.mapGroupRepeater.add(editText.getText().toString());
 										  break;
 										case 4:
+										  for(long l:configJavaBean.mapGroupDicReply){
+											  if(l==Long.parseLong(editText.getText().toString())){
+												  return;
+												}
+											}
 										  configJavaBean.mapGroupDicReply.add(Long.parseLong(editText.getText().toString()));
 										  break;
 									  }
-									setJsonString(new Gson().toJson(configJavaBean));
+									loadConfigData(new Gson().toJson(configJavaBean));
 								  }
 							  }).setNegativeButton("取消",null).show();
 						}
 					}).setNegativeButton("取消",null).show();
 			  }
+		  }else if(item.getTitle().equals("从服务器获取信息")){
+			getJsonString();		
+		  }else if(item.getTitle().equals("提交修改到服务器")){
+			setJsonString(new Gson().toJson(configJavaBean));
 		  }
         return true;
 	  }
@@ -457,11 +503,7 @@ public class MainActivity extends Activity{
     private void loadConfigData(String s){
         configJavaBean=new Gson().fromJson(s,ConfigJavaBean.class);
 
-        ArrayList<String> list = new ArrayList<String>();
-        for (ConfigJavaBean.GroupReply groupReply : configJavaBean.mapGroupReply) {
-            list.add(String.valueOf(groupReply.groupNum));
-        }
-        listViewGroupReply.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
+		listViewGroupReply.setAdapter(new GroupListAdapter(this,configJavaBean.mapGroupReply));
 
         ArrayList<String> list2 = new ArrayList<String>();
         for(long l : configJavaBean.mapQQNotReply){
@@ -488,7 +530,7 @@ public class MainActivity extends Activity{
         listViewGroupDicReply.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list5));
 
         ArrayList<String> list6 = new ArrayList<String>();
-        for(ConfigJavaBean.BilibiliUser mapBiliUser : configJavaBean.mapBiliUser){
+        for(BilibiliUser mapBiliUser : configJavaBean.mapBiliUser){
             list6.add(mapBiliUser.name+"  "+mapBiliUser.qq+"  "+mapBiliUser.bid+"  "+mapBiliUser.bliveRoom);
 		  }
         listViewPersonInfo.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list6));
@@ -500,32 +542,28 @@ public class MainActivity extends Activity{
         new Thread(new Runnable() {
 			  @Override
 			  public void run(){
-				  Socket socket;
-				  try{
-					  socket=new Socket("123.207.65.93",9961);
-					  int bufferSize = 1024;
-					  char[] buffer = new char[bufferSize];
-					  StringBuilder out = new StringBuilder();
-					  Reader in = new InputStreamReader(socket.getInputStream());
-					  int rsz = 0;
-					  while((rsz=in.read(buffer,0,buffer.length))>0){
-						  out.append(buffer,0,rsz);
-						}
-					  msg=out.toString();
-					  runOnUiThread(new Runnable() {
+				  try{				  
+					  Socket client=new Socket(IP,PORT);				 
+					  OutputStream out = client.getOutputStream();					  
+					  DataOutputStream dos = new DataOutputStream(out);				  
+					  dos.writeUTF("get");
+					  InputStream in = client.getInputStream();
+					  DataInputStream dis = new DataInputStream(in);
+					  final String result=dis.readUTF();
+					  runOnUiThread(new Runnable(){
+
 							@Override
-							public void run(){
-								BASE64Decoder d = new BASE64Decoder();
-								try{
-									loadConfigData(new String(d.decodeBuffer(msg),"utf-8"));
-								  }catch(IOException e){
-									e.printStackTrace();
-								  }
+							public void run(){		
+							//	Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
+								loadConfigData(result);							  
 							  }
-						  });
-					  socket.close();
-					}catch(Exception e){
+						  });	
+						  client.close();
+					}catch(UnknownHostException e){
 					  e.printStackTrace();
+					}catch(IOException e){
+					  e.printStackTrace();
+					}catch(Exception e){
 					}
 				}
 			}).start();
@@ -536,22 +574,27 @@ public class MainActivity extends Activity{
         new Thread(new Runnable() {
 			  @Override
 			  public void run(){
-				  Socket socket;
-				  try{
-					  socket=new Socket("123.207.65.93",9760);
-					  OutputStream outputStream = socket.getOutputStream();
-					  BASE64Encoder encoder = new BASE64Encoder();
-					  outputStream.write(encoder.encodeBuffer(jsonString.getBytes()).getBytes());
-					  socket.close();
-					  Thread.sleep(500);
-					  runOnUiThread(new Runnable() {
+				  try{				  
+					  Socket client=new Socket(IP,PORT);				 
+					  OutputStream out = client.getOutputStream();					  
+					  DataOutputStream dos = new DataOutputStream(out);				  
+					  dos.writeUTF("write"+new Gson().toJson(configJavaBean));
+					  InputStream in = client.getInputStream();
+					  DataInputStream dis = new DataInputStream(in);
+					  final String result=dis.readUTF();
+					  runOnUiThread(new Runnable(){
+
 							@Override
-							public void run(){
-								getJsonString();
+							public void run(){		
+								Toast.makeText(MainActivity.this,result.equals("ok")?"成功":"失败",Toast.LENGTH_SHORT).show();							  
 							  }
-						  });
-					}catch(Exception e){
+						  });	
+						  client.close();
+					}catch(UnknownHostException e){
 					  e.printStackTrace();
+					}catch(IOException e){
+					  e.printStackTrace();
+					}catch(Exception e){
 					}
 				}
 			}).start();
