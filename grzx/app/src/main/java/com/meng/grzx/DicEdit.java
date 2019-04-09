@@ -1,4 +1,4 @@
-package com.meng.guirenzhengxie;
+package com.meng.grzx;
 import android.app.*;
 import android.content.*;
 import android.os.*;
@@ -7,12 +7,12 @@ import com.google.gson.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.regex.*;
 
 public class DicEdit extends Activity{
 	public final String IP = "123.207.65.93";// 服务器地址
 	public final int PORT = 9961;// 服务器端口号
 	public long groupNum;
+	public ActionBar actionBar;
 	public ListView listview;
 	public JsonObject jsonObject;
 	public Gson gson=new Gson();
@@ -26,7 +26,9 @@ public class DicEdit extends Activity{
 		if(groupNum==0){
 			finish();
 		  }
-		setContentView(R.layout.dic_edit);
+		setContentView(R.layout.dic_edit_main);
+		actionBar=getActionBar();
+		actionBar.show();
 		listview=(ListView) findViewById(R.id.dic_editListView);
 		getJsonString();
 	  }
