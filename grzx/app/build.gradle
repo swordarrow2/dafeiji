@@ -19,7 +19,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/gson-2.8.5.jar')
-    implementation files('libs/sun.misc.BASE64Decoder.jar')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
 }

@@ -2,7 +2,9 @@ package com.meng.grzx;
 import android.app.*;
 import android.content.*;
 import android.os.*;
+import android.view.*;
 import android.widget.*;
+import android.widget.AdapterView.*;
 import com.google.gson.*;
 import java.io.*;
 import java.net.*;
@@ -30,6 +32,34 @@ public class DicEdit extends Activity{
 		actionBar=getActionBar();
 		actionBar.show();
 		listview=(ListView) findViewById(R.id.dic_editListView);
+		listview.setOnItemClickListener(new OnItemClickListener() {
+			  @Override
+			  public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+				//  final EditText editText = new EditText(MainActivity.this);
+				//  editText.setText(String.valueOf(configJavaBean.mapGroupReply.get(i)));
+				View v=getLayoutInflater().inflate(R.layout.dic_edit_group,null);
+				
+				  new AlertDialog.Builder(DicEdit.this)
+					.setView(v)
+					.setTitle("编辑")
+					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface p11, int p2) {
+							new AlertDialog.Builder(DicEdit.this)
+							  .setTitle("确定修改吗")
+							  .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+								  @Override
+								  public void onClick(DialogInterface p11, int p2) {
+									  
+									
+									
+									  loadConfigData(gson.toJson(jsonObject));
+									}
+								}).setNegativeButton("取消", null).show();
+						  }
+					  }).setNegativeButton("取消", null).show();
+				}
+			});
 		getJsonString();
 	  }
 	  
