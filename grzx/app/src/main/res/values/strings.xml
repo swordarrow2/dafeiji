@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">鬼人正邪配置编辑器</string>
+    <string name="app_name">配置编辑器</string>
     <string name="hello_world">Hello world!</string>
     <string name="bid">bid</string>
     <string name="_0">0</string>
     <string name="liveroom">liveRoom</string>
     <string name="qq">QQ</string>
     <string name="name">name</string>
+    <string name="reply">回复</string>
+    <string name="not_reply">不回复</string>
+    <string name="add">添加</string>
 </resources>

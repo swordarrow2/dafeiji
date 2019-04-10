@@ -4,8 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:text="@string/add"
+        android:id="@+id/dic_edit_group_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ListView
-        android:id="@+id/dic_edit_group"
+        android:id="@+id/dic_edit_group_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

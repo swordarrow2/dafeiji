@@ -18,18 +18,16 @@ public class MainActivity extends Activity {
             listViewGroupRepeater, listViewGroupDicReply, listViewPersonInfo;
     public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
     public ConfigJavaBean configJavaBean;
-    public ActionBar actionBar;
     public TabHost tabHost;
-    public final String IP = "123.207.65.93";// 服务器地址
-    public final int PORT = 9760;// 服务器端口号
+    public final String IP = "123.207.65.93";
+    public final int PORT = 9760;
     public Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        actionBar = getActionBar();
-        actionBar.show();
+        getActionBar().show();
 
         listViewGroupReply = (ListView) findViewById(R.id.mainListView_GroupReply);
         listViewQQNotReply = (ListView) findViewById(R.id.mainListView_QQNotReply);
@@ -355,15 +353,15 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        MenuItem add = menu.add(0, 0, 0, "添加");
-        add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        add.setIcon(android.R.drawable.ic_menu_add);
-        MenuItem add2 = menu.add(1, 1, 1, "从服务器获取信息");
-        add2.setIcon(android.R.drawable.stat_sys_download);
-        add2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        MenuItem add3 = menu.add(2, 2, 2, "提交修改到服务器");
-        add3.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        add3.setIcon(android.R.drawable.stat_sys_upload);
+        MenuItem menuItem1 = menu.add(0, 0, 0, "添加");
+        menuItem1.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menuItem1.setIcon(android.R.drawable.ic_menu_add);
+        MenuItem menuItem2 = menu.add(1, 1, 1, "从服务器获取信息");
+        menuItem2.setIcon(android.R.drawable.stat_sys_download);
+        menuItem2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        MenuItem menuItem3 = menu.add(2, 2, 2, "提交修改到服务器");
+        menuItem3.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menuItem3.setIcon(android.R.drawable.stat_sys_upload);
         return true;
     }
 
@@ -494,7 +492,7 @@ public class MainActivity extends Activity {
         listViewQQNotReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list2));
 
         listViewWordNotReply.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(configJavaBean.mapWordNotReply)));
- 
+
         listViewGroupRepeater.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new ArrayList<String>(configJavaBean.mapGroupRepeater)));
 
         ArrayList<String> list5 = new ArrayList<String>();
