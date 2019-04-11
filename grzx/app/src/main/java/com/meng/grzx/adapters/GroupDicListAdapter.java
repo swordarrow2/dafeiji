@@ -17,7 +17,6 @@ import com.meng.grzx.R;
 public class GroupDicListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Long> dicList;
-    private File imageFile;
 
     public GroupDicListAdapter(Context context, ArrayList<Long> dicList) {
         this.context = context;
@@ -53,7 +52,7 @@ public class GroupDicListAdapter extends BaseAdapter {
         }
         long dicGroup = dicList.get(position);
         holder.groupNumber.setText(String.valueOf(dicGroup));
-        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + dicGroup + ".jpg");
+        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + dicGroup + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
@@ -72,12 +71,14 @@ public class GroupDicListAdapter extends BaseAdapter {
         private Switch replySwitch;
     }
 
-
     class DownloadImageThread extends Thread {
         private ImageView imageView;
         private String imageUrl = "";
+        private long groupNumber;
+        private File imageFile;
 
         public DownloadImageThread(ImageView imageView, long groupNumber) {
+            this.groupNumber = groupNumber;
             this.imageView = imageView;
             imageUrl = "http://p.qlogo.cn/gh/" + groupNumber + "/" + groupNumber + "/100/";
         }
@@ -106,7 +107,7 @@ public class GroupDicListAdapter extends BaseAdapter {
 
                     @Override
                     public void run() {
-                        imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupNumber + ".jpg"));
                     }
                 });
             } catch (IOException e) {

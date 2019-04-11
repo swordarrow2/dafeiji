@@ -19,7 +19,6 @@ import com.meng.grzx.R;
 public class GroupReplyListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<GroupReply> groupReplies;
-    private File imageFile;
 
     public GroupReplyListAdapter(Context context, ArrayList<GroupReply> groupReplies) {
         this.context = context;
@@ -61,7 +60,8 @@ public class GroupReplyListAdapter extends BaseAdapter {
         GroupReply groupReply = groupReplies.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNum));
         holder.replySwitch.setChecked(groupReply.reply);
-        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupReply + ".jpg");
+
+        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupReply.groupNum + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
@@ -83,10 +83,12 @@ public class GroupReplyListAdapter extends BaseAdapter {
     class DownloadImageThread extends Thread {
         private ImageView imageView;
         private String imageUrl = "";
+        private File imageFile;
 
         public DownloadImageThread(ImageView imageView, long groupNumber) {
             this.imageView = imageView;
             imageUrl = "http://p.qlogo.cn/gh/" + groupNumber + "/" + groupNumber + "/100/";
+            imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupNumber + ".jpg");
         }
 
         @Override

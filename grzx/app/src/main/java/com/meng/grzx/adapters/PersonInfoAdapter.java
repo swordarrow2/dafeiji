@@ -28,8 +28,6 @@ import java.util.ArrayList;
 public class PersonInfoAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<PersonInfo> infos;
-    private File qqImageFile;
-    private File bilibiliImageFile;
 
     public PersonInfoAdapter(Context context, ArrayList<PersonInfo> infos) {
         this.context = context;
@@ -69,9 +67,8 @@ public class PersonInfoAdapter extends BaseAdapter {
         holder.textViewQQNumber.setText(String.valueOf(personInfo.qq));
         holder.textViewBilibiliUid.setText(String.valueOf(personInfo.bid));
         holder.textViewBilibiliLiveId.setText(String.valueOf(personInfo.bliveRoom));
-
-        qqImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + personInfo.qq + ".jpg");
-        bilibiliImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/bilibili/" + personInfo.bid + ".jpg");
+        File qqImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + personInfo.qq + ".jpg");
+        File bilibiliImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/bilibili/" + personInfo.bid + ".jpg");
         if (qqImageFile.exists()) {
             holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
         } else {
@@ -103,11 +100,17 @@ public class PersonInfoAdapter extends BaseAdapter {
         private ImageView imageView;
         private boolean isQQ = false;
         private long id = 0;
+        private File imageFile;
 
         public DownloadImageThread(ImageView imageView, long id, boolean isQQ) {
             this.imageView = imageView;
             this.isQQ = isQQ;
             this.id = id;
+            if (isQQ) {
+                imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + id + ".jpg");
+            } else {
+                imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/bilibili/" + id + ".jpg");
+            }
         }
 
         @Override
@@ -144,7 +147,7 @@ public class PersonInfoAdapter extends BaseAdapter {
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
                 InputStream is = connection.getInputStream();
-                FileOutputStream fos = new FileOutputStream(isQQ ? qqImageFile : bilibiliImageFile);
+                FileOutputStream fos = new FileOutputStream(imageFile);
                 byte buf[] = new byte[4096];
                 int len = 0;
                 while ((len = is.read(buf)) > 0) {
@@ -156,7 +159,7 @@ public class PersonInfoAdapter extends BaseAdapter {
 
                     @Override
                     public void run() {
-                        imageView.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
                     }
                 });
             } catch (IOException e) {

@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class GroupRepeaterListAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<GroupRepeater> groupRepeaters;
-    private File imageFile;
 
     public GroupRepeaterListAdapter(Context context, ArrayList<GroupRepeater> groupRepeaters) {
         this.context = context;
@@ -67,7 +66,7 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
             }
         });
         holder.groupNumber.setText(String.valueOf(repeater));
-        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + repeater.groupNumber + ".jpg");
+        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + repeater.groupNumber + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
@@ -90,10 +89,12 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
     class DownloadImageThread extends Thread {
         private ImageView imageView;
         private String imageUrl = "";
+        private File imageFile;
 
         public DownloadImageThread(ImageView imageView, long groupNumber) {
             this.imageView = imageView;
             imageUrl = "http://p.qlogo.cn/gh/" + groupNumber + "/" + groupNumber + "/100/";
+            imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupNumber + ".jpg");
         }
 
         @Override

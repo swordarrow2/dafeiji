@@ -25,7 +25,7 @@
         <ImageView
             android:id="@+id/imageView_qqHead"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
@@ -54,7 +54,7 @@
         <ImageView
             android:id="@+id/imageView_bilibiliHead"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"

@@ -16,7 +16,6 @@ import java.util.*;
 public class QQNotReplyAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Long> notReplyList;
-    private File imageFile;
 
     public QQNotReplyAdapter(Context context, ArrayList<Long> notReplyList) {
         this.context = context;
@@ -52,7 +51,7 @@ public class QQNotReplyAdapter extends BaseAdapter {
         }
         long groupReply = notReplyList.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply));
-        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + groupReply + ".jpg");
+        File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + groupReply + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
@@ -74,10 +73,12 @@ public class QQNotReplyAdapter extends BaseAdapter {
     class DownloadImageThread extends Thread {
         private ImageView imageView;
         private String imageUrl = "";
+        private File downloadFile;
 
         public DownloadImageThread(ImageView imageView, long QQnumber) {
             this.imageView = imageView;
             imageUrl = "http://q2.qlogo.cn/headimg_dl?bs=" + QQnumber + "&dst_uin=" + QQnumber + "&dst_uin=" + QQnumber + "&;dst_uin=" + QQnumber + "&spec=100&url_enc=0&referer=bu_interface&term_type=PC";
+            downloadFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + QQnumber + ".jpg");
         }
 
         @Override
@@ -87,26 +88,24 @@ public class QQNotReplyAdapter extends BaseAdapter {
 
         private void downloadFile(String url) {
             try {
-                if (!imageFile.exists()) {
-                    URL u = new URL(url);
-                    HttpURLConnection connection = (HttpURLConnection) u.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
-                    InputStream is = connection.getInputStream();
-                    FileOutputStream fos = new FileOutputStream(imageFile);
-                    byte buf[] = new byte[4096];
-                    int len = 0;
-                    while ((len = is.read(buf)) > 0) {
-                        fos.write(buf, 0, len);
-                    }
-                    is.close();
-                    connection.disconnect();
+                URL u = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) u.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
+                InputStream is = connection.getInputStream();
+                FileOutputStream fos = new FileOutputStream(downloadFile);
+                byte buf[] = new byte[4096];
+                int len = 0;
+                while ((len = is.read(buf)) > 0) {
+                    fos.write(buf, 0, len);
                 }
+                is.close();
+                connection.disconnect();
                 ((MainActivity) context).runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+                        imageView.setImageBitmap(BitmapFactory.decodeFile(downloadFile.getAbsolutePath()));
                     }
                 });
             } catch (IOException e) {
