@@ -1,4 +1,4 @@
-package com.meng.grzx;
+package com.meng.grzx.javaBean;
 
 public class BilibiliUser {
     public String name = "";
