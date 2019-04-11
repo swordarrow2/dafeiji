@@ -53,7 +53,8 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
             holder.groupNumber = (TextView) convertView.findViewById(R.id.group_reply_list_itemTextView);
             holder.imageView = (ImageView) convertView.findViewById(R.id.group_reply_list_itemImageView);
             holder.replySwitch = (Switch) convertView.findViewById(R.id.group_reply_list_itemSwitch);
-
+            holder.replySwitch.setTextOff("不复读");
+            holder.replySwitch.setTextOn("复读");
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -65,7 +66,7 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
                 repeater.reply = isChecked;
             }
         });
-        holder.groupNumber.setText(String.valueOf(repeater));
+        holder.groupNumber.setText(String.valueOf(repeater.groupNumber));
         File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + repeater.groupNumber + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));

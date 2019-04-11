@@ -69,15 +69,19 @@ public class PersonInfoAdapter extends BaseAdapter {
         holder.textViewBilibiliLiveId.setText(String.valueOf(personInfo.bliveRoom));
         File qqImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/user/" + personInfo.qq + ".jpg");
         File bilibiliImageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/bilibili/" + personInfo.bid + ".jpg");
-        if (qqImageFile.exists()) {
-            holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
-        } else {
-            new DownloadImageThread(holder.imageViewQQHead, personInfo.qq, true).start();
-        }
-        if (bilibiliImageFile.exists()) {
-            holder.imageViewBilibiiliHead.setImageBitmap(BitmapFactory.decodeFile(bilibiliImageFile.getAbsolutePath()));
-        } else {
-            new DownloadImageThread(holder.imageViewBilibiiliHead, personInfo.bid, false).start();
+       if(personInfo.qq!=0){
+           if (qqImageFile.exists()) {
+               holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
+           } else {
+               new DownloadImageThread(holder.imageViewQQHead, personInfo.qq, true).start();
+           }
+       }
+        if(personInfo.bid!=0){
+            if (bilibiliImageFile.exists()) {
+                holder.imageViewBilibiiliHead.setImageBitmap(BitmapFactory.decodeFile(bilibiliImageFile.getAbsolutePath()));
+            } else {
+                new DownloadImageThread(holder.imageViewBilibiiliHead, personInfo.bid, false).start();
+            }
         }
         return convertView;
     }
