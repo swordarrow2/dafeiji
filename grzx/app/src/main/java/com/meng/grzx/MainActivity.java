@@ -9,10 +9,11 @@ import android.widget.AdapterView.*;
 
 import com.google.gson.*;
 import com.meng.grzx.adapters.GroupDicListAdapter;
-import com.meng.grzx.adapters.GroupListAdapter;
+import com.meng.grzx.adapters.GroupReplyListAdapter;
 import com.meng.grzx.adapters.GroupRepeaterListAdapter;
-import com.meng.grzx.adapters.QQNotReplayAdapter;
-import com.meng.grzx.javaBean.BilibiliUser;
+import com.meng.grzx.adapters.PersonInfoAdapter;
+import com.meng.grzx.adapters.QQNotReplyAdapter;
+import com.meng.grzx.javaBean.PersonInfo;
 import com.meng.grzx.javaBean.ConfigJavaBean;
 import com.meng.grzx.javaBean.GroupRepeater;
 import com.meng.grzx.javaBean.GroupReply;
@@ -45,6 +46,10 @@ public class MainActivity extends Activity {
         if (!f2.exists()) {
             f2.mkdirs();
         }
+        File f3 = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/bilibili/");
+        if (!f3.exists()) {
+            f3.mkdirs();
+        }
         listViewGroupReply = (ListView) findViewById(R.id.mainListView_GroupReply);
         listViewQQNotReply = (ListView) findViewById(R.id.mainListView_QQNotReply);
         listViewWordNotReply = (ListView) findViewById(R.id.mainListView_WordNotReply);
@@ -65,7 +70,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                editText.setText(String.valueOf(configJavaBean.mapGroupReply.get(i)));
+                editText.setText(String.valueOf(configJavaBean.groupReply.get(i)));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
                         .setTitle("编辑")
@@ -80,7 +85,7 @@ public class MainActivity extends Activity {
                                                 GroupReply groupReply = new GroupReply();
                                                 groupReply.groupNum = Long.parseLong(editText.getText().toString());
                                                 groupReply.reply = true;
-                                                configJavaBean.mapGroupReply.set(i, groupReply);
+                                                configJavaBean.groupReply.set(i, groupReply);
                                                 loadConfigData(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -92,7 +97,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                editText.setText(String.valueOf(configJavaBean.mapQQNotReply.get(i)));
+                editText.setText(String.valueOf(configJavaBean.QQNotReply.get(i)));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
                         .setTitle("编辑")
@@ -104,7 +109,7 @@ public class MainActivity extends Activity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                configJavaBean.mapQQNotReply.set(i, Long.parseLong(editText.getText().toString()));
+                                                configJavaBean.QQNotReply.set(i, Long.parseLong(editText.getText().toString()));
                                                 loadConfigData(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -116,7 +121,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                editText.setText(String.valueOf(configJavaBean.mapWordNotReply.get(i)));
+                editText.setText(String.valueOf(configJavaBean.wordNotReply.get(i)));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
                         .setTitle("编辑")
@@ -128,7 +133,7 @@ public class MainActivity extends Activity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                configJavaBean.mapWordNotReply.set(i, editText.getText().toString());
+                                                configJavaBean.wordNotReply.set(i, editText.getText().toString());
                                                 loadConfigData(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -141,8 +146,8 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                final GroupRepeater groupRepeater = configJavaBean.mapGroupRepeater.get(i);
-                editText.setText(String.valueOf(groupRepeater.groupNum));
+                final GroupRepeater groupRepeater = configJavaBean.groupRepeater.get(i);
+                editText.setText(String.valueOf(groupRepeater.groupNumber));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
                         .setTitle("编辑")
@@ -154,7 +159,7 @@ public class MainActivity extends Activity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                groupRepeater.groupNum = Long.parseLong(editText.getText().toString());
+                                                groupRepeater.groupNumber = Long.parseLong(editText.getText().toString());
                                                 loadConfigData(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -167,7 +172,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 Intent in = new Intent(MainActivity.this, DicEdit.class);
-                in.putExtra("group", configJavaBean.mapGroupDicReply.get(i));
+                in.putExtra("group", configJavaBean.groupDicReply.get(i));
                 startActivity(in);
             }
         });
@@ -180,7 +185,7 @@ public class MainActivity extends Activity {
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-                final BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
+                final PersonInfo mapBiliUser = configJavaBean.personInfo.get(p3);
                 editTextName.setText(mapBiliUser.name);
                 editTextQQNumber.setText(String.valueOf(mapBiliUser.qq));
                 editTextBilibiliId.setText(String.valueOf(mapBiliUser.bid));
@@ -218,7 +223,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapGroupReply.remove(p3);
+                                configJavaBean.groupReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -235,7 +240,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapQQNotReply.remove(p3);
+                                configJavaBean.QQNotReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -252,7 +257,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapWordNotReply.remove(p3);
+                                configJavaBean.wordNotReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -270,7 +275,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapGroupRepeater.remove(p3);
+                                configJavaBean.groupRepeater.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -287,7 +292,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapGroupDicReply.remove(p3);
+                                configJavaBean.groupDicReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -304,7 +309,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapBiliUser.remove(p3);
+                                configJavaBean.personInfo.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -321,7 +326,7 @@ public class MainActivity extends Activity {
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-                final BilibiliUser mapBiliUser = configJavaBean.mapBiliUser.get(p3);
+                final PersonInfo mapBiliUser = configJavaBean.personInfo.get(p3);
                 editTextName.setText(mapBiliUser.name);
                 editTextQQNumber.setText(String.valueOf(mapBiliUser.qq));
                 editTextBilibiliId.setText(String.valueOf(mapBiliUser.bid));
@@ -358,7 +363,7 @@ public class MainActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                configJavaBean.mapBiliUser.remove(p3);
+                                configJavaBean.personInfo.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -404,7 +409,7 @@ public class MainActivity extends Activity {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                for (BilibiliUser user : configJavaBean.mapBiliUser) {
+                                                for (PersonInfo user : configJavaBean.personInfo) {
                                                     if (Long.parseLong(editTextBilibiliId.getText().toString()) == user.bid &&
                                                             Long.parseLong(editTextQQNumber.getText().toString()) == user.qq &&
                                                             editTextName.getText().toString().equals(user.name) &&
@@ -412,12 +417,12 @@ public class MainActivity extends Activity {
                                                         return;
                                                     }
                                                 }
-                                                BilibiliUser user = new BilibiliUser();
+                                                PersonInfo user = new PersonInfo();
                                                 user.name = editTextName.getText().toString();
                                                 user.qq = Long.parseLong(editTextQQNumber.getText().toString());
                                                 user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 user.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
-                                                configJavaBean.mapBiliUser.add(user);
+                                                configJavaBean.personInfo.add(user);
                                                 loadConfigData(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -440,7 +445,7 @@ public class MainActivity extends Activity {
 
                                                 switch (tabHost.getCurrentTab()) {
                                                     case 0:
-                                                        for (GroupReply g : configJavaBean.mapGroupReply) {
+                                                        for (GroupReply g : configJavaBean.groupReply) {
                                                             if (g.groupNum == Long.parseLong(editText.getText().toString())) {
                                                                 return;
                                                             }
@@ -448,41 +453,41 @@ public class MainActivity extends Activity {
                                                         GroupReply groupReply = new GroupReply();
                                                         groupReply.groupNum = Long.parseLong(editText.getText().toString());
                                                         groupReply.reply = true;
-                                                        configJavaBean.mapGroupReply.add(groupReply);
+                                                        configJavaBean.groupReply.add(groupReply);
                                                         break;
                                                     case 1:
-                                                        for (long l : configJavaBean.mapQQNotReply) {
+                                                        for (long l : configJavaBean.QQNotReply) {
                                                             if (l == Long.parseLong(editText.getText().toString())) {
                                                                 return;
                                                             }
                                                         }
-                                                        configJavaBean.mapQQNotReply.add(Long.parseLong(editText.getText().toString()));
+                                                        configJavaBean.QQNotReply.add(Long.parseLong(editText.getText().toString()));
                                                         break;
                                                     case 2:
-                                                        for (String l : configJavaBean.mapWordNotReply) {
+                                                        for (String l : configJavaBean.wordNotReply) {
                                                             if (l.equals(editText.getText().toString())) {
                                                                 return;
                                                             }
                                                         }
-                                                        configJavaBean.mapWordNotReply.add(editText.getText().toString());
+                                                        configJavaBean.wordNotReply.add(editText.getText().toString());
                                                         break;
                                                     case 3:
-                                                        for (GroupRepeater l : configJavaBean.mapGroupRepeater) {
-                                                            if (l.groupNum == Long.parseLong(editText.getText().toString())) {
+                                                        for (GroupRepeater l : configJavaBean.groupRepeater) {
+                                                            if (l.groupNumber == Long.parseLong(editText.getText().toString())) {
                                                                 return;
                                                             }
                                                         }
                                                         GroupRepeater groupRepeater = new GroupRepeater();
-                                                        groupRepeater.groupNum = Long.parseLong(editText.getText().toString());
-                                                        configJavaBean.mapGroupRepeater.add(groupRepeater);
+                                                        groupRepeater.groupNumber = Long.parseLong(editText.getText().toString());
+                                                        configJavaBean.groupRepeater.add(groupRepeater);
                                                         break;
                                                     case 4:
-                                                        for (long l : configJavaBean.mapGroupDicReply) {
+                                                        for (long l : configJavaBean.groupDicReply) {
                                                             if (l == Long.parseLong(editText.getText().toString())) {
                                                                 return;
                                                             }
                                                         }
-                                                        configJavaBean.mapGroupDicReply.add(Long.parseLong(editText.getText().toString()));
+                                                        configJavaBean.groupDicReply.add(Long.parseLong(editText.getText().toString()));
                                                         break;
                                                 }
                                                 loadConfigData(gson.toJson(configJavaBean));
@@ -501,19 +506,12 @@ public class MainActivity extends Activity {
 
     private void loadConfigData(String s) {
         configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
-
-        listViewGroupReply.setAdapter(new GroupListAdapter(this, configJavaBean.mapGroupReply));
-        listViewQQNotReply.setAdapter(new QQNotReplayAdapter(this, configJavaBean.mapQQNotReply));
-        listViewWordNotReply.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(configJavaBean.mapWordNotReply)));
-        listViewGroupRepeater.setAdapter(new GroupRepeaterListAdapter(this, configJavaBean.mapGroupRepeater));
-        listViewGroupDicReply.setAdapter(new GroupDicListAdapter(this, configJavaBean.mapGroupDicReply));
-
-        ArrayList<String> list6 = new ArrayList<String>();
-        for (BilibiliUser mapBiliUser : configJavaBean.mapBiliUser) {
-            list6.add(mapBiliUser.name + "  " + mapBiliUser.qq + "  " + mapBiliUser.bid + "  " + mapBiliUser.bliveRoom);
-        }
-        listViewPersonInfo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list6));
-
+        listViewGroupReply.setAdapter(new GroupReplyListAdapter(this, configJavaBean.groupReply));
+        listViewQQNotReply.setAdapter(new QQNotReplyAdapter(this, configJavaBean.QQNotReply));
+        listViewWordNotReply.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(configJavaBean.wordNotReply)));
+        listViewGroupRepeater.setAdapter(new GroupRepeaterListAdapter(this, configJavaBean.groupRepeater));
+        listViewGroupDicReply.setAdapter(new GroupDicListAdapter(this, configJavaBean.groupDicReply));
+        listViewPersonInfo.setAdapter(new PersonInfoAdapter(this, configJavaBean.personInfo));
     }
 
     private void getJsonString() {
@@ -582,8 +580,8 @@ public class MainActivity extends Activity {
     /* private void loadPersonInfoData() {
 	 personInfoJavaBean = gson.fromJson(loadFromSDFile(new File(Environment.getExternalStorageDirectory() + "/grzx.json")), PersonInfoJavaBean.class);
 	 ArrayList<String> list = new ArrayList<String>();
-	 for (PersonInfoJavaBean.MapBiliUser mapBiliUser : personInfoJavaBean.mapBiliUser) {
-	 list.add(mapBiliUser.name + "  " + mapBiliUser.qq + "  " + mapBiliUser.bid + "  " + mapBiliUser.bliveRoom);
+	 for (PersonInfoJavaBean.MapBiliUser personInfo : personInfoJavaBean.personInfo) {
+	 list.add(personInfo.name + "  " + personInfo.qq + "  " + personInfo.bid + "  " + personInfo.bliveRoom);
 	 }
 	 listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
      }

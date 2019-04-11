@@ -25,16 +25,16 @@ import java.util.ArrayList;
 
 public class GroupRepeaterListAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<GroupRepeater> dicList;
+    private ArrayList<GroupRepeater> groupRepeaters;
     private File imageFile;
 
-    public GroupRepeaterListAdapter(Context context, ArrayList<GroupRepeater> dicList) {
+    public GroupRepeaterListAdapter(Context context, ArrayList<GroupRepeater> groupRepeaters) {
         this.context = context;
-        this.dicList = dicList;
+        this.groupRepeaters = groupRepeaters;
     }
 
     public int getCount() {
-        return dicList.size();
+        return groupRepeaters.size();
     }
 
     public Object getItem(int position) {
@@ -59,7 +59,7 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final GroupRepeater repeater = dicList.get(position);
+        final GroupRepeater repeater = groupRepeaters.get(position);
         holder.replySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -67,11 +67,11 @@ public class GroupRepeaterListAdapter extends BaseAdapter {
             }
         });
         holder.groupNumber.setText(String.valueOf(repeater));
-        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + repeater.groupNum + ".jpg");
+        imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + repeater.groupNumber + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
-            new DownloadImageThread(holder.imageView, repeater.groupNum).start();
+            new DownloadImageThread(holder.imageView, repeater.groupNumber).start();
         }
         return convertView;
     }
