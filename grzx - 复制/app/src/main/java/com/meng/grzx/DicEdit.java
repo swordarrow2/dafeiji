@@ -14,7 +14,7 @@ import java.util.*;
 public class DicEdit extends Activity{
     public final String IP = "123.207.65.93";
     public final int PORT = 9999;
-    public long groupNum;
+    public long groupNum=703170126L;
     public ListView mainListview;
     public JsonObject jsonObject;
     public Gson gson = new Gson();
@@ -24,11 +24,7 @@ public class DicEdit extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        groupNum=intent.getLongExtra("group",0l);
-        if(groupNum==0){
-            finish();
-		  }
+
         setContentView(R.layout.dic_edit_main);
         getActionBar().show();
         mainListview=(ListView) findViewById(R.id.dic_editListView);
@@ -85,8 +81,17 @@ public class DicEdit extends Activity{
 			  .setPositiveButton("确定",new DialogInterface.OnClickListener() {
 				  @Override
 				  public void onClick(DialogInterface p11,int p2){
+					  if(editText.getText().toString().length()<3){
+						  Toast.makeText(DicEdit.this,"谢绝过短关键字",Toast.LENGTH_SHORT).show();
+						  return;
+						}
+					  if(editText.getText().toString().contains("椰叶")|editText.getText().toString().contains("人？")){
+						  Toast.makeText(DicEdit.this,"谢绝膜人",Toast.LENGTH_SHORT).show();
+						  return;
+						}
 					  jsonObject.add(editText.getText().toString(),new JsonArray());
 					  loadConfigData(gson.toJson(jsonObject));
+					  setJsonString();
 					}
 				}).setNegativeButton("取消",null).show();
 		  }else if(item.getTitle().equals("从服务器获取信息")){
@@ -97,6 +102,11 @@ public class DicEdit extends Activity{
         return true;
 	  }
 
+	@Override
+	protected void onResume(){
+		getJsonString();
+		super.onResume();
+	  }
 
     private void getJsonString(){
 
@@ -148,6 +158,7 @@ public class DicEdit extends Activity{
 							@Override
 							public void run(){
 								Toast.makeText(DicEdit.this,result.equals("ok")? "成功" :"失败",Toast.LENGTH_SHORT).show();
+								getJsonString();
 							  }
 						  });
 					  client.close();
@@ -189,6 +200,10 @@ public class DicEdit extends Activity{
 					.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface p11,int p2){
+							if(editText.getText().toString().contains("椰叶")|editText.getText().toString().contains("人？")){
+								Toast.makeText(DicEdit.this,"谢绝膜人",Toast.LENGTH_SHORT).show();
+								return;
+							  }
 							array.add(editText.getText().toString());
 							loadConfigData(gson.toJson(jsonObject));
 						  }

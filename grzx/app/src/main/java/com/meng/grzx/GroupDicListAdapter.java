@@ -13,13 +13,13 @@ import java.util.*;
 import android.os.*;
 import android.graphics.*;
 
-public class GroupListAdapter extends BaseAdapter{
+public class GroupDicListAdapter extends BaseAdapter{
 	private Context context;
-	private ArrayList<GroupReply> musicInfoBeans;
+	private ArrayList<Long> musicInfoBeans;
 	private LayoutInflater inflater;
 	private ViewHolder holder;
 
-	public GroupListAdapter(Context context,ArrayList<GroupReply> musicInfoBeans){
+	public GroupDicListAdapter(Context context,ArrayList<Long> musicInfoBeans){
 		this.context=context;
 		this.musicInfoBeans=musicInfoBeans;
 		inflater=LayoutInflater.from(context);
@@ -40,24 +40,18 @@ public class GroupListAdapter extends BaseAdapter{
 		if(convertView==null){
 			convertView=inflater.inflate(R.layout.group_reply_list_item,null);
 			holder=new ViewHolder();
-			holder.groupNumber=(TextView) convertView.findViewById(R.id.group_reply_list_itemTextView);
+			holder.groupNumber=(TextView) convertView.findViewById(R.id.group_reply_list_itemTextView);		
+			holder.imageView=(ImageView)convertView.findViewById(R.id.group_reply_list_itemImageView);		
 			holder.replySwitch=(Switch) convertView.findViewById(R.id.group_reply_list_itemSwitch);
-			holder.imageView=(ImageView)convertView.findViewById(R.id.group_reply_list_itemImageView);
-			holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-
-				  @Override
-				  public void onCheckedChanged(CompoundButton p1,boolean p2){
-					  musicInfoBeans.get(position).reply=p2;
-					}
-				});
+			holder.replySwitch.setEnabled(false);
+			holder.replySwitch.setChecked(true);
 			convertView.setTag(holder);
 		  }else{
 			holder=(ViewHolder) convertView.getTag();
 		  }
-		GroupReply groupReply=musicInfoBeans.get(position);
-		holder.groupNumber.setText(String.valueOf(groupReply.groupNum));
-		holder.replySwitch.setChecked(groupReply.reply);
-		new DownloadImageThread(holder.imageView,groupReply.groupNum).start();
+		long groupReply=musicInfoBeans.get(position);
+		holder.groupNumber.setText(String.valueOf(groupReply));
+		new DownloadImageThread(holder.imageView,groupReply).start();
 		return convertView;
 	  }
 	//这个内部类主要为了ListView加载的一个性能优化
@@ -69,6 +63,7 @@ public class GroupListAdapter extends BaseAdapter{
 		private TextView groupNumber;
 		private Switch replySwitch;
 	  }
+	
 
 	class DownloadImageThread extends Thread{
 		private long groupNumber = 0;
@@ -88,28 +83,25 @@ public class GroupListAdapter extends BaseAdapter{
 
 		private void downloadFile(String url){
 			try{
-				URL u = new URL(url);
-				HttpURLConnection connection = (HttpURLConnection) u.openConnection();
-				connection.setRequestMethod("GET");
-				connection.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
 				final String expandName = ".jpg";
 				final String fileName = String.valueOf(groupNumber);
 
 				final File file = new File(Environment.getExternalStorageDirectory()+"/Pictures/grzx/group/"+fileName+expandName);
-				if(!file.exists()){											
+				if(!file.exists()){
+					URL u = new URL(url);
+					HttpURLConnection connection = (HttpURLConnection) u.openConnection();
+					connection.setRequestMethod("GET");
+					connection.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:28.0) Gecko/20100101 Firefox/28.0");
 					InputStream is = connection.getInputStream();
-					if(is!=null){
-						FileOutputStream fos = new FileOutputStream(file);
-						byte buf[] = new byte[4096];
-						int len = 0;
-						while((len=is.read(buf))>0){
-							fos.write(buf,0,len);
-						  }
-					  }
+					FileOutputStream fos = new FileOutputStream(file);
+					byte buf[] = new byte[4096];
+					int len = 0;
+					while((len=is.read(buf))>0){
+						fos.write(buf,0,len);
+					  }			
 					is.close();
+					connection.disconnect();
 				  }
-				connection.disconnect();
-
 				((MainActivity)context).runOnUiThread(new Runnable(){
 
 					  @Override
