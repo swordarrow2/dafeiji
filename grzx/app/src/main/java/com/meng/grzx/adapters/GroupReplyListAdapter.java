@@ -1,20 +1,17 @@
 package com.meng.grzx.adapters;
 
 import android.content.*;
+import android.graphics.*;
+import android.os.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.CompoundButton.*;
-
+import com.google.gson.*;
+import com.meng.grzx.*;
+import com.meng.grzx.javaBean.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-
-import android.os.*;
-import android.graphics.*;
-
-import com.meng.grzx.javaBean.GroupReply;
-import com.meng.grzx.MainActivity;
-import com.meng.grzx.R;
 
 public class GroupReplyListAdapter extends BaseAdapter {
     private Context context;
@@ -46,13 +43,6 @@ public class GroupReplyListAdapter extends BaseAdapter {
             holder.groupNumber = (TextView) convertView.findViewById(R.id.group_reply_list_itemTextView);
             holder.replySwitch = (Switch) convertView.findViewById(R.id.group_reply_list_itemSwitch);
             holder.imageView = (ImageView) convertView.findViewById(R.id.group_reply_list_itemImageView);
-            holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-                @Override
-                public void onCheckedChanged(CompoundButton p1, boolean p2) {
-                    groupReplies.get(position).reply = p2;
-                }
-            });
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -60,7 +50,14 @@ public class GroupReplyListAdapter extends BaseAdapter {
         GroupReply groupReply = groupReplies.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNum));
         holder.replySwitch.setChecked(groupReply.reply);
+		holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
+			  @Override
+			  public void onCheckedChanged(CompoundButton p1, boolean p2) {
+				  groupReplies.get(position).reply = p2;
+				  ((MainActivity)context).setJsonString(new Gson().toJson(((MainActivity)context).configJavaBean));
+                }
+            });
         File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupReply.groupNum + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
@@ -74,7 +71,7 @@ public class GroupReplyListAdapter extends BaseAdapter {
     //View的findViewById()方法也是比较耗时的，因此需要考虑只调用一次，
     //之后就用View.getTag()方法来获得ViewHolder对象
     //有时候如果没有必要，我们就没有必要这样去做，可以直接在上面定义
-    private final class ViewHolder {
+    private class ViewHolder {
         private ImageView imageView;
         private TextView groupNumber;
         private Switch replySwitch;

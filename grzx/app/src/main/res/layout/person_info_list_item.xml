@@ -9,35 +9,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-
-        <TextView
+    
+        <ImageView
+            android:id="@+id/imageView_qqHead"
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight" />
+		
+		<TextView
             android:id="@+id/textView_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             android:textColor="#ffffff" />
-
-        <ImageView
-            android:id="@+id/imageView_qqHead"
-            android:layout_width="wrap_content"
-            android:layout_height="?android:attr/listPreferredItemHeightSmall"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-            android:src="@drawable/stat_sys_download_anim0" />
-
+		
         <TextView
             android:id="@+id/textView_qqnum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
@@ -53,20 +49,17 @@
 
         <ImageView
             android:id="@+id/imageView_bilibiliHead"
-            android:layout_width="wrap_content"
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
             android:layout_height="?android:attr/listPreferredItemHeightSmall"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-            android:src="@drawable/stat_sys_download_anim0" />
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight" />
 
         <TextView
             android:id="@+id/textView_bilibiliUid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
@@ -78,7 +71,6 @@
             android:id="@+id/textView_bilibiliLiveId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"

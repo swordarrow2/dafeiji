@@ -198,6 +198,7 @@ public class DicEdit extends Activity {
         dicListview.setOnItemLongClickListener(new OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+			  dialog.dismiss();
                 new AlertDialog.Builder(DicEdit.this)
                         .setTitle("删除")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {

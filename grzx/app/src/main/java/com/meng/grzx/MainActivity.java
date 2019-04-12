@@ -410,7 +410,7 @@ public class MainActivity extends Activity {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 for (PersonInfo user : configJavaBean.personInfo) {
-                                                    if (Long.parseLong(editTextBilibiliId.getText().toString()) == user.bid &&
+                                                    if (Long.parseLong(editTextBilibiliId.getText().toString().replace("UID:", "")) == user.bid &&
                                                             Long.parseLong(editTextQQNumber.getText().toString()) == user.qq &&
                                                             editTextName.getText().toString().equals(user.name) &&
                                                             Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", "")) == user.bliveRoom) {
@@ -488,6 +488,30 @@ public class MainActivity extends Activity {
                                                             }
                                                         }
                                                         configJavaBean.groupDicReply.add(Long.parseLong(editText.getText().toString()));
+													  new Thread(new Runnable() {
+															@Override
+															public void run() {
+																try {
+																	Socket client = new Socket(IP, 9999);
+																	OutputStream out = client.getOutputStream();
+																	DataOutputStream dos = new DataOutputStream(out);
+																	dos.writeUTF("write" + Long.parseLong(editText.getText().toString()) + ".{}" );
+																	InputStream in = client.getInputStream();
+																	DataInputStream dis = new DataInputStream(in);
+																	final String result = dis.readUTF();
+																	runOnUiThread(new Runnable() {
+
+																		  @Override
+																		  public void run() {
+																			  Toast.makeText(MainActivity.this, result.equals("ok") ? "初始化词库成功" : "初始化词库失败", Toast.LENGTH_SHORT).show();
+																			}
+																		});
+																	client.close();
+																  } catch (Exception e) {
+																	e.printStackTrace();
+																  }
+															  }
+														  }).start();
                                                         break;
                                                 }
                                                 loadConfigData(gson.toJson(configJavaBean));
@@ -514,7 +538,7 @@ public class MainActivity extends Activity {
         listViewPersonInfo.setAdapter(new PersonInfoAdapter(this, configJavaBean.personInfo));
     }
 
-    private void getJsonString() {
+    public void getJsonString() {
 
         new Thread(new Runnable() {
             @Override
@@ -546,7 +570,7 @@ public class MainActivity extends Activity {
         }).start();
     }
 
-    private void setJsonString(final String jsonString) {
+    public void setJsonString(final String jsonString) {
 
         new Thread(new Runnable() {
             @Override
