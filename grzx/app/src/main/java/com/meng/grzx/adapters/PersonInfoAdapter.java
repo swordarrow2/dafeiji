@@ -123,6 +123,9 @@ public class PersonInfoAdapter extends BaseAdapter{
 
         @Override
         public void run(){
+			if(!((MainActivity) context).onWifi){
+				return;
+			  }
             if(isQQ){
                 downloadFile("http://q2.qlogo.cn/headimg_dl?bs="+id+"&dst_uin="+id+"&dst_uin="+id+"&;dst_uin="+id+"&spec=100&url_enc=0&referer=bu_interface&term_type=PC");
 			  }else{

@@ -85,6 +85,9 @@ public class GroupDicListAdapter extends BaseAdapter {
 
         @Override
         public void run() {
+			if(!((MainActivity) context).onWifi){
+			  return;
+			}
             downloadFile(imageUrl);
         }
 

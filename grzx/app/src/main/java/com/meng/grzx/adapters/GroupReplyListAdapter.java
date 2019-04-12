@@ -47,17 +47,19 @@ public class GroupReplyListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        GroupReply groupReply = groupReplies.get(position);
+        final GroupReply groupReply = groupReplies.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNum));
-        holder.replySwitch.setChecked(groupReply.reply);
+        
 		holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			  @Override
 			  public void onCheckedChanged(CompoundButton p1, boolean p2) {
-				  groupReplies.get(position).reply = p2;
-				  ((MainActivity)context).setJsonString(new Gson().toJson(((MainActivity)context).configJavaBean));
+				  groupReply.reply = p2;
                 }
             });
+			
+		holder.replySwitch.setChecked(groupReply.reply);
+		
         File imageFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/" + groupReply.groupNum + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
@@ -90,6 +92,9 @@ public class GroupReplyListAdapter extends BaseAdapter {
 
         @Override
         public void run() {
+			if(!((MainActivity) context).onWifi){
+				return;
+			  }
             downloadFile(imageUrl);
         }
 

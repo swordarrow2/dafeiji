@@ -49,15 +49,17 @@ public class GroupRepeaterListAdapter extends BaseAdapter{
             holder=(ViewHolder) convertView.getTag();
 		  }
         final GroupRepeater repeater = groupRepeaters.get(position);
-		holder.replySwitch.setChecked(repeater.reply);
+		
         holder.groupNumber.setText(String.valueOf(repeater.groupNumber));
         holder.replySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			  @Override
 			  public void onCheckedChanged(CompoundButton buttonView,boolean isChecked){
 				  repeater.reply=isChecked;
-				  ((MainActivity)context).setJsonString(new Gson().toJson(((MainActivity)context).configJavaBean));
 				}
 			});
+			
+		holder.replySwitch.setChecked(repeater.reply);
+			
         File imageFile = new File(Environment.getExternalStorageDirectory()+"/Pictures/grzx/group/"+repeater.groupNumber+".jpg");
         if(imageFile.exists()){
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
@@ -91,6 +93,9 @@ public class GroupRepeaterListAdapter extends BaseAdapter{
 
         @Override
         public void run(){
+		  if(!((MainActivity) context).onWifi){
+				return;
+			  }
             downloadFile(imageUrl);
 		  }
 
