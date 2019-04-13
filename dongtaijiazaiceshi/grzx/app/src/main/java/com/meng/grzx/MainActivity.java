@@ -29,13 +29,34 @@ public class MainActivity extends Activity {
     public final int PORT = 9760;
     public Gson gson = new Gson();
     public boolean onWifi = false;
-
+	Method setAdapter;
+	Method loadConfigData;
+	Class clz;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         getActionBar().show();
 
+		
+        File dexOutputDir = getDir("dex1", 0);
+        String dexPath = Environment.getExternalStorageDirectory() + File.separator + "AppProjects/dafeiji/dongtaijiazaiceshi/beijiazai/app/build/bin/classes.dex";
+        DexClassLoader loader = new DexClassLoader(dexPath, dexOutputDir.getAbsolutePath(), null, ClassLoader.getSystemClassLoader().getParent());
+        try {
+            clz = loader.loadClass("c.c.beijiazai.todo");
+            //     Object instance = clz.newInstance();
+            Method method = clz.getMethod("init", Context.class, Button.class);
+			setAdapter=clz.getMethod("setAdapter",ListView.class,ListView.class,ListView.class,ListView.class,ListView.class,ListView.class);
+			loadConfigData=clz.getMethod("loadConfigData",String.class);
+            method.invoke(clz.newInstance(),this);
+			setAdapter.invoke(clz.newInstance(),listViewGroupReply,listViewQQNotReply,listViewWordNotReply,listViewGroupRepeater,listViewGroupDicReply,listViewPersonInfo);
+			
+		  } catch (Exception e) {
+			e.printStackTrace();
+            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
+		  }
+		  
+		 
         File f = new File(Environment.getExternalStorageDirectory() + "/Pictures/grzx/group/");
         if (!f.exists()) {
             f.mkdirs();
@@ -48,18 +69,7 @@ public class MainActivity extends Activity {
         if (!f3.exists()) {
             f3.mkdirs();
         }
-        Button btn = new Button(this);
-        File dexOutputDir = getDir("dex1", 0);
-        String dexPath = Environment.getExternalStorageDirectory() + File.separator + "out.jar";
-        DexClassLoader loader = new DexClassLoader(dexPath, dexOutputDir.getAbsolutePath(), null, ClassLoader.getSystemClassLoader().getParent());
-        try {
-            Class clz = loader.loadClass("c.c.beijiazai");
-            //     Object instance = clz.newInstance();
-            Method method = clz.getMethod("init", Context.class, Button.class);
-            method.invoke(this, btn);
-        } catch (Exception e) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-        }
+      
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -80,7 +90,7 @@ public class MainActivity extends Activity {
         tabHost.addTab(tabHost.newTabSpec("four").setIndicator("复读机").setContent(R.id.mainListView_GroupRepeater));
         tabHost.addTab(tabHost.newTabSpec("five").setIndicator("群组词库").setContent(R.id.mainListView_GroupDicReply));
         tabHost.addTab(tabHost.newTabSpec("six").setIndicator("账号").setContent(R.id.mainListView_PersonInfo));
-        getJsonString();
+     //   getJsonString();
         listViewGroupReply.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
@@ -101,8 +111,18 @@ public class MainActivity extends Activity {
                                                 groupReply.groupNum = Long.parseLong(editText.getText().toString());
                                                 groupReply.reply = true;
                                                 configJavaBean.groupReply.set(i, groupReply);
-                                                loadConfigData(gson.toJson(configJavaBean));
-                                            }
+                                                try{
+													loadConfigData.invoke(clz.newInstance(),gson.toJson(configJavaBean));
+												  }catch(InvocationTargetException e){
+													
+												  }catch(InstantiationException e){
+													
+												  }catch(IllegalAccessException e){
+													
+												  }catch(IllegalArgumentException e){
+													
+												  }
+											  }
                                         }).setNegativeButton("取消", null).show();
                             }
                         }).setNegativeButton("取消", null).show();
@@ -125,7 +145,17 @@ public class MainActivity extends Activity {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 configJavaBean.QQNotReply.set(i, Long.parseLong(editText.getText().toString()));
-                                                loadConfigData(gson.toJson(configJavaBean));
+                                                try{
+											  loadConfigData.invoke(clz.newInstance(),gson.toJson(configJavaBean));
+										  }catch(InvocationTargetException e){
+
+								}catch(InstantiationException e){
+
+					  }catch(IllegalAccessException e){
+
+						}catch(IllegalArgumentException e){
+
+							}
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -536,53 +566,11 @@ public class MainActivity extends Activity {
                         }).setNegativeButton("取消", null).show();
             }
         } else if (item.getTitle().equals("从服务器获取信息")) {
-            getJsonString();
+       //     getJsonString();
         } else if (item.getTitle().equals("提交修改到服务器")) {
             setJsonString(gson.toJson(configJavaBean));
         }
         return true;
-    }
-
-    private void loadConfigData(String s) {
-        configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
-        listViewGroupReply.setAdapter(new GroupReplyListAdapter(this, configJavaBean.groupReply));
-        listViewQQNotReply.setAdapter(new QQNotReplyAdapter(this, configJavaBean.QQNotReply));
-        listViewWordNotReply.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(configJavaBean.wordNotReply)));
-        listViewGroupRepeater.setAdapter(new GroupRepeaterListAdapter(this, configJavaBean.groupRepeater));
-        listViewGroupDicReply.setAdapter(new GroupDicListAdapter(this, configJavaBean.groupDicReply));
-        listViewPersonInfo.setAdapter(new PersonInfoAdapter(this, configJavaBean.personInfo));
-    }
-
-    public void getJsonString() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Socket client = new Socket(IP, PORT);
-                    OutputStream out = client.getOutputStream();
-                    DataOutputStream dos = new DataOutputStream(out);
-                    dos.writeUTF("get");
-                    InputStream in = client.getInputStream();
-                    DataInputStream dis = new DataInputStream(in);
-                    final String result = dis.readUTF();
-                    runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            //	Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
-                            loadConfigData(result);
-                        }
-                    });
-                    client.close();
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                }
-            }
-        }).start();
     }
 
     public void setJsonString(final String jsonString) {

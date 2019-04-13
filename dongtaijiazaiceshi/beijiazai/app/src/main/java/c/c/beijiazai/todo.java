@@ -2,17 +2,16 @@ package c.c.beijiazai;
 
 import android.app.*;
 import android.content.*;
-import android.graphics.*;
-import android.view.*;
-import android.view.View.*;
 import android.widget.*;
+import java.io.*;
+import java.net.*;
 
 public class todo extends Activity {
     Context context;
-
-    public void init(Context context, Button btn) {
+	public final String IP = "123.207.65.93";
+    public final int PORT = 9760;
+    public void init(Context context) {
         this.context = context;
-        btn.setText("发发发");
         showToast();
     }
 
@@ -20,22 +19,52 @@ public class todo extends Activity {
         Toast.makeText(context, "start", Toast.LENGTH_LONG).show();
     }
 
-    public int showToast2() {
-        Toast.makeText(context, "openqq pause", Toast.LENGTH_LONG).show();
-        return 100;
-    }
+    public void setAdapter(ListView[] views){
+		
+	}
+	
+	
+	
+	public void getJsonString() {
 
-    private void launchQQ() {
-        //ComponentName componetName = new ComponentName("com.downloading.main.baiduyundownload","com.downloading.main.baiduyundownload.home.D");
-        ComponentName componetName = new ComponentName("com.tencent.mobileqq", "com.tencent.mobileqq.activity.SplashActivity");
-        try {
-            Intent intent = new Intent();
-            intent.setComponent(componetName);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-        } catch (Exception e) {
-        }
-    }
+        new Thread(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						Socket client = new Socket(IP, PORT);
+						OutputStream out = client.getOutputStream();
+						DataOutputStream dos = new DataOutputStream(out);
+						dos.writeUTF("get");
+						InputStream in = client.getInputStream();
+						DataInputStream dis = new DataInputStream(in);
+						final String result = dis.readUTF();
+						runOnUiThread(new Runnable() {
 
+								@Override
+								public void run() {
+									//	Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
+									loadConfigData(result);
+								}
+							});
+						client.close();
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+					}
+				}
+			}).start();
+    }
+	private void loadConfigData(String s) {
+        configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
+        listViewGroupReply.setAdapter(new GroupReplyListAdapter(this, configJavaBean.groupReply));
+        listViewQQNotReply.setAdapter(new QQNotReplyAdapter(this, configJavaBean.QQNotReply));
+        listViewWordNotReply.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(configJavaBean.wordNotReply)));
+        listViewGroupRepeater.setAdapter(new GroupRepeaterListAdapter(this, configJavaBean.groupRepeater));
+        listViewGroupDicReply.setAdapter(new GroupDicListAdapter(this, configJavaBean.groupDicReply));
+        listViewPersonInfo.setAdapter(new PersonInfoAdapter(this, configJavaBean.personInfo));
+    }
+	
 
 }  
