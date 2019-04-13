@@ -1,21 +1,12 @@
 package com.meng.grzx;
 
-import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
-import android.widget.ImageView;
-
-import com.google.gson.Gson;
-import com.meng.grzx.javaBean.bilibili.BilibiliPersonInfo;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import android.content.*;
+import android.graphics.*;
+import android.widget.*;
+import com.google.gson.*;
+import com.meng.grzx.javaBean.bilibili.*;
+import java.io.*;
+import java.net.*;
 
 public class DownloadImageThread extends Thread {
     private ImageView imageView;

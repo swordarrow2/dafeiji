@@ -58,7 +58,7 @@ public class QQNotReplyAdapter extends BaseAdapter {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
             if (MainActivity.onWifi) {
-                new DownloadImageThread(context, holder.imageView, qqNotReply, HeadType.QQGroup).start();
+                new DownloadImageThread(context, holder.imageView, qqNotReply, HeadType.QQUser).start();
             } else {
                 holder.imageView.setImageResource(R.drawable.stat_sys_download_anim0);
                 holder.imageView.setOnClickListener(new View.OnClickListener() {
