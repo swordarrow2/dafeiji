@@ -84,6 +84,7 @@ public class QQNotReplyAdapter extends BaseAdapter {
         @Override
         public void run() {
 			if(!((MainActivity) context).onWifi){
+				imageView.setImageResource(R.drawable.stat_sys_download_anim0);
 				return;
 			  }
             downloadFile(imageUrl);

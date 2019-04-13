@@ -10,7 +10,9 @@ import android.widget.AdapterView.*;
 import com.google.gson.*;
 import com.meng.grzx.adapters.*;
 import com.meng.grzx.javaBean.*;
+import dalvik.system.*;
 import java.io.*;
+import java.lang.reflect.*;
 import java.net.*;
 import java.util.*;
 
@@ -43,9 +45,19 @@ public class MainActivity extends Activity{
         if(!f3.exists()){
             f3.mkdirs();
 		  }
-
+	/*	DexClassLoader loader = new DexClassLoader(dexPath,
+												   dexOutputDir.getAbsolutePath(),
+												   null, ClassLoader.getSystemClassLoader().getParent());
+		try{
+			Class clz = loader.loadClass("com.youbo.switchsky.LogUtils");
+			Object instance= clz.newInstance();
+			Method method = clz.getMethod("parse", Context.class);
+			method.invoke(instance,this);
+		  }catch(Exception e){}
+		
+		*/  
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo wifiNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		NetworkInfo wifiNetworkInfo =connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		onWifi=wifiNetworkInfo.isConnected();
 
         listViewGroupReply=(ListView) findViewById(R.id.mainListView_GroupReply);
