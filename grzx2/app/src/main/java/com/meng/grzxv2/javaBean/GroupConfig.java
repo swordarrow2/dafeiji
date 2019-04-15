@@ -1,14 +1,15 @@
 package com.meng.grzxv2.javaBean;
-import java.util.*;
 
-public class GroupConfig{
+import java.util.ArrayList;
+
+public class GroupConfig {
 	public long groupNumber = 0;
 	public boolean reply = true;
-	public ArrayList<Boolean> booleans=new ArrayList<Boolean>(14);
-	
+	public ArrayList<Boolean> booleans = new ArrayList<Boolean>(16);
+
 	public int repeatMode = 0;
-	
-	/*public boolean repeat = true;
+/*
+	public boolean repeat = true;
 	public boolean setu = false;
 	public boolean pohai = false;
 	public boolean dic = false;
@@ -23,123 +24,123 @@ public class GroupConfig{
 	public boolean zan = false;
 	public boolean moshenfusong = false;
 */
-	public void setRepeat(boolean repeat){
-		booleans.set(0,repeat);
-	  }
+	public void setRepeat(boolean repeat) {
+		booleans.set(0, repeat);
+	}
 
-	public boolean isRepeat(){
+	public boolean isRepeat() {
 		return booleans.get(0);
-	  }
+	}
 
-	public void setRepeatMode(int repeatMode){
-		this.repeatMode=repeatMode;
-	  }
+	public void setRepeatMode(int repeatMode) {
+		this.repeatMode = repeatMode;
+	}
 
-	public int getRepeatMode(){
+	public int getRepeatMode() {
 		return repeatMode;
-	  }
+	}
 
-	public void setSetu(boolean setu){
-		booleans.set(1,setu);
-	  }
+	public void setSetu(boolean setu) {
+		booleans.set(1, setu);
+	}
 
-	public boolean isSetu(){
+	public boolean isSetu() {
 		return booleans.get(1);
-	  }
+	}
 
-	public void setPohai(boolean pohai){
-		booleans.set(2,pohai);
-	  }
+	public void setPohai(boolean pohai) {
+		booleans.set(2, pohai);
+	}
 
-	public boolean isPohai(){
+	public boolean isPohai() {
 		return booleans.get(2);
-	  }
+	}
 
-	public void setDic(boolean dic){
-		this.dic=dic;
-	  }
+	public void setDic(boolean dic) {
+		booleans.set(3, dic);
+	}
 
-	public boolean isDic(){
-		return dic;
-	  }
+	public boolean isDic() {
+		return booleans.get(3);
+	}
 
-	public void setBilibiliCheck(boolean bilibiliCheck){
-		this.bilibiliCheck=bilibiliCheck;
-	  }
+	public void setBilibiliCheck(boolean bilibiliCheck) {
+		booleans.set(4, bilibiliCheck);
+	}
 
-	public boolean isBilibiliCheck(){
-		return bilibiliCheck;
-	  }
+	public boolean isBilibiliCheck() {
+		return booleans.get(4);
+	}
 
-	public void setCuigeng(boolean cuigeng){
-		this.cuigeng=cuigeng;
-	  }
+	public void setCuigeng(boolean cuigeng) {
+		booleans.set(5, cuigeng);
+	}
 
-	public boolean isCuigeng(){
-		return cuigeng;
-	  }
+	public boolean isCuigeng() {
+		return booleans.get(5);
+	}
 
-	public void setSearchPic(boolean searchPic){
-		this.searchPic=searchPic;
-	  }
+	public void setSearchPic(boolean searchPic) {
+		booleans.set(6, searchPic);
+	}
 
-	public boolean isSearchPic(){
-		return searchPic;
-	  }
+	public boolean isSearchPic() {
+		return booleans.get(6);
+	}
 
-	public void setCheckLink(boolean checkLink){
-		this.checkLink=checkLink;
-	  }
+	public void setCheckLink(boolean checkLink) {
+		booleans.set(7, checkLink);
+	}
 
-	public boolean isCheckLink(){
-		return checkLink;
-	  }
+	public boolean isCheckLink() {
+		return booleans.get(7);
+	}
 
-	public void setRoll(boolean roll){
-		this.roll=roll;
-	  }
+	public void setRoll(boolean roll) {
+		booleans.set(8,roll);
+	}
 
-	public boolean isRoll(){
-		return roll;
-	  }
+	public boolean isRoll() {
+		return booleans.get(8);
+	}
 
-	public void setBarcode(boolean barcode){
-		this.barcode=barcode;
-	  }
+	public void setBarcode(boolean barcode) {
+		booleans.set(9,barcode);
+	}
 
-	public boolean isBarcode(){
-		return barcode;
-	  }
+	public boolean isBarcode() {
+		return booleans.get(9);
+	}
 
-	public void setKuiping(boolean kuiping){
-		this.kuiping=kuiping;
-	  }
+	public void setKuiping(boolean kuiping) {
+		booleans.set(10, kuiping);
+	}
 
-	public boolean isKuiping(){
-		return kuiping;
-	  }
+	public boolean isKuiping() {
+		return booleans.get(10);
+	}
 
-	public void setCqCode(boolean cqCode){
-		this.cqCode=cqCode;
-	  }
+	public void setCqCode(boolean cqCode) {
+		booleans.set(11, cqCode);
+	}
 
-	public boolean isCqCode(){
-		return cqCode;
-	  }
+	public boolean isCqCode() {
+		return booleans.get(11);
+	}
 
-	public void setZan(boolean zan){
-		this.zan=zan;
-	  }
+	public void setZan(boolean zan) {
+		booleans.set(12, zan);
+	}
 
-	public boolean isZan(){
-		return zan;
-	  }
+	public boolean isZan() {
+		return booleans.get(12);
+	}
 
+	public void setMoshenfusong(boolean moshenfusong) {
+		booleans.set(13, moshenfusong);
+	}
 
-	public void setMoshenfusong(boolean moshenfusong){
-		this.moshenfusong=moshenfusong;
-	  }
-
-	public boolean isMoshenfusong(){
-		return moshenfusong;
-	  }}
+	public boolean isMoshenfusong() {
+		return booleans.get(13);
+	}
+}
