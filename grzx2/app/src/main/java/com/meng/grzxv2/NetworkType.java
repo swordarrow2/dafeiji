@@ -2,7 +2,7 @@ package com.meng.grzxv2;
 
 public enum NetworkType{
 	addGroup,
-	addNeotReplyUser,
+    addNotReplyUser,
 	addNotReplyWord,
 	addPersonInfo,
 	removeGroup,

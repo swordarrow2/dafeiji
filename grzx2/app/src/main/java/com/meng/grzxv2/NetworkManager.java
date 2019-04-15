@@ -1,90 +1,83 @@
 package com.meng.grzxv2;
 
 import android.widget.*;
-import com.meng.grzxv2.*;
+
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.*;
 
-public class NetworkManager{
+public class NetworkManager {
 
-	public final String IP = "123.207.65.93";
-	public final int PORT = 9760;
-	private MainActivity a;
+    public final String IP = "123.207.65.93";
+    public final int PORT = 9760;
+    private MainActivity mainActivity;
+    private Gson gson = new Gson();
 
-	public NetworkManager(MainActivity m){
-		a=m;
-	  }
+    public NetworkManager(MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
 
-	public void send(NetworkType n,String text){
+    public void send(NetworkType networkType, String text) {
+        sendString(networkType.toString() + "." + text);
+    }
 
-	  }
-	  
+    public void getJsonString() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket client = new Socket(IP, PORT);
+                    OutputStream out = client.getOutputStream();
+                    DataOutputStream dos = new DataOutputStream(out);
+                    dos.writeUTF("getFull");
+                    InputStream in = client.getInputStream();
+                    DataInputStream dis = new DataInputStream(in);
+                    final String result = dis.readUTF();
+                    mainActivity.runOnUiThread(new Runnable() {
 
-	public void getJsonString(){
-if(true){return;}
-		new Thread(new Runnable() {
-			  @Override
-			  public void run(){
-				  try{
-					  Socket client = new Socket(IP,PORT);
-					  OutputStream out = client.getOutputStream();
-					  DataOutputStream dos = new DataOutputStream(out);
-					  dos.writeUTF("get");
-					  InputStream in = client.getInputStream();
-					  DataInputStream dis = new DataInputStream(in);
-					  final String result = dis.readUTF();
-					  a. runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainActivity.loadConfigData(result);
+                        }
+                    });
+                    client.close();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                }
+            }
+        }).start();
+    }
 
-							@Override
-							public void run(){
-								//	Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
-								a.	loadConfigData(result);
-							  }
-						  });
-					  client.close();
-					}catch(UnknownHostException e){
-					  e.printStackTrace();
-					}catch(IOException e){
-					  e.printStackTrace();
-					}catch(Exception e){
-					}
-				}
-			}).start();
-	  }
+    private void sendString(final String string) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket client = new Socket(IP, PORT);
+                    OutputStream out = client.getOutputStream();
+                    DataOutputStream dos = new DataOutputStream(out);
+                    dos.writeUTF(string);
+                    InputStream in = client.getInputStream();
+                    DataInputStream dis = new DataInputStream(in);
+                    final String result = dis.readUTF();
+                    mainActivity.runOnUiThread(new Runnable() {
 
-	public void setJsonString(final String jsonString){
-		if(true){return;}
-		new Thread(new Runnable() {
-			  @Override
-			  public void run(){
-				  try{
-					  Socket client = new Socket(IP,PORT);
-					  OutputStream out = client.getOutputStream();
-					  DataOutputStream dos = new DataOutputStream(out);
-					  dos.writeUTF("write"+a.gson.toJson(a.configJavaBean));
-					  InputStream in = client.getInputStream();
-					  DataInputStream dis = new DataInputStream(in);
-					  final String result = dis.readUTF();
-					  a.  runOnUiThread(new Runnable() {
-
-							@Override
-							public void run(){
-								Toast.makeText(a,result.equals("ok")? "成功" :"失败",Toast.LENGTH_SHORT).show();
-							  }
-						  });
-					  client.close();
-					}catch(UnknownHostException e){
-					  e.printStackTrace();
-					}catch(IOException e){
-					  e.printStackTrace();
-					}catch(Exception e){
-					}
-				}
-			});
-	  }
+                        @Override
+                        public void run() {
+                            Toast.makeText(mainActivity, result.equals("ok") ? "成功" : "失败", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    client.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
 
-
-
-
-  }
+}
