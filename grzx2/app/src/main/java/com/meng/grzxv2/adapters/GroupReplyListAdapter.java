@@ -2,17 +2,12 @@ package com.meng.grzxv2.adapters;
 
 import android.content.*;
 import android.graphics.*;
-import android.os.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.CompoundButton.*;
-
-import com.google.gson.*;
 import com.meng.grzxv2.*;
 import com.meng.grzxv2.javaBean.*;
-
 import java.io.*;
-import java.net.*;
 import java.util.*;
 
 public class GroupReplyListAdapter extends BaseAdapter {

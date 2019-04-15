@@ -313,7 +313,7 @@ public class MainActivity extends Activity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(item.getTitle().equals("添加")){
-            if(tabHost.getCurrentTabTag().equals("four")){
+            if(tabHost.getCurrentTab()==3){
                 View view = getLayoutInflater().inflate(R.layout.person_info_edit_view,null);
                 editTextName=(EditText) view.findViewById(R.id.edit_viewEditText_name);
                 editTextQQNumber=(EditText) view.findViewById(R.id.edit_viewEditText_qq);
