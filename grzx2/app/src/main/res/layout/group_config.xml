@@ -3,11 +3,13 @@
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical">
-	
-	<EditText android:layout_width="wrap_content"
+
+    <EditText
+        android:id="@+id/group_configTextView_groupNumber"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-		android:id="@+id/group_configTextView_groupNumber"/>
-	
+        android:inputType="text" />
+
     <Switch
         android:id="@+id/group_configSwitch_repeat"
         android:layout_width="wrap_content"

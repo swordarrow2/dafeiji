@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
         android:layout_weight="1"
-		android:focusable="false"
+        android:focusable="false"
         android:gravity="center_vertical"
         android:textOff="@string/not_reply"
         android:textOn="@string/reply" />
