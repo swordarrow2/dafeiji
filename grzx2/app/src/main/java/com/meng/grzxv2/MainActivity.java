@@ -25,17 +25,17 @@ public class MainActivity extends Activity {
     public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
     public ConfigJavaBean configJavaBean;
     public TabHost tabHost;
-    //  public final String IP = "123.207.65.93";
-    //   public final int PORT = 9760;
     public Gson gson = new Gson();
     public static boolean onWifi = false;
     public static String mainDic = "";
+	public NetworkManager net;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         getActionBar().show();
+		net=new NetworkManager(this);
         mainDic = Environment.getExternalStorageDirectory() + "/Pictures/grzx/";
         File f = new File(mainDic + "group/");
         if (!f.exists()) {
@@ -76,12 +76,15 @@ public class MainActivity extends Activity {
         tabHost.addTab(tabHost.newTabSpec("three").setIndicator("不回复的字").setContent(R.id.mainListView_WordNotReply));
         tabHost.addTab(tabHost.newTabSpec("four").setIndicator("账号").setContent(R.id.mainListView_PersonInfo));
         //     getJsonString();
+	//	net.getJsonString();
         loadPersonInfoData();
         listViewGroupReply.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 final GroupConfig groupConfig = configJavaBean.groupConfigs.get(i);
                 final View v = MainActivity.this.getLayoutInflater().inflate(R.layout.group_config, null);
+				final EditText et=(EditText)v.findViewById(R.id.group_configTextView_groupNumber);
+				et.setText(String.valueOf(groupConfig.groupNumber));
                 final Switch repeat = (Switch) v.findViewById(R.id.group_configSwitch_repeat);
                 final Switch setu = (Switch) v.findViewById(R.id.group_configSwitch_setu);
                 final Switch pohai = (Switch) v.findViewById(R.id.group_configSwitch_pohai);
@@ -118,11 +121,13 @@ public class MainActivity extends Activity {
 
                             @Override
                             public void onClick(DialogInterface p1, int p2) {
+							  groupConfig.groupNumber=Long.parseLong(et.getText().toString());
                                 groupConfig.setRepeat(repeat.isChecked());
                                 groupConfig.setSetu(setu.isChecked());
                                 groupConfig.setPohai(pohai.isChecked());
                                 groupConfig.setDic(dic.isChecked());
                                 groupConfig.setBilibiliCheck(bilibili.isChecked());
+								groupConfig.setCuigeng(cuigeng.isChecked());
                                 groupConfig.setSearchPic(searchPicture.isChecked());
                                 groupConfig.setCheckLink(checkLink.isChecked());
                                 groupConfig.setRoll(roll.isChecked());
@@ -157,6 +162,8 @@ public class MainActivity extends Activity {
                                             public void onClick(DialogInterface p11, int p2) {
                                                 configJavaBean.QQNotReply.set(i, Long.parseLong(editText.getText().toString()));
                                                 loadConfigData(gson.toJson(configJavaBean));
+												saveTxt(gson.toJson(configJavaBean));
+										//		net.send(NetworkType.setNotReplyUser,gson.toJson(configJavaBean.QQNotReply.get(i)));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -181,6 +188,7 @@ public class MainActivity extends Activity {
                                             public void onClick(DialogInterface p11, int p2) {
                                                 configJavaBean.wordNotReply.set(i, editText.getText().toString());
                                                 loadConfigData(gson.toJson(configJavaBean));
+												saveTxt(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -219,6 +227,7 @@ public class MainActivity extends Activity {
                                                 mapBiliUser.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 mapBiliUser.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
                                                 loadConfigData(gson.toJson(configJavaBean));
+												saveTxt(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -237,6 +246,7 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface p11, int p2) {
                                 configJavaBean.groupConfigs.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
+								saveTxt(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -254,6 +264,7 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface p11, int p2) {
                                 configJavaBean.QQNotReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
+								saveTxt(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -271,6 +282,7 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface p11, int p2) {
                                 configJavaBean.wordNotReply.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
+								saveTxt(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -288,6 +300,7 @@ public class MainActivity extends Activity {
                             public void onClick(DialogInterface p11, int p2) {
                                 configJavaBean.personInfo.remove(p3);
                                 loadConfigData(gson.toJson(configJavaBean));
+								saveTxt(gson.toJson(configJavaBean));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -347,6 +360,7 @@ public class MainActivity extends Activity {
                                                 user.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
                                                 configJavaBean.personInfo.add(user);
                                                 loadConfigData(gson.toJson(configJavaBean));
+												saveTxt(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -395,6 +409,7 @@ public class MainActivity extends Activity {
                                                         break;
                                                 }
                                                 loadConfigData(gson.toJson(configJavaBean));
+												saveTxt(gson.toJson(configJavaBean));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -408,7 +423,7 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    private void loadConfigData(String s) {
+    public void loadConfigData(String s) {
         configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
         listViewGroupReply.setAdapter(new GroupReplyListAdapter(this, configJavaBean.groupConfigs));
         listViewQQNotReply.setAdapter(new QQNotReplyAdapter(this, configJavaBean.QQNotReply));
@@ -416,70 +431,7 @@ public class MainActivity extends Activity {
         listViewPersonInfo.setAdapter(new PersonInfoAdapter(this, configJavaBean.personInfo));
     }
 
-    /*
-     public void getJsonString(){
-
-     new Thread(new Runnable() {
-     @Override
-     public void run(){
-     try{
-     Socket client = new Socket(IP,PORT);
-     OutputStream out = client.getOutputStream();
-     DataOutputStream dos = new DataOutputStream(out);
-     dos.writeUTF("get");
-     InputStream in = client.getInputStream();
-     DataInputStream dis = new DataInputStream(in);
-     final String result = dis.readUTF();
-     runOnUiThread(new Runnable() {
-
-     @Override
-     public void run(){
-     //	Toast.makeText(MainActivity.this,result,Toast.LENGTH_SHORT).show();
-     loadConfigData(result);
-     }
-     });
-     client.close();
-     }catch(UnknownHostException e){
-     e.printStackTrace();
-     }catch(IOException e){
-     e.printStackTrace();
-     }catch(Exception e){
-     }
-     }
-     }).start();
-     }
-
-     public void setJsonString(final String jsonString){
-
-     new Thread(new Runnable() {
-     @Override
-     public void run(){
-     try{
-     Socket client = new Socket(IP,PORT);
-     OutputStream out = client.getOutputStream();
-     DataOutputStream dos = new DataOutputStream(out);
-     dos.writeUTF("write"+gson.toJson(configJavaBean));
-     InputStream in = client.getInputStream();
-     DataInputStream dis = new DataInputStream(in);
-     final String result = dis.readUTF();
-     runOnUiThread(new Runnable() {
-
-     @Override
-     public void run(){
-     Toast.makeText(MainActivity.this,result.equals("ok")? "成功" :"失败",Toast.LENGTH_SHORT).show();
-     }
-     });
-     client.close();
-     }catch(UnknownHostException e){
-     e.printStackTrace();
-     }catch(IOException e){
-     e.printStackTrace();
-     }catch(Exception e){
-     }
-     }
-     });
-     }
-     */
+    
     private void loadPersonInfoData() {
         File f = new File(Environment.getExternalStorageDirectory() + "/grzxv2.json");
         if (!f.exists()) {

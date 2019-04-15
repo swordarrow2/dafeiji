@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">配置编辑器</string>
-    <string name="hello_world">Hello world!</string>
     <string name="bid">bid</string>
     <string name="_0">0</string>
     <string name="liveroom">liveRoom</string>
@@ -10,18 +9,18 @@
     <string name="reply">回复</string>
     <string name="not_reply">不回复</string>
     <string name="add">添加</string>
-    <string name="repeat">repeat</string>
-    <string name="setu">setu</string>
-    <string name="pohai">pohai</string>
-    <string name="dic">dic</string>
-    <string name="bilibili">bilibili</string>
-    <string name="cuigeng">cuigeng</string>
-    <string name="soutu">soutu</string>
-    <string name="link">link</string>
+    <string name="repeat">复读</string>
+    <string name="setu">色图</string>
+    <string name="pohai">迫害图</string>
+    <string name="dic">词库</string>
+    <string name="bilibili">屑站链接</string>
+    <string name="cuigeng">催更</string>
+    <string name="soutu">搜图</string>
+    <string name="link">链接</string>
     <string name="roll">roll</string>
-    <string name="barcode">barcode</string>
-    <string name="kuiping">kuiping</string>
-    <string name="cqcode">cqcode</string>
-    <string name="zan">zan</string>
-    <string name="moshenfusong">moshenfusong</string>
+    <string name="barcode">二维码</string>
+    <string name="kuiping">窥屏检测</string>
+    <string name="cqcode">CQ码</string>
+    <string name="zan">赞</string>
+    <string name="moshenfusong">膜神复诵</string>
 </resources>

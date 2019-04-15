@@ -46,7 +46,6 @@ public class GroupReplyListAdapter extends BaseAdapter {
         }
         final GroupConfig groupReply = groupReplies.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNumber));
-
         holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
             @Override
