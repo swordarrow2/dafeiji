@@ -24,6 +24,10 @@
             android:name="com.meng.grzxv2.DicEdit"
             android:label="@string/app_name">
         </activity>
+		
+		<activity
+            android:name="com.meng.grzxv2.InfoActivity"
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

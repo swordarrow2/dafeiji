@@ -10,9 +10,8 @@ import java.net.*;
 public class NetworkManager {
 
     public final String IP = "123.207.65.93";
-    public final int PORT = 9760;
+    public final int PORT = 9700;
     private MainActivity mainActivity;
-    private Gson gson = new Gson();
 
     public NetworkManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -76,8 +75,6 @@ public class NetworkManager {
                     e.printStackTrace();
                 }
             }
-        });
+        }).start();
     }
-
-
 }
