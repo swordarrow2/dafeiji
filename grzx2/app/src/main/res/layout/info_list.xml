@@ -4,6 +4,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
+	
     <TabHost
         android:id="@+id/pixiv_download_main_tabhost"
         android:layout_width="match_parent"
