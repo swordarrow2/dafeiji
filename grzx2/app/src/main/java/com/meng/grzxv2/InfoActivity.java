@@ -5,59 +5,87 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import com.google.gson.*;
-import com.meng.grzxv2.javaBean.bilibili.*;
+import com.meng.grzxv2.javaBean.bilibili.user.BilibiliPersonInfo;
+
 import java.io.*;
 import java.net.*;
 
 public class InfoActivity extends Activity{
-	public ListView listview;
-	public ListView listview2;
 	public ProgressBar progressBar;
 	public ProgressBar progressBar2;
 	private TabHost tabHost;
+
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+	private MengNetworkTextview mnt    ;
+
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		Intent i=getIntent();
-		if(i.getStringExtra("g")==null){
+		Intent intent=getIntent();
+		if(intent.getStringExtra("qq")==null||intent.getStringExtra("bid")==null){
 			finish();
 		  }	
 		setContentView(R.layout.info_list);
-        
-        listview=(ListView) findViewById(R.id.info_listListView1);
-        listview2=(ListView) findViewById(R.id.info_listListView2);
+
 		progressBar=(ProgressBar) findViewById(R.id.info_listProgressBar1);
 		progressBar2=(ProgressBar) findViewById(R.id.info_listProgressBar2);
 
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
+		mnt    =(MengNetworkTextview)findViewById(R.id.    );
 
-        tabHost=(TabHost) findViewById(R.id.pixiv_download_main_tabhost);
+
+
+
+		tabHost=(TabHost) findViewById(R.id.pixiv_download_main_tabhost);
         tabHost.setup();
         tabHost.addTab(tabHost.newTabSpec("one").setIndicator("屑站").setContent(R.id.info_listFrameLayout1));
         tabHost.addTab(tabHost.newTabSpec("two").setIndicator("QQ").setContent(R.id.info_listFrameLayout2));
 
-
-		listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			  @Override
-			  public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long id){
-				  ClipboardManager clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-				  ClipData clipData = ClipData.newPlainText("text",(String) parent.getItemAtPosition(position));
-				  clipboardManager.setPrimaryClip(clipData);
-				  return true;
-				}
-			});
-		listview2.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-			  @Override
-			  public boolean onItemLongClick(AdapterView<?> parent,View view,int position,long id){
-				  ClipboardManager clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
-				  ClipData clipData = ClipData.newPlainText("text",(String) parent.getItemAtPosition(position));
-				  clipboardManager.setPrimaryClip(clipData);
-				  return true;
-				}
-			});
-			
-		getBilibiliHeadUrl(i.getStringExtra("g"),listview);
+		getBilibiliUserInfo(intent.getStringExtra("bid"),listview);
 	  }
-	private void getBilibiliHeadUrl(final String uid,final ListView listview){
+	private void getBilibiliUserInfo(final String uid, final ListView listview){
         new Thread(new Runnable(){
 
 			  @Override
@@ -72,7 +100,6 @@ public class InfoActivity extends Activity{
 						  stringBuilder.append(line);
 						}
 					  final BilibiliPersonInfo bilibiliPersonInfoJavaBean = new Gson().fromJson(stringBuilder.toString(),BilibiliPersonInfo.class);
-				//	  Thread.sleep(1000);
 					  runOnUiThread(new Runnable(){
 
 							@Override
@@ -86,6 +113,5 @@ public class InfoActivity extends Activity{
 					}
 				}
 			}).start();
-		return ;
-	  }
+	}
   }

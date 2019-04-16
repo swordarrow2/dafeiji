@@ -1,9 +1,8 @@
-package com.meng.grzxv2.javaBean.bilibili;
+package com.meng.grzxv2.javaBean.bilibili.user;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
-public class Data {
+public class bilibiliUserInfoData {
     public long mid = 0;
     public String name = "";
     public String sex = "";
@@ -24,7 +23,7 @@ public class Data {
 
     public ArrayList<String > toArrayList() {
         ArrayList<String>list=new ArrayList<>();
-        list.add("data---------");
+        list.add("-----data-----");
         list.add("mid:"+mid);
         list.add("name:"+name);
         list.add("sex:"+sex);

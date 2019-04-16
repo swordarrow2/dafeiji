@@ -4,7 +4,8 @@ import android.content.*;
 import android.graphics.*;
 import android.widget.*;
 import com.google.gson.*;
-import com.meng.grzxv2.javaBean.bilibili.*;
+import com.meng.grzxv2.javaBean.bilibili.user.BilibiliPersonInfo;
+
 import java.io.*;
 import java.net.*;
 
