@@ -14,6 +14,7 @@ import com.meng.grzxv2.javaBean.*;
 
 import java.io.*;
 import java.util.*;
+import android.widget.SearchView.*;
 
 public class MainActivity extends Activity{
     public ListView listViewGroupReply, listViewQQNotReply, listViewWordNotReply,
@@ -24,6 +25,7 @@ public class MainActivity extends Activity{
     public Gson gson = new Gson();
     public static boolean onWifi = false;
     public static String mainDic = "";
+	private SearchView ser;
     public NetworkManager networkManager;
 
     @Override
@@ -32,6 +34,79 @@ public class MainActivity extends Activity{
         setContentView(R.layout.main);
         getActionBar().show();
         networkManager=new NetworkManager(this);
+		ser=new SearchView(this);
+		ser.setOnQueryTextListener(new OnQueryTextListener(){
+
+			  @Override
+			  public boolean onQueryTextSubmit(String p1){
+				  return false;
+				}
+
+			  @Override
+			  public boolean onQueryTextChange(String p1){			  
+				  switch(tabHost.getCurrentTab()){
+					  case 0:
+						if(p1.equals("")){
+							listViewGroupReply.setAdapter(new GroupReplyListAdapter(MainActivity.this,configJavaBean.groupConfigs));
+						  }else{
+							ArrayList<GroupConfig> list=new ArrayList<>();				
+							for(GroupConfig p:configJavaBean.groupConfigs){
+								String bid=String.valueOf(p.groupNumber);		
+								if(bid.contains(p1)){
+									list.add(p);	   
+								  } 				  								  
+							  }		
+							listViewGroupReply.setAdapter(new GroupReplyListAdapter(MainActivity.this,list));
+						  }
+						break;
+					  case 1:
+						if(p1.equals("")){
+							listViewQQNotReply.setAdapter(new QQNotReplyAdapter(MainActivity.this,configJavaBean.QQNotReply));
+						  }else{
+							ArrayList<Long> list=new ArrayList<>();				
+							for(long p:configJavaBean.QQNotReply){
+								String bid=String.valueOf(p);		
+								if(bid.contains(p1)){
+									list.add(p);	   
+								  } 				  								  
+							  }		
+							listViewQQNotReply.setAdapter(new QQNotReplyAdapter(MainActivity.this,list));
+						  }
+						break;
+					  case 2:
+						if(p1.equals("")){
+							listViewWordNotReply.setAdapter(new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,configJavaBean.wordNotReply)) ;
+						  }else{
+							ArrayList<String> list=new ArrayList<>();				
+							for(String p:configJavaBean.wordNotReply){				
+								if(p.contains(p1)){
+									list.add(p);	   
+								  } 				  								  
+							  }		
+							listViewWordNotReply.setAdapter(new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_list_item_1,list));
+						  }
+						break;
+					  case 3:
+						if(p1.equals("")){
+							listViewPersonInfo.setAdapter(new PersonInfoAdapter(MainActivity.this,configJavaBean.personInfo));
+						  }else{
+							ArrayList<PersonInfo> list=new ArrayList<>();				
+							for(PersonInfo p:configJavaBean.personInfo){
+								String bid=String.valueOf(p.bid);
+								String blive=String.valueOf(p.bliveRoom);
+								String qq=String.valueOf(p.qq);
+								String name=p.name;
+								if(bid.contains(p1)||blive.contains(p1)||qq.contains(p1)||name.contains(p1)){
+									list.add(p);	   
+								  } 				  								  
+							  }		
+							listViewPersonInfo.setAdapter(new PersonInfoAdapter(MainActivity.this,list));
+						  }
+						break;
+					} 				  
+				  return false;
+				}
+			});
         mainDic=Environment.getExternalStorageDirectory()+"/Pictures/grzx/";
         File f = new File(mainDic+"group/");
         if(!f.exists()){
@@ -301,15 +376,18 @@ public class MainActivity extends Activity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         super.onCreateOptionsMenu(menu);
-        MenuItem add = menu.add(0,0,0,"添加");
+
+		MenuItem add3 = menu.add(0,0,0,"提交修改到服务器");
+		add3.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		add3.setIcon(R.drawable.stat_sys_upload_anim0);
+		add3.setActionView(ser);
+        MenuItem add = menu.add(1,1,1,"添加");
         add.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         add.setIcon(R.drawable.ic_menu_add);
-        MenuItem add2 = menu.add(1,1,1,"从服务器获取信息");
+        MenuItem add2 = menu.add(2,2,2,"从服务器获取信息");
         add2.setIcon(R.drawable.stat_sys_download_anim0);
         add2.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        //  MenuItem add3 = menu.add(2, 2, 2, "提交修改到服务器");
-        //  add3.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        //  add3.setIcon(R.drawable.stat_sys_upload_anim0);
+
         return true;
 	  }
 
@@ -423,7 +501,7 @@ public class MainActivity extends Activity{
         configJavaBean=gson.fromJson(s,ConfigJavaBean.class);
         listViewGroupReply.setAdapter(new GroupReplyListAdapter(this,configJavaBean.groupConfigs));
         listViewQQNotReply.setAdapter(new QQNotReplyAdapter(this,configJavaBean.QQNotReply));
-        listViewWordNotReply.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,new ArrayList<>(configJavaBean.wordNotReply)));
+        listViewWordNotReply.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,configJavaBean.wordNotReply));
         listViewPersonInfo.setAdapter(new PersonInfoAdapter(this,configJavaBean.personInfo));
 	  }
 
