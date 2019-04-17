@@ -28,11 +28,11 @@ public class PersonInfoAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        return infos.get(position);
     }
 
     public long getItemId(int position) {
-        return 0;
+        return infos.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {

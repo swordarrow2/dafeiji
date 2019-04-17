@@ -162,7 +162,7 @@ public class MainActivity extends Activity {
         listViewGroupReply.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
-                final GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
+                final GroupConfig groupConfig = (GroupConfig) listViewGroupReply.getItemAtPosition(position);
                 final View v = MainActivity.this.getLayoutInflater().inflate(R.layout.group_config, null);
                 final EditText et = (EditText) v.findViewById(R.id.group_configTextView_groupNumber);
                 et.setText(String.valueOf(groupConfig.groupNumber));
@@ -220,14 +220,14 @@ public class MainActivity extends Activity {
                                 configJavaBean.groupConfigs.set(findPosition(groupConfig), groupConfig);
                                 networkManager.send(NetworkType.setGroup, findPosition(groupConfig) + " " + gson.toJson(groupConfig));
                             }
-                        }).show();
+                        }).setNegativeButton("取消",null).show();
             }
         });
         listViewQQNotReply.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View view, final int position, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                final long number = (long) adapterView.getItemAtPosition(position);
+                final long number = listViewQQNotReply.getItemAtPosition(position);
                 editText.setText(String.valueOf(number));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
@@ -253,7 +253,7 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View view, final int position, long l) {
                 final EditText editText = new EditText(MainActivity.this);
-                editText.setText((String) adapterView.getItemAtPosition(position));
+                editText.setText((String) listViewWordNotReply.getItemAtPosition(position));
                 new AlertDialog.Builder(MainActivity.this)
                         .setView(editText)
                         .setTitle("编辑")
@@ -284,7 +284,7 @@ public class MainActivity extends Activity {
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
 
-                final PersonInfo personInfo = (PersonInfo) adapterView.getItemAtPosition(position);
+                final PersonInfo personInfo = (PersonInfo) listViewPersonInfo.getItemAtPosition(position);
                 editTextName.setText(personInfo.name);
                 editTextQQNumber.setText(String.valueOf(personInfo.qq));
                 editTextBilibiliId.setText(String.valueOf(personInfo.bid));

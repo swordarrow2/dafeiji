@@ -24,11 +24,11 @@ public class GroupReplyListAdapter extends BaseAdapter{
 	  }
 
     public Object getItem(int position){
-        return null;
+        return groupReplies.get(position);
 	  }
 
     public long getItemId(int position){
-        return 0;
+        return groupReplies.get(position).hashCode();
 	  }
 
     public View getView(final int position,View convertView,ViewGroup parent){
