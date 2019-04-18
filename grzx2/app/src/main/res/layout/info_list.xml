@@ -41,93 +41,12 @@
                         android:layout_height="match_parent">
 
                         <LinearLayout
+							android:id="@+id/info_listLinearLayout_MengNetworkTextview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-							<ImageView
-								android:layout_width="match_parent"
-								android:layout_height="wrap_content"
-								android:id="@+id/info_listImageView"/>
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_id"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_sex"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_sign"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_level"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_birthday"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_coins"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_viptype"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_vipstatus"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
 							
-							<com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_live"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-							
-							<com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_roomid"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-							
-                            <com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_livetitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-
-							<com.meng.grzxv2.MengNetworkTextview
-								android:id="@+id/info_list_mengNetworkTextview_livestatus"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:visibility="gone" />
-							                 
-                        </LinearLayout>
+						</LinearLayout>
                     </ScrollView>
                 </FrameLayout>
 
@@ -150,6 +69,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
+
+							<TextView 
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:text="咕咕咕"/>
 
                             <com.meng.grzxv2.MengNetworkTextview
                                 android:layout_width="match_parent"

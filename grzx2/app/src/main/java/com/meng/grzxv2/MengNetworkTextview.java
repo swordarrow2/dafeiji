@@ -25,6 +25,34 @@ public class MengNetworkTextview extends LinearLayout{
     private TextView textViewSummry;
     private ProgressBar progressBar;
 
+	public MengNetworkTextview(Context context,String title,long summry){
+		this(context,title,String.valueOf(summry));
+	  }
+	public MengNetworkTextview(Context context,String title,float summry){
+		this(context,title,String.valueOf(summry));
+	  }
+
+	public MengNetworkTextview(final Context context,String title,String summry){
+        super(context);
+        this.context=context;
+        LayoutInflater.from(context).inflate(R.layout.meng_network_textview,this);
+        textViewTitle=(TextView) findViewById(R.id.meng_network_TextView);
+        textViewSummry=(TextView) findViewById(R.id.meng_network_TextView2);
+        progressBar=(ProgressBar) findViewById(R.id.meng_network_ProgressBar);
+		setTitle(title);
+		setSummry(summry);
+        textViewSummry.setOnLongClickListener(new OnLongClickListener(){
+
+			  @Override
+			  public boolean onLongClick(View p1){
+				  ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+				  ClipData clipData = ClipData.newPlainText("text",((TextView)p1).getText().toString());
+				  clipboardManager.setPrimaryClip(clipData);
+				  Toast.makeText(context,"已复制到剪贴板",Toast.LENGTH_SHORT).show();
+				  return true;
+				}
+			});
+	  }
     public MengNetworkTextview(final Context context,AttributeSet attributeSet){
         super(context,attributeSet);
         this.context=context;
