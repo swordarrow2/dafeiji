@@ -119,7 +119,6 @@ public class GroupConfigFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
                                 MainActivity.instence.configJavaBean.groupConfigs.remove(MainActivity.instence.findPosition(groupConfig));
-                                adapterView.removeViewAt(position);
                                 MainActivity.instence.groupConfigAdapter.notifyDataSetChanged();
                                 MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(MainActivity.instence.findPosition(groupConfig)));
                             }
@@ -139,7 +138,7 @@ public class GroupConfigFragment extends Fragment {
                             public void onClick(DialogInterface p11, int p2) {
 
                                 new AlertDialog.Builder(getActivity())
-                                        .setTitle("确定修改吗")
+                                        .setTitle("确定添加吗")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {

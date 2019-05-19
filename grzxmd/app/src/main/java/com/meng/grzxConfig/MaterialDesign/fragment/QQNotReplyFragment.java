@@ -82,8 +82,7 @@ public class QQNotReplyFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 long qq = adapterView.getItemIdAtPosition(position);
                                 MainActivity.instence.configJavaBean.QQNotReply.remove(MainActivity.instence.findPosition(qq));
-                                adapterView.removeViewAt(position);
-                                ((BaseAdapter) adapterView.getAdapter()).notifyDataSetChanged();
+                                MainActivity.instence.qqNotReplyAdapter.notifyDataSetChanged();
                                 MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(MainActivity.instence.findPosition(qq)));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -108,7 +107,7 @@ public class QQNotReplyFragment extends Fragment {
                             public void onClick(DialogInterface p11, int p2) {
 
                                 new AlertDialog.Builder(getActivity())
-                                        .setTitle("确定修改吗")
+                                        .setTitle("确定添加吗")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {

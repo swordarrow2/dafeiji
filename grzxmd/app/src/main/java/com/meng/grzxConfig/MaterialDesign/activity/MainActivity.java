@@ -73,10 +73,12 @@ public class MainActivity extends AppCompatActivity {
 
 		NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
         navigationView2.setNavigationItemSelectedListener(navigationItemSelectedListener);
-		initHomeFragment(false);
+		//initHomeFragment(false);
 		initQQFragment(false);
 		initWordFragment(false);
 		initPersonFragment(false);
+		//initProgressFragment(false);
+		//initMenuFragment(false);
 		initGroupConfigFragment(true);
 		networkManager = new NetworkManager(this);
 		networkManager.getJsonString();
@@ -117,17 +119,19 @@ public class MainActivity extends AppCompatActivity {
 			//   Fragment fragment = null;
 			//    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
-                case R.id.home:
+        /*        case R.id.home:
 				  //	  fragment = new HomeFragment();
 				  initHomeFragment(true);
 				  break;
                 case R.id.menus:
+				  initMenuFragment(true);
 				  //	  fragment = new MenusFragment();
 				  break;
                 case R.id.progress:
+				  initProgressFragment(true);
 				  //	  fragment = new ProgressFragment();
 				  break;
-				case R.id.group_config:
+		*/		case R.id.group_config:
 				  initGroupConfigFragment(true);
 				  break;
 				case R.id.qq_not_reply:
@@ -233,14 +237,41 @@ public class MainActivity extends AppCompatActivity {
 		  }
         transactionWelcome.commit();
 	  } 
-
+	public void initMenuFragment(boolean showNow) {
+        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        if (menusFragment == null) {
+            menusFragment = new MenusFragment();
+            transactionWelcome.add(R.id.fragment, menusFragment);
+		  }
+        hideFragment(transactionWelcome);
+        if (showNow) {
+            transactionWelcome.show(menusFragment);
+		  }
+        transactionWelcome.commit();
+	  } 
+	
+	public void initProgressFragment(boolean showNow) {
+        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        if (progressFragment == null) {
+            progressFragment = new ProgressFragment();
+            transactionWelcome.add(R.id.fragment, progressFragment);
+		  }
+        hideFragment(transactionWelcome);
+        if (showNow) {
+            transactionWelcome.show(progressFragment);
+		  }
+        transactionWelcome.commit();
+	  } 
+  
 	public void hideFragment(FragmentTransaction transaction) {
         Fragment fs[] = {
                 groupConfigFragment,
                 qqNotReplyFragment,
                 wordNotReplyFragment,
                 personInfoFragment,
-                homeFragment
+                homeFragment,
+				menusFragment,
+				progressFragment
 		  };
         for (Fragment f : fs) {
             if (f != null) {

@@ -4,9 +4,8 @@ import android.content.*;
 import android.graphics.*;
 import android.widget.*;
 import com.google.gson.*;
-import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.user.BilibiliPersonInfo;
-import com.meng.grzxv2.MainActivity;
-
+import com.meng.grzxConfig.MaterialDesign.activity.*;
+import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.user.*;
 import java.io.*;
 import java.net.*;
 
@@ -28,21 +27,21 @@ public class DownloadImageThread extends Thread {
     public void run() {
         switch (headType) {
             case QQGroup:
-                imageFile = new File(MainActivity.mainDic + "group/" + id + ".jpg");
+                imageFile = new File(MainActivity.instence.mainDic + "group/" + id + ".jpg");
                 if (imageFile.exists()) {
                     return;
                 }
                 downloadFile("http://p.qlogo.cn/gh/" + id + "/" + id + "/100/");
                 break;
             case QQUser:
-                imageFile = new File(MainActivity.mainDic + "user/" + id + ".jpg");
+                imageFile = new File(MainActivity.instence.mainDic + "user/" + id + ".jpg");
                 if (imageFile.exists()) {
                     return;
                 }
                 downloadFile("http://q2.qlogo.cn/headimg_dl?bs=" + id + "&dst_uin=" + id + "&dst_uin=" + id + "&;dst_uin=" + id + "&spec=100&url_enc=0&referer=bu_interface&term_type=PC");
                 break;
             case BilibiliUser:
-                imageFile = new File(MainActivity.mainDic + "bilibili/" + id + ".jpg");
+                imageFile = new File(MainActivity.instence.mainDic + "bilibili/" + id + ".jpg");
                 if (imageFile.exists()) {
                     return;
                 }

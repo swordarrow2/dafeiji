@@ -80,8 +80,7 @@ public class WordNotReplyFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 String string = (String) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.wordNotReply.remove(MainActivity.instence.findPosition(position));
-                                adapterView.removeViewAt(position);
+                                MainActivity.instence.configJavaBean.wordNotReply.remove(MainActivity.instence.findPosition(string));
                                 MainActivity.instence.wordNotReplyAdapter.notifyDataSetChanged();
                                 MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, String.valueOf(MainActivity.instence.findPosition(string)));
                             }
@@ -101,7 +100,7 @@ public class WordNotReplyFragment extends Fragment {
                             public void onClick(DialogInterface p11, int p2) {
 
                                 new AlertDialog.Builder(getActivity())
-                                        .setTitle("确定修改吗")
+                                        .setTitle("确定添加吗")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {

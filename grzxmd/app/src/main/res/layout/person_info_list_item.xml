@@ -28,7 +28,7 @@
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textColor="#ffffff" />
+             />
 
         <TextView
             android:id="@+id/textView_qqnum"
@@ -39,7 +39,7 @@
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textColor="#ffffff" />
+             />
 
         <ImageView
             android:id="@+id/imageView_info"
@@ -75,7 +75,7 @@
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textColor="#ffffff" />
+             />
 
         <TextView
             android:id="@+id/textView_bilibiliLiveId"
@@ -86,6 +86,6 @@
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textColor="#ffffff" />
+             />
     </LinearLayout>
 </LinearLayout>

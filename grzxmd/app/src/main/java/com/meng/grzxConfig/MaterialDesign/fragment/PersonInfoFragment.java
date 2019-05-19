@@ -98,8 +98,7 @@ public class PersonInfoFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int which2) {
                                 PersonInfo personInfo = (PersonInfo) adapterView.getItemAtPosition(position);
                                 MainActivity.instence.configJavaBean.personInfo.remove(MainActivity.instence.findPosition(personInfo));
-                                adapterView.removeViewAt(position);
-                                ((BaseAdapter) adapterView.getAdapter()).notifyDataSetChanged();
+                                MainActivity.instence.personInfoAdapter.notifyDataSetChanged();
                                 MainActivity.instence.networkManager.send(NetworkType.removePersonInfo, String.valueOf(MainActivity.instence.findPosition(personInfo)));
                             }
                         }).setNegativeButton("取消", null).show();
@@ -125,7 +124,7 @@ public class PersonInfoFragment extends Fragment {
                             public void onClick(DialogInterface p11, int p2) {
 
                                 new AlertDialog.Builder(getActivity())
-                                        .setTitle("确定修改吗")
+                                        .setTitle("确定添加吗")
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {

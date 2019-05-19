@@ -21,7 +21,7 @@
             android:icon="@drawable/ic_nav_item"
             android:title="飞机佬名单" />
 		
-		
+		<!--
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_nav_item"
@@ -33,7 +33,7 @@
         <item
             android:id="@+id/progress"
             android:icon="@drawable/ic_nav_item"
-            android:title="Progress" />
+            android:title="Progress" />-->
     </group>
 
 </menu>

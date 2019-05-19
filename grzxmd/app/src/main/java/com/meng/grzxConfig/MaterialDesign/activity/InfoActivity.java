@@ -12,7 +12,6 @@ import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.spaceToLive.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.upstat.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.user.*;
 import com.meng.grzxConfig.MaterialDesign.view.MengNetworkTextview;
-import com.meng.grzxv2.MainActivity;
 
 import java.io.*;
 import java.net.*;
@@ -37,7 +36,7 @@ public class InfoActivity extends Activity{
 		progressBar2=(ProgressBar) findViewById(R.id.info_listProgressBar2);
 		l1=(LinearLayout)findViewById(R.id.info_listLinearLayout_MengNetworkTextview);
 		ImageView im=new ImageView(this);
-		im.setImageBitmap(BitmapFactory.decodeFile(MainActivity.mainDic+"bilibili/"+intent.getStringExtra("bid")+".jpg"));
+		im.setImageBitmap(BitmapFactory.decodeFile(MainActivity.instence.mainDic+"bilibili/"+intent.getStringExtra("bid")+".jpg"));
 		l1.addView(im);
 		tabHost=(TabHost) findViewById(R.id.pixiv_download_main_tabhost);
         tabHost.setup();
