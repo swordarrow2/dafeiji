@@ -41,12 +41,6 @@ public class PersonInfoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View p2, final int position, long p4) {

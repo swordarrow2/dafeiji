@@ -36,12 +36,6 @@ public class GroupConfigFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.list);
         mFab = (FloatingActionButton) view.findViewById(R.id.fab);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, final int position, long l) {
@@ -118,9 +112,10 @@ public class GroupConfigFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.groupConfigs.remove(MainActivity.instence.findPosition(groupConfig));
+                                int po=MainActivity.instence.findPosition(groupConfig);
+                                MainActivity.instence.configJavaBean.groupConfigs.remove(po);
                                 MainActivity.instence.groupConfigAdapter.notifyDataSetChanged();
-                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(MainActivity.instence.findPosition(groupConfig)));
+                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(po));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
