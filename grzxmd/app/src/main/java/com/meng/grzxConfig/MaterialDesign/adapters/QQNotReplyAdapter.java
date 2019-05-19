@@ -4,13 +4,14 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
+
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageThread;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 
 import java.io.*;
 import java.util.*;
-import c.c.myapplication.*;
 
 public class QQNotReplyAdapter extends BaseAdapter {
     private Context context;

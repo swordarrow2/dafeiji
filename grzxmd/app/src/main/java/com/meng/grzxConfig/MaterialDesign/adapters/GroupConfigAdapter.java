@@ -4,8 +4,8 @@ import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.CompoundButton.*;
-import c.c.myapplication.*;
 
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageThread;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
@@ -58,7 +58,7 @@ public class GroupConfigAdapter extends BaseAdapter{
 			  public void onCheckedChanged(CompoundButton p1,boolean p2){
 				  if(groupReply.reply!=p2){
 					  groupReply.reply=p2;
-					  ((MainActivity)context).networkManager.send(NetworkType.setGroup,position+" "+MainActivity.instence.gson.toJson(groupReply));
+					  ((MainActivity)context).networkManager.send(NetworkType.setGroup,position+" "+MainActivity.instence.gson.toJson(groupReply),GroupConfigAdapter.this);
 					}
 				}
 			});

@@ -18,8 +18,8 @@ public class NetworkManager {
         this.mainActivity = mainActivity;
     }
 
-    public void send(NetworkType networkType, String text) {
-        sendString(networkType.toString() + "." + text);
+    public void send(NetworkType networkType, String text,BaseAdapter adapter) {
+        sendString(networkType.toString() + "." + text,adapter);
     }
 
     public void getJsonString() {
@@ -52,7 +52,7 @@ public class NetworkManager {
         }).start();
     }
 
-    private void sendString(final String string) {
+    private void sendString(final String string, final BaseAdapter adapter) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -69,6 +69,7 @@ public class NetworkManager {
                         @Override
                         public void run() {
                             Toast.makeText(mainActivity, result.equals("ok") ? "成功" : "失败", Toast.LENGTH_SHORT).show();
+                            adapter.notifyDataSetChanged();
                         }
                     });
                     client.close();

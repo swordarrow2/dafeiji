@@ -7,9 +7,9 @@ import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
 import com.github.clans.fab.*;
-import java.util.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 
-import c.c.myapplication.R;
+import java.util.*;
 
 public class HomeFragment extends Fragment {
 

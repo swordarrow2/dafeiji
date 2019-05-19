@@ -4,8 +4,8 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import c.c.myapplication.*;
 
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.InfoActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageThread;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;

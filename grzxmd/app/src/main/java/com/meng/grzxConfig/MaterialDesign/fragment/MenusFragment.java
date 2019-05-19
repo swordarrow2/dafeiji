@@ -8,8 +8,9 @@ import android.support.v4.content.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
-import c.c.myapplication.*;
 import com.github.clans.fab.*;
+import com.meng.grzxConfig.MaterialDesign.R;
+
 import java.util.*;
 
 public class MenusFragment extends Fragment {

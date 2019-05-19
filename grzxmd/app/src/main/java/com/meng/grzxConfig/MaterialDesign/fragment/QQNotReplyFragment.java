@@ -10,15 +10,12 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
-
-import java.util.*;
 
 import android.support.v4.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
-
-import c.c.myapplication.R;
 
 public class QQNotReplyFragment extends Fragment {
 
@@ -55,8 +52,7 @@ public class QQNotReplyFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 MainActivity.instence.configJavaBean.QQNotReply.set(MainActivity.instence.findPosition(number), Long.parseLong(editText.getText().toString()));
-                                                ((BaseAdapter) adapterView.getAdapter()).notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, MainActivity.instence.findPosition(number) + " " + editText.getText().toString());
+                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, MainActivity.instence.findPosition(number) + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -75,9 +71,9 @@ public class QQNotReplyFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 long qq = adapterView.getItemIdAtPosition(position);
-                                MainActivity.instence.configJavaBean.QQNotReply.remove(MainActivity.instence.findPosition(qq));
-                                MainActivity.instence.qqNotReplyAdapter.notifyDataSetChanged();
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(MainActivity.instence.findPosition(qq)));
+                                int po=MainActivity.instence.findPosition(qq);
+                                MainActivity.instence.configJavaBean.QQNotReply.remove(po);
+                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(po),MainActivity.instence.qqNotReplyAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -112,8 +108,7 @@ public class QQNotReplyFragment extends Fragment {
                                                     }
                                                 }
                                                 MainActivity.instence.configJavaBean.QQNotReply.add(userInput);
-                                                MainActivity.instence.qqNotReplyAdapter.notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput));
+                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput),MainActivity.instence.qqNotReplyAdapter);
 
                                             }
                                         }).setNegativeButton("取消", null).show();

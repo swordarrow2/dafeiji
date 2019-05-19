@@ -7,9 +7,9 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import com.github.clans.fab.*;
-import java.util.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 
-import c.c.myapplication.R;
+import java.util.*;
 
 public class ProgressFragment extends Fragment {
 

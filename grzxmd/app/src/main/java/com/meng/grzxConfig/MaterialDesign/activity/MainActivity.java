@@ -1,16 +1,20 @@
 package com.meng.grzxConfig.MaterialDesign.activity;
 
+import android.Manifest;
 import android.content.*;
+import android.content.pm.PackageManager;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.app.*;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
 import android.view.*;
 import android.widget.*;
 import com.google.gson.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.fragment.GroupConfigFragment;
 import com.meng.grzxConfig.MaterialDesign.fragment.HomeFragment;
 import com.meng.grzxConfig.MaterialDesign.fragment.MenusFragment;
@@ -25,9 +29,6 @@ import java.io.*;
 
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-
-import c.c.myapplication.R;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 	public MenusFragment menusFragment;
 	public ProgressFragment progressFragment;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,20 @@ public class MainActivity extends AppCompatActivity {
 		instence = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
+            if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                new AlertDialog.Builder(this)
+                        .setTitle("权限申请")
+                        .setMessage("本软件需要存储权限用于部分数据存储")
+                        .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 321);
+                            }
+                        }).setCancelable(false).show();
+            }
+        }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 		  this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -71,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
 
-		NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
-        navigationView2.setNavigationItemSelectedListener(navigationItemSelectedListener);
 		//initHomeFragment(false);
 		initQQFragment(false);
 		initWordFragment(false);
@@ -143,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
 				case R.id.accounts:
 				  initPersonFragment(true);
 				  break;
-
-
 			  }
 
 			//    ft.replace(R.id.fragment, fragment).commit();

@@ -6,8 +6,9 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
-import c.c.myapplication.*;
 import com.google.gson.*;
+import com.meng.grzxConfig.MaterialDesign.R;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -18,7 +19,6 @@ public class DicEdit extends Activity {
     public long groupNum;
     public ListView mainListview;
     public JsonObject jsonObject;
-    public Gson gson = new Gson();
     public JsonParser parser = new JsonParser();
     public AlertDialog dialog;
 
@@ -50,7 +50,7 @@ public class DicEdit extends Activity {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
                                 jsonObject.keySet().remove(parent.getItemAtPosition(position));
-                                loadConfigData(gson.toJson(jsonObject));
+                                loadConfigData(MainActivity.instence.gson.toJson(jsonObject));
                             }
                         }).setNegativeButton("取消", null).show();
 
@@ -86,7 +86,7 @@ public class DicEdit extends Activity {
                         @Override
                         public void onClick(DialogInterface p11, int p2) {
                             jsonObject.add(editText.getText().toString(), new JsonArray());
-                            loadConfigData(gson.toJson(jsonObject));
+                            loadConfigData(MainActivity.instence.gson.toJson(jsonObject));
                         }
                     }).setNegativeButton("取消", null).show();
         } else if (item.getTitle().equals("从服务器获取信息")) {
@@ -139,7 +139,7 @@ public class DicEdit extends Activity {
                     Socket client = new Socket(IP, PORT);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
-                    dos.writeUTF("write" + groupNum + "." + gson.toJson(jsonObject));
+                    dos.writeUTF("write" + groupNum + "." + MainActivity.instence.gson.toJson(jsonObject));
                     InputStream in = client.getInputStream();
                     DataInputStream dis = new DataInputStream(in);
                     final String result = dis.readUTF();
@@ -187,7 +187,7 @@ public class DicEdit extends Activity {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
                                 array.add(editText.getText().toString());
-                                loadConfigData(gson.toJson(jsonObject));
+                                loadConfigData(MainActivity.instence.gson.toJson(jsonObject));
                             }
                         }).setNegativeButton("取消", null).show();
             }
@@ -204,7 +204,7 @@ public class DicEdit extends Activity {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
                                 array.remove(position);
-                                loadConfigData(gson.toJson(jsonObject));
+                                loadConfigData(MainActivity.instence.gson.toJson(jsonObject));
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -230,7 +230,7 @@ public class DicEdit extends Activity {
                                             public void onClick(DialogInterface p11, int p2) {
                                                 array.remove(position);
                                                 array.add(editText.getText().toString());
-                                                loadConfigData(gson.toJson(jsonObject));
+                                                loadConfigData(MainActivity.instence.gson.toJson(jsonObject));
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }

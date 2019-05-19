@@ -10,15 +10,12 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
-
-import java.util.*;
 
 import android.support.v4.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
-
-import c.c.myapplication.R;
 
 public class WordNotReplyFragment extends Fragment {
 
@@ -54,8 +51,7 @@ public class WordNotReplyFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 MainActivity.instence.configJavaBean.wordNotReply.set(MainActivity.instence.findPosition((String) adapterView.getItemAtPosition(position)), editText.getText().toString());
-                                                MainActivity.instence.wordNotReplyAdapter.notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyWord, MainActivity.instence.findPosition((String) adapterView.getItemAtPosition(position)) + " " + editText.getText().toString());
+                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyWord, MainActivity.instence.findPosition((String) adapterView.getItemAtPosition(position)) + " " + editText.getText().toString(),MainActivity.instence.wordNotReplyAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -75,8 +71,7 @@ public class WordNotReplyFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 String string = (String) adapterView.getItemAtPosition(position);
                                 MainActivity.instence.configJavaBean.wordNotReply.remove(MainActivity.instence.findPosition(string));
-                                MainActivity.instence.wordNotReplyAdapter.notifyDataSetChanged();
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, String.valueOf(MainActivity.instence.findPosition(string)));
+                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, String.valueOf(MainActivity.instence.findPosition(string)),MainActivity.instence.wordNotReplyAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -105,8 +100,7 @@ public class WordNotReplyFragment extends Fragment {
                                                     }
                                                 }
                                                 MainActivity.instence.configJavaBean.wordNotReply.add(input);
-                                                ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyWord, input);
+                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyWord, input,MainActivity.instence.wordNotReplyAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }

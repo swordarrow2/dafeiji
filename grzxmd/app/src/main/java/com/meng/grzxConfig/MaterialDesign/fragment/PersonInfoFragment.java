@@ -10,16 +10,13 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
-
-import java.util.*;
 
 import android.support.v4.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
-
-import c.c.myapplication.R;
 
 public class PersonInfoFragment extends Fragment {
 
@@ -71,9 +68,8 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.qq = Long.parseLong(editTextQQNumber.getText().toString());
                                                 personInfo.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 personInfo.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
-                                                ((BaseAdapter) adapterView.getAdapter()).notifyDataSetChanged();
                                                 MainActivity.instence.configJavaBean.personInfo.set(MainActivity.instence.findPosition(personInfo), personInfo);
-                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, MainActivity.instence.findPosition(personInfo) + " " + MainActivity.instence.gson.toJson(personInfo));
+                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, MainActivity.instence.findPosition(personInfo) + " " + MainActivity.instence.gson.toJson(personInfo),MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -91,9 +87,9 @@ public class PersonInfoFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which2) {
                                 PersonInfo personInfo = (PersonInfo) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.personInfo.remove(MainActivity.instence.findPosition(personInfo));
-                                MainActivity.instence.personInfoAdapter.notifyDataSetChanged();
-                                MainActivity.instence.networkManager.send(NetworkType.removePersonInfo, String.valueOf(MainActivity.instence.findPosition(personInfo)));
+                                int po=MainActivity.instence.findPosition(personInfo);
+                                MainActivity.instence.configJavaBean.personInfo.remove(po);
+                                MainActivity.instence.networkManager.send(NetworkType.removePersonInfo, String.valueOf(po),MainActivity.instence.personInfoAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -136,8 +132,7 @@ public class PersonInfoFragment extends Fragment {
                                                 user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 user.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
                                                 MainActivity.instence.configJavaBean.personInfo.add(user);
-                                                ((BaseAdapter) mListView.getAdapter()).notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.addPersonInfo, MainActivity.instence.gson.toJson(user));
+                                                MainActivity.instence.networkManager.send(NetworkType.addPersonInfo, MainActivity.instence.gson.toJson(user),MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }

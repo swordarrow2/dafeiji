@@ -5,8 +5,8 @@ import android.content.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-import c.c.myapplication.*;
 
+import com.meng.grzxConfig.MaterialDesign.R;
 
 public class MengNetworkTextview extends LinearLayout{
     private Context context;

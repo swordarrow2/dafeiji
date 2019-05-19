@@ -10,14 +10,13 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 
 import android.support.v4.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
-
-import c.c.myapplication.R;
 
 public class GroupConfigFragment extends Fragment {
 
@@ -95,7 +94,7 @@ public class GroupConfigFragment extends Fragment {
                                 groupConfig.setZan(zan.isChecked());
                                 groupConfig.setMoshenfusong(moshenfusong.isChecked());
                                 MainActivity.instence.configJavaBean.groupConfigs.set(MainActivity.instence.findPosition(groupConfig), groupConfig);
-                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.findPosition(groupConfig) + " " + MainActivity.instence.gson.toJson(groupConfig));
+                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.findPosition(groupConfig) + " " + MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
             }
@@ -114,8 +113,7 @@ public class GroupConfigFragment extends Fragment {
                                 GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
                                 int po=MainActivity.instence.findPosition(groupConfig);
                                 MainActivity.instence.configJavaBean.groupConfigs.remove(po);
-                                MainActivity.instence.groupConfigAdapter.notifyDataSetChanged();
-                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(po));
+                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(po),MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -146,8 +144,7 @@ public class GroupConfigFragment extends Fragment {
                                                 GroupConfig groupConfig = new GroupConfig();
                                                 groupConfig.groupNumber = inputLong;
                                                 MainActivity.instence.configJavaBean.groupConfigs.add(groupConfig);
-                                                MainActivity.instence.groupConfigAdapter.notifyDataSetChanged();
-                                                MainActivity.instence.networkManager.send(NetworkType.addGroup, MainActivity.instence.gson.toJson(groupConfig));
+                                                MainActivity.instence.networkManager.send(NetworkType.addGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
