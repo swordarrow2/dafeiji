@@ -70,8 +70,9 @@ public class WordNotReplyFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 String string = (String) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.wordNotReply.remove(MainActivity.instence.findPosition(string));
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, String.valueOf(MainActivity.instence.findPosition(string)),MainActivity.instence.wordNotReplyAdapter);
+								int po=MainActivity.instence.findPosition(string);
+                                MainActivity.instence.configJavaBean.wordNotReply.remove(po);
+                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, String.valueOf(po),MainActivity.instence.wordNotReplyAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;

@@ -53,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
 	public MenusFragment menusFragment;
 	public ProgressFragment progressFragment;
 
+	public SearchView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 		instence = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		sv=(SearchView)findViewById(R.id.toolbarSearchView);
         setSupportActionBar(toolbar);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 321);
+                                ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                             }
                         }).setCancelable(false).show();
             }
@@ -82,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
-
 		//initHomeFragment(false);
 		initQQFragment(false);
 		initWordFragment(false);
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiNetworkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         onWifi = wifiNetworkInfo.isConnected();
-
+		mDrawerLayout.openDrawer(GravityCompat.START);
         navigationView.setCheckedItem(R.id.group_config);
 	  }
 
@@ -125,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-			mDrawerLayout.closeDrawer(GravityCompat.END);
 			//   Fragment fragment = null;
 			//    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
@@ -159,15 +159,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
 		  }
 	  };
-
-    @Override
-    public void onBackPressed() {
-        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-		  } else {
-            super.onBackPressed();
-		  }
-	  }
 
 	public void loadConfigData(String s) {
         configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
@@ -317,5 +308,15 @@ public class MainActivity extends AppCompatActivity {
         return -1;
 	  }
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode==KeyEvent.KEYCODE_BACK){
+		  return true;
+		}else{
+		  return false;
+		}
+	//	return super.onKeyDown(keyCode, event);
+	  }
+	  
   }
 

@@ -16,7 +16,7 @@
 		android:paddingRight="?android:attr/listPreferredItemPaddingRight"
 		android:text="gouliguojiashengsiyi"
 		android:textAppearance="?android:attr/textAppearanceListItemSmall"
-		android:textColor="#ffffff"/>
+		/>
 
 	<TextView
 		android:autoLink="web"
@@ -31,7 +31,7 @@
 		android:paddingRight="?android:attr/listPreferredItemPaddingRight"
 		android:text="qiyinhuofubiquzhi"
 		android:textAppearance="?android:attr/textAppearanceListItemSmall"
-		android:textColor="#ffffff"/>
+		/>
 
 	<ProgressBar
 		android:id="@+id/meng_network_ProgressBar"

@@ -21,7 +21,7 @@ import android.app.*;
 public class GroupConfigAdapter extends BaseAdapter {
     private Activity context;
     private ArrayList<GroupConfig> groupReplies;
-    private HashMap<Long, Bitmap> hashMap = new HashMap<>();
+   // private HashMap<Long, Bitmap> hashMap = new HashMap<>();
 
     public GroupConfigAdapter(Activity context, ArrayList<GroupConfig> groupReplies) {
         this.context = context;
@@ -68,10 +68,10 @@ public class GroupConfigAdapter extends BaseAdapter {
 
         holder.replySwitch.setChecked(groupReply.reply);
 
-        if (hashMap.get(groupReply.groupNumber) == null) {
+    //    if (hashMap.get(groupReply.groupNumber) == null) {
             File imageFile = new File(MainActivity.instence.mainDic + "group/" + groupReply.groupNumber + ".jpg");
             if (imageFile.exists()) {
-                hashMap.put(groupReply.groupNumber, BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+               holder.imageView.setImageBitmap( BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
             } else {
                 if (MainActivity.instence.onWifi) {
                     new DownloadImageThread(context, holder.imageView, groupReply.groupNumber, HeadType.QQGroup).start();
@@ -85,8 +85,8 @@ public class GroupConfigAdapter extends BaseAdapter {
                     });
                 }
             }
-        }
-        holder.imageView.setImageBitmap(hashMap.get(groupReply.groupNumber));
+   //     }
+  //      holder.imageView.setImageBitmap(hashMap.get(groupReply.groupNumber));
         return convertView;
     }
 

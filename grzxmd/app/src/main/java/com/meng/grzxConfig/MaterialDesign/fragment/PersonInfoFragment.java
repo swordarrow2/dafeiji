@@ -23,21 +23,30 @@ public class PersonInfoFragment extends Fragment {
     public ListView mListView;
     private FloatingActionButton mFab;
     private int mPreviousVisibleItem;
-
+	private FloatingActionMenu menuRed;
     public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_fragment, container, false);
+        return inflater.inflate(R.layout.person_info_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListView = (ListView) view.findViewById(R.id.list);
-        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mFab = (FloatingActionButton) view.findViewById(R.id.fab1);
+		menuRed = (FloatingActionMenu) view.findViewById(R.id.menu_red);
+		FloatingActionButton fab2=(FloatingActionButton)view.findViewById(R.id.fab2);
+		fab2.setOnClickListener(new OnClickListener(){
+
+			  @Override
+			  public void onClick(View p1) {
+				  MainActivity.instence.sv.requestFocus();
+				}
+			});
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View p2, final int position, long p4) {
@@ -95,7 +104,8 @@ public class PersonInfoFragment extends Fragment {
                 return true;
             }
         });
-
+		menuRed.setClosedOnTouchOutside(true);
+        
         mFab.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -139,10 +149,9 @@ public class PersonInfoFragment extends Fragment {
                         }).setNegativeButton("取消", null).show();
             }
         });
-        mFab.hide(false);
-        mFab.show(true);
-        mFab.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-        mFab.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
+       
+        menuRed.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
+        menuRed.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
 
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -152,9 +161,9 @@ public class PersonInfoFragment extends Fragment {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (firstVisibleItem > mPreviousVisibleItem) {
-                    mFab.hide(true);
+                    menuRed.hideMenu(true);
                 } else if (firstVisibleItem < mPreviousVisibleItem) {
-                    mFab.show(true);
+                    menuRed.showMenu(true);
                 }
                 mPreviousVisibleItem = firstVisibleItem;
             }

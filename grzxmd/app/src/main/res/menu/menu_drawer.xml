@@ -6,19 +6,19 @@
         android:checkableBehavior="single">
 		<item
             android:id="@+id/group_config"
-            android:icon="@drawable/ic_nav_item"
+            android:icon="@drawable/ic_menu"
             android:title="群配置" />
         <item
             android:id="@+id/qq_not_reply"
-            android:icon="@drawable/ic_nav_item"
+            android:icon="@drawable/ic_menu"
             android:title="不回复的QQ" />
         <item
             android:id="@+id/word_not_reply"
-            android:icon="@drawable/ic_nav_item"
+            android:icon="@drawable/ic_menu"
             android:title="不回复的字" />
 		<item
             android:id="@+id/accounts"
-            android:icon="@drawable/ic_nav_item"
+            android:icon="@drawable/ic_menu"
             android:title="飞机佬名单" />
 		
 		<!--
