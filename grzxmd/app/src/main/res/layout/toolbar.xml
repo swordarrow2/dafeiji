@@ -8,6 +8,7 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 	<SearchView
+		android:iconifiedByDefault="false"
 		android:layout_gravity="end"
 		android:id="@+id/toolbarSearchView"
 		android:layout_height="wrap_content"

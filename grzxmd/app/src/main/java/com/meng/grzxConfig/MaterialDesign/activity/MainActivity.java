@@ -1,34 +1,34 @@
 package com.meng.grzxConfig.MaterialDesign.activity;
 
-import android.Manifest;
+import android.*;
 import android.content.*;
-import android.content.pm.PackageManager;
+import android.content.pm.*;
 import android.net.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v4.app.*;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.content.*;
 import android.support.v4.view.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
+import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
+import android.widget.SearchView.*;
 import com.google.gson.*;
-import com.meng.grzxConfig.MaterialDesign.R;
-import com.meng.grzxConfig.MaterialDesign.fragment.GroupConfigFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.HomeFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.MenusFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.PersonInfoFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.ProgressFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.QQNotReplyFragment;
-import com.meng.grzxConfig.MaterialDesign.fragment.WordNotReplyFragment;
-import com.meng.grzxConfig.MaterialDesign.helpers.NetworkManager;
+import com.meng.grzxConfig.MaterialDesign.*;
+import com.meng.grzxConfig.MaterialDesign.activity.*;
 import com.meng.grzxConfig.MaterialDesign.adapters.*;
+import com.meng.grzxConfig.MaterialDesign.fragment.*;
+import com.meng.grzxConfig.MaterialDesign.helpers.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 import java.io.*;
+import java.util.*;
 
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.widget.SearchView;
+import com.meng.grzxConfig.MaterialDesign.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +62,37 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		sv=(SearchView)findViewById(R.id.toolbarSearchView);
         setSupportActionBar(toolbar);
+		
+		
+		sv.setOnQueryTextListener(new OnQueryTextListener() {
+
+			  @Override
+			  public boolean onQueryTextSubmit(String query) {
+				  return false;
+				}
+
+			  @Override
+			  public boolean onQueryTextChange(String newText) {
+				  
+                        if (newText.equals("")) {
+                            personInfoFragment.mListView.setAdapter(personInfoAdapter);
+						  } else {
+                            ArrayList<PersonInfo> list = new ArrayList<>();
+                            for (PersonInfo personInfo : configJavaBean.personInfo) {
+                                if (String.valueOf(personInfo.bid).contains(newText) ||
+									String.valueOf(personInfo.bliveRoom).contains(newText) ||
+									String.valueOf(personInfo.qq).contains(newText) ||
+									personInfo.name.contains(newText)) {
+                                    list.add(personInfo);
+								  }
+							  }
+                            personInfoFragment.mListView.setAdapter(new PersonInfoAdapter(MainActivity.this, list));					  
+					}
+				  return false;
+				}
+			});
+		
+		
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
             if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -126,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
+			sv.setVisibility(View.GONE);
 			//   Fragment fragment = null;
 			//    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
@@ -288,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
 			  }
 		  } else if (javabean instanceof Long) {
             for (int i = 0; i < configJavaBean.QQNotReply.size(); ++i) {
-                if (configJavaBean.QQNotReply.get(i).equals(javabean)) {
+				  if (configJavaBean.QQNotReply.get(i).equals(javabean)) {
                     return i;
 				  }
 			  }

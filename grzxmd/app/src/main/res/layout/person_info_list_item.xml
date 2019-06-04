@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/imageView_qqHead"
-            android:layout_width="?android:attr/listPreferredItemHeightSmall"
-            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
@@ -59,8 +59,8 @@
 
         <ImageView
             android:id="@+id/imageView_bilibiliHead"
-            android:layout_width="?android:attr/listPreferredItemHeightSmall"
-            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"

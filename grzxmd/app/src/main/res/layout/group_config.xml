@@ -94,4 +94,10 @@
         android:layout_height="wrap_content"
         android:text="@string/moshenfusong" />
 
+	<Switch
+        android:id="@+id/group_configSwitch_chehui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="撤回膜图" />
+	
 </LinearLayout>

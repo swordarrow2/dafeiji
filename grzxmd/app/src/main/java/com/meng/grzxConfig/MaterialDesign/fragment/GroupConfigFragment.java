@@ -56,6 +56,8 @@ public class GroupConfigFragment extends Fragment {
                 final Switch cqma = (Switch) v.findViewById(R.id.group_configSwitch_cqcode);
                 final Switch zan = (Switch) v.findViewById(R.id.group_configSwitch_zan);
                 final Switch moshenfusong = (Switch) v.findViewById(R.id.group_configSwitch_mishenfusong);
+				final Switch chehui = (Switch) v.findViewById(R.id.group_configSwitch_chehui);
+				
                 repeat.setChecked(groupConfig.isRepeat());
                 setu.setChecked(groupConfig.isSetu());
                 pohai.setChecked(groupConfig.isPohai());
@@ -70,6 +72,7 @@ public class GroupConfigFragment extends Fragment {
                 cqma.setChecked(groupConfig.isCqCode());
                 zan.setChecked(groupConfig.isZan());
                 moshenfusong.setChecked(groupConfig.isMoshenfusong());
+				chehui.setChecked(groupConfig.isCheHuiMoTu());
 
                 new AlertDialog.Builder(getActivity())
                         .setView(v)
@@ -93,6 +96,7 @@ public class GroupConfigFragment extends Fragment {
                                 groupConfig.setCqCode(cqma.isChecked());
                                 groupConfig.setZan(zan.isChecked());
                                 groupConfig.setMoshenfusong(moshenfusong.isChecked());
+								groupConfig.setCheHuiMoTu(chehui.isChecked());
                                 MainActivity.instence.configJavaBean.groupConfigs.set(MainActivity.instence.findPosition(groupConfig), groupConfig);
                                 MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.findPosition(groupConfig) + " " + MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
                             }

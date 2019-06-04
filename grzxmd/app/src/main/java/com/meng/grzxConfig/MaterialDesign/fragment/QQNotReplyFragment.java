@@ -70,7 +70,7 @@ public class QQNotReplyFragment extends Fragment {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                long qq = adapterView.getItemIdAtPosition(position);
+                                long qq = adapterView.getItemAtPosition(position);
                                 int po=MainActivity.instence.findPosition(qq);
                                 MainActivity.instence.configJavaBean.QQNotReply.remove(po);
                                 MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(po),MainActivity.instence.qqNotReplyAdapter);

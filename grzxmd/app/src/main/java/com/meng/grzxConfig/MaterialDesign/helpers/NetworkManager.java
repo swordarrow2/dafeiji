@@ -11,7 +11,7 @@ import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 public class NetworkManager {
 
     public final String IP = "123.207.65.93";
-    public final int PORT = 9700;
+    public final int PORT = 9701;
     private MainActivity mainActivity;
 
     public NetworkManager(MainActivity mainActivity) {
