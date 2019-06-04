@@ -17,7 +17,6 @@ import android.widget.*;
 import android.widget.SearchView.*;
 import com.google.gson.*;
 import com.meng.grzxConfig.MaterialDesign.*;
-import com.meng.grzxConfig.MaterialDesign.activity.*;
 import com.meng.grzxConfig.MaterialDesign.adapters.*;
 import com.meng.grzxConfig.MaterialDesign.fragment.*;
 import com.meng.grzxConfig.MaterialDesign.helpers.*;
