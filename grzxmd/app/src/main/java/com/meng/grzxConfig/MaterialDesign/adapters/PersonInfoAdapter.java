@@ -10,6 +10,7 @@ import com.meng.grzxConfig.MaterialDesign.activity.InfoActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageThread;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
+
 import java.io.*;
 import java.util.*;
 
@@ -89,15 +90,15 @@ public class PersonInfoAdapter extends BaseAdapter {
                     new DownloadImageThread(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser).start();
                 } else {
                     holder.imageViewBilibiiliHead.setImageResource(R.drawable.stat_sys_download_anim0);
-                    holder.imageViewBilibiiliHead.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            new DownloadImageThread(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser).start();
-                        }
-                    });
                 }
             }
         }
+        holder.imageViewBilibiiliHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DownloadImageThread(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser).start();
+            }
+        });
         holder.infoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

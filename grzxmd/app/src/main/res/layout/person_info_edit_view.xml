@@ -76,5 +76,11 @@
             android:text="@string/_0" />
     </LinearLayout>
 
+    <CheckBox
+        android:id="@+id/edit_viewEditText_nai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/autu_tip" />
+
 </LinearLayout>
 
