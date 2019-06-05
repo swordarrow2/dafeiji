@@ -8,96 +8,127 @@
         android:id="@+id/group_configTextView_groupNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="number"
+        android:labelFor="@+id/group_configTextView_groupNumber" />
 
     <Switch
         android:id="@+id/group_configSwitch_repeat"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/repeat" />
 
+    <RadioGroup
+        android:id="@+id/group_configSwitch_banMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/group_config_radio_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/offBan" />
+
+        <RadioButton
+            android:id="@+id/group_config_radio_eluosi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eluosi" />
+
+        <RadioButton
+            android:id="@+id/group_config_radio_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all" />
+    </RadioGroup>
+
     <Switch
         android:id="@+id/group_configSwitch_setu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/setu" />
 
     <Switch
         android:id="@+id/group_configSwitch_pohai"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pohai" />
 
     <Switch
         android:id="@+id/group_configSwitch_dic"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dic" />
 
+    <Button
+        android:id="@+id/group_config_edit_dic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_dic" />
+
     <Switch
         android:id="@+id/group_configSwitch_bilibili"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bilibili" />
 
     <Switch
         android:id="@+id/group_configSwitch_cuigeng"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cuigeng" />
 
     <Switch
         android:id="@+id/group_configSwitch_soutu"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/soutu" />
 
     <Switch
         android:id="@+id/group_configSwitch_link"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/link" />
 
     <Switch
         android:id="@+id/group_configSwitch_roll"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/roll" />
 
     <Switch
         android:id="@+id/group_configSwitch_barcode"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/barcode" />
 
     <Switch
         android:id="@+id/group_configSwitch_kuiping"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/kuiping" />
 
     <Switch
         android:id="@+id/group_configSwitch_cqcode"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cqcode" />
 
     <Switch
         android:id="@+id/group_configSwitch_zan"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/zan" />
 
     <Switch
         android:id="@+id/group_configSwitch_mishenfusong"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/moshenfusong" />
 
-	<Switch
+    <Switch
         android:id="@+id/group_configSwitch_chehui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="撤回膜图" />
-	
+        android:text="@string/delete_motu" />
+
 </LinearLayout>

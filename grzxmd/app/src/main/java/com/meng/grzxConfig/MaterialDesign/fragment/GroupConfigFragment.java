@@ -11,6 +11,7 @@ import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
 import com.meng.grzxConfig.MaterialDesign.R;
+import com.meng.grzxConfig.MaterialDesign.activity.DicEdit;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 
@@ -43,9 +44,19 @@ public class GroupConfigFragment extends Fragment {
                 final EditText et = (EditText) v.findViewById(R.id.group_configTextView_groupNumber);
                 et.setText(String.valueOf(groupConfig.groupNumber));
                 final Switch repeat = (Switch) v.findViewById(R.id.group_configSwitch_repeat);
+                final RadioGroup banMode=(RadioGroup)v.findViewById(R.id.group_configSwitch_banMode);
                 final Switch setu = (Switch) v.findViewById(R.id.group_configSwitch_setu);
                 final Switch pohai = (Switch) v.findViewById(R.id.group_configSwitch_pohai);
                 final Switch dic = (Switch) v.findViewById(R.id.group_configSwitch_dic);
+                final Button editDic=(Button)v.findViewById(R.id.group_config_edit_dic);
+                editDic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), DicEdit.class);
+
+                        startActivity(intent);
+                    }
+                });
                 final Switch bilibili = (Switch) v.findViewById(R.id.group_configSwitch_bilibili);
                 final Switch cuigeng = (Switch) v.findViewById(R.id.group_configSwitch_cuigeng);
                 final Switch searchPicture = (Switch) v.findViewById(R.id.group_configSwitch_soutu);
@@ -57,8 +68,9 @@ public class GroupConfigFragment extends Fragment {
                 final Switch zan = (Switch) v.findViewById(R.id.group_configSwitch_zan);
                 final Switch moshenfusong = (Switch) v.findViewById(R.id.group_configSwitch_mishenfusong);
 				final Switch chehui = (Switch) v.findViewById(R.id.group_configSwitch_chehui);
-				
+
                 repeat.setChecked(groupConfig.isRepeat());
+                ((RadioButton)banMode.getChildAt(groupConfig.repeatMode)).setChecked(true);
                 setu.setChecked(groupConfig.isSetu());
                 pohai.setChecked(groupConfig.isPohai());
                 dic.setChecked(groupConfig.isDic());
@@ -83,6 +95,17 @@ public class GroupConfigFragment extends Fragment {
                             public void onClick(DialogInterface p1, int p2) {
                                 groupConfig.groupNumber = Long.parseLong(et.getText().toString());
                                 groupConfig.setRepeat(repeat.isChecked());
+                                switch (banMode.getCheckedRadioButtonId()){
+                                    case R.id.group_config_radio_none:
+                                        groupConfig.repeatMode=0;
+                                        break;
+                                    case R.id.group_config_radio_all:
+                                        groupConfig.repeatMode=1;
+                                        break;
+                                    case R.id.group_config_radio_eluosi:
+                                        groupConfig.repeatMode=2;
+                                        break;
+                                }
                                 groupConfig.setSetu(setu.isChecked());
                                 groupConfig.setPohai(pohai.isChecked());
                                 groupConfig.setDic(dic.isChecked());

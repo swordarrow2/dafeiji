@@ -29,4 +29,10 @@
     <string name="zan">赞</string>
     <string name="moshenfusong">膜神复诵</string>
     <string name="autu_tip">自动奶</string>
+    <string name="delete_motu">撤回膜图</string>
+    <string name="ban_repeater">禁言复读机</string>
+    <string name="eluosi">俄罗斯轮盘</string>
+    <string name="all">全部</string>
+    <string name="edit_dic">编辑词库</string>
+    <string name="offBan">不禁言复读机</string>
 </resources>
