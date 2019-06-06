@@ -53,7 +53,7 @@ public class GroupConfigFragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         Intent intent=new Intent(getActivity(), DicEdit.class);
-
+						intent.putExtra("num",groupConfig.groupNumber);
                         startActivity(intent);
                     }
                 });
@@ -99,10 +99,10 @@ public class GroupConfigFragment extends Fragment {
                                     case R.id.group_config_radio_none:
                                         groupConfig.repeatMode=0;
                                         break;
-                                    case R.id.group_config_radio_all:
+                                    case R.id.group_config_radio_eluosi:
                                         groupConfig.repeatMode=1;
                                         break;
-                                    case R.id.group_config_radio_eluosi:
+                                    case R.id.group_config_radio_all:
                                         groupConfig.repeatMode=2;
                                         break;
                                 }

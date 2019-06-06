@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                         }).setCancelable(false).show();
             }
         }
-        sv.setVisibility(View.GONE);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 		  this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -157,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-			sv.setVisibility(View.GONE);
 			//   Fragment fragment = null;
 			//    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {

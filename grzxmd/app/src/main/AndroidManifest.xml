@@ -26,6 +26,7 @@
         <activity
 			android:theme="@android:style/Theme.Material.Dialog"
 			android:name=".activity.InfoActivity" />
+		
         <activity android:name=".activity.DicEdit" />
     </application>
 
