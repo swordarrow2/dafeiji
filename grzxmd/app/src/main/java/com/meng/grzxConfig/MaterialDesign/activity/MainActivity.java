@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 	public MenusFragment menusFragment;
 	public ProgressFragment progressFragment;
 
+	public EditorConfig editConfig;
 	public SearchView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
 		instence = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		sv=(SearchView)findViewById(R.id.toolbarSearchView);
+		sv = (SearchView)findViewById(R.id.toolbarSearchView);
         setSupportActionBar(toolbar);
-		
-		
+
+
 		sv.setOnQueryTextListener(new OnQueryTextListener() {
 
 			  @Override
@@ -72,46 +73,50 @@ public class MainActivity extends AppCompatActivity {
 
 			  @Override
 			  public boolean onQueryTextChange(String newText) {
-				  
-                        if (newText.equals("")) {
-                            personInfoFragment.mListView.setAdapter(personInfoAdapter);
-						  } else {
-                            ArrayList<PersonInfo> list = new ArrayList<>();
-                            for (PersonInfo personInfo : configJavaBean.personInfo) {
-                                if (String.valueOf(personInfo.bid).contains(newText) ||
-									String.valueOf(personInfo.bliveRoom).contains(newText) ||
-									String.valueOf(personInfo.qq).contains(newText) ||
-									personInfo.name.contains(newText)) {
-                                    list.add(personInfo);
-								  }
-							  }
-                            personInfoFragment.mListView.setAdapter(new PersonInfoAdapter(MainActivity.this, list));					  
+
+				  if (newText.equals("")) {
+					  personInfoFragment.mListView.setAdapter(personInfoAdapter);
+					} else {
+					  ArrayList<PersonInfo> list = new ArrayList<>();
+					  for (PersonInfo personInfo : configJavaBean.personInfo) {
+						  if (String.valueOf(personInfo.bid).contains(newText) ||
+							  String.valueOf(personInfo.bliveRoom).contains(newText) ||
+							  String.valueOf(personInfo.qq).contains(newText) ||
+							  personInfo.name.contains(newText)) {
+							  list.add(personInfo);
+							}
+						}
+					  personInfoFragment.mListView.setAdapter(new PersonInfoAdapter(MainActivity.this, list));					  
 					}
 				  return false;
 				}
 			});
-		
-		
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
-            if (ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 new AlertDialog.Builder(this)
-                        .setTitle("权限申请")
-                        .setMessage("本软件需要存储权限用于部分数据存储")
-                        .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                            }
-                        }).setCancelable(false).show();
-            }
-        }
+				  .setTitle("权限申请")
+				  .setMessage("本软件需要存储权限用于部分数据存储")
+				  .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+					  @Override
+					  public void onClick(DialogInterface dialog, int which) {
+						  requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+						}
+					}).setCancelable(false).show();
+			  }
+		  }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 		  this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
-
+		try {
+			editConfig = new Gson().fromJson(readFileToString(), EditorConfig.class);
+		  } catch (Exception e) {
+			System.exit(0);
+		  } 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
 		//initHomeFragment(false);
@@ -159,19 +164,19 @@ public class MainActivity extends AppCompatActivity {
 			//   Fragment fragment = null;
 			//    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             switch (item.getItemId()) {
-        /*        case R.id.home:
-				  //	  fragment = new HomeFragment();
-				  initHomeFragment(true);
-				  break;
-                case R.id.menus:
-				  initMenuFragment(true);
-				  //	  fragment = new MenusFragment();
-				  break;
-                case R.id.progress:
-				  initProgressFragment(true);
-				  //	  fragment = new ProgressFragment();
-				  break;
-		*/		case R.id.group_config:
+				  /*        case R.id.home:
+				   //	  fragment = new HomeFragment();
+				   initHomeFragment(true);
+				   break;
+				   case R.id.menus:
+				   initMenuFragment(true);
+				   //	  fragment = new MenusFragment();
+				   break;
+				   case R.id.progress:
+				   initProgressFragment(true);
+				   //	  fragment = new ProgressFragment();
+				   break;
+				 */		case R.id.group_config:
 				  initGroupConfigFragment(true);
 				  break;
 				case R.id.qq_not_reply:
@@ -278,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
 		  }
         transactionWelcome.commit();
 	  } 
-	
+
 	public void initProgressFragment(boolean showNow) {
         FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
         if (progressFragment == null) {
@@ -291,16 +296,16 @@ public class MainActivity extends AppCompatActivity {
 		  }
         transactionWelcome.commit();
 	  } 
-  
+
 	public void hideFragment(FragmentTransaction transaction) {
         Fragment fs[] = {
-                groupConfigFragment,
-                qqNotReplyFragment,
-                wordNotReplyFragment,
-                personInfoFragment,
-                homeFragment,
-				menusFragment,
-				progressFragment
+			groupConfigFragment,
+			qqNotReplyFragment,
+			wordNotReplyFragment,
+			personInfoFragment,
+			homeFragment,
+			menusFragment,
+			progressFragment
 		  };
         for (Fragment f : fs) {
             if (f != null) {
@@ -318,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
 			  }
 		  } else if (javabean instanceof Long) {
             for (int i = 0; i < configJavaBean.QQNotReply.size(); ++i) {
-				  if (configJavaBean.QQNotReply.get(i).equals(javabean)) {
+				if (configJavaBean.QQNotReply.get(i).equals(javabean)) {
                     return i;
 				  }
 			  }
@@ -338,15 +343,29 @@ public class MainActivity extends AppCompatActivity {
         return -1;
 	  }
 
+	public String readFileToString() throws IOException, UnsupportedEncodingException {
+        File file = new File(Environment.getExternalStorageDirectory() + "/grzxEditConfig.json");
+        if (!file.exists()) {
+			System.exit(0);
+            file.createNewFile();
+		  }
+        Long filelength = file.length();
+        byte[] filecontent = new byte[filelength.intValue()];
+        FileInputStream in = new FileInputStream(file);
+        in.read(filecontent);
+        in.close();
+        return new String(filecontent, "UTF-8");
+	  }
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if(keyCode==KeyEvent.KEYCODE_BACK){
-		  return true;
-		}else{
-		  return false;
-		}
-	//	return super.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return true;
+		  } else {
+			return false;
+		  }
+		//	return super.onKeyDown(keyCode, event);
 	  }
-	  
+
   }
 

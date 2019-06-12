@@ -25,7 +25,7 @@ public class GroupConfig{
 	 public boolean moshenfusong = false;
 	 */
 	public GroupConfig(){
-		for(int i=0;i<14;++i){
+		for(int i=0;i<15;++i){
 			booleans.add(false);
 		  }
 	  }

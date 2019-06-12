@@ -19,8 +19,8 @@ import java.util.*;
 import android.app.AlertDialog;
 
 public class DicEdit extends AppCompatActivity {
-    public final String IP = "123.207.65.93";
-    public final int PORT = 9999;
+    public String IP = "";
+    public int PORT = 0;
     public long groupNum=-1;
     public ListView mainListview;
     public JsonObject jsonObject;
@@ -39,6 +39,8 @@ public class DicEdit extends AppCompatActivity {
 		if (groupNum == -1) {
 			finish();
 		  }
+		IP = MainActivity.instence.editConfig.ip;
+		PORT = MainActivity.instence.editConfig.dicPort;
         mainListview = (ListView) findViewById(R.id.list);
         mFab = (FloatingActionButton) findViewById(R.id.fab1);
 		menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);

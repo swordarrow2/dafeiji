@@ -21,24 +21,24 @@ import android.app.*;
 public class GroupConfigAdapter extends BaseAdapter {
     private Activity context;
     private ArrayList<GroupConfig> groupReplies;
-   // private HashMap<Long, Bitmap> hashMap = new HashMap<>();
+	// private HashMap<Long, Bitmap> hashMap = new HashMap<>();
 
     public GroupConfigAdapter(Activity context, ArrayList<GroupConfig> groupReplies) {
         this.context = context;
         this.groupReplies = groupReplies;
-    }
+	  }
 
     public int getCount() {
         return groupReplies.size();
-    }
+	  }
 
     public Object getItem(int position) {
         return groupReplies.get(position);
-    }
+	  }
 
     public long getItemId(int position) {
         return groupReplies.get(position).hashCode();
-    }
+	  }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -50,49 +50,49 @@ public class GroupConfigAdapter extends BaseAdapter {
             holder.replySwitch = (Switch) convertView.findViewById(R.id.group_reply_list_itemSwitch);
             holder.imageView = (ImageView) convertView.findViewById(R.id.group_reply_list_itemImageView);
             convertView.setTag(holder);
-        } else {
+		  } else {
             holder = (ViewHolder) convertView.getTag();
-        }
+		  }
         final GroupConfig groupReply = groupReplies.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNumber));
         holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton p1, boolean p2) {
-                if (groupReply.reply != p2) {
-                    groupReply.reply = p2;
-                    ((MainActivity) context).networkManager.send(NetworkType.setGroup, position + " " + MainActivity.instence.gson.toJson(groupReply), GroupConfigAdapter.this);
-                }
-            }
-        });
+			  @Override
+			  public void onCheckedChanged(CompoundButton p1, boolean p2) {
+				  if (groupReply.reply != p2) {
+					  groupReply.reply = p2;
+					  ((MainActivity) context).networkManager.send(NetworkType.setGroup, position + " " + MainActivity.instence.gson.toJson(groupReply), GroupConfigAdapter.this);
+					}
+				}
+			});
 
         holder.replySwitch.setChecked(groupReply.reply);
 
-    //    if (hashMap.get(groupReply.groupNumber) == null) {
-            File imageFile = new File(MainActivity.instence.mainDic + "group/" + groupReply.groupNumber + ".jpg");
-            if (imageFile.exists()) {
-               holder.imageView.setImageBitmap( BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
-            } else {
-                if (MainActivity.instence.onWifi) {
-                    new DownloadImageThread(context, holder.imageView, groupReply.groupNumber, HeadType.QQGroup).start();
-                } else {
-                    holder.imageView.setImageResource(R.drawable.stat_sys_download_anim0);
-                    holder.imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            new DownloadImageThread(context, holder.imageView, groupReply.groupNumber, HeadType.QQGroup).start();
-                        }
-                    });
-                }
-            }
-   //     }
-  //      holder.imageView.setImageBitmap(hashMap.get(groupReply.groupNumber));
+		//    if (hashMap.get(groupReply.groupNumber) == null) {
+		File imageFile = new File(MainActivity.instence.mainDic + "group/" + groupReply.groupNumber + ".jpg");
+		if (imageFile.exists()) {
+			holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
+		  } else {
+			if (MainActivity.instence.onWifi) {
+				new DownloadImageThread(context, holder.imageView, groupReply.groupNumber, HeadType.QQGroup).start();
+			  } else {
+				holder.imageView.setImageResource(R.drawable.stat_sys_download_anim0);                    
+			  }
+		  }
+		holder.imageView.setOnClickListener(new View.OnClickListener() {
+			  @Override
+			  public void onClick(View v) {
+				  new DownloadImageThread(context, holder.imageView, groupReply.groupNumber, HeadType.QQGroup).start();
+				}
+			});
+		//     }
+		//      holder.imageView.setImageBitmap(hashMap.get(groupReply.groupNumber));
         return convertView;
-    }
+	  }
 
     private class ViewHolder {
         private ImageView imageView;
         private TextView groupNumber;
         private Switch replySwitch;
-    }
-}
+	  }
+  }
