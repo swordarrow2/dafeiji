@@ -20,16 +20,16 @@ import android.app.*;
 
 public class GroupConfigAdapter extends BaseAdapter {
     private Activity context;
-    private ArrayList<GroupConfig> groupReplies;
-    private HashSet<GroupConfig> groupConfigs;
+    private ArrayList<GroupConfig> groupRepliesList;
+    private HashSet<GroupConfig> groupReplySet;
     // private HashMap<Long, Bitmap> hashMap = new HashMap<>();
 
-    public GroupConfigAdapter(Activity context, HashSet<GroupConfig> groupReplies) {
+    public GroupConfigAdapter(Activity context, HashSet<GroupConfig> groupReplySet) {
         this.context = context;
-        this.groupConfigs = groupReplies;
-        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplies);
+        this.groupReplySet = groupReplySet;
+        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplySet);
         quickSort(arrayList, 0, arrayList.size() - 1);
-        this.groupReplies = arrayList;
+        this.groupRepliesList = arrayList;
     }
 
     private void quickSort(ArrayList<GroupConfig> array, int low, int high) {// 传入low=0，high=array.length-1;
@@ -56,22 +56,22 @@ public class GroupConfigAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplies);
+        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplySet);
         quickSort(arrayList, 0, arrayList.size() - 1);
-        this.groupReplies = arrayList;
+        this.groupRepliesList = arrayList;
         super.notifyDataSetChanged();
     }
 
     public int getCount() {
-        return groupReplies.size();
+        return groupRepliesList.size();
     }
 
     public Object getItem(int position) {
-        return groupReplies.get(position);
+        return groupRepliesList.get(position);
     }
 
     public long getItemId(int position) {
-        return groupReplies.get(position).hashCode();
+        return groupRepliesList.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -87,7 +87,7 @@ public class GroupConfigAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final GroupConfig groupReply = groupReplies.get(position);
+        final GroupConfig groupReply = groupRepliesList.get(position);
         holder.groupNumber.setText(String.valueOf(groupReply.groupNumber));
         holder.replySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

@@ -9,7 +9,6 @@ import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageRunnable;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
-import com.meng.grzxConfig.MaterialDesign.javaBean.GroupConfig;
 
 import java.io.*;
 import java.util.*;
@@ -17,12 +16,12 @@ import java.util.*;
 public class QQAccountAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Long> qqList;
-    private HashSet<Long> notReplyList;
+    private HashSet<Long> qqSet;
 
-    public QQAccountAdapter(Context context, HashSet<Long> notReplyList) {
+    public QQAccountAdapter(Context context, HashSet<Long> qqSet) {
         this.context = context;
-        this.notReplyList = notReplyList;
-        ArrayList<Long> arrayList = new ArrayList<>(notReplyList);
+        this.qqSet = qqSet;
+        ArrayList<Long> arrayList = new ArrayList<>(qqSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
         qqList = arrayList;
     }
@@ -52,7 +51,7 @@ public class QQAccountAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        ArrayList<Long> arrayList = new ArrayList<>(notReplyList);
+        ArrayList<Long> arrayList = new ArrayList<>(qqSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
         qqList = arrayList;
         super.notifyDataSetChanged();

@@ -18,15 +18,15 @@ import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 
 public class PersonInfoAdapter extends BaseAdapter {
     private MainActivity context;
-    private ArrayList<PersonInfo> infos;
-    private HashSet<PersonInfo> infoSet;
+    private ArrayList<PersonInfo> infosList;
+    private HashSet<PersonInfo> infosSet;
 
-    public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infoSet) {
+    public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infosSet) {
         this.context = context;
-        this.infoSet = infoSet;
-        ArrayList<PersonInfo> arrayList = new ArrayList<>(infoSet);
+        this.infosSet = infosSet;
+        ArrayList<PersonInfo> arrayList = new ArrayList<>(infosSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
-        this.infos = arrayList;
+        this.infosList = arrayList;
     }
 
     private void quickSort(ArrayList<PersonInfo> array, int low, int high) {// 传入low=0，high=array.length-1;
@@ -54,22 +54,22 @@ public class PersonInfoAdapter extends BaseAdapter {
 
     @Override
     public void notifyDataSetChanged() {
-        ArrayList<PersonInfo> arrayList = new ArrayList<>(infoSet);
+        ArrayList<PersonInfo> arrayList = new ArrayList<>(infosSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
-        this.infos = arrayList;
+        this.infosList = arrayList;
         super.notifyDataSetChanged();
     }
 
     public int getCount() {
-        return infos.size();
+        return infosList.size();
     }
 
     public Object getItem(int position) {
-        return infos.get(position);
+        return infosList.get(position);
     }
 
     public long getItemId(int position) {
-        return infos.get(position).hashCode();
+        return infosList.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -89,7 +89,7 @@ public class PersonInfoAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final PersonInfo personInfo = infos.get(position);
+        final PersonInfo personInfo = infosList.get(position);
         holder.textViewName.setText(personInfo.name);
         holder.textViewQQNumber.setText(String.valueOf(personInfo.qq));
         holder.textViewBilibiliUid.setText(String.valueOf(personInfo.bid));
