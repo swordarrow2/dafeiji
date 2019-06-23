@@ -17,12 +17,14 @@ import java.util.*;
 public class QQAccountAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Long> qqList;
+    private HashSet<Long> notReplyList;
 
     public QQAccountAdapter(Context context, HashSet<Long> notReplyList) {
         this.context = context;
+        this.notReplyList = notReplyList;
         ArrayList<Long> arrayList = new ArrayList<>(notReplyList);
         quickSort(arrayList, 0, arrayList.size() - 1);
-        this.qqList = arrayList;
+        qqList = arrayList;
     }
 
     private void quickSort(ArrayList<Long> array, int low, int high) {// 传入low=0，high=array.length-1;
@@ -33,7 +35,7 @@ public class QQAccountAdapter extends BaseAdapter {
             p_pos = low;
             pivot = array.get(p_pos);
             for (i = low + 1; i <= high; i++)
-                if (array.get(i) > pivot) {
+                if (array.get(i) < pivot) {
                     p_pos++;
                     t = array.get(p_pos);
                     array.set(p_pos, array.get(i));
@@ -46,6 +48,14 @@ public class QQAccountAdapter extends BaseAdapter {
             quickSort(array, low, p_pos - 1);// 排序左半部分
             quickSort(array, p_pos + 1, high);// 排序右半部分
         }
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        ArrayList<Long> arrayList = new ArrayList<>(notReplyList);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        qqList = arrayList;
+        super.notifyDataSetChanged();
     }
 
     public int getCount() {

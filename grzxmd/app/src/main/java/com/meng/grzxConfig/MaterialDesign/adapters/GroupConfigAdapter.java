@@ -21,10 +21,12 @@ import android.app.*;
 public class GroupConfigAdapter extends BaseAdapter {
     private Activity context;
     private ArrayList<GroupConfig> groupReplies;
+    private HashSet<GroupConfig> groupConfigs;
     // private HashMap<Long, Bitmap> hashMap = new HashMap<>();
 
     public GroupConfigAdapter(Activity context, HashSet<GroupConfig> groupReplies) {
         this.context = context;
+        this.groupConfigs = groupReplies;
         ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplies);
         quickSort(arrayList, 0, arrayList.size() - 1);
         this.groupReplies = arrayList;
@@ -38,7 +40,7 @@ public class GroupConfigAdapter extends BaseAdapter {
             p_pos = low;
             pivot = array.get(p_pos).groupNumber;
             for (i = low + 1; i <= high; i++)
-                if (array.get(i).groupNumber > pivot) {
+                if (array.get(i).groupNumber < pivot) {
                     p_pos++;
                     t = array.get(p_pos);
                     array.set(p_pos, array.get(i));
@@ -50,6 +52,14 @@ public class GroupConfigAdapter extends BaseAdapter {
             quickSort(array, low, p_pos - 1);
             quickSort(array, p_pos + 1, high);
         }
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplies);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        this.groupReplies = arrayList;
+        super.notifyDataSetChanged();
     }
 
     public int getCount() {

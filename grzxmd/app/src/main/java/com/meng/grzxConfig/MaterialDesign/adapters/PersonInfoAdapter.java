@@ -19,10 +19,12 @@ import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 public class PersonInfoAdapter extends BaseAdapter {
     private MainActivity context;
     private ArrayList<PersonInfo> infos;
+    private HashSet<PersonInfo> infoSet;
 
-    public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infos) {
+    public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infoSet) {
         this.context = context;
-        ArrayList<PersonInfo> arrayList = new ArrayList<>(infos);
+        this.infoSet = infoSet;
+        ArrayList<PersonInfo> arrayList = new ArrayList<>(infoSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
         this.infos = arrayList;
     }
@@ -35,7 +37,7 @@ public class PersonInfoAdapter extends BaseAdapter {
             p_pos = low;
             pivot = array.get(p_pos).qq;
             for (i = low + 1; i <= high; i++)
-                if (array.get(i).qq > pivot) {
+                if (array.get(i).qq < pivot) {
                     p_pos++;
                     t = array.get(p_pos);
                     array.set(p_pos, array.get(i));
@@ -48,6 +50,14 @@ public class PersonInfoAdapter extends BaseAdapter {
             quickSort(array, low, p_pos - 1);// 排序左半部分
             quickSort(array, p_pos + 1, high);// 排序右半部分
         }
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        ArrayList<PersonInfo> arrayList = new ArrayList<>(infoSet);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        this.infos = arrayList;
+        super.notifyDataSetChanged();
     }
 
     public int getCount() {
