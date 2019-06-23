@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         initPersonFragment(false);
         initMasterFragment(false);
         initAdminFragment(false);
+        initAllowFragment(false);
         initGroupConfigFragment(true);
         networkManager = new NetworkManager(this);
         networkManager.getJsonString();
@@ -362,6 +363,9 @@ public class MainActivity extends AppCompatActivity {
                 qqNotReplyFragment,
                 wordNotReplyFragment,
                 personInfoFragment,
+                masterFragment,
+                adminFragment,
+                groupAutoAllowFragment,
                 homeFragment,
                 menusFragment,
                 progressFragment
