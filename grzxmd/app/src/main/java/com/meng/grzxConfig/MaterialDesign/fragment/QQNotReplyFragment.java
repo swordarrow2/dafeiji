@@ -51,8 +51,9 @@ public class QQNotReplyFragment extends Fragment {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                MainActivity.instence.configJavaBean.QQNotReply.set(MainActivity.instence.findPosition(number), Long.parseLong(editText.getText().toString()));
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, MainActivity.instence.findPosition(number) + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.QQNotReply.remove(number);
+                                                MainActivity.instence.configJavaBean.QQNotReply.add(Long.parseLong(editText.getText().toString()));
+                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, number + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -70,10 +71,9 @@ public class QQNotReplyFragment extends Fragment {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                long qq = adapterView.getItemAtPosition(position);
-                                int po=MainActivity.instence.findPosition(qq);
-                                MainActivity.instence.configJavaBean.QQNotReply.remove(po);
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(po),MainActivity.instence.qqNotReplyAdapter);
+                                long qq = (long) adapterView.getItemAtPosition(position);
+                                MainActivity.instence.configJavaBean.QQNotReply.remove(qq);
+                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(qq),MainActivity.instence.qqNotReplyAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;

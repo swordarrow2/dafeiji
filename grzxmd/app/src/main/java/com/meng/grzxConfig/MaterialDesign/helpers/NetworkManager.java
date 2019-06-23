@@ -47,11 +47,8 @@ public class NetworkManager {
 							  }
 						  });
 					  client.close();
-					} catch (UnknownHostException e) {
-					  e.printStackTrace();
-					} catch (IOException e) {
-					  e.printStackTrace();
 					} catch (Exception e) {
+					  e.printStackTrace();
 					}
 				}
 			}).start();

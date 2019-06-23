@@ -51,9 +51,6 @@ public class PersonInfoFragment extends Fragment {
                 menuRed.hideMenu(true);
                 MainActivity.instence.sv.setVisibility(View.VISIBLE);
                 MainActivity.instence.sv.requestFocus();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);//开启或者关闭软键盘
-                //  imm.showSoftInput(MainActivity.instence.sv, InputMethodManager.SHOW_FORCED);//弹出软键盘时，焦点定位在输入框中
             }
         });
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -89,8 +86,7 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 personInfo.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
                                                 personInfo.autoTip = cbNai.isChecked();
-                                                MainActivity.instence.configJavaBean.personInfo.set(MainActivity.instence.findPosition(personInfo), personInfo);
-                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, MainActivity.instence.findPosition(personInfo) + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
+                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, MainActivity.instence.gson.toJson(personInfo) , MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -108,9 +104,8 @@ public class PersonInfoFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which2) {
                                 PersonInfo personInfo = (PersonInfo) adapterView.getItemAtPosition(position);
-                                int po = MainActivity.instence.findPosition(personInfo);
-                                MainActivity.instence.configJavaBean.personInfo.remove(po);
-                                MainActivity.instence.networkManager.send(NetworkType.removePersonInfo, String.valueOf(po), MainActivity.instence.personInfoAdapter);
+                                MainActivity.instence.configJavaBean.personInfo.remove(personInfo);
+                                MainActivity.instence.networkManager.send(NetworkType.removePersonInfo, MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;

@@ -35,4 +35,11 @@
     <string name="all">全部</string>
     <string name="edit_dic">编辑词库</string>
     <string name="offBan">不禁言复读机</string>
+    <string name="group_config">群配置</string>
+    <string name="not_reply_qq">不回复的QQ</string>
+    <string name="not_reply_word">不回复的字</string>
+    <string name="plane_player">飞机佬名单</string>
+    <string name="master">Master</string>
+    <string name="admin">Admin</string>
+    <string name="group_auto_allow">自动同意进群</string>
 </resources>

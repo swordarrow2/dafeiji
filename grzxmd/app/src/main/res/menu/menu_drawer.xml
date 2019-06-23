@@ -4,24 +4,36 @@
     <group
         android:id="@+id/group1"
         android:checkableBehavior="single">
-		<item
+        <item
             android:id="@+id/group_config"
             android:icon="@drawable/ic_menu"
-            android:title="群配置" />
+            android:title="@string/group_config" />
         <item
             android:id="@+id/qq_not_reply"
             android:icon="@drawable/ic_menu"
-            android:title="不回复的QQ" />
+            android:title="@string/not_reply_qq" />
         <item
             android:id="@+id/word_not_reply"
             android:icon="@drawable/ic_menu"
-            android:title="不回复的字" />
-		<item
+            android:title="@string/not_reply_word" />
+        <item
             android:id="@+id/accounts"
             android:icon="@drawable/ic_menu"
-            android:title="飞机佬名单" />
-		
-		<!--
+            android:title="@string/plane_player" />
+        <item
+            android:id="@+id/master"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/master" />
+        <item
+            android:id="@+id/admin"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/admin" />
+        <item
+            android:id="@+id/allow"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/group_auto_allow" />
+
+        <!--
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_nav_item"

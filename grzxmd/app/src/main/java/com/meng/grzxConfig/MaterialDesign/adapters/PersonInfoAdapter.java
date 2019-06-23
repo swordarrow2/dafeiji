@@ -7,7 +7,7 @@ import android.widget.*;
 
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.InfoActivity;
-import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageThread;
+import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageRunnable;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 
@@ -20,9 +20,9 @@ public class PersonInfoAdapter extends BaseAdapter {
     private MainActivity context;
     private ArrayList<PersonInfo> infos;
 
-    public PersonInfoAdapter(MainActivity context, ArrayList<PersonInfo> infos) {
+    public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infos) {
         this.context = context;
-        this.infos = infos;
+        this.infos = new ArrayList<>(infos);
     }
 
     public int getCount() {
@@ -68,13 +68,13 @@ public class PersonInfoAdapter extends BaseAdapter {
                 holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
             } else {
                 if (MainActivity.instence.onWifi) {
-                    new DownloadImageThread(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser).start();
+                    MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
                 } else {
                     holder.imageViewQQHead.setImageResource(R.drawable.stat_sys_download_anim0);
                     holder.imageViewQQHead.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            new DownloadImageThread(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser).start();
+                            MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
                         }
                     });
                 }
@@ -87,7 +87,7 @@ public class PersonInfoAdapter extends BaseAdapter {
                 holder.imageViewBilibiiliHead.setImageBitmap(BitmapFactory.decodeFile(bilibiliImageFile.getAbsolutePath()));
             } else {
                 if (MainActivity.instence.onWifi) {
-                    new DownloadImageThread(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser).start();
+                    MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser));
                 } else {
                     holder.imageViewBilibiiliHead.setImageResource(R.drawable.stat_sys_download_anim0);
                 }
@@ -96,7 +96,7 @@ public class PersonInfoAdapter extends BaseAdapter {
         holder.imageViewBilibiiliHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadImageThread(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser).start();
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser));
             }
         });
         holder.infoImageView.setOnClickListener(new View.OnClickListener() {

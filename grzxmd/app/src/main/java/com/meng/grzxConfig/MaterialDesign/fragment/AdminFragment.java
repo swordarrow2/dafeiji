@@ -1,23 +1,27 @@
 package com.meng.grzxConfig.MaterialDesign.fragment;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.support.annotation.*;
-import android.view.*;
-import android.view.animation.*;
-import android.widget.*;
-import android.widget.AdapterView.*;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
+import android.widget.ListView;
 
-import com.github.clans.fab.*;
+import com.github.clans.fab.FloatingActionButton;
 import com.meng.grzxConfig.MaterialDesign.R;
+import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 
-import android.support.v4.app.Fragment;
-
-import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
-
-public class WordNotReplyFragment extends Fragment {
+public class AdminFragment extends Fragment {
 
     public ListView mListView;
     private FloatingActionButton mFab;
@@ -38,8 +42,8 @@ public class WordNotReplyFragment extends Fragment {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View view, final int position, long l) {
                 final EditText editText = new EditText(getActivity());
-                final String str=(String) adapterView.getItemAtPosition(position);
-                editText.setText(str);
+                final long number = (long) adapterView.getItemAtPosition(position);
+                editText.setText(String.valueOf(number));
                 new AlertDialog.Builder(getActivity())
                         .setView(editText)
                         .setTitle("编辑")
@@ -51,9 +55,9 @@ public class WordNotReplyFragment extends Fragment {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                MainActivity.instence.configJavaBean.wordNotReply.remove(str);
-                                                MainActivity.instence.configJavaBean.wordNotReply.add(editText.getText().toString());
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyWord, str + " " + editText.getText().toString(),MainActivity.instence.wordNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.QQNotReply.remove(number);
+                                                MainActivity.instence.configJavaBean.QQNotReply.add(Long.parseLong(editText.getText().toString()));
+                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, number + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -71,14 +75,20 @@ public class WordNotReplyFragment extends Fragment {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                String string = (String) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.wordNotReply.remove(string);
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyWord, string,MainActivity.instence.wordNotReplyAdapter);
+                                long qq = (long) adapterView.getItemAtPosition(position);
+                                MainActivity.instence.configJavaBean.QQNotReply.remove(qq);
+                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(qq),MainActivity.instence.qqNotReplyAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
             }
         });
+
+
+        mFab.hide(false);
+        mFab.show(true);
+        mFab.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
+        mFab.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,24 +105,21 @@ public class WordNotReplyFragment extends Fragment {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                String input = editText.getText().toString();
-                                                for (String s : MainActivity.instence.configJavaBean.wordNotReply) {
-                                                    if (s.equals(input)) {
+                                                Long userInput = Long.parseLong(editText.getText().toString());
+                                                for (long l : MainActivity.instence.configJavaBean.QQNotReply) {
+                                                    if (l == userInput) {
                                                         return;
                                                     }
                                                 }
-                                                MainActivity.instence.configJavaBean.wordNotReply.add(input);
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyWord, input,MainActivity.instence.wordNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.QQNotReply.add(userInput);
+                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput),MainActivity.instence.qqNotReplyAdapter);
+
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
                         }).setNegativeButton("取消", null).show();
             }
         });
-        mFab.hide(false);
-        mFab.show(true);
-        mFab.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
-        mFab.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
 
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override

@@ -10,6 +10,7 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.google.gson.Gson;
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.DicEdit;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
@@ -120,8 +121,7 @@ public class GroupConfigFragment extends Fragment {
                                 groupConfig.setZan(zan.isChecked());
                                 groupConfig.setMoshenfusong(moshenfusong.isChecked());
 								groupConfig.setCheHuiMoTu(chehui.isChecked());
-                                MainActivity.instence.configJavaBean.groupConfigs.set(MainActivity.instence.findPosition(groupConfig), groupConfig);
-                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.findPosition(groupConfig) + " " + MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
+                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
             }
@@ -138,9 +138,8 @@ public class GroupConfigFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
-                                int po=MainActivity.instence.findPosition(groupConfig);
-                                MainActivity.instence.configJavaBean.groupConfigs.remove(po);
-                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, String.valueOf(po),MainActivity.instence.groupConfigAdapter);
+                                MainActivity.instence.configJavaBean.groupConfigs.remove(groupConfig);
+                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
