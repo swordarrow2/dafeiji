@@ -9,29 +9,55 @@ import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageRunnable;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
+import com.meng.grzxConfig.MaterialDesign.javaBean.GroupConfig;
 
 import java.io.*;
 import java.util.*;
 
 public class QQAccountAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Long> notReplyList;
+    private ArrayList<Long> qqList;
 
     public QQAccountAdapter(Context context, HashSet<Long> notReplyList) {
         this.context = context;
-        this.notReplyList = new ArrayList<>(notReplyList);
+        ArrayList<Long> arrayList = new ArrayList<>(notReplyList);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        this.qqList = arrayList;
+    }
+
+    private void quickSort(ArrayList<Long> array, int low, int high) {// 传入low=0，high=array.length-1;
+        long pivot;
+        Long t;
+        int p_pos, i;// pivot->位索引;p_pos->轴值。
+        if (low < high) {
+            p_pos = low;
+            pivot = array.get(p_pos);
+            for (i = low + 1; i <= high; i++)
+                if (array.get(i) > pivot) {
+                    p_pos++;
+                    t = array.get(p_pos);
+                    array.set(p_pos, array.get(i));
+                    array.set(i, t);
+                }
+            t = array.get(low);
+            array.set(low, array.get(p_pos));
+            array.set(p_pos, t);
+            // 分而治之
+            quickSort(array, low, p_pos - 1);// 排序左半部分
+            quickSort(array, p_pos + 1, high);// 排序右半部分
+        }
     }
 
     public int getCount() {
-        return notReplyList.size();
+        return qqList.size();
     }
 
     public Object getItem(int position) {
-        return notReplyList.get(position);
+        return qqList.get(position);
     }
 
     public long getItemId(int position) {
-        return notReplyList.get(position).hashCode();
+        return qqList.get(position).hashCode();
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -49,7 +75,7 @@ public class QQAccountAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final long qqNotReply = notReplyList.get(position);
+        final long qqNotReply = qqList.get(position);
         holder.groupNumber.setText(String.valueOf(qqNotReply));
         File imageFile = new File(MainActivity.instence.mainDic + "user/" + qqNotReply + ".jpg");
         if (imageFile.exists()) {

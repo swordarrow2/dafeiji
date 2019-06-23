@@ -25,7 +25,32 @@ public class GroupConfigAdapter extends BaseAdapter {
 
     public GroupConfigAdapter(Activity context, HashSet<GroupConfig> groupReplies) {
         this.context = context;
-        this.groupReplies = new ArrayList<>(groupReplies);
+        ArrayList<GroupConfig> arrayList = new ArrayList<>(groupReplies);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        this.groupReplies = arrayList;
+    }
+
+    private void quickSort(ArrayList<GroupConfig> array, int low, int high) {// 传入low=0，high=array.length-1;
+        long pivot;
+        GroupConfig t;
+        int p_pos, i;// pivot->位索引;p_pos->轴值。
+        if (low < high) {
+            p_pos = low;
+            pivot = array.get(p_pos).groupNumber;
+            for (i = low + 1; i <= high; i++)
+                if (array.get(i).groupNumber > pivot) {
+                    p_pos++;
+                    t = array.get(p_pos);
+                    array.set(p_pos, array.get(i));
+                    array.set(i, t);
+                }
+            t = array.get(low);
+            array.set(low, array.get(p_pos));
+            array.set(p_pos, t);
+            // 分而治之
+            quickSort(array, low, p_pos - 1);// 排序左半部分
+            quickSort(array, p_pos + 1, high);// 排序右半部分
+        }
     }
 
     public int getCount() {
@@ -61,7 +86,7 @@ public class GroupConfigAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton p1, boolean p2) {
                 if (groupReply.reply != p2) {
                     groupReply.reply = p2;
-                    ((MainActivity) context).networkManager.send(NetworkType.setGroup, position + " " + MainActivity.instence.gson.toJson(groupReply), GroupConfigAdapter.this);
+                    ((MainActivity) context).networkManager.send(NetworkType.setGroup, MainActivity.instence.gson.toJson(groupReply), GroupConfigAdapter.this);
                 }
             }
         });

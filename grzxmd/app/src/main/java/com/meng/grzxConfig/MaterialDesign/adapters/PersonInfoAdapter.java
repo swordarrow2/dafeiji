@@ -22,7 +22,32 @@ public class PersonInfoAdapter extends BaseAdapter {
 
     public PersonInfoAdapter(MainActivity context, HashSet<PersonInfo> infos) {
         this.context = context;
-        this.infos = new ArrayList<>(infos);
+        ArrayList<PersonInfo> arrayList = new ArrayList<>(infos);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        this.infos = arrayList;
+    }
+
+    private void quickSort(ArrayList<PersonInfo> array, int low, int high) {// 传入low=0，high=array.length-1;
+        long pivot;
+        PersonInfo t;
+        int p_pos, i;// pivot->位索引;p_pos->轴值。
+        if (low < high) {
+            p_pos = low;
+            pivot = array.get(p_pos).qq;
+            for (i = low + 1; i <= high; i++)
+                if (array.get(i).qq > pivot) {
+                    p_pos++;
+                    t = array.get(p_pos);
+                    array.set(p_pos, array.get(i));
+                    array.set(i, t);
+                }
+            t = array.get(low);
+            array.set(low, array.get(p_pos));
+            array.set(p_pos, t);
+            // 分而治之
+            quickSort(array, low, p_pos - 1);// 排序左半部分
+            quickSort(array, p_pos + 1, high);// 排序右半部分
+        }
     }
 
     public int getCount() {
