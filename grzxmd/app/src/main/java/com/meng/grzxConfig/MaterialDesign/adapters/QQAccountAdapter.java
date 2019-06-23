@@ -85,14 +85,15 @@ public class QQAccountAdapter extends BaseAdapter {
                 MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, HeadType.QQUser));
             } else {
                 holder.imageView.setImageResource(R.drawable.stat_sys_download_anim0);
-                holder.imageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, HeadType.QQUser));
-                    }
-                });
             }
         }
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, HeadType.QQUser));
+            }
+        });
+
         return convertView;
     }
 

@@ -47,9 +47,8 @@ public class GroupConfigAdapter extends BaseAdapter {
             t = array.get(low);
             array.set(low, array.get(p_pos));
             array.set(p_pos, t);
-            // 分而治之
-            quickSort(array, low, p_pos - 1);// 排序左半部分
-            quickSort(array, p_pos + 1, high);// 排序右半部分
+            quickSort(array, low, p_pos - 1);
+            quickSort(array, p_pos + 1, high);
         }
     }
 
