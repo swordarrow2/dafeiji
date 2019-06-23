@@ -55,9 +55,9 @@ public class GroupAutoAllowFragment extends Fragment {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                MainActivity.instence.configJavaBean.QQNotReply.remove(number);
-                                                MainActivity.instence.configJavaBean.QQNotReply.add(Long.parseLong(editText.getText().toString()));
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, number + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.groupAutoAllowList.remove(number);
+                                                MainActivity.instence.configJavaBean.groupAutoAllowList.add(Long.parseLong(editText.getText().toString()));
+                                                MainActivity.instence.networkManager.send(NetworkType.setGroupAllow, number + " " + editText.getText().toString(),MainActivity.instence.groupAutoAllowAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -76,8 +76,8 @@ public class GroupAutoAllowFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 long qq = (long) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.QQNotReply.remove(qq);
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(qq),MainActivity.instence.qqNotReplyAdapter);
+                                MainActivity.instence.configJavaBean.groupAutoAllowList.remove(qq);
+                                MainActivity.instence.networkManager.send(NetworkType.removeGroupAllow, String.valueOf(qq),MainActivity.instence.groupAutoAllowAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -106,13 +106,13 @@ public class GroupAutoAllowFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 Long userInput = Long.parseLong(editText.getText().toString());
-                                                for (long l : MainActivity.instence.configJavaBean.QQNotReply) {
+                                                for (long l : MainActivity.instence.configJavaBean.groupAutoAllowList) {
                                                     if (l == userInput) {
                                                         return;
                                                     }
                                                 }
-                                                MainActivity.instence.configJavaBean.QQNotReply.add(userInput);
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.groupAutoAllowList.add(userInput);
+                                                MainActivity.instence.networkManager.send(NetworkType.addGroupAllow, String.valueOf(userInput),MainActivity.instence.groupAutoAllowAdapter);
 
                                             }
                                         }).setNegativeButton("取消", null).show();

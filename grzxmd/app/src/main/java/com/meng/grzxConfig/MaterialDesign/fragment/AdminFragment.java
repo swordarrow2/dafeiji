@@ -55,9 +55,9 @@ public class AdminFragment extends Fragment {
                                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
-                                                MainActivity.instence.configJavaBean.QQNotReply.remove(number);
-                                                MainActivity.instence.configJavaBean.QQNotReply.add(Long.parseLong(editText.getText().toString()));
-                                                MainActivity.instence.networkManager.send(NetworkType.setNotReplyUser, number + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.adminList.remove(number);
+                                                MainActivity.instence.configJavaBean.adminList.add(Long.parseLong(editText.getText().toString()));
+                                                MainActivity.instence.networkManager.send(NetworkType.setAdmin, number + " " + editText.getText().toString(),MainActivity.instence.adminAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -76,8 +76,8 @@ public class AdminFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 long qq = (long) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.QQNotReply.remove(qq);
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(qq),MainActivity.instence.qqNotReplyAdapter);
+                                MainActivity.instence.configJavaBean.adminList.remove(qq);
+                                MainActivity.instence.networkManager.send(NetworkType.removeAdmin, String.valueOf(qq),MainActivity.instence.adminAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -106,13 +106,13 @@ public class AdminFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 Long userInput = Long.parseLong(editText.getText().toString());
-                                                for (long l : MainActivity.instence.configJavaBean.QQNotReply) {
+                                                for (long l : MainActivity.instence.configJavaBean.adminList) {
                                                     if (l == userInput) {
                                                         return;
                                                     }
                                                 }
-                                                MainActivity.instence.configJavaBean.QQNotReply.add(userInput);
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.adminList.add(userInput);
+                                                MainActivity.instence.networkManager.send(NetworkType.addAdmin, String.valueOf(userInput),MainActivity.instence.adminAdapter);
 
                                             }
                                         }).setNegativeButton("取消", null).show();

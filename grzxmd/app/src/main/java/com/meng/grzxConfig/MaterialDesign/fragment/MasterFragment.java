@@ -57,7 +57,7 @@ public class MasterFragment extends Fragment {
                                             public void onClick(DialogInterface p11, int p2) {
                                                 MainActivity.instence.configJavaBean.masterList.remove(number);
                                                 MainActivity.instence.configJavaBean.masterList.add(Long.parseLong(editText.getText().toString()));
-                                                MainActivity.instence.networkManager.send(NetworkType.setMaster, number + " " + editText.getText().toString(),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.networkManager.send(NetworkType.setMaster, number + " " + editText.getText().toString(),MainActivity.instence.masterAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -76,8 +76,8 @@ public class MasterFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 long qq = (long) adapterView.getItemAtPosition(position);
-                                MainActivity.instence.configJavaBean.QQNotReply.remove(qq);
-                                MainActivity.instence.networkManager.send(NetworkType.removeNotReplyUser, String.valueOf(qq),MainActivity.instence.qqNotReplyAdapter);
+                                MainActivity.instence.configJavaBean.masterList.remove(qq);
+                                MainActivity.instence.networkManager.send(NetworkType.removeMaster, String.valueOf(qq),MainActivity.instence.masterAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -105,13 +105,13 @@ public class MasterFragment extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface p11, int p2) {
                                                 Long userInput = Long.parseLong(editText.getText().toString());
-                                                for (long l : MainActivity.instence.configJavaBean.QQNotReply) {
+                                                for (long l : MainActivity.instence.configJavaBean.masterList) {
                                                     if (l == userInput) {
                                                         return;
                                                     }
                                                 }
-                                                MainActivity.instence.configJavaBean.QQNotReply.add(userInput);
-                                                MainActivity.instence.networkManager.send(NetworkType.addNotReplyUser, String.valueOf(userInput),MainActivity.instence.qqNotReplyAdapter);
+                                                MainActivity.instence.configJavaBean.masterList.add(userInput);
+                                                MainActivity.instence.networkManager.send(NetworkType.addMaster, String.valueOf(userInput),MainActivity.instence.masterAdapter);
 
                                             }
                                         }).setNegativeButton("取消", null).show();
