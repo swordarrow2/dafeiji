@@ -69,7 +69,7 @@ public class PersonInfoFragment extends Fragment {
                 editTextBilibiliId.setText(String.valueOf(personInfo.bid));
                 editTextBilibiliLiveRoom.setText(String.valueOf(personInfo.bliveRoom));
                 cbNai.setChecked(personInfo.autoTip);
-
+                final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("编辑")
@@ -86,7 +86,7 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 personInfo.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
                                                 personInfo.autoTip = cbNai.isChecked();
-                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, MainActivity.instence.gson.toJson(personInfo) , MainActivity.instence.personInfoAdapter);
+                                                MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -117,6 +117,7 @@ public class PersonInfoFragment extends Fragment {
 
             @Override
             public void onClick(View p1) {
+                menuRed.hideMenu(true);
                 View view = getActivity().getLayoutInflater().inflate(R.layout.person_info_edit_view, null);
                 editTextName = (EditText) view.findViewById(R.id.edit_viewEditText_name);
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);

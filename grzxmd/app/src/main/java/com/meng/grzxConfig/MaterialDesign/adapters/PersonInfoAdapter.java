@@ -96,36 +96,24 @@ public class PersonInfoAdapter extends BaseAdapter {
         holder.textViewBilibiliLiveId.setText(String.valueOf(personInfo.bliveRoom));
         File qqImageFile = new File(MainActivity.instence.mainDic + "user/" + personInfo.qq + ".jpg");
         File bilibiliImageFile = new File(MainActivity.instence.mainDic + "bilibili/" + personInfo.bid + ".jpg");
-        if (personInfo.qq == 0) {
-            holder.imageViewQQHead.setImageResource(R.drawable.stat_sys_download_anim0);
-        } else {
+        if (personInfo.qq != 0) {
             if (qqImageFile.exists()) {
                 holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
-            } else {
-                if (MainActivity.instence.onWifi) {
-                    MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
-                } else {
-                    holder.imageViewQQHead.setImageResource(R.drawable.stat_sys_download_anim0);
-                    holder.imageViewQQHead.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
-                        }
-                    });
-                }
+            } else if (MainActivity.instence.onWifi) {
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
             }
         }
-        if (personInfo.bid == 0) {
-            holder.imageViewBilibiiliHead.setImageResource(R.drawable.stat_sys_download_anim0);
-        } else {
+        holder.imageViewQQHead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
+            }
+        });
+        if (personInfo.bid != 0) {
             if (bilibiliImageFile.exists()) {
                 holder.imageViewBilibiiliHead.setImageBitmap(BitmapFactory.decodeFile(bilibiliImageFile.getAbsolutePath()));
-            } else {
-                if (MainActivity.instence.onWifi) {
-                    MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser));
-                } else {
-                    holder.imageViewBilibiiliHead.setImageResource(R.drawable.stat_sys_download_anim0);
-                }
+            } else if (MainActivity.instence.onWifi) {
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser));
             }
         }
         holder.imageViewBilibiiliHead.setOnClickListener(new View.OnClickListener() {
