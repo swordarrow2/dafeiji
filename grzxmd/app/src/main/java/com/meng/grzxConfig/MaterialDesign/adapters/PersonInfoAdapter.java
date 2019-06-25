@@ -96,7 +96,9 @@ public class PersonInfoAdapter extends BaseAdapter {
         holder.textViewBilibiliLiveId.setText(String.valueOf(personInfo.bliveRoom));
         File qqImageFile = new File(MainActivity.instence.mainDic + "user/" + personInfo.qq + ".jpg");
         File bilibiliImageFile = new File(MainActivity.instence.mainDic + "bilibili/" + personInfo.bid + ".jpg");
-        if (personInfo.qq != 0) {
+        if (personInfo.qq == 0) {
+            holder.imageViewQQHead.setImageResource(R.drawable.stat_sys_download_anim0);
+        } else {
             if (qqImageFile.exists()) {
                 holder.imageViewQQHead.setImageBitmap(BitmapFactory.decodeFile(qqImageFile.getAbsolutePath()));
             } else if (MainActivity.instence.onWifi) {
@@ -109,7 +111,9 @@ public class PersonInfoAdapter extends BaseAdapter {
                 MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewQQHead, personInfo.qq, HeadType.QQUser));
             }
         });
-        if (personInfo.bid != 0) {
+        if (personInfo.bid == 0) {
+            holder.imageViewBilibiiliHead.setImageResource(R.drawable.stat_sys_download_anim0);
+        } else {
             if (bilibiliImageFile.exists()) {
                 holder.imageViewBilibiiliHead.setImageBitmap(BitmapFactory.decodeFile(bilibiliImageFile.getAbsolutePath()));
             } else if (MainActivity.instence.onWifi) {
