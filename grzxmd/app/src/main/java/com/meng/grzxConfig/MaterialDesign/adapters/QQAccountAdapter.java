@@ -96,17 +96,12 @@ public class QQAccountAdapter extends BaseAdapter {
         }
         final long qqNotReply = qqList.get(position);
         holder.groupNumber.setText(String.valueOf(qqNotReply));
-        File imageFile;
-        if (isGroup) {
-            imageFile = new File(MainActivity.instence.mainDic + "group/" + qqNotReply + ".jpg");
-        } else {
-            imageFile = new File(MainActivity.instence.mainDic + "user/" + qqNotReply + ".jpg");
-        }
+        File imageFile = new File(MainActivity.instence.mainDic + (isGroup ? "group/" : "user/") + qqNotReply + ".jpg");
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {
             if (MainActivity.instence.onWifi) {
-                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, HeadType.QQUser));
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, isGroup ? HeadType.QQGroup : HeadType.QQUser));
             } else {
                 holder.imageView.setImageResource(R.drawable.stat_sys_download_anim0);
             }
@@ -114,7 +109,7 @@ public class QQAccountAdapter extends BaseAdapter {
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, HeadType.QQUser));
+                MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageView, qqNotReply, isGroup ? HeadType.QQGroup : HeadType.QQUser));
             }
         });
 
