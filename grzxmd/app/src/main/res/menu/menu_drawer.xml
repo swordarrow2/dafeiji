@@ -32,6 +32,14 @@
             android:id="@+id/allow"
             android:icon="@drawable/ic_menu"
             android:title="@string/group_auto_allow" />
+        <item
+            android:id="@+id/blackqq"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/black_qq" />
+        <item
+            android:id="@+id/blackgroup"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/black_group" />
 
         <!--
         <item

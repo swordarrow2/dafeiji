@@ -21,7 +21,7 @@
     <string name="bilibili">屑站链接</string>
     <string name="cuigeng">催更</string>
     <string name="soutu">搜图</string>
-    <string name="link">链接</string>
+    <string name="sleep">夏眠</string>
     <string name="roll">roll</string>
     <string name="barcode">二维码</string>
     <string name="kuiping">窥屏检测</string>
@@ -42,4 +42,6 @@
     <string name="master">Master</string>
     <string name="admin">Admin</string>
     <string name="group_auto_allow">自动同意进群</string>
+    <string name="black_qq">黑名单QQ</string>
+    <string name="black_group">黑名单群</string>
 </resources>

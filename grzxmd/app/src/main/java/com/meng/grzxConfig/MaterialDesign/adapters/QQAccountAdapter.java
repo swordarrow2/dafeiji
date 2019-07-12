@@ -17,10 +17,20 @@ public class QQAccountAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Long> qqList;
     private HashSet<Long> qqSet;
+    private boolean isGroup = false;
 
     public QQAccountAdapter(Context context, HashSet<Long> qqSet) {
         this.context = context;
         this.qqSet = qqSet;
+        ArrayList<Long> arrayList = new ArrayList<>(qqSet);
+        quickSort(arrayList, 0, arrayList.size() - 1);
+        qqList = arrayList;
+    }
+
+    public QQAccountAdapter(Context context, HashSet<Long> qqSet, boolean isGroup) {
+        this.context = context;
+        this.qqSet = qqSet;
+        this.isGroup = isGroup;
         ArrayList<Long> arrayList = new ArrayList<>(qqSet);
         quickSort(arrayList, 0, arrayList.size() - 1);
         qqList = arrayList;
@@ -86,7 +96,12 @@ public class QQAccountAdapter extends BaseAdapter {
         }
         final long qqNotReply = qqList.get(position);
         holder.groupNumber.setText(String.valueOf(qqNotReply));
-        File imageFile = new File(MainActivity.instence.mainDic + "user/" + qqNotReply + ".jpg");
+        File imageFile;
+        if (isGroup) {
+            imageFile = new File(MainActivity.instence.mainDic + "group/" + qqNotReply + ".jpg");
+        } else {
+            imageFile = new File(MainActivity.instence.mainDic + "user/" + qqNotReply + ".jpg");
+        }
         if (imageFile.exists()) {
             holder.imageView.setImageBitmap(BitmapFactory.decodeFile(imageFile.getAbsolutePath()));
         } else {

@@ -10,7 +10,6 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
-import com.google.gson.Gson;
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.DicEdit;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
@@ -78,7 +77,7 @@ public class GroupConfigFragment extends Fragment {
                 bilibili.setChecked(groupConfig.isBilibiliCheck());
                 cuigeng.setChecked(groupConfig.isCuigeng());
                 searchPicture.setChecked(groupConfig.isSearchPic());
-                checkLink.setChecked(groupConfig.isCheckLink());
+                checkLink.setChecked(groupConfig.isSleep());
                 roll.setChecked(groupConfig.isRoll());
                 barcode.setChecked(groupConfig.isBarcode());
                 kuiping.setChecked(groupConfig.isKuiping());
@@ -113,7 +112,7 @@ public class GroupConfigFragment extends Fragment {
                                 groupConfig.setBilibiliCheck(bilibili.isChecked());
                                 groupConfig.setCuigeng(cuigeng.isChecked());
                                 groupConfig.setSearchPic(searchPicture.isChecked());
-                                groupConfig.setCheckLink(checkLink.isChecked());
+                                groupConfig.setSleep(checkLink.isChecked());
                                 groupConfig.setRoll(roll.isChecked());
                                 groupConfig.setBarcode(barcode.isChecked());
                                 groupConfig.setKuiping(kuiping.isChecked());

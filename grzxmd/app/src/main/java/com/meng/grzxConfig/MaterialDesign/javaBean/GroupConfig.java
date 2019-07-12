@@ -2,158 +2,160 @@ package com.meng.grzxConfig.MaterialDesign.javaBean;
 
 import java.util.ArrayList;
 
-public class GroupConfig{
-	public long groupNumber = 0;
-	public boolean reply = true;
-	public ArrayList<Boolean> booleans = new ArrayList<Boolean>(16);
+public class GroupConfig {
+    public long groupNumber = 0;
+    public boolean reply = true;
+    public ArrayList<Boolean> booleans = new ArrayList<Boolean>(16);
 
-	public int repeatMode = 0;
-	/*
-	 public boolean repeat = true;
-	 public boolean setu = false;
-	 public boolean pohai = false;
-	 public boolean dic = false;
-	 public boolean bilibiliCheck = false;
-	 public boolean cuigeng = false;
-	 public boolean searchPic = false;
-	 public boolean checkLink = false;
-	 public boolean roll = false;
-	 public boolean barcode = false;
-	 public boolean kuiping = false;
-	 public boolean cqCode = false;
-	 public boolean zan = false;
-	 public boolean moshenfusong = false;
-	 */
-	public GroupConfig(){
-		for(int i=0;i<15;++i){
-			booleans.add(false);
-		  }
-	  }
+    public int repeatMode = 0;
 
-	public void setRepeat(boolean repeat){
-		booleans.set(0,repeat);
-	  }
+    /*
+     public boolean repeat = true;
+     public boolean setu = false;
+     public boolean pohai = false;
+     public boolean dic = false;
+     public boolean bilibiliCheck = false;
+     public boolean cuigeng = false;
+     public boolean searchPic = false;
+     public boolean checkLink = false;
+     public boolean roll = false;
+     public boolean barcode = false;
+     public boolean kuiping = false;
+     public boolean cqCode = false;
+     public boolean zan = false;
+     public boolean moshenfusong = false;
+     */
+    public GroupConfig() {
+        for (int i = 0; i < 15; ++i) {
+            booleans.add(false);
+        }
+    }
 
-	public boolean isRepeat(){
-		return booleans.get(0);
-	  }
+    public void setRepeat(boolean repeat) {
+        booleans.set(0, repeat);
+    }
 
-	public void setRepeatMode(int repeatMode){
-		this.repeatMode=repeatMode;
-	  }
+    public boolean isRepeat() {
+        return booleans.get(0);
+    }
 
-	public int getRepeatMode(){
-		return repeatMode;
-	  }
+    public void setRepeatMode(int repeatMode) {
+        this.repeatMode = repeatMode;
+    }
 
-	public void setSetu(boolean setu){
-		booleans.set(1,setu);
-	  }
+    public int getRepeatMode() {
+        return repeatMode;
+    }
 
-	public boolean isSetu(){
-		return booleans.get(1);
-	  }
+    public void setSetu(boolean setu) {
+        booleans.set(1, setu);
+    }
 
-	public void setPohai(boolean pohai){
-		booleans.set(2,pohai);
-	  }
+    public boolean isSetu() {
+        return booleans.get(1);
+    }
 
-	public boolean isPohai(){
-		return booleans.get(2);
-	  }
+    public void setPohai(boolean pohai) {
+        booleans.set(2, pohai);
+    }
 
-	public void setDic(boolean dic){
-		booleans.set(3,dic);
-	  }
+    public boolean isPohai() {
+        return booleans.get(2);
+    }
 
-	public boolean isDic(){
-		return booleans.get(3);
-	  }
+    public void setDic(boolean dic) {
+        booleans.set(3, dic);
+    }
 
-	public void setBilibiliCheck(boolean bilibiliCheck){
-		booleans.set(4,bilibiliCheck);
-	  }
+    public boolean isDic() {
+        return booleans.get(3);
+    }
 
-	public boolean isBilibiliCheck(){
-		return booleans.get(4);
-	  }
+    public void setBilibiliCheck(boolean bilibiliCheck) {
+        booleans.set(4, bilibiliCheck);
+    }
 
-	public void setCuigeng(boolean cuigeng){
-		booleans.set(5,cuigeng);
-	  }
+    public boolean isBilibiliCheck() {
+        return booleans.get(4);
+    }
 
-	public boolean isCuigeng(){
-		return booleans.get(5);
-	  }
+    public void setCuigeng(boolean cuigeng) {
+        booleans.set(5, cuigeng);
+    }
 
-	public void setSearchPic(boolean searchPic){
-		booleans.set(6,searchPic);
-	  }
+    public boolean isCuigeng() {
+        return booleans.get(5);
+    }
 
-	public boolean isSearchPic(){
-		return booleans.get(6);
-	  }
+    public void setSearchPic(boolean searchPic) {
+        booleans.set(6, searchPic);
+    }
 
-	public void setCheckLink(boolean checkLink){
-		booleans.set(7,checkLink);
-	  }
+    public boolean isSearchPic() {
+        return booleans.get(6);
+    }
 
-	public boolean isCheckLink(){
-		return booleans.get(7);
-	  }
+    public void setSleep(boolean checkLink) {
+        booleans.set(7, checkLink);
+    }
 
-	public void setRoll(boolean roll){
-		booleans.set(8,roll);
-	  }
+    public boolean isSleep() {
+        return booleans.get(7);
+    }
 
-	public boolean isRoll(){
-		return booleans.get(8);
-	  }
+    public void setRoll(boolean roll) {
+        booleans.set(8, roll);
+    }
 
-	public void setBarcode(boolean barcode){
-		booleans.set(9,barcode);
-	  }
+    public boolean isRoll() {
+        return booleans.get(8);
+    }
 
-	public boolean isBarcode(){
-		return booleans.get(9);
-	  }
+    public void setBarcode(boolean barcode) {
+        booleans.set(9, barcode);
+    }
 
-	public void setKuiping(boolean kuiping){
-		booleans.set(10,kuiping);
-	  }
+    public boolean isBarcode() {
+        return booleans.get(9);
+    }
 
-	public boolean isKuiping(){
-		return booleans.get(10);
-	  }
+    public void setKuiping(boolean kuiping) {
+        booleans.set(10, kuiping);
+    }
 
-	public void setCqCode(boolean cqCode){
-		booleans.set(11,cqCode);
-	  }
+    public boolean isKuiping() {
+        return booleans.get(10);
+    }
 
-	public boolean isCqCode(){
-		return booleans.get(11);
-	  }
+    public void setCqCode(boolean cqCode) {
+        booleans.set(11, cqCode);
+    }
 
-	public void setZan(boolean zan){
-		booleans.set(12,zan);
-	  }
+    public boolean isCqCode() {
+        return booleans.get(11);
+    }
 
-	public boolean isZan(){
-		return booleans.get(12);
-	  }
+    public void setZan(boolean zan) {
+        booleans.set(12, zan);
+    }
 
-	public void setMoshenfusong(boolean moshenfusong){
-		booleans.set(13,moshenfusong);
-	  }
+    public boolean isZan() {
+        return booleans.get(12);
+    }
 
-	public boolean isMoshenfusong(){
-		return booleans.get(13);
-	  }
-	public void setCheHuiMoTu(boolean cheHui) {
-		booleans.set(14, cheHui);
-	  }
+    public void setMoshenfusong(boolean moshenfusong) {
+        booleans.set(13, moshenfusong);
+    }
 
-	public boolean isCheHuiMoTu() {
-		return booleans.get(14);
-	  }
-  }
+    public boolean isMoshenfusong() {
+        return booleans.get(13);
+    }
+
+    public void setCheHuiMoTu(boolean cheHui) {
+        booleans.set(14, cheHui);
+    }
+
+    public boolean isCheHuiMoTu() {
+        return booleans.get(14);
+    }
+}

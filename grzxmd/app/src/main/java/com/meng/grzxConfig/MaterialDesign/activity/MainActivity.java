@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     public QQAccountAdapter adminAdapter;
     public QQAccountAdapter groupAutoAllowAdapter;
 
+    public QQAccountAdapter blackQQAdapter;
+    public QQAccountAdapter blackGroupAdapter;
+
     public GroupConfigFragment groupConfigFragment;
     public QQNotReplyFragment qqNotReplyFragment;
     public WordNotReplyFragment wordNotReplyFragment;
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     public HomeFragment homeFragment;
     public MenusFragment menusFragment;
     public ProgressFragment progressFragment;
+    public BlackQQFragment blackQQFragment;
+    public BlackGroupFragment blackGroupFragment;
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     public EditorConfig editConfig;
     public SearchView sv;
@@ -129,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
         initAdminFragment(false);
         initAllowFragment(false);
         initGroupConfigFragment(true);
+        initBlackQQFragment(true);
+        initBlackGroupFragment(true);
         networkManager = new NetworkManager(this);
         networkManager.getJsonString();
 
@@ -201,8 +208,13 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.allow:
                     initAllowFragment(true);
                     break;
+                case R.id.blackqq:
+                    initBlackQQFragment(true);
+                    break;
+                case R.id.blackgroup:
+                    initBlackGroupFragment(true);
+                    break;
             }
-
             //    ft.replace(R.id.fragment, fragment).commit();
             return true;
         }
@@ -213,10 +225,12 @@ public class MainActivity extends AppCompatActivity {
         groupConfigAdapter = new GroupConfigAdapter(this, configJavaBean.groupConfigs);
         qqNotReplyAdapter = new QQAccountAdapter(this, configJavaBean.QQNotReply);
         personInfoAdapter = new PersonInfoAdapter(this, configJavaBean.personInfo);
-        wordNotReplyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>(configJavaBean.wordNotReply));
+        wordNotReplyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, configJavaBean.wordNotReply);
         masterAdapter = new QQAccountAdapter(this, configJavaBean.masterList);
         adminAdapter = new QQAccountAdapter(this, configJavaBean.adminList);
         groupAutoAllowAdapter = new QQAccountAdapter(this, configJavaBean.groupAutoAllowList);
+        blackQQAdapter = new QQAccountAdapter(this, configJavaBean.blackListQQ);
+        blackGroupAdapter = new QQAccountAdapter(this, configJavaBean.blackListGroup, true);
 
         groupConfigFragment.mListView.setAdapter(groupConfigAdapter);
         qqNotReplyFragment.mListView.setAdapter(qqNotReplyAdapter);
@@ -225,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
         masterFragment.mListView.setAdapter(masterAdapter);
         adminFragment.mListView.setAdapter(adminAdapter);
         groupAutoAllowFragment.mListView.setAdapter(groupAutoAllowAdapter);
+        blackQQFragment.mListView.setAdapter(blackQQAdapter);
+        blackGroupFragment.mListView.setAdapter(blackGroupAdapter);
     }
 
     public void initGroupConfigFragment(boolean showNow) {
@@ -318,6 +334,32 @@ public class MainActivity extends AppCompatActivity {
         transactionWelcome.commit();
     }
 
+    public void initBlackQQFragment(boolean showNow) {
+        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        if (blackQQFragment == null) {
+            blackQQFragment = new BlackQQFragment();
+            transactionWelcome.add(R.id.fragment, blackQQFragment);
+        }
+        hideFragment(transactionWelcome);
+        if (showNow) {
+            transactionWelcome.show(blackQQFragment);
+        }
+        transactionWelcome.commit();
+    }
+
+    public void initBlackGroupFragment(boolean showNow) {
+        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        if (blackGroupFragment == null) {
+            blackGroupFragment = new BlackGroupFragment();
+            transactionWelcome.add(R.id.fragment, blackGroupFragment);
+        }
+        hideFragment(transactionWelcome);
+        if (showNow) {
+            transactionWelcome.show(blackGroupFragment);
+        }
+        transactionWelcome.commit();
+    }
+
     public void initHomeFragment(boolean showNow) {
         FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
         if (homeFragment == null) {
@@ -368,7 +410,9 @@ public class MainActivity extends AppCompatActivity {
                 groupAutoAllowFragment,
                 homeFragment,
                 menusFragment,
-                progressFragment
+                progressFragment,
+                blackQQFragment,
+                blackGroupFragment
         };
         for (Fragment f : fs) {
             if (f != null) {
