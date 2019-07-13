@@ -1,5 +1,6 @@
 package com.meng.grzxConfig.MaterialDesign.adapters;
 
+import android.app.Activity;
 import android.content.*;
 import android.graphics.*;
 import android.view.*;
@@ -83,7 +84,7 @@ public class QQAccountAdapter extends BaseAdapter {
 
         final ViewHolder holder;
         if (convertView == null) {
-            convertView = ((MainActivity) context).getLayoutInflater().inflate(R.layout.list_item_image_text_switch, null);
+            convertView = ((Activity) context).getLayoutInflater().inflate(R.layout.list_item_image_text_switch, null);
             holder = new ViewHolder();
             holder.groupNumber = (TextView) convertView.findViewById(R.id.group_reply_list_itemTextView);
             holder.imageView = (ImageView) convertView.findViewById(R.id.group_reply_list_itemImageView);
