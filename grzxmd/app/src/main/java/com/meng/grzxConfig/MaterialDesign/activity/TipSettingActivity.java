@@ -31,7 +31,7 @@ public class TipSettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dic_edit_main);
         Intent intent = this.getIntent();
-        personInfo = (PersonInfo) intent.getSerializableExtra("user");
+        personInfo = (PersonInfo) intent.getSerializableExtra("personInfo");
         if (personInfo == null) {
             finish();
         }
@@ -44,7 +44,7 @@ public class TipSettingActivity extends Activity {
 
             @Override
             public void onClick(View p1) {
-                menuRed.hideMenuButton(true);
+                menuRed.hideMenu(true);
                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
             }
         });
@@ -64,7 +64,7 @@ public class TipSettingActivity extends Activity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                menuRed.hideMenuButton(true);
+                menuRed.hideMenu(true);
                 final EditText editText = new EditText(TipSettingActivity.this);
                 new AlertDialog.Builder(TipSettingActivity.this)
                         .setView(editText)
@@ -72,7 +72,8 @@ public class TipSettingActivity extends Activity {
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
-                                personInfo.tipIn.add(Long.parseLong(editText.getText().toString()));
+                                String str = editText.getText().toString();
+                                personInfo.tipIn.add(Long.parseLong(str.substring(str.lastIndexOf("：") + 1)));
                             }
                         }).setNegativeButton("取消", null).show();
             }
