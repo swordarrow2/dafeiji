@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -25,7 +26,7 @@ public class TipSettingActivity extends Activity {
     private int mPreviousVisibleItem;
     private FloatingActionMenu menuRed;
     private String oldPersonInfo = "";
-
+    private ArrayAdapter<Long> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +37,7 @@ public class TipSettingActivity extends Activity {
             finish();
         }
         mainListview = (ListView) findViewById(R.id.list);
+        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,personInfo.tipIn);
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab1);
         menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
@@ -57,6 +59,7 @@ public class TipSettingActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface p11, int p2) {
                                 personInfo.tipIn.remove(i);
+                                adapter.notifyDataSetChanged();
                             }
                         }).setNegativeButton("取消", null).show();
             }
@@ -74,6 +77,7 @@ public class TipSettingActivity extends Activity {
                             public void onClick(DialogInterface p11, int p2) {
                                 String str = editText.getText().toString();
                                 personInfo.tipIn.add(Long.parseLong(str.substring(str.lastIndexOf("：") + 1)));
+                                adapter.notifyDataSetChanged();
                             }
                         }).setNegativeButton("取消", null).show();
             }

@@ -136,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
         initGroupConfigFragment(true);
         initBlackQQFragment(true);
         initBlackGroupFragment(true);
-        networkManager = new NetworkManager(this);
-        networkManager.getJsonString();
 
         mainDic = Environment.getExternalStorageDirectory() + "/Pictures/grzx/";
         File f = new File(mainDic + "group/");
@@ -165,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
         onWifi = wifiNetworkInfo.isConnected();
         mDrawerLayout.openDrawer(GravityCompat.START);
         navigationView.setCheckedItem(R.id.group_config);
+        networkManager = new NetworkManager(this);
+        networkManager.getJsonString();
     }
 
     NavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new NavigationView.OnNavigationItemSelectedListener() {
