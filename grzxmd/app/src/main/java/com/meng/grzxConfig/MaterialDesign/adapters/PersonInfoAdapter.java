@@ -80,7 +80,8 @@ public class PersonInfoAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.imageViewQQHead = (ImageView) convertView.findViewById(R.id.imageView_qqHead);
             holder.imageViewBilibiiliHead = (ImageView) convertView.findViewById(R.id.imageView_bilibiliHead);
-            holder.infoImageView = (ImageView) convertView.findViewById(R.id.imageView_info);
+            holder.imageViewInfo = (ImageView) convertView.findViewById(R.id.imageView_info);
+            holder.imageViewEdit = (ImageView) convertView.findViewById(R.id.imageView_tipIn);
             holder.textViewName = (TextView) convertView.findViewById(R.id.textView_name);
             holder.textViewQQNumber = (TextView) convertView.findViewById(R.id.textView_qqnum);
             holder.textViewBilibiliUid = (TextView) convertView.findViewById(R.id.textView_bilibiliUid);
@@ -126,7 +127,7 @@ public class PersonInfoAdapter extends BaseAdapter {
                 MainActivity.instence.threadPool.execute(new DownloadImageRunnable(context, holder.imageViewBilibiiliHead, personInfo.bid, HeadType.BilibiliUser));
             }
         });
-        holder.infoImageView.setOnClickListener(new View.OnClickListener() {
+        holder.imageViewInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, InfoActivity.class);
@@ -141,7 +142,8 @@ public class PersonInfoAdapter extends BaseAdapter {
     private final class ViewHolder {
         private ImageView imageViewQQHead;
         private ImageView imageViewBilibiiliHead;
-        private ImageView infoImageView;
+        private ImageView imageViewInfo;
+        private ImageView imageViewEdit;
         private TextView textViewName;
         private TextView textViewQQNumber;
         private TextView textViewBilibiliUid;

@@ -13,13 +13,22 @@ import android.widget.*;
 import android.widget.AdapterView.*;
 
 import com.github.clans.fab.*;
+import com.google.gson.Gson;
 import com.meng.grzxConfig.MaterialDesign.*;
 import com.meng.grzxConfig.MaterialDesign.activity.*;
 import com.meng.grzxConfig.MaterialDesign.helpers.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
+import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.spaceToLive.SpaceToLiveJavaBean;
 
 import android.support.v4.app.Fragment;
 import android.view.View.OnClickListener;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class PersonInfoFragment extends Fragment {
 
@@ -84,7 +93,7 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.name = editTextName.getText().toString();
                                                 personInfo.qq = Long.parseLong(editTextQQNumber.getText().toString());
                                                 personInfo.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
-                                                personInfo.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
+                                                personInfo.bliveRoom = Integer.parseInt(getLiveId(editTextBilibiliLiveRoom.getText().toString()));
                                                 personInfo.autoTip = cbNai.isChecked();
                                                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                                             }
@@ -141,17 +150,42 @@ public class PersonInfoFragment extends Fragment {
                                                     if (Long.parseLong(editTextBilibiliId.getText().toString().replace("UID:", "")) == user.bid &&
                                                             Long.parseLong(editTextQQNumber.getText().toString()) == user.qq &&
                                                             editTextName.getText().toString().equals(user.name) &&
-                                                            Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", "")) == user.bliveRoom) {
+                                                            Integer.parseInt(getLiveId(editTextBilibiliLiveRoom.getText().toString())) == user.bliveRoom) {
                                                         return;
                                                     }
                                                 }
-                                                PersonInfo user = new PersonInfo();
-                                                user.name = editTextName.getText().toString();
-                                                user.qq = Long.parseLong(editTextQQNumber.getText().toString());
-                                                user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
-                                                user.bliveRoom = Integer.parseInt(editTextBilibiliLiveRoom.getText().toString().replace("http://live.bilibili.com/", "").replace("?share_source=copy_link", ""));
-                                                MainActivity.instence.configJavaBean.personInfo.add(user);
-                                                MainActivity.instence.networkManager.send(NetworkType.addPersonInfo, MainActivity.instence.gson.toJson(user), MainActivity.instence.personInfoAdapter);
+
+                                                MainActivity.instence.threadPool.execute(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        final PersonInfo user = new PersonInfo();
+                                                        user.name = editTextName.getText().toString();
+                                                        user.qq = Long.parseLong(editTextQQNumber.getText().toString());
+                                                        user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
+                                                        user.bliveRoom = Integer.parseInt(getLiveId(editTextBilibiliLiveRoom.getText().toString()));
+                                                        MainActivity.instence.configJavaBean.personInfo.add(user);
+                                                        if (user.bliveRoom == -1) {
+                                                            return;
+                                                        }
+                                                        if (user.bliveRoom == 0) {
+                                                            if (user.bid != 0) {
+                                                                SpaceToLiveJavaBean sjb = new Gson().fromJson(readCode("https://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid=" + user.bid), SpaceToLiveJavaBean.class);
+                                                                if (sjb.data.roomid == 0) {
+                                                                    user.bliveRoom = -1;
+                                                                    return;
+                                                                }
+                                                                user.bliveRoom = sjb.data.roomid;
+                                                                getActivity().runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        Toast.makeText(getActivity(), "检测到用户" + user.name + "(" + user.bid + ")的直播间" + user.bliveRoom, Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                        MainActivity.instence.networkManager.send(NetworkType.addPersonInfo, MainActivity.instence.gson.toJson(user), MainActivity.instence.personInfoAdapter);
+                                                    }
+                                                });
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -177,5 +211,36 @@ public class PersonInfoFragment extends Fragment {
                 mPreviousVisibleItem = firstVisibleItem;
             }
         });
+    }
+
+    private String getLiveId(String url) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = url.indexOf("live.bilibili.com/") + 18; i < url.length(); ++i) {
+            if (url.charAt(i) >= 48 && url.charAt(i) <= 57) {
+                stringBuilder.append(url.charAt(i));
+            } else {
+                break;
+            }
+        }
+        return stringBuilder.toString();
+    }
+
+    public String readCode(String url) {
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
+            InputStream in = connection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 }

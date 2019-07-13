@@ -84,5 +84,15 @@
             android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
             android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+
+        <ImageView
+            android:id="@+id/imageView_tipIn"
+            android:layout_width="?android:attr/listPreferredItemHeightSmall"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+            android:src="@android:drawable/ic_menu_edit" />
     </LinearLayout>
 </LinearLayout>

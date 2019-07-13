@@ -22,10 +22,10 @@ public class DicEdit extends AppCompatActivity {
     public String IP = "";
     public int PORT = 0;
     public long groupNum=-1;
-    public ListView mainListview;
     public JsonObject jsonObject;
     public Gson gson = new Gson();
     public JsonParser parser = new JsonParser();
+	public ListView mainListview;
     public AlertDialog dialog;
 	private FloatingActionButton mFab;
     private int mPreviousVisibleItem;
@@ -45,7 +45,7 @@ public class DicEdit extends AppCompatActivity {
         mFab = (FloatingActionButton) findViewById(R.id.fab1);
 		menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
 		FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
-        fab2.setOnClickListener(new OnClickListener() {
+        fab2.setOnClickListener(new View.OnClickListener() {
 
 			  @Override
 			  public void onClick(View p1) {
