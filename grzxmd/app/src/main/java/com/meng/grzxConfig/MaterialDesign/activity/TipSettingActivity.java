@@ -27,6 +27,7 @@ public class TipSettingActivity extends Activity {
     private FloatingActionMenu menuRed;
     private String oldPersonInfo = "";
     private ArrayAdapter<Long> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class TipSettingActivity extends Activity {
             finish();
         }
         mainListview = (ListView) findViewById(R.id.list);
-        adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,personInfo.tipIn);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personInfo.tipIn);
+        mainListview.setAdapter(adapter);
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab1);
         menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);

@@ -133,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
         initMasterFragment(false);
         initAdminFragment(false);
         initAllowFragment(false);
-        initGroupConfigFragment(true);
         initBlackQQFragment(true);
         initBlackGroupFragment(true);
+        initGroupConfigFragment(true);
 
         mainDic = Environment.getExternalStorageDirectory() + "/Pictures/grzx/";
         File f = new File(mainDic + "group/");

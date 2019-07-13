@@ -35,7 +35,6 @@ public class NetworkManager {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(500);
                     Socket client = new Socket(IP, PORT);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
