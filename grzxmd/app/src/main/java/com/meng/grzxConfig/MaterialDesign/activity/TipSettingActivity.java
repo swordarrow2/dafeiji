@@ -3,6 +3,7 @@ package com.meng.grzxConfig.MaterialDesign.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -25,15 +26,15 @@ public class TipSettingActivity extends Activity {
     private FloatingActionMenu menuRed;
     private String oldPersonInfo = "";
 
-    public TipSettingActivity(PersonInfo personInfo) {
-        this.personInfo = personInfo;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dic_edit_main);
-
+        Intent intent = this.getIntent();
+        personInfo = (PersonInfo) intent.getSerializableExtra("user");
+        if (personInfo == null) {
+            finish();
+        }
         mainListview = (ListView) findViewById(R.id.list);
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab1);
         menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);

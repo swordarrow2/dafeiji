@@ -28,6 +28,7 @@
 			android:name=".activity.InfoActivity" />
 		
         <activity android:name=".activity.DicEdit" />
+        <activity android:name=".activity.TipSettingActivity" />
     </application>
 
 </manifest>

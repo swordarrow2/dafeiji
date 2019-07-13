@@ -1,8 +1,9 @@
 package com.meng.grzxConfig.MaterialDesign.javaBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PersonInfo {
+public class PersonInfo implements Serializable {
     public String name = "";
     public long qq = 0;
     public int bid = 0;

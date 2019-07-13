@@ -2,11 +2,13 @@ package com.meng.grzxConfig.MaterialDesign.adapters;
 
 import android.content.*;
 import android.graphics.*;
+import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.InfoActivity;
+import com.meng.grzxConfig.MaterialDesign.activity.TipSettingActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageRunnable;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
@@ -133,6 +135,17 @@ public class PersonInfoAdapter extends BaseAdapter {
                 Intent intent = new Intent(context, InfoActivity.class);
                 intent.putExtra("qq", holder.textViewQQNumber.getText().toString());
                 intent.putExtra("bid", holder.textViewBilibiliUid.getText().toString());
+                context.startActivity(intent);
+            }
+        });
+        holder.imageViewEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(context, TipSettingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("personInfo", personInfo);
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }
         });
