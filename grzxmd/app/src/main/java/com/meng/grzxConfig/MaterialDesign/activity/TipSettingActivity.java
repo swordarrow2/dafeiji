@@ -44,7 +44,7 @@ public class TipSettingActivity extends Activity {
 
             @Override
             public void onClick(View p1) {
-                menuRed.hideMenu(true);
+                menuRed.close(true);
                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
             }
         });
@@ -64,7 +64,7 @@ public class TipSettingActivity extends Activity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                menuRed.hideMenu(true);
+                menuRed.close(true);
                 final EditText editText = new EditText(TipSettingActivity.this);
                 new AlertDialog.Builder(TipSettingActivity.this)
                         .setView(editText)

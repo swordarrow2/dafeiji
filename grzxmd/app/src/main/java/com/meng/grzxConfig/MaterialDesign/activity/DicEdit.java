@@ -52,7 +52,7 @@ public class DicEdit extends AppCompatActivity {
 
             @Override
             public void onClick(View p1) {
-                menuRed.hideMenu(true);
+                menuRed.close(true);
                 setJsonString();
             }
         });
@@ -84,7 +84,7 @@ public class DicEdit extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                menuRed.hideMenu(true);
+                menuRed.close(true);
                 final EditText editText = new EditText(DicEdit.this);
                 new AlertDialog.Builder(DicEdit.this)
                         .setView(editText)
