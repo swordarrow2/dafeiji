@@ -17,6 +17,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
 import com.meng.grzxConfig.MaterialDesign.R;
+import com.meng.grzxConfig.MaterialDesign.adapters.QQAccountAdapter;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.PersonInfo;
 
@@ -26,7 +27,7 @@ public class TipSettingActivity extends Activity {
     private int mPreviousVisibleItem;
     private FloatingActionMenu menuRed;
     private String oldPersonInfo = "";
-    private ArrayAdapter<Long> adapter;
+    private QQAccountAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class TipSettingActivity extends Activity {
             finish();
         }
         mainListview = (ListView) findViewById(R.id.list);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, personInfo.tipIn);
+        adapter = new QQAccountAdapter(this, personInfo.tipIn, true);
         mainListview.setAdapter(adapter);
         FloatingActionButton mFab = (FloatingActionButton) findViewById(R.id.fab1);
         menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
