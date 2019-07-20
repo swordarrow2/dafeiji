@@ -2,10 +2,10 @@ package com.meng.TaiHunDanmaku.control;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
-import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane;
+import com.meng.TaiHunDanmaku.planes.myPlane.BaseMyPlane;
 import com.meng.TaiHunDanmaku.ui.FightScreen;
 
-import static com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.BaseMyPlane.instance;
+import static com.meng.TaiHunDanmaku.planes.myPlane.BaseMyPlane.instance;
 
 public class PlayerInputProcessor extends InputAdapter {
     private Vector2 vct2_downPosPlayer = new Vector2();

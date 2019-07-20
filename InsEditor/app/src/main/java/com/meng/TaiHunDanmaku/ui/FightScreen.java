@@ -6,12 +6,11 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.utils.viewport.*;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
-import com.meng.TaiHunDanmaku.baseObjects.planes.enemyPlane.*;
-import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
+import com.meng.TaiHunDanmaku.bullets.*;
+import com.meng.TaiHunDanmaku.bullets.enemy.*;
+import com.meng.TaiHunDanmaku.planes.enemyPlane.*;
+import com.meng.TaiHunDanmaku.planes.myPlane.*;
 import com.meng.TaiHunDanmaku.control.*;
-import com.meng.TaiHunDanmaku.taizhang.body.*;
 import com.meng.TaiHunDanmaku.task.*;
 import java.util.*;
 
@@ -64,7 +63,7 @@ public class FightScreen extends ScreenAdapter {
         stage.draw();
         gameMain.spriteBatch.begin();
 		if(boss==null){
-			new BossTaiZhang1().init(new Vector2(275,450), 10, 21000, new Task[]{
+			new BaseBossPlane.BossTaiZhang1().init(new Vector2(275,450), 10, 21000, new Task[]{
 										 new TaskMoveTo(193, 250)
 									   });
 		}else{

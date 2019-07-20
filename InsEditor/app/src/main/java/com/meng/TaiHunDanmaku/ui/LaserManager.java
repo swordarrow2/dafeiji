@@ -1,7 +1,7 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.graphics.GL20;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.Laser;
+import com.meng.TaiHunDanmaku.bullets.enemy.Laser;
 
 import java.util.HashSet;
 
