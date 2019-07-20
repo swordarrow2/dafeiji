@@ -214,6 +214,9 @@ public class PersonInfoFragment extends Fragment {
     }
 
     private String getLiveId(String url) {
+	  if(1==1){
+		return url;
+	  }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = url.indexOf("live.bilibili.com/") + 18; i < url.length(); ++i) {
             if (url.charAt(i) >= 48 && url.charAt(i) <= 57) {
