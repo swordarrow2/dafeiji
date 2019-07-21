@@ -63,7 +63,7 @@ public class FightScreen extends ScreenAdapter {
         stage.draw();
         gameMain.spriteBatch.begin();
 		if(boss==null){
-			new BaseBossPlane.BossTaiZhang1().init(new Vector2(275,450), 10, 21000, new Task[]{
+			new BossTaiZhang1().init(new Vector2(275,450), 10, 21000, new Task[]{
 										 new TaskMoveTo(193, 250)
 									   });
 		}else{

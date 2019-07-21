@@ -1,8 +1,8 @@
 package com.meng.TaiHunDanmaku.planes.enemyPlane;
 
-import com.meng.TaiHunDanmaku.danmaku.taizhang.normal1;
-import com.meng.TaiHunDanmaku.danmaku.taizhang.spell5;
-import com.meng.TaiHunDanmaku.task.Task;
+import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.danmaku.taizhang.*;
+import com.meng.TaiHunDanmaku.task.*;
 
 public class BossTaiZhang1 extends BaseBossPlane {
 
