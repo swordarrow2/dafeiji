@@ -40,7 +40,7 @@ public class zunRunner {
 				  i6.	posAndImg(i0.getStack(-1), i0.getStack(-1), "2", "5");
 				  i0._11("testSub", i0.transferInt("A"), i0.transferFloat("B"));
 				  i6.	_602(4, 2)
-					.	_603(85, 12)
+					.	_603(v.useAsFloat("A"), v.useAsFloat("B"))
 					.	_601()
 					.	_601(1);
 				}

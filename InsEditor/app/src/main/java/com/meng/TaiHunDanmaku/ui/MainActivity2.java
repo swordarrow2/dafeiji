@@ -11,10 +11,11 @@ public class MainActivity2 extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		String eclStr=new zunRunner().toString();
-
+		ScrollView s=new ScrollView(this);
 		TextView tv=new TextView(this);
+		s.addView(tv);
 		tv.setText(eclStr);
-		setContentView(tv);
+		setContentView(s);
 	  }
 
   }

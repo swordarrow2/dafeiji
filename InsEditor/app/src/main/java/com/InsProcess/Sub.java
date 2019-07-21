@@ -33,7 +33,6 @@ public class Sub {
         return varIns;
     }
 
-
     float a;
     float b;
     float c;
@@ -59,7 +58,7 @@ public class Sub {
             sb2.append(" ");
             sb2.append((char) i);
         }
-        return String.format("sub %s(%s) {\n%s}\n", subName, sb2.toString(), sb1.toString());
+        return String.format("sub %s(%s) {\n%s}\n\n", subName, sb2.toString(), sb1.toString());
     }
 
 }
