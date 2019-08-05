@@ -26,9 +26,8 @@
     <string name="barcode">二维码</string>
     <string name="kuiping">窥屏检测</string>
     <string name="cqcode">CQ码</string>
-    <string name="zan">赞</string>
+    <string name="nvzhuang">女装</string>
     <string name="moshenfusong">膜神复诵</string>
-    <string name="autu_tip">自动奶</string>
     <string name="delete_motu">撤回膜图</string>
     <string name="ban_repeater">禁言复读机</string>
     <string name="eluosi">俄罗斯轮盘</string>
@@ -44,4 +43,7 @@
     <string name="group_auto_allow">自动同意进群</string>
     <string name="black_qq">黑名单QQ</string>
     <string name="black_group">黑名单群</string>
+    <string name="tiplive">提醒直播</string>
+    <string name="tipvideo">提醒视频和文章</string>
+    <string name="tipaction">提醒动态</string>
 </resources>

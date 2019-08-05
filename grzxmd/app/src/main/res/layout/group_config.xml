@@ -118,7 +118,7 @@
         android:id="@+id/group_configSwitch_zan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zan" />
+        android:text="@string/nvzhuang" />
 
     <Switch
         android:id="@+id/group_configSwitch_mishenfusong"

@@ -77,10 +77,22 @@
     </LinearLayout>
 
     <CheckBox
-        android:id="@+id/edit_viewEditText_nai"
+        android:id="@+id/edit_viewCheckbox_live"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/autu_tip" />
+        android:text="@string/tiplive" />
+
+    <CheckBox
+        android:id="@+id/edit_viewCheckbox_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipvideo" />
+
+    <CheckBox
+        android:id="@+id/edit_viewCheckbox_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipaction" />
 
 </LinearLayout>
 

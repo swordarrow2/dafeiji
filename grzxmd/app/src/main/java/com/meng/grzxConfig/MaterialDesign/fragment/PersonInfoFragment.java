@@ -4,11 +4,8 @@ import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.support.annotation.*;
-import android.support.v4.app.*;
 import android.view.*;
-import android.view.View.*;
 import android.view.animation.*;
-import android.view.inputmethod.*;
 import android.widget.*;
 import android.widget.AdapterView.*;
 
@@ -24,7 +21,6 @@ import android.support.v4.app.Fragment;
 import android.view.View.OnClickListener;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -37,7 +33,7 @@ public class PersonInfoFragment extends Fragment {
     private int mPreviousVisibleItem;
     private FloatingActionMenu menuRed;
     public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
-    public CheckBox cbNai;
+    public CheckBox cbLive, cbVideo, cbAction;
 
 
     @Nullable
@@ -70,14 +66,19 @@ public class PersonInfoFragment extends Fragment {
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
-                cbNai = (CheckBox) view.findViewById(R.id.edit_viewEditText_nai);
+                cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
+                cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
+                cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
 
                 final PersonInfo personInfo = (PersonInfo) adapterView.getItemAtPosition(position);
                 editTextName.setText(personInfo.name);
                 editTextQQNumber.setText(String.valueOf(personInfo.qq));
                 editTextBilibiliId.setText(String.valueOf(personInfo.bid));
                 editTextBilibiliLiveRoom.setText(String.valueOf(personInfo.bliveRoom));
-                cbNai.setChecked(personInfo.autoTip);
+                cbLive.setChecked(personInfo.isTipLive());
+                cbVideo.setChecked(personInfo.isTipVideo());
+                cbAction.setChecked(personInfo.isTipAction());
+
                 final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
@@ -94,7 +95,9 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.qq = Long.parseLong(editTextQQNumber.getText().toString());
                                                 personInfo.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                 personInfo.bliveRoom = Integer.parseInt(getLiveId(editTextBilibiliLiveRoom.getText().toString()));
-                                                personInfo.autoTip = cbNai.isChecked();
+                                                personInfo.setTipLive(cbLive.isChecked());
+                                                personInfo.setTipVideo(cbVideo.isChecked());
+                                                personInfo.setTipAction(cbAction.isChecked());
                                                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -132,7 +135,9 @@ public class PersonInfoFragment extends Fragment {
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
-                cbNai = (CheckBox) view.findViewById(R.id.edit_viewEditText_nai);
+                cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
+                cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
+                cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
 
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
@@ -163,6 +168,9 @@ public class PersonInfoFragment extends Fragment {
                                                         user.qq = Long.parseLong(editTextQQNumber.getText().toString());
                                                         user.bid = Integer.parseInt(editTextBilibiliId.getText().toString().replace("UID:", ""));
                                                         user.bliveRoom = Integer.parseInt(getLiveId(editTextBilibiliLiveRoom.getText().toString()));
+                                                        user.setTipLive(cbLive.isChecked());
+                                                        user.setTipVideo(cbVideo.isChecked());
+                                                        user.setTipAction(cbAction.isChecked());
                                                         MainActivity.instence.configJavaBean.personInfo.add(user);
                                                         if (user.bliveRoom == -1) {
                                                             return;
@@ -214,9 +222,9 @@ public class PersonInfoFragment extends Fragment {
     }
 
     private String getLiveId(String url) {
-	  if(1==1){
-		return url;
-	  }
+        if (1 == 1) {
+            return url;
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = url.indexOf("live.bilibili.com/") + 18; i < url.length(); ++i) {
             if (url.charAt(i) >= 48 && url.charAt(i) <= 57) {

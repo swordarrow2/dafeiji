@@ -23,7 +23,6 @@ public class GroupConfigFragment extends Fragment {
 
     public ListView mListView;
     private FloatingActionButton mFab;
-    private int mPreviousVisibleItem;
 
     @Nullable
     @Override
@@ -44,16 +43,16 @@ public class GroupConfigFragment extends Fragment {
                 final EditText et = (EditText) v.findViewById(R.id.group_configTextView_groupNumber);
                 et.setText(String.valueOf(groupConfig.groupNumber));
                 final Switch repeat = (Switch) v.findViewById(R.id.group_configSwitch_repeat);
-                final RadioGroup banMode=(RadioGroup)v.findViewById(R.id.group_configSwitch_banMode);
+                final RadioGroup banMode = (RadioGroup) v.findViewById(R.id.group_configSwitch_banMode);
                 final Switch setu = (Switch) v.findViewById(R.id.group_configSwitch_setu);
                 final Switch pohai = (Switch) v.findViewById(R.id.group_configSwitch_pohai);
                 final Switch dic = (Switch) v.findViewById(R.id.group_configSwitch_dic);
-                final Button editDic=(Button)v.findViewById(R.id.group_config_edit_dic);
+                final Button editDic = (Button) v.findViewById(R.id.group_config_edit_dic);
                 editDic.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(getActivity(), DicEdit.class);
-						intent.putExtra("num",groupConfig.groupNumber);
+                        Intent intent = new Intent(getActivity(), DicEdit.class);
+                        intent.putExtra("num", groupConfig.groupNumber);
                         startActivity(intent);
                     }
                 });
@@ -65,12 +64,12 @@ public class GroupConfigFragment extends Fragment {
                 final Switch barcode = (Switch) v.findViewById(R.id.group_configSwitch_barcode);
                 final Switch kuiping = (Switch) v.findViewById(R.id.group_configSwitch_kuiping);
                 final Switch cqma = (Switch) v.findViewById(R.id.group_configSwitch_cqcode);
-                final Switch zan = (Switch) v.findViewById(R.id.group_configSwitch_zan);
+                final Switch nvzhuang = (Switch) v.findViewById(R.id.group_configSwitch_zan);
                 final Switch moshenfusong = (Switch) v.findViewById(R.id.group_configSwitch_mishenfusong);
-				final Switch chehui = (Switch) v.findViewById(R.id.group_configSwitch_chehui);
+                final Switch chehui = (Switch) v.findViewById(R.id.group_configSwitch_chehui);
 
                 repeat.setChecked(groupConfig.isRepeat());
-                ((RadioButton)banMode.getChildAt(groupConfig.repeatMode)).setChecked(true);
+                ((RadioButton) banMode.getChildAt(groupConfig.repeatMode)).setChecked(true);
                 setu.setChecked(groupConfig.isSetu());
                 pohai.setChecked(groupConfig.isPohai());
                 dic.setChecked(groupConfig.isDic());
@@ -82,9 +81,9 @@ public class GroupConfigFragment extends Fragment {
                 barcode.setChecked(groupConfig.isBarcode());
                 kuiping.setChecked(groupConfig.isKuiping());
                 cqma.setChecked(groupConfig.isCqCode());
-                zan.setChecked(groupConfig.isZan());
+                nvzhuang.setChecked(groupConfig.isNvZhuang());
                 moshenfusong.setChecked(groupConfig.isMoshenfusong());
-				chehui.setChecked(groupConfig.isCheHuiMoTu());
+                chehui.setChecked(groupConfig.isCheHuiMoTu());
 
                 new AlertDialog.Builder(getActivity())
                         .setView(v)
@@ -95,15 +94,15 @@ public class GroupConfigFragment extends Fragment {
                             public void onClick(DialogInterface p1, int p2) {
                                 groupConfig.groupNumber = Long.parseLong(et.getText().toString());
                                 groupConfig.setRepeat(repeat.isChecked());
-                                switch (banMode.getCheckedRadioButtonId()){
+                                switch (banMode.getCheckedRadioButtonId()) {
                                     case R.id.group_config_radio_none:
-                                        groupConfig.repeatMode=0;
+                                        groupConfig.repeatMode = 0;
                                         break;
                                     case R.id.group_config_radio_eluosi:
-                                        groupConfig.repeatMode=1;
+                                        groupConfig.repeatMode = 1;
                                         break;
                                     case R.id.group_config_radio_all:
-                                        groupConfig.repeatMode=2;
+                                        groupConfig.repeatMode = 2;
                                         break;
                                 }
                                 groupConfig.setSetu(setu.isChecked());
@@ -117,10 +116,10 @@ public class GroupConfigFragment extends Fragment {
                                 groupConfig.setBarcode(barcode.isChecked());
                                 groupConfig.setKuiping(kuiping.isChecked());
                                 groupConfig.setCqCode(cqma.isChecked());
-                                groupConfig.setZan(zan.isChecked());
+                                groupConfig.setZan(nvzhuang.isChecked());
                                 groupConfig.setMoshenfusong(moshenfusong.isChecked());
-								groupConfig.setCheHuiMoTu(chehui.isChecked());
-                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
+                                groupConfig.setCheHuiMoTu(chehui.isChecked());
+                                MainActivity.instence.networkManager.send(NetworkType.setGroup, MainActivity.instence.gson.toJson(groupConfig), MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
             }
@@ -138,7 +137,7 @@ public class GroupConfigFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 GroupConfig groupConfig = (GroupConfig) adapterView.getItemAtPosition(position);
                                 MainActivity.instence.configJavaBean.groupConfigs.remove(groupConfig);
-                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
+                                MainActivity.instence.networkManager.send(NetworkType.removeGroup, MainActivity.instence.gson.toJson(groupConfig), MainActivity.instence.groupConfigAdapter);
                             }
                         }).setNegativeButton("取消", null).show();
                 return true;
@@ -169,7 +168,7 @@ public class GroupConfigFragment extends Fragment {
                                                 GroupConfig groupConfig = new GroupConfig();
                                                 groupConfig.groupNumber = inputLong;
                                                 MainActivity.instence.configJavaBean.groupConfigs.add(groupConfig);
-                                                MainActivity.instence.networkManager.send(NetworkType.addGroup, MainActivity.instence.gson.toJson(groupConfig),MainActivity.instence.groupConfigAdapter);
+                                                MainActivity.instence.networkManager.send(NetworkType.addGroup, MainActivity.instence.gson.toJson(groupConfig), MainActivity.instence.groupConfigAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
                             }
@@ -180,21 +179,5 @@ public class GroupConfigFragment extends Fragment {
         mFab.show(true);
         mFab.setShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
         mFab.setHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
-
-        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (firstVisibleItem > mPreviousVisibleItem) {
-                    mFab.hide(true);
-                } else if (firstVisibleItem < mPreviousVisibleItem) {
-                    mFab.show(true);
-                }
-                mPreviousVisibleItem = firstVisibleItem;
-            }
-        });
     }
 }

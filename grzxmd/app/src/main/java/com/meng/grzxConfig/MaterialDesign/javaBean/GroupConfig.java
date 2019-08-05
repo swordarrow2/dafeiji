@@ -139,7 +139,7 @@ public class GroupConfig {
         booleans.set(12, zan);
     }
 
-    public boolean isZan() {
+    public boolean isNvZhuang() {
         return booleans.get(12);
     }
 
