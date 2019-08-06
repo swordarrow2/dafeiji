@@ -2,7 +2,7 @@ package com.meng.grzxConfig.MaterialDesign.fragment;
 
 import android.os.*;
 import android.support.annotation.*;
-import android.support.v4.app.*;
+import android.app.Fragment;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;

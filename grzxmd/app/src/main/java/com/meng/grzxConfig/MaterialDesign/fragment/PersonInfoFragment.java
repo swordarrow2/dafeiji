@@ -17,7 +17,7 @@ import com.meng.grzxConfig.MaterialDesign.helpers.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 import com.meng.grzxConfig.MaterialDesign.javaBean.bilibili.spaceToLive.SpaceToLiveJavaBean;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.View.OnClickListener;
 
 import java.io.BufferedReader;

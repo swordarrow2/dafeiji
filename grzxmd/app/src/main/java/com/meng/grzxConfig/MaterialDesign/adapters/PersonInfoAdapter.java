@@ -8,7 +8,6 @@ import android.widget.*;
 
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.activity.InfoActivity;
-import com.meng.grzxConfig.MaterialDesign.activity.TipSettingActivity;
 import com.meng.grzxConfig.MaterialDesign.helpers.DownloadImageRunnable;
 import com.meng.grzxConfig.MaterialDesign.helpers.HeadType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
@@ -83,7 +82,6 @@ public class PersonInfoAdapter extends BaseAdapter {
             holder.imageViewQQHead = (ImageView) convertView.findViewById(R.id.imageView_qqHead);
             holder.imageViewBilibiiliHead = (ImageView) convertView.findViewById(R.id.imageView_bilibiliHead);
             holder.imageViewInfo = (ImageView) convertView.findViewById(R.id.imageView_info);
-            holder.imageViewEdit = (ImageView) convertView.findViewById(R.id.imageView_tipIn);
             holder.textViewName = (TextView) convertView.findViewById(R.id.textView_name);
             holder.textViewQQNumber = (TextView) convertView.findViewById(R.id.textView_qqnum);
             holder.textViewBilibiliUid = (TextView) convertView.findViewById(R.id.textView_bilibiliUid);
@@ -138,17 +136,6 @@ public class PersonInfoAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-        holder.imageViewEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(context, TipSettingActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("personInfo", personInfo);
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
-        });
         return convertView;
     }
 
@@ -156,7 +143,6 @@ public class PersonInfoAdapter extends BaseAdapter {
         private ImageView imageViewQQHead;
         private ImageView imageViewBilibiiliHead;
         private ImageView imageViewInfo;
-        private ImageView imageViewEdit;
         private TextView textViewName;
         private TextView textViewQQNumber;
         private TextView textViewBilibiliUid;

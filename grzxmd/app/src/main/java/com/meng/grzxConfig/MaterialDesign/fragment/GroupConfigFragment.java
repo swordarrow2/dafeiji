@@ -15,7 +15,7 @@ import com.meng.grzxConfig.MaterialDesign.activity.DicEdit;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 

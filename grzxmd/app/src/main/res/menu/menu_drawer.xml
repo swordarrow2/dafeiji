@@ -40,6 +40,10 @@
             android:id="@+id/blackgroup"
             android:icon="@drawable/ic_menu"
             android:title="@string/black_group" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_menu"
+            android:title="@string/settings" />
 
         <!--
         <item

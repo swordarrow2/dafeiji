@@ -1,35 +1,60 @@
 package com.meng.grzxConfig.MaterialDesign.activity;
 
-import android.*;
-import android.content.*;
-import android.content.pm.*;
-import android.net.*;
-import android.os.*;
-import android.support.design.widget.*;
-import android.support.v4.app.*;
-import android.support.v4.view.*;
-import android.support.v4.widget.*;
-import android.support.v7.app.*;
-import android.view.*;
-import android.widget.*;
-import android.widget.SearchView.*;
 
-import com.google.gson.*;
-import com.meng.grzxConfig.MaterialDesign.adapters.*;
-import com.meng.grzxConfig.MaterialDesign.fragment.*;
-import com.meng.grzxConfig.MaterialDesign.helpers.*;
-import com.meng.grzxConfig.MaterialDesign.javaBean.*;
+import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.SearchView;
+import android.widget.Toast;
 
-import java.io.*;
-import java.util.*;
+import com.google.gson.Gson;
+import com.meng.grzxConfig.MaterialDesign.R;
+import com.meng.grzxConfig.MaterialDesign.adapters.GroupConfigAdapter;
+import com.meng.grzxConfig.MaterialDesign.adapters.PersonInfoAdapter;
+import com.meng.grzxConfig.MaterialDesign.adapters.QQAccountAdapter;
+import com.meng.grzxConfig.MaterialDesign.fragment.AdminFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.BlackGroupFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.BlackQQFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.GroupAutoAllowFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.GroupConfigFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.HomeFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.MasterFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.MenusFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.PersonInfoFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.ProgressFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.QQNotReplyFragment;
+import com.meng.grzxConfig.MaterialDesign.fragment.SettingsPreference;
+import com.meng.grzxConfig.MaterialDesign.fragment.WordNotReplyFragment;
+import com.meng.grzxConfig.MaterialDesign.helpers.NetworkManager;
+import com.meng.grzxConfig.MaterialDesign.helpers.SharedPreferenceHelper;
+import com.meng.grzxConfig.MaterialDesign.javaBean.ConfigJavaBean;
+import com.meng.grzxConfig.MaterialDesign.javaBean.EditorConfig;
+import com.meng.grzxConfig.MaterialDesign.javaBean.PersonInfo;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.widget.SearchView;
-
-import com.meng.grzxConfig.MaterialDesign.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public ProgressFragment progressFragment;
     public BlackQQFragment blackQQFragment;
     public BlackGroupFragment blackGroupFragment;
+    public SettingsPreference settingsFragment;
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     public EditorConfig editConfig;
     public SearchView searchView;
@@ -74,11 +100,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         instence = this;
-        SharedPreferenceHelper.Init(this, "main");
+        SharedPreferenceHelper.Init(this, "preference");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         searchView = (SearchView) findViewById(R.id.toolbarSearchView);
         setSupportActionBar(toolbar);
-        searchView.setOnQueryTextListener(new OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -131,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         editConfig.configPort = port;
                         editConfig.dicPort = port + 1;
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "端口错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num1"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     try {
@@ -139,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         editConfig.configPort = port;
                         editConfig.dicPort = port + 1;
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "端口错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num2"), Toast.LENGTH_SHORT).show();
                     }
                 }
                 networkManager.getJsonString();
@@ -154,8 +180,9 @@ public class MainActivity extends AppCompatActivity {
         initMasterFragment(false);
         initAdminFragment(false);
         initAllowFragment(false);
-        initBlackQQFragment(true);
-        initBlackGroupFragment(true);
+        initBlackQQFragment(false);
+        initBlackGroupFragment(false);
+        initSettingsFragment(false);
         initGroupConfigFragment(true);
 
         mainDic = Environment.getExternalStorageDirectory() + "/Pictures/grzx/";
@@ -235,6 +262,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.blackgroup:
                     initBlackGroupFragment(true);
                     break;
+                case R.id.settings:
+                    initSettingsFragment(true);
+                    break;
             }
             //    ft.replace(R.id.fragment, fragment).commit();
             return true;
@@ -265,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initGroupConfigFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (groupConfigFragment == null) {
             groupConfigFragment = new GroupConfigFragment();
             transactionWelcome.add(R.id.fragment, groupConfigFragment);
@@ -278,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initQQFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (qqNotReplyFragment == null) {
             qqNotReplyFragment = new QQNotReplyFragment();
             transactionWelcome.add(R.id.fragment, qqNotReplyFragment);
@@ -291,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initWordFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (wordNotReplyFragment == null) {
             wordNotReplyFragment = new WordNotReplyFragment();
             transactionWelcome.add(R.id.fragment, wordNotReplyFragment);
@@ -304,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initPersonFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (personInfoFragment == null) {
             personInfoFragment = new PersonInfoFragment();
             transactionWelcome.add(R.id.fragment, personInfoFragment);
@@ -317,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initMasterFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (masterFragment == null) {
             masterFragment = new MasterFragment();
             transactionWelcome.add(R.id.fragment, masterFragment);
@@ -330,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initAdminFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (adminFragment == null) {
             adminFragment = new AdminFragment();
             transactionWelcome.add(R.id.fragment, adminFragment);
@@ -343,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initAllowFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (groupAutoAllowFragment == null) {
             groupAutoAllowFragment = new GroupAutoAllowFragment();
             transactionWelcome.add(R.id.fragment, groupAutoAllowFragment);
@@ -356,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initBlackQQFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (blackQQFragment == null) {
             blackQQFragment = new BlackQQFragment();
             transactionWelcome.add(R.id.fragment, blackQQFragment);
@@ -369,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initBlackGroupFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (blackGroupFragment == null) {
             blackGroupFragment = new BlackGroupFragment();
             transactionWelcome.add(R.id.fragment, blackGroupFragment);
@@ -381,8 +411,21 @@ public class MainActivity extends AppCompatActivity {
         transactionWelcome.commit();
     }
 
+    public void initSettingsFragment(boolean showNow) {
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
+        if (settingsFragment == null) {
+            settingsFragment = new SettingsPreference();
+            transactionWelcome.add(R.id.fragment, settingsFragment);
+        }
+        hideFragment(transactionWelcome);
+        if (showNow) {
+            transactionWelcome.show(settingsFragment);
+        }
+        transactionWelcome.commit();
+    }
+
     public void initHomeFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (homeFragment == null) {
             homeFragment = new HomeFragment();
             transactionWelcome.add(R.id.fragment, homeFragment);
@@ -395,7 +438,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initMenuFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (menusFragment == null) {
             menusFragment = new MenusFragment();
             transactionWelcome.add(R.id.fragment, menusFragment);
@@ -408,7 +451,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initProgressFragment(boolean showNow) {
-        FragmentTransaction transactionWelcome = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transactionWelcome = getFragmentManager().beginTransaction();
         if (progressFragment == null) {
             progressFragment = new ProgressFragment();
             transactionWelcome.add(R.id.fragment, progressFragment);
@@ -418,27 +461,7 @@ public class MainActivity extends AppCompatActivity {
             transactionWelcome.show(progressFragment);
         }
         transactionWelcome.commit();
-    }
-
-    public void makeNull() {
-        Fragment fs[] = {
-                groupConfigFragment,
-                qqNotReplyFragment,
-                wordNotReplyFragment,
-                personInfoFragment,
-                masterFragment,
-                adminFragment,
-                groupAutoAllowFragment,
-                homeFragment,
-                menusFragment,
-                progressFragment,
-                blackQQFragment,
-                blackGroupFragment
-        };
-        for (int i = 0, fsLength = fs.length; i < fsLength; i++) {
-            fs[i] = null;
-        }
-    }
+    } 
 
     public void hideFragment(FragmentTransaction transaction) {
         Fragment fs[] = {
@@ -453,7 +476,8 @@ public class MainActivity extends AppCompatActivity {
                 menusFragment,
                 progressFragment,
                 blackQQFragment,
-                blackGroupFragment
+                blackGroupFragment,
+                settingsFragment
         };
         for (Fragment f : fs) {
             if (f != null) {

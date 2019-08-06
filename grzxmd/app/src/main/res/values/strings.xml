@@ -46,4 +46,5 @@
     <string name="tiplive">提醒直播</string>
     <string name="tipvideo">提醒视频和文章</string>
     <string name="tipaction">提醒动态</string>
+    <string name="settings">设置</string>
 </resources>

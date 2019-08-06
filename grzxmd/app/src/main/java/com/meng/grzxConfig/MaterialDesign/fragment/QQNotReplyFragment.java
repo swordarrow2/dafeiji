@@ -13,7 +13,7 @@ import com.github.clans.fab.*;
 import com.meng.grzxConfig.MaterialDesign.R;
 import com.meng.grzxConfig.MaterialDesign.helpers.NetworkType;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 
 import com.meng.grzxConfig.MaterialDesign.activity.MainActivity;
 
