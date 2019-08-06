@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
         CheckBox cb = (CheckBox) ((ViewGroup) navigationView.getHeaderView(0)).getChildAt(0);
+        cb.setChecked(SharedPreferenceHelper.getBoolean("default"));
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                         editConfig.configPort = port;
                         editConfig.dicPort = port + 1;
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num1"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num2"), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     try {
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                         editConfig.configPort = port;
                         editConfig.dicPort = port + 1;
                     } catch (Exception e) {
-                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num2"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "端口错误:" + SharedPreferenceHelper.getValue("num1"), Toast.LENGTH_SHORT).show();
                     }
                 }
                 networkManager.getJsonString();
@@ -461,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
             transactionWelcome.show(progressFragment);
         }
         transactionWelcome.commit();
-    } 
+    }
 
     public void hideFragment(FragmentTransaction transaction) {
         Fragment fs[] = {
