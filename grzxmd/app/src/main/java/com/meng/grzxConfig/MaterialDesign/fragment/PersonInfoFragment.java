@@ -32,7 +32,7 @@ public class PersonInfoFragment extends Fragment {
     private FloatingActionButton mFab;
     private int mPreviousVisibleItem;
     private FloatingActionMenu menuRed;
-    public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom;
+    public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom,etTipInGroup;
     public CheckBox cbLive, cbVideo, cbAction;
 
 
@@ -66,6 +66,7 @@ public class PersonInfoFragment extends Fragment {
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
+				etTipInGroup=(EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
                 cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
                 cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
                 cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
@@ -78,8 +79,16 @@ public class PersonInfoFragment extends Fragment {
                 cbLive.setChecked(personInfo.isTipLive());
                 cbVideo.setChecked(personInfo.isTipVideo());
                 cbAction.setChecked(personInfo.isTipAction());
-
-                final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
+				if(personInfo.tipIn.size()>0){
+					StringBuilder sb=new StringBuilder();
+					for(long group:personInfo.tipIn){
+						sb.append(group).append(",");
+					  }
+					String s=sb.toString();
+					s=s.substring(0,s.length()-1);
+					etTipInGroup.setText(s);				
+				}  
+				final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("编辑")
@@ -98,6 +107,11 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.setTipLive(cbLive.isChecked());
                                                 personInfo.setTipVideo(cbVideo.isChecked());
                                                 personInfo.setTipAction(cbAction.isChecked());
+												personInfo.tipIn.clear();
+												String[] strs=etTipInGroup.getText().toString().split(",");
+												for(String s:strs){
+												  personInfo.tipIn.add(Long.parseLong(s));
+												}													
                                                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -138,7 +152,8 @@ public class PersonInfoFragment extends Fragment {
                 cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
                 cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
                 cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
-
+				etTipInGroup=(EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
+				
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("编辑")
@@ -171,6 +186,11 @@ public class PersonInfoFragment extends Fragment {
                                                         user.setTipLive(cbLive.isChecked());
                                                         user.setTipVideo(cbVideo.isChecked());
                                                         user.setTipAction(cbAction.isChecked());
+														String[] strs=etTipInGroup.getText().toString().split(",");
+														for(String s:strs){
+															user.tipIn.add(Long.parseLong(s));
+														  }													
+														
                                                         MainActivity.instence.configJavaBean.personInfo.add(user);
                                                         if (user.bliveRoom == -1) {
                                                             return;
