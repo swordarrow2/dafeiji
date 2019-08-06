@@ -7,11 +7,11 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-	
-    <TextView
-        android:layout_width="match_parent"
+
+    <CheckBox
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SJF"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:checked="true"
+        android:text="2端口" />
 
 </LinearLayout>

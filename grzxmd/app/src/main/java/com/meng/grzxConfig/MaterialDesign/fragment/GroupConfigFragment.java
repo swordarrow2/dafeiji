@@ -84,7 +84,6 @@ public class GroupConfigFragment extends Fragment {
                 nvzhuang.setChecked(groupConfig.isNvZhuang());
                 moshenfusong.setChecked(groupConfig.isMoshenfusong());
                 chehui.setChecked(groupConfig.isCheHuiMoTu());
-
                 new AlertDialog.Builder(getActivity())
                         .setView(v)
                         .setTitle("编辑")

@@ -30,9 +30,8 @@ public class PersonInfoFragment extends Fragment {
 
     public ListView mListView;
     private FloatingActionButton mFab;
-    private int mPreviousVisibleItem;
     private FloatingActionMenu menuRed;
-    public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom,etTipInGroup;
+    public EditText editTextName, editTextQQNumber, editTextBilibiliId, editTextBilibiliLiveRoom, etTipInGroup;
     public CheckBox cbLive, cbVideo, cbAction;
 
 
@@ -54,8 +53,8 @@ public class PersonInfoFragment extends Fragment {
             @Override
             public void onClick(View p1) {
                 menuRed.hideMenu(true);
-                MainActivity.instence.sv.setVisibility(View.VISIBLE);
-                MainActivity.instence.sv.requestFocus();
+                MainActivity.instence.searchView.setVisibility(View.VISIBLE);
+                MainActivity.instence.searchView.requestFocus();
             }
         });
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -66,7 +65,7 @@ public class PersonInfoFragment extends Fragment {
                 editTextQQNumber = (EditText) view.findViewById(R.id.edit_viewEditText_qq);
                 editTextBilibiliId = (EditText) view.findViewById(R.id.edit_viewEditText_bid);
                 editTextBilibiliLiveRoom = (EditText) view.findViewById(R.id.edit_viewEditText_b_live_room);
-				etTipInGroup=(EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
+                etTipInGroup = (EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
                 cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
                 cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
                 cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
@@ -79,16 +78,15 @@ public class PersonInfoFragment extends Fragment {
                 cbLive.setChecked(personInfo.isTipLive());
                 cbVideo.setChecked(personInfo.isTipVideo());
                 cbAction.setChecked(personInfo.isTipAction());
-				if(personInfo.tipIn.size()>0){
-					StringBuilder sb=new StringBuilder();
-					for(long group:personInfo.tipIn){
-						sb.append(group).append(",");
-					  }
-					String s=sb.toString();
-					s=s.substring(0,s.length()-1);
-					etTipInGroup.setText(s);				
-				}  
-				final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
+                if (personInfo.tipIn.size() > 0) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (long group : personInfo.tipIn) {
+                        stringBuilder.append(group).append(",");
+                    }
+                    String str = stringBuilder.toString();
+                    etTipInGroup.setText(str.substring(0, str.length() - 1));
+                }
+                final String oldPersonInfo = MainActivity.instence.gson.toJson(personInfo);
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("编辑")
@@ -107,11 +105,12 @@ public class PersonInfoFragment extends Fragment {
                                                 personInfo.setTipLive(cbLive.isChecked());
                                                 personInfo.setTipVideo(cbVideo.isChecked());
                                                 personInfo.setTipAction(cbAction.isChecked());
-												personInfo.tipIn.clear();
-												String[] strs=etTipInGroup.getText().toString().split(",");
-												for(String s:strs){
-												  personInfo.tipIn.add(Long.parseLong(s));
-												}													
+                                                personInfo.tipIn.clear();
+                                                String[] strs = etTipInGroup.getText().toString().split(",");
+                                                for (int i = 0, strsLength = strs.length; i < strsLength; i++) {
+                                                    String s = strs[i];
+                                                    personInfo.tipIn.add(Long.parseLong(s));
+                                                }
                                                 MainActivity.instence.networkManager.send(NetworkType.setPersonInfo, oldPersonInfo + " " + MainActivity.instence.gson.toJson(personInfo), MainActivity.instence.personInfoAdapter);
                                             }
                                         }).setNegativeButton("取消", null).show();
@@ -152,8 +151,8 @@ public class PersonInfoFragment extends Fragment {
                 cbLive = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_live);
                 cbVideo = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_video);
                 cbAction = (CheckBox) view.findViewById(R.id.edit_viewCheckbox_action);
-				etTipInGroup=(EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
-				
+                etTipInGroup = (EditText) view.findViewById(R.id.edit_viewEditText_tipInGroup);
+
                 new AlertDialog.Builder(getActivity())
                         .setView(view)
                         .setTitle("编辑")
@@ -186,11 +185,11 @@ public class PersonInfoFragment extends Fragment {
                                                         user.setTipLive(cbLive.isChecked());
                                                         user.setTipVideo(cbVideo.isChecked());
                                                         user.setTipAction(cbAction.isChecked());
-														String[] strs=etTipInGroup.getText().toString().split(",");
-														for(String s:strs){
-															user.tipIn.add(Long.parseLong(s));
-														  }													
-														
+                                                        String[] strs = etTipInGroup.getText().toString().split(",");
+                                                        for (int i = 0, strsLength = strs.length; i < strsLength; i++) {
+                                                            String s = strs[i];
+                                                            user.tipIn.add(Long.parseLong(s));
+                                                        }
                                                         MainActivity.instence.configJavaBean.personInfo.add(user);
                                                         if (user.bliveRoom == -1) {
                                                             return;
@@ -203,12 +202,6 @@ public class PersonInfoFragment extends Fragment {
                                                                     return;
                                                                 }
                                                                 user.bliveRoom = sjb.data.roomid;
-                                                                getActivity().runOnUiThread(new Runnable() {
-                                                                    @Override
-                                                                    public void run() {
-                                                                        Toast.makeText(getActivity(), "检测到用户" + user.name + "(" + user.bid + ")的直播间" + user.bliveRoom, Toast.LENGTH_SHORT).show();
-                                                                    }
-                                                                });
                                                             }
                                                         }
                                                         MainActivity.instence.networkManager.send(NetworkType.addPersonInfo, MainActivity.instence.gson.toJson(user), MainActivity.instence.personInfoAdapter);
@@ -224,21 +217,6 @@ public class PersonInfoFragment extends Fragment {
         menuRed.setMenuButtonShowAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.show_from_bottom));
         menuRed.setMenuButtonHideAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.hide_to_bottom));
         menuRed.setClosedOnTouchOutside(true);
-        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                if (firstVisibleItem > mPreviousVisibleItem) {
-                    menuRed.hideMenu(true);
-                } else if (firstVisibleItem < mPreviousVisibleItem) {
-                    menuRed.showMenu(true);
-                }
-                mPreviousVisibleItem = firstVisibleItem;
-            }
-        });
     }
 
     private String getLiveId(String url) {

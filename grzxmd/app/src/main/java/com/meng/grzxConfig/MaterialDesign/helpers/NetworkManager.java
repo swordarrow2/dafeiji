@@ -15,15 +15,10 @@ import com.meng.grzxConfig.MaterialDesign.javaBean.*;
 import com.google.gson.*;
 
 public class NetworkManager {
-
-    public String IP = "";
-    public int PORT = 0;
     private MainActivity mainActivity;
 
     public NetworkManager(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        IP = mainActivity.editConfig.ip;
-        PORT = mainActivity.editConfig.configPort;
     }
 
     public void send(NetworkType networkType, String text, BaseAdapter adapter) {
@@ -31,11 +26,11 @@ public class NetworkManager {
     }
 
     public void getJsonString() {
-        new Thread(new Runnable() {
+        MainActivity.instence.threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Socket client = new Socket(IP, PORT);
+                    Socket client = new Socket(mainActivity.editConfig.ip, mainActivity.editConfig.configPort);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
                     dos.writeUTF("getFull");
@@ -54,15 +49,15 @@ public class NetworkManager {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
     }
 
     private void sendString(final String string, final BaseAdapter adapter) {
-        new Thread(new Runnable() {
+        MainActivity.instence.threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Socket client = new Socket(IP, PORT);
+                    Socket client = new Socket(mainActivity.editConfig.ip, mainActivity.editConfig.configPort);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
                     dos.writeUTF(string);
@@ -82,6 +77,6 @@ public class NetworkManager {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="default"
+        android:title="默认使用2号端口" />
+    <EditTextPreference
+        android:dialogTitle="ip"
+        android:key="ip"
+        android:title="ip" />
+    <EditTextPreference
+        android:dialogTitle="1号端口"
+        android:key="num1"
+        android:title="1号端口" />
+    <EditTextPreference
+        android:defaultValue="9603"
+        android:dialogTitle="2号端口"
+        android:key="num2"
+        android:title="2号端口" />
+</PreferenceScreen>

@@ -67,17 +67,18 @@ public class MainActivity extends AppCompatActivity {
     public BlackGroupFragment blackGroupFragment;
     public ExecutorService threadPool = Executors.newFixedThreadPool(5);
     public EditorConfig editConfig;
-    public SearchView sv;
+    public SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         instence = this;
+        SharedPreferenceHelper.Init(this, "main");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        sv = (SearchView) findViewById(R.id.toolbarSearchView);
+        searchView = (SearchView) findViewById(R.id.toolbarSearchView);
         setSupportActionBar(toolbar);
-        sv.setOnQueryTextListener(new OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -86,16 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 if (newText.equals("")) {
                     personInfoFragment.mListView.setAdapter(personInfoAdapter);
                 } else {
                     HashSet<PersonInfo> list = new HashSet<>();
                     for (PersonInfo personInfo : configJavaBean.personInfo) {
-                        if (String.valueOf(personInfo.bid).contains(newText) ||
-                                String.valueOf(personInfo.bliveRoom).contains(newText) ||
-                                String.valueOf(personInfo.qq).contains(newText) ||
-                                personInfo.name.contains(newText)) {
+                        if (String.valueOf(personInfo.bid).contains(newText) || String.valueOf(personInfo.bliveRoom).contains(newText) || String.valueOf(personInfo.qq).contains(newText) || personInfo.name.contains(newText)) {
                             list.add(personInfo);
                         }
                     }
@@ -104,26 +101,50 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         }
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         try {
-            editConfig = new Gson().fromJson(readFileToString(), EditorConfig.class);
+            editConfig = new EditorConfig();
+            editConfig.ip = SharedPreferenceHelper.getValue("ip", "0.0.0.0");
+            int port = Integer.parseInt(SharedPreferenceHelper.getValue(SharedPreferenceHelper.getBoolean("default", true) ? "num2" : "num1"));
+            editConfig.configPort = port;
+            editConfig.dicPort = port + 1;
         } catch (Exception e) {
-            System.exit(0);
+            Toast.makeText(this, "端口错误", Toast.LENGTH_SHORT).show();
         }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+        CheckBox cb = (CheckBox) ((ViewGroup) navigationView.getHeaderView(0)).getChildAt(0);
+        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    try {
+                        int port = Integer.parseInt(SharedPreferenceHelper.getValue("num1"));
+                        editConfig.configPort = port;
+                        editConfig.dicPort = port + 1;
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "端口错误", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    try {
+                        int port = Integer.parseInt(SharedPreferenceHelper.getValue("num2"));
+                        editConfig.configPort = port;
+                        editConfig.dicPort = port + 1;
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "端口错误", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                networkManager.getJsonString();
+            }
+        });
         //initHomeFragment(false);
         //initProgressFragment(false);
         //initMenuFragment(false);
@@ -399,6 +420,26 @@ public class MainActivity extends AppCompatActivity {
         transactionWelcome.commit();
     }
 
+    public void makeNull() {
+        Fragment fs[] = {
+                groupConfigFragment,
+                qqNotReplyFragment,
+                wordNotReplyFragment,
+                personInfoFragment,
+                masterFragment,
+                adminFragment,
+                groupAutoAllowFragment,
+                homeFragment,
+                menusFragment,
+                progressFragment,
+                blackQQFragment,
+                blackGroupFragment
+        };
+        for (int i = 0, fsLength = fs.length; i < fsLength; i++) {
+            fs[i] = null;
+        }
+    }
+
     public void hideFragment(FragmentTransaction transaction) {
         Fragment fs[] = {
                 groupConfigFragment,
@@ -419,20 +460,6 @@ public class MainActivity extends AppCompatActivity {
                 transaction.hide(f);
             }
         }
-    }
-
-    public String readFileToString() throws IOException {
-        File file = new File(Environment.getExternalStorageDirectory() + "/grzxEditConfig.json");
-        if (!file.exists()) {
-            System.exit(0);
-            file.createNewFile();
-        }
-        Long filelength = file.length();
-        byte[] filecontent = new byte[filelength.intValue()];
-        FileInputStream in = new FileInputStream(file);
-        in.read(filecontent);
-        in.close();
-        return new String(filecontent, "UTF-8");
     }
 
     @Override

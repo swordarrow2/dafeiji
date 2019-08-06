@@ -21,8 +21,6 @@ import java.util.*;
 import android.app.AlertDialog;
 
 public class DicEdit extends AppCompatActivity {
-    public String IP = "";
-    public int PORT = 0;
     public long groupNum = -1;
     public JsonObject jsonObject;
     public Gson gson = new Gson();
@@ -42,8 +40,6 @@ public class DicEdit extends AppCompatActivity {
         if (groupNum == -1) {
             finish();
         }
-        IP = MainActivity.instence.editConfig.ip;
-        PORT = MainActivity.instence.editConfig.dicPort;
         mainListview = (ListView) findViewById(R.id.list);
         mFab = (FloatingActionButton) findViewById(R.id.fab1);
         menuRed = (FloatingActionMenu) findViewById(R.id.menu_red);
@@ -166,12 +162,11 @@ public class DicEdit extends AppCompatActivity {
     }
 
     private void getJsonString() {
-
-        new Thread(new Runnable() {
+        MainActivity.instence.threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Socket client = new Socket(IP, PORT);
+                    Socket client = new Socket(MainActivity.instence.editConfig.ip, MainActivity.instence.editConfig.dicPort);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
                     dos.writeUTF("get" + groupNum + ".");
@@ -186,24 +181,19 @@ public class DicEdit extends AppCompatActivity {
                         }
                     });
                     client.close();
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
     }
 
     private void setJsonString() {
-
-        new Thread(new Runnable() {
+        MainActivity.instence.threadPool.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Socket client = new Socket(IP, PORT);
+                    Socket client = new Socket(MainActivity.instence.editConfig.ip, MainActivity.instence.editConfig.dicPort);
                     OutputStream out = client.getOutputStream();
                     DataOutputStream dos = new DataOutputStream(out);
                     dos.writeUTF("write" + groupNum + "." + gson.toJson(jsonObject));
@@ -219,14 +209,10 @@ public class DicEdit extends AppCompatActivity {
                         }
                     });
                     client.close();
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 } catch (Exception e) {
                 }
             }
-        }).start();
+        });
     }
 
     private void loadConfigData(String jsonString) {
