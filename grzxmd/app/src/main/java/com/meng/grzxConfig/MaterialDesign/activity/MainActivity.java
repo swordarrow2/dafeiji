@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
+                if (!b) {
                     try {
                         int port = Integer.parseInt(SharedPreferenceHelper.getValue("num1"));
                         editConfig.configPort = port;
@@ -274,6 +274,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadConfigData(String s) {
         configJavaBean = gson.fromJson(s, ConfigJavaBean.class);
+		String ss="";
+		for(PersonInfo p:configJavaBean.personInfo){
+		  if(p.tipIn.size()>0){
+			ss+=p.name;
+			ss+=" ";
+		  }
+		}
+		Toast.makeText(this,ss,Toast.LENGTH_LONG).show();
         groupConfigAdapter = new GroupConfigAdapter(this, configJavaBean.groupConfigs);
         qqNotReplyAdapter = new QQAccountAdapter(this, configJavaBean.QQNotReply);
         personInfoAdapter = new PersonInfoAdapter(this, configJavaBean.personInfo);
