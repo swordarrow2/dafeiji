@@ -1,18 +1,13 @@
 package com.meng.stg2.planes.myPlane;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Align;
-import com.meng.stg2.BaseGameObject;
-import com.meng.stg2.bullets.BaseBullet;
-import com.meng.stg2.bullets.BaseEnemyBullet;
-import com.meng.stg2.helpers.Data;
-import com.meng.stg2.planes.AnimationManager;
-import com.meng.stg2.planes.JudgeCircleAnimation;
-import com.meng.stg2.planes.JudgeCircleAnimation2;
-import com.meng.stg2.planes.MoveStatus;
-import com.meng.stg2.planes.subPlane.BaseSubPlane;
-import com.meng.stg2.ui.MainScreen;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg2.*;
+import com.meng.stg2.bullets.*;
+import com.meng.stg2.helpers.*;
+import com.meng.stg2.planes.*;
+import com.meng.stg2.planes.subPlane.*;
 import com.meng.stg2.ui.*;
 
 public abstract class BaseMyPlane extends BaseGameObject {
@@ -20,28 +15,25 @@ public abstract class BaseMyPlane extends BaseGameObject {
     public static BaseMyPlane instance;
 
     public int unmatchedTime;
-    public boolean onUnmatched=false;
+    public boolean onUnmatched = false;
     public int bombTime;
-    public boolean onBomb=false;
+    public boolean onBomb = false;
 
-    public int power=3;
-    public int maxPoint=10000;
-    public int miss=0;
+    public int power = 3;
+    public int maxPoint = 10000;
+    public int miss = 0;
 
-    public JudgeCircleAnimation animation=null;
-    public JudgeCircleAnimation2 animation2=null;
+    public JudgePointAnim judgeAnim = new JudgePointAnim();
+	public PlayerAnim playerAnim = new PlayerAnim();
 
-	public boolean slow=false;
-    public AnimationManager animationManager;
+	public boolean slow = false;
+
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 
     public void init() {
         super.init();
         instance = this;
-        animation = new JudgeCircleAnimation();
-        animation.init();
-        animation2 = new JudgeCircleAnimation2();
-        animation2.init();
+        judgeAnim.init();
         existTime = 0;
         position.set(MainScreen.width / 2, 80);
         image.setSize(30, 46);
@@ -85,12 +77,10 @@ public abstract class BaseMyPlane extends BaseGameObject {
             onUnmatched = false;
             unmatchedTime = Data.ReimuUnmatchedTime;
         }
-		animationManager.updatePosition(position.x, position.y);
-		
-        animationManager.update();
+		playerAnim.update(position.x, position.y);
         image.toBack();
-        animation2.update();
-        animation.update();
+		//  animation2.update();
+        judgeAnim.update();
 
     }
 
@@ -120,4 +110,76 @@ public abstract class BaseMyPlane extends BaseGameObject {
     public abstract void onPowerInc();
 
     public abstract void onPowerDec();
+
+	public class PlayerAnim {
+		private int animFrom = 0;
+		private int animTo = 7;
+		private int everyAnimFrameTime = 5;
+		private int time = 0;
+		private int curFrameNumber = 0;
+		private String name = "reimu";
+		private MoveStatus status = MoveStatus.stay;
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void update(float x, float y) {
+			++time;
+			if (x > lastPosition.x) {
+				lastPosition.x = x;
+				if (status != MoveStatus.moveRight) {
+					animFrom = 16;
+					animTo = 23;
+					curFrameNumber = 16;
+					status = MoveStatus.moveRight;
+				}
+			} else if (x < lastPosition.x) {
+				lastPosition.x = x;
+				if (status != MoveStatus.moveLeft) {
+					animFrom = 8;
+					animTo = 15;
+					curFrameNumber = 8;
+					status = MoveStatus.moveLeft;
+				}
+			} else if (status != MoveStatus.stay) {
+				animFrom = 0;
+				animTo = 7;
+				curFrameNumber = 0;
+				status = MoveStatus.stay;
+			}
+			if (time >= everyAnimFrameTime) {
+				++curFrameNumber;
+				time = 0;
+			}
+			if (curFrameNumber > animTo) {
+				curFrameNumber = animFrom + 5;
+			}
+			image.setDrawable(ResourcesManager.textures.get(name + curFrameNumber));
+		}
+	}
+	public class JudgePointAnim {
+
+		private int stat = 0;
+		private Image jImage = new Image();
+
+		public void init() {
+			jImage.setDrawable(ResourcesManager.textures.get("effect23"));
+			jImage.setSize(48, 48);
+			jImage.setOrigin(jImage.getWidth() / 2, jImage.getHeight() / 2);
+			MainScreen.mainGroup.addActor(jImage);
+		}
+
+		public void update() {
+			jImage.setRotation(stat);
+			if (slow) {
+				jImage.setSize(48, 48);
+			} else {
+				jImage.setSize(0, 0);
+			}
+			stat += 2;
+			jImage.setPosition(position.x, position.y, Align.center);
+			jImage.toFront();
+		}
+	}
 }

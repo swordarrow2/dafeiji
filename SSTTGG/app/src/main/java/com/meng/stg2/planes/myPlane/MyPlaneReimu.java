@@ -1,12 +1,9 @@
 package com.meng.stg2.planes.myPlane;
 
-import com.badlogic.gdx.math.Vector2;
-import com.meng.stg2.helpers.Data;
-import com.meng.stg2.helpers.ObjectPools;
-import com.meng.stg2.planes.AnimationManager;
-import com.meng.stg2.planes.subPlane.SubPlaneReimuA;
-import com.meng.stg2.planes.subPlane.SubPlaneReimuB;
-import com.meng.stg2.ui.onStartActivity;
+import com.badlogic.gdx.math.*;
+import com.meng.stg2.helpers.*;
+import com.meng.stg2.planes.subPlane.*;
+import com.meng.stg2.ui.*;
 
 public class MyPlaneReimu extends BaseMyPlane{
 
@@ -22,9 +19,9 @@ public class MyPlaneReimu extends BaseMyPlane{
     @Override
     public void init(){
         super.init();
+		playerAnim.setName("reimu");
         bombTime=Data.ReimuBombTime;
-        animationManager=new AnimationManager(this,5);
-        if(onStartActivity.pl.equals("A:诱导")){
+         if(onStartActivity.pl.equals("A:诱导")){
             switch(power){
                 case 4:
                     subPlane4=new SubPlaneReimuA();
