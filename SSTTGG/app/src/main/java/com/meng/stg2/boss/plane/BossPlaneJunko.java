@@ -51,7 +51,7 @@ public class BossPlaneJunko extends BaseBossPlane{
 		super.kill();
 		//	MainScreen.sleep=90;
 		MainScreen.normalMode();
-		DropItem.create(position.cpy(),DropItemType.power);
+		DropItem.create(this,DropItemType.power);
 		new BossPlaneJunko2().init(position,10,7000,new Task[]{
 									   new TaskMove(193,250)
 									 });

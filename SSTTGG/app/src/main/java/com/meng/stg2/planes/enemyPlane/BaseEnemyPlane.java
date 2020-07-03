@@ -4,9 +4,11 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg2.*;
 import com.meng.stg2.bullets.enemy.*;
+import com.meng.stg2.dropItems.*;
 import com.meng.stg2.helpers.*;
 import com.meng.stg2.planes.*;
 import com.meng.stg2.planes.enemyPlane.normal.*;
+import com.meng.stg2.planes.myPlane.*;
 import com.meng.stg2.task.*;
 import com.meng.stg2.ui.*;
 
@@ -30,7 +32,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
 
     public BulletShooter bulletShooter;
 	public Vector2 targetPosition = new Vector2();
-
+	public Circle judgeCircle = new Circle();
 	public TaskManager taskManager;
 
     public void init(Vector2 center, int everyAnimFrameTime, int hp, Task[] task) {
@@ -47,7 +49,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
         size = getSize();
         image.setRotation(0);
         image.setSize(size.x, size.y);
-        judgeCircle = new Circle(position, image.getWidth() / 4);
+        judgeCircle.set(position, image.getWidth() / 4);
         MainScreen.mainGroup.addActor(image);
         for (int i=0;i < 32;i++) {
             if (enemys[i] == null) {
@@ -114,6 +116,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
         image.remove();
         isKilled = true;
         judgeCircle = null;
+		DropItem.create(this, DropItemType.power);
     }
 
     public void update() {
@@ -174,7 +177,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
     }
 
     public void judge() {
-
+		if (judgeCircle.contains(BaseMyPlane.instance.position)) {
+			BaseMyPlane.instance.kill();
+		}
     }
-
 }

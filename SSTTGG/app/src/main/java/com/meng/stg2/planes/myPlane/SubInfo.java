@@ -37,8 +37,16 @@ public class SubInfo {
 		return infoa[p][s];
 	}
 
+	public static Info[][] geta() {
+		return infoa;
+	}
+
 	public static Info getb(int p, int s) {
 		return infob[p][s];
+	}
+
+	public static Info[][] getb() {
+		return infob;
 	}
 
 	public static class Info {
@@ -53,11 +61,11 @@ public class SubInfo {
 		public float normalDamage;
 		public float focusDamage;
 
-		public Info(float nX, float nY, float fX, float fY) {
-			normalX = nX;
-			normalY = nY;
+		public Info(float fX, float fY, float nX, float nY) {
 			focusX = fX;
 			focusY = fY;
+			normalX = nX;
+			normalY = nY;
 		}
 	}
 }

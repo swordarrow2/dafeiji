@@ -18,7 +18,7 @@ public abstract class BaseMyPlane extends BaseGameObject {
     public int bombTime;
     public boolean onBomb = false;
 
-    public int power = 3;
+    public int power = 300;
     public int maxPoint = 10000;
     public int miss = 0;
 
@@ -40,7 +40,7 @@ public abstract class BaseMyPlane extends BaseGameObject {
         unmatchedTime = 1;
         onUnmatched = true;
         MainScreen.mainGroup.addActor(image);
-		lastPosition.x = position.x = 270;
+		lastPosition.x = position.x = 193;
     }
 
     public void kill() {
@@ -52,14 +52,14 @@ public abstract class BaseMyPlane extends BaseGameObject {
         animFlag++;
         position.set(MathUtils.clamp(position.x, 10, 376), MathUtils.clamp(position.y, 10, 440));
 		if (MainActivity.status == 1) {
-		instance.position.x += 5;
+			instance.position.x += 5;
 		}
 		if (MainActivity.status == 2) {
-		position.y += 5;
+			position.y += 5;
 		}
         image.setPosition(position.x, position.y, Align.center);
         shoot();
-     //   judge();
+		//   judge();
         if (onBomb) {
             onUnmatched = true;
             bomb();
@@ -157,158 +157,75 @@ public abstract class BaseMyPlane extends BaseGameObject {
 			image.setDrawable(ResourcesManager.textures.get(name + curFrameNumber));
 		}
 	}
-	
+
 	public class JudgePointAnim {
 
 		private int stat = 0;
-		private Image jImage = new Image();
+		private Image judgeImage = new Image();
 
 		public void init() {
-			jImage.setDrawable(ResourcesManager.textures.get("effect23"));
-			jImage.setSize(48, 48);
-			jImage.setOrigin(jImage.getWidth() / 2, jImage.getHeight() / 2);
-			MainScreen.mainGroup.addActor(jImage);
+			judgeImage.setDrawable(ResourcesManager.textures.get("effect23"));
+			judgeImage.setSize(48, 48);
+			judgeImage.setOrigin(judgeImage.getWidth() / 2, judgeImage.getHeight() / 2);
+			MainScreen.mainGroup.addActor(judgeImage);
 		}
 
 		public void update() {
-			jImage.setRotation(stat);
+			judgeImage.setRotation(stat);
 			if (slow) {
-				jImage.setSize(48, 48);
+				judgeImage.setSize(48, 48);
 			} else {
-				jImage.setSize(0, 0);
+				judgeImage.setSize(0, 0);
 			}
 			stat += 2;
-			jImage.setPosition(position.x, position.y, Align.center);
-			jImage.toFront();
+			judgeImage.setPosition(position.x, position.y, Align.center);
+			judgeImage.toFront();
 		}
 	}
-	
-	public abstract class BaseSubPlane extends BaseGameObject{
+
+
+	public abstract class BaseSubPlane extends BaseGameObject {
 
 		public Vector2 nowPosition=Vector2.Zero.cpy();
-		//public BaseMyPlane myPlane;
 		public int bianHao=1;
 
-		private int[] subPlanePosition;
+		private SubInfo.Info subInfo;
 
-		public void init(int subPlaneNumber){
+		public void init() {
 			super.init();
-			bianHao=subPlaneNumber;
-			subPlanePosition=getSubPlanePosition();
-			size=getSize();
-			BaseSubPlane.this.position=BaseMyPlane.this.position.cpy();
+			//subInfo=info;
+			size = getSize();
+			BaseSubPlane.this.position = BaseMyPlane.this.position.cpy();
 			image.setDrawable(getDrawable());
-			image.setSize(size.x,size.y);
+			image.setSize(size.x, size.y);
 			image.setRotation(getRotationDegree());
-			image.setOrigin(image.getWidth()/2,image.getHeight()/2);
+			image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
 			MainScreen.mainGroup.addActor(image);
 		}
 
-		public void kill(){
+		public void kill() {
 			super.kill();
 			image.remove();
 		}
 
-		public void update(){
+		public void setSubInfo(SubInfo.Info subInfo) {
+			this.subInfo = subInfo;
+		}
+
+		public void update() {
 			super.update();
-			switch(power){
-				case 1:
-					if(slow){
-						nowPosition.set(position.x+subPlanePosition[0],position.y+subPlanePosition[1]);
-					}else{
-						nowPosition.set(position.x+subPlanePosition[2],position.y+subPlanePosition[3]);
-					}
-					break;
-				case 2:
-					if(slow){
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[4],position.y+subPlanePosition[5]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[6],position.y+subPlanePosition[7]);
-								break;
-						}
-					}else{
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[8],position.y+subPlanePosition[9]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[10],position.y+subPlanePosition[11]);
-								break;
-						}
-					}
-					break;
-				case 3:
-					if(slow){
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[12],position.y+subPlanePosition[13]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[14],position.y+subPlanePosition[15]);
-								break;
-							case 3:
-								nowPosition.set(position.x+subPlanePosition[16],position.y+subPlanePosition[17]);
-								break;
-						}
-					}else{
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[18],position.y+subPlanePosition[19]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[20],position.y+subPlanePosition[21]);
-								break;
-							case 3:
-								nowPosition.set(position.x+subPlanePosition[22],position.y+subPlanePosition[23]);
-								break;
-						}
-					}
-					break;
-				case 4:
-					if(slow){
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[24],position.y+subPlanePosition[25]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[26],position.y+subPlanePosition[27]);
-								break;
-							case 3:
-								nowPosition.set(position.x+subPlanePosition[28],position.y+subPlanePosition[29]);
-								break;
-							case 4:
-								nowPosition.set(position.x+subPlanePosition[30],position.y+subPlanePosition[31]);
-								break;
-						}
-					}else{
-						switch(bianHao){
-							case 1:
-								nowPosition.set(position.x+subPlanePosition[32],position.y+subPlanePosition[33]);
-								break;
-							case 2:
-								nowPosition.set(position.x+subPlanePosition[34],position.y+subPlanePosition[35]);
-								break;
-							case 3:
-								nowPosition.set(position.x+subPlanePosition[36],position.y+subPlanePosition[37]);
-								break;
-							case 4:
-								nowPosition.set(position.x+subPlanePosition[38],position.y+subPlanePosition[39]);
-								break;
-						}
-					}
-					break;
+			if (slow) {
+				nowPosition.set(BaseMyPlane.this.position.x + subInfo.focusX, BaseMyPlane.this.position.y + subInfo.focusY);
+			} else {
+				nowPosition.set(BaseMyPlane.this.position.x + subInfo.normalX, BaseMyPlane.this.position.y + subInfo.normalY);
 			}
 			position.add(nowPosition.sub(position).scl(0.2f));
 			// image.setDrawable(getDrawable());
 			image.setRotation(getRotationDegree());
-			image.setPosition(position.x,position.y,Align.center);
+			image.setPosition(position.x, position.y, Align.center);
 			//image.setOrigin(image.getWidth()/2,image.getHeight()/2);
 			shoot();
 		}
-
 
 		public abstract Drawable getDrawable();
 
@@ -318,6 +235,6 @@ public abstract class BaseMyPlane extends BaseGameObject {
 
 		public abstract void shoot();
 
-		public abstract int[] getSubPlanePosition();
 	}
+
 }

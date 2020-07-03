@@ -8,7 +8,6 @@ public abstract class BaseGameObject {
 
     public Vector2 position = new Vector2();
 	public Vector2 lastPosition = new Vector2();
-    public Circle judgeCircle = new Circle();
     public Image image = new Image();
     public int animFlag = 0;
     public Drawable drawable = null;
