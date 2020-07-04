@@ -16,7 +16,7 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int formNum=0;
 
     public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,boolean highLight,Task[] mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,speed,ref,through,highLight,mm);
+        ObjectPools.getEnemyBullet().init(center,bulletForm,bulletColor,speed,ref,through,highLight,mm);
     }
 
     public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,boolean highLight,Task[] tasks){

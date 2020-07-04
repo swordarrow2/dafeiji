@@ -11,8 +11,8 @@ public class MyPlaneReimu extends BaseMyPlane {
     public void shoot() {
         if (existTime % 3 == 1) {
             Vector2 vel=new Vector2(0, 47);
-            ObjectPools.reimuShootPool.obtain().init(new Vector2(position.x + 8, position.y + 32), vel);
-            ObjectPools.reimuShootPool.obtain().init(new Vector2(position.x - 8, position.y + 32), vel);
+            ObjectPools.getReimuShoot().init(new Vector2(position.x + 8, position.y + 32), vel);
+            ObjectPools.getReimuShoot().init(new Vector2(position.x - 8, position.y + 32), vel);
         }
     }
 
@@ -255,19 +255,19 @@ public class MyPlaneReimu extends BaseMyPlane {
     public void bomb() {
         Vector2 vel=new Vector2(0, 30);
         if (bombTime % 16 == 0) {
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x, 0), vel);
         }
         if (bombTime % 16 == 4) {
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x - 20, 0), vel);
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x + 20, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x - 20, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x + 20, 0), vel);
         }
         if (bombTime % 16 == 8) {
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x - 40, 0), vel);
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x + 40, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x - 40, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x + 40, 0), vel);
         }
         if (bombTime % 16 == 12) {
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x - 20, 0), vel);
-            ObjectPools.reimuBombPool.obtain().init(new Vector2(position.x + 20, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x - 20, 0), vel);
+            ObjectPools.getReimuSpell().init(new Vector2(position.x + 20, 0), vel);
         }
     }
 
@@ -314,7 +314,7 @@ public class MyPlaneReimu extends BaseMyPlane {
 		@Override
 		public void shoot() {
 			if (existTime % 7 == 1) {
-				ObjectPools.reimuSubPlaneBulletInducePool.obtain().init(new Vector2(position.x, position.y), tmpv);
+				ObjectPools.getReimuSubPlaneBulletInduce().init(new Vector2(position.x, position.y), tmpv);
 			}
 		}
 	}
@@ -348,8 +348,8 @@ public class MyPlaneReimu extends BaseMyPlane {
 		@Override
 		public void shoot() {
 			if (existTime % 4 == 1) {
-				ObjectPools.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(position.x + 4, position.y + 16), vel);
-				ObjectPools.reimuSubPlaneBulletStraightPool.obtain().init(new Vector2(position.x - 4, position.y + 16), vel);
+				ObjectPools.getReimuSubPlaneBulletStraight().init(new Vector2(position.x + 4, position.y + 16), vel);
+				ObjectPools.getReimuSubPlaneBulletStraight().init(new Vector2(position.x - 4, position.y + 16), vel);
 			}
 		}
 	}

@@ -32,7 +32,7 @@ public class DropItem extends BaseGameObject {
 	}
 
     public static void create(Vector2 center, DropItemType bf, BulletKillMode bkm) {
-        ObjectPools.itemPool.obtain().init(center, bf, bkm);
+        ObjectPools.getDropItem().init(center, bf, bkm);
 	}
 
     public void init(Vector2 center, DropItemType itemType, BulletKillMode bulletKillMode) {
