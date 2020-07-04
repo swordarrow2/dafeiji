@@ -19,7 +19,7 @@ public class Effect extends BaseGameObject {
     private int drawableNumber=0;
 	
     public static void create(Vector2 center, EffectType type) {
-        ObjectPools.getEffect().init(center, type);
+        ObjectPool.getEffect().init(center, type);
     }
 
     public void init(Vector2 center, EffectType type) {

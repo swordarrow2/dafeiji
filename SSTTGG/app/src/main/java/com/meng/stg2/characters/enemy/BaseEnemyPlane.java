@@ -112,6 +112,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
     }
 
     public void kill() {
+		if (isKilled) {
+			return;
+		}
         super.kill();
         image.remove();
         isKilled = true;

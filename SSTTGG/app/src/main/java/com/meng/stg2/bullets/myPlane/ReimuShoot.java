@@ -1,36 +1,41 @@
 package com.meng.stg2.bullets.myPlane;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Pool;
-import com.meng.stg2.helpers.ResourcesManager;
-import com.meng.stg2.bullets.BaseMyBullet;
-import com.meng.stg2.helpers.TextureNameManager;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.meng.stg2.bullets.*;
 import com.meng.stg2.helpers.*;
 
-public class ReimuShoot extends BaseMyBullet{
+public class ReimuShoot extends BaseMyBullet {
 
     @Override
-    public Drawable getDrawable(){
-        if(drawable==null){
-            drawable=ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
-		  }
+	public void init(Vector2 center, Vector2 velocity) {
+		super.init(center, velocity);
+		drawable = ResourcesManager.textures.get(TextureNameManager.ReimuBullet);
+	}
+
+    @Override
+    public Drawable getDrawable() {
         return drawable;
-	  }
+    }
+
+	@Override
+	public void kill() {
+		super.kill();
+		ObjectPool.recycle(this);
+	}
 
     @Override
-    public void update(){
+    public void update() {
         super.update();
-        image.toBack();
-	  }
+	}
 
     @Override
-    public Vector2 getSize(){
-        return new Vector2(64,16);
-	  }
-	
+    public Vector2 getSize() {
+        return new Vector2(64, 16);
+	}
+
     @Override
-    public float getRotationDegree(){
+    public float getRotationDegree() {
         return 90;
-	  }
-  }
+	}
+}

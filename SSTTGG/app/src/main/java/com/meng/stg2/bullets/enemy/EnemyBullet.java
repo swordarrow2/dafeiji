@@ -1,157 +1,163 @@
 package com.meng.stg2.bullets.enemy;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
-import com.badlogic.gdx.utils.Align;
-import com.meng.stg2.bullets.BaseEnemyBullet;
-import com.meng.stg2.helpers.ObjectPools;
-import com.meng.stg2.helpers.ResourcesManager;
-import com.meng.stg2.task.Task;
-import com.meng.stg2.ui.MainScreen;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.stg2.bullets.*;
+import com.meng.stg2.helpers.*;
+import com.meng.stg2.task.*;
+import com.meng.stg2.ui.*;
 
-public class EnemyBullet extends BaseEnemyBullet{
+public class EnemyBullet extends BaseEnemyBullet {
 
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,boolean highLight,Task[] mm){
-        ObjectPools.getEnemyBullet().init(center,bulletForm,bulletColor,speed,ref,through,highLight,mm);
+    public static void create(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, float speed, int ref, int through, boolean highLight, Task[] mm) {
+        ObjectPool.getEnemyBullet().init(center, bulletForm, bulletColor, speed, ref, through, highLight, mm);
     }
 
-    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,boolean highLight,Task[] tasks){
+    public void init(Vector2 center, BulletForm bulletForm, BulletColor bulletColor, float speed, int ref, int though, boolean highLight, Task[] tasks) {
         super.init();
-        for(Task task : tasks){
+        for (Task task : tasks) {
             taskManager.addTask(task);
         }
-		bulletSpeed=speed;
-        refCount=ref;
-        thoughCount=though;
+		bulletSpeed = speed;
+        refCount = ref;
+        thoughCount = though;
         position.set(center);
-        image.setPosition(center.x,center.y,Align.center);
-        judgeCircle=new Circle(position,image.getWidth()/2);
-        switch(bulletColor){
+        image.setPosition(center.x, center.y, Align.center);
+        judgeCircle.set(position, image.getWidth() / 2);
+        switch (bulletColor) {
             case gray:
-                colorNum=0;
+                colorNum = 0;
                 break;
             case grayAndRed:
-                colorNum=1;
+                colorNum = 1;
                 break;
             case red:
-                colorNum=2;
+                colorNum = 2;
                 break;
             case grayAndPurple:
-                colorNum=3;
+                colorNum = 3;
                 break;
             case purple:
-                colorNum=4;
+                colorNum = 4;
                 break;
             case grayAndBlue:
-                colorNum=5;
+                colorNum = 5;
                 break;
             case blue:
-                colorNum=6;
+                colorNum = 6;
                 break;
             case grayAndLightBlue:
-                colorNum=7;
+                colorNum = 7;
                 break;
             case lightBlue:
-                colorNum=8;
+                colorNum = 8;
                 break;
             case grayAndGreen:
-                colorNum=9;
+                colorNum = 9;
                 break;
             case green:
-                colorNum=10;
+                colorNum = 10;
                 break;
             case grayAndYellow:
-                colorNum=11;
+                colorNum = 11;
                 break;
             case yellow_dark:
-                colorNum=12;
+                colorNum = 12;
                 break;
             case yellow_light:
-                colorNum=13;
+                colorNum = 13;
                 break;
             case orange:
-                colorNum=14;
+                colorNum = 14;
                 break;
             case white:
-                colorNum=15;
+                colorNum = 15;
                 break;
         }
-        switch(bulletForm){
+        switch (bulletForm) {
             case jiguangkuai:
-                formNum=22;
+                formNum = 22;
                 break;
             case lindan:
-                formNum=14;
+                formNum = 14;
                 break;
             case huanyu:
-                formNum=6;
+                formNum = 6;
                 break;
             case xiaoyu:
-                formNum=4;
+                formNum = 4;
                 break;
             case midan:
-                formNum=8;
+                formNum = 8;
                 break;
             case liandan:
-                formNum=10;
+                formNum = 10;
                 break;
             case zhendan:
-                formNum=11;
+                formNum = 11;
                 break;
             case zadan:
-                formNum=13;
+                formNum = 13;
                 break;
             case chongdan:
-                formNum=15;
+                formNum = 15;
                 break;
             case ganjundan:
-                formNum=17;
+                formNum = 17;
                 break;
             case xingdan:
-                formNum=18;
+                formNum = 18;
                 break;
             case xiaodan:
-                formNum=16;
+                formNum = 16;
                 break;
             case jundan:
-                formNum=3;
+                formNum = 3;
                 break;
             case lidan:
-                formNum=4;
+                formNum = 4;
                 break;
             case diandan:
-                formNum=0;
+                formNum = 0;
                 break;
 			case tuo:
-				formNum=9961;
+				formNum = 9961;
         }
         image.setDrawable(getDrawable());
-		if(highLight){
+		if (highLight) {
 			MainScreen.instence.groupHighLight.addActor(image);
-		}else{
+		} else {
 			MainScreen.instence.groupNormal.addActor(image);
 		}
     }
 
     @Override
-    public Vector2 getSize(){
-        return new Vector2(16,16);
+    public Vector2 getSize() {
+        return new Vector2(16, 16);
     }
 
+	@Override
+	public void kill() {
+		// TODO: Implement this method
+		super.kill();
+		drawable = null;
+		ObjectPool.recycle(this);
+	}
+
     @Override
-    public Drawable getDrawable(){
-		if(formNum==13||formNum==14){
-			image.setSize(14,16);
-		  }
-        if(drawable==null){
-			if(formNum==9961){
-				drawable=ResourcesManager.textures.get("bullet398");
-			}else
-            drawable=ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
+    public Drawable getDrawable() {
+		if (formNum == 13 || formNum == 14) {
+			image.setSize(14, 16);
+		}
+        if (drawable == null) {
+			if (formNum == 9961) {
+				drawable = ResourcesManager.textures.get("bullet398");
+			} else
+				drawable = ResourcesManager.textures.get("bullet" + (formNum * 16 + colorNum));
         }
         return drawable;
     }

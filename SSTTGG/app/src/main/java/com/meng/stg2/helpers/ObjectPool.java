@@ -8,7 +8,7 @@ import com.meng.stg2.bullets.subPlane.*;
 import com.meng.stg2.dropItems.*;
 import com.meng.stg2.effects.*;
 
-public final class ObjectPools {
+public final class ObjectPool {
 //    private static Pool<Image> imagePool=new Pool<Image>(512){
 //        @Override
 //        protected Image newObject(){
@@ -44,17 +44,17 @@ public final class ObjectPools {
         }
     };
 
-    private static Pool<ReimuSubPlaneBulletStraight> reimuSubPlaneBulletStraightPool=new Pool<ReimuSubPlaneBulletStraight>(64){
+    private static Pool<PersuasionNeedle> reimuSubPlaneBulletStraightPool=new Pool<PersuasionNeedle>(64){
         @Override
-        protected ReimuSubPlaneBulletStraight newObject() {
-            return new ReimuSubPlaneBulletStraight();
+        protected PersuasionNeedle newObject() {
+            return new PersuasionNeedle();
         }
     };
 
-    private static Pool<ReimuSubPlaneBulletInduce> reimuSubPlaneBulletInducePool=new Pool<ReimuSubPlaneBulletInduce>(64){
+    private static Pool<ReimuInduce> reimuSubPlaneBulletInducePool=new Pool<ReimuInduce>(64){
         @Override
-        protected ReimuSubPlaneBulletInduce newObject() {
-            return new ReimuSubPlaneBulletInduce();
+        protected ReimuInduce newObject() {
+            return new ReimuInduce();
         }
     };
 
@@ -81,11 +81,11 @@ public final class ObjectPools {
 		return reimuShootPool.obtain();
 	}
 
-	public static ReimuSubPlaneBulletStraight getReimuSubPlaneBulletStraight() {
+	public static PersuasionNeedle getPersuasionNeedle() {
 		return reimuSubPlaneBulletStraightPool.obtain();
 	}
 
-	public static ReimuSubPlaneBulletInduce getReimuSubPlaneBulletInduce() {
+	public static ReimuInduce getReimuSubPlaneBulletInduce() {
 		return reimuSubPlaneBulletInducePool.obtain();
 	}
 
@@ -109,11 +109,11 @@ public final class ObjectPools {
 		reimuShootPool.free(rs);
 	}
 
-	public static void recycle(ReimuSubPlaneBulletStraight rsbs) {
+	public static void recycle(PersuasionNeedle rsbs) {
 		reimuSubPlaneBulletStraightPool.free(rsbs);
 	}
 
-	public static void recycle(ReimuSubPlaneBulletInduce rsbi) {
+	public static void recycle(ReimuInduce rsbi) {
 		reimuSubPlaneBulletInducePool.free(rsbi);
 	}
 

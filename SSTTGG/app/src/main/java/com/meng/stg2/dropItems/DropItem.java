@@ -32,14 +32,14 @@ public class DropItem extends BaseGameObject {
 	}
 
     public static void create(Vector2 center, DropItemType bf, BulletKillMode bkm) {
-        ObjectPools.getDropItem().init(center, bf, bkm);
+        ObjectPool.getDropItem().init(center, bf, bkm);
 	}
 
     public void init(Vector2 center, DropItemType itemType, BulletKillMode bulletKillMode) {
         super.init();
         this.bulletKillMode = BulletKillMode.killWithNothing;
         toAdd.add(this);
-		velocity = new Vector2(0, 3);
+		velocity.set(0, 3);
 
         position.set(center);
         this.bulletKillMode = bulletKillMode;
