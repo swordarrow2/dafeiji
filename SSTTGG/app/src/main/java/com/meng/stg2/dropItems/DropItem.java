@@ -6,11 +6,11 @@ import com.badlogic.gdx.utils.*;
 import com.meng.stg2.*;
 import com.meng.stg2.bullets.enemy.*;
 import com.meng.stg2.helpers.*;
-import com.meng.stg2.planes.myPlane.*;
+import com.meng.stg2.characters.player.*;
 import com.meng.stg2.ui.*;
 import java.util.*;
 import java.util.concurrent.*;
-import com.meng.stg2.planes.enemyPlane.*;
+import com.meng.stg2.characters.enemy.*;
 
 public class DropItem extends BaseGameObject {
 
@@ -23,6 +23,10 @@ public class DropItem extends BaseGameObject {
     public int DrawableNumber = 0;
 	public Circle judgeCircle = new Circle();
 
+	public static void create(Vector2 center, DropItemType type) {
+        create(center, type, BulletKillMode.killWithScorePoint);
+	}
+	
     public static void create(BaseEnemyPlane bep, DropItemType type) {
         create(bep.position.cpy(), type, BulletKillMode.killWithScorePoint);
 	}
@@ -123,7 +127,7 @@ public class DropItem extends BaseGameObject {
         image.setSize(size.x, size.y);
         image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.instence.groupNormal.addActor(image);
 	}
 
     public void kill() {

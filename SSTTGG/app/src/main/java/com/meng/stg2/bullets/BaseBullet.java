@@ -36,7 +36,7 @@ public abstract class BaseBullet extends BaseGameObject {
     }
 
 
-    public Shape2D getCollisionArea() {
+    public Circle getCollisionArea() {
         return judgeCircle;
     }
 

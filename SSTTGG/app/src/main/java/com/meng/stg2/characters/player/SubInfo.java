@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.myPlane;
+package com.meng.stg2.characters.player;
 
 public class SubInfo {
 

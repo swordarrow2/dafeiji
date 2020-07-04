@@ -9,7 +9,7 @@ import com.meng.stg2.task.TaskWait;
 import com.meng.stg2.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg2.bullets.enemy.BulletColor;
 import com.meng.stg2.bullets.enemy.BulletForm;
-import com.meng.stg2.bullets.enemy.BulletShooter;
+import com.meng.stg2.bullets.enemy.Danmaku;
 import com.meng.stg2.bullets.enemy.BulletStyle;
 
 public class test1 extends BaseNormalDanmaku{
@@ -18,9 +18,9 @@ public class test1 extends BaseNormalDanmaku{
     public void init(BaseBossPlane b){
         boss=b;
         tm=new TaskManager(b,TaskRepeatMode.repeatAll);
-        shooters=new BulletShooter[]{
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+        shooters=new Danmaku[]{
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setBulletColor(BulletColor.red)
                         .setBulletForm(BulletForm.xiaoyu)

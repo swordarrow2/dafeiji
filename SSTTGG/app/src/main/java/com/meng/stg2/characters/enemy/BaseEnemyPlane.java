@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.enemyPlane;
+package com.meng.stg2.characters.enemy;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.utils.*;
@@ -6,9 +6,9 @@ import com.meng.stg2.*;
 import com.meng.stg2.bullets.enemy.*;
 import com.meng.stg2.dropItems.*;
 import com.meng.stg2.helpers.*;
-import com.meng.stg2.planes.*;
-import com.meng.stg2.planes.enemyPlane.normal.*;
-import com.meng.stg2.planes.myPlane.*;
+import com.meng.stg2.characters.*;
+import com.meng.stg2.characters.enemy.normal.*;
+import com.meng.stg2.characters.player.*;
 import com.meng.stg2.task.*;
 import com.meng.stg2.ui.*;
 
@@ -30,9 +30,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
     public boolean flip = false;
     public int[][] animNum;
 
-    public BulletShooter bulletShooter;
+    public Danmaku bulletShooter;
 	public Vector2 targetPosition = new Vector2();
-	public Circle judgeCircle = new Circle();
+	public Circle judge = new Circle();
 	public TaskManager taskManager;
 
     public void init(Vector2 center, int everyAnimFrameTime, int hp, Task[] task) {
@@ -49,8 +49,8 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
         size = getSize();
         image.setRotation(0);
         image.setSize(size.x, size.y);
-        judgeCircle.set(position, image.getWidth() / 4);
-        MainScreen.mainGroup.addActor(image);
+        judge.set(position, image.getWidth() / 4);
+        MainScreen.instence.groupNormal.addActor(image);
         for (int i=0;i < 32;i++) {
             if (enemys[i] == null) {
                 enemys[i] = this;
@@ -115,7 +115,6 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
         super.kill();
         image.remove();
         isKilled = true;
-        judgeCircle = null;
 		DropItem.create(this, DropItemType.power);
     }
 
@@ -129,9 +128,9 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
         shoot();
 
         image.setPosition(position.x, position.y, Align.center);
-        judgeCircle.setPosition(position.x, position.y);
-        if (judgeCircle.x < -5 || judgeCircle.x > 390
-			|| judgeCircle.y < -5 || judgeCircle.y > 460) {
+        judge.setPosition(position.x, position.y);
+        if (judge.x < -5 || judge.x > 390
+			|| judge.y < -5 || judge.y > 460) {
             kill();
         } else {
             judge();
@@ -168,17 +167,17 @@ public abstract class BaseEnemyPlane extends BaseGameObject {
 
     public abstract void shoot();
 
-    public Shape2D getCollisionArea() {
-        return judgeCircle;
-    }
-
-    public Shape2D getJudgeCircle() {
-        return judgeCircle;
+    public Circle getCollisionArea() {
+        return judge;
     }
 
     public void judge() {
-		if (judgeCircle.contains(BaseMyPlane.instance.position)) {
+		if (judge.contains(BaseMyPlane.instance.position)) {
 			BaseMyPlane.instance.kill();
 		}
     }
+
+	public void createDrop(DropItemType dip) {
+		DropItem.create(this, dip);
+	}
 }

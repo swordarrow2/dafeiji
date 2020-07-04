@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.myPlane;
+package com.meng.stg2.characters.player;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
@@ -121,9 +121,6 @@ public class MyPlaneReimu extends BaseMyPlane {
     @Override
     public void kill() {
         miss++;
-        if (true) {
-            return;
-        }
         super.kill();
         switch (power / 100) {
             case 4:
@@ -140,7 +137,7 @@ public class MyPlaneReimu extends BaseMyPlane {
 				subPlane1 = null;
         }
 		power -= 100;
-        new MyPlaneReimu().init();
+        BaseMyPlane.instance.init();
     }
 
     @Override

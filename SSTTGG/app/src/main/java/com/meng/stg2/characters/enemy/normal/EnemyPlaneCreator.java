@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.enemyPlane.normal;
+package com.meng.stg2.characters.enemy.normal;
 
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg2.boss.plane.BossPlaneJunko;

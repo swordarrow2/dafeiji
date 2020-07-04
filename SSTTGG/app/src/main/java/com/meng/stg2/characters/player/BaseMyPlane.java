@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.myPlane;
+package com.meng.stg2.characters.player;
 
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.*;
 import com.meng.stg2.*;
 import com.meng.stg2.helpers.*;
-import com.meng.stg2.planes.*;
+import com.meng.stg2.characters.*;
 import com.meng.stg2.ui.*;
 
 public abstract class BaseMyPlane extends BaseGameObject {
@@ -39,12 +39,13 @@ public abstract class BaseMyPlane extends BaseGameObject {
         image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
         unmatchedTime = 1;
         onUnmatched = true;
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.instence.groupNormal.addActor(image);
 		lastPosition.x = position.x = 193;
     }
 
     public void kill() {
         super.kill();
+		image.remove();
     }
 
     public void update() {
@@ -167,7 +168,7 @@ public abstract class BaseMyPlane extends BaseGameObject {
 			judgeImage.setDrawable(ResourcesManager.textures.get("effect23"));
 			judgeImage.setSize(48, 48);
 			judgeImage.setOrigin(judgeImage.getWidth() / 2, judgeImage.getHeight() / 2);
-			MainScreen.mainGroup.addActor(judgeImage);
+			MainScreen.instence.groupNormal.addActor(judgeImage);
 		}
 
 		public void update() {
@@ -200,7 +201,7 @@ public abstract class BaseMyPlane extends BaseGameObject {
 			image.setSize(size.x, size.y);
 			image.setRotation(getRotationDegree());
 			image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
-			MainScreen.mainGroup.addActor(image);
+			MainScreen.instence.groupNormal.addActor(image);
 		}
 
 		public void kill() {

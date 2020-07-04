@@ -5,7 +5,7 @@ import com.meng.stg2.bullets.enemy.*;
 
 public class Task{
 	public int holdingTime=1;
-	public BulletShooter[] bulletShooter;
+	public Danmaku[] bulletShooter;
 	public Vector2 targetPosition=new Vector2();
 	public Runnable r;
 	

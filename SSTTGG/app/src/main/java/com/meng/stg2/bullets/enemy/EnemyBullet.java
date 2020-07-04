@@ -15,11 +15,11 @@ public class EnemyBullet extends BaseEnemyBullet{
     private int colorNum=0;
     private int formNum=0;
 
-    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,Task[] mm){
-        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,speed,ref,through,mm);
+    public static void create(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int through,boolean highLight,Task[] mm){
+        ObjectPools.enemyBulletPool.obtain().init(center,bulletForm,bulletColor,speed,ref,through,highLight,mm);
     }
 
-    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,Task[] tasks){
+    public void init(Vector2 center,BulletForm bulletForm,BulletColor bulletColor,float speed,int ref,int though,boolean highLight,Task[] tasks){
         super.init();
         for(Task task : tasks){
             taskManager.addTask(task);
@@ -126,9 +126,15 @@ public class EnemyBullet extends BaseEnemyBullet{
             case diandan:
                 formNum=0;
                 break;
+			case tuo:
+				formNum=9961;
         }
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+		if(highLight){
+			MainScreen.instence.groupHighLight.addActor(image);
+		}else{
+			MainScreen.instence.groupNormal.addActor(image);
+		}
     }
 
     @Override
@@ -142,6 +148,9 @@ public class EnemyBullet extends BaseEnemyBullet{
 			image.setSize(14,16);
 		  }
         if(drawable==null){
+			if(formNum==9961){
+				drawable=ResourcesManager.textures.get("bullet398");
+			}else
             drawable=ResourcesManager.textures.get("bullet"+(formNum*16+colorNum));
         }
         return drawable;

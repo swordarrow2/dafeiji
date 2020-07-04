@@ -8,7 +8,7 @@ public abstract class BaseNormalDanmaku{
 
     public BaseBossPlane boss;
     public int spellTime=1000;
-    public BulletShooter[] shooters;
+    public Danmaku[] shooters;
     public int frame=0;
 
 	public int waitFrameNormal=60;

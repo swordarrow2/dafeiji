@@ -2,14 +2,14 @@ package com.meng.stg2.boss.danmaku;
 
 import com.meng.stg2.boss.BaseBossPlane;
 import com.meng.stg2.task.TaskManager;
-import com.meng.stg2.bullets.enemy.BulletShooter;
+import com.meng.stg2.bullets.enemy.Danmaku;
 
 public abstract class BaseSpellCard{
 
     public BaseBossPlane boss;
     public int spellTime=1000;
     public String spellName="";
-    public BulletShooter[] shooters;
+    public Danmaku[] shooters;
     public int frame=0;
     public TaskManager tm;
 

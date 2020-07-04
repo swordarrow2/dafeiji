@@ -28,7 +28,7 @@ public class bulletLaser extends BaseEnemyBullet{
         judgeCircle=new Circle(position,1);
         
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.instence.groupHighLight.addActor(image);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.meng.stg2.boss;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg2.boss.danmaku.BaseNormalDanmaku;
 import com.meng.stg2.boss.danmaku.BaseSpellCard;
-import com.meng.stg2.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg2.characters.enemy.BaseEnemyPlane;
 import com.meng.stg2.ui.*;
 import com.meng.stg2.task.*;
 

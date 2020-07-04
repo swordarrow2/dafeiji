@@ -15,5 +15,6 @@ public enum BulletForm{
     xiaodan,
     jundan,
     lidan,
-    diandan
+    diandan,
+	tuo
 }

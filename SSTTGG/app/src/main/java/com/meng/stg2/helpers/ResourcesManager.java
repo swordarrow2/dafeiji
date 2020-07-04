@@ -19,6 +19,7 @@ public final class ResourcesManager{
         loadEffect("slow");
         loadEffect("etbreak");
         loadBullets("bullet1");
+		loadBullets("bullet2");
         loadBoss("chunhu");
         loadItems("item");
         //p:519

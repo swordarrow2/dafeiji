@@ -1,12 +1,12 @@
-package com.meng.stg2.planes;
+package com.meng.stg2.characters;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
-import com.meng.stg2.planes.myPlane.BaseMyPlane;
+import com.meng.stg2.characters.player.BaseMyPlane;
 import com.meng.stg2.ui.MainScreen;
 
-import static com.meng.stg2.planes.myPlane.BaseMyPlane.instance;
-import com.meng.stg2.planes.myPlane.*;
+import static com.meng.stg2.characters.player.BaseMyPlane.instance;
+import com.meng.stg2.characters.player.*;
 
 public class PlayerInputProcessor extends InputAdapter{
     private Vector2 vct2_downPosPlayer=new Vector2();

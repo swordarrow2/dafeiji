@@ -1,4 +1,4 @@
-package com.meng.stg2.planes.enemyPlane.normal;
+package com.meng.stg2.characters.enemy.normal;
 
 public enum EnemyType{
     xiaozayu,

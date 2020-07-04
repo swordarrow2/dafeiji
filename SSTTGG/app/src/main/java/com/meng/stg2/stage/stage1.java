@@ -2,7 +2,7 @@ package com.meng.stg2.stage;
 
 import com.badlogic.gdx.math.*;
 import com.meng.stg2.bullets.enemy.*;
-import com.meng.stg2.planes.enemyPlane.normal.*;
+import com.meng.stg2.characters.enemy.normal.*;
 import com.meng.stg2.task.*;
 import com.meng.stg2.ui.*;
 

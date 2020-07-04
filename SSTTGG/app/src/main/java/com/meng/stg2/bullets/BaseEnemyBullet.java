@@ -11,7 +11,7 @@ import com.meng.stg2.task.*;
 import com.meng.stg2.ui.*;
 import java.util.*;
 import java.util.concurrent.*;
-import com.meng.stg2.planes.myPlane.*;
+import com.meng.stg2.characters.player.*;
 
 public abstract class BaseEnemyBullet extends BaseBullet {
 
@@ -143,20 +143,6 @@ public abstract class BaseEnemyBullet extends BaseBullet {
         }
 
 	}
-
-	@Override
-	public Shape2D getCollisionArea() {
-		return judgeCircle;
-		// TODO: Implement this method
-		/*
-		 Rectangle r=new Rectangle();
-		 r.setSize(164,18);
-
-		 r.setPosition(objectCenter.x-164/2,objectCenter.y-18/2);
-		 return r ;
-		 */
-	}
-
 
     @Override
     public void judge() {

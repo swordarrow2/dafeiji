@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import com.meng.stg2.bullets.BaseEnemyBullet;
-import com.meng.stg2.planes.enemyPlane.*;
+import com.meng.stg2.characters.enemy.*;
 
 public class TaskManager{
     private Random ran=new Random();

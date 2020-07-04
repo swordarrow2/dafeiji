@@ -14,16 +14,16 @@ public class spell1 extends BaseSpellCard{
         boss=b;
 		tm=new TaskManager(b,TaskRepeatMode.repeatLast);
 		waitFrameSpell=120;
-		shooters=new BulletShooter[]{
-			new BulletShooter().init()
-			.setBaseEnemyPlane(boss)
+		shooters=new Danmaku[]{
+			new Danmaku().init()
+			.setEnemy(boss)
 			.setBulletCenter(boss.position)
 			.setBulletColor(BulletColor.yellow_light)
 			.setBulletForm(BulletForm.xiaoyu)
 			.setWays(5)
 			.setWaysDegree(72)
-			.setBulletSpeed(3)
-			
+			.setBulletSpeed(5)
+			.setHighLight(true)
 		  };
 		tm.addTask(new TaskRunnable(new Runnable(){
 						 @Override

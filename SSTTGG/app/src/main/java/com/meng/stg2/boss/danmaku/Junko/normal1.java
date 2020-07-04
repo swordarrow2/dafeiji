@@ -9,9 +9,9 @@ public class normal1 extends BaseNormalDanmaku{
 	public void init(BaseBossPlane b){
         boss=b;
 		tm=new TaskManager(b,TaskRepeatMode.repeatAll);
-        shooters=new BulletShooter[]{
-			new BulletShooter().init()
-			.setBaseEnemyPlane(boss)
+        shooters=new Danmaku[]{
+			new Danmaku().init()
+			.setEnemy(boss)
 			.setBulletCenter(boss.position)
 			.setBulletColor(BulletColor.red)
 			.setBulletForm(BulletForm.xiaoyu)

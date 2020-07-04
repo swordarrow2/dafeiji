@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.meng.stg2.bullets.BaseMyBullet;
 import com.meng.stg2.helpers.ResourcesManager;
 import com.meng.stg2.helpers.TextureNameManager;
-import com.meng.stg2.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg2.characters.enemy.BaseEnemyPlane;
 import com.meng.stg2.ui.MainScreen;
 import com.meng.stg2.helpers.*;
 

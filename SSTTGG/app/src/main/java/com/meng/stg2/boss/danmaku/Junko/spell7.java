@@ -7,7 +7,7 @@ import com.meng.stg2.bullets.BaseEnemyBullet;
 import com.meng.stg2.bullets.enemy.BulletColor;
 import com.meng.stg2.bullets.enemy.BulletForm;
 import com.meng.stg2.bullets.enemy.BulletKillMode;
-import com.meng.stg2.bullets.enemy.BulletShooter;
+import com.meng.stg2.bullets.enemy.Danmaku;
 
 public class spell7 extends BaseSpellCard{
 
@@ -18,9 +18,9 @@ public class spell7 extends BaseSpellCard{
         boss=b;
         waitFrameSpell=120;
         spellName="纯符「纯粹的弹幕地狱」";
-        shooters=new BulletShooter[]{
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+        shooters=new Danmaku[]{
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setBulletColor(BulletColor.red)
                         .setBulletForm(BulletForm.xiaoyu)
@@ -28,8 +28,8 @@ public class spell7 extends BaseSpellCard{
                         .setWaysDegree(12.8571429f)
                         .setBulletSpeed(2)
                         .setRandomCenter(48,48),
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setOffset(new Vector2(-120,-30))
                         .setBulletColor(BulletColor.purple)
@@ -39,8 +39,8 @@ public class spell7 extends BaseSpellCard{
                         .setRandomDegree(360)
                         .setBulletSpeed(0.7f)
                         .setRandomCenter(64,64),
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setOffset(new Vector2(120,-30))
                         .setBulletColor(BulletColor.purple)
@@ -50,8 +50,8 @@ public class spell7 extends BaseSpellCard{
                         .setRandomDegree(360)
                         .setBulletSpeed(0.7f)
                         .setRandomCenter(64,64),
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setOffset(new Vector2(-160,0))
                         .setBulletColor(BulletColor.blue)
@@ -61,8 +61,8 @@ public class spell7 extends BaseSpellCard{
                         .setRandomDegree(360)
                         .setBulletSpeed(2.5f)
                         .setRandomCenter(64,64),
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setOffset(new Vector2(160,0))
                         .setBulletColor(BulletColor.blue)
@@ -72,11 +72,11 @@ public class spell7 extends BaseSpellCard{
                         .setRandomDegree(360)
                         .setBulletSpeed(2.5f)
                         .setRandomCenter(64,64),
-                new BulletShooter().init()
-                        .setBaseEnemyPlane(boss)
+                new Danmaku().init()
+                        .setEnemy(boss)
                         .setBulletCenter(boss.position)
                         .setBulletColor(BulletColor.yellow_dark)
-                        .setBulletForm(BulletForm.xiaoyu)
+                        .setBulletForm(BulletForm.tuo)
                         .setWays(24)
                         .setWaysDegree(15)
                         .setBulletSpeed(4)

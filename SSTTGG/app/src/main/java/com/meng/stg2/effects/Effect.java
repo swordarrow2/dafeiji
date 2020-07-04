@@ -17,8 +17,7 @@ public class Effect extends BaseGameObject {
 
     public EffectType effectType;
     private int drawableNumber=0;
-	public Circle judgeCircle = new Circle();
-
+	
     public static void create(Vector2 center, EffectType type) {
         ObjectPools.effectPool.obtain().init(center, type);
     }
@@ -27,14 +26,13 @@ public class Effect extends BaseGameObject {
         super.init();
         toAdd.add(this);
         existTime = 0;
-        judgeCircle.set(position, 16);
         position.set(center);
         image.setPosition(center.x, center.y, Align.center);
         effectType = type;
         image.setSize(16, 16);
         image.setOrigin(image.getWidth() / 2, image.getHeight() / 2);
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.instence.groupNormal.addActor(image);
     }
 
     public void kill() {
@@ -44,7 +42,7 @@ public class Effect extends BaseGameObject {
 
     public void update() {
         super.update();
-        if (existTime > 40 || judgeCircle.x < -5 || judgeCircle.x > 390 || judgeCircle.y < -5 || judgeCircle.y > 460) {
+        if (existTime > 40 || position.x < -5 || position.x > 390 || position.y < -5 || position.y > 460) {
             kill();
         }
         drawableNumber = existTime / 2;

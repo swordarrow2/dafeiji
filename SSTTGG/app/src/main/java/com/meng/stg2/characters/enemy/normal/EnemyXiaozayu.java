@@ -1,13 +1,13 @@
-package com.meng.stg2.planes.enemyPlane.normal;
+package com.meng.stg2.characters.enemy.normal;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg2.bullets.enemy.BulletColor;
 import com.meng.stg2.bullets.enemy.BulletForm;
-import com.meng.stg2.bullets.enemy.BulletShooter;
+import com.meng.stg2.bullets.enemy.Danmaku;
 import com.meng.stg2.bullets.enemy.EnemyBullet;
 import com.meng.stg2.move.MoveMethodStraight;
-import com.meng.stg2.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg2.characters.enemy.BaseEnemyPlane;
 import com.meng.stg2.task.*;
 
 public class EnemyXiaozayu extends BaseEnemyPlane{
@@ -57,8 +57,8 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
                 animNum=xiaozayuAnimHuang;
                 break;
         }
-        bulletShooter=new BulletShooter().init()
-                .setBaseEnemyPlane(this)
+        bulletShooter=new Danmaku().init()
+                .setEnemy(this)
                 .setBulletCenter(position)
                 .setBulletColor(BulletColor.red)
                 .setBulletForm(BulletForm.liandan)
@@ -66,7 +66,6 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
                 .setWays(6)
                 .setReflex(0)
                 .setWaysDegree(60)
-                .setCengShu(10)
                 .setInFrame(10);
     }
 
@@ -83,7 +82,7 @@ public class EnemyXiaozayu extends BaseEnemyPlane{
             Vector2 vel=new Vector2(3,0);
             vel.rotate(randVal);
             for(int i=0;i<12;i++){
-                EnemyBullet.create(position,BulletForm.ganjundan,BulletColor.purple,3,0,0,new Task[]{
+                EnemyBullet.create(position,BulletForm.ganjundan,BulletColor.purple,3,0,0,false,new Task[]{
 									   new TaskMove(193,250)
 									 });
                 vel.rotate(30);

@@ -1,13 +1,13 @@
-package com.meng.stg2.planes.enemyPlane.normal;
+package com.meng.stg2.characters.enemy.normal;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.meng.stg2.bullets.enemy.BulletColor;
 import com.meng.stg2.bullets.enemy.BulletForm;
-import com.meng.stg2.bullets.enemy.BulletShooter;
+import com.meng.stg2.bullets.enemy.Danmaku;
 import com.meng.stg2.bullets.enemy.EnemyBullet;
 import com.meng.stg2.move.MoveMethodStraight;
-import com.meng.stg2.planes.enemyPlane.BaseEnemyPlane;
+import com.meng.stg2.characters.enemy.BaseEnemyPlane;
 import com.meng.stg2.ui.MainScreen;
 import com.meng.stg2.task.*;
 import com.meng.stg2.bullets.enemy.*;
@@ -38,18 +38,16 @@ public class EnemyDahudie extends BaseEnemyPlane{
         super.init(center,everyAnimFrameTime ,hp,t);
         this.enemyColor=enemyColor;
         animNum=dahudieAnim;
-        bulletShooter=new BulletShooter().init()
-		  .setBaseEnemyPlane(this)
+        bulletShooter=new Danmaku().init()
+		  .setEnemy(this)
 		  .setBulletCenter(position)
 		  .setBulletColor(BulletColor.red)
 		  .setBulletForm(BulletForm.liandan)
 		  .setStraightMove(true)
 		  .setWays(6) 
 		  .setWaysDegree(60)
-		  .setCengShu(10)
 		  .setInFrame(10)
-		  .setBulletStyle(BulletStyle.snipe)
-		  ;
+		  .setBulletStyle(BulletStyle.snipe);
 	  }
 
     @Override

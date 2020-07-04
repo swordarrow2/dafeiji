@@ -1,4 +1,4 @@
-package com.meng.stg2.planes;
+package com.meng.stg2.characters;
 
 public enum MoveStatus{
     stay,

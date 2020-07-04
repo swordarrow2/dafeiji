@@ -3,7 +3,7 @@ import com.meng.stg2.bullets.enemy.*;
 
 public class TaskShoot extends Task{
 	
-	public TaskShoot(BulletShooter... bs){
+	public TaskShoot(Danmaku... bs){
 		bulletShooter=bs;
 	  }
   }

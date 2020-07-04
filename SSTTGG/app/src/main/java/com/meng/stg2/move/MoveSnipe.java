@@ -1,6 +1,6 @@
 package com.meng.stg2.move;
 import com.badlogic.gdx.math.*;
-import com.meng.stg2.planes.myPlane.*;
+import com.meng.stg2.characters.player.*;
 
 public class MoveSnipe extends BaseMoveMethod{
 

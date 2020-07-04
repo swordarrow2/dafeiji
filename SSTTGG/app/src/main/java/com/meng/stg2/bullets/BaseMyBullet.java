@@ -28,7 +28,7 @@ public abstract class BaseMyBullet extends BaseBullet{
         image.setPosition(position.x,position.y,Align.center);
         judgeCircle=new Circle(position,image.getHeight()/2*3); //中心、半径
         image.setDrawable(getDrawable());
-        MainScreen.mainGroup.addActor(image);
+        MainScreen.instence.groupNormal.addActor(image);
     }
 
     @Override
@@ -60,7 +60,7 @@ public abstract class BaseMyBullet extends BaseBullet{
         try{
             for(int i=0;i<32;i++){
                 if(enemys[i]!=null){
-                    if(((Circle)getCollisionArea()).overlaps(((Circle)enemys[i].getJudgeCircle()))){
+                    if(getCollisionArea().overlaps(enemys[i].getCollisionArea())){
                         kill();
                         enemys[i].hit(10.5f);
                     }

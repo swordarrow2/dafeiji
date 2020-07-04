@@ -8,7 +8,7 @@ import android.view.KeyEvent;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.meng.stg2.planes.myPlane.*;
+import com.meng.stg2.characters.player.*;
 
 public class MainActivity extends AndroidApplication{
     public static MainActivity instance;
